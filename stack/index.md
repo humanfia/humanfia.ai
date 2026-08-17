@@ -4,6 +4,11 @@
 own — and the reason they are separate is that the interesting question sits in the seams
 between them.</p>
 
+<SystemMap />
+
+And the same thing as a stack, which is the other true way to draw it — what sits on what,
+and what each layer is responsible for:
+
 <ArchStack />
 
 ## The layers, from the bottom

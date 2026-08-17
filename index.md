@@ -61,10 +61,11 @@ features:
 
 ## One picture of the whole thing
 
-Four layers that sit on each other, and a benchmark alongside them that decides what the
-middle two should be.
+The runtime at the centre, the flows in orbit around it, the CLIs you already log into feeding
+it, the two places we point it — and the referee underneath, sending the score back up.
 
-<ArchStack />
+<SystemMap />
+<ArchStack class="mobile-only" />
 
 [The stack, explained](/stack/) · [The loop that connects them](/stack/loop)
 

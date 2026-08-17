@@ -154,6 +154,17 @@ a.card:hover {
   display: block;
 }
 
+/* Shown only where <SystemMap> is not: the same architecture, in a shape a phone can read. */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .mobile-only {
+    display: block;
+  }
+}
+
 /* A line of small print under a figure or a claim. */
 .footnote {
   font-size: 13px;
