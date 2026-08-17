@@ -8,6 +8,41 @@ import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 // humanfia/humanize2 -- so everything here links out to it rather than restating it.
 const HOSTNAME = 'https://humanfia.ai'
 
+/** The one sidebar. Every content section points at this, so it never moves. */
+const CONTENTS = [
+  {
+    text: 'Results',
+    items: [
+      { text: 'All of them', link: '/results/' },
+      { text: 'IMO 2026 — six of six', link: '/results/imo-2026' },
+      { text: 'PutnamBench — 670 of 672', link: '/results/putnambench' },
+      { text: 'MLSys 2026 kernel contest', link: '/results/mlsys-2026' },
+      { text: 'Kaggle — thirteen competitions', link: '/results/kaggle' },
+    ],
+  },
+  {
+    text: 'Applications',
+    items: [
+      { text: 'Where the flows are pointed', link: '/applications/' },
+      { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+      { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+      { text: 'AgentKaggle', link: '/applications/agentkaggle' },
+    ],
+  },
+  {
+    text: 'Projects',
+    items: [
+      { text: 'All of them', link: '/projects/' },
+      { text: 'FlowBench — the referee', link: '/projects/flowbench' },
+      { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
+    ],
+  },
+  {
+    text: 'About',
+    items: [{ text: 'Who we are', link: '/about/' }],
+  },
+]
+
 export default defineConfig({
   title: 'Humanfia',
   titleTemplate: ':title · Humanfia',
@@ -93,76 +128,14 @@ export default defineConfig({
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
 
+    // One sidebar, on every content page. Keyed per section it would change shape underneath
+    // a reader every time they followed a link, which is the opposite of what a sidebar is for:
+    // the same list, with the current page marked, so the whole site is legible from anywhere.
     sidebar: {
-      '/projects/': [
-        {
-          text: 'Projects',
-          items: [
-            { text: 'All of them', link: '/projects/' },
-            { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-            { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
-          ],
-        },
-        {
-          text: 'Applications',
-          items: [
-            { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-          ],
-        },
-      ],
-
-      '/applications/': [
-        {
-          text: 'Applications',
-          items: [
-            { text: 'Where the flows are pointed', link: '/applications/' },
-            { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-          ],
-        },
-        {
-          text: 'Projects',
-          items: [
-            { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-            { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
-          ],
-        },
-      ],
-
-      '/results/': [
-        {
-          text: 'Results',
-          items: [
-            { text: 'All of them', link: '/results/' },
-            { text: 'IMO 2026 — six of six', link: '/results/imo-2026' },
-            { text: 'PutnamBench — 670 of 672', link: '/results/putnambench' },
-            { text: 'MLSys 2026 kernel contest', link: '/results/mlsys-2026' },
-            { text: 'Kaggle — thirteen competitions', link: '/results/kaggle' },
-          ],
-        },
-        {
-          text: 'Where they came from',
-          items: [
-            { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-          ],
-        },
-      ],
-
-      '/about/': [
-        {
-          text: 'About',
-          items: [
-            { text: 'Who we are', link: '/about/' },
-            { text: 'How we work', link: '/about/#how-we-work' },
-            { text: 'Get in touch', link: '/about/#get-in-touch' },
-          ],
-        },
-      ],
+      '/results/': CONTENTS,
+      '/applications/': CONTENTS,
+      '/projects/': CONTENTS,
+      '/about/': CONTENTS,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/humanfia' }],

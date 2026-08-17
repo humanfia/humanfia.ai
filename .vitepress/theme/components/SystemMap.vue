@@ -71,39 +71,15 @@ const flows = [
 
 const nodes = [
   {
-    key: 'flowverse',
-    stage: 2,
-    x: 40,
-    y: 20,
-    w: 228,
-    h: 104,
-    kicker: 'Where the flows live',
-    title: 'flowverse',
-    lines: ['A repository of flows,', 'cloned and run by name'],
-    href: 'https://github.com/humanfia/flowverse',
-  },
-  {
     key: 'agents',
     stage: 0,
     x: 24,
-    y: 182,
+    y: 248,
     w: 232,
-    h: 112,
-    kicker: 'What a flow drives',
+    h: 128,
+    kicker: 'What it drives',
     title: 'The agents',
     lines: ['claude · codex · dsh · agy', 'and every other CLI you', 'already log into'],
-  },
-  {
-    key: 'humanize',
-    stage: 1,
-    x: 24,
-    y: 338,
-    w: 232,
-    h: 96,
-    kicker: 'The runtime',
-    title: 'Humanize 2',
-    lines: ['Runs a flow across them,', 'and writes down what happened'],
-    href: 'https://hmz.humanfia.ai/',
   },
   {
     key: 'kda',
@@ -155,27 +131,51 @@ const nodes = [
   },
 ]
 
+// Every edge carries the verb, because a line between two boxes is not a relationship until
+// somebody says which way round it reads.
 const links = [
-  // Where a flow comes from, into the orbit it sits on.
-  { key: 'flowverse-in', stage: 2, d: 'M 272 64 C 344 78, 324 152, 332 200', dur: '2.8s' },
-  // The agents, and the runtime that drives them: the two solid lines, because they are the
-  // ones that are not a loop -- turns go in, and nothing comes back out this way.
-  { key: 'agents-in', stage: 0, solid: true, d: 'M 262 238 C 302 244, 296 268, 290 288', dur: '2.4s' },
-  { key: 'runtime-in', stage: 1, solid: true, d: 'M 262 386 C 306 380, 300 356, 292 336', dur: '2.4s' },
-  // The flows, doing the work, in the three places we point them.
+  // Out of the runtime, into the agents it drives. This is the one solid line: turns go out,
+  // and no credential of yours comes back this way.
+  {
+    key: 'drives',
+    stage: 0,
+    solid: true,
+    d: `M ${CX - CORE_R - 14} 310 L 262 310`,
+    dur: '2.4s',
+    label: 'drives',
+    lx: 330,
+    ly: 298,
+  },
+  // A flow, running on the runtime, pointed at something that can tell it it is wrong.
   { key: 'kda', stage: 2, d: 'M 641 252 C 704 208, 726 158, 782 148', dur: '3.1s' },
-  { key: 'hoa', stage: 2, d: 'M 641 302 C 700 302, 730 302, 782 302', dur: '3.1s' },
+  {
+    key: 'hoa',
+    stage: 2,
+    d: 'M 641 302 C 700 302, 730 302, 782 302',
+    dur: '3.1s',
+    label: 'is pointed at',
+    lx: 711,
+    ly: 290,
+  },
   { key: 'agentkaggle', stage: 2, d: 'M 641 370 C 704 414, 726 448, 782 456', dur: '3.1s' },
-  // What the work is worth, going to the referee.
+  // What the work was worth, going to the referee.
   { key: 'kda-bench', stage: 3, d: 'M 902 206 C 948 420, 800 622, 612 618', dur: '3.6s' },
-  { key: 'hoa-bench', stage: 3, d: 'M 902 360 C 934 506, 800 642, 612 634', dur: '3.6s' },
+  {
+    key: 'hoa-bench',
+    stage: 3,
+    d: 'M 902 360 C 934 506, 800 642, 612 634',
+    dur: '3.6s',
+    label: 'is scored by',
+    lx: 856,
+    ly: 552,
+  },
   { key: 'kaggle-bench', stage: 3, d: 'M 902 514 C 912 584, 780 658, 612 650', dur: '3.6s' },
   // And the arrow the whole diagram is drawn for: the score, going back into the flows.
   {
     key: 'back',
     stage: 4,
     accent: true,
-    d: 'M 330 634 C 200 616, 176 486, 300 396',
+    d: 'M 330 634 C 200 616, 168 470, 292 348',
     dur: '3.2s',
   },
 ]
@@ -217,8 +217,8 @@ const hotspots = [
   })),
   {
     key: 'core',
-    href: FLOWVERSE,
-    label: 'the flow — what we build',
+    href: 'https://hmz.humanfia.ai/',
+    label: 'Humanize 2 — the runtime',
     stage: 1,
     round: true,
     style: box(CX - CORE_R, CY - CORE_R, CORE_R * 2, CORE_R * 2),
@@ -233,7 +233,7 @@ const hotspots = [
       <svg
         viewBox="0 0 1040 720"
         role="img"
-        aria-label="How the projects relate: flowverse holds the flows, Humanize 2 runs one across the coding agents, the three applications are where a flow is found out, and FlowBench scores the flows and feeds the winner back"
+        aria-label="How the projects relate: Humanize 2 runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
       >
         <defs>
           <radialGradient :id="`${uid}-core`" cx="35%" cy="30%">
@@ -289,6 +289,9 @@ const hotspots = [
             <circle v-if="motion" :r="link.accent ? 5.5 : 4.5" class="packet">
               <animateMotion :path="link.d" :dur="link.dur" repeatCount="indefinite" />
             </circle>
+            <text v-if="link.label" :x="link.lx" :y="link.ly" class="link-label">
+              {{ link.label }}
+            </text>
           </g>
         </g>
 
@@ -325,7 +328,7 @@ const hotspots = [
             />
           </circle>
           <text :x="CX" :y="CY - RING_R - 44" class="orbit-label">
-            THE FLOWS WE WRITE
+            THE FLOWS WE WRITE · WHAT IT RUNS
           </text>
         </g>
 
@@ -373,8 +376,8 @@ const hotspots = [
             <path d="M 30 24 L 60 50 L 30 76" />
             <path d="M 92 76 L 68 76" />
           </g>
-          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">the flow</text>
-          <text :x="CX" :y="CY + CORE_R + 48" class="core-role">WHAT WE BUILD</text>
+          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">Humanize 2</text>
+          <text :x="CX" :y="CY + CORE_R + 48" class="core-role">THE RUNTIME</text>
         </g>
 
         <!-- The cards. -->
@@ -425,9 +428,9 @@ const hotspots = [
 
     <figcaption>
       <span class="scroll-hint">Scroll the diagram sideways to see all of it. </span>
-      flowverse holds the flows; Humanize 2 runs one across the agents you already log into; the
-      three applications are where a flow is found out; and FlowBench sends the score back into
-      the flows. Hover any piece to hold it.
+      Humanize 2 runs the flows and drives the agents you already log into; a flow is pointed at
+      one of the three applications, which is where it is found out; and FlowBench scores what
+      came back and sends the winner into the next flow. Hover any piece to hold it.
     </figcaption>
   </figure>
 </template>
@@ -692,6 +695,21 @@ const hotspots = [
 
 .link.accent .packet {
   fill: var(--map-signal);
+}
+
+/* The verb on an edge. Same weight as the rest of the small print until its stage comes up,
+   so the diagram reads as a whole and then one relationship at a time. */
+.link-label {
+  fill: var(--vp-c-text-3);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  text-anchor: middle;
+  transition: fill 0.3s;
+}
+
+.link.live .link-label,
+.link:hover .link-label {
+  fill: var(--map-accent);
 }
 
 .back-label {
