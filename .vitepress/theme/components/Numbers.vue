@@ -42,11 +42,11 @@ const STATS: Stat[] = [
     href: '/applications/kda',
   },
   {
-    to: 10,
-    text: '10',
-    what: 'Coding-agent CLIs driven by one runtime, on credentials that never pass through us',
-    who: 'humanize',
-    href: '/projects/humanize',
+    to: 13,
+    text: '13',
+    what: 'Kaggle competitions entered and audited in public, official finishes kept apart from estimates',
+    who: 'AgentKaggle',
+    href: '/applications/agentkaggle',
   },
 ]
 

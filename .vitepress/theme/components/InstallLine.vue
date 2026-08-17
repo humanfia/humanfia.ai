@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// The only instruction on the home page. Everything else about running it lives in humanize's
-// own documentation, which is a whole site; putting a second, staler copy here would be a
-// promise to keep two things in step that nobody would keep.
+// The only instruction on this site, and deliberately not an introduction to anything. What
+// Humanize 2 is, what it does and how to drive it is documented at hmz.humanfia.ai, which is a
+// site of its own; a second, staler account of it here would be a promise nobody would keep.
 import { onUnmounted, ref } from 'vue'
 
 const LINE = 'pip install git+https://github.com/humanfia/humanize2.git'
@@ -31,8 +31,8 @@ onUnmounted(() => clearTimeout(clearing))
       <span class="copy" :class="{ done: copied }">{{ copied ? 'copied' : 'copy' }}</span>
     </button>
     <p class="under">
-      Drives the coding-agent CLI you already log into. No key of ours, no key of yours.
-      <a href="https://hmz.humanfia.ai/guide/getting-started">Getting started</a>
+      Humanize 2, the runtime all of this runs on.
+      <a href="https://hmz.humanfia.ai/">hmz.humanfia.ai</a>
     </p>
   </div>
 </template>

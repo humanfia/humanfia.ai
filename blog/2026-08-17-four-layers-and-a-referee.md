@@ -37,13 +37,13 @@ through the interfaces they already serve. We hold no API key and talk to no mod
 The frontier moves every few weeks; the wrapper around one vendor is the least valuable thing
 in this diagram.
 
-**Runtime.** [humanize](/projects/humanize) opens and resumes sessions, takes turns in the
+**Runtime.** [Humanize 2](https://hmz.humanfia.ai/) opens and resumes sessions, takes turns in the
 order a flow asks for, puts work in a container or on another machine when it should, and
 writes the whole run down as it happens so it reads back as a timeline. Its documentation is
 at [hmz.humanfia.ai](https://hmz.humanfia.ai/).
 
-**Flows.** [The flowverse](/projects/flowverse): [RLAR](/flows/rlar),
-[Flame Chase](/flows/flame-chase), [Humanize 1](/flows/humanize1), and the loops everyone
+**Flows.** [The flowverse](https://hmz.humanfia.ai/guide/flowverses): [RLAR](https://github.com/humanfia/flowverse),
+[Flame Chase](https://github.com/humanfia/flowverse), [Humanize 1](https://github.com/humanfia/flowverse), and the loops everyone
 already uses, kept alongside so a comparison is a flag rather than a reimplementation.
 
 **Applications.** [KDA](/applications/kda) for GPU kernels and [HOA](/applications/hoa) for
@@ -51,7 +51,7 @@ olympiad mathematics. Both chosen because the scoreboard belongs to somebody els
 
 ## Why the benchmark is a layer and not a report
 
-[flowbench](/projects/flowbench) sits alongside the stack rather than on top of it, and the
+[FlowBench](/projects/flowbench) sits alongside the stack rather than on top of it, and the
 arrow that matters is the one going back up.
 
 There is a well-known trick where you start a fresh session every turn so nothing carries over
@@ -71,7 +71,7 @@ That last clause is the whole design. A benchmark that ranks things is a scorebo
 benchmark whose winner becomes the next default is a flywheel — and it means our opinions have
 to survive contact with a number, every time.
 
-flowbench is not released yet. When it is, the first thing published will be the numbers for
+FlowBench is not released yet. When it is, the first thing published will be the numbers for
 the flows on this site, whether or not they flatter us.
 
 ## The part that keeps us honest
@@ -91,7 +91,7 @@ doing anyway.
 
 ## What is next
 
-- **flowbench, released**, with the first cross-flow numbers.
+- **FlowBench, released**, with the first cross-flow numbers.
 - **More flows**, including several that only exist because a trace showed us where an
   eleven-hour run went wrong.
 - **More applications**, on the same rule: somebody else keeps the scoreboard.

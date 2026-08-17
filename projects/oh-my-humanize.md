@@ -25,10 +25,10 @@ agentic development is in the *workflow*, not the wrapper. Building it is how we
 the workflow deserved to be a first-class object — a thing you can read, fork, publish and
 score — rather than behaviour compiled into one binary.
 
-That conclusion is [humanize](/projects/humanize), which drives whichever coding agent you
-already have instead of replacing it, and [flowverse](/projects/flowverse), where the
+That conclusion is [Humanize 2](https://hmz.humanfia.ai/), which drives whichever coding agent you
+already have instead of replacing it, and [flowverse](https://hmz.humanfia.ai/guide/flowverses), where the
 workflows live as code.
 
 If you want a single native harness and are happy inside it, oh-my-humanize is there and it is
 Apache-2.0. If you want your existing CLI driven by a loop you can change, start with
-[humanize](/projects/humanize).
+[Humanize 2](https://hmz.humanfia.ai/).

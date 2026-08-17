@@ -46,9 +46,9 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
         letter-spacing="3" fill="{SLATE}">HUMANFIA</text>
 
   <text x="72" y="322" font-family="{SANS}" font-size="72" font-weight="bold"
-        letter-spacing="-2" fill="{INK}">We build the loop</text>
+        letter-spacing="-2" fill="{INK}">We build the flow</text>
   <text x="72" y="402" font-family="{SANS}" font-size="72" font-weight="bold"
-        letter-spacing="-2" fill="{BLUE}">around the model.</text>
+        letter-spacing="-2" fill="{BLUE}">around the agent.</text>
 
   <text x="72" y="480" font-family="{SANS}" font-size="30" fill="{BODY}">A research team working on</text>
   <text x="72" y="520" font-family="{SANS}" font-size="30" fill="{BODY}">long-horizon agent systems.</text>

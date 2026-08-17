@@ -19,7 +19,7 @@ not control.</p>
 
 ### IMO 2026 — all six problems
 
-A fully agentic run on the [Humanize 1](/flows/humanize1) loop solved all six problems of the
+A fully agentic run on the [Humanize 1](https://github.com/humanfia/flowverse) loop solved all six problems of the
 2026 International Mathematical Olympiad. Every solution is machine-checked in Lean 4 against
 the formal statements published by AxiomMath.
 
@@ -71,12 +71,12 @@ produced it.
 | PutnamBench, 99.7% | The [official leaderboard](https://trishullab.github.io/PutnamBench/leaderboard.html), plus the AXLE API, which needs Python 3 and a network connection and nothing else. |
 | Kernel contest placements | [The contest repository](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest) has the evaluation and reproduction code. |
 | Kaggle results | [The audit](https://github.com/agentkaggle/kaggle-results-audit) states its snapshot times, its exclusions, and what each figure is not. |
-| The flows themselves | `pip install` [humanize](/projects/humanize), then `hmz exec -f official/…` and watch the whole run. |
+| The flows themselves | `pip install` [Humanize 2](https://hmz.humanfia.ai/), then `hmz exec -f official/…` and watch the whole run. |
 
 ::: info On what these results do and do not show
 None of this says agents are good at mathematics or at kernels. It says that the *arrangement*
 around a model — who works, who reviews, what is remembered, what is deliberately forgotten,
 when to stop — is worth a large multiple on hard work, and that the multiple can be measured
 by people who are not us. That is the claim, and it is the reason
-[flowbench](/projects/flowbench) exists.
+[FlowBench](/projects/flowbench) exists.
 :::

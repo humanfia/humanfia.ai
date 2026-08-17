@@ -4,15 +4,15 @@ description: Who Humanfia is, what we believe about long-horizon agent work, and
 
 # About Humanfia
 
-<p class="lede">We are a small group building the layer above the model: the runtime, the
-flows and the benchmark that decide whether an agent finishes the work or merely starts it
-impressively.</p>
+<p class="lede">We are a small group building the flow around the agent: the method, the
+referee and the applications that decide whether an agent finishes the work or merely starts
+it impressively.</p>
 
 ## The bet
 
 A stronger model writes a better function. It does not, on its own, work for eleven hours,
 notice that the third approach was the right one, keep the constraint it was given in round
-one, and stop when the job is actually done. That is a property of the loop around the model,
+one, and stop when the job is actually done. That is a property of the flow around the agent,
 and almost nobody measures it.
 
 Everyone can see that models are getting better. Fewer people are working on the thing that
@@ -33,7 +33,7 @@ line or not at all.
 ### Automation without abdication
 
 The human owns the intent, the tradeoffs and the definition of done. Agents are leverage
-inside that contract, not a replacement for it. In [Humanize 1](/flows/humanize1), the person
+inside that contract, not a replacement for it. In [Humanize 1](https://github.com/humanfia/flowverse), the person
 is literally one of the agents in the loop.
 
 ### The builder is not the judge
@@ -52,7 +52,7 @@ catch, and our applications are chosen so that it cannot survive the check.
 
 ### If it is not measured, it is a preference
 
-Anyone can have a theory about how agents should be run. [flowbench](/projects/flowbench) is
+Anyone can have a theory about how agents should be run. [FlowBench](/projects/flowbench) is
 us agreeing, in advance, to find out whether ours are right — and to delete the ones that are
 not.
 
@@ -66,7 +66,7 @@ publish what it takes to check it, including the parts that need caveats.
 Humanfia is maintained by [@futrime](https://github.com/futrime) and built alongside
 collaborators in academia and industry — the [KDA](/applications/kda) work is joint with
 [MIT HAN Lab](https://hanlab.mit.edu/), and the loop that became
-[Humanize 1](/flows/humanize1) began at [PolyArch](https://github.com/PolyArch).
+[Humanize 1](https://github.com/humanfia/flowverse) began at [PolyArch](https://github.com/PolyArch).
 
 The code is Apache-2.0. Everything we ship is at
 [github.com/humanfia](https://github.com/humanfia).
@@ -74,10 +74,10 @@ The code is Apache-2.0. Everything we ship is at
 ## Get in touch
 
 - **A question, a bug, or a flow that beats ours:** open an issue or a pull request on the
-  repository it belongs to — [humanize](https://github.com/humanfia/humanize2),
+  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize2),
   [flowverse](https://github.com/humanfia/flowverse), or
   [this site](https://github.com/humanfia/humanfia.ai).
 - **Working on long-horizon agent systems and want to compare notes:** we are interested. Open
-  a discussion on [humanize](https://github.com/humanfia/humanize2/issues).
+  a discussion on [Humanize 2](https://github.com/humanfia/humanize2/issues).
 - **Following along:** [the blog](/blog/), its [RSS feed](/blog/feed.rss), or
   [github.com/humanfia](https://github.com/humanfia).

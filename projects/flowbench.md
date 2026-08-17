@@ -1,14 +1,14 @@
 ---
-description: flowbench is our benchmark for long-horizon agent work — a way to tell which loop is actually better. In development.
+description: FlowBench is our benchmark for long-horizon agent work — a way to tell which loop is actually better. In development.
 ---
 
-# flowbench
+# FlowBench
 
-<p class="lede">The referee. flowbench measures how well an agent stack does work that takes
+<p class="lede">The referee. FlowBench measures how well an agent stack does work that takes
 a day rather than a minute, and it is how we decide which of our own loops survives.</p>
 
 ::: info In development
-flowbench is not released yet, and this page is deliberately short on detail. When it opens
+FlowBench is not released yet, and this page is deliberately short on detail. When it opens
 up, it will be announced [on the blog](/blog/) and at
 [github.com/humanfia](https://github.com/humanfia).
 :::
@@ -25,7 +25,7 @@ model: the difference between a run that converges and a run that wanders back o
 covered at hour three is not a difference in what the model can write, it is a difference in
 what it is being asked, and when, and by whom.
 
-flowbench measures that difference.
+FlowBench measures that difference.
 
 ## What makes it different from a coding benchmark
 
@@ -45,9 +45,9 @@ the same flow, in the same runtime, that anybody can install and run.
 
 ## What it changes for us
 
-flowbench is why the flows on this site are the flows on this site. A loop that we like the
+FlowBench is why the flows on this site are the flows on this site. A loop that we like the
 sound of but that loses on the board does not become a default, and does not stay in the
-[flowverse](/projects/flowverse). It is a slow and slightly humbling way to build a product,
+[flowverse](https://hmz.humanfia.ai/guide/flowverses). It is a slow and slightly humbling way to build a product,
 and it is the only way we know of to tell craft from taste.
 
 <div class="card-grid">

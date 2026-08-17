@@ -26,6 +26,10 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    // A home screen cannot use the SVG: it wants a raster of a known size and composites it
+    // onto its own background, so these are drawn on slate by scripts/icons.py.
+    ['link', { rel: 'apple-touch-icon', href: '/icon-180.png', sizes: '180x180' }],
+    ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     // The mark's own slate, not the accent: this tints the browser chrome around the page, and
     // a saturated blue bar over a white page reads as a different site's.
     ['meta', { name: 'theme-color', content: '#1e293b' }],
@@ -60,73 +64,47 @@ export default defineConfig({
     siteTitle: 'Humanfia',
 
     nav: [
-      { text: 'Stack', link: '/stack/', activeMatch: '/stack/' },
+      { text: 'Results', link: '/results/', activeMatch: '/results/' },
       {
-        text: 'Projects',
-        activeMatch: '/projects/|/applications/',
+        text: 'Applications',
+        activeMatch: '/applications/',
         items: [
-          {
-            text: 'Platform',
-            items: [
-              { text: 'humanize — the runtime', link: '/projects/humanize' },
-              { text: 'flowverse — the flows', link: '/projects/flowverse' },
-              { text: 'flowbench — the benchmark', link: '/projects/flowbench' },
-              { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
-            ],
-          },
-          {
-            text: 'Applications',
-            items: [
-              { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-              { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-            ],
-          },
+          { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+          { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+          { text: 'AgentKaggle', link: '/applications/agentkaggle' },
         ],
       },
-      { text: 'Flows', link: '/flows/', activeMatch: '/flows/' },
-      { text: 'Results', link: '/results/', activeMatch: '/results/' },
+      {
+        text: 'Projects',
+        activeMatch: '/projects/',
+        items: [
+          { text: 'FlowBench — the referee', link: '/projects/flowbench' },
+          { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
+          // Humanize 2 is documented on its own site and nowhere else. This is a way out of
+          // here, not an entry in a list of pages we maintain.
+          { text: 'Humanize 2 ↗', link: 'https://hmz.humanfia.ai/' },
+        ],
+      },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
 
     sidebar: {
-      '/stack/': [
-        {
-          text: 'The stack',
-          items: [
-            { text: 'How it fits together', link: '/stack/' },
-            { text: 'The loop', link: '/stack/loop' },
-          ],
-        },
-        {
-          text: 'Go deeper',
-          items: [
-            { text: 'Projects', link: '/projects/' },
-            { text: 'Flows', link: '/flows/' },
-            { text: 'Results', link: '/results/' },
-          ],
-        },
-      ],
-
       '/projects/': [
         {
           text: 'Projects',
-          items: [{ text: 'All of them', link: '/projects/' }],
-        },
-        {
-          text: 'Platform',
           items: [
-            { text: 'humanize — the runtime', link: '/projects/humanize' },
-            { text: 'flowverse — the flows', link: '/projects/flowverse' },
-            { text: 'flowbench — the benchmark', link: '/projects/flowbench' },
+            { text: 'All of them', link: '/projects/' },
+            { text: 'FlowBench — the referee', link: '/projects/flowbench' },
             { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
           ],
         },
         {
           text: 'Applications',
           items: [
-            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
             { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
           ],
         },
       ],
@@ -136,39 +114,16 @@ export default defineConfig({
           text: 'Applications',
           items: [
             { text: 'Where the flows are pointed', link: '/applications/' },
-            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
             { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
           ],
         },
         {
-          text: 'Platform',
+          text: 'Projects',
           items: [
-            { text: 'humanize — the runtime', link: '/projects/humanize' },
-            { text: 'flowverse — the flows', link: '/projects/flowverse' },
-            { text: 'flowbench — the benchmark', link: '/projects/flowbench' },
-          ],
-        },
-      ],
-
-      '/flows/': [
-        {
-          text: 'Flows',
-          items: [{ text: 'What a flow is', link: '/flows/' }],
-        },
-        {
-          text: 'Ours',
-          collapsed: false,
-          items: [
-            { text: 'RLAR', link: '/flows/rlar' },
-            { text: 'Flame Chase Loop', link: '/flows/flame-chase' },
-            { text: 'Humanize 1', link: '/flows/humanize1' },
-          ],
-        },
-        {
-          text: 'The common ones',
-          collapsed: false,
-          items: [
-            { text: 'Ralph Loop, Goal and the rest', link: '/flows/#the-common-ones' },
+            { text: 'FlowBench — the referee', link: '/projects/flowbench' },
+            { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
           ],
         },
       ],

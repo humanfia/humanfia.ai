@@ -8,7 +8,7 @@ tag: Method
 
 # The review is the next prompt
 
-[RLAR](/flows/rlar) is about forty lines. Two of them are the reason it works, and both are
+[RLAR](https://github.com/humanfia/flowverse) is about forty lines. Two of them are the reason it works, and both are
 the kind of decision that sounds like a detail until you watch a hundred hours of runs
 without them.
 
@@ -72,4 +72,4 @@ one agent in the system whose job is scepticism is the one whose language the ac
 None of this is expensive. It is forty lines and one skill file. The reason we are writing it
 down is that the cheap decisions are the ones people skip.
 
-[Read the flow](/flows/rlar) · [Run it](https://hmz.humanfia.ai/guide/getting-started)
+[Read the flow](https://github.com/humanfia/flowverse) · [Run it](https://hmz.humanfia.ai/)

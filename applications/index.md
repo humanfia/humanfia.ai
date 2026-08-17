@@ -28,8 +28,8 @@ leaderboard do not care what we intended. When a flow wins one of those, the cla
 a good flow is somebody else's arithmetic.
 
 There is a second reason, less noble and just as important: this is where the hard tasks come
-from. The work that goes into [flowbench](/projects/flowbench) is work we were doing anyway —
+from. The work that goes into [FlowBench](/projects/flowbench) is work we were doing anyway —
 kernels that had to get faster, proofs that had to close, refactors that took a week — which
 is why the benchmark keeps measuring something real instead of drifting into puzzles.
 
-[How the layers fit together →](/stack/)
+[How the layers fit together →](https://hmz.humanfia.ai/)

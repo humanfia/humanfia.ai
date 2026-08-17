@@ -1,26 +1,26 @@
 ---
 layout: home
-title: Humanfia — we build the loop around the model
+title: Humanfia — we build the flow around the agent
 titleTemplate: false
 # What follows the hero is this site's own sections, not a document: no .vp-doc wrapper.
 markdownStyles: false
-description: A research team working on long-horizon agent systems — the runtime, the flows and the benchmark, pointed at work where being right is checkable.
+description: A research team working on long-horizon agent systems — and the results that say whether the loop works, in Lean, in CUDA and on Kaggle.
 
 hero:
   name: Humanfia
-  text: We build the loop around the model
-  tagline: A research team working on long-horizon agent systems. We ship the runtime, the flows and the benchmark — then point them at work where being right is checkable.
+  text: We build the flow around the agent
+  tagline: A research team working on long-horizon agent systems. We only work on problems where being right is checkable, so that the answer to “did it work” is never a matter of opinion.
   image:
     light: /logo.svg
     dark: /logo-dark.svg
     alt: Humanfia
   actions:
     - theme: brand
-      text: What we build
-      link: /stack/
-    - theme: alt
       text: What we have shipped
       link: /results/
+    - theme: alt
+      text: Who we are
+      link: /about/
     - theme: alt
       text: GitHub
       link: https://github.com/humanfia
@@ -41,52 +41,30 @@ hero:
 
 <section class="hf-section">
   <header>
-    <p class="hf-eyebrow">the system</p>
-    <h2>One runtime, the flows in orbit, <em>a referee underneath</em></h2>
-    <p>The CLIs you already log into feed it. The score comes back up.</p>
+    <p class="hf-eyebrow">the results</p>
+    <h2>A proof compiles, a kernel is faster, <em>or a leaderboard says so</em></h2>
+    <p>Three places we point the flows, and what came back. Pick one.</p>
   </header>
-  <SystemMap />
-  <ArchStack class="mobile-only" />
-  <p class="hf-note">
-    <a href="/stack/">The stack, explained</a> · <a href="/stack/loop">the loop that connects them</a>
-  </p>
-</section>
-
-<section class="hf-section">
-  <header>
-    <p class="hf-eyebrow">the hard part</p>
-    <h2>Five things that are <em>difficult on purpose</em></h2>
-    <p>Pick one. Each is a thing we had to build rather than configure.</p>
-  </header>
-  <DeepTech />
-</section>
-
-<section class="hf-section">
-  <header>
-    <p class="hf-eyebrow">gallery</p>
-    <h2>The real thing, <em>recorded</em></h2>
-    <p>Hover to play. Click to open.</p>
-  </header>
-  <Gallery />
+  <Results />
 </section>
 
 <section class="hf-section">
   <div class="hf-paths">
-    <a href="/stack/">
-      <strong>How it fits together</strong>
-      <span>Four layers and a referee, and why the benchmark is a layer rather than a report.</span>
+    <a href="/applications/hoa">
+      <strong>HOA</strong>
+      <span>Humanize Olympic Agents. Olympiad mathematics, machine-checked in Lean 4.</span>
     </a>
-    <a href="/flows/">
-      <strong>The flows we wrote</strong>
-      <span>RLAR, Flame Chase and Humanize 1 — what each does differently, and when to reach for it.</span>
+    <a href="/applications/kda">
+      <strong>KDA</strong>
+      <span>Kernel Design Agents. CUDA kernels that are faster on real hardware, with MIT HAN Lab.</span>
     </a>
-    <a href="https://hmz.humanfia.ai/guide/getting-started">
-      <strong>Run one yourself</strong>
-      <span>humanize's own documentation: install it, point it at a repository, read the run back.</span>
+    <a href="/applications/agentkaggle">
+      <strong>AgentKaggle</strong>
+      <span>Agents in real Kaggle competitions, with every result audited and published.</span>
     </a>
-    <a href="/about/">
-      <strong>Who we are</strong>
-      <span>The bet we are making, how we work, and how to reach us.</span>
+    <a href="/projects/flowbench">
+      <strong>FlowBench</strong>
+      <span>The referee. Long-horizon tasks, scored the same way across every loop. Ours included.</span>
     </a>
   </div>
 </section>

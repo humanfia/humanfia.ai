@@ -54,7 +54,7 @@ more than any single trick.
 ## Why it is here
 
 KDA is one of the two places our flows go to be found out. The loop being run is a
-[flow](/flows/) like any other, the runtime under it is [humanize](/projects/humanize), and
+[flow](https://hmz.humanfia.ai/reference/flows) like any other, the runtime under it is [Humanize 2](https://hmz.humanfia.ai/), and
 the score is a wall-clock measurement on somebody else's benchmark.
 
 The HAN Lab team's entries built this way took top-three places on tracks of the MLSys 2026

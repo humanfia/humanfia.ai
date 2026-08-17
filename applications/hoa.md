@@ -17,7 +17,7 @@ not.</p>
 ## IMO 2026: six of six
 
 Running a fully agentic, YOLO-style loop on
-[Humanize](/flows/humanize1), we solved all six problems of the 2026 International
+[Humanize](https://github.com/humanfia/flowverse), we solved all six problems of the 2026 International
 Mathematical Olympiad, and every solution is machine-checked in Lean 4 against the formal
 statements published by [AxiomMath](https://github.com/AxiomMath/IMO2026).
 
@@ -90,6 +90,6 @@ a line of attack is abandoned, and how a run of hundreds of hours is kept from g
 circles. A formal verifier is the ideal instrument for measuring that, because it removes
 every way of being *approximately* right.
 
-The loop used for these runs is [Humanize 1](/flows/humanize1). What we learned from watching
-it run for weeks is most of why [RLAR](/flows/rlar) and the rest of the
-[flowverse](/projects/flowverse) look the way they do.
+The loop used for these runs is [Humanize 1](https://github.com/humanfia/flowverse). What we learned from watching
+it run for weeks is most of why [RLAR](https://github.com/humanfia/flowverse) and the rest of the
+[flowverse](https://hmz.humanfia.ai/guide/flowverses) look the way they do.

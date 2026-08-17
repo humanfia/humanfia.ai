@@ -1,8 +1,8 @@
 # Dependency directories
 node_modules/
 
-# vitepress build output
-**/.vitepress/dist
-
-# vitepress cache directory
-**/.vitepress/cache
+# VitePress build output and cache. Anchored to the repository root on purpose: a `**/` glob
+# here once hid a stray build that a mistyped command left inside public/, where everything is
+# published verbatim. Ignoring only the real one means the next stray shows up in git status.
+/.vitepress/dist
+/.vitepress/cache

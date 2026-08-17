@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # `lastUpdated` reads each page's last commit, and a shallow clone has none.
           fetch-depth: 0
@@ -32,9 +32,9 @@ jobs:
       # No version pinned here on purpose: the action reads `packageManager` from
       # package.json, so the version this repository is developed against is the version CI
       # installs, and there is one place to change it.
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
@@ -53,9 +53,12 @@ jobs:
       - name: Every #fragment resolves
         run: pnpm check:anchors
 
-      - uses: actions/upload-pages-artifact@v3
+      # `include-hidden-files` because VitePress writes a `.nojekyll` into the output, and this
+      # action has excluded dotfiles by default since v4 -- which would drop it silently.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: .vitepress/dist
+          include-hidden-files: true
 
   deploy:
     name: deploy
@@ -74,4 +77,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

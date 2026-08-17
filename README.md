@@ -3,7 +3,7 @@
 The Humanfia website: [humanfia.ai](https://humanfia.ai/).
 
 A [VitePress](https://vitepress.dev/) site, built the same way as
-[humanize's documentation](https://hmz.humanfia.ai/) so that the two read as one thing and
+[Humanize 2's documentation](https://hmz.humanfia.ai/) so that the two read as one thing and
 neither has a build system of its own to learn.
 
 ## Local preview
@@ -24,15 +24,13 @@ that a link's *page* exists and stops there.
 ```
 .
 ├── index.md            the home page
-├── stack/              how the projects fit together
-├── projects/           humanize, flowverse, flowbench, oh-my-humanize
-├── applications/       KDA, HOA
-├── flows/              the loops themselves
+├── applications/       HOA, KDA, AgentKaggle -- what the flows are pointed at
+├── projects/           FlowBench, oh-my-humanize
 ├── results/            what has shipped, and how to check it
 ├── about/              who we are
 ├── blog/               one Markdown file per post
-├── public/             CNAME, the logo and favicon, og.png, demo/ recordings, robots.txt
-├── scripts/            og.py and posters.py, which draw the images that are not photographs
+├── public/             CNAME, the logo and favicon, og.png, robots.txt
+├── scripts/            og.py, which draws the social card
 └── .vitepress/
     ├── config.mts      nav, sidebar, and the RSS feed
     ├── anchors.mjs     the #fragment check
@@ -52,22 +50,20 @@ The social card is generated from the same two sources rather than drawn by hand
 uv run --with cairosvg scripts/og.py
 ```
 
-## The home page
+## What is and is not on this site
 
-It is components, not prose: `InstallLine`, `Numbers`, `SystemMap`, `DeepTech` and `Gallery`,
-in `.vitepress/theme/components/`. Everything about *using* humanize lives in
-[its own documentation](https://hmz.humanfia.ai/) — the home page has one install line and
-links out, so there is no second copy of the instructions to keep current.
+Humanfia is the team. This site carries the team and its results — HOA, KDA, AgentKaggle,
+FlowBench — and nothing about how Humanize 2 works. That is documented at
+[hmz.humanfia.ai](https://hmz.humanfia.ai/), which is a site of its own, and every mention here
+links out to it rather than restating it. The home page has one install line for the same
+reason: an instruction is not an explanation, and one line cannot go stale the way a page can.
 
-The gallery plays recordings from `public/demo/`, which are made in the humanize repository and
-copied here. Each one needs a still to show before it is hovered:
-
-```sh
-uv run --with pillow scripts/posters.py
-```
-
-That walks every frame of every GIF and keeps the fullest one from the back half of the
-recording, which is the frame that shows the command actually having done something.
+The page itself is components, not prose — `InstallLine`, `Numbers` and `Results`, in
+`.vitepress/theme/components/`. `Results` is the interactive one, and every figure in it comes
+from a public repository: the PutnamBench grid, the MLSys placements, and the Kaggle
+percentiles, which are read off
+[agentkaggle/kaggle-results-audit](https://github.com/agentkaggle/kaggle-results-audit) with
+official ranks and late-submission estimates drawn differently on purpose.
 
 ## Writing a post
 
