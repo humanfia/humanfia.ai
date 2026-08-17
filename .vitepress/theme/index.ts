@@ -3,7 +3,6 @@ import type { Theme } from 'vitepress'
 import { h } from 'vue'
 
 import BlogList from './components/BlogList.vue'
-import Numbers from './components/Numbers.vue'
 import PostMeta from './components/PostMeta.vue'
 import Results from './components/Results.vue'
 import SystemMap from './components/SystemMap.vue'
@@ -17,7 +16,6 @@ export default {
   Layout: () => h(DefaultTheme.Layout, null, { 'doc-before': () => h(PostMeta) }),
   enhanceApp({ app }) {
     app.component('BlogList', BlogList)
-    app.component('Numbers', Numbers)
     app.component('Results', Results)
     app.component('SystemMap', SystemMap)
   },

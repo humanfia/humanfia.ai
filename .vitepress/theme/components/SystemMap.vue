@@ -71,16 +71,39 @@ const flows = [
 
 const nodes = [
   {
+    key: 'flowverse',
+    stage: 2,
+    x: 40,
+    y: 20,
+    w: 228,
+    h: 104,
+    kicker: 'Where the flows live',
+    title: 'flowverse',
+    lines: ['A repository of flows,', 'cloned and run by name'],
+    href: 'https://github.com/humanfia/flowverse',
+  },
+  {
     key: 'agents',
     stage: 0,
     x: 24,
-    y: 248,
+    y: 182,
     w: 232,
-    h: 128,
+    h: 112,
     kicker: 'What a flow drives',
     title: 'The agents',
-    lines: ['oh-my-humanize, and every', 'coding-agent CLI you already', 'log into'],
-    href: '/projects/oh-my-humanize',
+    lines: ['claude · codex · dsh · agy', 'and every other CLI you', 'already log into'],
+  },
+  {
+    key: 'humanize',
+    stage: 1,
+    x: 24,
+    y: 338,
+    w: 232,
+    h: 96,
+    kicker: 'The runtime',
+    title: 'Humanize 2',
+    lines: ['Runs a flow across them,', 'and writes down what happened'],
+    href: 'https://hmz.humanfia.ai/',
   },
   {
     key: 'kda',
@@ -133,9 +156,12 @@ const nodes = [
 ]
 
 const links = [
-  // The agents into the flow: the one solid line, because it is the one thing that is not a
-  // loop -- turns go in, and nothing comes back out this way.
-  { key: 'in', stage: 0, solid: true, d: `M 262 310 L ${CX - CORE_R - 14} 310`, dur: '2.4s' },
+  // Where a flow comes from, into the orbit it sits on.
+  { key: 'flowverse-in', stage: 2, d: 'M 272 64 C 344 78, 324 152, 332 200', dur: '2.8s' },
+  // The agents, and the runtime that drives them: the two solid lines, because they are the
+  // ones that are not a loop -- turns go in, and nothing comes back out this way.
+  { key: 'agents-in', stage: 0, solid: true, d: 'M 262 238 C 302 244, 296 268, 290 288', dur: '2.4s' },
+  { key: 'runtime-in', stage: 1, solid: true, d: 'M 262 386 C 306 380, 300 356, 292 336', dur: '2.4s' },
   // The flows, doing the work, in the three places we point them.
   { key: 'kda', stage: 2, d: 'M 641 252 C 704 208, 726 158, 782 148', dur: '3.1s' },
   { key: 'hoa', stage: 2, d: 'M 641 302 C 700 302, 730 302, 782 302', dur: '3.1s' },
@@ -149,7 +175,7 @@ const links = [
     key: 'back',
     stage: 4,
     accent: true,
-    d: `M 330 634 C 196 612, 158 452, ${CX - RING_R - 8} 372`,
+    d: 'M 330 634 C 200 616, 176 486, 300 396',
     dur: '3.2s',
   },
 ]
@@ -171,7 +197,9 @@ const box = (x: number, y: number, w: number, h: number) => ({
 })
 
 const hotspots = [
-  ...nodes.map((node) => ({
+  ...nodes
+    .filter((node) => node.href)
+    .map((node) => ({
     key: node.key,
     href: node.href,
     label: `${node.title} — ${node.lines[0]}`,
@@ -205,7 +233,7 @@ const hotspots = [
       <svg
         viewBox="0 0 1040 720"
         role="img"
-        aria-label="How the projects relate: the coding agents a flow drives, the flows we write, the three applications they are pointed at, and FlowBench scoring the flows and feeding the winner back"
+        aria-label="How the projects relate: flowverse holds the flows, Humanize 2 runs one across the coding agents, the three applications are where a flow is found out, and FlowBench scores the flows and feeds the winner back"
       >
         <defs>
           <radialGradient :id="`${uid}-core`" cx="35%" cy="30%">
@@ -397,9 +425,9 @@ const hotspots = [
 
     <figcaption>
       <span class="scroll-hint">Scroll the diagram sideways to see all of it. </span>
-      The agents you already log into go in; the flows we write are the part we own; the three
-      applications are where a flow is found out; and FlowBench sends the score back into the
-      flows. Hover any piece to hold it.
+      flowverse holds the flows; Humanize 2 runs one across the agents you already log into; the
+      three applications are where a flow is found out; and FlowBench sends the score back into
+      the flows. Hover any piece to hold it.
     </figcaption>
   </figure>
 </template>

@@ -66,23 +66,27 @@ export default defineConfig({
     nav: [
       { text: 'Results', link: '/results/', activeMatch: '/results/' },
       {
-        text: 'Applications',
-        activeMatch: '/applications/',
-        items: [
-          { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-          { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-          { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-        ],
-      },
-      {
         text: 'Projects',
-        activeMatch: '/projects/',
+        activeMatch: '/projects/|/applications/',
         items: [
-          { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-          { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
-          // Humanize 2 is documented on its own site and nowhere else. This is a way out of
-          // here, not an entry in a list of pages we maintain.
-          { text: 'Humanize 2 ↗', link: 'https://hmz.humanfia.ai/' },
+          {
+            text: 'Applications',
+            items: [
+              { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+              { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+              { text: 'AgentKaggle', link: '/applications/agentkaggle' },
+            ],
+          },
+          {
+            text: 'The rest',
+            items: [
+              { text: 'FlowBench — the referee', link: '/projects/flowbench' },
+              { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
+              // Humanize 2 is documented on its own site and nowhere else. This is a way out
+              // of here, not an entry in a list of pages we maintain.
+              { text: 'Humanize 2 ↗', link: 'https://hmz.humanfia.ai/' },
+            ],
+          },
         ],
       },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
@@ -132,8 +136,19 @@ export default defineConfig({
         {
           text: 'Results',
           items: [
-            { text: 'What we have shipped', link: '/results/' },
-            { text: 'How to check it yourself', link: '/results/#check-it-yourself' },
+            { text: 'All of them', link: '/results/' },
+            { text: 'IMO 2026 — six of six', link: '/results/imo-2026' },
+            { text: 'PutnamBench — 670 of 672', link: '/results/putnambench' },
+            { text: 'MLSys 2026 kernel contest', link: '/results/mlsys-2026' },
+            { text: 'Kaggle — thirteen competitions', link: '/results/kaggle' },
+          ],
+        },
+        {
+          text: 'Where they came from',
+          items: [
+            { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
+            { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
+            { text: 'AgentKaggle', link: '/applications/agentkaggle' },
           ],
         },
       ],
