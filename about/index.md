@@ -10,6 +10,11 @@ impressively.</p>
 
 ## The bet
 
+A stronger model writes a better function. It does not, on its own, work for eleven hours,
+notice that the third approach was the right one, keep the constraint it was given in round
+one, and stop when the job is actually done. That is a property of the loop around the model,
+and almost nobody measures it.
+
 Everyone can see that models are getting better. Fewer people are working on the thing that
 determines whether eleven hours of agent time produces a merged change or a pile of plausible
 diffs — the loop.

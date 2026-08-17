@@ -4,6 +4,10 @@ import { h } from 'vue'
 
 import ArchStack from './components/ArchStack.vue'
 import BlogList from './components/BlogList.vue'
+import DeepTech from './components/DeepTech.vue'
+import Gallery from './components/Gallery.vue'
+import InstallLine from './components/InstallLine.vue'
+import Numbers from './components/Numbers.vue'
 import PostMeta from './components/PostMeta.vue'
 import SystemMap from './components/SystemMap.vue'
 import './style.css'
@@ -17,6 +21,10 @@ export default {
   enhanceApp({ app }) {
     app.component('ArchStack', ArchStack)
     app.component('BlogList', BlogList)
+    app.component('DeepTech', DeepTech)
+    app.component('Gallery', Gallery)
+    app.component('InstallLine', InstallLine)
+    app.component('Numbers', Numbers)
     app.component('SystemMap', SystemMap)
   },
 } satisfies Theme

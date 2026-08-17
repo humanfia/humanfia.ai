@@ -58,6 +58,117 @@
   --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--hf-blue-dark) 30%, var(--hf-blue) 100%);
 }
 
+/* ---------------------------------------------------------------------------------------
+   The home page, which is a sequence of <section class="hf-section"> rather than prose. Each
+   one is a label, a heading and a component; the heading carries an <em> that takes the accent,
+   which is the only decoration any of them gets.
+   --------------------------------------------------------------------------------------- */
+
+.hf-section {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 68px 24px 0;
+}
+
+.hf-section:last-of-type {
+  padding-bottom: 96px;
+}
+
+.hf-section > header {
+  max-width: 720px;
+  margin-bottom: 4px;
+}
+
+.hf-eyebrow {
+  margin: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+}
+
+.hf-section h2 {
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.028em;
+  font-weight: 750;
+  color: var(--vp-c-text-1);
+}
+
+.hf-section h2 em {
+  font-style: normal;
+  background: var(--vp-home-hero-name-background);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hf-section > header p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.hf-note {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+}
+
+.hf-note a {
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+}
+
+/* The last row: four ways out of the page, all of them a link and a sentence. */
+.hf-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.hf-paths a {
+  display: block;
+  padding: 18px 4px 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hf-paths strong {
+  display: block;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+  transition: color 0.2s;
+}
+
+.hf-paths a:hover strong {
+  color: var(--vp-c-brand-1);
+}
+
+.hf-paths span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--vp-c-text-3);
+}
+
+@media (min-width: 960px) {
+  .hf-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
 /* The numbers we lead with. One <div> per number, a <b> and a <span> inside it. */
 .stat-strip {
   display: grid;
@@ -198,15 +309,46 @@ a.card:hover {
   color: var(--vp-c-text-3);
 }
 
-/* Home page: the section headings that come after the hero and the feature grid. */
-.VPHome .vp-doc {
-  max-width: 1152px;
-  margin: 0 auto;
-  padding: 0 24px 64px;
+/* ---------------------------------------------------------------------------------------
+   The home page itself. It sets `markdownStyles: false`, so what follows the hero is this
+   site's own sections rather than a document -- the width and the rhythm come from
+   .hf-section above, and there is no .vp-doc wrapper to fight with.
+   --------------------------------------------------------------------------------------- */
+
+.VPHome {
+  position: relative;
+  isolation: isolate;
 }
 
-@media (min-width: 960px) {
-  .VPHome .vp-doc {
-    padding: 0 48px 96px;
-  }
+/* One wash of the accent behind the hero, and nothing else. It is under everything, does not
+   take clicks, and fades out long before the first section. */
+.VPHome::before {
+  content: '';
+  position: absolute;
+  inset: -8% -20% auto -20%;
+  height: 680px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    52% 50% at 50% 32%,
+    color-mix(in srgb, var(--hf-blue) 13%, transparent),
+    transparent 72%
+  );
+}
+
+.dark .VPHome::before {
+  background: radial-gradient(
+    52% 50% at 50% 32%,
+    color-mix(in srgb, var(--hf-blue-light) 11%, transparent),
+    transparent 72%
+  );
+}
+
+.VPHome .VPHero .name {
+  font-size: clamp(46px, 9vw, 78px);
+  letter-spacing: -0.03em;
+}
+
+.VPHome .VPHero .tagline {
+  max-width: 36rem;
 }

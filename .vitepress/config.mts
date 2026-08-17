@@ -11,7 +11,8 @@ const HOSTNAME = 'https://humanfia.ai'
 export default defineConfig({
   title: 'Humanfia',
   titleTemplate: ':title · Humanfia',
-  description: 'Agent flows that finish the work — the runtime, the flows, the benchmark, and what we point them at.',
+  description:
+    'Humanfia is a research team working on long-horizon agent systems: the runtime, the flows and the benchmark, pointed at work where being right is checkable.',
   lang: 'en-US',
   cleanUrls: true,
   lastUpdated: true,
@@ -41,7 +42,7 @@ export default defineConfig({
         '@type': 'Organization',
         name: 'Humanfia',
         url: `${HOSTNAME}/`,
-        description: 'Agent flows that finish the work.',
+        description: 'A research team working on long-horizon agent systems.',
         sameAs: [
           'https://github.com/humanfia',
           'https://github.com/humanfia/humanize2',
