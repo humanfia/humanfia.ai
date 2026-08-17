@@ -25,7 +25,9 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
-    ['meta', { name: 'theme-color', content: '#3157d8' }],
+    // The mark's own slate, not the accent: this tints the browser chrome around the page, and
+    // a saturated blue bar over a white page reads as a different site's.
+    ['meta', { name: 'theme-color', content: '#1e293b' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Humanfia' }],
     ['meta', { property: 'og:image', content: `${HOSTNAME}/og.png` }],
@@ -50,7 +52,10 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    // Two files rather than one with currentColor: the nav logo is an <img>, so the SVG cannot
+    // inherit the page's colour. The dark one is a matte, slightly blue white; the light one is
+    // the same slate the mark was drawn in.
+    logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'Humanfia' },
     siteTitle: 'Humanfia',
 
     nav: [

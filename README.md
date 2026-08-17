@@ -31,11 +31,25 @@ that a link's *page* exists and stops there.
 ├── results/            what has shipped, and how to check it
 ├── about/              who we are
 ├── blog/               one Markdown file per post
-├── public/             CNAME, favicon, robots.txt
+├── public/             CNAME, the logo and favicon, og.png, robots.txt
+├── scripts/            og.py, which draws the social card
 └── .vitepress/
     ├── config.mts      nav, sidebar, and the RSS feed
     ├── anchors.mjs     the #fragment check
     └── theme/          the default theme, plus this site's palette and components
+```
+
+## The palette
+
+One hue. `.vitepress/theme/style.css` holds every colour the site uses as an `--hf-*` token;
+components read those and name none of their own. The logo is the same slate on paper
+(`public/logo.svg`) and a matte, faintly blue white in the dark (`public/logo-dark.svg`) —
+two files rather than one, because the nav logo is an `<img>` and cannot inherit `currentColor`.
+
+The social card is generated from the same two sources rather than drawn by hand:
+
+```sh
+uv run --with cairosvg scripts/og.py
 ```
 
 ## Writing a post

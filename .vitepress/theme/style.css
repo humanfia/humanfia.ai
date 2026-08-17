@@ -3,33 +3,59 @@
  * the theme has no component for. Everything here is either a VitePress variable being set or
  * a class the markdown writes by hand -- there is no second design system to keep in step.
  *
- * The palette is the one the previous site was drawn in: ink, paper, a hard blue and a lime.
+ * The palette is one hue. The mark is slate -- a blue-grey that is near-black on paper and a
+ * matte, faintly blue white in the dark -- and the accent is that same hue with the chroma
+ * turned up, so a link looks like it was cut from the logo. Amber is the only other colour on
+ * the site, and it is spent on one thing: the arrow in the system map that runs the other way.
+ *
+ * These are the tokens. Nothing below this block, and nothing in a component, should name a
+ * colour that is not here.
  */
 
 :root {
-  --hf-blue: #3157d8;
-  --hf-blue-dark: #2444b4;
-  --hf-lime: #d9f45b;
-  --hf-ink: #171714;
+  /* Slate: the mark's own colour, and the ink under everything. */
+  --hf-slate: #1e293b;
+  --hf-slate-pale: #e2e8f0;
+  --hf-ink: #0f172a;
+
+  /* The accent: slate's hue, more chroma. */
+  --hf-blue: #2e599e;
+  --hf-blue-dark: #24467c;
+  --hf-blue-mid: #6e93cf;
+  --hf-blue-light: #8daee2;
+  --hf-blue-pale: #b6cbec;
+
+  /* The one warm colour. Used once, on purpose. */
+  --hf-amber: #b45309;
+  --hf-amber-light: #efb358;
+
+  /* The darkest text is the mark's family too, so a heading and the logo above it are the same
+     colour temperature. The softer two are the theme's, which are already cool enough. */
+  --vp-c-text-1: var(--hf-ink);
 
   --vp-c-brand-1: var(--hf-blue-dark);
   --vp-c-brand-2: var(--hf-blue);
   --vp-c-brand-3: var(--hf-blue);
-  --vp-c-brand-soft: rgba(49, 87, 216, 0.14);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-blue) 14%, transparent);
 
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3157d8 20%, #7b3fd8);
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #3157d8 40%, #d9f45b 100%);
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--hf-slate) 25%, var(--hf-blue));
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--hf-blue) 30%, var(--hf-blue-pale) 100%);
   --vp-home-hero-image-filter: blur(56px);
 }
 
 .dark {
-  --vp-c-brand-1: #8ea6ff;
-  --vp-c-brand-2: #6d8bff;
-  --vp-c-brand-3: #3157d8;
-  --vp-c-brand-soft: rgba(110, 139, 255, 0.16);
+  /* The theme's own is a warm white; the logo's is not, and one of them had to give. */
+  --vp-c-text-1: var(--hf-slate-pale);
 
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #8ea6ff 20%, #d9f45b);
+  --vp-c-brand-1: var(--hf-blue-light);
+  --vp-c-brand-2: var(--hf-blue-mid);
+  --vp-c-brand-3: var(--hf-blue);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-blue-light) 16%, transparent);
+
+  /* Matte white into the accent -- the two colours the logo is drawn in, in that order. */
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--hf-slate-pale) 25%, var(--hf-blue-light));
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--hf-blue-dark) 30%, var(--hf-blue) 100%);
 }
 
 /* The numbers we lead with. One <div> per number, a <b> and a <span> inside it. */

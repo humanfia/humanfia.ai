@@ -8,7 +8,8 @@ hero:
   text: Agent flows that finish the work
   tagline: We build the runtime, the flows and the benchmark for long-horizon agent work — then point them at problems where being right is checkable. GPU kernels. Olympiad mathematics. Week-long engineering.
   image:
-    src: /logo.svg
+    light: /logo.svg
+    dark: /logo-dark.svg
     alt: Humanfia
   actions:
     - theme: brand

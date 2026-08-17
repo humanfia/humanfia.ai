@@ -428,29 +428,33 @@ const hotspots = [
   outline: 2px solid var(--map-accent);
 }
 
-/* Palette. The map is drawn in the site's blue and lime, one step brighter in the dark. */
+/* Palette. Everything comes from the site's tokens in theme/style.css -- the map names shapes,
+   not colours. `signal` is the amber one, and it marks the single link that runs the other way:
+   the benchmark handing its score back to the runtime. */
 .map {
   --map-ink: var(--vp-c-text-1);
   --map-line: var(--vp-c-divider);
-  --map-accent: #3157d8;
-  --map-accent-soft: rgba(49, 87, 216, 0.18);
-  --map-lime: #a9c400;
+  --map-accent: var(--hf-blue);
+  --map-accent-soft: color-mix(in srgb, var(--hf-blue) 18%, transparent);
+  --map-signal: var(--hf-amber);
   --map-card: var(--vp-c-bg);
-  --map-cast: rgba(49, 87, 216, 0.14);
+  --map-cast: color-mix(in srgb, var(--hf-blue) 14%, transparent);
 }
 
 :global(.dark) .map {
-  --map-accent: #8ea6ff;
-  --map-accent-soft: rgba(142, 166, 255, 0.16);
-  --map-lime: #d9f45b;
+  --map-accent: var(--hf-blue-light);
+  --map-accent-soft: color-mix(in srgb, var(--hf-blue-light) 16%, transparent);
+  --map-signal: var(--hf-amber-light);
   --map-card: var(--vp-c-bg-soft);
-  --map-cast: rgba(142, 166, 255, 0.16);
+  --map-cast: color-mix(in srgb, var(--hf-blue-light) 16%, transparent);
 }
 
-.core-stop-1 { stop-color: #6d8bff; }
-.core-stop-2 { stop-color: #2444b4; }
-:global(.dark) .core-stop-1 { stop-color: #8ea6ff; }
-:global(.dark) .core-stop-2 { stop-color: #2b4bc4; }
+/* The core disc, lit from the top left. Light to dark either way round, so the white mark on
+   top of it stays legible in both themes. */
+.core-stop-1 { stop-color: var(--hf-blue); }
+.core-stop-2 { stop-color: var(--hf-blue-dark); }
+:global(.dark) .core-stop-1 { stop-color: var(--hf-blue-mid); }
+:global(.dark) .core-stop-2 { stop-color: var(--hf-blue-dark); }
 
 .halo-stop-1 { stop-color: var(--map-accent); stop-opacity: 0.09; }
 .halo-stop-2 { stop-color: var(--map-accent); stop-opacity: 0; }
@@ -463,7 +467,7 @@ const hotspots = [
 }
 
 .arrowhead.accent {
-  fill: var(--map-lime);
+  fill: var(--map-signal);
 }
 
 /* Orbit */
@@ -627,7 +631,7 @@ const hotspots = [
 }
 
 .link.accent path {
-  stroke: var(--map-lime);
+  stroke: var(--map-signal);
   stroke-width: 2.2;
   stroke-dasharray: 7 7;
   opacity: 0.75;
@@ -643,7 +647,7 @@ const hotspots = [
 }
 
 .link.accent .packet {
-  fill: var(--map-lime);
+  fill: var(--map-signal);
 }
 
 .back-label {
@@ -654,7 +658,7 @@ const hotspots = [
 }
 
 .back-label.accent {
-  fill: var(--map-lime);
+  fill: var(--map-signal);
   font-weight: 700;
 }
 
