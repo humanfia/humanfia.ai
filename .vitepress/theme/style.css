@@ -1,0 +1,175 @@
+/**
+ * The default theme, given Humanfia's palette and the handful of shapes the pages use that
+ * the theme has no component for. Everything here is either a VitePress variable being set or
+ * a class the markdown writes by hand -- there is no second design system to keep in step.
+ *
+ * The palette is the one the previous site was drawn in: ink, paper, a hard blue and a lime.
+ */
+
+:root {
+  --hf-blue: #3157d8;
+  --hf-blue-dark: #2444b4;
+  --hf-lime: #d9f45b;
+  --hf-ink: #171714;
+
+  --vp-c-brand-1: var(--hf-blue-dark);
+  --vp-c-brand-2: var(--hf-blue);
+  --vp-c-brand-3: var(--hf-blue);
+  --vp-c-brand-soft: rgba(49, 87, 216, 0.14);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3157d8 20%, #7b3fd8);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #3157d8 40%, #d9f45b 100%);
+  --vp-home-hero-image-filter: blur(56px);
+}
+
+.dark {
+  --vp-c-brand-1: #8ea6ff;
+  --vp-c-brand-2: #6d8bff;
+  --vp-c-brand-3: #3157d8;
+  --vp-c-brand-soft: rgba(110, 139, 255, 0.16);
+
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #8ea6ff 20%, #d9f45b);
+}
+
+/* The numbers we lead with. One <div> per number, a <b> and a <span> inside it. */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat-strip > div {
+  padding: 16px 18px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+
+.stat-strip b {
+  display: block;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.stat-strip span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vp-c-text-3);
+}
+
+.stat-strip em {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+}
+
+/* A line of standing under a page title, one size up from body text. */
+.lede {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+/* The mono kicker above a heading, for pages that want a section label. */
+.kicker {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
+/* Cards for a list of things that each have a name, a sentence and a link. */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.card {
+  display: block;
+  padding: 18px 20px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+a.card:hover {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-alt);
+}
+
+/* A card that is a link is still a card: the theme underlines and recolours every `a` in the
+   content, which on a whole card reads as a mistake. */
+.vp-doc a.card,
+.vp-doc a.card:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.vp-doc a.card h3 {
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc a.card:hover h3 {
+  color: var(--vp-c-brand-1);
+}
+
+.card h3 {
+  margin: 6px 0 0;
+  padding: 0;
+  border: 0;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.card p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.card .kicker {
+  display: block;
+}
+
+/* A line of small print under a figure or a claim. */
+.footnote {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vp-c-text-3);
+}
+
+/* Home page: the section headings that come after the hero and the feature grid. */
+.VPHome .vp-doc {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+@media (min-width: 960px) {
+  .VPHome .vp-doc {
+    padding: 0 48px 96px;
+  }
+}

@@ -1,37 +1,77 @@
-name: Deploy static site to GitHub Pages
+# humanfia.ai. Built on every change, and deployed to GitHub Pages from main -- so a pull
+# request finds out that a link is dead without anything being published.
+#
+# The same shape as humanfia/humanize2's docs workflow, because it is the same VitePress
+# site with the same checks on it.
+
+name: site
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # `lastUpdated` reads each page's last commit, and a shallow clone has none.
+          fetch-depth: 0
+
+      # No version pinned here on purpose: the action reads `packageManager` from
+      # package.json, so the version this repository is developed against is the version CI
+      # installs, and there is one place to change it.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # Fails on a dead internal link, which is the point: a page moved without its inbound
+      # links moving is a red build rather than a 404 somebody finds later.
+      - name: Build
+        run: pnpm build
+
+      # VitePress checks that a link's page exists and stops there, so a `#fragment` written
+      # the way GitHub would slugify it passes the build and silently drops the reader at the
+      # top of the page. This is what catches that.
+      - name: Every #fragment resolves
+        run: pnpm check:anchors
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .vitepress/dist
+
   deploy:
+    name: deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
