@@ -2,7 +2,8 @@
 <!--
   The same H as logo.svg, centred in a square with a little breathing room so it survives being
   drawn at 16px in a tab strip. A favicon cannot ask VitePress which theme is on, so it asks the
-  operating system instead -- hence the media query rather than a second file.
+  operating system instead, hence the media query rather than a second file. (No double hyphens
+  in an XML comment: a browser rejects the whole file over one.)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="humanfia-favicon-title" shape-rendering="geometricPrecision">
   <title id="humanfia-favicon-title">Humanfia</title>

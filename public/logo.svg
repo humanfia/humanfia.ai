@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   The Humanfia H, light mode. Same geometry as logo-dark.svg, only the fill differs, so the two
-  files stay in step: edit one, edit the other. The background is transparent on purpose -- the
-  mark sits on the nav bar and on the hero blob, neither of which is paper white.
+  files stay in step: edit one, edit the other. The background is transparent on purpose, since
+  the mark sits on the nav bar and on the hero blob, neither of which is paper white.
+
+  (No em-dashes in here, please. XML forbids a double hyphen inside a comment, and a browser
+  will refuse to draw the whole file over it rather than skip the comment.)
 -->
 <!-- No width/height on purpose: the nav sizes the mark by height and the hero by its box, and an
      intrinsic 51x57 would pin both to 51px. The viewBox alone keeps the ratio. -->
