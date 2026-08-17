@@ -26,8 +26,6 @@ hero:
       link: https://github.com/humanfia
 ---
 
-<InstallLine />
-
 <section class="hf-section">
   <header>
     <p class="hf-eyebrow">the record</p>
@@ -37,6 +35,15 @@ hero:
   <p class="hf-note">
     Every one is reproducible from a public repository. <a href="/results/">The receipts</a>.
   </p>
+</section>
+
+<section class="hf-section">
+  <header>
+    <p class="hf-eyebrow">the system</p>
+    <h2>The projects, and <em>the loop between them</em></h2>
+    <p>What a flow drives, what we write, where it is pointed, and who keeps the score.</p>
+  </header>
+  <SystemMap />
 </section>
 
 <section class="hf-section">

@@ -3,10 +3,10 @@ import type { Theme } from 'vitepress'
 import { h } from 'vue'
 
 import BlogList from './components/BlogList.vue'
-import InstallLine from './components/InstallLine.vue'
 import Numbers from './components/Numbers.vue'
 import PostMeta from './components/PostMeta.vue'
 import Results from './components/Results.vue'
+import SystemMap from './components/SystemMap.vue'
 import './style.css'
 
 // The default theme, plus the components the pages use. `doc-before` is where a blog post's
@@ -17,8 +17,8 @@ export default {
   Layout: () => h(DefaultTheme.Layout, null, { 'doc-before': () => h(PostMeta) }),
   enhanceApp({ app }) {
     app.component('BlogList', BlogList)
-    app.component('InstallLine', InstallLine)
     app.component('Numbers', Numbers)
     app.component('Results', Results)
+    app.component('SystemMap', SystemMap)
   },
 } satisfies Theme

@@ -53,17 +53,17 @@ uv run --with cairosvg scripts/og.py
 ## What is and is not on this site
 
 Humanfia is the team. This site carries the team and its results — HOA, KDA, AgentKaggle,
-FlowBench — and nothing about how Humanize 2 works. That is documented at
-[hmz.humanfia.ai](https://hmz.humanfia.ai/), which is a site of its own, and every mention here
-links out to it rather than restating it. The home page has one install line for the same
-reason: an instruction is not an explanation, and one line cannot go stale the way a page can.
+FlowBench — and nothing about Humanize 2, not even an install line. Humanize 2 is documented at
+[hmz.humanfia.ai](https://hmz.humanfia.ai/), which is a site of its own; the only mention of it
+here is one external entry in the nav, which is a way out rather than a page we maintain.
 
-The page itself is components, not prose — `InstallLine`, `Numbers` and `Results`, in
+The home page is components, not prose — `Numbers` and `Results`, in
 `.vitepress/theme/components/`. `Results` is the interactive one, and every figure in it comes
 from a public repository: the PutnamBench grid, the MLSys placements, and the Kaggle
 percentiles, which are read off
 [agentkaggle/kaggle-results-audit](https://github.com/agentkaggle/kaggle-results-audit) with
-official ranks and late-submission estimates drawn differently on purpose.
+official ranks and late-submission estimates drawn differently on purpose. Nothing in it is a
+number we have not published the means to check.
 
 ## Writing a post
 
