@@ -101,74 +101,84 @@ const STEPS = [
 </script>
 
 <template>
-  <div class="install">
-    <div class="install-main">
-      <div class="install-head">
-        <div class="install-tabs" role="tablist" aria-label="How to install Humanize 2">
-          <button
-            v-for="(item, i) in WAYS"
-            :key="item.key"
-            type="button"
-            role="tab"
-            class="install-tab"
-            :class="{ on: at === i }"
-            :aria-selected="at === i"
-            :tabindex="at === i ? 0 : -1"
-            @click="pick(i)"
-          >
-            {{ item.label }}
+  <!-- The wrapper is the query container: this block sits both in a full-width home page
+       section and in a documentation column half that wide, and it should lay itself out
+       against the space it was actually given rather than against the window. -->
+  <div class="install-wrap">
+    <div class="install">
+      <div class="install-main">
+        <div class="install-head">
+          <div class="install-tabs" role="tablist" aria-label="How to install Humanize 2">
+            <button
+              v-for="(item, i) in WAYS"
+              :key="item.key"
+              type="button"
+              role="tab"
+              class="install-tab"
+              :class="{ on: at === i }"
+              :aria-selected="at === i"
+              :tabindex="at === i ? 0 : -1"
+              @click="pick(i)"
+            >
+              {{ item.label }}
+            </button>
+          </div>
+          <!-- Beside the tabs rather than inside the command box: the install line is nearly
+               as wide as the card, and a button sharing that row costs it enough space to
+               wrap. -->
+          <button type="button" class="install-copy" :class="{ done: copied }" @click="copy">
+            {{ copied ? 'copied' : 'copy' }}
           </button>
         </div>
-        <!-- Beside the tabs rather than inside the command box: the install line is nearly as
-             wide as the card, and a button sharing that row costs it enough space to wrap. -->
-        <button type="button" class="install-copy" :class="{ done: copied }" @click="copy">
-          {{ copied ? 'copied' : 'copy' }}
-        </button>
-      </div>
 
-      <div class="install-term">
-        <code>
-          <span v-for="line in way.lines" :key="line" class="install-line">
-            <span class="install-prompt" aria-hidden="true">$</span>{{ line }}
-          </span>
-        </code>
-      </div>
-
-      <p class="install-note">{{ way.note }}</p>
-
-      <p class="install-req">
-        Python ≥ 3.12 · drives the coding agent CLI you already log into · no API key of its own
-      </p>
-
-      <ul class="install-facts">
-        <li v-for="fact in FACTS" :key="fact.href">
-          <a :href="`${DOCS}${fact.href}`">{{ fact.text }}</a>
-        </li>
-      </ul>
-
-      <p class="install-links">
-        <a :href="`${DOCS}/guide/installation`">The installation guide ↗</a>
-        <a :href="`${DOCS}/guide/flowverses`">Where flows come from ↗</a>
-        <a :href="REPO">GitHub ↗</a>
-      </p>
-    </div>
-
-    <ol class="install-steps">
-      <li v-for="step in STEPS" :key="step.n">
-        <span class="install-n">{{ step.n }}</span>
-        <div>
-          <strong>{{ step.title }}</strong>
-          <p>{{ step.body }}</p>
+        <div class="install-term">
           <code>
-            <span v-for="line in step.lines" :key="line">{{ line }}</span>
+            <span v-for="line in way.lines" :key="line" class="install-line">
+              <span class="install-prompt" aria-hidden="true">$</span>{{ line }}
+            </span>
           </code>
         </div>
-      </li>
-    </ol>
+
+        <p class="install-note">{{ way.note }}</p>
+
+        <p class="install-req">
+          Python ≥ 3.12 · drives the coding agent CLI you already log into · no API key of its own
+        </p>
+
+        <ul class="install-facts">
+          <li v-for="fact in FACTS" :key="fact.href">
+            <a :href="`${DOCS}${fact.href}`">{{ fact.text }}</a>
+          </li>
+        </ul>
+
+        <p class="install-links">
+          <a :href="`${DOCS}/guide/installation`">The installation guide ↗</a>
+          <a :href="`${DOCS}/guide/flowverses`">Where flows come from ↗</a>
+          <a :href="REPO">GitHub ↗</a>
+        </p>
+      </div>
+
+      <ol class="install-steps">
+        <li v-for="step in STEPS" :key="step.n">
+          <span class="install-n">{{ step.n }}</span>
+          <div>
+            <strong>{{ step.title }}</strong>
+            <p>{{ step.body }}</p>
+            <code>
+              <span v-for="line in step.lines" :key="line">{{ line }}</span>
+            </code>
+          </div>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.install-wrap {
+  container-type: inline-size;
+}
+
 .install {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
@@ -409,6 +419,18 @@ const STEPS = [
   display: block;
   white-space: pre;
   overflow-x: auto;
+}
+
+/* A flex child will not shrink below its content unless it is told it may, and a long
+   `hmz exec` line is exactly the content that would otherwise push out of the card. */
+.install-steps li > div {
+  min-width: 0;
+}
+
+@container (max-width: 760px) {
+  .install {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 899px) {

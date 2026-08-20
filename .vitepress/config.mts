@@ -17,10 +17,12 @@ export const DOCS = 'https://docs.humanfia.ai/humanize2'
  *  nobody else did, and it put the same six pages in two different lists. */
 const PROJECTS = [
   {
+    // The heading is the link to the index, so there is no "all of them" row under it saying
+    // the same thing one line lower.
     text: 'Projects',
+    link: '/projects/',
     items: [
-      { text: 'All of them', link: '/projects/' },
-      { text: 'Humanize 2 — the runtime ↗', link: `${DOCS}/` },
+      { text: 'Humanize 2 — the runtime', link: '/projects/humanize2' },
       { text: 'FlowBench — the referee', link: '/projects/flowbench' },
       { text: 'HOA — Humanize Olympic Agents', link: '/projects/hoa' },
       { text: 'KDA — Kernel Design Agents', link: '/projects/kda' },
@@ -115,21 +117,40 @@ export default defineConfig({
     siteTitle: 'Humanfia',
 
     nav: [
-      {
-        text: 'Projects',
-        activeMatch: '/projects/',
-        items: [
-          { text: 'All of them', link: '/projects/' },
-          { text: 'Humanize 2 — the runtime ↗', link: `${DOCS}/` },
-          { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-          { text: 'HOA — Humanize Olympic Agents', link: '/projects/hoa' },
-          { text: 'KDA — Kernel Design Agents', link: '/projects/kda' },
-          { text: 'AgentKaggle', link: '/projects/agentkaggle' },
-        ],
-      },
+      // A plain link rather than a dropdown: the five projects are the whole of the index
+      // page and the whole of the sidebar once you are on it, so a menu repeating them was
+      // only ever there to carry a way to the page itself.
+      { text: 'Projects', link: '/projects/', activeMatch: '/projects/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
-      { text: 'Docs ↗', link: `${DOCS}/` },
+      // Documentation lives with the project it documents, not here. This is the way out to
+      // each one -- Humanize 2 has a site, the rest have a repository -- so a page on this
+      // site never has to double as a manual.
+      {
+        text: 'Docs',
+        items: [
+          {
+            text: 'Humanize 2',
+            items: [
+              { text: 'Documentation ↗', link: `${DOCS}/` },
+              { text: 'Installation ↗', link: `${DOCS}/guide/installation` },
+              { text: 'Features ↗', link: `${DOCS}/features/` },
+              { text: 'Guides ↗', link: `${DOCS}/guide/` },
+              { text: 'CLI reference ↗', link: `${DOCS}/reference/cli` },
+              { text: 'Flowverses ↗', link: `${DOCS}/guide/flowverses` },
+            ],
+          },
+          {
+            text: 'The other projects',
+            items: [
+              { text: 'FlowBench — not yet released', link: '/projects/flowbench' },
+              { text: 'HOA — the solvers ↗', link: 'https://github.com/humanfia/putnambench-solver' },
+              { text: 'KDA — the workflow ↗', link: 'https://github.com/mit-han-lab/kernel-design-agents' },
+              { text: 'AgentKaggle — the audit ↗', link: 'https://github.com/agentkaggle/kaggle-results-audit' },
+            ],
+          },
+        ],
+      },
     ],
 
     // One sidebar per section, and a section only ever sees its own. About is a single page

@@ -32,7 +32,10 @@ const LAYERS = [
     kicker: 'Runtime',
     title: 'Humanize 2',
     body: 'Opens and resumes sessions, takes the turns a flow asks for, puts work in a container or on another machine, and writes the run down as a timeline.',
-    links: [{ text: 'Documentation ↗', href: `${DOCS}/` }],
+    links: [
+      { text: 'Humanize 2 →', href: '/projects/humanize2' },
+      { text: 'Documentation ↗', href: `${DOCS}/` },
+    ],
     lit: true,
   },
   {

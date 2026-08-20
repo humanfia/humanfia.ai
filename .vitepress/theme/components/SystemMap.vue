@@ -217,7 +217,7 @@ const hotspots = [
   })),
   {
     key: 'core',
-    href: 'https://docs.humanfia.ai/humanize2/',
+    href: '/projects/humanize2',
     label: 'Humanize 2 — the runtime',
     stage: 1,
     round: true,

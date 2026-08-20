@@ -9,10 +9,10 @@ flows to find out whether they are any good. They are not two categories of proj
 one loop, and the order below is the order it runs in.</p>
 
 <div class="card-grid">
-  <a class="card" href="https://docs.humanfia.ai/humanize2/">
+  <a class="card" href="/projects/humanize2">
     <span class="kicker">The runtime</span>
-    <h3>Humanize 2 ↗</h3>
-    <p>Orchestrate, execute and observe agent flows across ten coding-agent CLIs. It drives the agent you already log into, holds no API key, and writes the whole run down as a timeline. Documented on a site of its own.</p>
+    <h3>Humanize 2</h3>
+    <p>Orchestrate, execute and observe agent flows across ten coding-agent CLIs. It drives the agent you already log into, holds no API key, and writes the whole run down as a timeline.</p>
   </a>
   <a class="card" href="/projects/flowbench">
     <span class="kicker">The referee</span>
