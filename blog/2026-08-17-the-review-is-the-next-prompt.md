@@ -2,11 +2,10 @@
 title: The review is the next prompt
 description: Two small decisions inside RLAR — the reviewer's words go to the actor verbatim, and "done" is read off a field rather than a sentence — that changed how long-horizon runs behave.
 date: 2026-08-17
-author: Humanfia
+authors:
+  - Humanfia
 tag: Method
 ---
-
-# The review is the next prompt
 
 [RLAR](https://github.com/humanfia/flowverse) is about forty lines. Two of them are the reason it works, and both are
 the kind of decision that sounds like a detail until you watch a hundred hours of runs
@@ -72,4 +71,4 @@ one agent in the system whose job is scepticism is the one whose language the ac
 None of this is expensive. It is forty lines and one skill file. The reason we are writing it
 down is that the cheap decisions are the ones people skip.
 
-[Read the flow](https://github.com/humanfia/flowverse) · [Run it](https://hmz.humanfia.ai/)
+[Read the flow](https://github.com/humanfia/flowverse) · [Run it](https://docs.humanfia.ai/humanize2/)

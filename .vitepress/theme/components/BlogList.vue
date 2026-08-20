@@ -12,6 +12,7 @@ import { data as posts } from '../posts.data.mts'
       </div>
       <h2>{{ post.title }}</h2>
       <p v-if="post.description">{{ post.description }}</p>
+      <p class="post-by">{{ post.authors.join(' · ') }}</p>
       <span class="post-more">Read it <span aria-hidden="true">→</span></span>
     </a>
   </div>
@@ -74,6 +75,13 @@ import { data as posts } from '../posts.data.mts'
   font-size: 14px;
   line-height: 1.65;
   color: var(--vp-c-text-2);
+}
+
+.post-by {
+  margin: 10px 0 0 !important;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px !important;
+  color: var(--vp-c-text-3) !important;
 }
 
 .post-more {

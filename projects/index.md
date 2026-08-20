@@ -1,30 +1,64 @@
+---
+description: Everything Humanfia builds, in one list — Humanize 2, FlowBench, HOA, KDA and AgentKaggle.
+---
+
 # Projects
 
-<p class="lede">Everything we build is one of two kinds: platform, which is general and open
-source, or an application, which is pointed at a domain and judged by whether it wins.</p>
+<p class="lede">Five things, one list. A runtime, a referee, and three places we point the
+flows to find out whether they are any good. They are not two categories of project; they are
+one loop, and the order below is the order it runs in.</p>
 
-## Platform
+<div class="card-grid">
+  <a class="card" href="https://docs.humanfia.ai/humanize2/">
+    <span class="kicker">The runtime</span>
+    <h3>Humanize 2 ↗</h3>
+    <p>Orchestrate, execute and observe agent flows across ten coding-agent CLIs. It drives the agent you already log into, holds no API key, and writes the whole run down as a timeline. Documented on a site of its own.</p>
+  </a>
+  <a class="card" href="/projects/flowbench">
+    <span class="kicker">The referee</span>
+    <h3>FlowBench</h3>
+    <p>The benchmark that scores flows against each other on work that takes a day rather than a minute. The flow that wins becomes a default; the flow that loses is deleted, including ours. In development.</p>
+  </a>
+  <a class="card" href="/projects/hoa">
+    <span class="kicker">Applied</span>
+    <h3>HOA — Humanize Olympic Agents</h3>
+    <p>Olympiad, competition and research mathematics, formally verified. Six of six at IMO 2026, 670 of 672 on PutnamBench, and first place on the Lean-Eval leaderboard.</p>
+  </a>
+  <a class="card" href="/projects/kda">
+    <span class="kicker">Applied</span>
+    <h3>KDA — Kernel Design Agents</h3>
+    <p>Research, implement, profile and iterate on performance-critical kernels. Past human SOTA on every track of the MLSys 2026 FlashInfer contest, and shipping into SGLang in production.</p>
+  </a>
+  <a class="card" href="/projects/agentkaggle">
+    <span class="kicker">Applied</span>
+    <h3>AgentKaggle</h3>
+    <p>Agents entered in real Kaggle competitions against thousands of humans and a deadline. Nineteen completed competitions, and the two kinds of result never reported as one.</p>
+  </a>
+</div>
 
-| | What it is | Where it is |
-| --- | --- | --- |
-| [**Humanize 2**](https://hmz.humanfia.ai/) | The runtime. Orchestrate, execute and observe agent flows across ten coding-agent CLIs. | [hmz.humanfia.ai](https://hmz.humanfia.ai/) · [humanfia/humanize2](https://github.com/humanfia/humanize2) |
-| [**flowverse**](https://hmz.humanfia.ai/guide/flowverses) | The official flows — the methods themselves, as directories of Python anyone can run or fork. | [humanfia/flowverse](https://github.com/humanfia/flowverse) |
-| [**FlowBench**](/projects/flowbench) | The benchmark that scores flows against each other on long-horizon work. In development. | Not yet released |
-| [**oh-my-humanize**](/projects/oh-my-humanize) | The workflow-native terminal coding agent we built first, and what it taught us. | [humanfia/oh-my-humanize](https://github.com/humanfia/oh-my-humanize) |
+## What runs on what
 
-## Applications
+The runtime is the thing you install. The **flows** are the methods themselves — RLAR, Flame
+Chase, Humanize 1, the Ralph loop — kept as directories of Python in the
+[flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses) rather than compiled into a
+binary, so a method is something you can read, fork, publish and beat.
 
-| | What it does | Result so far |
-| --- | --- | --- |
-| [**KDA**](/applications/kda) | Kernel Design Agents: research, implement, profile and iterate on performance-critical CUDA kernels. | Top-three track placements at the MLSys 2026 FlashInfer kernel contest |
-| [**HOA**](/applications/hoa) | Humanize Olympic Agents: olympiad and competition mathematics, formally verified. | 6/6 at IMO 2026 · 670/672 on PutnamBench, ranked #1 |
-
-## How they relate
-
-Platform is what we give away; applications are what prove it works. A flow that only ever
-wins on a benchmark we wrote ourselves has proved nothing, so the applications are chosen
-where somebody else keeps the scoreboard — a contest, a formal verifier, a public leaderboard.
+The three applied projects are where a flow stops being our opinion. Every layer below them
+can be evaluated with numbers we chose ourselves, and numbers you choose yourself have a way
+of going up. A Lean 4 kernel, a contest deadline and a private leaderboard do not care what we
+intended.
 
 <ArchStack />
 
-[The stack, explained](https://hmz.humanfia.ai/) · [The loop that connects them](https://hmz.humanfia.ai/)
+## Why there is no platform-versus-application split
+
+There used to be one on this page, and it was a distinction we cared about and nobody else
+did. It also cost something real: the same work appeared in two lists, and the projects that
+tell us whether the platform works were filed under "and also".
+
+They are not "and also". The hard tasks in [FlowBench](/projects/flowbench) are work the
+applied projects were doing anyway — kernels that had to get faster, proofs that had to close,
+a competition that closed on a Thursday — which is the only reason the benchmark keeps
+measuring something real instead of drifting into puzzles.
+
+[What the flows have actually done →](/blog/)

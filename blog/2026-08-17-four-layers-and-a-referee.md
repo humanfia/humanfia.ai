@@ -2,11 +2,10 @@
 title: Four layers and a referee
 description: How Humanfia is put together — a runtime, a flowverse, a benchmark and two applications — and why the arrow from the benchmark back into the flows is the only part that matters.
 date: 2026-08-17
-author: Humanfia
+authors:
+  - Humanfia
 tag: Architecture
 ---
-
-# Four layers and a referee
 
 A month ago this site said we were building two things: a terminal agent and a review loop.
 Since then the shape of the work has changed enough to be worth redrawing, so here is the
@@ -37,16 +36,16 @@ through the interfaces they already serve. We hold no API key and talk to no mod
 The frontier moves every few weeks; the wrapper around one vendor is the least valuable thing
 in this diagram.
 
-**Runtime.** [Humanize 2](https://hmz.humanfia.ai/) opens and resumes sessions, takes turns in the
+**Runtime.** [Humanize 2](https://docs.humanfia.ai/humanize2/) opens and resumes sessions, takes turns in the
 order a flow asks for, puts work in a container or on another machine when it should, and
 writes the whole run down as it happens so it reads back as a timeline. Its documentation is
-at [hmz.humanfia.ai](https://hmz.humanfia.ai/).
+at [docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/).
 
-**Flows.** [The flowverse](https://hmz.humanfia.ai/guide/flowverses): [RLAR](https://github.com/humanfia/flowverse),
+**Flows.** [The flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses): [RLAR](https://github.com/humanfia/flowverse),
 [Flame Chase](https://github.com/humanfia/flowverse), [Humanize 1](https://github.com/humanfia/flowverse), and the loops everyone
 already uses, kept alongside so a comparison is a flag rather than a reimplementation.
 
-**Applications.** [KDA](/applications/kda) for GPU kernels and [HOA](/applications/hoa) for
+**Applications.** [KDA](/projects/kda) for GPU kernels and [HOA](/projects/hoa) for
 olympiad mathematics. Both chosen because the scoreboard belongs to somebody else.
 
 ## Why the benchmark is a layer and not a report
@@ -81,8 +80,8 @@ The applications are not demos. They are the reason any of this is trustworthy.
 Every layer below them can be evaluated with numbers we chose ourselves, and numbers you
 choose yourself have a way of going up. A Lean 4 kernel does not care what we intended. A
 contest deadline does not care. A public leaderboard does not care. So far that has produced
-[all six IMO 2026 problems formally verified](/applications/hoa),
-[670 of 672 on PutnamBench at first place](/results/), and top-three track placements at the
+[all six IMO 2026 problems formally verified](/projects/hoa),
+[670 of 672 on PutnamBench](/blog/2026-06-26-putnambench), and top-three track placements at the
 MLSys 2026 FlashInfer kernel contest with MIT HAN Lab.
 
 They are also where the hard tasks come from. A benchmark assembled out of a domain nobody

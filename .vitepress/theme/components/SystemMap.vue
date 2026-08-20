@@ -91,7 +91,7 @@ const nodes = [
     kicker: 'Application',
     title: 'KDA',
     lines: ['Kernel Design Agents', 'Faster, or it is not'],
-    href: '/applications/kda',
+    href: '/projects/kda',
   },
   {
     key: 'hoa',
@@ -103,7 +103,7 @@ const nodes = [
     kicker: 'Application',
     title: 'HOA',
     lines: ['Humanize Olympic Agents', 'Lean accepts it, or it does not'],
-    href: '/applications/hoa',
+    href: '/projects/hoa',
   },
   {
     key: 'agentkaggle',
@@ -115,7 +115,7 @@ const nodes = [
     kicker: 'Application',
     title: 'AgentKaggle',
     lines: ['Real Kaggle competitions', 'Kaggle says so, or it does not'],
-    href: '/applications/agentkaggle',
+    href: '/projects/agentkaggle',
   },
   {
     key: 'flowbench',
@@ -217,7 +217,7 @@ const hotspots = [
   })),
   {
     key: 'core',
-    href: 'https://hmz.humanfia.ai/',
+    href: 'https://docs.humanfia.ai/humanize2/',
     label: 'Humanize 2 — the runtime',
     stage: 1,
     round: true,

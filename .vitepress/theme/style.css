@@ -349,6 +349,97 @@ a.card:hover {
   letter-spacing: -0.03em;
 }
 
-.VPHome .VPHero .tagline {
-  max-width: 36rem;
+
+/* ---------------------------------------------------------------------------------------
+   The mark beside the heading.
+
+   The theme draws a hero image 320 pixels across on a blurred blob the same size again, which
+   next to a two-line heading reads as a logo that wandered in from a different page. Here it
+   is a plate instead: the same card every other surface on the site is made of, at a size the
+   heading can stand next to, with what is left of the blob behind it as a glow rather than a
+   shape of its own.
+
+   The selectors are three classes deep on purpose. The theme's own live inside media queries
+   at two, and a rule in a media query is not more specific than one outside it -- so these
+   have to win on specificity rather than on being written last.
+   --------------------------------------------------------------------------------------- */
+
+.VPHome .VPHero .image {
+  margin: -12px -24px 4px;
+}
+
+.VPHome .VPHero .image-container {
+  width: 208px;
+  height: 208px;
+}
+
+.VPHome .VPHero .image-bg {
+  width: 208px;
+  height: 208px;
+  opacity: 0.55;
+  filter: blur(54px);
+}
+
+/* The plate itself. It is drawn after the image in the DOM, which is why the mark below has
+   to be lifted out of its way. */
+.VPHome .VPHero .image-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 152px;
+  height: 152px;
+  border-radius: 30px;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--vp-c-divider);
+  background: linear-gradient(150deg, var(--vp-c-bg) 20%, var(--vp-c-bg-soft));
+  box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--hf-blue) 55%, transparent);
+}
+
+.VPHome .VPHero .image-container .image-src {
+  z-index: 1;
+  max-width: 58px;
+  max-height: 58px;
+}
+
+@media (min-width: 640px) {
+  .VPHome .VPHero .image {
+    margin: -24px -24px 0;
+  }
+
+  .VPHome .VPHero .image-container,
+  .VPHome .VPHero .image-bg {
+    width: 244px;
+    height: 244px;
+  }
+}
+
+@media (min-width: 960px) {
+  .VPHome .VPHero .image {
+    margin: 0;
+  }
+
+  .VPHome .VPHero .image-container {
+    width: 100%;
+    height: 100%;
+    /* The theme nudges the whole image box up and left by 32px to make room for a blob that
+       is no longer there. Without the blob it just reads as off-centre. */
+    transform: none;
+  }
+
+  .VPHome .VPHero .image-bg {
+    width: 268px;
+    height: 268px;
+  }
+
+  .VPHome .VPHero .image-container::after {
+    width: 176px;
+    height: 176px;
+    border-radius: 34px;
+  }
+
+  .VPHome .VPHero .image-container .image-src {
+    max-width: 68px;
+    max-height: 68px;
+  }
 }

@@ -2,11 +2,10 @@
 title: "Humanfia: from automated idea factory to realization"
 description: Introducing an open-source agent workflow for serious L3–L4 development — and the argument that the workflow, not the model, is the thing worth building.
 date: 2026-07-20
-author: Humanfia
+authors:
+  - Humanfia
 tag: Launch
 ---
-
-# Humanfia: from automated idea factory to realization
 
 Software agents are becoming capable enough to do more than complete isolated coding tasks.
 The next challenge is not simply stronger models — it is building a workflow that can carry an
@@ -80,7 +79,7 @@ better workflow — and give humans a better way to direct them.
 ---
 
 *Written in July 2026. Much of what this post promised has since been built and measured:
-the runtime became [Humanize 2](https://hmz.humanfia.ai/), the loop became a
-[flowverse of flows](https://hmz.humanfia.ai/reference/flows) anyone can run, and the review discipline is now
+the runtime became [Humanize 2](https://docs.humanfia.ai/humanize2/), the loop became a
+[flowverse of flows](https://docs.humanfia.ai/humanize2/reference/flows) anyone can run, and the review discipline is now
 [RLAR](https://github.com/humanfia/flowverse). What that turned into is described in
 [Four layers and a referee](/blog/2026-08-17-four-layers-and-a-referee).*

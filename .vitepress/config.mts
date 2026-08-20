@@ -1,53 +1,69 @@
-import { writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
 // so no base is prepended and every internal link is written from `/`. The documentation for
-// humanize itself is a site of its own at hmz.humanfia.ai, built the same way from
-// humanfia/humanize2 -- so everything here links out to it rather than restating it.
+// humanize itself is a site of its own, built the same way from humanfia/humanize2 -- so
+// everything here links out to it rather than restating it.
 const HOSTNAME = 'https://humanfia.ai'
 
-/** The one sidebar. Every content section points at this, so it never moves. */
-const CONTENTS = [
-  {
-    text: 'Results',
-    items: [
-      { text: 'All of them', link: '/results/' },
-      { text: 'IMO 2026 — six of six', link: '/results/imo-2026' },
-      { text: 'PutnamBench — 670 of 672', link: '/results/putnambench' },
-      { text: 'MLSys 2026 kernel contest', link: '/results/mlsys-2026' },
-      { text: 'Kaggle — thirteen competitions', link: '/results/kaggle' },
-    ],
-  },
-  {
-    text: 'Applications',
-    items: [
-      { text: 'Where the flows are pointed', link: '/applications/' },
-      { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-      { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-      { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-    ],
-  },
+/** Where Humanize 2's documentation lives, since it moved. One constant, used everywhere. */
+export const DOCS = 'https://docs.humanfia.ai/humanize2'
+
+/** The projects, in the order they are worth reading: the runtime, the referee, the three
+ *  applications. No platform/application split -- that was a distinction we cared about and
+ *  nobody else did, and it put the same six pages in two different lists. */
+const PROJECTS = [
   {
     text: 'Projects',
     items: [
       { text: 'All of them', link: '/projects/' },
+      { text: 'Humanize 2 — the runtime ↗', link: `${DOCS}/` },
       { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-      { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
+      { text: 'HOA — Humanize Olympic Agents', link: '/projects/hoa' },
+      { text: 'KDA — Kernel Design Agents', link: '/projects/kda' },
+      { text: 'AgentKaggle', link: '/projects/agentkaggle' },
     ],
   },
-  {
-    text: 'About',
-    items: [{ text: 'Who we are', link: '/about/' }],
-  },
 ]
+
+/**
+ * The blog's sidebar, read off the directory at config time so publishing a post is still
+ * writing one file. Ten most recent, newest first; the rest are one click away on the index.
+ *
+ * Deliberately its own list rather than the site-wide one: a reader inside a post is reading
+ * the blog, and a sidebar that also offers them every project page is a table of contents for
+ * a book they did not open.
+ */
+function blogSidebar() {
+  const dir = fileURLToPath(new URL('../blog', import.meta.url))
+  const posts = readdirSync(dir)
+    .filter((name) => name.endsWith('.md') && name !== 'index.md')
+    .map((name) => {
+      const front = readFileSync(resolve(dir, name), 'utf8').split('---')[1] ?? ''
+      const title = /^title:\s*(.+)$/m.exec(front)?.[1]?.trim().replace(/^["']|["']$/g, '')
+      const date = /^date:\s*(.+)$/m.exec(front)?.[1]?.trim() ?? ''
+      return { text: title ?? name, link: `/blog/${name.slice(0, -3)}`, date }
+    })
+    // Newest first, and the filename breaks a tie so two posts dated the same day do not
+    // swap places between builds.
+    .sort((a, b) => b.date.localeCompare(a.date) || b.link.localeCompare(a.link))
+
+  return [
+    {
+      text: 'Blog',
+      items: [{ text: 'Everything, newest first', link: '/blog/' }, ...posts.slice(0, 10)],
+    },
+  ]
+}
 
 export default defineConfig({
   title: 'Humanfia',
   titleTemplate: ':title · Humanfia',
   description:
-    'Humanfia is a research team working on long-horizon agent systems: the runtime, the flows and the benchmark, pointed at work where being right is checkable.',
+    'Humanfia builds the flow around the agent: the runtime, the flows and the benchmark, pointed at work where being right is checkable.',
   lang: 'en-US',
   cleanUrls: true,
   lastUpdated: true,
@@ -81,7 +97,7 @@ export default defineConfig({
         '@type': 'Organization',
         name: 'Humanfia',
         url: `${HOSTNAME}/`,
-        description: 'A research team working on long-horizon agent systems.',
+        description: 'We build the flow around the agent.',
         sameAs: [
           'https://github.com/humanfia',
           'https://github.com/humanfia/humanize2',
@@ -99,43 +115,28 @@ export default defineConfig({
     siteTitle: 'Humanfia',
 
     nav: [
-      { text: 'Results', link: '/results/', activeMatch: '/results/' },
       {
         text: 'Projects',
-        activeMatch: '/projects/|/applications/',
+        activeMatch: '/projects/',
         items: [
-          {
-            text: 'Applications',
-            items: [
-              { text: 'HOA — Humanize Olympic Agents', link: '/applications/hoa' },
-              { text: 'KDA — Kernel Design Agents', link: '/applications/kda' },
-              { text: 'AgentKaggle', link: '/applications/agentkaggle' },
-            ],
-          },
-          {
-            text: 'The rest',
-            items: [
-              { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-              { text: 'oh-my-humanize', link: '/projects/oh-my-humanize' },
-              // Humanize 2 is documented on its own site and nowhere else. This is a way out
-              // of here, not an entry in a list of pages we maintain.
-              { text: 'Humanize 2 ↗', link: 'https://hmz.humanfia.ai/' },
-            ],
-          },
+          { text: 'All of them', link: '/projects/' },
+          { text: 'Humanize 2 — the runtime ↗', link: `${DOCS}/` },
+          { text: 'FlowBench — the referee', link: '/projects/flowbench' },
+          { text: 'HOA — Humanize Olympic Agents', link: '/projects/hoa' },
+          { text: 'KDA — Kernel Design Agents', link: '/projects/kda' },
+          { text: 'AgentKaggle', link: '/projects/agentkaggle' },
         ],
       },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
+      { text: 'Docs ↗', link: `${DOCS}/` },
     ],
 
-    // One sidebar, on every content page. Keyed per section it would change shape underneath
-    // a reader every time they followed a link, which is the opposite of what a sidebar is for:
-    // the same list, with the current page marked, so the whole site is legible from anywhere.
+    // One sidebar per section, and a section only ever sees its own. About is a single page
+    // and gets none at all: a list of one is furniture, not navigation.
     sidebar: {
-      '/results/': CONTENTS,
-      '/applications/': CONTENTS,
-      '/projects/': CONTENTS,
-      '/about/': CONTENTS,
+      '/projects/': PROJECTS,
+      '/blog/': blogSidebar(),
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/humanfia' }],
@@ -167,12 +168,15 @@ export default defineConfig({
       .sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date))
       .map((page) => {
         const link = `${HOSTNAME}${page.url}`
+        const authors: string[] = page.frontmatter.authors ??
+          (page.frontmatter.author ? [page.frontmatter.author] : [])
         return [
           '    <item>',
           `      <title>${escapeXml(page.frontmatter.title ?? page.url)}</title>`,
           `      <link>${link}</link>`,
           `      <guid isPermaLink="true">${link}</guid>`,
           `      <pubDate>${new Date(page.frontmatter.date).toUTCString()}</pubDate>`,
+          ...(authors.length ? [`      <author>${escapeXml(authors.join(', '))}</author>`] : []),
           `      <description>${escapeXml(page.frontmatter.description ?? '')}</description>`,
           '    </item>',
         ].join('\n')
@@ -184,7 +188,7 @@ export default defineConfig({
       '  <channel>',
       '    <title>Humanfia</title>',
       `    <link>${HOSTNAME}/blog/</link>`,
-      '    <description>Notes from building agent flows that finish the work.</description>',
+      '    <description>What the flows did, one result per post.</description>',
       '    <language>en-us</language>',
       `    <atom:link href="${HOSTNAME}/blog/feed.rss" rel="self" type="application/rss+xml"/>`,
       ...items,

@@ -3,7 +3,7 @@
 The Humanfia website: [humanfia.ai](https://humanfia.ai/).
 
 A [VitePress](https://vitepress.dev/) site, built the same way as
-[Humanize 2's documentation](https://hmz.humanfia.ai/) so that the two read as one thing and
+[Humanize 2's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
 neither has a build system of its own to learn.
 
 ## Local preview
@@ -24,12 +24,11 @@ that a link's *page* exists and stops there.
 ```
 .
 ├── index.md            the home page
-├── applications/       HOA, KDA, AgentKaggle -- what the flows are pointed at
-├── projects/           FlowBench, oh-my-humanize
-├── results/            what has shipped, and how to check it
+├── projects/           one list: FlowBench, HOA, KDA, AgentKaggle
 ├── about/              who we are
-├── blog/               one Markdown file per post
-├── public/             CNAME, the logo and favicon, og.png, robots.txt
+├── blog/               one Markdown file per post, and one post per result
+├── public/             CNAME, the logo and favicon, og.png, robots.txt,
+│                       and the redirects for the pages this layout replaced
 ├── scripts/            og.py, which draws the social card
 └── .vitepress/
     ├── config.mts      nav, sidebar, and the RSS feed
@@ -52,18 +51,25 @@ uv run --with cairosvg scripts/og.py
 
 ## What is and is not on this site
 
-Humanfia is the team. This site carries the team and its results — HOA, KDA, AgentKaggle,
-FlowBench — and nothing about Humanize 2, not even an install line. Humanize 2 is documented at
-[hmz.humanfia.ai](https://hmz.humanfia.ai/), which is a site of its own; the only mention of it
-here is one external entry in the nav, which is a way out rather than a page we maintain.
+Humanfia is the team. This site carries the team, its projects and its results; Humanize 2
+itself is documented at
+[docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/), which is a site of its own,
+and nothing here restates it. The home page does carry an install block for it — it is the
+runtime everything else on the site runs on, and sending a first-time reader to another domain
+to find one command was the wrong trade — but the block links out for anything past the first
+command.
 
-The home page is components, not prose — `Numbers` and `Results`, in
-`.vitepress/theme/components/`. `Results` is the interactive one, and every figure in it comes
-from a public repository: the PutnamBench grid, the MLSys placements, and the Kaggle
-percentiles, which are read off
-[agentkaggle/kaggle-results-audit](https://github.com/agentkaggle/kaggle-results-audit) with
-official ranks and late-submission estimates drawn differently on purpose. Nothing in it is a
-number we have not published the means to check.
+There is no results section. A result is a blog post, dated, with the people who produced it
+named under the title; the project pages carry a table of what has been done and link to the
+post for each row, rather than holding a second copy of the numbers that can drift out of step.
+
+The home page is components, not prose, in `.vitepress/theme/components/`:
+
+- `News` — the newest posts, rotating on their own, read off the same build-time list the blog
+  index and the RSS feed read.
+- `Install` — Humanize 2, three ways, with the commands the documentation actually gives.
+- `SystemMap` — the interactive architecture diagram, and `ArchStack` for the widths it cannot
+  be read at.
 
 ## Writing a post
 
@@ -74,12 +80,19 @@ One file in `blog/`, named `YYYY-MM-DD-slug.md`, with frontmatter:
 title: Four layers and a referee
 description: One sentence, used on the index page and in the RSS feed.
 date: 2026-08-17
-author: Humanfia
+authors:
+  - Zhengyang Zhang
+  - Hongzhou Lin
 tag: Architecture
 ---
 ```
 
-The index page and `blog/feed.rss` are both generated from that — there is no list to update.
+Do **not** write an `#` heading at the top of a post: `title` is the H1, rendered by
+`PostMeta.vue` so that the author list can sit underneath it. `authors` is a list even when it
+has one name in it.
+
+The index page, the blog sidebar, the news reel on the home page and `blog/feed.rss` are all
+generated from that — there is no list to update.
 
 ## Deployment
 

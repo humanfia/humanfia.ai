@@ -1,13 +1,14 @@
 ---
 title: Blog
-description: Notes from building agent flows that finish the work — results, post-mortems, and opinions about long-horizon agent systems.
+description: Every result Humanfia has published, one post each — what was run, who ran it, and what it can be checked against.
 aside: false
 outline: false
 ---
 
 # Blog
 
-<p class="lede">Results, post-mortems and the occasional strong opinion about long-horizon
-agent work. Subscribe by <a href="/blog/feed.rss">RSS</a>.</p>
+<p class="lede">One result, one post. There is no separate results page any more: a number and
+its caveats belong in the same place, dated, with the people who produced it named at the top.
+Subscribe by <a href="/blog/feed.rss">RSS</a>.</p>
 
 <BlogList />
