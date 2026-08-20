@@ -17,10 +17,9 @@ export const DOCS = 'https://docs.humanfia.ai/humanize2'
  *  nobody else did, and it put the same six pages in two different lists. */
 const PROJECTS = [
   {
-    // The heading is the link to the index, so there is no "all of them" row under it saying
-    // the same thing one line lower.
+    // A heading, not an entry: the overview is reached from the nav, and a group title that
+    // is also a link reads as a page sitting above the pages.
     text: 'Projects',
-    link: '/projects/',
     items: [
       { text: 'Humanize 2 — the runtime', link: '/projects/humanize2' },
       { text: 'FlowBench — the referee', link: '/projects/flowbench' },
@@ -55,8 +54,9 @@ function blogSidebar() {
 
   return [
     {
+      // A heading, not an entry, for the same reason as Projects above.
       text: 'Blog',
-      items: [{ text: 'Everything, newest first', link: '/blog/' }, ...posts.slice(0, 10)],
+      items: posts.slice(0, 10),
     },
   ]
 }
