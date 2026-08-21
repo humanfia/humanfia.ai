@@ -63,14 +63,16 @@ publish what it takes to check it, including the parts that need caveats.
 
 ## Who is behind it
 
-Humanfia is maintained by [@futrime](https://github.com/futrime) and built alongside
-collaborators in academia and industry — the [KDA](/projects/kda) work is joint with
-[MIT HAN Lab](https://hanlab.mit.edu/), and the loop that became
-[Humanize 1](https://github.com/humanfia/flowverse) began at [PolyArch](https://github.com/PolyArch).
+Humanize was initially proposed by [Sihao Liu](https://sihaoliu.github.io/) at UCLA
+[PolyArch](https://github.com/PolyArch), then developed alongside many excellent
+[collaborators](https://github.com/humanfia/humanize2/graphs/contributors) in industry and
+academia, including [NVIDIA Research](https://www.nvidia.com/en-us/research/),
+[UCLA PolyArch](https://polyarch.cs.ucla.edu/), [MIT HAN Lab](https://hanlab.mit.edu),
+[NUNCHAKU](https://github.com/nunchaku-ai), and many community members.
 
 Each result is led by the people who ran it, and they are named at the top of the post that
-reports it rather than folded into a team byline — [the blog](/blog/) is the roster as much as
-it is the record.
+reports it rather than folded into a team byline — [the blog](https://humanfia.ai/blog/) is the
+roster as much as it is the record.
 
 The code is Apache-2.0. Everything we ship is at
 [github.com/humanfia](https://github.com/humanfia).

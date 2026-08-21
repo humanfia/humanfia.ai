@@ -1,10 +1,10 @@
 ---
-description: Everything Humanfia builds, in one list — Humanize 2, FlowBench, HOA, KDA and AgentKaggle.
+description: Everything Humanfia builds, in one list — Humanize 2, Humanize1, FlowBench, HOA, KDA and AgentKaggle.
 ---
 
 # Projects
 
-<p class="lede">Five things, one list. A runtime, a referee, and three places we point the
+<p class="lede">Six things, one list. One runtime, a referee, and three places we point the
 flows to find out whether they are any good. They are not two categories of project; they are
 one loop, and the order below is the order it runs in.</p>
 
@@ -13,6 +13,11 @@ one loop, and the order below is the order it runs in.</p>
     <span class="kicker">The runtime</span>
     <h3>Humanize 2</h3>
     <p>Orchestrate, execute and observe agent flows across ten coding-agent CLIs. It drives the agent you already log into, holds no API key, and writes the whole run down as a timeline.</p>
+  </a>
+  <a class="card" href="https://github.com/PolyArch/humanize">
+    <span class="kicker">The runtime</span>
+    <h3>Humanize1</h3>
+    <p>Turn a plan into an iterative build-and-review loop: Claude implements, Codex reviews independently, and each round feeds the findings back into the next until the acceptance criteria are met — with the human remaining the architect.</p>
   </a>
   <a class="card" href="/projects/flowbench">
     <span class="kicker">The referee</span>
