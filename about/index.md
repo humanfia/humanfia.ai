@@ -67,8 +67,8 @@ Humanize was initially proposed by [Sihao Liu](https://sihaoliu.github.io/) at U
 [PolyArch](https://github.com/PolyArch), then developed alongside many excellent
 [collaborators](https://github.com/humanfia/humanize2/graphs/contributors) in industry and
 academia, including [NVIDIA Research](https://www.nvidia.com/en-us/research/),
-[UCLA PolyArch](https://polyarch.cs.ucla.edu/), [MIT HAN Lab](https://hanlab.mit.edu),
-[NUNCHAKU](https://github.com/nunchaku-ai), and many community members.
+[UCLA PolyArch](https://polyarch.cs.ucla.edu/), [MIT HAN Lab](https://hanlab.mit.edu), and many
+community members.
 
 Each result is led by the people who ran it, and they are named at the top of the post that
 reports it rather than folded into a team byline — [the blog](https://humanfia.ai/blog/) is the
