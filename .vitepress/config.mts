@@ -197,20 +197,32 @@ export default defineConfig({
           `      <link>${link}</link>`,
           `      <guid isPermaLink="true">${link}</guid>`,
           `      <pubDate>${new Date(page.frontmatter.date).toUTCString()}</pubDate>`,
-          ...(authors.length ? [`      <author>${escapeXml(authors.join(', '))}</author>`] : []),
+          // `dc:creator`, not RSS's own `<author>`: that element is defined as an email address
+          // and nothing else, so a name in it is an error every feed validator reports and some
+          // readers drop the whole item over. We publish names and no addresses.
+          ...(authors.length ? [`      <dc:creator>${escapeXml(authors.join(', '))}</dc:creator>`] : []),
           `      <description>${escapeXml(page.frontmatter.description ?? '')}</description>`,
           '    </item>',
         ].join('\n')
       })
 
+    // The newest post's date rather than the clock: two builds of the same commit should
+    // produce the same bytes, and a reader polling us should see a changed feed only when the
+    // blog changed.
+    const latest = posts.reduce(
+      (newest, page) => Math.max(newest, +new Date(page.frontmatter.date ?? 0) || 0),
+      0,
+    )
+
     const feed = [
       '<?xml version="1.0" encoding="UTF-8"?>',
-      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
       '  <channel>',
       '    <title>Humanfia</title>',
       `    <link>${HOSTNAME}/blog/</link>`,
       '    <description>What the flows did, one result per post.</description>',
       '    <language>en-us</language>',
+      ...(latest ? [`    <lastBuildDate>${new Date(latest).toUTCString()}</lastBuildDate>`] : []),
       `    <atom:link href="${HOSTNAME}/blog/feed.rss" rel="self" type="application/rss+xml"/>`,
       ...items,
       '  </channel>',

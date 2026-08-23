@@ -10,6 +10,7 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "check:anchors": "node .vitepress/anchors.mjs"
+    "check:anchors": "node .vitepress/anchors.mjs",
+    "check:feed": "node .vitepress/feed.mjs"
   }
 }

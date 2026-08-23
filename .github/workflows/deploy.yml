@@ -53,6 +53,13 @@ jobs:
       - name: Every #fragment resolves
         run: pnpm check:anchors
 
+      # The feed is written after the build's own link check has run, so nothing else looks at
+      # it. This reads the feed and the client bundle: that every post is in it, that every link
+      # in it was built, and that the router will let a click on it through rather than
+      # answering with a 404 -- which is what it did until VITE_EXTRA_EXTENSIONS was set.
+      - name: The feed is a feed, and its links work
+        run: pnpm check:feed
+
       # `include-hidden-files` because VitePress writes a `.nojekyll` into the output, and this
       # action has excluded dotfiles by default since v4 -- which would drop it silently.
       - uses: actions/upload-pages-artifact@v5

@@ -15,14 +15,20 @@ pnpm install
 pnpm dev
 ```
 
-Then `pnpm build` to build it, and `pnpm check:anchors` afterwards to check that every
-`#fragment` in the Markdown resolves to a heading the site really built — VitePress checks
-that a link's *page* exists and stops there.
+Then `pnpm build` to build it, and two checks afterwards, both of which CI also runs:
+
+- `pnpm check:anchors` — every `#fragment` in the Markdown resolves to a heading the site
+  really built. VitePress checks that a link's *page* exists and stops there.
+- `pnpm check:feed` — `blog/feed.rss` holds every post, every link in it was built, and the
+  router will let a click on a link to it through. That last one is why `.env` exists: the
+  router answers a click on any extension it does not recognise in-app, its list has `xml` on
+  it and not `rss`, and every link to the feed used to land on the 404 page.
 
 ## Layout
 
 ```
 .
+├── .env                VITE_EXTRA_EXTENSIONS=rss, so the router leaves feed links alone
 ├── index.md            the home page
 ├── projects/           one list: FlowBench, HOA, KDA, AgentKaggle
 ├── about/              who we are
@@ -33,6 +39,7 @@ that a link's *page* exists and stops there.
 └── .vitepress/
     ├── config.mts      nav, sidebar, and the RSS feed
     ├── anchors.mjs     the #fragment check
+    ├── feed.mjs        the RSS feed check
     └── theme/          the default theme, plus this site's palette and components
 ```
 
