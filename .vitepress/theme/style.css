@@ -321,16 +321,22 @@ a.card:hover {
 }
 
 /* One wash of the accent behind the hero, and nothing else. It is under everything, does not
-   take clicks, and fades out long before the first section. */
+   take clicks, and fades out long before the first section.
+
+   It stays inside the page now. This box used to be hung 20% past each edge, and an absolutely
+   positioned box still counts towards the document's scroll width -- so the home page was a
+   fifth wider than the window at every width, which is a blank band down the right of it and a
+   horizontal scrollbar under it. The wash itself is unchanged: the ellipse was 52% of a box
+   140% as wide, and 52 x 1.4 is the 72.8% it is now of a box that ends where the page does. */
 .VPHome::before {
   content: '';
   position: absolute;
-  inset: -8% -20% auto -20%;
+  inset: -8% 0 auto 0;
   height: 680px;
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(
-    52% 50% at 50% 32%,
+    72.8% 50% at 50% 32%,
     color-mix(in srgb, var(--hf-blue) 13%, transparent),
     transparent 72%
   );
@@ -338,7 +344,7 @@ a.card:hover {
 
 .dark .VPHome::before {
   background: radial-gradient(
-    52% 50% at 50% 32%,
+    72.8% 50% at 50% 32%,
     color-mix(in srgb, var(--hf-blue-light) 11%, transparent),
     transparent 72%
   );

@@ -434,8 +434,12 @@ const STEPS = [
 }
 
 @media (max-width: 899px) {
+  /* `minmax(0, 1fr)` rather than `1fr`: a bare `1fr` floors the track at the widest thing in
+     it, and on a 320px screen the terminal card's min-content is wider than the column, so the
+     card pushed the whole page a few pixels past the right edge. This lets the track be the
+     width it is given and leaves the wrapping to the card, which already handles it. */
   .install {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 </style>
