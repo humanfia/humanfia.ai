@@ -132,9 +132,13 @@ export default defineConfig({
           {
             text: 'Humanize 2',
             items: [
-              { text: 'Documentation ↗', link: `${DOCS}/` },
+              // `${DOCS}/features/` rather than `${DOCS}/`: that site has no front page above
+              // its sections, and its root is a redirect to this. Naming the redirect would
+              // send a reader through a round trip to reach the page named under it anyway.
+              { text: 'Documentation ↗', link: `${DOCS}/features/` },
+              { text: 'Quickstart ↗', link: `${DOCS}/tutorials/quickstart` },
               { text: 'Installation ↗', link: `${DOCS}/guide/installation` },
-              { text: 'Features ↗', link: `${DOCS}/features/` },
+              { text: 'Flows ↗', link: `${DOCS}/flows/` },
               { text: 'Guides ↗', link: `${DOCS}/guide/` },
               { text: 'CLI reference ↗', link: `${DOCS}/reference/cli` },
               { text: 'Flowverses ↗', link: `${DOCS}/guide/flowverses` },

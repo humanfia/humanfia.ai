@@ -10,6 +10,7 @@ import LayerStack from './components/LayerStack.vue'
 import News from './components/News.vue'
 import PostMeta from './components/PostMeta.vue'
 import SystemMap from './components/SystemMap.vue'
+import TerminalReel from './components/TerminalReel.vue'
 import TraceReel from './components/TraceReel.vue'
 import './style.css'
 
@@ -27,6 +28,7 @@ export default {
     app.component('LayerStack', LayerStack)
     app.component('News', News)
     app.component('SystemMap', SystemMap)
+    app.component('TerminalReel', TerminalReel)
     app.component('TraceReel', TraceReel)
   },
 } satisfies Theme

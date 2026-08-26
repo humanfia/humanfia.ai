@@ -97,8 +97,8 @@ The five worth reading even if you never install it.
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize2/features/">
     <span class="kicker">Everything else</span>
-    <h3>Twelve pages, one picture each</h3>
-    <p>Hooks, remote execution, providers, containers — a page and a diagram apiece, on the documentation site.</p>
+    <h3>Twelve pages, one picture each ↗</h3>
+    <p>Hooks, remote execution, providers, containers — a page and a diagram apiece, and the front of the documentation site.</p>
   </a>
 </div>
 
@@ -123,16 +123,65 @@ points both ways, and a test fails a build that bends it.
 
 <LayerStack />
 
-## Where the flows come from
+## The real thing, recorded
+
+Everything above is drawn. This is not: five screens of `hmz`, recorded from the program, in a
+container with a stand-in coding agent in it.
+
+<TerminalReel />
+
+## The flows it runs
 
 The runtime runs flows; it does not decide what a good flow is. That is deliberate, and it is
 the seam the whole of Humanfia is built along.
 
-Flows live in a **flowverse** — a directory of Python that anybody can read, fork, publish or
-beat. The three that ship are there alongside the loops the field already converged on, so
-comparing a method against another method is a flag rather than a reimplementation. Which of
-them is actually better is [FlowBench](/projects/flowbench)'s question, and the answer is
-allowed to delete ours.
+A **flow** is a directory of Python that says which agents it drives, what each is asked, in
+what order and when to stop. Eleven come with the runtime or with the flowverse it fetches, and
+they are between them most of the loop shapes the field has converged on:
+
+<div class="card-grid">
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/ralph-loop">
+    <span class="kicker">One agent</span>
+    <h3>Forget every round, or remember all of them</h3>
+    <p><code>ralph_loop</code> opens a session of its own each round; <code>stateful_ralph</code>
+    and <code>continue_loop</code> hold one and keep going. Same loop, opposite trade.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/flame-chase">
+    <span class="kicker">Two agents</span>
+    <h3>Take turns on the same tree</h3>
+    <p><code>flame_chase</code> alternates two agents on one task, each reading the repository
+    rather than a history — so neither compounds the other's blind spot.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/rlar">
+    <span class="kicker">Actor and reviewer</span>
+    <h3>The review is the next prompt</h3>
+    <p><code>rlar</code> gives the actor one session and the reviewer none. What the reviewer
+    noticed is what the actor hears, word for word, and the reviewer is what ends the run.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/humanize1">
+    <span class="kicker">A plan first</span>
+    <h3>Humanize 1, as three flows</h3>
+    <p>An idea opened into a draft, a plan two sides converge on, and a build under review —
+    the plugin's three commands, each set up on its own agents.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/parallel-flame-chase">
+    <span class="kicker">Seven agents</span>
+    <h3>Three lanes, one writer</h3>
+    <p>A coordinator plans three isolated lanes. Lane 1 alone owns your working tree; the other
+    two work in private snapshots and publish artifacts rather than writes.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/">
+    <span class="kicker">The catalogue</span>
+    <h3>Every flow, with its loop drawn ↗</h3>
+    <p>A page each: the <code>hmz exec</code> line, what it takes, what ends it, and what a run
+    picked up a week later carries in.</p>
+  </a>
+</div>
+
+Flows live in a **flowverse** — a git repository anybody can read, fork, publish or beat. The
+loops the field already converged on are in there beside ours, so comparing a method against
+another method is a flag rather than a reimplementation. Which of them is actually better is
+[FlowBench](/projects/flowbench)'s question, and the answer is allowed to delete ours.
 
 [Flowverses ↗](https://docs.humanfia.ai/humanize2/guide/flowverses) ·
 [humanfia/flowverse ↗](https://github.com/humanfia/flowverse) ·
@@ -163,6 +212,16 @@ repository you care about.
     <span class="kicker">Install it</span>
     <h3>The installation guide ↗</h3>
     <p>Prerequisites, the three ways in, which backends count as available, and how to check.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/tutorials/quickstart">
+    <span class="kicker">Try it</span>
+    <h3>The quickstart ↗</h3>
+    <p>Nothing installed to a run you can open in Perfetto, in fifteen minutes.</p>
+  </a>
+  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/">
+    <span class="kicker">Run something</span>
+    <h3>The flows ↗</h3>
+    <p>Eleven of them, from one agent talking to seven in three isolated lanes.</p>
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize2/guide/">
     <span class="kicker">Learn it</span>
