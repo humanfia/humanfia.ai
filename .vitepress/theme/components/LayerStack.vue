@@ -6,7 +6,7 @@
 // through, and shades the two halves around it -- what it is allowed to reach, and what
 // reaches it.
 //
-// The descriptions and entry points are the ones in Humanize 2's own architecture page. What
+// The descriptions and entry points are the ones in Humanize's own architecture page. What
 // this drawing deliberately does not claim is that a layer names *everything* below it: the
 // exact table is a test in the repository, and the caption says so.
 import { computed, ref } from 'vue'

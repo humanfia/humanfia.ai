@@ -21,7 +21,7 @@ const LAYERS = [
     key: 'flows',
     kicker: 'Flows',
     title: 'The method, as code',
-    body: 'RLAR, Flame Chase, Humanize 1, the Ralph loop — directories of Python anyone can read, fork or beat.',
+    body: 'RLAR, Flame Chase, the RLCR Loop, the Ralph loop — directories of Python anyone can read, fork or beat.',
     links: [
       { text: 'The flowverse ↗', href: `${DOCS}/guide/flowverses` },
       { text: 'humanfia/flowverse ↗', href: 'https://github.com/humanfia/flowverse' },
@@ -30,10 +30,10 @@ const LAYERS = [
   {
     key: 'runtime',
     kicker: 'Runtime',
-    title: 'Humanize 2',
+    title: 'Humanize',
     body: 'Opens and resumes sessions, takes the turns a flow asks for, puts work in a container or on another machine, and writes the run down as a timeline.',
     links: [
-      { text: 'Humanize 2 →', href: '/projects/humanize2' },
+      { text: 'Humanize →', href: '/projects/humanize' },
       { text: 'Documentation ↗', href: `${DOCS}/` },
     ],
     lit: true,

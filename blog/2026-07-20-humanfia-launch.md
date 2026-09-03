@@ -79,7 +79,7 @@ better workflow — and give humans a better way to direct them.
 ---
 
 *Written in July 2026. Much of what this post promised has since been built and measured:
-the runtime became [Humanize 2](https://docs.humanfia.ai/humanize2/), the loop became a
+the runtime became [Humanize](https://docs.humanfia.ai/humanize2/), the loop became a
 [flowverse of flows](https://docs.humanfia.ai/humanize2/reference/flows) anyone can run, and the review discipline is now
 [RLAR](https://github.com/humanfia/flowverse). What that turned into is described in
 [Four layers and a referee](/blog/2026-08-17-four-layers-and-a-referee).*

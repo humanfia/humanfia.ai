@@ -3,6 +3,7 @@ title: Blog
 description: Every result Humanfia has published, one post each — what was run, who ran it, and what it can be checked against.
 aside: false
 outline: false
+pageClass: page-wide
 ---
 
 # Blog
@@ -11,4 +12,4 @@ outline: false
 its caveats belong in the same place, dated, with the people who produced it named at the top.
 Subscribe by <a href="/blog/feed.rss">RSS</a>.</p>
 
-<BlogList />
+<PostMosaic :limit="0" />

@@ -1,23 +1,23 @@
 ---
-description: Everything Humanfia builds, in one list — Humanize 2, Humanize1, FlowBench, HOA, KDA and AgentKaggle.
+description: Everything Humanfia builds, in one list — Humanize, the RLCR Loop, FlowBench, HOA, KDA and AgentKaggle.
 ---
 
 # Projects
 
-<p class="lede">Six things, one list. One runtime, a referee, and three places we point the
-flows to find out whether they are any good. They are not two categories of project; they are
-one loop, and the order below is the order it runs in.</p>
+<p class="lede">Six things, one list. One runtime, the loop it grew out of, a referee, and three
+places we point the flows to find out whether they are any good. They are not two categories of
+project; they are one loop, and the order below is the order it runs in.</p>
 
 <div class="card-grid">
-  <a class="card" href="/projects/humanize2">
+  <a class="card" href="/projects/humanize">
     <span class="kicker">The runtime</span>
-    <h3>Humanize 2</h3>
+    <h3>Humanize</h3>
     <p>Orchestrate, execute and observe agent flows across ten coding-agent CLIs. It drives the agent you already log into, holds no API key, and writes the whole run down as a timeline.</p>
   </a>
-  <a class="card" href="https://github.com/PolyArch/humanize">
-    <span class="kicker">The runtime</span>
-    <h3>Humanize1</h3>
-    <p>Turn a plan into an iterative build-and-review loop: Claude implements, Codex reviews independently, and each round feeds the findings back into the next until the acceptance criteria are met — with the human remaining the architect.</p>
+  <a class="card" href="/projects/rlcr-loop">
+    <span class="kicker">Where it started</span>
+    <h3>RLCR Loop</h3>
+    <p>The original Humanize, and still a plugin you can install today: Claude implements, Codex reviews with no memory of how the work was arrived at, and each round feeds the findings into the next until the acceptance criteria are met.</p>
   </a>
   <a class="card" href="/projects/flowbench">
     <span class="kicker">The referee</span>
@@ -26,12 +26,12 @@ one loop, and the order below is the order it runs in.</p>
   </a>
   <a class="card" href="/projects/hoa">
     <span class="kicker">Applied</span>
-    <h3>HOA — Humanize Olympic Agents</h3>
+    <h3>HOA</h3>
     <p>Olympiad, competition and research mathematics, formally verified. Six of six at IMO 2026, 670 of 672 on PutnamBench, and first place on the Lean-Eval leaderboard.</p>
   </a>
   <a class="card" href="/projects/kda">
     <span class="kicker">Applied</span>
-    <h3>KDA — Kernel Design Agents</h3>
+    <h3>KDA</h3>
     <p>Research, implement, profile and iterate on performance-critical kernels. Past human SOTA on every track of the MLSys 2026 FlashInfer contest, and shipping into SGLang in production.</p>
   </a>
   <a class="card" href="/projects/agentkaggle">
@@ -44,7 +44,7 @@ one loop, and the order below is the order it runs in.</p>
 ## What runs on what
 
 The runtime is the thing you install. The **flows** are the methods themselves — RLAR, Flame
-Chase, Humanize 1, the Ralph loop — kept as directories of Python in the
+Chase, the RLCR Loop, the Ralph loop — kept as directories of Python in the
 [flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses) rather than compiled into a
 binary, so a method is something you can read, fork, publish and beat.
 

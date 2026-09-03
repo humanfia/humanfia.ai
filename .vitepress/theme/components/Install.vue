@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Humanize 2, installed. The documentation is a site of its own and this is not a copy of it:
+// Humanize, installed. The documentation is a site of its own and this is not a copy of it:
 // it is the one screen that gets somebody from nothing to a flow running, and then hands them
 // over. Three ways in, because a Python tool that is only ever `pip install`ed in a README is
 // a tool half its readers cannot use.
@@ -108,7 +108,7 @@ const STEPS = [
     <div class="install">
       <div class="install-main">
         <div class="install-head">
-          <div class="install-tabs" role="tablist" aria-label="How to install Humanize 2">
+          <div class="install-tabs" role="tablist" aria-label="How to install Humanize">
             <button
               v-for="(item, i) in WAYS"
               :key="item.key"

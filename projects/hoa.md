@@ -2,10 +2,10 @@
 description: HOA — Humanize Olympic Agents. Competition, olympiad and research mathematics solved by agents and machine-checked in Lean 4, plus physics and quantum information formalized end to end.
 ---
 
-# HOA — Humanize Olympic Agents
+# HOA
 
-<p class="lede">Mathematics, physics and quantum information, solved by agents and checked by a
-proof assistant. No rubric, no grader, no benefit of the doubt: Lean 4 either accepts the proof
+<p class="lede">Humanize Olympic Agents. Mathematics, physics and quantum information, solved
+by agents and checked by a proof assistant. No rubric, no grader, no benefit of the doubt: Lean 4 either accepts the proof
 or it does not.</p>
 
 <div class="stat-strip">
@@ -60,7 +60,7 @@ of 50 through its own CLI, and 50 of 50 inside a flow.
 [humanfia/flowverse](https://github.com/humanfia/flowverse) ·
 [IPhO 2026 dataset](https://huggingface.co/datasets/humanfia-lab/IPHO2026)
 
-The loop these runs were built on is [Humanize 1](https://github.com/humanfia/flowverse). What
+The loop these runs were built on is the [RLCR Loop](/projects/rlcr-loop). What
 we learned from watching it run for weeks is most of why
 [RLAR](https://github.com/humanfia/flowverse) and the rest of the
 [flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses) look the way they do.

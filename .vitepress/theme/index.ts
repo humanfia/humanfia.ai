@@ -4,12 +4,12 @@ import { h } from 'vue'
 
 import AnchorSplit from './components/AnchorSplit.vue'
 import ArchStack from './components/ArchStack.vue'
-import BlogList from './components/BlogList.vue'
 import Install from './components/Install.vue'
 import LayerStack from './components/LayerStack.vue'
-import News from './components/News.vue'
 import PostMeta from './components/PostMeta.vue'
+import PostMosaic from './components/PostMosaic.vue'
 import SystemMap from './components/SystemMap.vue'
+import TeamRoster from './components/TeamRoster.vue'
 import TerminalReel from './components/TerminalReel.vue'
 import TraceReel from './components/TraceReel.vue'
 import './style.css'
@@ -23,11 +23,11 @@ export default {
   enhanceApp({ app }) {
     app.component('AnchorSplit', AnchorSplit)
     app.component('ArchStack', ArchStack)
-    app.component('BlogList', BlogList)
     app.component('Install', Install)
     app.component('LayerStack', LayerStack)
-    app.component('News', News)
+    app.component('PostMosaic', PostMosaic)
     app.component('SystemMap', SystemMap)
+    app.component('TeamRoster', TeamRoster)
     app.component('TerminalReel', TerminalReel)
     app.component('TraceReel', TraceReel)
   },

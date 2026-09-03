@@ -3,7 +3,7 @@
 The Humanfia website: [humanfia.ai](https://humanfia.ai/).
 
 A [VitePress](https://vitepress.dev/) site, built the same way as
-[Humanize 2's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
+[Humanize's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
 neither has a build system of its own to learn.
 
 ## Local preview
@@ -30,8 +30,9 @@ Then `pnpm build` to build it, and two checks afterwards, both of which CI also 
 .
 ├── .env                VITE_EXTRA_EXTENSIONS=rss, so the router leaves feed links alone
 ├── index.md            the home page
-├── projects/           one list: FlowBench, HOA, KDA, AgentKaggle
-├── about/              who we are
+├── projects/           one list: Humanize, the RLCR Loop, FlowBench, HOA, KDA, AgentKaggle
+├── team/               who does what, by project
+├── about/              what we believe, and how to reach us
 ├── blog/               one Markdown file per post, and one post per result
 ├── public/             CNAME, the logo and favicon, og.png, robots.txt,
 │                       and the redirects for the pages this layout replaced
@@ -58,13 +59,16 @@ uv run --with cairosvg scripts/og.py
 
 ## What is and is not on this site
 
-Humanfia is the team. This site carries the team, its projects and its results; Humanize 2
+Humanfia is the team. This site carries the team, its projects and its results; Humanize
 itself is documented at
 [docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/), which is a site of its own,
-and nothing here restates it. The home page does carry an install block for it — it is the
-runtime everything else on the site runs on, and sending a first-time reader to another domain
-to find one command was the wrong trade — but the block links out for anything past the first
-command.
+and nothing here restates it. The install block lives on the Humanize project page rather than
+the home page, and it links out for anything past the first command.
+
+The runtime is called **Humanize**, and the URLs of its documentation still say `humanize2`
+because that is where the site is served from. The Claude Code plugin it grew out of — the
+first Humanize — is [the RLCR Loop](projects/rlcr-loop.md), and it is a project of its own
+here.
 
 There is no results section. A result is a blog post, dated, with the people who produced it
 named under the title; the project pages carry a table of what has been done and link to the
@@ -72,11 +76,17 @@ post for each row, rather than holding a second copy of the numbers that can dri
 
 The home page is components, not prose, in `.vitepress/theme/components/`:
 
-- `News` — the newest posts, rotating on their own, read off the same build-time list the blog
-  index and the RSS feed read.
-- `Install` — Humanize 2, three ways, with the commands the documentation actually gives.
+- `PostMosaic` — every post, tiled at unequal sizes, read off the same build-time list the RSS
+  feed reads. The blog index renders the same component with `:limit="0"`.
 - `SystemMap` — the interactive architecture diagram, and `ArchStack` for the widths it cannot
-  be read at.
+  be read at. `fit` sizes it to end where the screen does.
+- `TeamRoster` — the team page: who proposed Humanize, who built the team, and each project's
+  people with the lead first. Faces are GitHub avatars addressed by numeric account id.
+- `Install` — Humanize, three ways, with the commands the documentation actually gives.
+
+The home page is three screens: the hero, about two screens of posts, and the ecosystem
+diagram. The hero and the diagram each take a window (`.hf-screen` in `theme/style.css`), so
+neither ends half-way up the next one.
 
 ## Writing a post
 
@@ -98,7 +108,7 @@ Do **not** write an `#` heading at the top of a post: `title` is the H1, rendere
 `PostMeta.vue` so that the author list can sit underneath it. `authors` is a list even when it
 has one name in it.
 
-The index page, the blog sidebar, the news reel on the home page and `blog/feed.rss` are all
+The index page, the blog sidebar, the mosaic on the home page and `blog/feed.rss` are all
 generated from that — there is no list to update.
 
 ## Deployment

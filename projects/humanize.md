@@ -1,10 +1,10 @@
 ---
-description: Humanize 2 is the runtime everything Humanfia does runs on — it orchestrates, executes and observes agent flows across ten coding-agent CLIs, and holds no API key of its own.
+description: Humanize is the runtime everything Humanfia does runs on — it orchestrates, executes and observes agent flows across ten coding-agent CLIs, and holds no API key of its own.
 ---
 
-# Humanize 2 — the runtime
+# Humanize
 
-<p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize 2
+<p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize
 drives the coding-agent CLI you already log into, in the order a flow asks for, and writes the
 whole run down as it happens. It is the layer every other project on this site stands on.</p>
 
@@ -160,9 +160,9 @@ they are between them most of the loop shapes the field has converged on:
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize2/flows/humanize1">
     <span class="kicker">A plan first</span>
-    <h3>Humanize 1, as three flows</h3>
+    <h3>The RLCR Loop, as three flows</h3>
     <p>An idea opened into a draft, a plan two sides converge on, and a build under review —
-    the plugin's three commands, each set up on its own agents.</p>
+    <a href="/projects/rlcr-loop">the original Humanize</a>'s three commands, on their own agents.</p>
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize2/flows/parallel-flame-chase">
     <span class="kicker">Seven agents</span>
@@ -191,7 +191,7 @@ another method is a flag rather than a reimplementation. Which of them is actual
 
 **It is not a model.** We do not train one, serve one or resell one.
 
-**It is not an API client.** Humanize 2 holds no API key and talks to no model provider. It
+**It is not an API client.** Humanize holds no API key and talks to no model provider. It
 drives the CLI you already log into, under your own subscription, the way you already log in.
 The frontier moves every few weeks; a wrapper around one vendor is the least durable thing we
 could build.

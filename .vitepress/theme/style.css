@@ -74,6 +74,29 @@
   padding-bottom: 96px;
 }
 
+/* The blog. It is the longest thing on the page on purpose -- about two screens of results,
+   because the results are the argument -- so it gets a little more air above it than a section
+   that follows another section would. */
+.hf-tall {
+  padding-top: 88px;
+}
+
+/* A section that is a screen. The heading sits at the top of the window and whatever it
+   introduces fills what is left, which is the same deal the hero has above it.
+
+   The window minus the nav, not the whole window: the nav is fixed and floats over the page,
+   so a section exactly one window tall always has its first line hidden under it. `svh` rather
+   than `vh` so a phone's collapsing address bar does not make it a screen and a bit. */
+.hf-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--vp-nav-height));
+  min-height: calc(100svh - var(--vp-nav-height));
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 .hf-section > header {
   max-width: 720px;
   margin-bottom: 4px;
@@ -126,47 +149,29 @@
   color: var(--vp-c-brand-1);
 }
 
-/* The last row: four ways out of the page, all of them a link and a sentence. */
-.hf-paths {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
-  gap: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--vp-c-divider);
-}
-
-.hf-paths a {
-  display: block;
-  padding: 18px 4px 4px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.hf-paths strong {
-  display: block;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  color: var(--vp-c-text-1);
-  transition: color 0.2s;
-}
-
-.hf-paths a:hover strong {
-  color: var(--vp-c-brand-1);
-}
-
-.hf-paths span {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--vp-c-text-3);
-}
-
 @media (min-width: 960px) {
   .hf-section {
     padding-left: 48px;
     padding-right: 48px;
   }
+}
+
+/* ---------------------------------------------------------------------------------------
+   `pageClass: page-wide`, for the two pages whose content is a grid rather than a column of
+   text. The theme sizes a document for reading -- 752px, so a line is not too long to track
+   across -- and that is right for every other page here and wrong for a mosaic of posts and a
+   wall of faces, which are read by scanning.
+   --------------------------------------------------------------------------------------- */
+
+.Layout.page-wide .VPDoc:not(.has-sidebar) .container,
+.Layout.page-wide .VPDoc.has-sidebar .container {
+  max-width: 1200px;
+}
+
+.Layout.page-wide .VPDoc:not(.has-sidebar) .content,
+.Layout.page-wide .VPDoc.has-sidebar .content,
+.Layout.page-wide .VPDoc.has-aside .content-container {
+  max-width: 100%;
 }
 
 /* The numbers we lead with. One <div> per number, a <b> and a <span> inside it. */
@@ -350,9 +355,73 @@ a.card:hover {
   );
 }
 
+/* The hero is a page. It used to end wherever its own padding put it, which on a wide screen
+   left the next section half in view and made the first thing you saw a heading and a cut-off
+   heading -- so it takes the window, and the sections after it each take theirs.
+
+   The theme already pads the top by the nav's height, so `min-height` is the whole window and
+   the content centres inside what the padding leaves. `svh` first, `vh` behind it for anything
+   that has not got the newer unit.
+
+   The container gets its width back explicitly. It is `max-width: 1152px; margin: 0 auto`,
+   and auto side margins opt an item out of being stretched by its grid -- so without this it
+   shrinks to its content, the heading loses the width it was wrapped for, and the second line
+   runs under the mark. */
+.VPHome .VPHero {
+  position: relative;
+  display: grid;
+  align-content: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.VPHome .VPHero .container {
+  width: 100%;
+}
+
 .VPHome .VPHero .name {
   font-size: clamp(46px, 9vw, 78px);
   letter-spacing: -0.03em;
+}
+
+/* The one piece of furniture a full-height hero needs: something saying the page goes on.
+   A rule with the accent falling down it, under the actions, off to the side of the mark. */
+.VPHome .VPHero::after {
+  content: '';
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  width: 1px;
+  height: 56px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--vp-c-divider));
+  animation: hf-cue 2.8s ease-in-out infinite;
+}
+
+@keyframes hf-cue {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(7px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .VPHome .VPHero::after {
+    animation: none;
+  }
+}
+
+/* Under 960 the hero stacks the mark above the heading and the window is short, so the cue
+   would sit on top of the buttons. */
+@media (max-width: 959px) {
+  .VPHome .VPHero::after {
+    display: none;
+  }
 }
 
 

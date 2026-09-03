@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-// The system map: humanize at the centre, the flows in orbit around it, the CLIs feeding it
+// The system map: Humanize at the centre, the flows in orbit around it, the CLIs feeding it
 // from the left, the applications it is pointed at on the right, and flowbench underneath
 // closing the loop back into the orbit.
 //
@@ -13,6 +13,10 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 // Everything that moves is gated on `motion`, which starts false -- so the server renders a
 // still diagram and the browser turns it on after mount, unless the reader has asked for
 // reduced motion, in which case it stays still and the CSS keyframes are off too.
+
+// `fit` is the home page's: there the map is given a whole screen and has to end where the
+// screen does, so the drawing is sized off the window's height rather than the column's width.
+defineProps<{ fit?: boolean }>()
 
 const CX = 470
 const CY = 310
@@ -64,7 +68,7 @@ const FLOWVERSE = 'https://github.com/humanfia/flowverse'
 const flows = [
   { text: 'RLAR', w: 74, at: 202, href: FLOWVERSE },
   { text: 'Flame Chase', w: 124, at: 236, href: FLOWVERSE },
-  { text: 'Humanize 1', w: 120, at: 270, href: FLOWVERSE },
+  { text: 'RLCR Loop', w: 118, at: 270, href: FLOWVERSE },
   { text: 'Ralph Loop', w: 116, at: 304, href: FLOWVERSE },
   { text: 'Goal', w: 66, at: 338, href: FLOWVERSE },
 ].map((flow) => ({ ...flow, ...on(flow.at) }))
@@ -217,8 +221,8 @@ const hotspots = [
   })),
   {
     key: 'core',
-    href: '/projects/humanize2',
-    label: 'Humanize 2 — the runtime',
+    href: '/projects/humanize',
+    label: 'Humanize — the runtime',
     stage: 1,
     round: true,
     style: box(CX - CORE_R, CY - CORE_R, CORE_R * 2, CORE_R * 2),
@@ -227,13 +231,13 @@ const hotspots = [
 </script>
 
 <template>
-  <figure class="map" :class="{ still: !motion }">
+  <figure class="map" :class="{ still: !motion, fit }">
     <div class="map-scroll">
      <div class="map-stage">
       <svg
         viewBox="0 0 1040 720"
         role="img"
-        aria-label="How the projects relate: Humanize 2 runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
+        aria-label="How the projects relate: Humanize runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
       >
         <defs>
           <radialGradient :id="`${uid}-core`" cx="35%" cy="30%">
@@ -376,7 +380,7 @@ const hotspots = [
             <path d="M 30 24 L 60 50 L 30 76" />
             <path d="M 92 76 L 68 76" />
           </g>
-          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">Humanize 2</text>
+          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">Humanize</text>
           <text :x="CX" :y="CY + CORE_R + 48" class="core-role">THE RUNTIME</text>
         </g>
 
@@ -428,7 +432,7 @@ const hotspots = [
 
     <figcaption>
       <span class="scroll-hint">Scroll the diagram sideways to see all of it. </span>
-      Humanize 2 runs the flows and drives the agents you already log into; a flow is pointed at
+      Humanize runs the flows and drives the agents you already log into; a flow is pointed at
       one of the three applications, which is where it is found out; and FlowBench scores what
       came back and sends the winner into the next flow. Hover any piece to hold it.
     </figcaption>
@@ -438,6 +442,21 @@ const hotspots = [
 <style scoped>
 .map {
   margin: 32px 0;
+}
+
+/* Sized to end where the screen does. The stage keeps the viewBox's aspect ratio, so capping
+   its width by what the window has left over -- the nav floating over the top, and about 350px
+   of heading above the drawing and caption below it -- is how the whole figure lands inside one
+   screen. The floor stops a short window shrinking the drawing to something nobody can read;
+   the ceiling is the column, as before. */
+.map.fit {
+  margin: 24px 0 0;
+}
+
+.map.fit .map-stage {
+  min-width: 0;
+  max-width: max(600px, min(100%, calc((100svh - var(--vp-nav-height) - 356px) * 1040 / 720)));
+  margin: 0 auto;
 }
 
 .map-scroll {

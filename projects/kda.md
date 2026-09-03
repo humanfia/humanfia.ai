@@ -2,10 +2,10 @@
 description: KDA — Kernel Design Agents. An agent workflow for researching, implementing, profiling and iterating on performance-critical kernels, built with MIT HAN Lab and shipping into production serving stacks.
 ---
 
-# KDA — Kernel Design Agents
+# KDA
 
-<p class="lede">An agent-centric workflow for the one kind of programming where the score is
-never in doubt: making a kernel faster, on real hardware, without making it wrong.</p>
+<p class="lede">Kernel Design Agents. An agent-centric workflow for the one kind of
+programming where the score is never in doubt: making a kernel faster, on real hardware, without making it wrong.</p>
 
 [mit-han-lab/kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents) ·
 [KDA-Pilot](https://github.com/BBuf/KDA-Pilot) ·
@@ -67,7 +67,7 @@ more than any single trick.
 
 KDA is one of the places our flows go to be found out. The loop being run is a
 [flow](https://docs.humanfia.ai/humanize2/reference/flows) like any other, the runtime under it
-is [Humanize 2](https://docs.humanfia.ai/humanize2/), and the score is a wall-clock measurement
+is [Humanize](https://docs.humanfia.ai/humanize2/), and the score is a wall-clock measurement
 on somebody else's benchmark — or, increasingly, a pull request that a maintainer who did not
 ask for it has to be willing to merge.
 

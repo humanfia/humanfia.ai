@@ -91,4 +91,4 @@ result, the session or supporting evidence it was traced to, and an explicit not
 result could not be traced to one.
 
 The loops themselves are the flows we write about elsewhere, run on
-[Humanize 2](https://docs.humanfia.ai/humanize2/).
+[Humanize](https://docs.humanfia.ai/humanize2/).

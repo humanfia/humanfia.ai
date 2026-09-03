@@ -5,26 +5,24 @@ import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
 // so no base is prepended and every internal link is written from `/`. The documentation for
-// humanize itself is a site of its own, built the same way from humanfia/humanize2 -- so
+// Humanize itself is a site of its own, built the same way from humanfia/humanize2 -- so
 // everything here links out to it rather than restating it.
 const HOSTNAME = 'https://humanfia.ai'
 
-/** Where Humanize 2's documentation lives, since it moved. One constant, used everywhere. */
-export const DOCS = 'https://docs.humanfia.ai/humanize2'
-
-/** The projects, in the order they are worth reading: the runtime, the referee, the three
- *  applications. No platform/application split -- that was a distinction we cared about and
- *  nobody else did, and it put the same six pages in two different lists. */
+/** The projects, in the order they are worth reading: the runtime, the loop it grew out of,
+ *  the referee, the three applications. Names only -- a sidebar is a list of places, and the
+ *  sentence explaining each one is already the first thing on the page it goes to. */
 const PROJECTS = [
   {
     // A heading, not an entry: the overview is reached from the nav, and a group title that
     // is also a link reads as a page sitting above the pages.
     text: 'Projects',
     items: [
-      { text: 'Humanize 2 — the runtime', link: '/projects/humanize2' },
-      { text: 'FlowBench — the referee', link: '/projects/flowbench' },
-      { text: 'HOA — Humanize Olympic Agents', link: '/projects/hoa' },
-      { text: 'KDA — Kernel Design Agents', link: '/projects/kda' },
+      { text: 'Humanize', link: '/projects/humanize' },
+      { text: 'RLCR Loop', link: '/projects/rlcr-loop' },
+      { text: 'FlowBench', link: '/projects/flowbench' },
+      { text: 'HOA', link: '/projects/hoa' },
+      { text: 'KDA', link: '/projects/kda' },
       { text: 'AgentKaggle', link: '/projects/agentkaggle' },
     ],
   },
@@ -116,49 +114,18 @@ export default defineConfig({
     logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'Humanfia' },
     siteTitle: 'Humanfia',
 
+    // Four plain links, no dropdown. Documentation lives with the project it documents, and
+    // the way to it is that project's page -- a Docs menu here was a second table of contents
+    // for a site this one does not own, and it went stale the moment that site moved a page.
     nav: [
-      // A plain link rather than a dropdown: the five projects are the whole of the index
-      // page and the whole of the sidebar once you are on it, so a menu repeating them was
-      // only ever there to carry a way to the page itself.
       { text: 'Projects', link: '/projects/', activeMatch: '/projects/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
+      { text: 'Team', link: '/team/', activeMatch: '/team/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
-      // Documentation lives with the project it documents, not here. This is the way out to
-      // each one -- Humanize 2 has a site, the rest have a repository -- so a page on this
-      // site never has to double as a manual.
-      {
-        text: 'Docs',
-        items: [
-          {
-            text: 'Humanize 2',
-            items: [
-              // `${DOCS}/features/` rather than `${DOCS}/`: that site has no front page above
-              // its sections, and its root is a redirect to this. Naming the redirect would
-              // send a reader through a round trip to reach the page named under it anyway.
-              { text: 'Documentation ↗', link: `${DOCS}/features/` },
-              { text: 'Quickstart ↗', link: `${DOCS}/tutorials/quickstart` },
-              { text: 'Installation ↗', link: `${DOCS}/guide/installation` },
-              { text: 'Flows ↗', link: `${DOCS}/flows/` },
-              { text: 'Guides ↗', link: `${DOCS}/guide/` },
-              { text: 'CLI reference ↗', link: `${DOCS}/reference/cli` },
-              { text: 'Flowverses ↗', link: `${DOCS}/guide/flowverses` },
-            ],
-          },
-          {
-            text: 'The other projects',
-            items: [
-              { text: 'FlowBench — not yet released', link: '/projects/flowbench' },
-              { text: 'HOA — the solvers ↗', link: 'https://github.com/humanfia/putnambench-solver' },
-              { text: 'KDA — the workflow ↗', link: 'https://github.com/mit-han-lab/kernel-design-agents' },
-              { text: 'AgentKaggle — the audit ↗', link: 'https://github.com/agentkaggle/kaggle-results-audit' },
-            ],
-          },
-        ],
-      },
     ],
 
-    // One sidebar per section, and a section only ever sees its own. About is a single page
-    // and gets none at all: a list of one is furniture, not navigation.
+    // One sidebar per section, and a section only ever sees its own. Team and About are single
+    // pages and get none at all: a list of one is furniture, not navigation.
     sidebar: {
       '/projects/': PROJECTS,
       '/blog/': blogSidebar(),
