@@ -24,7 +24,7 @@ interface Person {
 }
 
 const PEOPLE: Record<string, Person> = {
-  SihaoLiu: { gh: 'SihaoLiu', id: 40861817, name: 'Sihao Liu', at: 'UCLA PolyArch' },
+  SihaoLiu: { gh: 'SihaoLiu', id: 40861817, name: 'Sihao Liu', at: 'UCLA PolyArch -> Nvidia Research' },
   Lyken17: { gh: 'Lyken17', id: 7783214, name: 'Ligeng Zhu', at: 'NVIDIA Research' },
   futrime: { gh: 'futrime', id: 35801754, name: 'Zijian Zhang', at: 'Tsinghua · NVIDIA Research' },
   DongyunZou: { gh: 'DongyunZou', id: 122959524, name: 'Dongyun Zou', at: 'Tsinghua University' },
@@ -62,7 +62,9 @@ const FOUNDING = [
     body:
       'Wrote the first Humanize at UCLA PolyArch — the RLCR loop, out of his own GAAC project — and '
       + 'with it the rule the rest of this site is built on: the agent that wrote the code is not the '
-      + 'agent that says whether it is any good.',
+      + 'agent that says whether it is any good. Sihao Liu is now a Research Scientist in the '
+      + 'Architecture Research Group at Nvidia Research, developing next-generation chip architectures '
+      + 'with agentic harness systems like Humanize.',
     links: [
       { text: 'sihaoliu.github.io', href: 'https://sihaoliu.github.io/' },
     ],
