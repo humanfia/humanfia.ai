@@ -253,11 +253,11 @@ const profile = (who: string) => `https://github.com/${PEOPLE[who].gh}`
   height: 100%;
   border-radius: 50%;
   background: var(--vp-c-bg-soft);
-  /* Nearly grey at rest, so a page of faces reads as one material rather than as twenty
-     photographs; the colour comes back under the pointer, which is where a name is being
-     read anyway. */
-  filter: grayscale(0.85) contrast(0.96);
-  transition: filter 0.35s, transform 0.35s;
+  /* A ring rather than a filter. These are people's own avatars and they are shown as they
+     chose them -- the page is held together by the rules and the whitespace around them, not
+     by draining the colour out of somebody's face. */
+  box-shadow: 0 0 0 1px var(--vp-c-divider);
+  transition: box-shadow 0.3s, transform 0.35s;
 }
 
 .founder-face {
@@ -267,7 +267,7 @@ const profile = (who: string) => `https://github.com/${PEOPLE[who].gh}`
 
 .founder:hover .founder-face img,
 .person:hover .person-face img {
-  filter: none;
+  box-shadow: 0 0 0 2px var(--vp-c-brand-1);
   transform: scale(1.04);
 }
 
