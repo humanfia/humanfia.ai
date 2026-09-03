@@ -176,7 +176,14 @@ const LAYERS = [
   color: var(--hf-amber);
 }
 
-:global(.dark) .stack-back {
+/* `.dark .x`, not `.dark .x`. Vue's scoped-style compiler adds the scope attribute to
+   the last selector in a chain and leaves an ancestor selector alone, which is exactly what is
+   wanted here -- `.dark` is on <html> and has no scope id. Written with `:global()` the compiler
+   drops everything after it and emits a bare `.dark { ... }`: the rule stops reaching the thing
+   it was written for, and instead paints every element on the page that happens to carry the
+   class `dark` -- which on this site is the nav's dark logo, an <img class="VPImage dark logo">
+   that turned up with an amber square behind a mark drawn to be transparent. */
+.dark .stack-back {
   color: var(--hf-amber-light);
 }
 

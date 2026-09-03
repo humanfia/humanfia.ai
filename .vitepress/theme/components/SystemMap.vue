@@ -507,7 +507,14 @@ const hotspots = [
   --map-cast: color-mix(in srgb, var(--hf-blue) 14%, transparent);
 }
 
-:global(.dark) .map {
+/* `.dark .x`, not `.dark .x`. Vue's scoped-style compiler adds the scope attribute to
+   the last selector in a chain and leaves an ancestor selector alone, which is exactly what is
+   wanted here -- `.dark` is on <html> and has no scope id. Written with `:global()` the compiler
+   drops everything after it and emits a bare `.dark { ... }`: the rule stops reaching the thing
+   it was written for, and instead paints every element on the page that happens to carry the
+   class `dark` -- which on this site is the nav's dark logo, an <img class="VPImage dark logo">
+   that turned up with an amber square behind a mark drawn to be transparent. */
+.dark .map {
   --map-accent: var(--hf-blue-light);
   --map-accent-soft: color-mix(in srgb, var(--hf-blue-light) 16%, transparent);
   --map-signal: var(--hf-amber-light);
@@ -519,8 +526,8 @@ const hotspots = [
    top of it stays legible in both themes. */
 .core-stop-1 { stop-color: var(--hf-blue); }
 .core-stop-2 { stop-color: var(--hf-blue-dark); }
-:global(.dark) .core-stop-1 { stop-color: var(--hf-blue-mid); }
-:global(.dark) .core-stop-2 { stop-color: var(--hf-blue-dark); }
+.dark .core-stop-1 { stop-color: var(--hf-blue-mid); }
+.dark .core-stop-2 { stop-color: var(--hf-blue-dark); }
 
 .halo-stop-1 { stop-color: var(--map-accent); stop-opacity: 0.09; }
 .halo-stop-2 { stop-color: var(--map-accent); stop-opacity: 0; }
