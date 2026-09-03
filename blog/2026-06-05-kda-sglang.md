@@ -3,7 +3,7 @@ title: Forty operators into SGLang
 description: Six shipped kernel PRs with the numbers attached — router tokenization, allreduce fusion, NVFP4 fused-MoE, KDA prefill, progressive diffusion and a VAE decode — with another twenty operators running.
 date: 2026-06-05
 authors:
-  - Xiangyu Zhang
+  - Xiaoyu Zhang
 tag: KDA
 ---
 

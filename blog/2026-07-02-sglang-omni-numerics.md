@@ -3,7 +3,7 @@ title: "Lossless is a choice: the numerics under SGLang-Omni"
 description: A competing stack bought its speed with approximate kernels and skipped steps. Reading their implementation carefully turned into three lossless PRs and 20%+ on our own LTX2.3 baseline.
 date: 2026-07-02
 authors:
-  - Xiangyu Zhang
+  - Xiaoyu Zhang
 tag: KDA
 ---
 

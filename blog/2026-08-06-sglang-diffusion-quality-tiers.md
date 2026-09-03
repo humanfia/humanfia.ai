@@ -3,7 +3,7 @@ title: A quality tier, so the fast kernel can ship at all
 description: Most profitable diffusion fusions change the output at the level of bf16 rounding order — enough to fail a bitwise CI, not enough for a human to see. So we gave the request a quality tier instead of arguing about the diff.
 date: 2026-08-06
 authors:
-  - Xiangyu Zhang
+  - Xiaoyu Zhang
 tag: KDA
 ---
 
