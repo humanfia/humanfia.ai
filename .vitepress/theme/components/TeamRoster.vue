@@ -24,7 +24,7 @@ interface Person {
 }
 
 const PEOPLE: Record<string, Person> = {
-  SihaoLiu: { gh: 'SihaoLiu', id: 40861817, name: 'Sihao Liu', at: 'UCLA PolyArch -> Nvidia Research' },
+  SihaoLiu: { gh: 'SihaoLiu', id: 40861817, name: 'Sihao Liu', at: 'NVIDIA Research' },
   Lyken17: { gh: 'Lyken17', id: 7783214, name: 'Ligeng Zhu', at: 'NVIDIA Research' },
   futrime: { gh: 'futrime', id: 35801754, name: 'Zijian Zhang', at: 'Tsinghua · NVIDIA Research' },
   DongyunZou: { gh: 'DongyunZou', id: 122959524, name: 'Dongyun Zou', at: 'Tsinghua University' },
@@ -32,11 +32,8 @@ const PEOPLE: Record<string, Person> = {
   antoinegg1: { gh: 'antoinegg1', id: 78747324, name: 'Changye Li', at: 'Tsinghua University' },
   ZhengyangZhang06: { gh: 'ZhengyangZhang06', id: 165369232, name: 'Zhengyang Zhang', at: 'Tsinghua University' },
   BBuf: { gh: 'BBuf', id: 35585791, name: 'Xiaoyu Zhang', at: 'RadixArk' },
-  LeshengJin: { gh: 'LeshengJin', id: 34279105, name: 'Lesheng Jin', at: 'Databricks' },
-  YuchenJin: { gh: 'YuchenJin', id: 15164320, name: 'Yuchen Jin', at: 'Databricks' },
   smoothsmooth: { gh: 'smoothsmooth', id: 18200776, name: 'Yahui Cui', at: 'NVIDIA' },
-  Sakits: { gh: 'Sakits', id: 31038513, name: 'Jiaming Tang', at: 'MIT HAN Lab' },
-  hongzhoulin89: { gh: 'hongzhoulin89', id: 29802555, name: 'Hongzhou Lin', at: 'MIT' },
+  hongzhoulin89: { gh: 'hongzhoulin89', id: 29802555, name: 'Hongzhou Lin', at: 'Amazon AGI' },
   JuiHuiChung: { gh: 'unixtomato', id: 72721270, name: 'Jui-Hui Chung', at: 'Princeton University' },
   menik1126: { gh: 'menik1126', id: 49935767, name: 'Jing Xiong' },
   dongz9: { gh: 'dongz9', id: 627593, name: 'Dong Zhou', at: 'Carnegie Mellon University' },
@@ -92,7 +89,7 @@ interface Group {
 const GROUPS: Group[] = [
   {
     id: 'humanize',
-    name: 'Humanize',
+    name: 'Humanize2',
     href: '/projects/humanize',
     what: 'The runtime: ten coding-agent CLIs, one flow, and the whole run written down.',
     members: [
@@ -105,7 +102,7 @@ const GROUPS: Group[] = [
   },
   {
     id: 'rlcr-loop',
-    name: 'RLCR Loop',
+    name: 'Humanize1 - RLCR Loop',
     href: '/projects/rlcr-loop',
     what: 'The original Humanize: Claude implements, Codex reviews, the criteria end the run.',
     members: [
@@ -145,13 +142,10 @@ const GROUPS: Group[] = [
     members: [
       { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.', lead: true },
       { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
-      { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
-      { who: 'LeshengJin', role: 'SOL Bench and SOLExec: fifty-three firsts, from one node.' },
-      { who: 'YuchenJin', role: 'The generation runs, and the machines they ran on.' },
-      { who: 'smoothsmooth', role: 'Bootstrapped CuteDSL-related primitives into KDA.' },
-      { who: 'Sakits', role: 'The MSA indexer, and the kernels that went to production.' },
       { who: 'JerryGJX', role: 'Working on the self-evolving KernelWiki.' },
       { who: 'Waterpine', role: 'Working on the self-evolving KernelWiki.' },
+      { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
+      { who: 'smoothsmooth', role: 'Bootstrapped CuteDSL-related primitives into KDA.' },
     ],
   },
   {

@@ -6,6 +6,8 @@ pageClass: page-wide
 
 # Team
 
+> Humanize is part of NVIDIA RSI effort
+
 <p class="lede">Long-horizon work is done by people, and a result reported without saying whose
 it is has left out the part that is accountable for it. So: everybody, under the thing they
 built, the lead first.</p>
