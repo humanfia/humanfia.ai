@@ -43,7 +43,13 @@ const PEOPLE: Record<string, Person> = {
   apostle715: { gh: 'apostle715', id: 232143882, name: 'Yitong Liu', at: 'Tsinghua University' },
 }
 
-/** The two the whole thing starts with, and they are two different acts. */
+/**
+ * The two the whole thing starts with, and they are two different acts.
+ *
+ * Ligeng Zhu is here and nowhere else. He worked on every project below, and a name repeated
+ * under all six of them reads as somebody who helped out on each rather than as the person who
+ * assembled the group -- which is the fact this section exists to state.
+ */
 const FOUNDING = [
   {
     who: 'SihaoLiu',
@@ -63,7 +69,8 @@ const FOUNDING = [
     body:
       'Assembled Humanfia. The people below are here because he went and found them, across NVIDIA, '
       + 'MIT, UCLA, Tsinghua and half a dozen other places, and pointed the loop at problems whose '
-      + 'scoreboards somebody else keeps.',
+      + 'scoreboards somebody else keeps. He is on every project under this line, which is why he is '
+      + 'named above it instead of six times below it.',
     links: [{ text: 'lzhu.me', href: 'https://lzhu.me' }],
   },
 ]
@@ -87,7 +94,6 @@ const GROUPS: Group[] = [
       { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
       { who: 'antoinegg1', role: 'Flows, the flowverse, and running the thing at Kaggle scale.' },
       { who: 'dongz9', role: 'Execution and the container path.' },
-      { who: 'Lyken17', role: 'Direction, and the problems it gets pointed at.' },
       { who: 'crmsndu', role: 'Long-horizon runs, and what breaks on them.' },
     ],
   },
@@ -99,7 +105,6 @@ const GROUPS: Group[] = [
     members: [
       { who: 'SihaoLiu', role: 'Lead. Proposed it, wrote it, and still maintains the plugin.', lead: true },
       { who: 'shinan6', role: 'The plugin, and the monitor you watch a loop through.' },
-      { who: 'Lyken17', role: 'Review discipline, and carrying the loop into the runtime.' },
       { who: 'futrime', role: 'The port: the three commands, as flows.' },
     ],
   },
@@ -110,7 +115,6 @@ const GROUPS: Group[] = [
     what: 'The referee. Scores flows against each other on work that takes a day, not a minute.',
     members: [
       { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.', lead: true },
-      { who: 'Lyken17', role: 'What counts as a task worth measuring.' },
       { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },
       { who: 'JerryGJX', role: 'Kernel and systems tasks.' },
     ],
@@ -122,7 +126,6 @@ const GROUPS: Group[] = [
     what: 'Humanize Olympic Agents. Mathematics, physics and quantum information, checked by Lean 4.',
     members: [
       { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.', lead: true },
-      { who: 'Lyken17', role: 'The solvers, and the reproduction code behind every number.' },
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },
       { who: 'hongzhoulin89', role: 'Research-level proofs, and what a Lean proof is worth.' },
     ],
@@ -135,7 +138,6 @@ const GROUPS: Group[] = [
     members: [
       { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.', lead: true },
       { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
-      { who: 'Lyken17', role: 'Where to point it, and which numbers are allowed to be published.' },
       { who: 'LeshengJin', role: 'SOL Bench and SOLExec: fifty-three firsts, from one node.' },
       { who: 'YuchenJin', role: 'The generation runs, and the machines they ran on.' },
       { who: 'jhinpan', role: 'ASM, HIP and ROCm — the hardware with nothing to retrieve.' },
