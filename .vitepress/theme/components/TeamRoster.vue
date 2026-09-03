@@ -6,19 +6,21 @@
 // a reader actually came here for. Within a project the lead is first and the rest are in
 // order of what they contributed to it.
 //
-// Every face is the account's own GitHub avatar, addressed by numeric id -- that is the one
-// handle that survives someone renaming themselves, and it means there is no folder of
-// portraits in this repository to go stale. `?s=160` asks GitHub for the size we draw at
-// twice over, which is what a 2x screen wants.
+// Faces use the person's public profile image. GitHub avatars are addressed by numeric id --
+// the one handle that survives someone renaming themselves -- while people without a public
+// GitHub account can provide a profile and avatar directly.
 
 interface Person {
-  /** GitHub login. Also the key everything else refers to them by. */
-  gh: string
+  /** GitHub login, when that is their public profile. */
+  gh?: string
   /** The numeric account id, which is what the avatar CDN is addressed with. */
-  id: number
+  id?: number
   name: string
   /** Where they are, when they have said so publicly. Left out rather than guessed. */
   at?: string
+  href?: string
+  profileLabel?: string
+  avatarUrl?: string
 }
 
 const PEOPLE: Record<string, Person> = {
@@ -26,18 +28,21 @@ const PEOPLE: Record<string, Person> = {
   Lyken17: { gh: 'Lyken17', id: 7783214, name: 'Ligeng Zhu', at: 'NVIDIA Research' },
   futrime: { gh: 'futrime', id: 35801754, name: 'Zijian Zhang', at: 'Tsinghua · NVIDIA Research' },
   DongyunZou: { gh: 'DongyunZou', id: 122959524, name: 'Dongyun Zou', at: 'Tsinghua University' },
+  ubospica: { gh: 'ubospica', id: 32952380, name: 'Yixin Dong', at: 'Carnegie Mellon University' },
   antoinegg1: { gh: 'antoinegg1', id: 78747324, name: 'Changye Li', at: 'Tsinghua University' },
   ZhengyangZhang06: { gh: 'ZhengyangZhang06', id: 165369232, name: 'Zhengyang Zhang', at: 'Tsinghua University' },
   BBuf: { gh: 'BBuf', id: 35585791, name: 'Xiaoyu Zhang', at: 'RadixArk' },
   LeshengJin: { gh: 'LeshengJin', id: 34279105, name: 'Lesheng Jin', at: 'Databricks' },
-  YuchenJin: { gh: 'YuchenJin', id: 15164320, name: 'Yuchen Jin', at: 'Hyperbolic Labs' },
-  jhinpan: { gh: 'jhinpan', id: 47354855, name: 'Jin Pan', at: 'AMD' },
+  YuchenJin: { gh: 'YuchenJin', id: 15164320, name: 'Yuchen Jin', at: 'Databricks' },
+  smoothsmooth: { gh: 'smoothsmooth', id: 18200776, name: 'Yahui Cui', at: 'NVIDIA' },
   Sakits: { gh: 'Sakits', id: 31038513, name: 'Jiaming Tang', at: 'MIT HAN Lab' },
   hongzhoulin89: { gh: 'hongzhoulin89', id: 29802555, name: 'Hongzhou Lin', at: 'MIT' },
+  JuiHuiChung: { gh: 'unixtomato', id: 72721270, name: 'Jui-Hui Chung', at: 'Princeton University' },
   menik1126: { gh: 'menik1126', id: 49935767, name: 'Jing Xiong' },
   dongz9: { gh: 'dongz9', id: 627593, name: 'Dong Zhou', at: 'Carnegie Mellon University' },
   crmsndu: { gh: 'crmsndu', id: 74142908, name: 'Zheng Du', at: 'Georgia Tech' },
-  JerryGJX: { gh: 'JerryGJX', id: 92502485, name: 'Junxian Guo', at: 'MIT' },
+  JerryGJX: { gh: 'JerryGJX', id: 92502485, name: 'Junxian Guo', at: 'MIT · NVIDIA Research' },
+  Waterpine: { gh: 'Waterpine', id: 29000790, name: 'Song Bian', at: 'NVIDIA Research' },
   shinan6: { gh: 'shinan6', id: 24783784, name: 'Shinan Liu', at: 'University of Chicago' },
   zgdllt: { gh: 'zgdllt', id: 118046841, name: 'Menghan Li', at: 'Tsinghua University' },
   apostle715: { gh: 'apostle715', id: 232143882, name: 'Yitong Liu', at: 'Tsinghua University' },
@@ -60,7 +65,6 @@ const FOUNDING = [
       + 'agent that says whether it is any good.',
     links: [
       { text: 'sihaoliu.github.io', href: 'https://sihaoliu.github.io/' },
-      { text: 'RLCR Loop', href: '/projects/rlcr-loop' },
     ],
   },
   {
@@ -80,7 +84,7 @@ interface Group {
   name: string
   href: string
   what: string
-  members: { who: string; role: string; lead?: boolean }[]
+  members: { who: string; role: string; lead?: boolean; coLead?: boolean }[]
 }
 
 const GROUPS: Group[] = [
@@ -128,6 +132,7 @@ const GROUPS: Group[] = [
       { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.', lead: true },
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },
       { who: 'hongzhoulin89', role: 'Research-level proofs, and what a Lean proof is worth.' },
+      { who: 'JuiHuiChung', role: 'Set up the PutnamBench baseline and proposed recursive lemma proving for HOA.' },
     ],
   },
   {
@@ -137,11 +142,14 @@ const GROUPS: Group[] = [
     what: 'Kernel Design Agents. Faster on real hardware, or it does not count.',
     members: [
       { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.', lead: true },
+      { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
       { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
       { who: 'LeshengJin', role: 'SOL Bench and SOLExec: fifty-three firsts, from one node.' },
       { who: 'YuchenJin', role: 'The generation runs, and the machines they ran on.' },
-      { who: 'jhinpan', role: 'ASM, HIP and ROCm — the hardware with nothing to retrieve.' },
+      { who: 'smoothsmooth', role: 'Bootstrapped CuteDSL-related primitives into KDA.' },
       { who: 'Sakits', role: 'The MSA indexer, and the kernels that went to production.' },
+      { who: 'JerryGJX', role: 'Working on the self-evolving KernelWiki.' },
+      { who: 'Waterpine', role: 'Working on the self-evolving KernelWiki.' },
     ],
   },
   {
@@ -150,17 +158,19 @@ const GROUPS: Group[] = [
     href: '/projects/agentkaggle',
     what: 'Real competitions, real leaderboards, and an audit that refuses to flatter itself.',
     members: [
-      { who: 'antoinegg1', role: 'Lead. The workflows, the entries and the audit.', lead: true },
+      { who: 'antoinegg1', role: 'Co-lead. The workflows, the entries and the audit.', coLead: true },
+      { who: 'futrime', role: 'Co-lead. The leaderboard, and the runtime underneath the runs.', coLead: true },
       { who: 'zgdllt', role: 'Submissions, across most of the nineteen.' },
       { who: 'apostle715', role: 'Submissions and reproduction.' },
-      { who: 'futrime', role: 'The leaderboard, and the runtime underneath the runs.' },
     ],
   },
 ]
 
 const person = (who: string) => PEOPLE[who]
-const avatar = (who: string) => `https://avatars.githubusercontent.com/u/${PEOPLE[who].id}?s=160&v=4`
-const profile = (who: string) => `https://github.com/${PEOPLE[who].gh}`
+const avatar = (who: string) => person(who).avatarUrl
+  ?? `https://avatars.githubusercontent.com/u/${person(who).id}?s=160&v=4`
+const profile = (who: string) => person(who).href ?? `https://github.com/${person(who).gh}`
+const profileLabel = (who: string) => person(who).profileLabel ?? `@${person(who).gh}`
 </script>
 
 <template>
@@ -202,9 +212,10 @@ const profile = (who: string) => `https://github.com/${PEOPLE[who].gh}`
             <p class="person-name">
               {{ person(member.who).name }}
               <span v-if="member.lead" class="lead">Lead</span>
+              <span v-else-if="member.coLead" class="lead">Co-lead</span>
             </p>
             <p class="person-handle">
-              <a :href="profile(member.who)">@{{ person(member.who).gh }}</a>
+              <a :href="profile(member.who)">{{ profileLabel(member.who) }}</a>
               <span v-if="person(member.who).at" class="person-at">{{ person(member.who).at }}</span>
             </p>
             <p class="person-role">{{ member.role }}</p>
