@@ -11,7 +11,7 @@ tag: HOA
 Three weeks later the same loop [took first place with 172 problems](/blog/2026-08-18-lean-eval-first).
 :::
 
-Running on `gpt-5.6-sol` at max effort, [Humanize](https://docs.humanfia.ai/humanize2/) solved
+Running on `gpt-5.6-sol` at max effort, [Humanize](/projects/humanize) solved
 **149 of 219** problems on Lean-Eval, which puts it second on the leaderboard.
 
 First is ByteDance's Seedprover, at 155 of 219.

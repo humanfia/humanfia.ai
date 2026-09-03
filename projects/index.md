@@ -45,7 +45,7 @@ project; they are one loop, and the order below is the order it runs in.</p>
 
 The runtime is the thing you install. The **flows** are the methods themselves — RLAR, Flame
 Chase, the RLCR Loop, the Ralph loop — kept as directories of Python in the
-[flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses) rather than compiled into a
+[flowverse](/projects/humanize#the-flows-it-runs) rather than compiled into a
 binary, so a method is something you can read, fork, publish and beat.
 
 The three applied projects are where a flow stops being our opinion. Every layer below them

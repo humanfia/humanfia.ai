@@ -63,4 +63,4 @@ of 50 through its own CLI, and 50 of 50 inside a flow.
 The loop these runs were built on is the [RLCR Loop](/projects/rlcr-loop). What
 we learned from watching it run for weeks is most of why
 [RLAR](https://github.com/humanfia/flowverse) and the rest of the
-[flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses) look the way they do.
+[flowverse](/projects/humanize#the-flows-it-runs) look the way they do.

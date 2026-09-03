@@ -71,4 +71,4 @@ one agent in the system whose job is scepticism is the one whose language the ac
 None of this is expensive. It is forty lines and one skill file. The reason we are writing it
 down is that the cheap decisions are the ones people skip.
 
-[Read the flow](https://github.com/humanfia/flowverse) · [Run it](https://docs.humanfia.ai/humanize2/)
+[Read the flow](https://github.com/humanfia/flowverse) · [Run it](/projects/humanize)

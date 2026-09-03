@@ -41,4 +41,4 @@ Humanize is, in the least glamorous sense available, a model-ability booster: it
 the model smarter, it stops the run from wasting what the model already has.
 
 [The flows](https://github.com/humanfia/flowverse) ·
-[the runtime](https://docs.humanfia.ai/humanize2/)
+[the runtime](/projects/humanize)

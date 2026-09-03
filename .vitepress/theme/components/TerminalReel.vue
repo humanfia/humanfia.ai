@@ -31,25 +31,25 @@ const SHOTS: Shot[] = [
     said: 'hmz trace collect',
     what: 'A whole run gathered into one Chrome trace — sessions, slices, the programs the turns ran.',
     gif: 'collect.gif',
-    guide: '/guide/tracing',
+    guide: '/user/tracing',
   },
   {
-    said: '/cycles',
+    said: '/epics',
     what: 'Every run this directory has had, and which of them can be picked up where they stopped.',
-    gif: 'cycles.gif',
-    guide: '/guide/resuming',
+    gif: 'epics.gif',
+    guide: '/user/resuming',
   },
   {
     said: '/flowverses',
     what: 'Where flows come from, and what one of those places holds.',
     gif: 'flowverses.gif',
-    guide: '/guide/flowverses',
+    guide: '/weaver/flowverses',
   },
   {
     said: '/providers',
     what: 'An account made, and a turn under it answered by somebody else’s endpoint.',
     gif: 'providers.gif',
-    guide: '/guide/providers',
+    guide: '/user/providers',
   },
 ]
 

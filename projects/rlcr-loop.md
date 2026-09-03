@@ -87,6 +87,5 @@ hours at a time, and writes down everything that happened. That is the runtime e
 this site now runs on — and it is a straight line from this page.
 
 [Humanize — the runtime](/projects/humanize) ·
-[the flows it runs ↗](https://docs.humanfia.ai/humanize2/flows/) ·
 [FlowBench](/projects/flowbench) ·
 [who built it](/team/#rlcr-loop)

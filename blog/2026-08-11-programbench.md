@@ -23,7 +23,7 @@ unusually clean instrument for measuring a loop.
 
 Two models that solve almost nothing separately solve seven times the better one's share when
 they are arranged as a builder and an independent reviewer inside a
-[Ralph loop](https://docs.humanfia.ai/humanize2/guide/loops). Across tasks, the loop averages a
+[Ralph loop](/projects/humanize#the-flows-it-runs). Across tasks, the loop averages a
 **14.2% improvement** over the single-shot baseline.
 
 ## The part that bothers us

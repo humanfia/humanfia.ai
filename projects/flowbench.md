@@ -47,8 +47,8 @@ the same flow, in the same runtime, that anybody can install and run.
 
 FlowBench is why the flows on this site are the flows on this site. A loop that we like the
 sound of but that loses on the board does not become a default, and does not stay in the
-[flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses). It is a slow and slightly humbling way to build a product,
-and it is the only way we know of to tell craft from taste.
+[flowverse](/projects/humanize#the-flows-it-runs). It is a slow and slightly humbling way to
+build a product, and it is the only way we know of to tell craft from taste.
 
 <div class="card-grid">
   <a class="card" href="/projects/">
@@ -56,9 +56,9 @@ and it is the only way we know of to tell craft from taste.
     <h3>Where it sits</h3>
     <p>How the benchmark feeds the flows, and the flows feed the runtime.</p>
   </a>
-  <a class="card" href="https://docs.humanfia.ai/humanize2/guide/flowverses">
+  <a class="card" href="https://github.com/humanfia/flowverse">
     <span class="kicker">Method</span>
-    <h3>What it is scoring</h3>
+    <h3>What it is scoring ↗</h3>
     <p>The loops themselves — ours, and the ones the field converged on.</p>
   </a>
   <a class="card" href="/blog/">

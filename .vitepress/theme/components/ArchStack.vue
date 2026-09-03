@@ -5,7 +5,17 @@
 // that fits.
 const DOCS = 'https://docs.humanfia.ai/humanize2'
 
-const LAYERS = [
+interface Layer {
+  key: string
+  kicker: string
+  title: string
+  body: string
+  /** Empty for a layer that is a statement rather than a way somewhere. */
+  links: { text: string; href: string }[]
+  lit?: boolean
+}
+
+const LAYERS: Layer[] = [
   {
     key: 'applications',
     kicker: 'Applications',
@@ -23,7 +33,6 @@ const LAYERS = [
     title: 'The method, as code',
     body: 'RLAR, Flame Chase, the RLCR Loop, the Ralph loop — directories of Python anyone can read, fork or beat.',
     links: [
-      { text: 'The flowverse ↗', href: `${DOCS}/guide/flowverses` },
       { text: 'humanfia/flowverse ↗', href: 'https://github.com/humanfia/flowverse' },
     ],
   },
@@ -34,7 +43,7 @@ const LAYERS = [
     body: 'Opens and resumes sessions, takes the turns a flow asks for, puts work in a container or on another machine, and writes the run down as a timeline.',
     links: [
       { text: 'Humanize →', href: '/projects/humanize' },
-      { text: 'Documentation ↗', href: `${DOCS}/` },
+      { text: 'The documentation ↗', href: `${DOCS}/` },
     ],
     lit: true,
   },
@@ -43,7 +52,7 @@ const LAYERS = [
     kicker: 'Backends',
     title: 'The agents you already log into',
     body: 'claude · codex · dsh · agy · grok · kimi · qwen · pi · opencode · mimo. We hold no API key.',
-    links: [{ text: 'Backends ↗', href: `${DOCS}/features/backends` }],
+    links: [],
   },
 ]
 </script>
@@ -55,7 +64,7 @@ const LAYERS = [
         <span class="stack-kicker">{{ layer.kicker }}</span>
         <strong>{{ layer.title }}</strong>
         <p>{{ layer.body }}</p>
-        <p class="stack-links">
+        <p v-if="layer.links.length" class="stack-links">
           <a v-for="link in layer.links" :key="link.href" :href="link.href">{{ link.text }}</a>
         </p>
       </div>

@@ -70,12 +70,15 @@ const pick = (i: number) => {
   copied.value = false
 }
 
-/** What you get for the one line, in the documentation's own words. */
+/** What you get for the one line. Statements rather than a menu: each of these is a page on
+ *  the documentation site, but the way there is the plate at the top of the page and the line
+ *  under this block. These four were links that read as text -- the rule that styled them took
+ *  the colour and the underline back off -- which is a link nobody can see to take. */
 const FACTS = [
-  { text: 'Ten coding-agent CLIs, one flow', href: '/features/backends' },
-  { text: 'Work lands in a container or on an ssh host', href: '/guide/remote-execution' },
-  { text: 'Every run, a trace you open in Perfetto', href: '/features/tracing' },
-  { text: 'A loop that stopped on Thursday carries on', href: '/features/resuming' },
+  'Ten coding-agent CLIs, one flow',
+  'Work lands in a container or on an ssh host',
+  'Every run, a trace you open in Perfetto',
+  'A loop that stopped on Thursday carries on',
 ]
 
 const STEPS = [
@@ -146,14 +149,11 @@ const STEPS = [
         </p>
 
         <ul class="install-facts">
-          <li v-for="fact in FACTS" :key="fact.href">
-            <a :href="`${DOCS}${fact.href}`">{{ fact.text }}</a>
-          </li>
+          <li v-for="fact in FACTS" :key="fact">{{ fact }}</li>
         </ul>
 
         <p class="install-links">
-          <a :href="`${DOCS}/guide/installation`">The installation guide ↗</a>
-          <a :href="`${DOCS}/guide/flowverses`">Where flows come from ↗</a>
+          <a :href="`${DOCS}/user/installation`">The installation guide ↗</a>
           <a :href="REPO">GitHub ↗</a>
         </p>
       </div>
@@ -332,15 +332,6 @@ const STEPS = [
   height: 5px;
   border-radius: 50%;
   background: var(--vp-c-brand-2);
-}
-
-.install-facts a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.install-facts a:hover {
-  color: var(--vp-c-brand-1);
 }
 
 .install-links {

@@ -15,7 +15,7 @@ pnpm install
 pnpm dev
 ```
 
-Then `pnpm build` to build it, and two checks afterwards, both of which CI also runs:
+Then `pnpm build` to build it, and three checks, all of which CI also runs:
 
 - `pnpm check:anchors` — every `#fragment` in the Markdown resolves to a heading the site
   really built. VitePress checks that a link's *page* exists and stops there.
@@ -23,6 +23,10 @@ Then `pnpm build` to build it, and two checks afterwards, both of which CI also 
   router will let a click on a link to it through. That last one is why `.env` exists: the
   router answers a click on any extension it does not recognise in-app, its list has `xml` on
   it and not `rss`, and every link to the feed used to land on the 404 page.
+- `pnpm check:docs` — every link to Humanize's documentation reaches the page it names. That
+  site moves pages and leaves a `<meta refresh>` stub behind, so a link written against an
+  older layout answers 200 and is invisible to the other two. This one reads the stub. It is
+  the only check that needs the network, and it does not need the build.
 
 ## Layout
 
@@ -41,6 +45,7 @@ Then `pnpm build` to build it, and two checks afterwards, both of which CI also 
     ├── config.mts      nav, sidebar, and the RSS feed
     ├── anchors.mjs     the #fragment check
     ├── feed.mjs        the RSS feed check
+    ├── docs-links.mjs  the check on every link out to Humanize's documentation
     └── theme/          the default theme, plus this site's palette and components
 ```
 
@@ -65,10 +70,23 @@ itself is documented at
 and nothing here restates it. The install block lives on the Humanize project page rather than
 the home page, and it links out for anything past the first command.
 
+**How this site links to that one.** The way to the documentation is the page of the project it
+documents, so every link out to it is on `/projects/humanize` — the top of it is a plate that
+goes to the front page of the documentation, and that plate is the loudest link on the page.
+Everywhere else, including every blog post, the runtime links to `/projects/humanize` instead.
+The deep links that remain are counted rather than sprinkled: the features index, the flow
+catalogue, security, the CLI reference, and one contextual link under each figure or recorded
+screen that is about a particular page. Adding another is a decision, not a reflex — a card
+that describes what the runtime does does not need to be a link to a page that describes the
+same thing, and a link that appears twice on one page is one link.
+
 The runtime is called **Humanize**, and the URLs of its documentation still say `humanize2`
-because that is where the site is served from. The Claude Code plugin it grew out of — the
-first Humanize — is [the RLCR Loop](projects/rlcr-loop.md), and it is a project of its own
-here.
+because that is where the site is served from. Its documentation moved `guide/` to `user/` and
+`weaver/` and serves redirect stubs from the old paths, so a link that still says `guide/`
+works and is still wrong — `pnpm check:docs` is what says so.
+
+The Claude Code plugin it grew out of — the first Humanize — is
+[the RLCR Loop](projects/rlcr-loop.md), and it is a project of its own here.
 
 There is no results section. A result is a blog post, dated, with the people who produced it
 named under the title; the project pages carry a table of what has been done and link to the

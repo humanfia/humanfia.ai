@@ -44,4 +44,4 @@ step. That bar is the whole reason a leaderboard position in formal mathematics 
 at all: a proof either has a term the Lean kernel accepts, or it does not exist.
 
 [HOA](/projects/hoa) · [the flows](https://github.com/humanfia/flowverse) ·
-[the runtime](https://docs.humanfia.ai/humanize2/)
+[the runtime](/projects/humanize)

@@ -36,12 +36,12 @@ through the interfaces they already serve. We hold no API key and talk to no mod
 The frontier moves every few weeks; the wrapper around one vendor is the least valuable thing
 in this diagram.
 
-**Runtime.** [Humanize](https://docs.humanfia.ai/humanize2/) opens and resumes sessions, takes turns in the
+**Runtime.** [Humanize](/projects/humanize) opens and resumes sessions, takes turns in the
 order a flow asks for, puts work in a container or on another machine when it should, and
 writes the whole run down as it happens so it reads back as a timeline. Its documentation is
 at [docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/).
 
-**Flows.** [The flowverse](https://docs.humanfia.ai/humanize2/guide/flowverses): [RLAR](https://github.com/humanfia/flowverse),
+**Flows.** [The flowverse](/projects/humanize#the-flows-it-runs): [RLAR](https://github.com/humanfia/flowverse),
 [Flame Chase](https://github.com/humanfia/flowverse), [the RLCR Loop](/projects/rlcr-loop), and the loops everyone
 already uses, kept alongside so a comparison is a flag rather than a reimplementation.
 
