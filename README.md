@@ -3,7 +3,7 @@
 The Humanfia website: [humanfia.ai](https://humanfia.ai/).
 
 A [VitePress](https://vitepress.dev/) site, built the same way as
-[Humanize's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
+[Humanize 2's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
 neither has a build system of its own to learn.
 
 ## Local preview
@@ -23,7 +23,7 @@ Then `pnpm build` to build it, and three checks, all of which CI also runs:
   router will let a click on a link to it through. That last one is why `.env` exists: the
   router answers a click on any extension it does not recognise in-app, its list has `xml` on
   it and not `rss`, and every link to the feed used to land on the 404 page.
-- `pnpm check:docs` — every link to Humanize's documentation reaches the page it names. That
+- `pnpm check:docs` — every link to Humanize 2's documentation reaches the page it names. That
   site moves pages and leaves a `<meta refresh>` stub behind, so a link written against an
   older layout answers 200 and is invisible to the other two. This one reads the stub. It is
   the only check that needs the network, and it does not need the build.
@@ -34,7 +34,8 @@ Then `pnpm build` to build it, and three checks, all of which CI also runs:
 .
 ├── .env                VITE_EXTRA_EXTENSIONS=rss, so the router leaves feed links alone
 ├── index.md            the home page
-├── projects/           one list: Humanize, the RLCR Loop, FlowBench, HOA, KDA, AgentKaggle
+├── projects/           six pages, no index: Humanize 2, Humanize 1, FlowBench, HOA, KDA,
+│                       AgentKaggle. The nav's Projects menu is the list.
 ├── team/               who does what, by project
 ├── about/              what we believe, and how to reach us
 ├── blog/               one Markdown file per post, and one post per result
@@ -42,10 +43,10 @@ Then `pnpm build` to build it, and three checks, all of which CI also runs:
 │                       and the redirects for the pages this layout replaced
 ├── scripts/            og.py, which draws the social card
 └── .vitepress/
-    ├── config.mts      nav, sidebar, and the RSS feed
+    ├── config.mts      nav (Projects is a menu), sidebar, and the RSS feed
     ├── anchors.mjs     the #fragment check
     ├── feed.mjs        the RSS feed check
-    ├── docs-links.mjs  the check on every link out to Humanize's documentation
+    ├── docs-links.mjs  the check on every link out to Humanize 2's documentation
     └── theme/          the default theme, plus this site's palette and components
 ```
 
@@ -64,10 +65,10 @@ uv run --with cairosvg scripts/og.py
 
 ## What is and is not on this site
 
-Humanfia is the team. This site carries the team, its projects and its results; Humanize
+Humanfia is the team. This site carries the team, its projects and its results; Humanize 2
 itself is documented at
 [docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/), which is a site of its own,
-and nothing here restates it. The install block lives on the Humanize project page rather than
+and nothing here restates it. The install block lives on the Humanize 2 project page rather than
 the home page, and it links out for anything past the first command.
 
 **How this site links to that one.** The way to the documentation is the page of the project it
@@ -80,13 +81,28 @@ screen that is about a particular page. Adding another is a decision, not a refl
 that describes what the runtime does does not need to be a link to a page that describes the
 same thing, and a link that appears twice on one page is one link.
 
-The runtime is called **Humanize**, and the URLs of its documentation still say `humanize2`
-because that is where the site is served from. Its documentation moved `guide/` to `user/` and
-`weaver/` and serves redirect stubs from the old paths, so a link that still says `guide/`
-works and is still wrong — `pnpm check:docs` is what says so.
+The runtime is **Humanize 2: Agent Flow System**, and its documentation is served from
+`humanize2`, so the name and the URL say the same number. That documentation moved `guide/` to
+`user/` and `weaver/` and serves redirect stubs from the old paths, so a link that still says
+`guide/` works and is still wrong — `pnpm check:docs` is what says so.
 
-The Claude Code plugin it grew out of — the first Humanize — is
-[the RLCR Loop](projects/rlcr-loop.md), and it is a project of its own here.
+The Claude Code plugin it grew out of is [Humanize 1: RLCR Loop](projects/rlcr-loop.md), and it
+is a project of its own here. RLCR is **Ralph Loop with Codex Review**.
+
+**How the two are named.** They are one lineage, numbered: Humanize 1 is the plugin, Humanize 2
+is the runtime. The full name — `Humanize 2: Agent Flow System`, `Humanize 1: RLCR Loop` — is
+used where the product is being *labelled*: a page's H1 and description, a nav or sidebar entry,
+a card heading, a roster entry. Running prose uses the short form, `Humanize 2` and
+`Humanize 1`, from the first sentence on. A subtitle repeated mid-paragraph is the same mistake
+as a person's affiliation repeated under every project they touched.
+
+Three things keep the old word and are not the products: **HOA** is *Humanize Olympic Agents*,
+the URLs and repositories are `humanize2` and `PolyArch/humanize`, and `entry: 'Humanize'` in
+`LayerStack.vue` is a symbol in the runtime's own source.
+
+There is no projects index. A page whose whole job was to list six links cost a page load to
+say what the nav's Projects menu says without one, and each of those six opens with the
+sentence the index was paraphrasing. `/projects/` is a redirect now.
 
 There is no results section. A result is a blog post, dated, with the people who produced it
 named under the title; the project pages carry a table of what has been done and link to the
@@ -98,9 +114,9 @@ The home page is components, not prose, in `.vitepress/theme/components/`:
   feed reads. The blog index renders the same component with `:limit="0"`.
 - `SystemMap` — the interactive architecture diagram, and `ArchStack` for the widths it cannot
   be read at. `fit` sizes it to end where the screen does.
-- `TeamRoster` — the team page: who proposed Humanize, who built the team, and each project's
+- `TeamRoster` — the team page: who proposed Humanize 1, who built the team, and each project's
   people with the lead first. Faces are GitHub avatars addressed by numeric account id.
-- `Install` — Humanize, three ways, with the commands the documentation actually gives.
+- `Install` — Humanize 2, three ways, with the commands the documentation actually gives.
 
 The home page is three screens: the hero, about two screens of posts, and the ecosystem
 diagram. The hero and the diagram each take a window (`.hf-screen` in `theme/style.css`), so

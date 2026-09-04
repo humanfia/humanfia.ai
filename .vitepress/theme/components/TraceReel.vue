@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // One flow, several agents, one trace.
 //
-// This is the picture Humanize's own front page opens with, redrawn in this site's palette:
+// This is the picture Humanize 2's own front page opens with, redrawn in this site's palette:
 // a lane per agent, the tool calls of each turn landing on it as they are made, and one clock
 // under all of them. Nothing here is a recording -- the slices are generated from a seeded
 // sequence, so the server and the browser draw the same thing and there is no live run behind

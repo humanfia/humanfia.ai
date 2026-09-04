@@ -55,13 +55,13 @@ const PEOPLE: Record<string, Person> = {
 const FOUNDING = [
   {
     who: 'SihaoLiu',
-    role: 'Proposed Humanize',
+    role: 'Proposed Humanize 1',
     body:
-      'Wrote the first Humanize at UCLA PolyArch — the RLCR loop, out of his own GAAC project — and '
+      'Wrote Humanize 1 at UCLA PolyArch, out of his own GAAC project, and '
       + 'with it the rule the rest of this site is built on: the agent that wrote the code is not the '
       + 'agent that says whether it is any good. Sihao Liu is now a Research Scientist in the '
       + 'Architecture Research Group at Nvidia Research, developing next-generation chip architectures '
-      + 'with agentic harness systems like Humanize.',
+      + 'with agentic harness systems like Humanize 2.',
     links: [
       { text: 'sihaoliu.github.io', href: 'https://sihaoliu.github.io/' },
     ],
@@ -89,7 +89,7 @@ interface Group {
 const GROUPS: Group[] = [
   {
     id: 'humanize',
-    name: 'Humanize2',
+    name: 'Humanize 2: Agent Flow System',
     href: '/projects/humanize',
     what: 'The runtime: ten coding-agent CLIs, one flow, and the whole run written down.',
     members: [
@@ -102,9 +102,9 @@ const GROUPS: Group[] = [
   },
   {
     id: 'rlcr-loop',
-    name: 'Humanize1 - RLCR Loop',
+    name: 'Humanize 1: RLCR Loop',
     href: '/projects/rlcr-loop',
-    what: 'The original Humanize: Claude implements, Codex reviews, the criteria end the run.',
+    what: 'Humanize 1, where it all started: Claude implements, Codex reviews, the criteria end the run.',
     members: [
       { who: 'SihaoLiu', role: 'Lead. Proposed it, wrote it, and still maintains the plugin.', lead: true },
       { who: 'shinan6', role: 'The plugin, and the monitor you watch a loop through.' },

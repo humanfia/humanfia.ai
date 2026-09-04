@@ -33,7 +33,7 @@ line or not at all.
 ### Automation without abdication
 
 The human owns the intent, the tradeoffs and the definition of done. Agents are leverage
-inside that contract, not a replacement for it. In the [RLCR Loop](/projects/rlcr-loop), the
+inside that contract, not a replacement for it. In [Humanize 1](/projects/rlcr-loop), the
 person is literally one of the agents in the loop.
 
 ### The builder is not the judge
@@ -63,7 +63,7 @@ publish what it takes to check it, including the parts that need caveats.
 
 ## Who is behind it
 
-Humanize was proposed by [Sihao Liu](https://sihaoliu.github.io/) at UCLA
+Humanize 1 was proposed by [Sihao Liu](https://sihaoliu.github.io/) at UCLA
 [PolyArch](https://github.com/PolyArch), and [Ligeng Zhu](https://lzhu.me) built the team
 around it. Everyone else, what they lead and where to find them is on
 [the team page](/team/) — and each result is credited one level further down, at the top of
@@ -75,11 +75,11 @@ The code is Apache-2.0. Everything we ship is at
 ## Get in touch
 
 - **A question, a bug, or a flow that beats ours:** open an issue or a pull request on the
-  repository it belongs to — [Humanize](https://github.com/humanfia/humanize2),
+  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize2),
   [flowverse](https://github.com/humanfia/flowverse), or
   [this site](https://github.com/humanfia/humanfia.ai).
 - **Working on long-horizon agent systems and want to compare notes:** we are interested. Open
-  a discussion on [Humanize](https://github.com/humanfia/humanize2/issues).
+  a discussion on [Humanize 2](https://github.com/humanfia/humanize2/issues).
 - **Who does what:** [the team](/team/).
 - **Following along:** [the blog](/blog/), its [RSS feed](/blog/feed.rss), or
   [github.com/humanfia](https://github.com/humanfia).

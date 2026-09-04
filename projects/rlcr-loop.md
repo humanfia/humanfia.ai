@@ -1,10 +1,10 @@
 ---
-description: The RLCR Loop is the original Humanize — a Claude Code plugin in which Claude implements, Codex reviews independently, and the loop runs until the acceptance criteria are met.
+description: 'Humanize 1: RLCR Loop is a Claude Code plugin in which Claude implements, Codex reviews independently, and the loop runs until the acceptance criteria are met.'
 ---
 
-# RLCR Loop
+# Humanize 1: RLCR Loop
 
-<p class="lede">The first Humanize, and the one everything else grew out of. One agent builds,
+<p class="lede">The one everything else grew out of. One agent builds,
 a second arrives with no memory of how the work was arrived at and reviews it, and the findings
 become the next prompt — until the acceptance criteria are met rather than until the model says
 it is finished.</p>
@@ -15,7 +15,7 @@ derived from [GAAC](https://github.com/SihaoLiu/gaac) · MIT
 
 ## What RLCR stands for
 
-**Ralph-Loop with Codex Review** — the ralph-loop plugin, with an independent Codex review
+**Ralph Loop with Codex Review** — the ralph-loop plugin, with an independent Codex review
 wired into every round. It also reads as **Reinforcement Learning with Code Review**, which is
 the honest description of what the loop is doing: the review is the reward signal, and the
 next round is the update.
@@ -82,10 +82,10 @@ no memory, reads the repository rather than the transcript, and what it noticed 
 actor hears next.
 
 The **loop** outgrew being a plugin. A plugin can drive the coding agent it is installed in;
-[Humanize](/projects/humanize) drives ten of them, on machines that are not yours, for eleven
+[Humanize 2](/projects/humanize) drives ten of them, on machines that are not yours, for eleven
 hours at a time, and writes down everything that happened. That is the runtime everything on
 this site now runs on — and it is a straight line from this page.
 
-[Humanize — the runtime](/projects/humanize) ·
+[Humanize 2: Agent Flow System](/projects/humanize) ·
 [FlowBench](/projects/flowbench) ·
 [who built it](/team/#rlcr-loop)

@@ -5,7 +5,7 @@ date: 2026-07-08
 authors:
   - Zhengyang Zhang
   - Changye Li
-tag: Humanize
+tag: Humanize 2
 ---
 
 There is a claim we keep making on this site — that the loop around the agent is worth a large
@@ -18,7 +18,7 @@ One model. Three ways of running it. Four benchmarks.
 | --- | ---: | ---: | ---: | ---: |
 | **Model level** — the GPT API, called directly | 2/50 | 22/50 | 47.0% | 29% |
 | **Tool level** — the GPT CLI, with its own tools | 18/50 * | 33/50 | 56.8% | 42% |
-| **Flow level** — the same CLI, inside Humanize | **50/50** | **40/50** | **62.4%** | **63%** |
+| **Flow level** — the same CLI, inside Humanize 2 | **50/50** | **40/50** | **62.4%** | **63%** |
 
 <p class="footnote">* Tool level on PutnamBench was measured without the comparator gate.</p>
 
@@ -37,8 +37,8 @@ visibly running into something the loop cannot fix. Not every benchmark is loop-
 method that claimed to help everywhere equally would be describing something other than what it
 does.
 
-Humanize is, in the least glamorous sense available, a model-ability booster: it does not make
-the model smarter, it stops the run from wasting what the model already has.
+Humanize 2 is, in the least glamorous sense available, a model-ability booster: it does not
+make the model smarter, it stops the run from wasting what the model already has.
 
 [The flows](https://github.com/humanfia/flowverse) ·
 [the runtime](/projects/humanize)

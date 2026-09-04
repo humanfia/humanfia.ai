@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-// The system map: Humanize at the centre, the flows in orbit around it, the CLIs feeding it
+// The system map: Humanize 2 at the centre, the flows in orbit around it, the CLIs feeding it
 // from the left, the applications it is pointed at on the right, and flowbench underneath
 // closing the loop back into the orbit.
 //
@@ -68,7 +68,7 @@ const FLOWVERSE = 'https://github.com/humanfia/flowverse'
 const flows = [
   { text: 'RLAR', w: 74, at: 202, href: FLOWVERSE },
   { text: 'Flame Chase', w: 124, at: 236, href: FLOWVERSE },
-  { text: 'RLCR Loop', w: 118, at: 270, href: FLOWVERSE },
+  { text: 'Humanize 1', w: 116, at: 270, href: FLOWVERSE },
   { text: 'Ralph Loop', w: 116, at: 304, href: FLOWVERSE },
   { text: 'Goal', w: 66, at: 338, href: FLOWVERSE },
 ].map((flow) => ({ ...flow, ...on(flow.at) }))
@@ -222,7 +222,7 @@ const hotspots = [
   {
     key: 'core',
     href: '/projects/humanize',
-    label: 'Humanize — the runtime',
+    label: 'Humanize 2: Agent Flow System — the runtime',
     stage: 1,
     round: true,
     style: box(CX - CORE_R, CY - CORE_R, CORE_R * 2, CORE_R * 2),
@@ -237,7 +237,7 @@ const hotspots = [
       <svg
         viewBox="0 0 1040 720"
         role="img"
-        aria-label="How the projects relate: Humanize runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
+        aria-label="How the projects relate: Humanize 2 runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
       >
         <defs>
           <radialGradient :id="`${uid}-core`" cx="35%" cy="30%">
@@ -375,12 +375,12 @@ const hotspots = [
           </g>
           <circle :cx="CX" :cy="CY" :r="CORE_R + 13" class="core-halo" />
           <circle :cx="CX" :cy="CY" :r="CORE_R" :fill="`url(#${uid}-core)`" class="core-disc" />
-          <!-- The humanize mark, at the size the core is. -->
+          <!-- The Humanize 2 mark, at the size the core is. -->
           <g :transform="`translate(${CX - 31} ${CY - 31}) scale(0.62)`" class="core-mark">
             <path d="M 30 24 L 60 50 L 30 76" />
             <path d="M 92 76 L 68 76" />
           </g>
-          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">Humanize</text>
+          <text :x="CX" :y="CY + CORE_R + 30" class="core-name">Humanize 2</text>
           <text :x="CX" :y="CY + CORE_R + 48" class="core-role">THE RUNTIME</text>
         </g>
 
@@ -432,7 +432,7 @@ const hotspots = [
 
     <figcaption>
       <span class="scroll-hint">Scroll the diagram sideways to see all of it. </span>
-      Humanize runs the flows and drives the agents you already log into; a flow is pointed at
+      Humanize 2 runs the flows and drives the agents you already log into; a flow is pointed at
       one of the three applications, which is where it is found out; and FlowBench scores what
       came back and sends the winner into the next flow. Hover any piece to hold it.
     </figcaption>

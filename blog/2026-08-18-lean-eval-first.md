@@ -22,9 +22,9 @@ from a plan fails in ways that are legible; one that starts from a blank file fa
 that are not.
 
 **The compiler is the reviewer that never gets tired.** Lean's error output is fed back into
-the run and the code is refined against it, round after round, by [Humanize](/projects/hoa) and
-RLCR agents. Nothing about this is clever — it is just that almost nobody does it for hundreds
-of rounds without a human losing patience.
+the run and the code is refined against it, round after round, by [HOA](/projects/hoa) and
+Humanize 1 agents. Nothing about this is clever — it is just that almost nobody does it for
+hundreds of rounds without a human losing patience.
 
 **Seed the hard ones with the easy ones.** For the problems that resist, the argument is first
 turned into a precise, stepwise informal plan, and the run is seeded with reusable Lean proofs

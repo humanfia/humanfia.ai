@@ -19,7 +19,7 @@ negotiate, and a private leaderboard that arrives after every decision has alrea
 
 ## What was run
 
-Built on [Humanize](/projects/humanize), we designed roughly **ten distinct
+Built on [Humanize 2](/projects/humanize), we designed roughly **ten distinct
 agent workflows** and pointed all of them at live competitions. They differ in the things we
 think actually matter on a long run:
 

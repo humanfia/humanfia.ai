@@ -4,7 +4,7 @@ description: A search that reported wins on a heuristic now reports them only on
 date: 2026-07-31
 authors:
   - Jing Xiong
-tag: Humanize
+tag: Humanize 2
 ---
 
 Search over quantum codes has an unpleasant property: the cheap metric that ranks candidates

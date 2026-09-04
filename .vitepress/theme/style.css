@@ -462,9 +462,49 @@ a.card:hover {
   width: 100%;
 }
 
+/* The theme draws the brand name big and the line under it small. That is right for a product
+   page and wrong for this one: the wordmark is in the nav and on the plate beside the heading
+   already, and the thing worth reading at that size is the sentence. So the hierarchy is
+   inverted -- the name is a label, the sentence is the display type, and a tagline under it
+   carries what the sentence cannot.
+
+   The sentence is set at a size where its tracking has to come in: -0.045em at 80px reads as
+   normal, and the same tracking at 20px would read as cramped, which is why it is here and not
+   on the tagline. `1.02` line-height rather than `1` because "flow" and "agents" have
+   descenders and the wrap is two lines. */
 .VPHome .VPHero .name {
-  font-size: clamp(46px, 9vw, 78px);
-  letter-spacing: -0.03em;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.VPHome .VPHero .text {
+  font-size: clamp(42px, 6.6vw, 82px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  /* Let the browser even the lines out rather than capping the measure by hand. A hand-set
+     `max-width` in `ch` is a guess about a font at one size, and at this size the guess showed:
+     it broke the sentence so the last line was the single word "agents". Where `balance` is
+     not supported the lines are ragged, which is what they were before. */
+  text-wrap: balance;
+}
+
+.VPHome .VPHero .tagline {
+  max-width: 48ch;
+  margin-top: 20px;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--vp-c-text-2);
+}
+
+/* Under 960 the hero is one centred column, so the two measures that keep the lines short on a
+   wide screen would push them off-centre instead. */
+@media (max-width: 959px) {
+  .VPHome .VPHero .tagline {
+    max-width: none;
+  }
 }
 
 /* The one piece of furniture a full-height hero needs: something saying the page goes on.

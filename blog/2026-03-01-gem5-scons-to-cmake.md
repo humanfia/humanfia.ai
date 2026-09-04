@@ -4,7 +4,7 @@ description: A full migration of gem5's build system from SCons to CMake — 567
 date: 2026-03-01
 authors:
   - Sihao Liu
-tag: Humanize
+tag: Humanize 1
 ---
 
 gem5's build system was migrated from SCons to CMake in full: **567 files changed**, by one

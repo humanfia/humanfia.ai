@@ -60,7 +60,7 @@ of 50 through its own CLI, and 50 of 50 inside a flow.
 [humanfia/flowverse](https://github.com/humanfia/flowverse) ·
 [IPhO 2026 dataset](https://huggingface.co/datasets/humanfia-lab/IPHO2026)
 
-The loop these runs were built on is the [RLCR Loop](/projects/rlcr-loop). What
-we learned from watching it run for weeks is most of why
+The loop these runs were built on is [Humanize 1](/projects/rlcr-loop). What we
+learned from watching it run for weeks is most of why
 [RLAR](https://github.com/humanfia/flowverse) and the rest of the
 [flowverse](/projects/humanize#the-flows-it-runs) look the way they do.

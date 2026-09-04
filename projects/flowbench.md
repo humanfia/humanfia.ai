@@ -51,7 +51,7 @@ sound of but that loses on the board does not become a default, and does not sta
 build a product, and it is the only way we know of to tell craft from taste.
 
 <div class="card-grid">
-  <a class="card" href="/projects/">
+  <a class="card" href="/projects/humanize#the-flows-it-runs">
     <span class="kicker">Context</span>
     <h3>Where it sits</h3>
     <p>How the benchmark feeds the flows, and the flows feed the runtime.</p>

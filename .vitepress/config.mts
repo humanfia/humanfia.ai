@@ -10,21 +10,30 @@ import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 const HOSTNAME = 'https://humanfia.ai'
 
 /** The projects, in the order they are worth reading: the runtime, the loop it grew out of,
- *  the referee, the three applications. Names only -- a sidebar is a list of places, and the
- *  sentence explaining each one is already the first thing on the page it goes to. */
+ *  the referee, the three applications. Names only -- a list is a list of places, and the
+ *  sentence explaining each one is already the first thing on the page it goes to.
+ *
+ *  The two named ones carry their full names here because this is where they are labelled
+ *  rather than talked about: Humanize 1 is the Claude Code plugin, Humanize 2 is the runtime,
+ *  and a menu that said "Humanize" and "RLCR Loop" hid the fact that they are one lineage.
+ *
+ *  One list, used twice: it is the nav's dropdown and it is the projects sidebar. There is no
+ *  longer a page above them for it to be a table of contents for. */
+const PROJECT_LINKS = [
+  { text: 'Humanize 2: Agent Flow System', link: '/projects/humanize' },
+  { text: 'Humanize 1: RLCR Loop', link: '/projects/rlcr-loop' },
+  { text: 'FlowBench', link: '/projects/flowbench' },
+  { text: 'HOA', link: '/projects/hoa' },
+  { text: 'KDA', link: '/projects/kda' },
+  { text: 'AgentKaggle', link: '/projects/agentkaggle' },
+]
+
 const PROJECTS = [
   {
-    // A heading, not an entry: the overview is reached from the nav, and a group title that
-    // is also a link reads as a page sitting above the pages.
+    // A heading, not an entry. It used to say the overview was reached from the nav; there is
+    // no overview now, so it is only ever a label over the six.
     text: 'Projects',
-    items: [
-      { text: 'Humanize', link: '/projects/humanize' },
-      { text: 'RLCR Loop', link: '/projects/rlcr-loop' },
-      { text: 'FlowBench', link: '/projects/flowbench' },
-      { text: 'HOA', link: '/projects/hoa' },
-      { text: 'KDA', link: '/projects/kda' },
-      { text: 'AgentKaggle', link: '/projects/agentkaggle' },
-    ],
+    items: PROJECT_LINKS,
   },
 ]
 
@@ -114,11 +123,16 @@ export default defineConfig({
     logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'Humanfia' },
     siteTitle: 'Humanfia',
 
-    // Four plain links, no dropdown. Documentation lives with the project it documents, and
-    // the way to it is that project's page -- a Docs menu here was a second table of contents
-    // for a site this one does not own, and it went stale the moment that site moved a page.
+    // Projects is a menu, and the other three are plain links. There is no projects index
+    // any more: a page whose whole job was to list six links, when a menu lists the same six
+    // without costing a page load, and every one of those pages opens with the sentence the
+    // index was paraphrasing. The way in is now the project itself.
+    //
+    // Documentation is still not in here. It lives with the project it documents, and the way
+    // to it is that project's page -- a Docs menu was a second table of contents for a site
+    // this one does not own, and it went stale the moment that site moved a page.
     nav: [
-      { text: 'Projects', link: '/projects/', activeMatch: '/projects/' },
+      { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'Team', link: '/team/', activeMatch: '/team/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },

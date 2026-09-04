@@ -66,7 +66,7 @@ more than any single trick.
 ## Why it is here
 
 KDA is one of the places our flows go to be found out. The loop being run is a flow like any
-other, the runtime under it is [Humanize](/projects/humanize), and the score is a wall-clock
+other, the runtime under it is [Humanize 2](/projects/humanize), and the score is a wall-clock
 measurement
 on somebody else's benchmark — or, increasingly, a pull request that a maintainer who did not
 ask for it has to be willing to merge.

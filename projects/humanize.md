@@ -1,10 +1,10 @@
 ---
-description: Humanize is the runtime everything Humanfia does runs on — it orchestrates, executes and observes agent flows across ten coding-agent CLIs, and holds no API key of its own.
+description: 'Humanize 2: Agent Flow System is the runtime everything Humanfia does runs on — it orchestrates, executes and observes agent flows across ten coding-agent CLIs, and holds no API key of its own.'
 ---
 
-# Humanize
+# Humanize 2: Agent Flow System
 
-<p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize
+<p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize 2
 drives the coding-agent CLI you already log into, in the order a flow asks for, and writes the
 whole run down as it happens. It is the layer every other project on this site stands on.</p>
 
@@ -12,7 +12,7 @@ whole run down as it happens. It is the layer every other project on this site s
   <span class="docs-cta-said">
     <span class="kicker">The documentation</span>
     <strong>Every feature, every flow, every command</strong>
-    <span class="docs-cta-note">Humanize is documented at <code>docs.humanfia.ai/humanize2</code>
+    <span class="docs-cta-note">Humanize 2 is documented at <code>docs.humanfia.ai/humanize2</code>
     — a site of its own, with the install, the quickstart and a page per feature. This page
     introduces it; it is not a copy of it.</span>
   </span>
@@ -49,7 +49,7 @@ The five we would show first.
   <div class="card">
     <span class="kicker">Accounts</span>
     <h3>Two accounts of one CLI</h3>
-    <p>A CLI signs in once. Humanize runs it as an account it was never signed into, by answering the paths it opens with other paths.</p>
+    <p>A CLI signs in once. Humanize 2 runs it as an account it was never signed into, by answering the paths it opens with other paths.</p>
   </div>
   <div class="card">
     <span class="kicker">Tracing</span>
@@ -170,9 +170,9 @@ they are between them most of the loop shapes the field has converged on:
   </div>
   <div class="card">
     <span class="kicker">A plan first</span>
-    <h3>The RLCR Loop, as three flows</h3>
+    <h3>Humanize 1, as three flows</h3>
     <p>An idea opened into a draft, a plan two sides converge on, and a build under review —
-    <a href="/projects/rlcr-loop">the original Humanize</a>'s three commands, on their own agents.</p>
+    <a href="/projects/rlcr-loop">Humanize 1</a>'s three commands, on their own agents.</p>
   </div>
   <div class="card">
     <span class="kicker">Seven agents</span>
@@ -200,7 +200,7 @@ another method is a flag rather than a reimplementation. Which of them is actual
 
 **It is not a model.** We do not train one, serve one or resell one.
 
-**It is not an API client.** Humanize holds no API key and talks to no model provider. It
+**It is not an API client.** Humanize 2 holds no API key and talks to no model provider. It
 drives the CLI you already log into, under your own subscription, the way you already log in.
 The frontier moves every few weeks; a wrapper around one vendor is the least durable thing we
 could build.
@@ -209,7 +209,7 @@ could build.
 If a better one ships next month, it is a name in a list.
 
 ::: warning Permissions
-Humanize runs every agent with permission prompts disabled, and nothing turns them back on.
+Humanize 2 runs every agent with permission prompts disabled, and nothing turns them back on.
 Read [Security ↗](https://docs.humanfia.ai/humanize2/user/security) before pointing one at a
 repository you care about.
 :::
