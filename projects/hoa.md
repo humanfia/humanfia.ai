@@ -21,7 +21,7 @@ or it does not.</p>
 | --- | --- | --- |
 | **Lean-Eval** | First place, 172 research-level problems | [26-08-18](/blog/2026-08-18-lean-eval-first) · [26-07-29](/blog/2026-07-29-lean-eval-second) |
 | **IMO 2026** | Six of six, on two different backends, 3.2× faster than the reported agentic result | [26-07-22](/blog/2026-07-22-imo-2026) |
-| **PutnamBench** | 670 of 672, and every problem in Putnam 2025 | [26-06-26](/blog/2026-06-26-putnambench) |
+| **PutnamBench** | 672 of 672, and every problem in Putnam 2025 | [26-06-26](/blog/2026-06-26-putnambench) |
 | **IPhO 2026** | 23 of 23 theory subproblems, sorry-free | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
 | **QAlg** | 36 of 36, blind | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
 | **QIT** | 37 of 40 end to end, 92.5% | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
