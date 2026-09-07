@@ -1,12 +1,12 @@
 ---
-description: AgentKaggle — agents entered in real Kaggle competitions, with every result audited, classified and published. Nineteen completed competitions, fourteen inside the top 5%.
+description: HKA — Humanize Kaggle Agent. Agents entered in real Kaggle competitions, with every result audited, classified and published. Nineteen completed competitions, fourteen inside the top 5%.
 ---
 
-# AgentKaggle
+# HKA
 
-<p class="lede">Real competitions, real leaderboards, and an audit that refuses to flatter
-itself. An official final rank and a late-submission estimate are two different claims, and
-they are never reported as one.</p>
+<p class="lede">Humanize Kaggle Agent. Real competitions, real leaderboards, and an audit
+that refuses to flatter itself. An official final rank and a late-submission estimate are two
+different claims, and they are never reported as one.</p>
 
 [github.com/agentkaggle](https://github.com/agentkaggle) ·
 [the leaderboard](https://agentkaggle.github.io/leaderboard/) ·

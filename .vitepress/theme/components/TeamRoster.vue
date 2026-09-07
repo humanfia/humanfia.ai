@@ -149,10 +149,10 @@ const GROUPS: Group[] = [
     ],
   },
   {
-    id: 'agentkaggle',
-    name: 'AgentKaggle',
-    href: '/projects/agentkaggle',
-    what: 'Real competitions, real leaderboards, and an audit that refuses to flatter itself.',
+    id: 'hka',
+    name: 'HKA',
+    href: '/projects/hka',
+    what: 'Humanize Kaggle Agent. Real competitions, real leaderboards, and an audit that refuses to flatter itself.',
     members: [
       { who: 'antoinegg1', role: 'Co-lead. The workflows, the entries and the audit.', coLead: true },
       { who: 'futrime', role: 'Co-lead. The leaderboard, and the runtime underneath the runs.', coLead: true },

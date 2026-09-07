@@ -5,7 +5,7 @@ date: 2026-08-15
 authors:
   - Changye Li
   - Zijian Zhang
-tag: AgentKaggle
+tag: HKA
 ---
 
 ::: info Still running
@@ -60,4 +60,4 @@ which, one row at a time.
 
 [The audit](https://github.com/agentkaggle/kaggle-results-audit) ·
 [the live leaderboard](https://agentkaggle.github.io/leaderboard/) ·
-[AgentKaggle](/projects/agentkaggle)
+[HKA](/projects/hka)

@@ -21,7 +21,7 @@ of what is on each side of it. Seedprover is a system built for this: a prover, 
 tuned for formal mathematics. What is second is a general-purpose model driving a general-purpose
 agent loop, with no component anywhere in it that knows Lean specifically — the loop is the
 same one that runs [kernel work](/projects/kda) and
-[Kaggle competitions](/projects/agentkaggle).
+[Kaggle competitions](/projects/hka).
 
 A specialist should beat a generalist on the specialist's benchmark. That it does so by six
 problems is the interesting number, and it is why we thought the gap was closable.

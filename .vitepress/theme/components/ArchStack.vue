@@ -20,11 +20,11 @@ const LAYERS: Layer[] = [
     key: 'applications',
     kicker: 'Applications',
     title: 'Where a flow is found out',
-    body: 'HOA, KDA and AgentKaggle. Chosen because somebody else keeps the scoreboard.',
+    body: 'HOA, KDA and HKA. Chosen because somebody else keeps the scoreboard.',
     links: [
       { text: 'HOA', href: '/projects/hoa' },
       { text: 'KDA', href: '/projects/kda' },
-      { text: 'AgentKaggle', href: '/projects/agentkaggle' },
+      { text: 'HKA', href: '/projects/hka' },
     ],
   },
   {

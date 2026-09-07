@@ -25,7 +25,7 @@ const PROJECT_LINKS = [
   { text: 'FlowBench', link: '/projects/flowbench' },
   { text: 'HOA', link: '/projects/hoa' },
   { text: 'KDA', link: '/projects/kda' },
-  { text: 'AgentKaggle', link: '/projects/agentkaggle' },
+  { text: 'HKA', link: '/projects/hka' },
 ]
 
 const PROJECTS = [

@@ -110,16 +110,16 @@ const nodes = [
     href: '/projects/hoa',
   },
   {
-    key: 'agentkaggle',
+    key: 'hka',
     stage: 3,
     x: 788,
     y: 404,
     w: 232,
     h: 104,
     kicker: 'Application',
-    title: 'AgentKaggle',
-    lines: ['Real Kaggle competitions', 'Kaggle says so, or it does not'],
-    href: '/projects/agentkaggle',
+    title: 'HKA',
+    lines: ['Humanize Kaggle Agent', 'Kaggle says so, or it does not'],
+    href: '/projects/hka',
   },
   {
     key: 'flowbench',
@@ -161,7 +161,7 @@ const links = [
     lx: 711,
     ly: 290,
   },
-  { key: 'agentkaggle', stage: 2, d: 'M 641 370 C 704 414, 726 448, 782 456', dur: '3.1s' },
+  { key: 'hka', stage: 2, d: 'M 641 370 C 704 414, 726 448, 782 456', dur: '3.1s' },
   // What the work was worth, going to the referee.
   { key: 'kda-bench', stage: 3, d: 'M 902 206 C 948 420, 800 622, 612 618', dur: '3.6s' },
   {
@@ -237,7 +237,7 @@ const hotspots = [
       <svg
         viewBox="0 0 1040 720"
         role="img"
-        aria-label="How the projects relate: Humanize 2 runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or AgentKaggle, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
+        aria-label="How the projects relate: Humanize 2 runs the flows and drives the coding agents, a flow is pointed at KDA, HOA or HKA, each is scored by FlowBench, and FlowBench selects the flow that goes back into the orbit"
       >
         <defs>
           <radialGradient :id="`${uid}-core`" cx="35%" cy="30%">

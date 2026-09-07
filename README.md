@@ -35,7 +35,7 @@ Then `pnpm build` to build it, and three checks, all of which CI also runs:
 ├── .env                VITE_EXTRA_EXTENSIONS=rss, so the router leaves feed links alone
 ├── index.md            the home page
 ├── projects/           six pages, no index: Humanize 2, Humanize 1, FlowBench, HOA, KDA,
-│                       AgentKaggle. The nav's Projects menu is the list.
+│                       HKA. The nav's Projects menu is the list.
 ├── team/               who does what, by project
 ├── about/              what we believe, and how to reach us
 ├── blog/               one Markdown file per post, and one post per result
