@@ -33,4 +33,5 @@ A push to `main` deploys to GitHub Pages.
 
 ## License
 
-[Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) © Humanfia
+None. © Humanfia, all rights reserved — this is the organisation's own website, and no right to
+use, copy or redistribute it is granted.
