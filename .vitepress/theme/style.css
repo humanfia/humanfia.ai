@@ -462,49 +462,46 @@ a.card:hover {
   width: 100%;
 }
 
-/* The theme draws the brand name big and the line under it small. That is right for a product
-   page and wrong for this one: the wordmark is in the nav and on the plate beside the heading
-   already, and the thing worth reading at that size is the sentence. So the hierarchy is
-   inverted -- the name is a label, the sentence is the display type, and a tagline under it
-   carries what the sentence cannot.
+/* The hero is two lines of mono and nothing else.
 
-   The sentence is set at a size where its tracking has to come in: -0.045em at 80px reads as
-   normal, and the same tracking at 20px would read as cramped, which is why it is here and not
-   on the tagline. `1.02` line-height rather than `1` because "flow" and "agents" have
-   descenders and the wrap is two lines. */
+   It used to be three things: the name small as a label, the sentence set as display type, and
+   a tagline under it carrying what the sentence could not. The tagline is gone -- the sentence
+   is the whole claim, and a paragraph restating it underneath was the page apologising for it.
+   The page's own `description` still carries that copy for search results and the feed, which
+   is where a summary is actually read.
+
+   With the tagline gone the two that are left are a wordmark and a sentence, so the name is up
+   and the sentence is down until they are within a step of each other: the name is the bigger
+   of the two on a wide screen, and the sentence sits under it rather than over it. That is the
+   same order the nav makes -- mark first, words after it -- rather than a second hierarchy
+   invented for one page.
+
+   The name is mono and the sentence is not. A wordmark is a name, which is the furniture's
+   job; a sentence at 56px is the one piece of writing on the site set large, and a fixed
+   advance at that size spaces it like a licence plate. The two faces are the same two the rest
+   of the site already uses, on the same rule -- so the line where they meet is the line
+   between what the site is called and what it says.
+
+   Tracking follows the face rather than the size. -0.02em on the mono, because the same figure
+   that reads as normal on Inter closes the gaps a fixed advance is built to keep; -0.035em on
+   the sentence, which is Inter at a display size and wants the air taken out. */
 .VPHome .VPHero .name {
-  font-size: clamp(26px, 3vw, 38px);
-  line-height: 1.15;
+  font-family: var(--vp-font-family-mono);
+  font-size: clamp(34px, 4.6vw, 58px);
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .VPHome .VPHero .text {
-  font-size: clamp(42px, 6.6vw, 82px);
+  font-size: clamp(32px, 4.6vw, 56px);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   /* Let the browser even the lines out rather than capping the measure by hand. A hand-set
      `max-width` in `ch` is a guess about a font at one size, and at this size the guess showed:
      it broke the sentence so the last line was the single word "agents". Where `balance` is
      not supported the lines are ragged, which is what they were before. */
   text-wrap: balance;
-}
-
-.VPHome .VPHero .tagline {
-  max-width: 48ch;
-  margin-top: 20px;
-  font-size: clamp(15px, 1.3vw, 18px);
-  line-height: 1.65;
-  letter-spacing: -0.005em;
-  color: var(--vp-c-text-2);
-}
-
-/* Under 960 the hero is one centred column, so the two measures that keep the lines short on a
-   wide screen would push them off-centre instead. */
-@media (max-width: 959px) {
-  .VPHome .VPHero .tagline {
-    max-width: none;
-  }
 }
 
 /* The one piece of furniture a full-height hero needs: something saying the page goes on.
@@ -640,3 +637,58 @@ a.card:hover {
     max-height: 68px;
   }
 }
+
+/* ---------------------------------------------------------------------------------------
+   The furniture is monospaced.
+
+   The site already spoke two typefaces: the sans it writes in, and the system's own mono --
+   `ui-monospace` first, which is SF Mono, Consolas or Liberation Mono depending on who is
+   reading -- for the things that are not writing. Kickers, diagram labels, the numbers on a
+   stat, the commands in the install block: all of it was already mono, component by component.
+
+   What was not was the theme's own chrome, which is the largest surface of non-writing text on
+   the site: the nav, the sidebar, the outline, the prev/next pager, the footer. So the rule is
+   finished rather than invented -- if it is the site talking about itself, it is mono; if it is
+   something somebody wrote, it is not. A reader should be able to tell which is which without
+   reading either.
+
+   These are containers rather than a list of every class inside them. The theme adds and
+   renames parts between minor versions, and a list would go quietly out of date; a container
+   catches whatever it is made of next release. None of them wraps `.vp-doc`, which is the
+   writing, or `.VPHero`'s own lines, which are the site's one sentence.
+   --------------------------------------------------------------------------------------- */
+
+.VPNav,
+.VPNavScreen,
+.VPLocalNav,
+.VPSidebar,
+.VPDocAside,
+.VPDocFooter,
+.VPFooter,
+.VPLocalSearchBox,
+.VPSkipLink,
+.NotFound {
+  font-family: var(--vp-font-family-mono);
+}
+
+/* A form control does not inherit the face from the page -- the UA sheet sets its own, so the
+   search box came out in Arial inside a panel that is otherwise mono. This is the one element
+   on the site that has to be told to inherit rather than being caught by its container. */
+.VPLocalSearchBox input {
+  font-family: inherit;
+}
+
+/* The hero's two buttons are furniture standing in the middle of the writing, so they are
+   named rather than caught: the lines above them are the one thing on the site set large, and
+   the container that holds those holds the buttons too. */
+.VPHero .actions .VPButton {
+  font-family: var(--vp-font-family-mono);
+}
+
+/* Nothing below this is a size. Mono sets about a tenth wider per character, so the first
+   draft of this block dropped every chrome size by a pixel to pay for it -- and then none of
+   it paid for anything. The nav fits at 960, which is the narrowest it is ever drawn before
+   the hamburger takes over; nine of the ten sidebar entries wrap to two lines at 14px, 13px
+   and 12.5px alike, because the titles are sentences and no pixel was going to fix that; and
+   the one outline entry that is too long is ellipsised at either size. A rule that changes
+   nothing measurable is a rule to be read and kept in step forever, so there is none. */

@@ -9,8 +9,6 @@ description: The runtime, the flows and the benchmark for long-horizon agent wor
 hero:
   name: Humanfia
   text: We build the flow around the agents
-  tagline: The runtime, the flows and the benchmark for long-horizon agent work — and the
-    results that say whether any of it works, in Lean, in CUDA and on Kaggle.
   image:
     light: /logo.svg
     dark: /logo-dark.svg
