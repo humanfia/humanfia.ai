@@ -131,9 +131,9 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
     </aside>
 
     <figcaption>
-      Everything points downward and nothing points both ways. A layer may name only what is
-      under it — and not all of that: the table of exactly what each one may reach is
-      <code>tests/test_layering.py</code>, which fails a build that bends it.
+      Everything points downward, nothing points both ways. A layer may name only what is under
+      it, and not all of that — <code>tests/test_layering.py</code> holds the exact table, and
+      fails a build that bends it.
       <a :href="`${DOCS}/contributing/architecture`">The whole tree, and the exemptions ↗</a>
     </figcaption>
   </figure>

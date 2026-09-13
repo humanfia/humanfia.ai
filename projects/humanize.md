@@ -6,7 +6,7 @@ description: 'Humanize 2: Agent Flow System is the runtime everything Humanfia d
 
 <p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize 2
 drives the coding-agent CLI you already log into, in the order a flow asks for, and writes the
-whole run down as it happens. It is the layer every other project on this site stands on.</p>
+whole run down as it happens. Every other project on this site stands on it.</p>
 
 <a class="docs-cta" href="https://docs.humanfia.ai/humanize/">
   <span class="docs-cta-said">
@@ -25,12 +25,12 @@ whole run down as it happens. It is the layer every other project on this site s
 
 A flow is a directory of Python that says which agents it drives, what each is asked, in what
 order, and when to stop. The runtime opens the sessions, takes the turns, puts the work where
-it is meant to land, and records it.
+it should land, and records it.
 
 The recording is the part people underestimate. Every turn's tool calls go onto one clock —
-every agent, every sub-agent, and every program those turns ran — and come back out as a
-Chrome trace you open in Perfetto. On an eleven-hour run that is the difference between knowing
-what happened and believing what the last message said.
+every agent, every sub-agent, every program those turns ran — and come back as a Chrome trace
+you open in Perfetto. On an eleven-hour run that is the difference between knowing what
+happened and believing the last message.
 
 <TraceReel />
 
@@ -108,15 +108,15 @@ The five we would show first.
   </div>
 </div>
 
-Each of those is a page of its own on the documentation site, with a diagram, and the eleven
-above are not all of them — hooks, capabilities, surfaces and the daemon are pages too:
+Each of those is a page on the documentation site, with a diagram, and the eleven above are not
+all of them — hooks, capabilities, surfaces and the daemon have pages too:
 [every feature, one picture each ↗](https://docs.humanfia.ai/humanize/features/).
 
 ## The agent runs here. Its syscalls land there.
 
-The anchor is the piece we would point at if we were only allowed to point at one. A
-seccomp-filtered ptrace supervisor sits between the coding agent and the kernel, and decides
-every call it makes: replay it on the target, or answer it on this machine.
+The anchor is the piece we would point at if we were only allowed one. A seccomp-filtered
+ptrace supervisor sits between the coding agent and the kernel and decides every call it makes:
+replay it on the target, or answer it here.
 
 There is no plugin, no configuration and no cooperation, because the agent is never asked. It
 opens a file; the file it gets is the target's. It runs `pytest`; the process is the target's,
@@ -127,9 +127,9 @@ credentials, and those are answered here.
 
 ## Twelve layers, one direction
 
-The reason the runtime can drive ten different CLIs without becoming ten different products is
-that the layering is a rule rather than an intention: everything points downward, nothing
-points both ways, and a test fails a build that bends it.
+The runtime drives ten different CLIs without becoming ten different products because the
+layering is a rule rather than an intention: everything points downward, nothing points both
+ways, and a test fails a build that bends it.
 
 <LayerStack />
 
@@ -142,12 +142,12 @@ container with a stand-in coding agent in it.
 
 ## The flows it runs
 
-The runtime runs flows; it does not decide what a good flow is. That is deliberate, and it is
-the seam the whole of Humanfia is built along.
+The runtime runs flows; it does not decide what a good flow is. That split is deliberate, and
+everything else at Humanfia is built on it.
 
 A **flow** is a directory of Python that says which agents it drives, what each is asked, in
-what order and when to stop. Eleven come with the runtime or with the flowverse it fetches, and
-they are between them most of the loop shapes the field has converged on:
+what order and when to stop. Eleven come with the runtime or the flowverse it fetches, and
+between them they are most of the loop shapes the field has converged on:
 
 <div class="card-grid">
   <div class="card">
@@ -189,8 +189,8 @@ they are between them most of the loop shapes the field has converged on:
 </div>
 
 Flows live in a **flowverse** — a git repository anybody can read, fork, publish or beat. The
-loops the field already converged on are in there beside ours, so comparing a method against
-another method is a flag rather than a reimplementation. Which of them is actually better is
+loops the field already converged on are in there beside ours, so comparing one method against
+another is a flag rather than a reimplementation. Which is actually better is
 [FlowBench](/projects/flowbench)'s question, and the answer is allowed to delete ours.
 
 [humanfia/flowverse ↗](https://github.com/humanfia/flowverse) ·
@@ -198,15 +198,14 @@ another method is a flag rather than a reimplementation. Which of them is actual
 
 ## What it is not
 
-**It is not a model.** We do not train one, serve one or resell one.
+**Not a model.** We do not train one, serve one or resell one.
 
-**It is not an API client.** Humanize 2 holds no API key and talks to no model provider. It
-drives the CLI you already log into, under your own subscription, the way you already log in.
-The frontier moves every few weeks; a wrapper around one vendor is the least durable thing we
-could build.
+**Not an API client.** Humanize 2 holds no API key and talks to no model provider. It drives
+the CLI you already log into, under your own subscription. The frontier moves every few weeks;
+a wrapper around one vendor is the least durable thing we could build.
 
-**It is not a coding agent.** It does not replace `claude` or `codex` — it takes turns on them.
-If a better one ships next month, it is a name in a list.
+**Not a coding agent.** It does not replace `claude` or `codex` — it takes turns on them. If a
+better one ships next month, it is a name in a list.
 
 ::: warning Permissions
 Humanize 2 runs every agent with permission prompts disabled, and nothing turns them back on.

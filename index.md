@@ -25,8 +25,8 @@ hero:
 <section class="hf-section hf-tall">
   <header>
     <p class="hf-eyebrow">the blog</p>
-    <h2>What came back, <em>most recent first</em></h2>
-    <p>One result, one post. What was run, who ran it, and the thing somebody else can check it against.</p>
+    <h2>What came back, <em>newest first</em></h2>
+    <p>One result per post: what was run, who ran it, and what somebody else can check it against.</p>
   </header>
   <PostMosaic :limit="12" />
   <p class="hf-note">
@@ -38,7 +38,7 @@ hero:
   <header>
     <p class="hf-eyebrow">ecosystem</p>
     <h2>The projects, and <em>the loop between them</em></h2>
-    <p>Where a flow comes from, what runs it, where it is pointed, and who keeps the score.</p>
+    <p>Where a flow comes from, what runs it, what it is pointed at, and who keeps the score.</p>
   </header>
   <SystemMap fit />
   <div class="mobile-only"><ArchStack /></div>

@@ -4,8 +4,9 @@ description: KDA — Kernel Design Agents. An agent workflow for researching, im
 
 # KDA
 
-<p class="lede">Kernel Design Agents. An agent-centric workflow for the one kind of
-programming where the score is never in doubt: making a kernel faster, on real hardware, without making it wrong.</p>
+<p class="lede">Kernel Design Agents. An agent workflow for the one kind of programming where
+the score is never in doubt: making a kernel faster, on real hardware, without making it
+wrong.</p>
 
 [mit-han-lab/kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents) ·
 [KDA-Pilot](https://github.com/BBuf/KDA-Pilot) ·
@@ -34,49 +35,46 @@ built with [MIT HAN Lab](https://hanlab.mit.edu/)
 Kernel work is the worst case for a coding agent and the best case for a good loop.
 
 A change is a one-line edit and a three-hour investigation. The feedback is a number, but the
-number is noisy, hardware-specific and easy to fool — a kernel that is faster because it is now
+number is noisy, hardware-specific and easy to fool: a kernel that is faster because it is now
 subtly incorrect will happily report a speedup. The search space is enormous and mostly bad.
-And the knowledge that separates a good attempt from a hopeless one is exactly the kind that
-lives in profiler traces, architecture manuals and other people's kernels rather than in a
-docstring.
+And what separates a good attempt from a hopeless one lives in profiler traces, architecture
+manuals and other people's kernels, not in a docstring.
 
-An agent asked to "optimise this kernel" and left alone will produce something plausible,
-report a win, and be wrong. The interesting engineering is entirely in what happens around that.
+An agent told to "optimise this kernel" and left alone will produce something plausible, report
+a win, and be wrong. The engineering is all in what happens around that.
 
 ## What KDA does about it
 
-**Research before writing.** The agent is given the reference material a human would want — the
+**Research before writing.** The agent gets the reference material a human would want — a
 profiler skill that turns an `ncu` report into something readable, and a kernel wiki of
-techniques and prior art — and is expected to arrive at a plan grounded in the repository and
-the hardware rather than in a hunch.
+techniques and prior art — and is expected to come back with a plan grounded in the repository
+and the hardware rather than a hunch.
 
 **A contract, before any code.** The objective, the constraints, the validation command and the
-criterion for promoting a candidate are written down first. Everything afterwards is judged
-against that, which is what stops "it got faster" from quietly replacing "it got faster and is
-still correct".
+bar for promoting a candidate are written down first. Everything after is judged against that,
+which is what stops "it got faster" from quietly replacing "it got faster and is still
+correct".
 
 **Small iterations, each verified.** Implement, validate, benchmark, profile, decide. A
-candidate is promoted only when it passes the check that was fixed in advance.
+candidate is promoted only when it passes the check fixed in advance.
 
 **A record that outlives the run.** Candidates, benchmark results, profiling evidence and
 promotion decisions are written down as the run goes, so another engineer can see what was
-tried, what passed, and why the final one was chosen. On a week-long optimisation this matters
-more than any single trick.
+tried, what passed, and why the winner won. On a week-long optimisation that matters more than
+any single trick.
 
 ## Why it is here
 
-KDA is one of the places our flows go to be found out. The loop being run is a flow like any
-other, the runtime under it is [Humanize 2](/projects/humanize), and the score is a wall-clock
-measurement
-on somebody else's benchmark — or, increasingly, a pull request that a maintainer who did not
-ask for it has to be willing to merge.
+KDA is one of the places our flows go to be found out. The loop is a flow like any other, the
+runtime under it is [Humanize 2](/projects/humanize), and the score is a wall-clock measurement
+on somebody else's benchmark — or a pull request a maintainer who did not ask for it has to be
+willing to merge.
 
 ## Try it
 
-The workflow is an early research prototype and is under active development — the maintainers
-are asking for feedback. It is deliberately independent of any one benchmark harness or
-hardware target: a downstream task brings its own evaluator, datasets, profiling tools and
-references.
+It is an early research prototype under active development, and the maintainers want feedback.
+It is deliberately independent of any one benchmark harness or hardware target: a downstream
+task brings its own evaluator, datasets, profiling tools and references.
 
 ```sh
 git clone --recurse-submodules https://github.com/mit-han-lab/kernel-design-agents.git

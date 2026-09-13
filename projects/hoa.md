@@ -4,9 +4,9 @@ description: HOA — Humanize Olympic Agents. Competition, olympiad and research
 
 # HOA
 
-<p class="lede">Humanize Olympic Agents. Mathematics, physics and quantum information, solved
-by agents and checked by a proof assistant. No rubric, no grader, no benefit of the doubt: Lean 4 either accepts the proof
-or it does not.</p>
+<p class="lede">Humanize Olympic Agents. Mathematics, physics and quantum information, solved by
+agents and checked by a proof assistant. No rubric, no grader, no benefit of the doubt: Lean 4
+accepts the proof or it does not.</p>
 
 <div class="stat-strip">
   <div><b>6 / 6</b><span>IMO 2026 problems, every solution formally verified in Lean 4</span><em>IMO 2026</em></div>
@@ -29,24 +29,24 @@ or it does not.</p>
 
 ## What counts as solved
 
-A problem counts only when the Lean file passes *every* gate. The worker runs a comparator
-check on its own output; the reviewer re-verifies independently through the AXLE API, with no
-access to how the proof was arrived at; and the Lean kernel has to accept the term. Candidates
-that fail any gate are kept for inspection and are never counted.
+A problem counts only when the Lean file passes every gate. The worker runs a comparator check
+on its own output; the reviewer re-verifies independently through the AXLE API, with no access
+to how the proof was reached; and the Lean kernel has to accept the term. Candidates that fail
+any gate are kept for inspection and never counted.
 
 Nothing is accepted with a `sorry` placeholder or an unproved assumption standing in for a
-step. And because a perfectly checked proof of the wrong statement is a real failure mode,
-**semantic review** — does this theorem actually say what the problem said — is counted and
-reported separately from **proof review**, rather than folded into one number.
+step. A perfectly checked proof of the wrong statement is still a failure, so **semantic
+review** — does this theorem say what the problem said — is counted and reported separately
+from **proof review**.
 
 ## What this is really testing
 
-None of this is a claim that agents are good at mathematics. It is a claim about loops.
+None of this claims agents are good at mathematics. It is a claim about loops.
 
 The models are the ones everybody has. What differs is the arrangement around them: who works
 and who reviews, what carries between attempts and what is deliberately forgotten, when a line
 of attack is abandoned, and how a run of hundreds of hours is kept from going in circles. A
-formal verifier is the ideal instrument for measuring that, because it removes every way of
+formal verifier is the right instrument for measuring that, because it removes every way of
 being *approximately* right.
 
 The clearest version of the argument is the [model / tool / flow
@@ -60,7 +60,6 @@ of 50 through its own CLI, and 50 of 50 inside a flow.
 [humanfia/flowverse](https://github.com/humanfia/flowverse) ·
 [IPhO 2026 dataset](https://huggingface.co/datasets/humanfia-lab/IPHO2026)
 
-The loop these runs were built on is [Humanize 1](/projects/rlcr-loop). What we
-learned from watching it run for weeks is most of why
-[RLAR](https://github.com/humanfia/flowverse) and the rest of the
+These runs were built on [Humanize 1](/projects/rlcr-loop). Watching it run for weeks is most
+of why [RLAR](https://github.com/humanfia/flowverse) and the rest of the
 [flowverse](/projects/humanize#the-flows-it-runs) look the way they do.

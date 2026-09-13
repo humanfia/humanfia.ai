@@ -57,11 +57,10 @@ const FOUNDING = [
     who: 'SihaoLiu',
     role: 'Proposed Humanize 1',
     body:
-      'Wrote Humanize 1 at UCLA PolyArch, out of his own GAAC project, and '
-      + 'with it the rule the rest of this site is built on: the agent that wrote the code is not the '
-      + 'agent that says whether it is any good. Sihao Liu is now a Research Scientist in the '
-      + 'Architecture Research Group at Nvidia Research, developing next-generation chip architectures '
-      + 'with agentic harness systems like Humanize 2.',
+      'Wrote Humanize 1 at UCLA PolyArch, out of his own GAAC project, and with it the rule the '
+      + 'rest of this site is built on: the agent that wrote the code is not the agent that says '
+      + 'whether it is any good. Now a Research Scientist in the Architecture Research Group at '
+      + 'NVIDIA Research, designing chips with agent systems like Humanize 2.',
     links: [
       { text: 'sihaoliu.github.io', href: 'https://sihaoliu.github.io/' },
     ],
@@ -70,10 +69,10 @@ const FOUNDING = [
     who: 'Lyken17',
     role: 'Built the team',
     body:
-      'Assembled Humanfia. The people below are here because he went and found them, across NVIDIA, '
-      + 'MIT, UCLA, Tsinghua and half a dozen other places, and pointed the loop at problems whose '
-      + 'scoreboards somebody else keeps. He is on every project under this line, which is why he is '
-      + 'named above it instead of six times below it.',
+      'Assembled Humanfia. The people below are here because he went and found them — across '
+      + 'NVIDIA, MIT, UCLA, Tsinghua and half a dozen other places — and pointed the loop at '
+      + 'problems somebody else keeps the scoreboard for. He is on every project below, which is '
+      + 'why he is named once up here rather than six times down there.',
     links: [{ text: 'lzhu.me', href: 'https://lzhu.me' }],
   },
 ]
