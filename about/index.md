@@ -75,11 +75,11 @@ The code is Apache-2.0. Everything we ship is at
 ## Get in touch
 
 - **A question, a bug, or a flow that beats ours:** open an issue or a pull request on the
-  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize2),
+  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize),
   [flowverse](https://github.com/humanfia/flowverse), or
   [this site](https://github.com/humanfia/humanfia.ai).
 - **Working on long-horizon agent systems and want to compare notes:** we are interested. Open
-  a discussion on [Humanize 2](https://github.com/humanfia/humanize2/issues).
+  a discussion on [Humanize 2](https://github.com/humanfia/humanize/issues).
 - **Who does what:** [the team](/team/).
 - **Following along:** [the blog](/blog/), its [RSS feed](/blog/feed.rss), or
   [github.com/humanfia](https://github.com/humanfia).

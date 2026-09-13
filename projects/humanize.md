@@ -8,11 +8,11 @@ description: 'Humanize 2: Agent Flow System is the runtime everything Humanfia d
 drives the coding-agent CLI you already log into, in the order a flow asks for, and writes the
 whole run down as it happens. It is the layer every other project on this site stands on.</p>
 
-<a class="docs-cta" href="https://docs.humanfia.ai/humanize2/">
+<a class="docs-cta" href="https://docs.humanfia.ai/humanize/">
   <span class="docs-cta-said">
     <span class="kicker">The documentation</span>
     <strong>Every feature, every flow, every command</strong>
-    <span class="docs-cta-note">Humanize 2 is documented at <code>docs.humanfia.ai/humanize2</code>
+    <span class="docs-cta-note">Humanize 2 is documented at <code>docs.humanfia.ai/humanize</code>
     — a site of its own, with the install, the quickstart and a page per feature. This page
     introduces it; it is not a copy of it.</span>
   </span>
@@ -110,7 +110,7 @@ The five we would show first.
 
 Each of those is a page of its own on the documentation site, with a diagram, and the eleven
 above are not all of them — hooks, capabilities, surfaces and the daemon are pages too:
-[every feature, one picture each ↗](https://docs.humanfia.ai/humanize2/features/).
+[every feature, one picture each ↗](https://docs.humanfia.ai/humanize/features/).
 
 ## The agent runs here. Its syscalls land there.
 
@@ -180,7 +180,7 @@ they are between them most of the loop shapes the field has converged on:
     <p>A coordinator plans three isolated lanes. Lane 1 alone owns your working tree; the other
     two work in private snapshots and publish artifacts rather than writes.</p>
   </div>
-  <a class="card" href="https://docs.humanfia.ai/humanize2/flows/">
+  <a class="card" href="https://docs.humanfia.ai/humanize/flows/">
     <span class="kicker">The catalogue</span>
     <h3>Every flow, with its loop drawn ↗</h3>
     <p>A page each: the <code>hmz exec</code> line, what it takes, what ends it, and what a run
@@ -210,27 +210,27 @@ If a better one ships next month, it is a name in a list.
 
 ::: warning Permissions
 Humanize 2 runs every agent with permission prompts disabled, and nothing turns them back on.
-Read [Security ↗](https://docs.humanfia.ai/humanize2/user/security) before pointing one at a
+Read [Security ↗](https://docs.humanfia.ai/humanize/user/security) before pointing one at a
 repository you care about.
 :::
 
 ## Where to go next
 
 <div class="card-grid">
-  <a class="card" href="https://docs.humanfia.ai/humanize2/">
+  <a class="card" href="https://docs.humanfia.ai/humanize/">
     <span class="kicker">All of it</span>
     <h3>The documentation ↗</h3>
     <p>Install, quickstart, a page per feature, a page per flow. Everything this page is an
     introduction to.</p>
   </a>
-  <a class="card" href="https://docs.humanfia.ai/humanize2/reference/cli">
+  <a class="card" href="https://docs.humanfia.ai/humanize/reference/cli">
     <span class="kicker">Look it up</span>
     <h3>The CLI reference ↗</h3>
     <p>Every command, key, flag and Python call, in one place.</p>
   </a>
-  <a class="card" href="https://github.com/humanfia/humanize2">
+  <a class="card" href="https://github.com/humanfia/humanize">
     <span class="kicker">Read it</span>
-    <h3>humanfia/humanize2 ↗</h3>
+    <h3>humanfia/humanize ↗</h3>
     <p>The source, Apache-2.0. Issues and pull requests are the fastest way to reach us.</p>
   </a>
 </div>

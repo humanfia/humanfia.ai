@@ -7,7 +7,7 @@
 // rather than read about, and the side the call lands on lights up with it.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Call {
   call: string

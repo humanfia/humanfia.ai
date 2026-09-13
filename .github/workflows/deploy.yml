@@ -1,7 +1,7 @@
 # humanfia.ai. Built on every change, and deployed to GitHub Pages from main -- so a pull
 # request finds out that a link is dead without anything being published.
 #
-# The same shape as humanfia/humanize2's docs workflow, because it is the same VitePress
+# The same shape as humanfia/humanize's docs workflow, because it is the same VitePress
 # site with the same checks on it.
 
 name: site

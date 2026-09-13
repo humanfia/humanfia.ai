@@ -5,8 +5,8 @@
 // a tool half its readers cannot use.
 import { computed, onBeforeUnmount, ref } from 'vue'
 
-const DOCS = 'https://docs.humanfia.ai/humanize2'
-const REPO = 'https://github.com/humanfia/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
+const REPO = 'https://github.com/humanfia/humanize'
 
 interface Way {
   key: string
@@ -32,7 +32,7 @@ const WAYS: Way[] = [
     key: 'source',
     label: 'from source',
     note: 'A checkout you can read, change and open a pull request from.',
-    lines: [`git clone ${REPO}.git`, 'cd humanize2', 'uv sync'],
+    lines: [`git clone ${REPO}.git`, 'cd humanize', 'uv sync'],
   },
 ]
 

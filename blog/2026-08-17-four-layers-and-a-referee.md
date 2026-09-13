@@ -39,7 +39,7 @@ in this diagram.
 **Runtime.** [Humanize 2](/projects/humanize) opens and resumes sessions, takes turns in the
 order a flow asks for, puts work in a container or on another machine when it should, and
 writes the whole run down as it happens so it reads back as a timeline. Its documentation is
-at [docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/).
+at [docs.humanfia.ai/humanize](https://docs.humanfia.ai/humanize/).
 
 **Flows.** [The flowverse](/projects/humanize#the-flows-it-runs): [RLAR](https://github.com/humanfia/flowverse),
 [Flame Chase](https://github.com/humanfia/flowverse), [Humanize 1](/projects/rlcr-loop), and the loops everyone

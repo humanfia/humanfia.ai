@@ -11,7 +11,7 @@
 // exact table is a test in the repository, and the caption says so.
 import { computed, ref } from 'vue'
 
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Layer {
   name: string

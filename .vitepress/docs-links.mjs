@@ -1,6 +1,6 @@
 // Every link this site makes to Humanize's documentation, fetched against the documentation.
 //
-// The documentation is a site of its own, built from humanfia/humanize2, and it moves pages
+// The documentation is a site of its own, built from humanfia/humanize, and it moves pages
 // without this repository hearing about it. When it does, it leaves a stub behind: a page whose
 // only content is a `<meta http-equiv="refresh">` to wherever the page went. So a link written
 // against last quarter's layout answers 200, sends the reader through a blank page, and is
@@ -21,7 +21,7 @@ import { join, relative } from 'node:path'
 
 const ROOT = new URL('../', import.meta.url).pathname
 const SKIP = new Set(['node_modules', 'dist', 'public', '.git', '.github'])
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 /** The top-level directories the documentation is made of, `guide/` and `tutorials/` included:
  *  both are retired, both still answer through a stub, and a link that goes back to either is
