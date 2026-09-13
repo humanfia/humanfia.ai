@@ -3,7 +3,7 @@
 // in the direction the work runs, and the referee down the side with the one arrow that goes
 // back up. Nothing here moves -- the map is the version that runs, and this is the version
 // that fits.
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Layer {
   key: string

@@ -7,11 +7,11 @@
 // container of its own, so no account, machine or credential is ever in frame.
 //
 // The GIFs are served from the documentation site rather than copied here. They are rendered
-// from the `.tape` scripts that live beside them in humanfia/humanize2, and a second copy in
+// from the `.tape` scripts that live beside them in humanfia/humanize, and a second copy in
 // this repository would be a megabyte that goes stale the first time a screen changes.
 import { computed, ref } from 'vue'
 
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Shot {
   said: string
@@ -28,9 +28,9 @@ const SHOTS: Shot[] = [
     guide: '/reference/tui',
   },
   {
-    said: 'hmz trace collect',
-    what: 'A whole run gathered into one Chrome trace — sessions, slices, the programs the turns ran.',
-    gif: 'collect.gif',
+    said: 'ls ~/.humanize/epics/…',
+    what: 'What one run leaves behind: what happened, what it ran, and a link to every conversation it opened.',
+    gif: 'run.gif',
     guide: '/user/tracing',
   },
   {
@@ -47,8 +47,8 @@ const SHOTS: Shot[] = [
   },
   {
     said: '/providers',
-    what: 'An account made, and a turn under it answered by somebody else’s endpoint.',
-    gif: 'providers.gif',
+    what: 'Every account there is, what there is to do with one, and where a CLI of your own goes.',
+    gif: 'accounts.gif',
     guide: '/user/providers',
   },
 ]

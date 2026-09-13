@@ -5,7 +5,7 @@ import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
 // so no base is prepended and every internal link is written from `/`. The documentation for
-// Humanize itself is a site of its own, built the same way from humanfia/humanize2 -- so
+// Humanize itself is a site of its own, built the same way from humanfia/humanize -- so
 // everything here links out to it rather than restating it.
 const HOSTNAME = 'https://humanfia.ai'
 
@@ -109,7 +109,7 @@ export default defineConfig({
         description: 'We build the flow around the agent.',
         sameAs: [
           'https://github.com/humanfia',
-          'https://github.com/humanfia/humanize2',
+          'https://github.com/humanfia/humanize',
           'https://github.com/PolyArch/humanize',
         ],
       }),

@@ -11,7 +11,7 @@
 // the reader has asked for reduced motion. Standing still it is the same diagram, finished.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-const DOCS = 'https://docs.humanfia.ai/humanize2'
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 /** The four backends the documentation shows, with the model each is asked as. */
 const AGENTS = [

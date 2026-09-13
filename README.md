@@ -3,7 +3,7 @@
 The Humanfia website: [humanfia.ai](https://humanfia.ai/).
 
 A [VitePress](https://vitepress.dev/) site, built the same way as
-[Humanize 2's documentation](https://docs.humanfia.ai/humanize2/) so that the two read as one thing and
+[Humanize 2's documentation](https://docs.humanfia.ai/humanize/) so that the two read as one thing and
 neither has a build system of its own to learn.
 
 ## Local preview
@@ -67,7 +67,7 @@ uv run --with cairosvg scripts/og.py
 
 Humanfia is the team. This site carries the team, its projects and its results; Humanize 2
 itself is documented at
-[docs.humanfia.ai/humanize2](https://docs.humanfia.ai/humanize2/), which is a site of its own,
+[docs.humanfia.ai/humanize](https://docs.humanfia.ai/humanize/), which is a site of its own,
 and nothing here restates it. The install block lives on the Humanize 2 project page rather than
 the home page, and it links out for anything past the first command.
 
@@ -82,9 +82,11 @@ that describes what the runtime does does not need to be a link to a page that d
 same thing, and a link that appears twice on one page is one link.
 
 The runtime is **Humanize 2: Agent Flow System**, and its documentation is served from
-`humanize2`, so the name and the URL say the same number. That documentation moved `guide/` to
-`user/` and `weaver/` and serves redirect stubs from the old paths, so a link that still says
-`guide/` works and is still wrong — `pnpm check:docs` is what says so.
+`humanize`: the repository was renamed out of the number, so the name still says it and the URL
+no longer does. Those are two different things and only one of them is ours to keep. That
+documentation moved `guide/` to `user/` and `weaver/` and serves redirect stubs from the old
+paths, so a link that still says `guide/` works and is still wrong — `pnpm check:docs` is what
+says so, and it is also what would have caught the rename, which left no stub at all.
 
 The Claude Code plugin it grew out of is [Humanize 1: RLCR Loop](projects/rlcr-loop.md), and it
 is a project of its own here. RLCR is **Ralph Loop with Codex Review**.
@@ -97,8 +99,9 @@ a card heading, a roster entry. Running prose uses the short form, `Humanize 2` 
 as a person's affiliation repeated under every project they touched.
 
 Three things keep the old word and are not the products: **HOA** is *Humanize Olympic Agents*,
-the URLs and repositories are `humanize2` and `PolyArch/humanize`, and `entry: 'Humanize'` in
-`LayerStack.vue` is a symbol in the runtime's own source.
+the URLs and repositories are `humanfia/humanize` and `PolyArch/humanize` — one owner apart,
+neither of them numbered — and `entry: 'Humanize'` in `LayerStack.vue` is a symbol in the
+runtime's own source.
 
 There is no projects index. A page whose whole job was to list six links cost a page load to
 say what the nav's Projects menu says without one, and each of those six opens with the

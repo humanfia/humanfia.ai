@@ -29,16 +29,16 @@ has been built alongside many more people than fit above, in industry and academ
 [NVIDIA Research](https://www.nvidia.com/en-us/research/),
 [MIT HAN Lab](https://hanlab.mit.edu), UCLA, Tsinghua and a long tail of community
 contributors. The full list is the one git keeps:
-[Humanize 2](https://github.com/humanfia/humanize2/graphs/contributors) ·
+[Humanize 2](https://github.com/humanfia/humanize/graphs/contributors) ·
 [Humanize 1](https://github.com/PolyArch/humanize/graphs/contributors) ·
 [the flowverse](https://github.com/humanfia/flowverse/graphs/contributors).
 
 ## Working with us
 
 - **A question, a bug, or a flow that beats ours:** open an issue or a pull request on the
-  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize2),
+  repository it belongs to — [Humanize 2](https://github.com/humanfia/humanize),
   [Humanize 1](https://github.com/PolyArch/humanize), or
   [the flowverse](https://github.com/humanfia/flowverse).
 - **Working on long-horizon agent systems and want to compare notes:** we are interested. Open
-  a discussion on [Humanize 2](https://github.com/humanfia/humanize2/issues).
+  a discussion on [Humanize 2](https://github.com/humanfia/humanize/issues).
 - **Everything we ship:** [github.com/humanfia](https://github.com/humanfia). Apache-2.0.
