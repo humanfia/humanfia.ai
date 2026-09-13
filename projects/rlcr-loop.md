@@ -18,7 +18,7 @@ derived from [GAAC](https://github.com/SihaoLiu/gaac) · MIT
 every round. It also reads as **Reinforcement Learning with Code Review**, which is what the
 loop is actually doing: the review is the reward signal, and the next round is the update.
 
-## The four ideas it is made of
+## What it is made of
 
 <div class="card-grid">
   <div class="card">
@@ -70,10 +70,8 @@ something you can watch rather than something you find out about afterwards.
 
 ## What became of it
 
-Two things, and both are still here.
-
 The **method** moved into the [flowverse](https://github.com/humanfia/flowverse) as the
-`humanize1` flows — the three commands above, each on its own agents — where it sits beside
+`humanize1` flows — the same commands, each on its own agents — where it sits beside
 RLAR, Flame Chase and the Ralph loop and can be run, forked and beaten like any other flow. It
 set the rule the rest are built on: the reviewer arrives with no memory, reads the repository
 rather than the transcript, and what it noticed is what the actor hears next.

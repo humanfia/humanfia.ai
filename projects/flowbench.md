@@ -8,8 +8,8 @@ description: FlowBench is our benchmark for long-horizon agent work — a way to
 day rather than a minute, and it decides which of our own loops survives.</p>
 
 ::: info In development
-FlowBench is not released yet, so this page is short on detail. When it opens up we will say so
-[on the blog](/blog/) and at [github.com/humanfia](https://github.com/humanfia).
+FlowBench is not released yet. When it opens up we will say so [on the blog](/blog/) and at
+[github.com/humanfia](https://github.com/humanfia).
 :::
 
 ## The question it answers

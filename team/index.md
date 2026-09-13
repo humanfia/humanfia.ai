@@ -9,22 +9,17 @@ pageClass: page-wide
 > Humanize 2 is part of NVIDIA RSI effort
 
 <p class="lede">Long-horizon work is done by people, and a result reported without saying whose
-it is has left out the part that is accountable for it. So: everybody, under the thing they
-built, the lead first.</p>
+it is has left out the part that is accountable for it.</p>
 
 <TeamRoster />
 
-## How this list is kept
+## Credit
 
-Nobody is on it who has not shipped something you can go and read. Inside a project it is the
-lead first, then what each person did. Someone appears three times because they worked on three
-things.
-
-Results are credited one level down: each post on [the blog](/blog/) names the people who ran
-it, at the top.
+Everybody named has shipped something you can go and read. Each post on [the blog](/blog/)
+names the people who ran it.
 
 Humanize 1 was proposed at [UCLA PolyArch](https://polyarch.cs.ucla.edu/), and everything since
-has been built with many more people than fit above — [NVIDIA
+has been built with many more people than are named here — [NVIDIA
 Research](https://www.nvidia.com/en-us/research/), [MIT HAN Lab](https://hanlab.mit.edu), UCLA,
 Tsinghua, and a long tail of community contributors. The full list is the one git keeps:
 [Humanize 2](https://github.com/humanfia/humanize/graphs/contributors) ·

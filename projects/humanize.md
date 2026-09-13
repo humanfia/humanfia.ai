@@ -12,9 +12,8 @@ whole run down as it happens. Every other project on this site stands on it.</p>
   <span class="docs-cta-said">
     <span class="kicker">The documentation</span>
     <strong>Every feature, every flow, every command</strong>
-    <span class="docs-cta-note">Humanize 2 is documented at <code>docs.humanfia.ai/humanize</code>
-    — a site of its own, with the install, the quickstart and a page per feature. This page
-    introduces it; it is not a copy of it.</span>
+    <span class="docs-cta-note">The install, the quickstart, and every feature and flow, at
+    <code>docs.humanfia.ai/humanize</code>.</span>
   </span>
   <em>&#8599;</em>
 </a>
@@ -37,8 +36,6 @@ happened and believing the last message.
 ## What it does
 
 <p class="kicker">The deep end</p>
-
-The five we would show first.
 
 <div class="card-grid">
   <div class="card">
@@ -108,8 +105,7 @@ The five we would show first.
   </div>
 </div>
 
-Each of those is a page on the documentation site, with a diagram, and the eleven above are not
-all of them — hooks, capabilities, surfaces and the daemon have pages too:
+Hooks, capabilities, surfaces and the daemon are in there too:
 [every feature, one picture each ↗](https://docs.humanfia.ai/humanize/features/).
 
 ## The agent runs here. Its syscalls land there.
@@ -135,8 +131,7 @@ ways, and a test fails a build that bends it.
 
 ## The real thing, recorded
 
-Everything above is drawn. This is not: five screens of `hmz`, recorded from the program, in a
-container with a stand-in coding agent in it.
+Not drawn — recorded from `hmz` itself, in a container with a stand-in coding agent in it.
 
 <TerminalReel />
 
@@ -146,8 +141,8 @@ The runtime runs flows; it does not decide what a good flow is. That split is de
 everything else at Humanfia is built on it.
 
 A **flow** is a directory of Python that says which agents it drives, what each is asked, in
-what order and when to stop. Eleven come with the runtime or the flowverse it fetches, and
-between them they are most of the loop shapes the field has converged on:
+what order and when to stop. The ones that ship with the runtime, plus the flowverse it
+fetches, cover most of the loop shapes the field has converged on:
 
 <div class="card-grid">
   <div class="card">
@@ -219,8 +214,7 @@ repository you care about.
   <a class="card" href="https://docs.humanfia.ai/humanize/">
     <span class="kicker">All of it</span>
     <h3>The documentation ↗</h3>
-    <p>Install, quickstart, a page per feature, a page per flow. Everything this page is an
-    introduction to.</p>
+    <p>Install, quickstart, and every feature and flow.</p>
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize/reference/cli">
     <span class="kicker">Look it up</span>

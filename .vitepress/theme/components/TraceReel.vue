@@ -136,10 +136,6 @@ const headAt = computed(
   () => `calc(${TRACK_LEFT}px + (100% - ${TRACK_INSET}px) * ${now.value / SPAN})`,
 )
 
-const onScreenCount = computed(() =>
-  lanes.value.reduce((sum, lane) => sum + lane.slices.filter((s) => s.at < now.value).length, 0),
-)
-
 /** Tokens, counted off the slices that have finished. */
 const tokensOf = (slices: Slice[]) =>
   slices.filter((s) => s.at + s.len <= now.value).reduce((sum, s) => sum + s.tok, 0)
@@ -208,8 +204,8 @@ const tokens = (slices: Slice[]) => {
     </div>
 
     <figcaption>
-      {{ shown }} agents · {{ onScreenCount }} slices on screen · one track per row of an
-      agent's sessions. Every turn's tool calls land on the timeline as they are made;
+      One track per row of an agent's sessions. Every turn's tool calls land on the timeline as
+      they are made;
       <a :href="`${DOCS}/features/tracing`">the real one</a> opens in Perfetto.
     </figcaption>
   </figure>

@@ -5,8 +5,7 @@ description: What Humanfia believes about long-horizon agent work, how we work, 
 # About Humanfia
 
 <p class="lede">We build the flow around the agent: the method, the referee, and the
-applications that show whether an agent finishes the work or just starts it impressively. This
-page is what we believe and how we work. <a href="/team/">The team</a> is who.</p>
+applications that show whether an agent finishes the work or just starts it impressively.</p>
 
 ## The bet
 

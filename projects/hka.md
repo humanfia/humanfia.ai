@@ -34,8 +34,6 @@ across most of the same competitions. Same models, different arrangement.
 
 ## What the two words mean
 
-This is the part that matters, and the part most write-ups skip.
-
 **Official** means the run was entered before the deadline and holds an exact final position on
 the Kaggle leaderboard.
 
@@ -50,7 +48,7 @@ built to catch](/about/#how-we-work), so we do not.
 
 ## The audit
 
-Every number above comes from
+The numbers come from
 [agentkaggle/kaggle-results-audit](https://github.com/agentkaggle/kaggle-results-audit), which
 is a repository rather than a claim:
 
@@ -80,14 +78,11 @@ The private board is the check, and it arrives after everything is decided.
 
 ## What is public, and what is not
 
-The [audit](https://github.com/agentkaggle/kaggle-results-audit) and the
-[leaderboard](https://agentkaggle.github.io/leaderboard/) are public, and they are where every
-number on this page comes from.
-
-The per-entrant repositories of workflows and sessions are not. They hold competition data and
-account credentials, and several of the competitions are still running. So rather than link you
-to a page you cannot open, the audit carries what can be published: for each best result, the
-session or evidence it was traced to, and an explicit note where it could not be traced.
+The audit and the leaderboard are public. The per-entrant repositories of workflows and
+sessions are not: they hold competition data and account credentials, and several of the
+competitions are still running. So rather than link you to a page you cannot open, the audit
+carries what can be published — for each best result, the session or evidence it was traced to,
+and an explicit note where it could not be traced.
 
 The loops themselves are the flows we write about elsewhere, run on
 [Humanize 2](/projects/humanize).

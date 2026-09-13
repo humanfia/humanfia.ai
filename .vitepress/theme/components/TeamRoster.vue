@@ -69,10 +69,9 @@ const FOUNDING = [
     who: 'Lyken17',
     role: 'Built the team',
     body:
-      'Assembled Humanfia. The people below are here because he went and found them — across '
-      + 'NVIDIA, MIT, UCLA, Tsinghua and half a dozen other places — and pointed the loop at '
-      + 'problems somebody else keeps the scoreboard for. He is on every project below, which is '
-      + 'why he is named once up here rather than six times down there.',
+      'Assembled Humanfia. Everyone here is here because he went and found them — across NVIDIA, '
+      + 'MIT, UCLA, Tsinghua and half a dozen other places — and pointed the loop at problems '
+      + 'somebody else keeps the scoreboard for. He works on every project.',
     links: [{ text: 'lzhu.me', href: 'https://lzhu.me' }],
   },
 ]
