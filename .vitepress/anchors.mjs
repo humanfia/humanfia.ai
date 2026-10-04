@@ -9,9 +9,10 @@
 
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const DIST = new URL('./dist/', import.meta.url).pathname
-const DOCS = new URL('../', import.meta.url).pathname
+const DIST = fileURLToPath(new URL('./dist/', import.meta.url))
+const DOCS = fileURLToPath(new URL('../', import.meta.url))
 const SKIP = new Set(['node_modules', '.vitepress', 'tapes', 'public'])
 
 async function walk(at, ext) {

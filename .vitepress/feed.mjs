@@ -13,8 +13,9 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const DIST = new URL('./dist/', import.meta.url).pathname
+const DIST = fileURLToPath(new URL('./dist/', import.meta.url))
 const FEED = join(DIST, 'blog/feed.rss')
 const HOSTNAME = 'https://humanfia.ai'
 
@@ -62,7 +63,7 @@ for (const item of items) {
 }
 
 // One item per dated post, so a post that stops appearing in the feed is not a quiet change.
-const dated = (await readdir(new URL('../blog/', import.meta.url).pathname))
+const dated = (await readdir(fileURLToPath(new URL('../blog/', import.meta.url))))
   .filter((name) => name.endsWith('.md') && name !== 'index.md').length
 if (items.length !== dated) fail(`feed: ${items.length} items for ${dated} posts`)
 

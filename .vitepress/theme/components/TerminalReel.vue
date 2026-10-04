@@ -3,20 +3,24 @@
 //
 // Everything else on this page is drawn: a diagram is easier to keep honest than a screenshot,
 // and it survives a redesign of the thing it draws. This is the one place that is the opposite
-// -- what `hmz` actually looks like, recorded with VHS against a stand-in coding agent CLI in a
+// -- what `hmz` actually looks like, recorded against a stand-in coding agent CLI in a
 // container of its own, so no account, machine or credential is ever in frame.
 //
-// The GIFs are served from the documentation site rather than copied here. They are rendered
-// from the `.tape` scripts that live beside them in humanfia/humanize, and a second copy in
-// this repository would be a megabyte that goes stale the first time a screen changes.
-import { computed, ref } from 'vue'
+// The recordings are asciicasts served from the documentation site rather than copied here, and
+// played in the reader's browser by asciinema-player: real text, sharp at any zoom, a few KB
+// each. They are made from the `.tape` scripts that live beside them in humanfia/humanize, and
+// a second copy in this repository would go stale the first time a screen changes. (They were
+// GIFs until the documentation moved to casts, which is when every one of these went 404.)
+import 'asciinema-player/dist/bundle/asciinema-player.css'
+
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Shot {
   said: string
   what: string
-  gif: string
+  cast: string
   guide: string
 }
 
@@ -24,69 +28,113 @@ const SHOTS: Shot[] = [
   {
     said: 'hmz',
     what: 'The interface: / for the commands, and a flow picked from the sheet.',
-    gif: 'tui.gif',
+    cast: 'tui.cast',
     guide: '/reference/tui',
   },
   {
     said: 'ls ~/.humanize/epics/…',
     what: 'What one run leaves behind: what happened, what it ran, and a link to every conversation it opened.',
-    gif: 'run.gif',
+    cast: 'run.cast',
     guide: '/user/tracing',
   },
   {
     said: '/epics',
     what: 'Every run this directory has had, and which of them can be picked up where they stopped.',
-    gif: 'epics.gif',
+    cast: 'epics.cast',
     guide: '/user/resuming',
   },
   {
     said: '/flowverses',
     what: 'Where flows come from, and what one of those places holds.',
-    gif: 'flowverses.gif',
+    cast: 'flowverses.cast',
     guide: '/weaver/flowverses',
   },
   {
     said: '/providers',
     what: 'Every account there is, what there is to do with one, and where a CLI of your own goes.',
-    gif: 'accounts.gif',
-    guide: '/user/providers',
+    cast: 'accounts.cast',
+    guide: '/user/settings#accounts',
   },
 ]
 
 const at = ref(0)
 const shown = computed(() => SHOTS[at.value])
+const stage = ref<HTMLElement | null>(null)
 
-// A GIF starts downloading the moment it is in the document, so only the ones somebody has
-// actually asked for are ever in it.
-const asked = ref(new Set([0]))
+type Player = import('asciinema-player').Player
+let player: Player | undefined
+let playing = false
+let visible = false
+let still = false
+let seen: IntersectionObserver | undefined
+
+/** One player at a time: picking another screen throws the old one away and loads the next, so
+ *  only the recordings somebody actually asked for are ever fetched. Under reduced motion it
+ *  shows the recording's last frame and waits for a click. */
+async function mount() {
+  const { create } = await import('asciinema-player')
+  player?.dispose()
+  stage.value!.replaceChildren()
+  player = create(`${DOCS}/demo/${shown.value.cast}`, stage.value!, {
+    fit: 'both',
+    controls: false,
+    autoPlay: visible && !still,
+    loop: !still,
+    preload: true,
+    idleTimeLimit: 2,
+    poster: 'npt:9999',
+    terminalFontFamily: 'var(--vp-font-family-mono)',
+    terminalLineHeight: 1.25,
+  })
+  playing = false
+  player.addEventListener('playing', () => (playing = true))
+  player.addEventListener('pause', () => (playing = false))
+  player.addEventListener('ended', () => (playing = false))
+}
+
 function show(i: number) {
   at.value = i
-  asked.value = new Set([...asked.value, i])
 }
+
+/** A click on the screen pauses it or plays it, which is the only control it has. */
+function toggle() {
+  if (playing) player?.pause()
+  else player?.play()
+}
+
+watch(at, () => player && mount())
+
+onMounted(() => {
+  still = matchMedia('(prefers-reduced-motion: reduce)').matches
+  seen = new IntersectionObserver(
+    ([entry]) => {
+      visible = entry.isIntersecting
+      if (!visible) return player?.pause()
+      if (!player) return mount()
+      if (!still) player.play()
+    },
+    { threshold: 0.3 },
+  )
+  seen.observe(stage.value!)
+})
+
+onBeforeUnmount(() => {
+  seen?.disconnect()
+  player?.dispose()
+})
 </script>
 
 <template>
   <div class="reel">
-    <div class="stage">
-      <template v-for="(shot, i) in SHOTS" :key="shot.gif">
-        <img
-          v-if="asked.has(i)"
-          v-show="i === at"
-          :src="`${DOCS}/demo/${shot.gif}`"
-          :alt="shot.what"
-          loading="lazy"
-        />
-      </template>
-    </div>
+    <div ref="stage" class="stage" :aria-label="shown.what" role="img" @click="toggle" />
 
     <div class="picks" role="group" aria-label="which screen">
       <button
         v-for="(shot, i) in SHOTS"
-        :key="shot.gif"
+        :key="shot.cast"
         type="button"
         :class="{ on: i === at }"
         @click="show(i)"
-        @mouseenter="show(i)"
       >
         {{ shot.said }}
       </button>
@@ -114,16 +162,20 @@ function show(i: number) {
   overflow: hidden;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
-  background: var(--vp-c-bg-alt);
+  background: #16171d;
+  cursor: pointer;
 }
 
-.stage img {
+/* The player fits the whole terminal inside the stage, in the documentation's own colours. */
+.stage :deep(.ap-wrapper) {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
+}
+
+.stage :deep(.ap-player) {
+  --term-color-foreground: #e2e4ea;
+  --term-color-background: #16171d;
+  border-radius: 0;
 }
 
 .picks {

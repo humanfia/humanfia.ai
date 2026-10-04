@@ -18,8 +18,9 @@
 
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const ROOT = new URL('../', import.meta.url).pathname
+const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const SKIP = new Set(['node_modules', 'dist', 'public', '.git', '.github'])
 const DOCS = 'https://docs.humanfia.ai/humanize'
 
@@ -72,7 +73,7 @@ for (const file of await walk(ROOT)) {
   // and all three are checked here.
   if (!text.includes(`const DOCS = '${DOCS}'`)) continue
 
-  // The whole path has to be written out to be checkable: `${DOCS}/demo/${shot.gif}` says
+  // The whole path has to be written out to be checkable: `${DOCS}/demo/${shot.cast}` says
   // nothing about which file, so it is left to the rule for filenames below.
   const whole = /\$\{DOCS\}(\/[^\s"'`$]*)(?=[`'"\s)]|$)/g
   for (const [, path] of text.matchAll(whole)) note(DOCS + path, where)
@@ -82,7 +83,7 @@ for (const file of await walk(ROOT)) {
     note(DOCS + path, where)
   }
 
-  for (const [, gif] of text.matchAll(/'([\w-]+\.gif)'/g)) note(`${DOCS}/demo/${gif}`, where)
+  for (const [, file] of text.matchAll(/'([\w-]+\.(?:gif|cast))'/g)) note(`${DOCS}/demo/${file}`, where)
 }
 
 const urls = [...said.keys()].sort()
@@ -125,8 +126,8 @@ await Promise.all(
         continue
       }
 
-      // Only a page can be a stub. A GIF is either there or it is not.
-      if (!/\.(gif|png|svg|jpg)$/.test(new URL(url).pathname)) {
+      // Only a page can be a stub. A recording is either there or it is not.
+      if (!/\.(gif|cast|png|svg|jpg)$/.test(new URL(url).pathname)) {
         const to = movedTo(await answer.text())
         if (to) problems.push(`${url} -- moved to ${to} [${where}]`)
       }
