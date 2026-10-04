@@ -8,11 +8,12 @@ import Install from './components/Install.vue'
 import LayerStack from './components/LayerStack.vue'
 import PostMeta from './components/PostMeta.vue'
 import PostMosaic from './components/PostMosaic.vue'
-import SystemMap from './components/SystemMap.vue'
 import TeamRoster from './components/TeamRoster.vue'
 import TerminalReel from './components/TerminalReel.vue'
 import TraceReel from './components/TraceReel.vue'
+import HomeLanding from './home/HomeLanding.vue'
 import './style.css'
+import './home/home.css'
 
 // The default theme, plus the components the pages use. `doc-before` is where a blog post's
 // whole header goes -- title, standfirst and the people who did the work: the component
@@ -26,9 +27,9 @@ export default {
     app.component('Install', Install)
     app.component('LayerStack', LayerStack)
     app.component('PostMosaic', PostMosaic)
-    app.component('SystemMap', SystemMap)
     app.component('TeamRoster', TeamRoster)
     app.component('TerminalReel', TerminalReel)
     app.component('TraceReel', TraceReel)
+    app.component('HomeLanding', HomeLanding)
   },
 } satisfies Theme

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-// The same architecture as <SystemMap>, in a shape that survives a phone: four layers stacked
-// in the direction the work runs, and the referee down the side with the one arrow that goes
-// back up. Nothing here moves -- the map is the version that runs, and this is the version
-// that fits.
+// The architecture, in a shape that survives a phone: four layers stacked in the direction the
+// work runs, and the referee down the side with the one arrow that goes back up. Nothing here
+// moves -- the home page's stack is the version that runs, and this is the version that fits.
 const DOCS = 'https://docs.humanfia.ai/humanize'
 
 interface Layer {

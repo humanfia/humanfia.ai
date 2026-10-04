@@ -1,0 +1,1384 @@
+/**
+ * The home page's own look. It borrows the site's tokens -- the slate, the accent, the one
+ * amber -- and adds what a page that is a sequence of full-width scenes needs and a document
+ * does not: a big type scale, two section greys, and the start state of everything that moves.
+ *
+ * Scoped under .hf-home-root, so nothing here reaches a project page or a post.
+ */
+
+.hf-home-root {
+  --h-bg: #ffffff;
+  --h-bg-alt: #f5f6f8;
+  --h-ink: var(--hf-ink);
+  --h-ink-2: #5b6474;
+  --h-ink-3: #8a93a3;
+  --h-line: rgba(15, 23, 42, 0.08);
+  --h-card: #ffffff;
+  --h-accent: var(--hf-blue);
+  --h-accent-2: var(--hf-blue-mid);
+  --h-warm: var(--hf-amber);
+  --h-grad: linear-gradient(100deg, var(--hf-slate) 10%, var(--hf-blue) 55%, var(--hf-blue-mid) 100%);
+  --h-glow: rgba(46, 89, 158, 0.16);
+  --h-max: 1180px;
+  --h-pad: clamp(20px, 5vw, 48px);
+  --h-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: var(--h-ink);
+  background: var(--h-bg);
+  overflow-x: clip;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark .hf-home-root {
+  --h-bg: #000000;
+  --h-bg-alt: #0b0d12;
+  --h-ink: #f2f4f8;
+  --h-ink-2: #a3acbb;
+  --h-ink-3: #6d7685;
+  --h-line: rgba(226, 232, 240, 0.1);
+  --h-card: #10131a;
+  --h-accent: var(--hf-blue-light);
+  --h-accent-2: var(--hf-blue-pale);
+  --h-warm: var(--hf-amber-light);
+  --h-grad: linear-gradient(100deg, #ffffff 10%, var(--hf-blue-pale) 50%, var(--hf-blue-light) 100%);
+  --h-glow: rgba(110, 147, 207, 0.22);
+}
+
+/* The page under the home component is the theme's, and the theme pads it for a hero we no
+   longer have. Black under a black page, so the overscroll does not flash white. */
+.hf-home .VPHome {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.hf-home .VPContent.is-home {
+  padding-top: 0 !important;
+}
+.dark .hf-home .VPContent,
+.dark .hf-home .VPFooter {
+  background: #000;
+}
+
+/* The nav floats over the scenes as frosted glass, the way a product page's does -- at every
+   width. The theme only fixes it from 960 up; below that it is in the flow, which pushed every
+   pinned scene 64px down and cut the bottom off each one. */
+.hf-home .VPNav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.hf-home .VPNavBar,
+.hf-home .VPNavBar.top {
+  background: transparent !important;
+}
+.hf-home .VPNavBar .wrapper {
+  background: color-mix(in srgb, var(--vp-c-bg) 72%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+.hf-home .VPNavBar .divider,
+.hf-home .VPNavBar .content-body,
+.hf-home .VPNavBar .title {
+  background: transparent !important;
+}
+
+/* --------------------------------------------------------------------------------- type */
+
+.h-wrap {
+  max-width: var(--h-max);
+  margin: 0 auto;
+  padding: 0 var(--h-pad);
+}
+
+.h-kicker {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 1.2vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--h-accent);
+}
+
+.h-display {
+  margin: 0;
+  font-size: clamp(44px, 7.6vw, 108px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  color: var(--h-ink);
+  text-wrap: balance;
+}
+
+.h-h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: clamp(36px, 5.4vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--h-ink);
+}
+
+.h-lead {
+  margin: 22px 0 0;
+  max-width: 680px;
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--h-ink-2);
+  text-wrap: pretty;
+}
+
+.h-gradient {
+  background: var(--h-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.h-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.h-center .h-lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h-link {
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 500;
+  color: var(--h-accent) !important;
+  text-decoration: none !important;
+}
+.h-link:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------------------- buttons */
+
+.h-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+.h-actions.h-center {
+  justify-content: center;
+}
+
+.h-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none !important;
+  transition: transform 0.4s var(--h-ease), background-color 0.25s, box-shadow 0.4s var(--h-ease);
+}
+.h-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+.h-btn:active {
+  transform: scale(0.98);
+}
+.h-btn-primary {
+  color: #fff !important;
+  background: var(--hf-blue);
+  box-shadow: 0 10px 30px -10px rgba(46, 89, 158, 0.6);
+}
+.h-btn-primary:hover {
+  background: var(--hf-blue-dark);
+  box-shadow: 0 16px 40px -12px rgba(46, 89, 158, 0.7);
+}
+.dark .h-btn-primary {
+  color: #0b1220 !important;
+  background: #f2f4f8;
+  box-shadow: 0 10px 40px -12px rgba(141, 174, 226, 0.6);
+}
+.dark .h-btn-primary:hover {
+  background: #ffffff;
+}
+.h-btn-ghost {
+  color: var(--h-ink) !important;
+  background: color-mix(in srgb, var(--h-ink) 6%, transparent);
+}
+.h-btn-ghost:hover {
+  background: color-mix(in srgb, var(--h-ink) 10%, transparent);
+}
+
+/* ------------------------------------------------------------------------- pinned scenes */
+
+/* A pinned scene is a tall section with a window-sized child that sticks. The section's
+   height is the length of the timeline; the child is what plays. */
+.h-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.h-pin-center {
+  display: grid;
+  place-items: center;
+}
+
+/* -------------------------------------------------------------------------------- 1 hero */
+
+.h-hero {
+  height: 210vh;
+  background:
+    radial-gradient(45% 55% at 74% 55%, var(--h-glow), transparent 70%),
+    var(--h-bg);
+}
+.h-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Copy on the left, the H on the right. The right column is an empty box: the canvas behind
+   the whole scene reads its position and draws the H into it. */
+.h-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  max-width: var(--h-max);
+  height: 100%;
+  margin: 0 auto;
+  padding: var(--vp-nav-height) var(--h-pad) 0;
+}
+.h-hero-copy {
+  min-width: 0;
+  will-change: transform, opacity;
+}
+.h-hero .h-display {
+  font-size: clamp(40px, 5.3vw, 82px);
+}
+.h-hero-copy .h-lead {
+  max-width: 34em;
+}
+.h-hero-copy .h-actions {
+  margin-top: 30px;
+}
+.h-hero-art {
+  height: min(66svh, 620px);
+  min-height: 0;
+}
+.h-hero .h-kicker {
+  font-size: clamp(15px, 1.3vw, 19px);
+}
+
+/* The first paint: each line rises in once, in order. */
+.h-load {
+  animation: h-rise 1.1s var(--h-ease) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes h-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+}
+
+.h-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  width: 22px;
+  height: 36px;
+  margin-left: -11px;
+  border: 1.5px solid var(--h-ink-3);
+  border-radius: 12px;
+}
+.h-cue span {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 3px;
+  height: 7px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--h-ink-3);
+  animation: h-cue 1.8s var(--h-ease) infinite;
+}
+@keyframes h-cue {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  80% { transform: translateY(12px); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------- 2 manifesto */
+
+.h-manifesto {
+  height: 240vh;
+  background: var(--h-bg);
+}
+.h-manifesto-text {
+  max-width: 1040px;
+  margin: 0;
+  padding: 0 var(--h-pad);
+  font-size: clamp(28px, 4.1vw, 58px);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  font-weight: 650;
+  color: var(--h-ink);
+  text-wrap: pretty;
+}
+.h-word {
+  transition: opacity 0.18s linear;
+}
+.h-word-strong {
+  background: var(--h-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ------------------------------------------------------------------------------- 3 stack */
+
+.h-stack {
+  height: 560vh;
+  background: var(--h-bg);
+}
+.h-stack-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) 1.15fr;
+  align-items: center;
+  gap: 24px;
+  max-width: var(--h-max);
+  height: 100%;
+  margin: 0 auto;
+  padding: var(--vp-nav-height) var(--h-pad) 0;
+}
+.h-stack-canvas {
+  width: 100%;
+  height: min(78vh, 760px);
+}
+.h-steps-rail {
+  display: flex;
+  gap: 6px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.h-steps-rail li {
+  flex: 1;
+  margin: 0;
+}
+.h-rail-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--h-ink-3);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.h-rail-label.on {
+  color: var(--h-ink);
+}
+.h-rail-bar {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--h-line);
+  overflow: hidden;
+}
+.h-rail-bar i {
+  display: block;
+  height: 100%;
+  background: var(--h-accent);
+  transform-origin: left;
+}
+.h-steps-rail li:last-child .h-rail-bar i {
+  background: var(--h-warm);
+}
+.h-steps {
+  position: relative;
+  min-height: 280px;
+  margin-top: 36px;
+}
+.h-step {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+.h-step h3,
+.h-panel h3 {
+  margin: 10px 0 0;
+  font-size: clamp(26px, 2.8vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--h-ink);
+}
+.h-step p:not(.h-step-tag),
+.h-panel-copy p:not(.h-step-tag) {
+  margin: 16px 0 20px;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: var(--h-ink-2);
+}
+.h-step-tag {
+  margin: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--h-accent);
+}
+.h-step-tag.warm {
+  color: var(--h-warm);
+}
+
+/* ---------------------------------------------------------------------- shared sections */
+
+.h-section {
+  position: relative;
+  padding: clamp(96px, 14vh, 168px) 0;
+  background: var(--h-bg);
+}
+.h-alt {
+  background: var(--h-bg-alt);
+}
+.h-head {
+  max-width: 820px;
+  margin-bottom: clamp(44px, 6vh, 72px);
+}
+.h-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: none;
+}
+
+/* ----------------------------------------------------------------------------- 4 results */
+
+.h-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+.h-tile {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 30px 30px 26px;
+  border-radius: 28px;
+  background: var(--h-card);
+  border: 1px solid var(--h-line);
+  color: var(--h-ink) !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.6s var(--h-ease),
+    box-shadow 0.6s var(--h-ease),
+    border-color 0.3s;
+}
+.h-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--mx) var(--my), var(--h-glow), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.h-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.28);
+  border-color: color-mix(in srgb, var(--h-accent) 35%, transparent);
+}
+.dark .h-tile:hover {
+  box-shadow: 0 30px 80px -30px rgba(110, 147, 207, 0.35);
+}
+.h-tile:hover::before {
+  opacity: 1;
+}
+.h-tile.w7 { grid-column: span 7; }
+.h-tile.w5 { grid-column: span 5; }
+.h-tile.w4 { grid-column: span 4; }
+.h-tile.w3 { grid-column: span 3; }
+.h-tile.tall {
+  min-height: 380px;
+}
+.h-tile-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--h-ink-2);
+}
+.h-tile-num {
+  margin-top: 6px;
+  font-size: clamp(54px, 6vw, 88px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  background: var(--h-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.h-tile.tall .h-tile-num {
+  font-size: clamp(72px, 9vw, 136px);
+}
+.h-tile-body {
+  max-width: 34ch;
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--h-ink-2);
+}
+.h-tile-more {
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--h-accent);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.4s var(--h-ease);
+}
+.h-tile:hover .h-tile-more {
+  opacity: 1;
+  transform: none;
+}
+
+/* The small pictures in the tiles. Each one is drawn empty and fills in when its tile counts. */
+.v-six {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 44px);
+  gap: 10px;
+}
+.v-six i {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-style: normal;
+  font-weight: 700;
+  color: transparent;
+  border: 1.5px solid var(--h-line);
+  transition: all 0.5s var(--h-ease) calc(var(--i) * 0.16s + 0.2s);
+}
+.live .v-six i {
+  color: #fff;
+  background: var(--hf-blue);
+  border-color: var(--hf-blue);
+  transform: scale(1.04);
+}
+.dark .live .v-six i {
+  color: #0b1220;
+  background: var(--hf-blue-light);
+  border-color: var(--hf-blue-light);
+}
+
+.v-versus {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+.v-versus span {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+.v-versus em {
+  font-size: 12px;
+  font-style: normal;
+  color: var(--h-ink-3);
+}
+.v-versus i,
+.v-bars i {
+  display: block;
+  height: 10px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--h-ink) 18%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  width: var(--w);
+  transition: transform 1.3s var(--h-ease) 0.2s;
+}
+.v-versus i.hot,
+.v-bars i.hot {
+  background: linear-gradient(90deg, var(--hf-blue), var(--hf-blue-mid));
+}
+.live .v-versus i {
+  transform: scaleX(1);
+}
+
+.v-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 92px;
+  margin-top: 22px;
+}
+.v-bars span {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 100%;
+}
+.v-bars i {
+  width: 100%;
+  height: var(--h);
+  min-height: 3px;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+.v-bars em {
+  font-size: 11px;
+  font-style: normal;
+  color: var(--h-ink-3);
+}
+.live .v-bars i {
+  transform: scaleY(1);
+}
+
+.v-ring {
+  width: 76px;
+  height: 76px;
+  margin-top: 22px;
+  transform: rotate(-90deg);
+}
+.v-ring circle {
+  fill: none;
+  stroke: var(--h-line);
+  stroke-width: 4;
+}
+.v-ring circle.on {
+  stroke: var(--hf-blue-mid);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 1.6s var(--h-ease) 0.2s;
+}
+.live .v-ring circle.on {
+  stroke-dashoffset: 0.3;
+}
+
+.v-grid,
+.v-dots {
+  display: grid;
+  gap: 5px;
+  margin-top: 22px;
+}
+.v-grid {
+  grid-template-columns: repeat(20, 1fr);
+  max-width: 340px;
+}
+.v-dots {
+  grid-template-columns: repeat(10, 1fr);
+  max-width: 230px;
+}
+.v-grid i,
+.v-dots i {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: var(--h-line);
+  transition: background-color 0.4s var(--h-ease) calc(var(--i) * 0.018s);
+}
+.v-dots i {
+  border-radius: 50%;
+  transition-delay: calc(var(--i) * 0.05s);
+}
+.live .v-grid i.on,
+.live .v-dots i.on {
+  background: var(--hf-blue-mid);
+}
+
+/* ------------------------------------------------------------------------ 5 applications */
+
+.h-apps {
+  height: 360vh;
+  background: var(--h-bg);
+}
+.h-apps-pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--vp-nav-height);
+}
+.h-apps-head {
+  width: 100%;
+  margin-bottom: clamp(24px, 4vh, 44px);
+}
+.h-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 0 max(var(--h-pad), calc((100vw - var(--h-max)) / 2 + var(--h-pad)));
+  will-change: transform;
+}
+.h-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  width: min(1080px, 86vw);
+  min-height: min(62vh, 560px);
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: 32px;
+  background: var(--h-bg-alt);
+  border: 1px solid var(--h-line);
+}
+.h-panel-art {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: 22px;
+  background: var(--h-card);
+  border: 1px solid var(--h-line);
+  box-shadow: 0 40px 80px -50px rgba(15, 23, 42, 0.35);
+}
+
+.art-lean .art-cmd {
+  margin: 0 0 18px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  color: var(--h-ink-2);
+}
+.art-lean .art-cmd span {
+  color: var(--h-ink-3);
+}
+.art-lean .art-cmd em {
+  margin-left: 10px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-style: normal;
+  font-size: 12px;
+  color: #15803d;
+  background: rgba(21, 128, 61, 0.1);
+}
+.dark .art-lean .art-cmd em {
+  color: #86efac;
+  background: rgba(134, 239, 172, 0.1);
+}
+.art-lean ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.art-lean li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  padding: 13px 0;
+  border-top: 1px solid var(--h-line);
+  font-size: 16px;
+}
+.art-lean li b {
+  color: #16a34a;
+}
+.art-lean li em {
+  font-style: normal;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--h-ink);
+}
+
+.art-bar {
+  margin-bottom: 22px;
+}
+.art-bar span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--h-ink-2);
+}
+.art-bar i {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: var(--w);
+  min-width: 70px;
+  height: 38px;
+  padding-right: 12px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--hf-blue), var(--hf-blue-mid));
+  color: #fff;
+  font-style: normal;
+}
+.art-bar b {
+  font-size: 16px;
+}
+.art-note {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--h-ink-2);
+}
+.art-note b {
+  color: var(--h-ink);
+}
+
+.art-tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.art-tiles i {
+  aspect-ratio: 1.3;
+  border-radius: 10px;
+  background: var(--h-line);
+}
+.art-tiles i.on {
+  background: linear-gradient(135deg, var(--hf-blue), var(--hf-blue-mid));
+}
+
+/* --------------------------------------------------------------------------- 6 runtime */
+
+.h-marquee {
+  position: relative;
+  margin: 0 0 clamp(48px, 7vh, 80px);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.h-marquee-row {
+  display: flex;
+  width: max-content;
+  animation: h-marquee 36s linear infinite;
+}
+.h-marquee-set {
+  display: flex;
+}
+.h-marquee b {
+  margin-right: 18px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--h-line);
+  background: var(--h-bg-alt);
+  font-family: var(--vp-font-family-mono);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 600;
+  color: var(--h-ink);
+}
+@keyframes h-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.h-term {
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0f17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 50px 100px -40px rgba(15, 23, 42, 0.55);
+}
+.h-term-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.h-term-bar i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3a3f4b;
+}
+.h-term-bar span {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+}
+.h-copy {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s;
+}
+.h-copy:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+/* Wrapped rather than scrolled: on a phone the install line is longer than the card, and a
+   command you have to scroll sideways to read is a command people copy half of. */
+.h-term pre {
+  margin: 0;
+  padding: 26px 28px 30px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--vp-font-family-mono);
+  font-size: clamp(13px, 1.25vw, 16px);
+  line-height: 1.9;
+  color: #e2e8f0;
+}
+.h-term .p {
+  color: var(--hf-blue-light);
+}
+.h-caret {
+  display: inline-block;
+  width: 9px;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: var(--hf-amber-light);
+  animation: h-blink 1s steps(1) infinite;
+}
+@keyframes h-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.h-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1080px;
+  margin: clamp(48px, 7vh, 80px) auto 0;
+}
+.h-feature {
+  padding: 28px;
+  border-radius: 22px;
+  background: var(--h-bg-alt);
+  border: 1px solid var(--h-line);
+}
+.h-feature h3 {
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  color: var(--h-ink);
+}
+.h-feature p {
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--h-ink-2);
+}
+.h-more {
+  margin-top: 40px;
+}
+
+/* ------------------------------------------------------------------------------ 7 blog */
+
+.h-rail-nav {
+  display: flex;
+  gap: 10px;
+}
+.h-rail-nav button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--h-ink);
+  background: color-mix(in srgb, var(--h-ink) 7%, transparent);
+  transition: background-color 0.2s, transform 0.3s var(--h-ease);
+}
+.h-rail-nav button:hover {
+  background: color-mix(in srgb, var(--h-ink) 12%, transparent);
+  transform: scale(1.06);
+}
+.h-posts {
+  display: flex;
+  gap: 18px;
+  padding: 6px max(var(--h-pad), calc((100vw - var(--h-max)) / 2 + var(--h-pad))) 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 max(var(--h-pad), calc((100vw - var(--h-max)) / 2 + var(--h-pad)));
+  scrollbar-width: none;
+}
+.h-posts::-webkit-scrollbar {
+  display: none;
+}
+.h-post {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: min(360px, 80vw);
+  min-height: 300px;
+  padding: 28px;
+  border-radius: 24px;
+  scroll-snap-align: start;
+  background: var(--h-card);
+  border: 1px solid var(--h-line);
+  color: var(--h-ink) !important;
+  text-decoration: none !important;
+  transition: transform 0.5s var(--h-ease), box-shadow 0.5s var(--h-ease);
+}
+.h-post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 50px -30px rgba(15, 23, 42, 0.3);
+}
+.h-post-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--h-ink-3);
+}
+.h-post-meta b {
+  color: var(--h-accent);
+  font-weight: 600;
+}
+.h-post-title {
+  margin-top: 14px;
+  font-size: 22px;
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.h-post-body {
+  display: -webkit-box;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--h-ink-2);
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.h-post-more {
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--h-accent);
+}
+.h-post-all {
+  justify-content: center;
+  background: transparent;
+  border-style: dashed;
+}
+
+/* ------------------------------------------------------------------------------- 8 cta */
+
+.h-cta {
+  padding: clamp(140px, 22vh, 240px) 0;
+  background:
+    radial-gradient(50% 60% at 50% 100%, var(--h-glow), transparent 70%),
+    var(--h-bg);
+}
+.h-cta .h-display {
+  font-size: clamp(56px, 10vw, 150px);
+  padding-bottom: 0.08em;
+}
+.h-small {
+  margin-top: 40px;
+  font-size: 15px;
+  color: var(--h-ink-3);
+}
+.h-small a {
+  color: var(--h-ink-2) !important;
+  text-decoration: none !important;
+}
+.h-small a:hover {
+  color: var(--h-accent) !important;
+}
+
+/* -------------------------------------------------------------------------------- reveal */
+
+/* Hidden only once the page has mounted with motion allowed; see vReveal in motion.ts. */
+.hf-motion .rv {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition:
+    opacity 1s var(--h-ease) var(--rv-delay, 0ms),
+    transform 1.2s var(--h-ease) var(--rv-delay, 0ms);
+}
+.hf-motion .rv.rv-in {
+  opacity: 1;
+  transform: none;
+}
+/* A tile's hover lift must not wait for its reveal delay. */
+.hf-motion .h-tile.rv.rv-in {
+  transition:
+    opacity 1s var(--h-ease) var(--rv-delay, 0ms),
+    transform 0.6s var(--h-ease),
+    box-shadow 0.6s var(--h-ease),
+    border-color 0.3s;
+}
+
+/* The applications' pictures play as their panel comes into view. */
+.hf-motion .art-lean li {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: all 0.6s var(--h-ease) calc(var(--i) * 0.12s);
+}
+.hf-motion .art-bar i {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s var(--h-ease) calc(var(--i) * 0.15s);
+}
+.hf-motion .art-tiles i.on {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.5s var(--h-ease) calc(var(--i) * 0.04s);
+}
+.hf-motion .h-panel.rv-in .art-lean li,
+.hf-motion .h-panel.rv-in .art-bar i,
+.hf-motion .h-panel.rv-in .art-tiles i.on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------------------ narrow */
+
+@media (max-width: 900px) {
+  /* Stacked: the copy first, centred, and the H in whatever height it leaves. */
+  .h-hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-top: calc(var(--vp-nav-height) + clamp(24px, 5svh, 56px));
+    padding-bottom: clamp(16px, 4svh, 40px);
+    text-align: center;
+  }
+  .h-hero-copy .h-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .h-hero-copy .h-actions {
+    justify-content: center;
+  }
+  .h-hero-art {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+  }
+  /* Sized by the height as much as the width, so a short phone still has room for the H. */
+  .h-hero .h-display {
+    font-size: clamp(32px, min(9vw, 6.2svh), 56px);
+  }
+  .h-hero .h-kicker {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .h-hero .h-lead {
+    margin-top: 14px;
+    font-size: clamp(15px, min(4.2vw, 2.6svh), 19px);
+  }
+  .h-hero-copy .h-actions {
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .h-hero .h-btn {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 16px;
+  }
+  .h-cue {
+    display: none;
+  }
+
+  /* The gallery is not pinned on a narrow screen: a panel stacked over its picture is taller
+     than a phone, and a pinned window that cuts its own content off is worse than no pin. The
+     three panels are simply the next three things down the page. */
+  .h-apps {
+    height: auto;
+    padding-bottom: clamp(72px, 12vh, 120px);
+  }
+  .h-apps .h-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding-top: clamp(72px, 12vh, 120px);
+  }
+  .h-track {
+    flex-direction: column;
+    width: auto;
+    padding: 0 var(--h-pad);
+    transform: none !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .h-stack-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    align-items: start;
+    gap: 0;
+    padding-top: calc(var(--vp-nav-height) + 20px);
+  }
+  .h-stack-copy .h-h2 br {
+    display: none;
+  }
+  .h-stack-canvas {
+    order: -1;
+    height: 34svh;
+  }
+  .h-step h3 {
+    font-size: clamp(21px, 5.6vw, 28px);
+  }
+  .h-step p:not(.h-step-tag) {
+    margin: 10px 0 12px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .h-steps {
+    min-height: 0;
+    margin-top: 20px;
+  }
+  .h-steps-rail {
+    margin-top: 18px;
+  }
+  .h-stack-copy .h-kicker,
+  .h-stack-copy .h-h2 {
+    display: none;
+  }
+  .h-tile.w7,
+  .h-tile.w5,
+  .h-tile.w4,
+  .h-tile.w3 {
+    grid-column: span 6;
+  }
+  .h-panel {
+    grid-template-columns: 1fr;
+    width: 84vw;
+    min-height: 0;
+  }
+  .h-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A short phone: the stack's picture gives up some height, and each layer keeps its sentence
+   but not its link -- the link is the same page the nav already offers. */
+@media (max-width: 960px) and (max-height: 720px) {
+  .h-stack-canvas {
+    height: 30svh;
+  }
+  .h-step .h-link {
+    display: none;
+  }
+  .h-steps-rail {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .h-tile.w7,
+  .h-tile.w5,
+  .h-tile.w4,
+  .h-tile.w3 {
+    grid-column: span 12;
+  }
+  .h-tile {
+    min-height: 220px;
+  }
+  .v-six {
+    position: static;
+    margin-top: 22px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .v-six i {
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .h-rail-label {
+    font-size: 10px;
+  }
+  .h-panel-copy p:not(.h-step-tag) {
+    display: none;
+  }
+  .h-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* -------------------------------------------------------------------------- less motion */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Nothing is pinned: every scene is laid out as the page it would be at the end of its
+     timeline, top to bottom. */
+  .h-hero,
+  .h-manifesto,
+  .h-stack,
+  .h-apps {
+    height: auto;
+  }
+  .h-pin {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+  }
+  .h-manifesto .h-pin {
+    min-height: 0;
+    padding: 120px 0;
+  }
+  .h-step {
+    position: static;
+    margin-bottom: 40px;
+  }
+  /* The five layers are read top to bottom, so the picture stays beside them while they are,
+     and the progress rail has no progress to show. */
+  .h-stack-grid {
+    align-items: start;
+    padding-top: calc(var(--vp-nav-height) + 64px);
+    padding-bottom: 64px;
+  }
+  .h-stack-canvas {
+    position: sticky;
+    top: calc(var(--vp-nav-height) + 24px);
+  }
+  .h-steps-rail {
+    display: none;
+  }
+  .h-track {
+    flex-direction: column;
+    width: auto;
+    transform: none !important;
+  }
+  .h-panel {
+    width: auto;
+  }
+  .h-load,
+  .h-cue span,
+  .h-caret,
+  .h-marquee-row {
+    animation: none;
+  }
+  .h-marquee-row {
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+  .h-marquee-set[aria-hidden='true'] {
+    display: none;
+  }
+}
