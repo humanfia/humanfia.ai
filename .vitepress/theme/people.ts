@@ -52,6 +52,10 @@ export const PEOPLE: Record<string, Person> = {
   'Jin Pan': { handle: 'jhinpan', id: 47354855 },
   // Lesheng Jin: every commit in humanfia/sol-execbench-kda, the SOL Bench run, is his.
   'Lesheng Jin': { handle: 'LeshengJin', id: 34279105 },
+  // Zhekai Zhang and Shang Yang: HAN Lab Kernel Mafia, the MLSys 2026 contest team the
+  // organisers' results page lists; both commit to mit-han-lab/nunchaku under these accounts.
+  'Zhekai Zhang': { handle: 'sxtyzhangzk', id: 7344200 },
+  'Shang Yang': { handle: 'ys-2020', id: 61508922 },
   // Jiaming Tang: MIT EECS, and the account the humanfia organisation collaborates with.
   'Jiaming Tang': { handle: 'Sakits', id: 31038513 },
   // KDA² (NVlabs/kda), whose remaining authors are TVM, MLC and FlashInfer maintainers with
