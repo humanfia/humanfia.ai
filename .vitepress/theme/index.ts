@@ -7,6 +7,7 @@ import DemoVideo from './components/DemoVideo.vue'
 import ArchStack from './components/ArchStack.vue'
 import Install from './components/Install.vue'
 import LayerStack from './components/LayerStack.vue'
+import NewsList from './components/NewsList.vue'
 import PostLayout from './components/PostLayout.vue'
 import PostMosaic from './components/PostMosaic.vue'
 import TeamRoster from './components/TeamRoster.vue'
@@ -38,6 +39,7 @@ export default {
     app.component('DemoVideo', DemoVideo)
     app.component('Install', Install)
     app.component('LayerStack', LayerStack)
+    app.component('NewsList', NewsList)
     app.component('PostMosaic', PostMosaic)
     app.component('post', PostLayout)
     app.component('TeamRoster', TeamRoster)

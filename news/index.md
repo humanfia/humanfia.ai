@@ -3,7 +3,7 @@ title: News
 description: Every result Humanfia has published, one post each — what was run, who ran it, and what it can be checked against.
 aside: false
 outline: false
-pageClass: page-wide
+pageClass: page-reader
 ---
 
 # News
@@ -13,4 +13,4 @@ with the people who produced it named at the top and a link to whatever it can b
 against. The longer arguments are on <a href="/blog/">the blog</a>. Subscribe by
 <a href="/news/feed.rss">RSS</a>.</p>
 
-<PostMosaic kind="news" :limit="0" />
+<NewsList />

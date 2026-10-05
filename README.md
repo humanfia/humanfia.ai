@@ -37,8 +37,8 @@ tag: HOA
 ```
 
 `tag` is the project the post belongs to. Everything else is generated from the frontmatter:
-the post's page (its hero, contents and related posts), the section index, the sidebar, the
-home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
+the post's page (its hero, contents and related posts), the section index (a list for news,
+a mosaic for the blog), the blog's sidebar, the home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
 update. Figures come from the post kit: interactive charts, tables, diagrams and callouts
 that you write straight into the markdown. [CONTRIBUTING.md](CONTRIBUTING.md) is the guide to
 the post layout and every component in the kit.
