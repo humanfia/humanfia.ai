@@ -4,7 +4,7 @@ pageClass: flow-page
 
 # humanize1
 
-Plan first, then build under review. This is Humanize 1, the
+Plan first, then build under review. This is RLCR Flow, the
 [Claude Code plugin](https://github.com/PolyArch/humanize) the rest of humanfia grew out of,
 as three flows you run one after another: `gen-idea` opens a loose idea into a draft,
 `gen-plan` turns the draft into a plan two agents agreed on, and `rlcr` builds that plan under
@@ -44,7 +44,7 @@ start the next, and put each phase on whichever models suit it.
 
 ## Where it came from {#story}
 
-Humanize 1 was proposed at [UCLA PolyArch](https://polyarch.cs.ucla.edu/), derived from
+RLCR Flow was proposed at [UCLA PolyArch](https://polyarch.cs.ucla.edu/), derived from
 [GAAC](https://github.com/SihaoLiu/gaac), and shipped as a Claude Code plugin under MIT. Its
 loop is **RLCR**: the Ralph Loop with Codex Review, a Ralph loop with an independent review in
 every round. It also reads as *Reinforcement Learning with Code Review*, which is what the loop
@@ -75,7 +75,7 @@ does: the review is the reward, and the next round is the update.
 
 The plugin outgrew itself. A plugin drives the one coding agent it is installed in;
 [Humanize](/projects/humanize) drives any of them, on machines that are not yours, for days,
-and writes down everything that happened. So Humanize 1 lives on here, as flows: the same
+and writes down everything that happened. So RLCR Flow lives on here, as flows: the same
 commands, each phase on whichever agents suit it, run, forked and beaten like any other flow
 in the [flowverse](https://github.com/humanfia/flowverse). It set the rule the other loops are
 built on: the reviewer arrives with no memory, reads the repository rather than the

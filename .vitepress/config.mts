@@ -15,7 +15,7 @@ const HOSTNAME = 'https://humanfia.ai'
  *  applications. Names only -- a list is a list of places, and the sentence explaining each
  *  one is already the first thing on the page it goes to.
  *
- *  Humanize is labelled the way its own README names it. Humanize 1, the Claude Code plugin
+ *  Humanize is labelled the way its own README names it. RLCR Flow, the Claude Code plugin
  *  it grew out of, is not a project here: it lives on as the humanize1 flow, under Flows, and
  *  /projects/rlcr-loop redirects there.
  *

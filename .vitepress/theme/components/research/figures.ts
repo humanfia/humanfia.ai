@@ -1,5 +1,5 @@
 // Every figure on the Flow Science page, as data. The points were read off the charts in the
-// "Humanize 2 Intro" deck (October 2026) by tracing each series' colour column by column in the
+// "Humanize Intro" deck (October 2026) by tracing each series' colour column by column in the
 // slide images and converting pixels back to values with the figure's own axis ticks; end points
 // the slides print as numbers (MLE-bench's 48/75, ProgramBench's 90.2, ...) are pinned to the
 // printed value. A curve is therefore as accurate as a careful reading of the published figure,
