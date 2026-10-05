@@ -61,8 +61,9 @@ and they apply here:
   harness, so these are not contest scores.
 - The kernels are tuned to the official shapes, so do not expect the same speedups elsewhere.
 - The pinned human repositories are a few commits past the contest deadline.
-- In August we reported 1.25× to 1.39× over the human entries on B300, under a different
-  protocol. The two tables are not comparable, and the MoE margin is smaller in this one.
+- The repository numbers its releases from 0.1, the original contest entry. Our August post
+  called the same two generations KDA 1.0 and 1.5, and reported 1.25× to 1.39× over the human
+  entries on B300 under a different protocol. The two tables are not comparable, and the MoE margin is smaller in this one.
 
 ## One merge that did not stay
 

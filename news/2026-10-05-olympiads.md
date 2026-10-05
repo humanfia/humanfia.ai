@@ -9,8 +9,8 @@ authors:
 tag: HOA
 ---
 
-Since July, the same open harness has been pointed at four more olympiads and one quantum
-benchmark. Each one reached the top of its scale. **None of these scores came from an official
+Since July, the same open harness has finished IPhO and the quantum run we reported then, and
+has been pointed at three more olympiads. Each one reached the top of its own scale. **None of these scores came from an official
 jury,** and the scales are different, so each comes with a note on what was graded and by
 whom. The notes matter as much as the numbers.
 
@@ -34,8 +34,8 @@ The caveat is the grader. These are
 [our own estimates](https://github.com/humanfia/ipho2026#results) against the official
 solutions and itemized marking schemes, not a jury's adjudication.
 
-The Lean side went further than in July. Then, 23 subproblems were formalized; now all
-**41 subparts** are. Formalizing is harder than answering, and the two models separate here: the
+The Lean side went further than in July. The formal release splits the paper more finely, into
+**41 parts**, and every one of them now has a Lean formalization. Formalizing is harder than answering, and the two models separate here: the
 GPT-5.6 Sol formalizations are estimated at
 [47.45 / 50](https://github.com/humanfia/ipho2026/blob/main/GRADING_REPORT.md), Kimi's at
 [29.90 / 50](https://github.com/humanfia/ipho2026/blob/main/Kimi/GRADING_REPORT.md). Every
@@ -46,7 +46,8 @@ proof elaborates without `sorry`, `admit` or custom axioms.
 All **68** numbered theory subquestions across the nine problems now have Lean formalizations
 that passed both formalization review and proof review, for
 [GPT-5.6 Sol](https://github.com/humanfia/icho2026/tree/main/gpt-5.6-sol-full68-formalization)
-and for [Kimi-K3](https://github.com/humanfia/icho2026/tree/main/kimi-k3-nl-36-formalization).
+and for Kimi-K3 ([32 answer-blind](https://github.com/humanfia/icho2026/tree/main/kimi-k3-answer-blind)
+plus [36 more](https://github.com/humanfia/icho2026/tree/main/kimi-k3-nl-36-formalization)).
 The comparison that matters is the same models without the review loop. Run as a plain
 Codex `/goal` on the same 68 targets, they had
 [32 / 68](https://github.com/humanfia/icho2026/tree/main/gpt-5.6-sol-native-goal68) and

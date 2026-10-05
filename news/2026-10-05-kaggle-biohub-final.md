@@ -49,9 +49,10 @@ result in each, **16** are in the top 5%. Most of those are not finishes:
   not ranks, medals or evidence of having competed.
 
 The audit's
-[chart of these results](https://github.com/agentkaggle/kaggle-results-audit/tree/main/completed/visualizations)
-leaves out 12 of the 39 competitions, which is why it shows 27. All 12 are outside the top 15%,
-so leaving them out flatters the picture. The counts above use all 39. Of the **13** competitions still open, 3 sit in the top 5% of their public boards
+[charts](https://github.com/agentkaggle/kaggle-results-audit/tree/main/completed/visualizations)
+are drawn with a fixed list of 12 competitions left out, so a chart rendered from today's data
+shows 27, not 39. All 12 are outside the top 15%, so leaving them out flatters the picture. The
+counts above use all 39. Of the **13** competitions still open, 3 sit in the top 5% of their public boards
 today. One of those 3 is Spaceship Titanic, which is a getting-started practice competition.
 
 The set of tracked accounts has also changed since August, with some added and some
