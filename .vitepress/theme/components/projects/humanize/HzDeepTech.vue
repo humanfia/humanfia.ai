@@ -9,7 +9,9 @@ import AnchorSplit from './AnchorSplit.vue'
 import CogAnchorDiagram from './CogAnchorDiagram.vue'
 import ExomythDiagram from './ExomythDiagram.vue'
 import PhobosDiagram from './PhobosDiagram.vue'
-import { DOCS } from './data'
+
+// Declared here, not imported: `pnpm check:docs` follows ${DOCS} only in a file that names it.
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 const INDEX = [
   { id: 'phobos', name: 'Phobos', is: 'the flow compiler', status: 'In development', shipped: false },

@@ -1,7 +1,6 @@
 // What the Humanize page says, in one place: the numbers, the harnesses, the features and the
 // flows. The components lay it out; nothing here is drawn.
 
-export const DOCS = 'https://docs.humanfia.ai/humanize'
 export const REPO = 'https://github.com/humanfia/humanize'
 
 /** The four numbers under the hero. */

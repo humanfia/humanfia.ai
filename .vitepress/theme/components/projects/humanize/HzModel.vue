@@ -33,6 +33,7 @@ const root = ref<HTMLElement | null>(null)
 let timer: ReturnType<typeof setInterval> | undefined
 let io: IntersectionObserver | undefined
 let visible = false
+let started = false
 
 onMounted(() => {
   if (prefersReducedMotion() || !root.value) return
@@ -40,7 +41,10 @@ onMounted(() => {
     ([entry]) => {
       const was = visible
       visible = entry.isIntersecting
-      if (visible && !was && !held.value && step.value === STEPS.length && !timer) step.value = 1
+      if (visible && !was && !started && !held.value) {
+        started = true
+        step.value = 1
+      }
     },
     { threshold: 0.35 },
   )

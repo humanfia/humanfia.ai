@@ -5,10 +5,13 @@
 // lifts, driven by where the hero is rather than by a timer.
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { clamp, useScrollProgress } from '../../../home/motion'
-import { DOCS, REPO } from './data'
+import { REPO } from './data'
 import HzRun from './HzRun.vue'
 
 const props = defineProps<{ motion: boolean }>()
+
+// Declared here, not imported: `pnpm check:docs` follows ${DOCS} only in a file that names it.
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 const WAYS = [
   { key: 'uv', line: `uv tool install git+${REPO}.git` },

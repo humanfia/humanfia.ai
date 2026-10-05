@@ -26,8 +26,11 @@ import HzHero from './HzHero.vue'
 import HzModel from './HzModel.vue'
 import LayerStack from './LayerStack.vue'
 import TerminalReel from './TerminalReel.vue'
-import { DOCS, FEATURES, REPO, STATS } from './data'
+import { FEATURES, REPO, STATS } from './data'
 import './humanize.css'
+
+// Declared here, not imported: `pnpm check:docs` follows ${DOCS} only in a file that names it.
+const DOCS = 'https://docs.humanfia.ai/humanize'
 
 const motion = ref(false)
 onMounted(() => (motion.value = !prefersReducedMotion()))

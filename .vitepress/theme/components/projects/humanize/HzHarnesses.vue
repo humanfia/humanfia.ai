@@ -11,6 +11,8 @@ const one = computed(() => HARNESSES[at.value])
 const line = computed(() => {
   const h = one.value
   if (h.name === 'litellm') return { role: 'writer', rest: 'litellm@acct/openai/gpt-5' }
+  // An ACP CLI is added by hand and named by its own command, not by `acp`.
+  if (h.name === 'acp') return { role: 'builder', rest: 'your-cli/MODEL:EFFORT' }
   return { role: 'builder', rest: `${h.name}/${h.model ?? 'MODEL:EFFORT'}` }
 })
 </script>
