@@ -8,8 +8,9 @@ description: KDA — Kernel Design Agents. An agent workflow for researching, im
 the score is never in doubt: making a kernel faster, on real hardware, without making it
 wrong.</p>
 
-[mit-han-lab/kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents) ·
+[NVlabs/kda](https://github.com/NVlabs/kda) ·
 [KDA-Pilot](https://github.com/BBuf/KDA-Pilot) ·
+[the wishlist](https://docs.humanfia.ai/kda-wishlist/) ·
 built with [MIT HAN Lab](https://hanlab.mit.edu/)
 
 <div class="stat-strip">
@@ -77,8 +78,11 @@ It is deliberately independent of any one benchmark harness or hardware target: 
 task brings its own evaluator, datasets, profiling tools and references.
 
 ```sh
-git clone --recurse-submodules https://github.com/mit-han-lab/kernel-design-agents.git
+git clone --recurse-submodules https://github.com/NVlabs/kda.git
 ```
 
-[The repository](https://github.com/mit-han-lab/kernel-design-agents) has the agent flow, the
-prompt templates and the skills.
+[The repository](https://github.com/NVlabs/kda) has the agent flow, the
+prompt templates and the skills. Kernels the community wants next, with reproducible
+definitions and workloads, are collected in the
+[KDA wishlist](https://docs.humanfia.ai/kda-wishlist/)
+([humanfia/kda-wishlist](https://github.com/humanfia/kda-wishlist)).

@@ -55,10 +55,23 @@ of 50 through its own CLI, and 50 of 50 inside a flow.
 
 ## Where the code is
 
-[humanfia/imo2026](https://github.com/humanfia/imo2026) ·
-[humanfia/putnambench-solver](https://github.com/humanfia/putnambench-solver) ·
-[humanfia/flowverse](https://github.com/humanfia/flowverse) ·
-[IPhO 2026 dataset](https://huggingface.co/datasets/humanfia-lab/IPHO2026)
+All of HOA is one repository, [humanfia/hoa-qed](https://github.com/humanfia/hoa-qed). Each
+competition or library is a directory in it, with its own README and its history intact:
+
+| Directory | What is in it |
+| --- | --- |
+| [`putnambench/`](https://github.com/humanfia/hoa-qed/tree/main/putnambench) | PutnamBench: the solver, the pinned statements and the scripts that re-run it |
+| [`imo2026/`](https://github.com/humanfia/hoa-qed/tree/main/imo2026) | IMO 2026: formal statements, Lean solutions and the scripts that reproduce them |
+| [`ioi2026/`](https://github.com/humanfia/hoa-qed/tree/main/ioi2026) | IOI 2026 |
+| [`ipho2026/`](https://github.com/humanfia/hoa-qed/tree/main/ipho2026) | IPhO 2026 |
+| [`icho2026/`](https://github.com/humanfia/hoa-qed/tree/main/icho2026) | IChO 2026 |
+| [`ibo2024/`](https://github.com/humanfia/hoa-qed/tree/main/ibo2024) | IBO 2024 |
+| [`chemlib/`](https://github.com/humanfia/hoa-qed/tree/main/chemlib) | Chemlib, a Lean 4 library for mathematical chemistry |
+| [`lean-qit-qlg/`](https://github.com/humanfia/hoa-qed/tree/main/lean-qit-qlg) | QAlg and QIT: Lean formalizations and proofs |
+
+The flows the runs used are in [humanfia/flowverse](https://github.com/humanfia/flowverse); the
+proofs are also published as datasets, for example the
+[IPhO 2026 dataset](https://huggingface.co/datasets/humanfia-lab/IPHO2026).
 
 These runs were built on [Humanize 1](/projects/rlcr-loop). Watching it run for weeks is most
 of why [RLAR](https://github.com/humanfia/flowverse) and the rest of the

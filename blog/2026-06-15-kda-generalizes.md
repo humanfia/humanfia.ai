@@ -24,4 +24,4 @@ exist on the internet is a search engine with extra steps. A loop that works on 
 documentation is a method.
 
 [KDA](/projects/kda) ·
-[mit-han-lab/kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents)
+[NVlabs/kda](https://github.com/NVlabs/kda)
