@@ -112,9 +112,7 @@ export default defineConfig({
 
   // The feed is written by `buildEnd` below, after the link check has run, so the check has
   // no way of knowing it is about to exist. Every other dead link is still a failed build.
-  // `/flows/` is temporary: the Flows section lands in its own pull request, and the projects
-  // pages already point at it. Drop this once flows/ exists here.
-  ignoreDeadLinks: [/^\/blog\/feed\.rss$/, /^\/flows\//],
+  ignoreDeadLinks: [/^\/blog\/feed\.rss$/],
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
