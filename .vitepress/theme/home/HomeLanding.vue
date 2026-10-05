@@ -2,16 +2,17 @@
 // The home page. It is one argument told in order -- what we build, how it is put together,
 // what came back, where to start -- and nothing on it is pinned. The page moves at the speed of
 // the hand; the pictures are driven by where their section happens to be on screen (the hero
-// comes apart as it leaves, the manifesto lights as it is read, the stack turns to whichever
-// paragraph is in the middle of the window, the applications stack up like cards), or play
-// once when they arrive. The numbers are the blog's numbers, and every one of them links to
-// the post that says how to check it.
+// comes apart as it leaves, the stack turns to whichever paragraph is in the middle of the
+// window, the applications stack up like cards), or play once when they arrive (the manifesto,
+// a picture in place of a paragraph). The numbers are the blog's numbers, and every one of them
+// links to the post that says how to check it.
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { data as posts } from '../posts.data.mts'
 import { HeroScene, StackField, fitScene } from './fields'
 import HomeRollup from './HomeRollup.vue'
 import HomeVision from './HomeVision.vue'
+import ManifestoScene from './ManifestoScene.vue'
 import {
   clamp,
   easeOut,
@@ -57,25 +58,6 @@ function heroAnchor() {
   const wide = stage.width > 900
   const width = wide ? stage.width - left - 24 : art.width
   return fitScene({ left, top: art.top - stage.top, width, height: art.height })
-}
-
-// ------------------------------------------------------------------------------- manifesto
-
-const MANIFESTO =
-  'Models get better every few months. The flow around them is what turns a model into a result: ' +
-  'which agent goes next, what it is asked, who checks the work, and when it stops. ' +
-  'That part was nobody’s job. So we build it, in the open, and point it at work where somebody else keeps the score.'
-const STRONG = new Set(['flow', 'result:', 'open,', 'score.'])
-const words = MANIFESTO.split(' ').map((w) => ({ w, strong: STRONG.has(w) }))
-const manifestoEl = ref<HTMLElement | null>(null)
-// The words light as the paragraph is read: from when its top rises past the lower fifth of the
-// window to when its bottom reaches the middle, which is the stretch the eye is actually on it.
-const manifestoP = useScrollProgress(manifestoEl, (box, vh) =>
-  clamp((vh * 0.8 - box.top) / (box.height + vh * 0.3)),
-)
-const lit = (i: number) => {
-  if (!motion.value) return 1
-  return 0.16 + 0.84 * clamp(manifestoP.value * (words.length + 4) - i)
 }
 
 // ----------------------------------------------------------------------------------- stack
@@ -388,20 +370,8 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 2. The argument, one word at a time. -->
-    <section class="h-manifesto" aria-label="Why Humanfia">
-      <div class="h-wrap">
-        <p ref="manifestoEl" class="h-manifesto-text">
-          <span
-            v-for="(w, i) in words"
-            :key="i"
-            class="h-word"
-            :class="{ 'h-word-strong': w.strong }"
-            :style="{ opacity: lit(i) }"
-          >{{ `${w.w} ` }}</span>
-        </p>
-      </div>
-    </section>
+    <!-- 2. The argument, as a picture: a model, the flow round it, somebody else's score. -->
+    <ManifestoScene />
 
     <!-- 3. How it is put together: four layers and a referee. -->
     <section class="h-stack" aria-labelledby="stack-title">
