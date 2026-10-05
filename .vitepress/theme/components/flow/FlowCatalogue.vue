@@ -65,7 +65,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
 
     <section v-for="group in shown" :key="group.kind.id" class="kind">
       <h3 :id="`kind-${group.kind.id}`">
-        <span class="num">{{ String(group.n).padStart(2, '0') }}</span>{{ group.kind.said }}
+        <span class="num ignore-header">{{ String(group.n).padStart(2, '0') }}</span>{{ group.kind.said }}
       </h3>
       <p class="how">{{ group.kind.how }}</p>
       <div class="grid">
@@ -99,7 +99,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
     </section>
 
     <section v-if="others.length" class="kind">
-      <h3 id="kind-flowverse"><span class="num">{{ String(KINDS.length + 1).padStart(2, '0') }}</span>Also in the flowverse</h3>
+      <h3 id="kind-flowverse"><span class="num ignore-header">{{ String(KINDS.length + 1).padStart(2, '0') }}</span>Also in the flowverse</h3>
       <p class="how">Released, and not yet drawn here: each page is the flow's own README.</p>
       <div class="grid">
         <a v-for="module in others" :key="module.name" class="card plain" :href="withBase(`/flows/${module.slug}`)">

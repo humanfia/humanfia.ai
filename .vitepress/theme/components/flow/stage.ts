@@ -434,7 +434,7 @@ export function direct(lay: Layout, view: View): Key[] {
       const x = set.reduce((sum, g) => sum + (g.x0 + g.x1) / 2, 0) / set.length
       const zoom = Math.max(flat.zoom, Math.min(close, fit({ lo, hi })))
       // Centred in what the lane heads, kept at the left edge, leave free.
-      cam = aim({ ...flat, x: x - (narrowView(view) ? 0 : Math.min(150, view.w * 0.3) / (2 * zoom)), y: (lo + hi) / 2, zoom })
+      cam = aim({ ...flat, x: x - (narrowView(view) ? 0 : Math.min(200, view.w * 0.3) / (2 * zoom)), y: (lo + hi) / 2, zoom })
     }
     shots.push({ at: t0 + 0.08, move: 0.48, cam })
   }

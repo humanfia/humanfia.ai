@@ -223,7 +223,7 @@ const frame = computed(() => {
         pushed = Math.max(pushed, edge - k[4])
         k[4] = edge
       }
-      if (!tight) shadeW = Math.max(shadeW, k[4] + 150 * k[0])
+      if (!tight) shadeW = Math.max(shadeW, k[4] + 200 * k[0])
     }
     heads.push({
       key: lane.role.id,
@@ -496,7 +496,7 @@ const frame = computed(() => {
     <defs>
       <linearGradient :id="shade" x1="0" x2="1" y1="0" y2="0">
         <stop offset="0" style="stop-color: var(--flow-panel); stop-opacity: 0.96" />
-        <stop offset="0.72" style="stop-color: var(--flow-panel); stop-opacity: 0.93" />
+        <stop offset="0.8" style="stop-color: var(--flow-panel); stop-opacity: 0.94" />
         <stop offset="1" style="stop-color: var(--flow-panel); stop-opacity: 0" />
       </linearGradient>
     </defs>
