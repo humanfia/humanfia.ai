@@ -14,7 +14,11 @@ export const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /** True once the element has come on screen, and true from the start for a reader who asked for
- *  less motion -- everything keyed off it then renders its final state straight away. */
+ *  less motion -- everything keyed off it then renders its final state straight away.
+ *
+ *  "On screen" is `threshold` of the element visible, or half the viewport filled by it: an
+ *  element taller than the viewport divided by the threshold can never show that fraction of
+ *  itself, and would otherwise wait for ever with its bars at zero. */
 export function useInView(el: Ref<Element | null | undefined>, threshold = 0.25) {
   const seen = ref(false)
   let observer: IntersectionObserver | undefined
@@ -23,14 +27,21 @@ export function useInView(el: Ref<Element | null | undefined>, threshold = 0.25)
       seen.value = true
       return
     }
+    const steps = Array.from({ length: 11 }, (_, i) => (i / 10) * threshold)
     observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
+        const hit = entries.some(
+          (entry) =>
+            entry.isIntersecting &&
+            (entry.intersectionRatio >= threshold - 1e-3 ||
+              entry.intersectionRect.height >= (entry.rootBounds?.height ?? window.innerHeight) * 0.5),
+        )
+        if (hit) {
           seen.value = true
           observer?.disconnect()
         }
       },
-      { threshold },
+      { threshold: steps },
     )
     observer.observe(el.value)
   })

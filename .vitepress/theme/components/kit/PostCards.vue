@@ -11,12 +11,13 @@
 //   </PostCard>
 //   </PostCards>
 //
-// `numbered` stamps 01, 02, ... on the cards in order.
-withDefaults(defineProps<{ numbered?: boolean; columns?: number }>(), { numbered: false, columns: 3 })
+// `numbered` stamps 01, 02, ... on the cards in order. `columns` fixes how many cards share a row
+// on a wide screen (one per row on a phone); without it, as many as fit at 260px each.
+withDefaults(defineProps<{ numbered?: boolean; columns?: number }>(), { numbered: false })
 </script>
 
 <template>
-  <div class="pcs" :class="{ numbered }" :style="{ '--cols': columns }">
+  <div class="pcs" :class="{ numbered, fixed: columns }" :style="columns ? { '--cols': columns } : undefined">
     <slot />
   </div>
 </template>

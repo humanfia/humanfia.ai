@@ -17,7 +17,7 @@ import PostMeta from './PostMeta.vue'
 import PostRelated from './PostRelated.vue'
 import PostToc from './PostToc.vue'
 
-const { page } = useData()
+const { page, theme } = useData()
 const main = ref<HTMLElement | null>(null)
 const progress = ref(0)
 let queued = false
@@ -47,7 +47,11 @@ onBeforeUnmount(() => {
   removeEventListener('resize', onScroll)
 })
 
-const editUrl = computed(() => `https://github.com/humanfia/humanfia.ai/edit/main/${page.value.relativePath}`)
+/** The theme's own edit link, so the repository is named in one place (config.mts). */
+const editUrl = computed(() => {
+  const pattern = theme.value.editLink?.pattern
+  return typeof pattern === 'function' ? pattern(page.value) : pattern?.replace(':path', page.value.relativePath)
+})
 </script>
 
 <template>
@@ -70,8 +74,9 @@ const editUrl = computed(() => `https://github.com/humanfia/humanfia.ai/edit/mai
         <PostToc :progress="progress" />
       </aside>
       <main ref="main" class="post-main">
+        <PostToc :progress="progress" inline />
         <Content class="vp-doc post-body" />
-        <footer class="post-end">
+        <footer v-if="editUrl" class="post-end">
           <a :href="editUrl" target="_blank" rel="noreferrer">Suggest an edit to this post ↗</a>
         </footer>
       </main>

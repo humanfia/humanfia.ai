@@ -32,20 +32,26 @@ const shown = ref<string | null>(null)
 let frame = 0
 let timer = 0
 
-function run() {
+/** Where the count is now, so a new value counts on from it rather than from the start. */
+let current = props.from
+
+function run(start = props.from) {
   cancelAnimationFrame(frame)
   clearTimeout(timer)
   if (prefersReducedMotion()) {
     shown.value = null
+    current = props.value
     return
   }
-  shown.value = format(props.from, props.decimals, props.suffix, props.prefix)
+  const target = props.value
+  shown.value = format(start, props.decimals, props.suffix, props.prefix)
   timer = window.setTimeout(() => {
     const start = performance.now()
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / props.duration)
       const eased = props.linear ? t : 1 - (1 - t) ** 3
-      shown.value = format(props.from + (props.value - props.from) * eased, props.decimals, props.suffix, props.prefix)
+      current = start + (target - start) * eased
+      shown.value = format(current, props.decimals, props.suffix, props.prefix)
       if (t < 1) frame = requestAnimationFrame(tick)
       else shown.value = null
     }
@@ -57,7 +63,7 @@ watch(seen, (now) => now && run())
 // A new value (a toggle elsewhere in the figure) counts from wherever the old one was.
 watch(
   () => props.value,
-  () => seen.value && run(),
+  () => seen.value && run(current),
 )
 onBeforeUnmount(() => {
   cancelAnimationFrame(frame)

@@ -292,7 +292,9 @@ const ariaLabel = computed(() => props.label ?? props.title ?? props.kicker ?? '
 
 /** The data view: one row per x, one column per series. Long series are thinned to ~40 rows. */
 const columns = computed(() => [
-  { key: 'x', label: props.x.label ?? 'x' },
+  cats.value
+    ? { key: 'x', label: props.x.label ?? 'x' }
+    : { key: 'x', label: props.x.label ?? 'x', decimals: props.x.unit !== undefined ? 0 : (props.x.decimals ?? 0), suffix: props.x.unit ?? props.x.suffix ?? '' },
   ...props.series.map((s) => ({ key: s.key, label: s.label, decimals: props.y.decimals ?? 2, suffix: props.y.suffix ?? '' })),
 ])
 const tableRows = computed(() => {
@@ -301,7 +303,7 @@ const tableRows = computed(() => {
   return xs
     .filter((_, i) => i % every === 0 || i === xs.length - 1)
     .map((x) => ({
-      x: readX(x),
+      x: cats.value ? readX(x) : x,
       ...Object.fromEntries(props.series.map((s) => [s.key, s.data.find((p) => p[0] === x)?.[1] ?? null])),
     }))
 })

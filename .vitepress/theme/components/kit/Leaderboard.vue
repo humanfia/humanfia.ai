@@ -78,9 +78,12 @@ function gapText(i: number) {
   return `${signed(entry.score - above.score, props.decimals, props.suffix)} to #${above.rank} · ${signed(entry.score - best.value, props.decimals, props.suffix)} to #1`
 }
 
-const rowEls = ref<HTMLElement[]>([])
-function move(i: number, by: number) {
-  rowEls.value[(i + by + order.value.length) % order.value.length]?.focus()
+/** Arrow keys walk the rows as they are on screen -- the DOM order, which is the ranked order
+ *  once the board has re-sorted, whatever order the rows were first mounted in. */
+function move(event: KeyboardEvent, by: number) {
+  const row = event.currentTarget as HTMLElement
+  const rows = [...(row.parentElement?.children ?? [])] as HTMLElement[]
+  rows[(rows.indexOf(row) + by + rows.length) % rows.length]?.focus()
 }
 </script>
 
@@ -98,7 +101,6 @@ function move(i: number, by: number) {
       <li
         v-for="(entry, i) in order"
         :key="entry.index"
-        ref="rowEls"
         class="lb-row"
         :class="{ us: entry.us, on: active === entry.index }"
         tabindex="0"
@@ -107,8 +109,8 @@ function move(i: number, by: number) {
         @pointerleave="active = null"
         @focus="active = entry.index"
         @blur="active = null"
-        @keydown.down.prevent="move(i, 1)"
-        @keydown.up.prevent="move(i, -1)"
+        @keydown.down.prevent="move($event, 1)"
+        @keydown.up.prevent="move($event, -1)"
       >
         <span class="lb-rank">{{ seen || !hasFrom ? entry.rank : (entry.from ?? entry.rank) }}</span>
         <span class="lb-name">

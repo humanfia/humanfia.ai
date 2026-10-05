@@ -127,7 +127,7 @@ function relation(row: Row, key: string) {
   if (!base || key === base) return ''
   const b = row.values[base]
   const v = row.values[key]
-  if (props.compare === 'delta') return signed(v - b, props.decimals, props.suffix === '×' ? '×' : '')
+  if (props.compare === 'delta') return signed(v - b, props.decimals, props.suffix)
   return format(v / b, 2, '×')
 }
 
@@ -139,6 +139,11 @@ const top = computed(() => {
   return ticks[ticks.length - 1] < peak ? peak : ticks[ticks.length - 1]
 })
 const ticks = computed(() => niceTicks(0, top.value, 4).filter((t) => t <= top.value + 1e-9))
+/** As many decimals as the finest tick needs (0.25 needs two), and no more. */
+const tickDecimals = computed(() =>
+  Math.min(3, Math.max(0, ...ticks.value.map((t) => (String(t).split('.')[1] ?? '').length))),
+)
+const tickLabel = (t: number) => format(t, tickDecimals.value, rescaled.value ? '×' : props.suffix)
 const refAt = computed(() => (rescaled.value ? 1 : props.reference?.value))
 const refLabel = computed(() =>
   rescaled.value ? `${props.series.find((s) => s.key === against.value)?.label} = 1×` : props.reference?.label,
@@ -222,7 +227,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
       <!-- ---------------------------------------------------------------- horizontal -->
       <template v-if="orientation === 'horizontal'">
         <div class="bc-axis" aria-hidden="true">
-          <span v-for="t in ticks" :key="t" :style="{ left: `${pct(t) * 100}%` }">{{ format(t, t % 1 ? 1 : 0, rescaled ? '×' : suffix) }}</span>
+          <span v-for="t in ticks" :key="t" :style="{ left: `${pct(t) * 100}%` }">{{ tickLabel(t) }}</span>
         </div>
         <div
           v-for="(row, r) in rows"
@@ -275,7 +280,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
       <template v-else>
         <div class="bc-cols">
           <div class="bc-grid" aria-hidden="true">
-            <span v-for="t in ticks" :key="t" :style="{ bottom: `${pct(t) * 100}%` }"><b>{{ format(t, t % 1 ? 1 : 0, rescaled ? '×' : suffix) }}</b></span>
+            <span v-for="t in ticks" :key="t" :style="{ bottom: `${pct(t) * 100}%` }"><b>{{ tickLabel(t) }}</b></span>
           </div>
           <div
             v-for="(row, r) in rows"

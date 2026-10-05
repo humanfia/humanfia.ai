@@ -471,6 +471,61 @@ a.post-author:hover .post-author-name {
   color: var(--vp-c-brand-1);
 }
 
+/* Narrower than the pinned contents: a fold at the top of the post. */
+.post-toc-inline {
+  max-width: var(--post-text);
+  margin: 0 0 40px;
+  border-top: 4px solid var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-mono);
+}
+
+.post-toc-inline summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+}
+
+.post-toc-inline summary span {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--vp-c-text-3);
+}
+
+.post-toc-inline ol {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.post-toc-inline li a {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  padding: 6px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+}
+
+.post-toc-inline li a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+@media (min-width: 1360px) {
+  .post-toc-inline {
+    display: none;
+  }
+}
+
 /* ---- Long-form type ------------------------------------------------------------------------ */
 
 .post-body {
@@ -884,6 +939,16 @@ a.post-author:hover .post-author-name {
   border-bottom: 1px solid var(--vp-c-divider);
   background: var(--k-bg);
   color: var(--k-fg);
+}
+
+.pcs.fixed {
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  .pcs.fixed {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .pcs.numbered .pc::before {

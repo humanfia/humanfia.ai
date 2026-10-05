@@ -57,7 +57,8 @@ const sorted = computed(() => {
     const x = a.row[key]
     const y = b.row[key]
     if (typeof x === 'number' && typeof y === 'number') return sign * (x - y) || a.index - b.index
-    return sign * String(x ?? '').localeCompare(String(y ?? '')) || a.index - b.index
+    // Numeric-aware, so "160 tokens" sorts before "1,056 tokens" and "8/30" before "9/12".
+    return sign * String(x ?? '').replace(/,/g, '').localeCompare(String(y ?? '').replace(/,/g, ''), 'en', { numeric: true }) || a.index - b.index
   })
 })
 
@@ -69,8 +70,11 @@ function sortBy(key: string) {
   }
 }
 
+/** The order the rows are really in: `lowerIsBetter` flips "best first" into ascending. */
+const reallyDescending = (key: string) =>
+  descending.value !== Boolean(props.columns.find((c) => c.key === key)?.lowerIsBetter)
 const ariaSort = (key: string) =>
-  sortKey.value !== key ? 'none' : (descending.value ? 'descending' : 'ascending')
+  sortKey.value !== key ? 'none' : (reallyDescending(key) ? 'descending' : 'ascending')
 
 function cell(col: Column, value: Cell) {
   if (typeof value === 'number') return format(value, col.decimals ?? 0, col.suffix ?? '', col.prefix ?? '')
@@ -102,7 +106,7 @@ const togglePin = (index: number) => {
               <button v-if="col.sortable !== false" type="button" class="rt-sort" @click="sortBy(col.key)">
                 {{ col.label }}
                 <span class="rt-arrow" aria-hidden="true">{{
-                  sortKey === col.key ? (descending ? '↓' : '↑') : '↕'
+                  sortKey === col.key ? (reallyDescending(col.key) ? '↓' : '↑') : '↕'
                 }}</span>
               </button>
               <template v-else>{{ col.label }}</template>
