@@ -62,7 +62,9 @@ the post layout and every component in the kit.
 ### Deploying
 
 A push to `main` builds the site and deploys it to GitHub Pages
-(`.github/workflows/deploy.yml`). Pull requests run the same build without deploying.
+(`.github/workflows/deploy.yml`). Pull requests run the same build without deploying. The org
+profile in [humanfia/.github](https://github.com/humanfia/.github) is generated from the deployed
+site and notices a deploy on its own, so nothing here needs a token for it.
 
 ## Contributing
 
