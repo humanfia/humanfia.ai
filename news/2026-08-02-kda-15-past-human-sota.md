@@ -5,6 +5,18 @@ date: 2026-08-02
 authors:
   - Dongyun Zou
 tag: KDA
+achievement:
+  topic: MLSys 2026 FlashInfer contest
+  value: 1.39
+  from: 1
+  decimals: 2
+  suffix: ×
+  viz: versus
+  board:
+    - { name: best human, score: 1 }
+    - { name: KDA 1.5, score: 1.39, us: true }
+  label: "Past the best human kernels"
+  body: "KDA 1.5 on every track of the MLSys 2026 FlashInfer contest."
 ---
 
 In May, [KDA took top-three placements on every track](/news/2026-05-15-mlsys-flashinfer-top3)

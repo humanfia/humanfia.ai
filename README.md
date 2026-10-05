@@ -44,7 +44,8 @@ dependencies live in one registry, `.vitepress/theme/projects.ts`, which the tea
 too; a news tag it does not list fails the build. Everything else is generated from the frontmatter:
 the post's page (its hero, contents and related posts), the section index (a list for news,
 a mosaic for the blog), the blog's sidebar, the home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
-update. Figures come from the post kit: interactive charts, tables, diagrams and callouts
+update. A news post that adds an `achievement:` block also gets a tile in the home page's
+Achievements, one per topic, from the newest post. Figures come from the post kit: interactive charts, tables, diagrams and callouts
 that you write straight into the markdown. [CONTRIBUTING.md](CONTRIBUTING.md) is the guide to
 the post layout and every component in the kit.
 

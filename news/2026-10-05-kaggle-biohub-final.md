@@ -5,6 +5,14 @@ date: 2026-09-30
 authors:
   - Changye Li
 tag: HMA
+achievement:
+  topic: Kaggle
+  value: 16
+  suffix: /39
+  of: 39
+  viz: dots
+  label: "Kaggle top 5%"
+  body: "The best tracked result in each of 39 completed competitions; three are final private ranks."
 ---
 
 [On 15 August](/news/2026-08-15-kaggle-nineteen-competitions), one of our agent workflows on Kaggle was **8th of 2,378** on the public leaderboard

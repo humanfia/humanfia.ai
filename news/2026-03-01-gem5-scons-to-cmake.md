@@ -5,6 +5,11 @@ date: 2026-03-01
 authors:
   - Sihao Liu
 tag: Humanize 1
+achievement:
+  topic: gem5
+  value: 567
+  label: "Files in gem5's build, moved from SCons to CMake"
+  body: "One engineer and a set of agents, running for weeks."
 ---
 
 gem5's build system was migrated from SCons to CMake in full: **567 files changed**, by one

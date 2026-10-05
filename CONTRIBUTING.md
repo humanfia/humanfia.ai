@@ -32,6 +32,34 @@ its source next to the rendered page.
       - { name: FlashKDA, score: 1 }
   ```
 
+- **An optional home-page achievement**, for news posts only. A post with an `achievement:`
+  block puts one tile in the home page's Achievements mosaic, linked to the post. `topic` is
+  free-form and need not be a project: posts that name the same topic (compared
+  case-insensitively) are one achievement told over time, and only the newest of them gets a
+  tile. Tile sizes are chosen from the number of tiles, so there is nothing to lay out.
+
+  ```yaml
+  achievement:
+    topic: PutnamBench   # required; one tile per topic, the newest post's
+    value: 672           # required; counts up from `from` (default 0)
+    from: 0
+    decimals: 0
+    prefix: ""
+    suffix: /672
+    of: 672              # the whole, for the ring, grid and dots
+    label: PutnamBench   # required; the line above the number
+    body: Every statement proved in Lean 4.
+    viz: ring            # optional: checks | versus | bars | ring | grid | dots
+    board:               # versus and bars: the entries compared
+      - { name: best human, score: 1 }
+      - { name: ours, score: 1.39, us: true }
+  ```
+
+  `checks` draws one ticked box per point of `value`. `ring` fills `value / of`. `grid` and
+  `dots` light `value` cells of `of` (without `of`, the grid rounds up to rows of twenty).
+  `versus` and `bars` draw `board` against its best score, with `us` in red. A block without a
+  topic, a numeric value or a label, with an unknown `viz`, or with a ring or dots and no `of`
+  or versus or bars and no `board`, fails the build.
 - **Sections.** Each `##` is numbered automatically (01, 02, …). On screens 1360px and wider,
   the sections are listed in a sticky contents column on the left.
 - **A reading-progress rule** under the nav, **"Read next"** (three related posts, chosen by

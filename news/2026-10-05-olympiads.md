@@ -7,6 +7,13 @@ authors:
   - Zhengyang Zhang
   - Ligeng Zhu
 tag: HOA
+achievement:
+  topic: Science olympiads
+  value: 5
+  suffix: /5
+  viz: checks
+  label: "Science exams at full marks"
+  body: "IPhO, IChO, IOI, IBO and quantum information theory — none graded by an official jury."
 ---
 
 Since July, the same open harness has finished IPhO and the quantum run

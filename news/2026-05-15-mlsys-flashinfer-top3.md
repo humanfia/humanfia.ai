@@ -5,6 +5,14 @@ date: 2026-05-15
 authors:
   - Dongyun Zou
 tag: KDA
+achievement:
+  topic: MLSys 2026 FlashInfer contest
+  value: 33.3
+  from: 1
+  decimals: 1
+  suffix: ×
+  label: "Top three on every MLSys 2026 track"
+  body: "33.3× over the FlashInfer baseline on DSA, 17.6× on GDN and 1.4× on FP8 MoE."
 ---
 
 Kernels designed with [KDA](/projects/kda) placed in the **top three on every track** of the

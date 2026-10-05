@@ -6,6 +6,12 @@ authors:
   - Jing Xiong
   - Zhengyang Zhang
 tag: HOA
+achievement:
+  topic: Science olympiads
+  value: 23
+  suffix: /23
+  label: "IPhO 2026 theory subproblems, proved in Lean"
+  body: "And 36 of 36 on a blind quantum-algorithms benchmark."
 ---
 
 ::: info Ongoing

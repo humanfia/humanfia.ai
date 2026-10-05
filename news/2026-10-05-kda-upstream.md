@@ -6,6 +6,14 @@ authors:
   - Xiaoyu Zhang
   - Dongyun Zou
 tag: KDA
+achievement:
+  topic: SGLang
+  value: 8.7
+  prefix: "+"
+  decimals: 1
+  suffix: "%"
+  label: "Throughput from one KDA kernel in SGLang"
+  body: "Qwen3.5-4B at concurrency 1, from one of six KDA pull requests SGLang merged since August."
 ---
 
 A kernel that wins a benchmark is a claim. A kernel a maintainer merges into the engine people

@@ -5,6 +5,18 @@ date: 2026-10-03
 authors:
   - Changye Li
 tag: HMA
+achievement:
+  topic: MLE-bench
+  value: 78.2
+  decimals: 1
+  suffix: "%"
+  viz: versus
+  board:
+    - { name: Opus 5, score: 72.4 }
+    - { name: GPT-5.6-sol, score: 68.0 }
+    - { name: HMA, score: 78.2, us: true }
+  label: "MLE-bench medal rate"
+  body: "Two agents taking turns on 75 tasks in six hours. Self-reported."
 ---
 
 Take two strong coding agents. Give each the same machine-learning task and six hours, and
