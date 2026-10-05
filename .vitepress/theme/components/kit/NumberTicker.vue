@@ -46,9 +46,9 @@ function run(start = props.from) {
   const target = props.value
   shown.value = format(start, props.decimals, props.suffix, props.prefix)
   timer = window.setTimeout(() => {
-    const start = performance.now()
+    const began = performance.now()
     const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / props.duration)
+      const t = Math.min(1, (now - began) / props.duration)
       const eased = props.linear ? t : 1 - (1 - t) ** 3
       current = start + (target - start) * eased
       shown.value = format(current, props.decimals, props.suffix, props.prefix)
