@@ -584,6 +584,9 @@ watch([datasetKey, baselineKey], () => (active.value = null))
 
 .bc-col i {
   display: block;
+  /* The value label above a full-height column rides up into the plot's top padding; without
+     this, the column would shrink to make room for it and fall short of its own value. */
+  flex-shrink: 0;
   height: calc(100% * var(--h));
   background: var(--s);
   transition: height 0.9s var(--k-ease) calc(var(--i) * 40ms);
