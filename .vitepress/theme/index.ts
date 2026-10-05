@@ -14,6 +14,7 @@ import TeamRoster from './components/TeamRoster.vue'
 import TerminalReel from './components/TerminalReel.vue'
 import TraceReel from './components/TraceReel.vue'
 import { registerFlows } from './components/flow'
+import FlowsBack from './components/flow/FlowsBack.vue'
 import { registerKit } from './components/kit'
 import Wordmark from './components/Wordmark.vue'
 import HomeLanding from './home/HomeLanding.vue'
@@ -27,11 +28,13 @@ import './post.css'
 //
 // `nav-bar-title-after` is the brand: the config sets no logo and no site title, so the link the
 // theme draws round them holds only the animated wordmark (the footer's is SiteFooter.vue).
+// `doc-before` is the way back to the catalogue from a flow's page, which has no sidebar.
 export default {
   extends: DefaultTheme,
   Layout: () =>
     h(DefaultTheme.Layout, null, {
       'nav-bar-title-after': () => h(Wordmark),
+      'doc-before': () => h(FlowsBack),
     }),
   enhanceApp({ app }) {
     app.component('AnchorSplit', AnchorSplit)
