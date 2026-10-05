@@ -285,11 +285,10 @@
 .hf-c-red {
   fill: var(--h-red);
 }
+/* The disc is a tone of the ink, not a colour: a plane behind the letter, loud enough to be a
+   shape in its own right and quiet enough that the red is still the only thing that shouts. */
 .hf-c-disc {
-  fill: var(--h-bg-alt);
-}
-.dark .hf-c-disc {
-  fill: var(--hf-night-2);
+  fill: color-mix(in srgb, var(--h-ink) 9%, var(--h-bg));
 }
 .hf-c-hair line,
 .hf-c-hair path,

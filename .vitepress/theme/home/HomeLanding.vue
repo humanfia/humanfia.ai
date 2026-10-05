@@ -9,8 +9,7 @@
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { data as posts } from '../posts.data.mts'
-import { MARK } from './logo'
-import { HeroScene, StackField } from './fields'
+import { HeroScene, StackField, fitScene } from './fields'
 import {
   clamp,
   easeOut,
@@ -45,19 +44,17 @@ const heroCopy = computed(() => {
 })
 const cueOpacity = computed(() => 1 - span(heroP.value, 0, 0.06))
 
-/** The box the H stands in at rest, read off the layout every frame: the copy decides how
- *  much room it leaves, and the H takes the height of that box or as much of its width as an
- *  H that shape can use, whichever is smaller. The 0.62 leaves the construction round it --
- *  the disc, the rail, the labels -- room inside the box rather than across the copy. */
+/** Where the H stands at rest, read off the layout every frame: the copy decides how much room
+ *  the art column has, and the whole construction -- not just the H -- is fitted into it. */
 function heroAnchor() {
   const art = heroArt.value!.getBoundingClientRect()
   const stage = heroSvg.value!.getBoundingClientRect()
-  const aspect = MARK.width / MARK.height
-  return {
-    x: art.left - stage.left + art.width / 2,
-    y: art.top - stage.top + art.height / 2,
-    size: Math.min(art.height * 0.62, (art.width * 0.62) / aspect),
-  }
+  const left = art.left - stage.left
+  // Beside the copy, the art may use the page's right margin too, up to a gutter from the edge:
+  // the construction is the loudest thing on the page and should not be boxed in by the grid.
+  const wide = stage.width > 900
+  const width = wide ? stage.width - left - 24 : art.width
+  return fitScene({ left, top: art.top - stage.top, width, height: art.height })
 }
 
 // ------------------------------------------------------------------------------- manifesto

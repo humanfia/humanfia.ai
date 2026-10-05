@@ -358,7 +358,8 @@ a.card:hover {
    the one outline entry that is too long is ellipsised at either size. A rule that changes
    nothing measurable is a rule to be read and kept in step forever, so there is none. */
 
-/* The wordmark in the nav, at the height the theme gives a logo. */
+/* The wordmark in the nav, a little taller than the theme's logo height: the letters are a
+   wordmark's x-height under the mark's cap, and at 24px the i's dot is a speck. */
 .VPNavBarTitle .title {
-  --hf-wordmark-height: var(--vp-nav-logo-height);
+  --hf-wordmark-height: 27px;
 }

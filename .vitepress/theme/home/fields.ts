@@ -33,6 +33,20 @@ class Pointer {
 /** Where the H stands at rest, in the SVG's CSS pixels: its centre and its height. */
 export type Anchor = { x: number; y: number; size: number }
 
+/** The whole construction's extent in mark units -- the H is 0..96 x 0..108 inside it; the
+ *  rail and the circle's run reach up and left of it, the dial out to the right, the plinth and
+ *  its labels below. The page fits this box, not the H, into the room the copy leaves, so the
+ *  circle never starts its run over the headline or under the nav. */
+export const SCENE = { x: -32, y: -60, width: 182, height: 196 }
+
+/** The anchor that fits SCENE into `box` (in the SVG's pixels), centred. */
+export function fitScene(box: { left: number; top: number; width: number; height: number }): Anchor {
+  const k = Math.min(box.width / SCENE.width, box.height / SCENE.height)
+  const left = box.left + (box.width - SCENE.width * k) / 2
+  const top = box.top + (box.height - SCENE.height * k) / 2
+  return { x: left + (48 - SCENE.x) * k, y: top + (54 - SCENE.y) * k, size: 108 * k }
+}
+
 const SVG = 'http://www.w3.org/2000/svg'
 const pts = (p: [number, number][]) => p.map(([x, y]) => `${x},${y}`).join(' ')
 
@@ -52,12 +66,12 @@ const UP = (() => {
 const R = DOT.r
 const DOWN = { x: UP.x, y: -UP.y } // down the counter-diagonal: right and down
 const NORMAL = { x: -DOWN.y, y: DOWN.x } // perpendicular to the rail, toward the side it sits on
-const RUN = 74 // how far it rolls along the rail
+const RUN = 60 // how far it rolls along the rail
 const ROLL = 1.05 // seconds on the rail, accelerating from rest
 const FLY = 0.36 // seconds in the air
 const SPEED = (2 * RUN) / ROLL // uniform acceleration from rest: v = 2s / t
 // Where it leaves the rail: as far left of the slot as it travels in the air, and well above it.
-const LEAVE = { x: DOT.cx - SPEED * DOWN.x * FLY, y: -42 }
+const LEAVE = { x: DOT.cx - SPEED * DOWN.x * FLY, y: -30 }
 const GRAVITY = (2 * (DOT.cy - LEAVE.y - SPEED * DOWN.y * FLY)) / FLY ** 2
 const START = { x: LEAVE.x - DOWN.x * RUN, y: LEAVE.y - DOWN.y * RUN }
 const railAt = (p: { x: number; y: number }) => ({ x: p.x + NORMAL.x * R, y: p.y + NORMAL.y * R })
@@ -150,7 +164,9 @@ export class HeroScene {
     make('line', {}, guides, 'g-level')
 
     const extras = make('g', {}, world, 'extras')
-    make('rect', { class: 'hf-c-ink', x: -30, y: 116, width: 160, height: 3 }, extras, 'plinth')
+    // The plinth runs out past the right edge of the window: the one element that is not
+    // contained by the plate, which is what keeps the plate from looking like a badge.
+    make('rect', { class: 'hf-c-ink', x: -30, y: 116, width: 900, height: 4 }, extras, 'plinth')
     for (let i = 0; i < 3; i++) {
       make('line', { class: 'hf-c-hatch', x1: 110, y1: 92 + i * 7, x2: 152, y2: 78 + i * 7 }, extras, `hatch${i}`)
     }
@@ -218,7 +234,7 @@ export class HeroScene {
     })
     this.set('g-cap', reach(-70, 0, 170, 0, g))
     this.set('g-base', reach(170, 108, -70, 108, g))
-    this.set('g-diag', reach(-110, 50 + 134 * SLOPE, 210, 50 - 186 * SLOPE, easeOut(span(t, 0.3, 1.2))))
+    this.set('g-diag', reach(-40, 50 + 64 * SLOPE, 210, 50 - 186 * SLOPE, easeOut(span(t, 0.3, 1.2))))
     this.set('g-v1', reach(24, -40, 24, 140, easeOut(span(t, 0.2, 1))))
     this.set('g-v2', reach(72, 140, 72, -40, easeOut(span(t, 0.35, 1.15))))
     // The angle the whole mark is built on, measured off the crossbar's foot.
@@ -489,7 +505,7 @@ export class StackField {
       ctx.globalAlpha = 1
       ctx.lineWidth = 1 + on * 1.5
       ctx.strokeStyle = on > 0.05 ? red : ink
-      ctx.globalAlpha = 0.35 + on * 0.65
+      ctx.globalAlpha = 0.55 + on * 0.45
       ctx.stroke()
       // One rule across each plane on the diagonal, the mark's own construction line.
       const r0 = P(-1, y, 0.6)
@@ -505,7 +521,7 @@ export class StackField {
       const label = c.reduce((a, b) => (b.x < a.x ? b : a))
       ctx.font = mono(700, narrow ? 11 : 12)
       ctx.fillStyle = on > 0.05 ? red : ink
-      ctx.globalAlpha = 0.4 + on * 0.6
+      ctx.globalAlpha = 0.6 + on * 0.4
       ctx.textAlign = 'right'
       ctx.fillText(LAYERS[k], Math.max(label.x - 12, ctx.measureText(LAYERS[k]).width + 4), label.y + 4)
     }
