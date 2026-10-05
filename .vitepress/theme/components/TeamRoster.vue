@@ -40,7 +40,6 @@ const PEOPLE: Record<string, Person> = {
   crmsndu: { gh: 'crmsndu', id: 74142908, name: 'Zheng Du', at: 'Georgia Tech' },
   JerryGJX: { gh: 'JerryGJX', id: 92502485, name: 'Junxian Guo', at: 'MIT · NVIDIA Research' },
   Waterpine: { gh: 'Waterpine', id: 29000790, name: 'Song Bian', at: 'NVIDIA Research' },
-  shinan6: { gh: 'shinan6', id: 24783784, name: 'Shinan Liu', at: 'University of Chicago' },
   zgdllt: { gh: 'zgdllt', id: 118046841, name: 'Menghan Li', at: 'Tsinghua University' },
   apostle715: { gh: 'apostle715', id: 232143882, name: 'Yitong Liu', at: 'Tsinghua University' },
 }
@@ -49,18 +48,18 @@ const PEOPLE: Record<string, Person> = {
  * The two the whole thing starts with, and they are two different acts.
  *
  * Ligeng Zhu is here and nowhere else. He worked on every project below, and a name repeated
- * under all six of them reads as somebody who helped out on each rather than as the person who
+ * under all five of them reads as somebody who helped out on each rather than as the person who
  * assembled the group -- which is the fact this section exists to state.
  */
 const FOUNDING = [
   {
     who: 'SihaoLiu',
-    role: 'Proposed Humanize 1',
+    role: 'Founding member',
     body:
-      'Wrote Humanize 1 at UCLA PolyArch, out of his own GAAC project, and with it the rule the '
-      + 'rest of this site is built on: the agent that wrote the code is not the agent that says '
-      + 'whether it is any good. Now a Research Scientist in the Architecture Research Group at '
-      + 'NVIDIA Research, designing chips with agent systems like Humanize 2.',
+      'Holds Humanize to the CLIs it actually drives: he aligned the drivers for Claude Code, '
+      + 'Kimi Code, Qwen Code, pi, opencode, grok, Cursor and ZCode with what each release really '
+      + 'takes, and the sign-in ways behind them. A Research Scientist in the Architecture '
+      + 'Research Group at NVIDIA Research, designing chips with agent systems like Humanize.',
     links: [
       { text: 'sihaoliu.github.io', href: 'https://sihaoliu.github.io/' },
     ],
@@ -87,26 +86,16 @@ interface Group {
 const GROUPS: Group[] = [
   {
     id: 'humanize',
-    name: 'Humanize 2: Agent Flow System',
+    name: 'Humanize: Agent Flow System',
     href: '/projects/humanize',
     what: 'The runtime: ten coding-agent CLIs, one flow, and the whole run written down.',
     members: [
       { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.', lead: true },
       { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
       { who: 'antoinegg1', role: 'Flows, the flowverse, and running the thing at Kaggle scale.' },
+      { who: 'SihaoLiu', role: 'Harness alignment: every driver held to what its CLI really does.' },
       { who: 'dongz9', role: 'Execution and the container path.' },
       { who: 'crmsndu', role: 'Long-horizon runs, and what breaks on them.' },
-    ],
-  },
-  {
-    id: 'rlcr-loop',
-    name: 'Humanize 1: RLCR Loop',
-    href: '/projects/rlcr-loop',
-    what: 'Humanize 1, where it all started: Claude implements, Codex reviews, the criteria end the run.',
-    members: [
-      { who: 'SihaoLiu', role: 'Lead. Proposed it, wrote it, and still maintains the plugin.', lead: true },
-      { who: 'shinan6', role: 'The plugin, and the monitor you watch a loop through.' },
-      { who: 'futrime', role: 'The port: the three commands, as flows.' },
     ],
   },
   {
@@ -227,7 +216,8 @@ const profileLabel = (who: string) => person(who).profileLabel ?? `@${person(who
 
 /* ---- The two it starts with -------------------------------------------------------------
    Wider than a member card and given the accent rule down the side, because these are two
-   acts rather than two more names: one proposed the loop, one went and found everybody. */
+   acts rather than two more names: one keeps the runtime honest about the agents it drives,
+   one went and found everybody. */
 
 .founding {
   display: grid;

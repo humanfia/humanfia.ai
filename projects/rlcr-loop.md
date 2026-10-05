@@ -82,4 +82,4 @@ hours at a time, and writes down everything that happened.
 
 [Humanize 2: Agent Flow System](/projects/humanize) ·
 [FlowBench](/projects/flowbench) ·
-[who built it](/team/#rlcr-loop)
+[who built it](/about/)
