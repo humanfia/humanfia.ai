@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createContentLoader, defineConfig, type ContentData, type SiteConfig } from 'vitepress'
@@ -42,38 +42,6 @@ const SECTIONS = {
   news: { name: 'News', feed: 'Humanfia news', about: 'What the flows did, one result per post.' },
 } as const
 type Section = keyof typeof SECTIONS
-
-/**
- * A section's sidebar, read off its directory at config time so publishing a post is still
- * writing one file. Ten most recent, newest first; the rest are one click away on the index.
- *
- * Deliberately its own list rather than the site-wide one: a reader inside a post is reading
- * that section, and a sidebar that also offers them every project page is a table of contents
- * for a book they did not open.
- */
-function sectionSidebar(section: Section) {
-  const dir = fileURLToPath(new URL(`../${section}`, import.meta.url))
-  const posts = readdirSync(dir)
-    .filter((name) => name.endsWith('.md') && name !== 'index.md')
-    .map((name) => {
-      const front = readFileSync(resolve(dir, name), 'utf8').split('---')[1] ?? ''
-      const title = /^title:\s*(.+)$/m.exec(front)?.[1]?.trim().replace(/^["']|["']$/g, '')
-      const date = /^date:\s*(.+)$/m.exec(front)?.[1]?.trim() ?? ''
-      return { text: title ?? name, link: `/${section}/${name.slice(0, -3)}`, date }
-    })
-    // Newest first, and the filename breaks a tie so two posts dated the same day do not
-    // swap places between builds.
-    .sort((a, b) => b.date.localeCompare(a.date) || b.link.localeCompare(a.link))
-
-  return [
-    {
-      // A heading, not an entry: there is no page above the posts for it to link to but the
-      // index, and the nav already goes there.
-      text: SECTIONS[section].name,
-      items: posts.slice(0, 10),
-    },
-  ]
-}
 
 export default defineConfig({
   title: 'Humanfia',
@@ -174,15 +142,12 @@ export default defineConfig({
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
 
-    // The blog is the one section with a sidebar. About is a single page and gets none at all: a
-    // list of one is furniture, not navigation. Nor does News: its index is already the whole
-    // list, one row per post (theme/components/NewsList.vue), and a sidebar of the ten newest
-    // beside it would be the top of the same list twice. Nor do the flows: their catalogue is the
-    // index, and every flow's page leads back to it (FlowsBack.vue). Nor do the projects: each
-    // page is drawn full width, and the nav's menu is the way between them.
-    sidebar: {
-      '/blog/': sectionSidebar('blog'),
-    },
+    // No section has a sidebar. About is a single page: a list of one is furniture, not
+    // navigation. The blog and news indexes are already the whole list (PostMosaic.vue,
+    // NewsList.vue), and a post's contents and the posts to read next are its layout's own. The
+    // flows' catalogue is their index, and every flow's page leads back to it (FlowsBack.vue).
+    // Each project page is drawn full width, and the nav's menu is the way between them.
+    sidebar: {},
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/humanfia' }],
 
