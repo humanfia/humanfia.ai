@@ -653,8 +653,10 @@ a.post-author:hover .post-author-name {
 }
 
 /* Markdown tables, set the way the kit's ResultsTable is: a heavy rule on top, hairlines
-   between rows, mono column heads, no zebra. */
-.post-body table {
+   between rows, mono column heads, no zebra. Only the post's own tables (and the ones written
+   into a SwipeCompare pane): a kit component's table draws itself. */
+.post-body > div > table,
+.post-body .sw-pane table {
   display: table;
   width: 100%;
   margin: 30px 0;
@@ -668,13 +670,14 @@ a.post-author:hover .post-author-name {
   overflow-x: auto;
 }
 
-.post-body tr {
+.post-body > div > table tr:nth-child(n),
+.post-body .sw-pane table tr:nth-child(n) {
   border-top: 0;
-  background: none !important;
+  background: none;
 }
 
-.post-body th,
-.post-body td {
+.post-body > div > table :is(th, td),
+.post-body .sw-pane table :is(th, td) {
   padding: 10px 12px;
   border: 0;
   border-bottom: 1px solid var(--vp-c-divider);
@@ -682,7 +685,8 @@ a.post-author:hover .post-author-name {
   line-height: 1.5;
 }
 
-.post-body th {
+.post-body > div > table thead th,
+.post-body .sw-pane table thead th {
   background: none;
   font-family: var(--vp-font-family-mono);
   font-size: 11px;

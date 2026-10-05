@@ -120,7 +120,7 @@ export default defineConfig({
   lang: 'en-US',
   cleanUrls: true,
   lastUpdated: true,
-  srcExclude: ['README.md'],
+  srcExclude: ['README.md', 'CONTRIBUTING.md'],
 
   sitemap: { hostname: HOSTNAME },
 
