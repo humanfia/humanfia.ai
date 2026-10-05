@@ -376,26 +376,224 @@
 
 /* --------------------------------------------------------------------------- 2 manifesto */
 
+/* The argument as a picture (ManifestoScene.vue): four short captions beside a scene that
+   plays once. The scene's box has the shape of its viewBox at every width, so nothing moves
+   when the page mounts and the phone layout takes over. */
 .h-manifesto {
-  padding: clamp(96px, 18vh, 200px) 0;
+  padding: clamp(80px, 14vh, 160px) 0;
   background: var(--h-bg);
   border-top: 6px solid var(--h-ink);
 }
-.h-manifesto-text {
-  max-width: 1300px;
+.h-manifesto-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) 1.3fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+.h-manifesto-acts {
   margin: 0;
-  font-size: clamp(28px, 4.1vw, 58px);
-  line-height: 1.12;
+  padding: 0;
+  list-style: none;
+}
+.h-manifesto-acts li {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 1.08;
   letter-spacing: -0.035em;
   font-weight: 700;
   color: var(--h-ink);
-  text-wrap: pretty;
+  text-wrap: balance;
 }
-.h-word {
-  transition: opacity 0.2s linear;
+.h-manifesto-acts li + li {
+  margin-top: 0.42em;
 }
-.h-word-strong {
+.h-manifesto-acts li.last {
   color: var(--h-red);
+}
+.h-manifesto-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 6px 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--h-ink-3);
+  transition: color 0.2s;
+}
+.h-manifesto-replay:hover {
+  color: var(--h-accent);
+}
+.h-manifesto-stage {
+  aspect-ratio: 720 / 344;
+}
+.h-manifesto-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.h-manifesto-svg text {
+  font-family: var(--vp-font-family-mono);
+  text-anchor: middle;
+}
+.h-manifesto .m-loop {
+  fill: none;
+  stroke: var(--h-ink);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+}
+.h-manifesto .m-spoke {
+  stroke: var(--h-ink-3);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 5;
+}
+.h-manifesto .m-exit,
+.h-manifesto .m-arrow {
+  stroke: var(--h-ink);
+  stroke-width: 2;
+}
+.h-manifesto .m-exit {
+  stroke-dasharray: 1;
+}
+.h-manifesto .m-chip-plate {
+  fill: var(--h-ink);
+}
+.h-manifesto .m-pulse {
+  fill: none;
+  stroke: var(--h-red);
+  stroke-width: 3;
+  opacity: 0;
+}
+.h-manifesto .m-ver {
+  fill: var(--h-on-ink);
+  font-family: var(--vp-font-family-base);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.h-manifesto .m-label,
+.h-manifesto .m-board-title {
+  /* a halo of the page's colour keeps a label clear of the loop it sits on */
+  paint-order: stroke;
+  stroke: var(--h-bg);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+  fill: var(--h-ink-2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.h-manifesto .m-card {
+  fill: var(--h-card);
+  stroke: var(--h-ink);
+  stroke-width: 1.5;
+}
+.h-manifesto .m-card-text {
+  fill: var(--h-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+/* The heads in the flow grammar's colours (`flow-ui`): the maker a disc, the reviewer a ring
+   that says what it found, the stop condition a square that fills when it fires. */
+.h-manifesto .m-head circle {
+  fill: var(--h-card);
+  stroke: var(--hue);
+  stroke-width: 4;
+}
+.h-manifesto .m-maker circle {
+  fill: var(--hue);
+}
+.h-manifesto .m-verdict {
+  fill: var(--flow-done);
+  font-family: var(--vp-font-family-base);
+  font-size: 22px;
+  font-weight: 800;
+}
+.h-manifesto .m-verdict.no {
+  fill: var(--flow-red);
+}
+.h-manifesto .m-gate-edge {
+  fill: var(--h-card);
+  stroke: var(--h-ink);
+  stroke-width: 3;
+}
+.h-manifesto .m-gate-fill {
+  fill: var(--flow-done);
+}
+.h-manifesto .m-token {
+  fill: var(--h-red);
+}
+.h-manifesto .m-board-frame {
+  fill: var(--h-card);
+  stroke: var(--h-line);
+  stroke-width: 1.5;
+}
+.h-manifesto .m-board-flash {
+  fill: none;
+  stroke: var(--h-red);
+  stroke-width: 3;
+}
+.h-manifesto .m-board-title {
+  stroke: var(--h-card);
+  text-anchor: start;
+  font-size: 12px;
+}
+.h-manifesto .m-board-rule {
+  stroke: var(--h-line);
+}
+.h-manifesto .m-rank {
+  fill: var(--h-ink-3);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: start;
+}
+.h-manifesto .m-bar {
+  fill: var(--h-ink-3);
+  opacity: 0.45;
+}
+.h-manifesto .m-bar-ours {
+  fill: var(--h-red);
+  opacity: 1;
+}
+.h-manifesto .m-score {
+  fill: var(--h-ink-2);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: end;
+}
+.h-manifesto .m-score-ours {
+  fill: var(--h-accent);
+}
+
+@media (max-width: 960px) {
+  .h-manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+  .h-manifesto-acts li {
+    font-size: clamp(24px, 5.4vw, 36px);
+  }
+  .h-manifesto-replay {
+    margin-top: 16px;
+  }
+}
+/* On a phone the leaderboard goes under the loop, and the labels are set larger in the viewBox
+   so that they come out at about the same size on screen. */
+@media (max-width: 640px) {
+  .h-manifesto-stage {
+    aspect-ratio: 440 / 640;
+  }
+  .h-manifesto .m-label,
+  .h-manifesto .m-card-text,
+  .h-manifesto .m-rank,
+  .h-manifesto .m-score,
+  .h-manifesto .m-board-title {
+    font-size: 15px;
+  }
 }
 
 /* ------------------------------------------------------------------------------- 3 stack */
