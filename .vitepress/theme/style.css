@@ -35,6 +35,11 @@
   /* The red, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
   --hf-red: #d6331f;
   --hf-red-deep: #b0271a;
+  /* The two reds again, pinned rather than flipped with the theme: a figure drawn inverted (ink
+     on paper in the dark, paper on ink in the light) needs the red of the ground it is drawn on,
+     not of the page around it. */
+  --hf-red-on-paper: #b0271a;
+  --hf-red-on-ink: #ff5a43;
 
   /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-red. */
   --hf-mark: var(--hf-ink-k);
