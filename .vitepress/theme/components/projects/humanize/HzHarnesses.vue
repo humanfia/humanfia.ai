@@ -154,7 +154,7 @@ const line = computed(() => {
   top: 12px;
   right: 12px;
   padding: 3px 6px;
-  font: 700 10px/1 var(--hz-mono);
+  font: 700 11px/1 var(--hz-mono);
   font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;

@@ -265,8 +265,9 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   height: auto;
   overflow: visible;
 }
+/* 15 units in a 720-wide picture: 11px or more at the narrowest the picture is drawn. */
 .md-art text {
-  font: 13px var(--hz-mono);
+  font: 15px var(--hz-mono);
 }
 .md-art text.lg {
   font: 800 19px var(--vp-font-family-base);

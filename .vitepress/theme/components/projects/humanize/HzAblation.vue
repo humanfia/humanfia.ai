@@ -222,7 +222,7 @@ const label = computed(() =>
 }
 .ab-gain small {
   margin-top: 4px;
-  font: 10.5px/1.2 var(--hz-mono);
+  font: 11px/1.2 var(--hz-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--hz-ink-3);

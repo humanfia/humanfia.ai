@@ -339,7 +339,7 @@ const pct = (v: number) => `${v}%`
   color: var(--paper);
 }
 .run-tok small {
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--paper-3);
 }
 
@@ -359,7 +359,7 @@ const pct = (v: number) => `${v}%`
   left: 50%;
   transform: translateX(-50%);
   padding: 2px 6px;
-  font-size: 10.5px;
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
   background: var(--red);
