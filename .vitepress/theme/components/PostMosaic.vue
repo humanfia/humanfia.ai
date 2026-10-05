@@ -6,6 +6,9 @@
 // is "here is everything we ran, go and check it". So: every post on the page at once, in
 // tiles of unequal width and height, packed dense so the seams do not line up.
 //
+// Squares, not cards with round corners: the same flat, hard-edged sheets as the rest of the
+// site, an ink rule across the top of each, the red band across every fifth.
+//
 // The sizes come from a fixed pattern rather than from anything random, because the server
 // renders this and the browser has to agree with it. The pattern repeats every eighteen tiles,
 // which at any length anyone will scroll reads as unruly rather than as a repeat -- and what
@@ -24,14 +27,15 @@ const props = withDefaults(defineProps<{ limit?: number; kind?: Kind }>(), { lim
 const STACK = 4
 
 /**
- * `[columns, rows, how much fits]`, on the six-column grid below.
+ * `[columns, rows, how much fits]`, on the six-column grid below. The rows are a minimum: the
+ * grid's rows grow to fit whatever a tile holds (see `.mosaic`), so no title is ever clipped.
  *
  * Two rules, and everything else is taste. Each run of tiles adds up to the six columns, so
  * dense packing never leaves a rectangle of nothing in the middle of the wall -- the widths
  * inside a run differ and the run's height differs from its neighbours', which is where the
- * unevenness comes from. And a row count is a floor, not a guess: a tile clips at its edges,
- * so every size gets at least the rows its clamped text needs, and any extra is air above the
- * footer, which is pinned to the bottom. Taller is always safe; shorter never is.
+ * unevenness comes from. And a row count is a floor: it used to be the only height a tile had,
+ * and a title one line longer than its tile was cut through the middle of that line. Now the row
+ * grows instead, and any extra height is air above the footer, which is pinned to the bottom.
  */
 const PATTERN = [
   [4, 6, 'xl'],
@@ -115,7 +119,9 @@ const big = (size: string) => size === 'xl' || size === 'lg'
 .mosaic {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-auto-rows: clamp(46px, 5.3vh, 68px);
+  /* A row is at least this tall and grows to fit: a tile's span sets its minimum, never its
+     maximum, so a long title makes its tile taller instead of being cut off mid-line. */
+  grid-auto-rows: minmax(clamp(46px, 5.3vh, 68px), auto);
   grid-auto-flow: row dense;
   gap: 14px;
   margin: 30px 0 0;
@@ -134,16 +140,17 @@ const big = (size: string) => size === 'xl' || size === 'lg'
   overflow: hidden;
   padding: 18px 20px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 14px;
+  border-top: 4px solid var(--vp-c-text-1);
+  border-radius: 0;
   background: var(--vp-c-bg);
   color: inherit;
   text-decoration: none;
-  transition: border-color 0.25s, background-color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, background-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-/* Every fifth tile is the soft surface instead of the plain one, and carries one wash of the
-   accent out of its top corner -- so the grid has a texture running through it rather than
-   twenty identical panels. */
+/* Every fifth tile is the soft surface instead of the plain one, and carries a short red band
+   across its top corner on the site's diagonal -- so the grid has a texture running through it
+   rather than twenty identical panels. */
 .tile.wash {
   background: var(--vp-c-bg-soft);
 }
@@ -151,19 +158,21 @@ const big = (size: string) => size === 'xl' || size === 'lg'
 .tile.wash::before {
   content: '';
   position: absolute;
-  inset: -60% 30% 40% -40%;
+  top: 26px;
+  right: -40px;
+  width: 150px;
+  height: 14px;
   pointer-events: none;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    color-mix(in srgb, var(--vp-c-brand-1) 15%, transparent),
-    transparent 70%
-  );
+  background: var(--hf-red);
+  transform: rotate(-17deg);
 }
 
 .tile:hover {
-  border-color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-text-1);
+  border-top-color: var(--hf-red);
   background: var(--vp-c-bg-soft);
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--vp-c-text-1);
 }
 
 .tile > * {
@@ -182,13 +191,13 @@ const big = (size: string) => size === 'xl' || size === 'lg'
 }
 
 .tile-tag {
-  padding: 1px 8px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 999px;
-  font-size: 10.5px;
-  letter-spacing: 0.07em;
+  padding: 2px 8px;
+  background: var(--vp-c-text-1);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-bg);
 }
 
 .tile h3 {
@@ -201,11 +210,7 @@ const big = (size: string) => size === 'xl' || size === 'lg'
   font-weight: 700;
   color: var(--vp-c-text-1);
   transition: color 0.2s;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  text-wrap: balance;
 }
 
 .tile:hover h3 {
@@ -300,12 +305,11 @@ const big = (size: string) => size === 'xl' || size === 'lg'
   width: 24px;
   height: 24px;
   overflow: hidden;
-  border-radius: 50%;
-  margin-left: -8px;
+  margin-left: -6px;
   box-shadow: 0 0 0 2px var(--vp-c-bg);
   background: var(--vp-c-brand-soft);
   font-family: var(--vp-font-family-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
 }

@@ -13,17 +13,18 @@ pnpm dev      # local preview
 pnpm build    # build into .vitepress/dist
 ```
 
-Pages are Markdown: `index.md`, `projects/`, `team/`, `about/`, and one file per post in
-`blog/`. Files in `public/` are published as they are.
+Pages are Markdown: `index.md`, `projects/`, `flows/`, `about/`, and one file per post in
+`news/` or `blog/`. Files in `public/` are published as they are.
 
-### Adding a blog post
+### Adding a post
 
-Add one file to `blog/`, named `YYYY-MM-DD-slug.md`, with this frontmatter:
+A post is one file, named `YYYY-MM-DD-slug.md`. Put results in `news/`: one result per post.
+Put essays and arguments in `blog/`. Start the file with this frontmatter:
 
 ```yaml
 ---
 title: "What was done, in one line"
-description: One or two sentences for the card, the feed and search engines.
+description: One or two sentences for the standfirst, the card, the feed and search engines.
 date: 2026-10-05
 authors:
   - Your Name
@@ -31,8 +32,12 @@ tag: HOA
 ---
 ```
 
-`tag` is the project the post belongs to. The blog index, the sidebar, the home page and
-`blog/feed.rss` are all generated from the frontmatter: there is no list to update.
+`tag` is the project the post belongs to. Everything else is generated from the frontmatter:
+the post's page (its hero, contents and related posts), the section index, the sidebar, the
+home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
+update. Figures come from the post kit: interactive charts, tables, diagrams and callouts
+that you write straight into the markdown. [CONTRIBUTING.md](CONTRIBUTING.md) is the guide to
+the post layout and every component in the kit.
 
 ### Deploying
 

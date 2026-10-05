@@ -1,0 +1,420 @@
+/**
+ * The post kit's shared look: one frame, one legend, one set of toggles, one readout, so every
+ * figure in every post reads as one system.
+ *
+ * Every colour is one of the site's tokens, re-exposed here under a short local name (`--k-*`)
+ * so that a figure can be inverted -- drawn ink-on-paper on a paper page, or paper-on-ink in the
+ * dark -- by swapping six variables on its root rather than restating every rule. Nothing in the
+ * kit names a hex value; a theme toggle repaints every chart live, mid-animation included.
+ *
+ * The shapes are the site's: hard corners, flat fills, hairlines in the divider colour, the red
+ * spent on the thing in focus. Type is the site's mono for everything that is the figure talking
+ * about itself (kickers, ticks, legends, readouts) and never under 11px.
+ */
+
+/* The page's tokens, set on the outermost kit element only: a kit component nested in another
+   (the data table inside an inverted chart, a leaderboard in the hero's card) inherits the
+   colours of the one it is in rather than resetting them to the page's. */
+.kit:not(.kit *) {
+  --k-bg: var(--vp-c-bg-soft);
+  --k-bg-2: var(--vp-c-bg);
+  --k-fg: var(--vp-c-text-1);
+  --k-fg-2: var(--vp-c-text-2);
+  --k-fg-3: var(--vp-c-text-3);
+  --k-line: var(--vp-c-divider);
+  --k-grid: var(--vp-c-gutter);
+  --k-red: var(--hf-red);
+  --k-red-text: var(--vp-c-brand-1);
+  --k-ink: var(--vp-c-text-1);
+  --k-grey: var(--vp-c-text-3);
+  --k-pale: color-mix(in srgb, var(--vp-c-text-3) 45%, transparent);
+  --k-ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --k-mono: var(--vp-font-family-mono);
+}
+
+.kit {
+  color: var(--k-fg);
+}
+
+/* The opposite of the page: ink on paper in the dark, paper on ink in the light. For the one or
+   two figures in a post that carry its headline number. */
+.kit.invert {
+  --k-bg: var(--hf-ink-k);
+  --k-bg-2: var(--hf-night-2);
+  --k-fg: var(--hf-paper);
+  --k-fg-2: var(--hf-paper-2);
+  --k-fg-3: var(--hf-paper-3);
+  --k-line: color-mix(in srgb, var(--hf-paper) 16%, transparent);
+  --k-grid: color-mix(in srgb, var(--hf-paper) 7%, transparent);
+  --k-red: var(--hf-red-on-ink);
+  --k-red-text: var(--hf-red-on-ink);
+  --k-ink: var(--hf-paper);
+  --k-grey: var(--hf-paper-3);
+  --k-pale: color-mix(in srgb, var(--hf-paper-3) 45%, transparent);
+}
+
+.dark .kit.invert {
+  --k-bg: var(--hf-paper);
+  --k-bg-2: var(--hf-paper-light);
+  --k-fg: var(--hf-ink-k);
+  --k-fg-2: var(--hf-ink-2);
+  --k-fg-3: var(--hf-ink-3);
+  --k-line: color-mix(in srgb, var(--hf-ink-k) 16%, transparent);
+  --k-grid: color-mix(in srgb, var(--hf-ink-k) 7%, transparent);
+  --k-red: var(--hf-red-on-paper);
+  --k-red-text: var(--hf-red-on-paper);
+  --k-ink: var(--hf-ink-k);
+  --k-grey: var(--hf-ink-3);
+  --k-pale: color-mix(in srgb, var(--hf-ink-3) 45%, transparent);
+}
+
+/* A series' colour, by tone. `--s` is what every mark of the series is painted with. */
+.kit .tone-red { --s: var(--k-red); }
+.kit .tone-ink { --s: var(--k-ink); }
+.kit .tone-grey { --s: var(--k-grey); }
+.kit .tone-pale { --s: var(--k-pale); }
+
+/* ---- The frame ----------------------------------------------------------------------------- */
+
+.kit.kit-frame {
+  position: relative;
+  margin: 36px 0;
+  padding: 18px 20px 16px;
+  border: 1px solid var(--k-line);
+  border-top: 4px solid var(--k-fg);
+  background: var(--k-bg);
+}
+
+.kit.kit-frame.bare {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.kit .kit-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
+  margin-bottom: 14px;
+}
+
+.kit .kit-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--k-mono);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--k-fg-3);
+}
+
+/* The red square: every figure's kicker starts with the one mark the brand owns. */
+.kit .kit-kicker::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--k-red);
+}
+
+.kit .kit-title {
+  margin: -4px 0 14px;
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 750;
+  color: var(--k-fg);
+}
+
+.kit .kit-sub {
+  margin: -8px 0 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--k-fg-2);
+}
+
+.kit .kit-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
+  margin-top: 14px;
+}
+
+.kit .kit-caption {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.kit.kit-frame .kit-caption {
+  color: var(--k-fg-2);
+}
+
+/* ---- Toggles: a segmented row of square buttons, the pressed one inked in ----------------- */
+
+.kit .kit-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--k-line);
+}
+
+.kit .kit-toggle button,
+.kit .kit-button {
+  min-height: 32px;
+  padding: 6px 11px;
+  border: 0;
+  background: transparent;
+  font-family: var(--k-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: var(--k-fg-2);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.kit .kit-toggle button + button {
+  border-left: 1px solid var(--k-line);
+}
+
+.kit .kit-toggle button:hover,
+.kit .kit-button:hover {
+  color: var(--k-fg);
+}
+
+.kit .kit-toggle button[aria-pressed='true'] {
+  background: var(--k-fg);
+  color: var(--k-bg);
+}
+
+.kit .kit-button {
+  border: 1px solid var(--k-line);
+}
+
+.kit .kit-button[aria-expanded='true'] {
+  border-color: var(--k-fg);
+  color: var(--k-fg);
+}
+
+.kit :focus-visible {
+  outline: 2px solid var(--k-red);
+  outline-offset: 2px;
+}
+
+.kit .kit-label {
+  font-family: var(--k-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--k-fg-3);
+}
+
+/* ---- The legend: a key that is also the series toggle ------------------------------------- */
+
+.kit .kit-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kit .kit-legend li {
+  margin: 0;
+}
+
+.kit .kit-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--k-mono);
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--k-fg-2);
+  cursor: pointer;
+}
+
+span.kit-key {
+  cursor: default;
+}
+
+.kit .kit-key[aria-pressed='false'] {
+  color: var(--k-fg-3);
+  text-decoration: line-through;
+}
+
+.kit .kit-key[aria-pressed='false'] .kit-swatch {
+  opacity: 0.3;
+}
+
+.kit .kit-swatch {
+  flex: none;
+  width: 16px;
+  height: 8px;
+  background: var(--s);
+}
+
+.kit .kit-swatch.line {
+  height: 3px;
+}
+
+.kit .kit-swatch.dashed {
+  height: 3px;
+  background: repeating-linear-gradient(90deg, var(--s) 0 5px, transparent 5px 8px);
+}
+
+.kit .kit-swatch.hatched {
+  background: repeating-linear-gradient(-45deg, var(--s) 0 2px, transparent 2px 4.5px);
+  box-shadow: inset 0 0 0 1px var(--s);
+}
+
+/* ---- The readout: what the pointer (or the arrow keys) is on ------------------------------ */
+
+.kit .kit-tip {
+  position: absolute;
+  z-index: 3;
+  min-width: 140px;
+  max-width: 260px;
+  padding: 9px 11px;
+  border: 1px solid var(--k-fg);
+  background: var(--k-bg-2);
+  box-shadow: 4px 4px 0 var(--k-red);
+  pointer-events: none;
+  font-family: var(--k-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--k-fg);
+  transition: opacity 0.15s;
+}
+
+.kit .kit-tip strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.kit .kit-tip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kit .kit-tip-row .kit-swatch {
+  width: 10px;
+}
+
+.kit .kit-tip-row b {
+  margin-left: auto;
+  padding-left: 12px;
+  font-weight: 700;
+}
+
+.kit .kit-tip-row em {
+  font-style: normal;
+  color: var(--k-red-text);
+}
+
+/* ---- Wide plots on a narrow screen scroll sideways rather than shrink their type ---------- */
+
+.kit .kit-scroll {
+  position: relative;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.kit .kit-hint {
+  display: none;
+  margin: 0 0 8px;
+  font-family: var(--k-mono);
+  font-size: 11px;
+  color: var(--k-fg-3);
+}
+
+.kit .kit-scroll.overflows + .kit-hint,
+.kit .kit-hint.show {
+  display: block;
+}
+
+/* SVG text, everywhere in the kit. 11px is the floor, and the charts draw in real pixels so the
+   number in the stylesheet is the number on the screen. */
+.kit svg text {
+  font-family: var(--k-mono);
+  font-size: 11px;
+  fill: var(--k-fg-3);
+}
+
+.kit .grid-line {
+  stroke: var(--k-grid);
+  stroke-width: 1;
+}
+
+.kit .axis-line {
+  stroke: var(--k-line);
+  stroke-width: 1;
+}
+
+.sr-only,
+.kit .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .kit.kit-frame {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 14px 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit *,
+  .kit *::before,
+  .kit *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---- AnimatedDiagram's vocabulary: the classes a diagram's shapes are painted with ---------- */
+
+.kit .ad-svg .ink { fill: var(--k-fg); }
+.kit .ad-svg .red { fill: var(--k-red); }
+.kit .ad-svg .grey { fill: var(--k-fg-3); }
+.kit .ad-svg .paper { fill: var(--k-bg); }
+.kit .ad-svg .frame { fill: var(--k-bg-2); stroke: var(--k-line); }
+.kit .ad-svg .line { fill: none; stroke: var(--k-fg-2); stroke-width: 1.5; }
+.kit .ad-svg .line.red { fill: none; stroke: var(--k-red); }
+.kit .ad-svg .line.ink { fill: none; stroke: var(--k-fg); }
+.kit .ad-svg .line.dash { stroke-dasharray: 5 5; }
+.kit .ad-svg text { font-family: var(--k-mono); font-size: calc(13px * var(--ad-k, 1)); fill: var(--k-fg-2); }
+.kit .ad-svg text.t-lg { font-size: calc(17px * var(--ad-k, 1)); }
+.kit .ad-svg text.t-xl { font-size: calc(22px * var(--ad-k, 1)); font-weight: 700; }
+.kit .ad-svg text.ink { fill: var(--k-fg); }
+.kit .ad-svg text.red { fill: var(--k-red-text); }
+.kit .ad-svg text.on-red { fill: var(--hf-paper); }
+.kit .ad-svg text.on-ink { fill: var(--k-bg); }

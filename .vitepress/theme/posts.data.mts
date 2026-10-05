@@ -21,6 +21,8 @@ export interface Post {
   description: string
   authors: string[]
   tag: string
+  /** Minutes to read, at 230 words a minute, never under one. */
+  minutes: number
 }
 
 declare const data: Post[]
@@ -40,8 +42,21 @@ const SHORT = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 })
 
+/** Words a reader will actually read: the body, without frontmatter, markup or code. */
+function wordsIn(src = '') {
+  const body = src
+    .replace(/^---[\s\S]*?---/, '')
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\]\([^)]*\)/g, ']')
+  return body.split(/\s+/).filter((word) => /[A-Za-z0-9]/.test(word)).length
+}
+
 export default createContentLoader(['blog/*.md', 'news/*.md'], {
   excerpt: false,
+  // The source is read for the reading time and then dropped: the transform returns only the
+  // fields below, so none of it reaches the page's payload.
+  includeSrc: true,
   transform(raw): Post[] {
     return raw
       .filter((page) => page.frontmatter.date && !page.url.endsWith('/'))
@@ -57,6 +72,7 @@ export default createContentLoader(['blog/*.md', 'news/*.md'], {
           description: page.frontmatter.description ?? '',
           authors: authorsOf(page.frontmatter),
           tag: page.frontmatter.tag ?? '',
+          minutes: Math.max(1, Math.round(wordsIn(page.src) / 230)),
         }
       })
       // Newest first. Two posts on one day are ordered by url, so the list is the same on
