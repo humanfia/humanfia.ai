@@ -18,8 +18,7 @@ KDA still finds the optimization opportunity and still lands the speedup. Two of
 FlyDSL, as pull requests **#711** and **#685**.
 
 This is the property that decides whether any of this is durable. New accelerators arrive with
-no corpus at all: every new accelerator will, at some point, be something an agent has read
-nothing about. A loop that works only where the answers already
+no corpus at all: on day one, an agent has read nothing about them. A loop that works only where the answers already
 exist on the internet is a search engine with extra steps. A loop that works on the thin
 documentation is a method.
 
