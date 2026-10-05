@@ -364,7 +364,7 @@ of those proofs is public.
 
 These runs are flows on [Humanize](/projects/humanize). PutnamBench is a Ralph loop with Codex
 as both worker and reviewer. Lean-Eval is refined against the compiler by HOA's agents and the
-[humanize1](/flows/humanize1) flow's plan-then-review loop. Watching them run for weeks is most
+[RLCR Flow](/flows/humanize1)'s plan-then-review loop. Watching them run for weeks is most
 of why [RLAR](/projects/humanize#the-flows-it-runs) and the rest of the [flows](/flows/) look the
 way they do.
 

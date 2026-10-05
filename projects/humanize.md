@@ -433,7 +433,7 @@ fetches, cover most of the loop shapes the field has converged on:
 </PostCard>
 <PostCard kicker="A plan first" title="Plan, then build under review">
 
-<code>humanize1</code>: an idea opened into a draft, a plan two agents agree on, and a build under review until nothing is left to say — the Claude Code plugin Humanize grew out of, as three flows. [Read it →](/flows/humanize1)
+RLCR Flow (<code>humanize1</code>): an idea opened into a draft, a plan two agents agree on, and a build under review until nothing is left to say — the Claude Code plugin Humanize grew out of, as three flows. [Read it →](/flows/humanize1)
 
 </PostCard>
 <PostCard kicker="Seven agents" title="Three lanes, one writer">

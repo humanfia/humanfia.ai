@@ -254,7 +254,7 @@ simple. It is not counted as upstream.
 ## Why it is here
 
 KDA is one of the places our flows go to be found out. Its first runs planned and built under
-review with the Humanize Claude Code plugin, now the [humanize1](/flows/humanize1) flow. KDA²
+review with RLCR Flow, the Claude Code plugin that is now the [`humanize1`](/flows/humanize1) flow. KDA²
 runs on [Humanize](/projects/humanize) flows. Either way the loop is a flow like any other, and
 the score is a wall-clock measurement on somebody else's benchmark, or a pull request a
 maintainer has to be willing to merge.
