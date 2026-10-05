@@ -1,7 +1,7 @@
 ---
 title: "Full marks on five science exams, and the fine print on every one"
 description: "IPhO 2026 theory 30 of 30, IChO 2026 formalized 68 of 68, IOI 2026 six of six, IBO 2024 theory 100 of 100, and quantum information theory 40 of 40. What each score is, who graded it, and what it does not show."
-date: 2026-10-05
+date: 2026-09-14
 authors:
   - Jing Xiong
   - Zhengyang Zhang
