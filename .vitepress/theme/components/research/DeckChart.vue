@@ -39,6 +39,8 @@ const H = computed(() => props.height - M.value.t - M.value.b)
 
 const hidden = ref(new Set<string>())
 const hot = ref<string | null>(null)
+// The series picked out by the legend, unless it is one the reader has just hidden.
+const lit = computed(() => (hot.value && !hidden.value.has(hot.value) ? hot.value : null))
 function toggle(id: string) {
   const next = new Set(hidden.value)
   if (next.has(id)) next.delete(id)
@@ -90,6 +92,10 @@ function move(e: PointerEvent) {
   const u = (e.clientX - r.left - M.value.l) / W.value
   cursor.value = u < 0 || u > 1 ? null : u
 }
+// A finger lifting off fires pointerleave at once; keep the reading until the next tap instead.
+function leave(e: PointerEvent) {
+  if (e.pointerType === 'mouse') cursor.value = null
+}
 function key(e: KeyboardEvent) {
   const d = e.key === 'ArrowRight' ? 0.02 : e.key === 'ArrowLeft' ? -0.02 : 0
   if (e.key === 'Home') cursor.value = 0
@@ -113,6 +119,7 @@ const reading = computed(() => {
     rows: rows.map((r) => ({ ...r, py: (1 - props.y.to(r.v)) * H.value, text: fmtY.value(r.v) })),
   }
 })
+const narrow = computed(() => width.value < 520)
 const flip = computed(() => reading.value !== null && reading.value.px > W.value * 0.58)
 </script>
 
@@ -146,8 +153,9 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
         tabindex="0"
         role="img"
         :aria-label="summary"
+        @pointerdown="move"
         @pointermove="move"
-        @pointerleave="cursor = null"
+        @pointerleave="leave"
         @keydown="key"
         @blur="cursor = null"
       >
@@ -175,7 +183,7 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
               :key="p.id"
               :d="p.d"
               class="dc-line"
-              :class="[`t${p.tone}`, { off: hidden.has(p.id), dim: hot && hot !== p.id, lift: hot === p.id }]"
+              :class="[`t${p.tone}`, { off: hidden.has(p.id), dim: lit && lit !== p.id, lift: lit === p.id }]"
             />
           </g>
           <g v-if="reading" class="dc-read" aria-hidden="true">
@@ -187,8 +195,8 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
       <div
         v-if="reading && reading.rows.length"
         class="dc-tip"
-        :class="{ flip }"
-        :style="{ left: `${M.l + reading.px}px` }"
+        :class="{ flip, below: narrow }"
+        :style="narrow ? {} : { left: `${M.l + reading.px}px` }"
         aria-hidden="true"
       >
         <b>{{ reading.x }}</b>
@@ -348,6 +356,13 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
 }
 .dc-tip.flip {
   transform: translateX(calc(-100% - 14px));
+}
+/* On a phone the box would cover the plot it reads, so it sits under it instead. */
+.dc-tip.below {
+  position: static;
+  transform: none;
+  margin-top: 6px;
+  box-shadow: 3px 3px 0 var(--vp-c-text-1);
 }
 .dc-tip b {
   font-weight: 700;

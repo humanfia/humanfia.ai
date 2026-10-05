@@ -28,7 +28,7 @@ watch(seen, (on) => {
 onBeforeUnmount(() => cancelAnimationFrame(raf))
 const grown = (a: number, b: number) => Math.max(0, Math.min(p.value, b) - a)
 const TIES = [
-  { from: [25, 1], to: [25, 3], label: 'started' },
+  { from: [25, 0], to: [25, 3], label: 'started' },
   { from: [57, 0], to: [57, 1], label: 'spawned' },
 ]
 </script>
@@ -46,6 +46,7 @@ const TIES = [
             <span
               v-if="s[2] && p >= s[0]"
               class="ex-slice"
+              :title="s[2]"
               :style="{ left: `${s[0]}%`, width: `${grown(s[0], s[1])}%` }"
             >{{ s[2] }}</span>
           </template>
@@ -169,6 +170,10 @@ figcaption {
   }
   .ex-clock {
     margin-left: 0;
+  }
+  /* Too narrow to name a slice; the row names and the caption carry it. */
+  .ex-slice {
+    color: transparent !important;
   }
   .ex-head {
     left: calc(100% * var(--p));

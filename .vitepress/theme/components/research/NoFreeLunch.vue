@@ -34,7 +34,12 @@ const PROPOSALS = [
   [70, 60], [250, 70], [120, 175], [230, 165], [190, 128],
 ] as const
 const shown = computed(() => PROPOSALS.filter((_, i) => u.value > 0.12 + i * 0.16))
-const feasible = (p: readonly number[]) => p[0] > 140 && p[0] < 220 && p[1] > 90 && p[1] < 150
+// The diagonal band runs between the lines through (100,210)-(180,20) and (180,210)-(260,20).
+const slant = (y: number) => ((210 - y) * 80) / 190
+const feasible = ([x, y]: readonly number[]) =>
+  x > 140 && x < 220 && y > 90 && y < 150 && x > 100 + slant(y) && x < 180 + slant(y)
+// Where all three bands overlap, as drawn.
+const FEASIBLE = '150.5,90 220,90 220,115 205.3,150 140,150 140,115'
 const done = computed(() => shown.value.some(feasible))
 const CHECKS = ['features implemented', 'tests pass', 'lints clean']
 
@@ -85,8 +90,8 @@ const trapped = minima.length ? minima[0] : 0.1
         <rect x="140" y="20" width="80" height="190" class="nfl-band b1" />
         <rect x="20" y="90" width="280" height="60" class="nfl-band b2" />
         <polygon points="100,210 180,20 260,20 180,210" class="nfl-band b3" />
-        <rect x="140" y="90" width="80" height="60" class="nfl-feasible" :class="{ hit: done }" />
-        <text x="146" y="104" class="nfl-tag">feasible</text>
+        <polygon :points="FEASIBLE" class="nfl-feasible" :class="{ hit: done }" />
+        <text x="156" y="104" class="nfl-tag">feasible</text>
         <g v-for="(p, i) in shown" :key="i" :transform="`translate(${p[0]},${p[1]})`" :class="['nfl-try', { ok: feasible(p) }]">
           <circle r="7" />
           <path v-if="feasible(p)" d="M-3.5 0 L-1 3 L4 -3" />

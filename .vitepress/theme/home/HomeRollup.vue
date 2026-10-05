@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // Everything the three applications did, on one sheet: HOA, KDA and HMA, one line per result,
-// each one linked to the post that says how to check it. A few results we have only stated in
-// talks are on the sheet too, marked "Humanfia-reported" with the date we said them; the switch
-// at the top takes them off, leaving only what a reader can verify from here.
+// linked to the post that says how to check it. Results with no independent check -- our own
+// measurements in a blog post, or claims we have only made in talks -- are marked
+// "Humanfia-reported" with their date; the switch at the top takes them off.
 import { computed, ref } from 'vue'
 
 interface Item {
@@ -76,9 +76,9 @@ const COLUMNS: Column[] = [
 
 const verifiedOnly = ref(false)
 const columns = computed(() =>
-  COLUMNS.map((c) => ({ ...c, items: c.items.filter((i) => !(verifiedOnly.value && i.reported && !i.href)) })),
+  COLUMNS.map((c) => ({ ...c, items: c.items.filter((i) => !(verifiedOnly.value && i.reported)) })),
 )
-const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported && !i.href).length
+const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).length
 </script>
 
 <template>
@@ -96,7 +96,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported &
       </header>
       <label class="ru-switch">
         <input v-model="verifiedOnly" type="checkbox" />
-        <span>Hide the {{ reportedCount }} results we have only stated in talks</span>
+        <span>Hide the {{ reportedCount }} results that are only Humanfia-reported</span>
       </label>
       <div class="ru-cols">
         <article v-for="c in columns" :key="c.id" class="ru-col">

@@ -13,8 +13,12 @@ pnpm dev      # local preview
 pnpm build    # build into .vitepress/dist
 ```
 
-Pages are Markdown: `index.md`, `projects/`, `flows/`, `about/`, and one file per post in
-`news/` or `blog/`. Files in `public/` are published as they are.
+Pages are Markdown: `index.md`, `projects/`, `flows/`, `research/`, `about/`, and one file per
+post in `news/` or `blog/`. Files in `public/` are published as they are.
+
+The figures on the research pages are drawn by `.vitepress/theme/components/research/`: a line
+chart with log and hand-spaced axes the post kit does not have yet, and the data it plots, read
+off the charts in our talk slides (`deck-data.json`, described in `figures.ts`).
 
 ### Adding a post
 
@@ -62,7 +66,7 @@ pnpm check:docs     # every link out to the documentation reaches the page it na
 The site's code — `.vitepress/` (configuration, theme, components and checks), `scripts/`,
 the workflows and the build configuration — is licensed under [Apache-2.0](LICENSE).
 
-The content — the pages in `index.md`, `blog/`, `projects/`, `team/` and `about/`, and the
+The content — the pages in `index.md`, `blog/`, `projects/`, `research/`, `team/` and `about/`, and the
 images under `public/` — is licensed under
 [CC-BY-4.0](LICENSE-CC-BY-4.0): reuse it with attribution to Humanfia and a link to the page.
 
