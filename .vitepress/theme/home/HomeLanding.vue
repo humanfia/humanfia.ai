@@ -10,6 +10,8 @@ import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { data as posts } from '../posts.data.mts'
 import { HeroScene, StackField, fitScene } from './fields'
+import HomeRollup from './HomeRollup.vue'
+import HomeVision from './HomeVision.vue'
 import {
   clamp,
   easeOut,
@@ -475,6 +477,9 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    <!-- 4b. Everything the three applications did, on one sheet. -->
+    <HomeRollup />
+
     <!-- 5. Where a flow is found out: three cards dealt one over the other as the page scrolls. -->
     <section class="h-apps" aria-labelledby="apps-title">
       <div class="h-wrap">
@@ -599,6 +604,9 @@ onBeforeUnmount(() => {
         </a>
       </div>
     </section>
+
+    <!-- 7b. The ambition, as a poster. -->
+    <HomeVision />
 
     <!-- 8. Built in public. -->
     <section class="h-section h-cta" aria-labelledby="cta-title">

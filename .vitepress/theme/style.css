@@ -169,6 +169,15 @@
   color: var(--vp-c-text-2);
 }
 
+/* How much of a subsystem a reader can use today, under its heading on the Deep Tech page. */
+.vp-doc p.status {
+  padding: 8px 12px;
+  border-left: 4px solid var(--hf-red);
+  background: var(--vp-c-bg-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 /* The mono kicker above a heading, for pages that want a section label. */
 .kicker {
   font-family: var(--vp-font-family-mono);
