@@ -38,9 +38,12 @@ decisions into the repository, and every round reads them back.
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `agent` | Takes every round, each in a fresh session. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `agent` | agent, required | `-a agent=…` | Takes every round, each in a fresh session. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Where every round works, and all that carries from one to the next. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 No params. The loop pauses 5 seconds between rounds.
 

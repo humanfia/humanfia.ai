@@ -1,13 +1,14 @@
-// How the check that every word can be read (`.vitepress/legible.mjs`) gets hold of a scene.
+// How a script driving a browser gets hold of a flow player.
 //
-// Played on a clock, a scene is wherever the clock has got it to when the check looks, and a
-// busy machine looks later: the same check would pass on one run and fail on the next. So the
-// check does not play a scene. It holds it still at one moment of its timeline after another
-// and measures each, the same moments every run. Every scene lists itself here for that, and
-// only in a browser driven by automation: a reader's browser never has `window.__hmzScenes`.
+// Played on a clock, a scene is wherever the clock has got it to when a screenshot is taken,
+// and a busy machine takes it later: the same script would catch a different moment every run.
+// So it does not play a scene. It holds it still at one moment of its timeline after another,
+// the same moments every run. Every player lists itself here for that, and only in a browser
+// driven by automation: a reader's browser never has `window.__hmzScenes`. The name and shape
+// are the ones humanize's documentation uses, so one script reads both sites.
 
 export interface Probe {
-  /** The scene's outermost element: `.hmz-stage` or `.hmz-flow-player`. */
+  /** The scene's outermost element, `.hmz-flow-player`. */
   root: () => Element | null
   /** Seconds in one pass of its timeline. */
   duration: () => number

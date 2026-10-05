@@ -30,10 +30,13 @@ answered, or one task done.
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `assistant` | The agent you talk to. It may also search and read the web. |
-| `human` | You. humanize fills this role; it takes no `-a`. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `assistant` | agent, required | `-a assistant=…` | The agent you talk to. It may also search and read the web. |
+| `human` | you | filled by humanize; no `-a` | The person at the prompt. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Where the assistant reads and works. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 No params.
 
@@ -62,8 +65,8 @@ one, [export the run](https://docs.humanfia.ai/humanize/user/export) from `/epic
 This is the heart of the flow, as humanize ships it:
 
 ```python
-conversation = await assistant.spawn(env=workspace)
-person = await human.spawn(env=workspace)
+conversation = await assistant.spawn()
+person = await human.spawn()
 said = task
 while said:
     answered = await assistant.run(said, session=conversation)

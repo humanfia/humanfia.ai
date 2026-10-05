@@ -37,10 +37,13 @@ If one of the two should judge rather than work, use [rlar](/flows/rlar).
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `first_chaser` | Takes the odd turns, each in a fresh session. |
-| `second_chaser` | Takes the even turns, each in a fresh session. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `first_chaser` | agent, required | `-a first_chaser=…` | Takes the odd turns, each in a fresh session. |
+| `second_chaser` | agent, required | `-a second_chaser=…` | Takes the even turns, each in a fresh session. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The one tree both chasers work in, and all that passes between them. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 No params. The loop pauses 5 seconds between turns.
 

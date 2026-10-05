@@ -5,7 +5,10 @@ pageClass: flow-page
 # Flows
 
 A **flow** is a loop around coding agents: which agents it drives, what each is asked, and when
-it stops. Pick the one that fits your job, give each of its roles an agent, and set a budget.
+it stops. Every one here runs on [Humanize](/projects/humanize). Pick the one that fits your
+job, give each of its roles an agent, and set a budget.
+
+<FlowsHero />
 
 <FlowCatalogue />
 
@@ -58,13 +61,13 @@ params and a budget, then remembers them for this project. `/flow` changes them 
 | On the command line | What it says |
 | --- | --- |
 | `-f rlar` | the flow, by the name on its card |
-| `-a actor=claude/claude-opus-5:high` | the agent for one role: `role=CLI/MODEL:EFFORT`, once per role |
+| `-a actor=claude/claude-opus-5:high` | the agent for one role, as `role=CLI[@PROVIDER]/MODEL[:EFFORT]`. Every flow's page lists its roles |
 | `-p max=20` | a param, for a flow that takes some |
 | `-p budget.duration=6h,budget.cost=60` | the [budget](https://docs.humanfia.ai/humanize/features/allowances). Every flow but `chat` needs one |
 | `--resume` | pick up this flow's newest run in this directory |
 
-Two things never take a flag: the `human` role, which is you, and the directory the agents work
-in, which is wherever you start the run. Every flag is in the [CLI reference](https://docs.humanfia.ai/humanize/reference/cli).
+Two things never take a flag: the `human` role, which is you, and `workspace`, the directory the
+agents work in, which is wherever you start the run. So no flow here takes an `-e`. Every flag is in the [CLI reference](https://docs.humanfia.ai/humanize/reference/cli).
 
 ::: tip Every other flow is installed first
 `chat` and the six loops above ship with humanize. Any other flow runs once it is installed

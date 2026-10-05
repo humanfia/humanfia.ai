@@ -42,13 +42,16 @@ It coordinates local work only: nothing in it releases, deploys, submits or send
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `coordinator` | Plans the three lanes, once, and leaves the run. |
-| `lane_1_actor_a` · `lane_1_actor_b` | Lane 1, taking turns. The only ones that write your tree. |
-| `lane_2_actor_a` · `lane_2_actor_b` | Lane 2, taking turns, on a private copy. |
-| `lane_3_actor_a` · `lane_3_actor_b` | Lane 3, taking turns, on a private copy. |
-| `human` | You, filled in by humanize. Asked only to confirm copying a very large workspace. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `coordinator` | agent, required | `-a coordinator=…` | Plans the three lanes, once, and leaves the run. |
+| `lane_1_actor_a` · `lane_1_actor_b` | agent, required | `-a lane_1_actor_a=…,lane_1_actor_b=…` | Lane 1, taking turns. The only ones that write your tree. |
+| `lane_2_actor_a` · `lane_2_actor_b` | agent, required | `-a lane_2_actor_a=…,lane_2_actor_b=…` | Lane 2, taking turns, on a private copy. |
+| `lane_3_actor_a` · `lane_3_actor_b` | agent, required | `-a lane_3_actor_a=…,lane_3_actor_b=…` | Lane 3, taking turns, on a private copy. |
+| `human` | you | filled by humanize; no `-a` | Asked only to confirm copying a very large workspace. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Your tree, which lane 1 writes; lanes 2 and 3 get private copies of it, and the coordinator a snapshot. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 Every role may write anywhere its user can and use the web: lanes run your builds, tests and
 evaluators, and publish what they make beside the workspace. Any backend can fill any role, and

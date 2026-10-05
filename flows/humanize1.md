@@ -4,10 +4,11 @@ pageClass: flow-page
 
 # humanize1
 
-Plan first, then build under review. [PolyArch/humanize](https://github.com/PolyArch/humanize),
-the Claude Code plugin humanize grew out of, as three flows you run one after another:
-`gen-idea` opens a loose idea into a draft, `gen-plan` turns the draft into a plan two agents
-agreed on, and `rlcr` builds that plan under review until nothing is left to say.
+Plan first, then build under review. This is Humanize 1, the
+[Claude Code plugin](https://github.com/PolyArch/humanize) the rest of humanfia grew out of,
+as three flows you run one after another: `gen-idea` opens a loose idea into a draft,
+`gen-plan` turns the draft into a plan two agents agreed on, and `rlcr` builds that plan under
+review until nothing is left to say.
 
 <FlowFacts flow="humanize1" />
 
@@ -35,9 +36,50 @@ hmz exec -f humanize1:rlcr \
 
 :::
 
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
+
 Name the phase: a bare `humanize1` is refused. Each phase is a run of its own, and what passes
 from one to the next is a file, the draft and then the plan. Read and edit each before you
 start the next, and put each phase on whichever models suit it.
+
+## Where it came from {#story}
+
+Humanize 1 was proposed at [UCLA PolyArch](https://polyarch.cs.ucla.edu/), derived from
+[GAAC](https://github.com/SihaoLiu/gaac), and shipped as a Claude Code plugin under MIT. Its
+loop is **RLCR**: the Ralph Loop with Codex Review, a Ralph loop with an independent review in
+every round. It also reads as *Reinforcement Learning with Code Review*, which is what the loop
+does: the review is the reward, and the next round is the update.
+
+<div class="card-grid">
+  <div class="card">
+    <span class="kicker">Iteration over perfection</span>
+    <h3>Nobody gets it right in one shot</h3>
+    <p>The work is refined in rounds, not asked for in one long prompt. A problem found in round two costs a round, not a rewrite.</p>
+  </div>
+  <div class="card">
+    <span class="kicker">One builds, one reviews</span>
+    <h3>The builder is not the judge</h3>
+    <p>One model implements, another reviews and marks severity. Different blind spots, and neither grades its own homework.</p>
+  </div>
+  <div class="card">
+    <span class="kicker">The loop</span>
+    <h3>It ends on the criteria</h3>
+    <p>Findings feed back into the build until every acceptance criterion is met, not until the model says it is finished.</p>
+  </div>
+  <div class="card">
+    <span class="kicker">Begin with the end in mind</span>
+    <h3>The person is checked too</h3>
+    <p>Before the loop starts, it quizzes <em>you</em> on the plan about to run. You stay the architect; the agents are the leverage.</p>
+  </div>
+</div>
+
+The plugin outgrew itself. A plugin drives the one coding agent it is installed in;
+[Humanize](/projects/humanize) drives any of them, on machines that are not yours, for days,
+and writes down everything that happened. So Humanize 1 lives on here, as flows: the same
+commands, each phase on whichever agents suit it, run, forked and beaten like any other flow
+in the [flowverse](https://github.com/humanfia/flowverse). It set the rule the other loops are
+built on: the reviewer arrives with no memory, reads the repository rather than the
+transcript, and what it noticed is what the builder hears next.
 
 ## 1 · gen-idea {#gen-idea}
 
@@ -46,6 +88,11 @@ start the next, and put each phase on whichever models suit it.
 One `drafter` picks `n` different directions for the idea, explores each against this
 repository, and writes a draft with one main direction and the rest as alternatives. It writes
 no code. The run ends when the draft is written.
+
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `drafter` | agent, required | `-a drafter=…` | Explores every direction and writes the draft. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The repository the idea is about; the draft lands in it. |
 
 | Param | Default | |
 | --- | --- | --- |
@@ -63,6 +110,12 @@ material. The run ends when the plan is written.
 
 A decision the two left `PENDING` fails the run once the plan is written: answer it in the
 file, or run `gen-plan` again with somebody at the prompt to be asked.
+
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `planner` | agent, required | `-a planner=…` | Writes and revises the plan, in one session. |
+| `analyst` | agent, required | `-a analyst=…` | Checks the draft against the repository, then reviews each version of the plan, fresh each time. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The repository the plan is for; the plan lands in it. |
 
 | Param | Default | |
 | --- | --- | --- |
@@ -93,6 +146,13 @@ line is not read.
   requests, and only those backends ask.
 - **It needs a git repository.** Every review reads the work since the commit the plan was
   fixed in.
+
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `builder` | agent, required: `claude`, `codex` or `kimi` | `-a builder=…` | Builds the plan, in one session held from round to round. |
+| `reviewer` | agent, required | `-a reviewer=…` | Reviews each round, and the whole change at the end, fresh each time. |
+| `human` | you | filled by humanize; no `-a` | Quizzed on the plan, and asked the reviewer's open questions. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The git repository being built; every review reads the work since the plan's commit. |
 
 | Param | Default | |
 | --- | --- | --- |

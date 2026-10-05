@@ -47,10 +47,13 @@ is the flow's own [skill](https://docs.humanfia.ai/humanize/user/skills), `revie
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `actor` | Does the work, in one session held for the whole run. |
-| `reviewer` | Reads the repository after each round, in a fresh session every time. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `actor` | agent, required | `-a actor=…` | Does the work, in one session held for the whole run. |
+| `reviewer` | agent, required | `-a reviewer=…` | Reads the repository after each round, in a fresh session every time. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Where the actor works and the reviewer reads. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 No params. The loop pauses 5 seconds between rounds.
 

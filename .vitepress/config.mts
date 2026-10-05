@@ -154,8 +154,9 @@ export default defineConfig({
     logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'Humanfia' },
     siteTitle: 'Humanfia',
 
-    // Projects is a menu, and the other two are plain links. There is no projects index
-    // any more: a page whose whole job was to list six links, when a menu lists the same six
+    // Projects is a menu, and so is Flows, beside it: the flows run on Humanize, and the menu
+    // groups them as the catalogue at /flows/ does. The rest are plain links. There is no
+    // projects index any more: a page whose whole job was to list six links, when a menu lists the same six
     // without costing a page load, and every one of those pages opens with the sentence the
     // index was paraphrasing. The way in is now the project itself.
     //

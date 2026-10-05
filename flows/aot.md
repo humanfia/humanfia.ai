@@ -55,11 +55,14 @@ A refusal at any step goes back to the writer word for word, for up to `repairs`
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `writer` | Draws the spec, then drafts and repairs the flow, in one session. |
-| `critic` | Reads each draft that passed the gates, in a fresh session. It may only read. |
-| `human` | You, filled in by humanize. Asked about names, capabilities, and a draft whose repairs ran out. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `writer` | agent, required | `-a writer=…` | Draws the spec, then drafts and repairs the flow, in one session. |
+| `critic` | agent, required | `-a critic=…` | Reads each draft that passed the gates, in a fresh session. It may only read. |
+| `human` | you | filled by humanize; no `-a` | Asked about names, capabilities, and a draft whose repairs ran out. |
+| `workspace` | environment, local | the directory you start in; no `-e` | This project: the draft is written in a scratch directory beside it, and lands in its `.hmz/flows/`. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 Both agents carry the flow's own [skill](https://docs.humanfia.ai/humanize/user/skills), `writing-flows`: how a flow is written
 against humanize. Any backend can fill either role.

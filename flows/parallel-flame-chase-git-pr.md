@@ -51,13 +51,16 @@ merged and what was refused.
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `orchestrator` | Plans the three lanes, once. |
-| `lane_1_actor_a` · `lane_1_actor_b` | Lane 1, taking turns in fresh sessions, in a clone of its own. |
-| `lane_2_actor_a` · `lane_2_actor_b` | Lane 2, the same. |
-| `lane_3_actor_a` · `lane_3_actor_b` | Lane 3, the same. |
-| `human` | You, filled in by humanize. Asked only to confirm copying a very large workspace. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `orchestrator` | agent, required | `-a orchestrator=…` | Plans the three lanes, once. |
+| `lane_1_actor_a` · `lane_1_actor_b` | agent, required | `-a lane_1_actor_a=…,lane_1_actor_b=…` | Lane 1, taking turns in fresh sessions, in a clone of its own. |
+| `lane_2_actor_a` · `lane_2_actor_b` | agent, required | `-a lane_2_actor_a=…,lane_2_actor_b=…` | Lane 2, the same. |
+| `lane_3_actor_a` · `lane_3_actor_b` | agent, required | `-a lane_3_actor_a=…,lane_3_actor_b=…` | Lane 3, the same. |
+| `human` | you | filled by humanize; no `-a` | Asked only to confirm copying a very large workspace. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Your tree, from which the run makes a central repository and a clone per lane. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 Any backend can fill any role. The lane actors may also write outside their clone, which is how
 they push to the run's central repository.

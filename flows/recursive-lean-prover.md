@@ -68,10 +68,13 @@ run prints its directory as it starts; watch the graph of lemmas grow in the `DA
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `worker` | Writes every plan, proof and Lean formalization. Must be `claude`, `codex` or `kimi`: `rlcr`'s guards work through its permission requests. |
-| `reviewer` | Checks every proof and candidate, and reruns the comparator itself. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `worker` | agent, required | `-a worker=…` | Writes every plan, proof and Lean formalization. Must be `claude`, `codex` or `kimi`: `rlcr`'s guards work through its permission requests. |
+| `reviewer` | agent, required | `-a reviewer=…` | Checks every proof and candidate, and reruns the comparator itself. |
+| `workspace` | environment, local | the directory you start in; no `-e` | Your Lean repository, with a git worktree of it for every lemma formalized. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 Every turn is a fresh session. Both roles may write across your home directory and use the web.
 

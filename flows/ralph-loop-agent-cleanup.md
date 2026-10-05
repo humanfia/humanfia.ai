@@ -43,11 +43,14 @@ reads again. Each fresh session then starts from a tree that holds only the work
 
 ## Roles and params
 
-| Role | |
-| --- | --- |
-| `agent` | The coding turns, each in a fresh session. |
-| `cleaner` | One cleaning at a time, in a fresh session that it keeps through its repairs. |
-| `human` | You, filled in by humanize. Asked only whether to start on a very large workspace. |
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `agent` | agent, required | `-a agent=…` | The coding turns, each in a fresh session. |
+| `cleaner` | agent, required | `-a cleaner=…` | One cleaning at a time, in a fresh session that it keeps through its repairs. |
+| `human` | you | filled by humanize; no `-a` | Asked only whether to start on a very large workspace. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The repository every turn works in and every cleaning distills. Its git history is rewritten each epoch. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
 
 Every role must be a backend the flow can speak to mid-turn, because a turn that runs too long
 is told to wrap up: `claude`, `codex`, `kimi` or `pi`. Any other is refused before the first
