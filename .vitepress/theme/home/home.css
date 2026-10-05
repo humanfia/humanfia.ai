@@ -1,52 +1,53 @@
 /**
- * The home page's own look. It borrows the site's tokens -- the slate, the accent, the one
- * amber -- and adds what a page that is a sequence of full-width scenes needs and a document
- * does not: a big type scale, two section greys, and the start state of everything that moves.
+ * The home page's own look, in the mark's language: ink, paper and one red; flat planes with
+ * hard edges; one diagonal. It borrows the site's tokens (style.css) and adds what a page made
+ * of full-width sections needs and a document does not: a big type scale, the paper's two
+ * bands, the hero's construction, and the start state of everything that moves.
+ *
+ * Corners are square or nearly so -- a constructivist plate is cut, not moulded -- and there
+ * are no gradients or glows: emphasis is the red, or a heavier weight of ink.
  *
  * Scoped under .hf-home-root, so nothing here reaches a project page or a post.
  */
 
 .hf-home-root {
-  --h-bg: #ffffff;
-  --h-bg-alt: #f5f6f8;
-  --h-ink: var(--hf-ink);
-  --h-ink-2: #5b6474;
-  --h-ink-3: #8a93a3;
-  --h-line: rgba(15, 23, 42, 0.08);
-  --h-card: #ffffff;
-  --h-accent: var(--hf-blue);
-  --h-accent-2: var(--hf-blue-mid);
-  --h-warm: var(--hf-amber);
-  --h-grad: linear-gradient(100deg, var(--hf-slate) 10%, var(--hf-blue) 55%, var(--hf-blue-mid) 100%);
-  --h-glow: rgba(46, 89, 158, 0.16);
+  --h-bg: var(--hf-paper-light);
+  --h-bg-alt: var(--hf-paper);
+  --h-card: var(--hf-paper-white);
+  --h-ink: var(--hf-ink-k);
+  --h-ink-2: var(--hf-ink-2);
+  --h-ink-3: var(--hf-ink-3);
+  --h-line: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
+  /* The red as text (deeper, for contrast on paper) and as a shape. */
+  --h-accent: var(--hf-red-deep);
+  --h-red: var(--hf-red);
+  /* What sits on a red or an ink plate. */
+  --h-on-ink: var(--hf-paper-light);
   --h-max: 1180px;
   --h-pad: clamp(20px, 5vw, 48px);
   --h-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --h-radius: 2px;
 
   color: var(--h-ink);
   background: var(--h-bg);
   overflow-x: clip;
-  font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
 }
 
 .dark .hf-home-root {
-  --h-bg: #000000;
-  --h-bg-alt: #0b0d12;
-  --h-ink: #f2f4f8;
-  --h-ink-2: #a3acbb;
-  --h-ink-3: #6d7685;
-  --h-line: rgba(226, 232, 240, 0.1);
-  --h-card: #10131a;
-  --h-accent: var(--hf-blue-light);
-  --h-accent-2: var(--hf-blue-pale);
-  --h-warm: var(--hf-amber-light);
-  --h-grad: linear-gradient(100deg, #ffffff 10%, var(--hf-blue-pale) 50%, var(--hf-blue-light) 100%);
-  --h-glow: rgba(110, 147, 207, 0.22);
+  --h-bg: var(--hf-ink-k);
+  --h-bg-alt: var(--hf-night);
+  --h-card: var(--hf-night-2);
+  --h-ink: var(--hf-paper);
+  --h-ink-2: var(--hf-paper-2);
+  --h-ink-3: var(--hf-paper-3);
+  --h-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
+  --h-accent: var(--hf-red);
+  --h-on-ink: var(--hf-ink-k);
 }
 
-/* The page under the home component is the theme's, and the theme pads it for a hero we no
-   longer have. Black under a black page, so the overscroll does not flash white. */
+/* The page under the home component is the theme's, and the theme pads it for a hero we do
+   not use. */
 .hf-home .VPHome {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -54,14 +55,9 @@
 .hf-home .VPContent.is-home {
   padding-top: 0 !important;
 }
-.dark .hf-home .VPContent,
-.dark .hf-home .VPFooter {
-  background: #000;
-}
 
-/* The nav floats over the scenes as frosted glass, the way a product page's does -- at every
-   width. The theme only fixes it from 960 up; below that it is in the flow, which pushed every
-   pinned scene 64px down and cut the bottom off each one. */
+/* The nav floats over the hero as a sheet of paper laid over it -- at every width. The theme
+   only fixes it from 960 up; below that it is in the flow, which would push the hero down. */
 .hf-home .VPNav {
   position: fixed;
   top: 0;
@@ -72,9 +68,9 @@
   background: transparent !important;
 }
 .hf-home .VPNavBar .wrapper {
-  background: color-mix(in srgb, var(--vp-c-bg) 72%, transparent);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: color-mix(in srgb, var(--vp-c-bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--vp-c-divider);
 }
 .hf-home .VPNavBar .divider,
@@ -91,20 +87,37 @@
   padding: 0 var(--h-pad);
 }
 
+/* A kicker is a label on a plate: mono capitals, and a short red bar in front of it. */
 .h-kicker {
-  margin: 0 0 14px;
-  font-size: clamp(14px, 1.2vw, 17px);
-  font-weight: 600;
-  letter-spacing: 0;
-  color: var(--h-accent);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-family: var(--vp-font-family-mono);
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--h-ink);
+}
+.h-kicker::before {
+  content: '';
+  flex: none;
+  width: 28px;
+  height: 6px;
+  background: var(--h-red);
+}
+.h-center .h-kicker,
+.h-kicker.h-center {
+  justify-content: center;
 }
 
 .h-display {
   margin: 0;
   font-size: clamp(44px, 7.6vw, 108px);
-  line-height: 1.02;
+  line-height: 0.98;
   letter-spacing: -0.045em;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--h-ink);
   text-wrap: balance;
 }
@@ -114,9 +127,9 @@
   padding: 0;
   border: 0;
   font-size: clamp(36px, 5.4vw, 76px);
-  line-height: 1.04;
+  line-height: 1;
   letter-spacing: -0.04em;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--h-ink);
 }
 
@@ -131,11 +144,9 @@
   text-wrap: pretty;
 }
 
-.h-gradient {
-  background: var(--h-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* The one emphasised word in a headline is the red, not a gradient. */
+.h-red {
+  color: var(--h-red);
 }
 
 .h-center {
@@ -150,13 +161,14 @@
 
 .h-link {
   font-size: clamp(16px, 1.3vw, 19px);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--h-accent) !important;
   text-decoration: none !important;
 }
 .h-link:hover {
   text-decoration: underline !important;
-  text-underline-offset: 3px;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 4px;
 }
 
 /* ------------------------------------------------------------------------------- buttons */
@@ -164,265 +176,282 @@
 .h-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 12px;
   margin-top: 34px;
 }
 .h-actions.h-center {
   justify-content: center;
 }
 
+/* Square plates. The primary is the ink with a red edge that slides out under the pointer --
+   the mark's own relation between the big plane and the small red thing beside it. */
 .h-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 48px;
-  padding: 0 24px;
-  border-radius: 999px;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  gap: 8px;
+  height: 50px;
+  padding: 0 26px;
+  border-radius: var(--h-radius);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
   text-decoration: none !important;
-  transition: transform 0.4s var(--h-ease), background-color 0.25s, box-shadow 0.4s var(--h-ease);
-}
-.h-btn:hover {
-  transform: translateY(-1px) scale(1.02);
-}
-.h-btn:active {
-  transform: scale(0.98);
+  transition: transform 0.35s var(--h-ease), background-color 0.25s, box-shadow 0.35s var(--h-ease);
 }
 .h-btn-primary {
-  color: #fff !important;
-  background: var(--hf-blue);
-  box-shadow: 0 10px 30px -10px rgba(46, 89, 158, 0.6);
+  color: var(--h-on-ink) !important;
+  background: var(--h-ink);
+  box-shadow: 0 0 0 0 var(--h-red);
 }
 .h-btn-primary:hover {
-  background: var(--hf-blue-dark);
-  box-shadow: 0 16px 40px -12px rgba(46, 89, 158, 0.7);
-}
-.dark .h-btn-primary {
-  color: #0b1220 !important;
-  background: #f2f4f8;
-  box-shadow: 0 10px 40px -12px rgba(141, 174, 226, 0.6);
-}
-.dark .h-btn-primary:hover {
-  background: #ffffff;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 0 var(--h-red);
 }
 .h-btn-ghost {
   color: var(--h-ink) !important;
-  background: color-mix(in srgb, var(--h-ink) 6%, transparent);
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--h-ink);
 }
 .h-btn-ghost:hover {
-  background: color-mix(in srgb, var(--h-ink) 10%, transparent);
+  background: color-mix(in srgb, var(--h-ink) 8%, transparent);
 }
-
-/* ------------------------------------------------------------------------- pinned scenes */
-
-/* A pinned scene is a tall section with a window-sized child that sticks. The section's
-   height is the length of the timeline; the child is what plays. */
-.h-pin {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-}
-.h-pin-center {
-  display: grid;
-  place-items: center;
+.h-btn:active {
+  transform: none;
+  box-shadow: 0 0 0 0 var(--h-red);
 }
 
 /* -------------------------------------------------------------------------------- 1 hero */
 
+/* One screen tall and not pinned: it scrolls away like anything else, and the picture comes
+   apart as it goes (fields.ts). */
 .h-hero {
-  height: 210vh;
-  background:
-    radial-gradient(45% 55% at 74% 55%, var(--h-glow), transparent 70%),
-    var(--h-bg);
+  position: relative;
+  background: var(--h-bg);
 }
-.h-hero-canvas {
+.h-hero-stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 1100px;
+  overflow: hidden;
+}
+.h-hero-svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
-/* Copy on the left, the H on the right. The right column is an empty box: the canvas behind
-   the whole scene reads its position and draws the H into it. */
+/* Copy on the left, the H on the right. The right column is an empty box: the SVG behind the
+   whole stage reads its position and builds the H in it. */
 .h-hero-grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(24px, 4vw, 64px);
   max-width: var(--h-max);
   height: 100%;
   margin: 0 auto;
   padding: var(--vp-nav-height) var(--h-pad) 0;
+  pointer-events: none;
 }
 .h-hero-copy {
   min-width: 0;
-  will-change: transform, opacity;
+  pointer-events: auto;
 }
 .h-hero .h-display {
-  font-size: clamp(40px, 5.3vw, 82px);
+  font-size: clamp(42px, 5.6vw, 88px);
 }
 .h-hero-copy .h-lead {
-  max-width: 34em;
+  max-width: 30em;
 }
 .h-hero-copy .h-actions {
-  margin-top: 30px;
+  margin-top: 34px;
 }
 .h-hero-art {
-  height: min(66svh, 620px);
+  height: min(74svh, 700px);
   min-height: 0;
 }
-.h-hero .h-kicker {
-  font-size: clamp(15px, 1.3vw, 19px);
+
+/* The hero's construction (fields.ts HeroScene). Mark units, scaled by the world group, so
+   every stroke that should stay a hairline at any size is non-scaling. */
+.hf-c-ink {
+  fill: var(--hf-mark);
+}
+.hf-c-red {
+  fill: var(--h-red);
+}
+.hf-c-disc {
+  fill: var(--h-bg-alt);
+}
+.dark .hf-c-disc {
+  fill: var(--hf-night-2);
+}
+.hf-c-hair line,
+.hf-c-hair path,
+.hf-c-hair circle {
+  fill: none;
+  stroke: var(--h-ink-3);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+.hf-c-hatch {
+  stroke: var(--h-ink);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+.hf-c-outline {
+  fill: none;
+  stroke: var(--h-red);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+.hf-c-rail {
+  stroke: var(--h-ink);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+.hf-c-ring {
+  fill: none;
+  stroke: var(--h-red);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+.hf-c-notch {
+  fill: var(--h-bg);
+}
+.hf-c-wedge {
+  fill: var(--h-red);
+}
+.hf-c-band {
+  fill: var(--h-ink);
+}
+.hf-c-label {
+  font-family: var(--vp-font-family-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  fill: var(--h-ink-2);
 }
 
-/* The first paint: each line rises in once, in order. */
+/* The first paint: each line rises in once, in order, on the hero's own clock. */
 .h-load {
-  animation: h-rise 1.1s var(--h-ease) both;
+  animation: h-rise 0.9s var(--h-ease) both;
   animation-delay: var(--d, 0s);
 }
 @keyframes h-rise {
   from {
     opacity: 0;
-    transform: translateY(24px);
-    filter: blur(6px);
+    transform: translateY(28px);
   }
 }
 
+/* The cue: a short bar that drops, like a rule being drawn down. */
 .h-cue {
   position: absolute;
   left: 50%;
-  bottom: 28px;
-  width: 22px;
-  height: 36px;
-  margin-left: -11px;
-  border: 1.5px solid var(--h-ink-3);
-  border-radius: 12px;
+  bottom: 26px;
+  width: 2px;
+  height: 44px;
+  margin-left: -1px;
+  background: var(--h-line);
+  overflow: hidden;
 }
 .h-cue span {
   position: absolute;
-  left: 50%;
-  top: 7px;
-  width: 3px;
-  height: 7px;
-  margin-left: -1.5px;
-  border-radius: 2px;
-  background: var(--h-ink-3);
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 16px;
+  background: var(--h-red);
   animation: h-cue 1.8s var(--h-ease) infinite;
 }
 @keyframes h-cue {
-  0% { transform: translateY(0); opacity: 0; }
-  30% { opacity: 1; }
-  80% { transform: translateY(12px); opacity: 0; }
-  100% { opacity: 0; }
+  0% { transform: translateY(-16px); }
+  70%,
+  100% { transform: translateY(44px); }
 }
 
 /* --------------------------------------------------------------------------- 2 manifesto */
 
 .h-manifesto {
-  height: 240vh;
+  padding: clamp(96px, 18vh, 200px) 0;
   background: var(--h-bg);
+  border-top: 6px solid var(--h-ink);
 }
 .h-manifesto-text {
-  max-width: 1040px;
+  max-width: 1060px;
   margin: 0;
-  padding: 0 var(--h-pad);
   font-size: clamp(28px, 4.1vw, 58px);
-  line-height: 1.16;
+  line-height: 1.12;
   letter-spacing: -0.035em;
-  font-weight: 650;
+  font-weight: 700;
   color: var(--h-ink);
   text-wrap: pretty;
 }
 .h-word {
-  transition: opacity 0.18s linear;
+  transition: opacity 0.2s linear;
 }
 .h-word-strong {
-  background: var(--h-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--h-red);
 }
 
 /* ------------------------------------------------------------------------------- 3 stack */
 
+/* The paragraphs scroll as paragraphs; the picture beside them is sticky. Each paragraph is
+   most of a screen tall so one is in the middle of the window at a time. */
 .h-stack {
-  height: 560vh;
+  padding: clamp(96px, 14vh, 168px) 0 clamp(48px, 8vh, 96px);
   background: var(--h-bg);
+}
+.h-stack .h-head {
+  margin-bottom: 0;
 }
 .h-stack-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 0.85fr) 1.15fr;
-  align-items: center;
-  gap: 24px;
+  grid-template-columns: 1.15fr minmax(300px, 0.85fr);
+  gap: clamp(24px, 4vw, 64px);
   max-width: var(--h-max);
-  height: 100%;
   margin: 0 auto;
-  padding: var(--vp-nav-height) var(--h-pad) 0;
+  padding: 0 var(--h-pad);
+}
+.h-stack-art {
+  position: relative;
 }
 .h-stack-canvas {
+  position: sticky;
+  top: calc(var(--vp-nav-height) + (100svh - var(--vp-nav-height) - min(76svh, 720px)) / 2);
+  display: block;
   width: 100%;
-  height: min(78vh, 760px);
-}
-.h-steps-rail {
-  display: flex;
-  gap: 6px;
-  margin: 34px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.h-steps-rail li {
-  flex: 1;
-  margin: 0;
-}
-.h-rail-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--h-ink-3);
-  transition: color 0.3s;
-  white-space: nowrap;
-}
-.h-rail-label.on {
-  color: var(--h-ink);
-}
-.h-rail-bar {
-  display: block;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--h-line);
-  overflow: hidden;
-}
-.h-rail-bar i {
-  display: block;
-  height: 100%;
-  background: var(--h-accent);
-  transform-origin: left;
-}
-.h-steps-rail li:last-child .h-rail-bar i {
-  background: var(--h-warm);
+  height: min(76svh, 720px);
 }
 .h-steps {
-  position: relative;
-  min-height: 280px;
-  margin-top: 36px;
+  display: grid;
 }
 .h-step {
-  position: absolute;
-  inset: 0 0 auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72svh;
+  padding: 24px 0 24px 28px;
+  border-left: 2px solid var(--h-line);
+  opacity: 0.32;
+  transition: opacity 0.5s var(--h-ease), border-color 0.5s var(--h-ease);
+}
+.h-step.on {
+  opacity: 1;
+  border-left-color: var(--h-red);
 }
 .h-step h3,
 .h-panel h3 {
   margin: 10px 0 0;
   font-size: clamp(26px, 2.8vw, 40px);
-  line-height: 1.1;
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--h-ink);
 }
 .h-step p:not(.h-step-tag),
@@ -436,12 +465,14 @@
   margin: 0;
   font-family: var(--vp-font-family-mono);
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--h-accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--h-ink-2);
 }
-.h-step-tag.warm {
-  color: var(--h-warm);
+.h-step-tag.warm,
+.h-step.on .h-step-tag {
+  color: var(--h-accent);
 }
 
 /* ---------------------------------------------------------------------- shared sections */
@@ -471,17 +502,17 @@
 .h-bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
+  gap: 16px;
 }
+/* A tile is a sheet on the band. Under the pointer it lifts off along the diagonal and casts
+   a hard red shadow -- the print offset, not a blur. */
 .h-tile {
-  --mx: 50%;
-  --my: 50%;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 260px;
-  padding: 30px 30px 26px;
-  border-radius: 28px;
+  padding: 28px 28px 24px;
+  border-radius: var(--h-radius);
   background: var(--h-card);
   border: 1px solid var(--h-line);
   color: var(--h-ink) !important;
@@ -489,29 +520,32 @@
   overflow: hidden;
   isolation: isolate;
   transition:
-    transform 0.6s var(--h-ease),
-    box-shadow 0.6s var(--h-ease),
+    transform 0.45s var(--h-ease),
+    box-shadow 0.45s var(--h-ease),
     border-color 0.3s;
 }
-.h-tile::before {
+.h-tile::after {
+  /* A red corner, folded in from the top right: where the H keeps its circle. */
   content: '';
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(420px circle at var(--mx) var(--my), var(--h-glow), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 22px 22px 0;
+  border-color: transparent var(--h-red) transparent transparent;
+  transform: scale(0);
+  transform-origin: top right;
+  transition: transform 0.45s var(--h-ease);
 }
 .h-tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.28);
-  border-color: color-mix(in srgb, var(--h-accent) 35%, transparent);
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 0 var(--h-ink);
+  border-color: var(--h-ink);
 }
-.dark .h-tile:hover {
-  box-shadow: 0 30px 80px -30px rgba(110, 147, 207, 0.35);
-}
-.h-tile:hover::before {
-  opacity: 1;
+.h-tile:hover::after {
+  transform: none;
 }
 .h-tile.w7 { grid-column: span 7; }
 .h-tile.w5 { grid-column: span 5; }
@@ -521,21 +555,21 @@
   min-height: 380px;
 }
 .h-tile-label {
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--h-ink-2);
 }
 .h-tile-num {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: clamp(54px, 6vw, 88px);
   line-height: 1;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.05em;
   font-variant-numeric: tabular-nums;
-  background: var(--h-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--h-ink);
 }
 .h-tile.tall .h-tile-num {
   font-size: clamp(72px, 9vw, 136px);
@@ -551,10 +585,10 @@
   margin-top: auto;
   padding-top: 18px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--h-accent);
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateX(-8px);
   transition: opacity 0.3s, transform 0.4s var(--h-ease);
 }
 .h-tile:hover .h-tile-more {
@@ -565,34 +599,32 @@
 /* The small pictures in the tiles. Each one is drawn empty and fills in when its tile counts. */
 .v-six {
   position: absolute;
-  right: 30px;
-  bottom: 30px;
+  right: 28px;
+  bottom: 28px;
   display: grid;
   grid-template-columns: repeat(3, 44px);
-  gap: 10px;
+  gap: 8px;
 }
 .v-six i {
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   color: transparent;
-  border: 1.5px solid var(--h-line);
+  border: 2px solid var(--h-line);
   transition: all 0.5s var(--h-ease) calc(var(--i) * 0.16s + 0.2s);
 }
 .live .v-six i {
-  color: #fff;
-  background: var(--hf-blue);
-  border-color: var(--hf-blue);
-  transform: scale(1.04);
+  color: var(--h-on-ink);
+  background: var(--h-ink);
+  border-color: var(--h-ink);
 }
-.dark .live .v-six i {
-  color: #0b1220;
-  background: var(--hf-blue-light);
-  border-color: var(--hf-blue-light);
+.live .v-six i:last-child {
+  background: var(--h-red);
+  border-color: var(--h-red);
+  border-radius: 50%;
 }
 
 .v-versus {
@@ -607,16 +639,16 @@
   gap: 10px;
 }
 .v-versus em {
-  font-size: 12px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
   font-style: normal;
-  color: var(--h-ink-3);
+  color: var(--h-ink-2);
 }
 .v-versus i,
 .v-bars i {
   display: block;
-  height: 10px;
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--h-ink) 18%, transparent);
+  height: 12px;
+  background: color-mix(in srgb, var(--h-ink) 22%, transparent);
   transform: scaleX(0);
   transform-origin: left;
   width: var(--w);
@@ -624,7 +656,7 @@
 }
 .v-versus i.hot,
 .v-bars i.hot {
-  background: linear-gradient(90deg, var(--hf-blue), var(--hf-blue-mid));
+  background: var(--h-red);
 }
 .live .v-versus i {
   transform: scaleX(1);
@@ -654,9 +686,10 @@
   transform-origin: bottom;
 }
 .v-bars em {
+  font-family: var(--vp-font-family-mono);
   font-size: 11px;
   font-style: normal;
-  color: var(--h-ink-3);
+  color: var(--h-ink-2);
 }
 .live .v-bars i {
   transform: scaleY(1);
@@ -671,11 +704,10 @@
 .v-ring circle {
   fill: none;
   stroke: var(--h-line);
-  stroke-width: 4;
+  stroke-width: 6;
 }
 .v-ring circle.on {
-  stroke: var(--hf-blue-mid);
-  stroke-linecap: round;
+  stroke: var(--h-red);
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
   transition: stroke-dashoffset 1.6s var(--h-ease) 0.2s;
@@ -687,7 +719,7 @@
 .v-grid,
 .v-dots {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   margin-top: 22px;
 }
 .v-grid {
@@ -701,7 +733,6 @@
 .v-grid i,
 .v-dots i {
   aspect-ratio: 1;
-  border-radius: 3px;
   background: var(--h-line);
   transition: background-color 0.4s var(--h-ease) calc(var(--i) * 0.018s);
 }
@@ -709,45 +740,60 @@
   border-radius: 50%;
   transition-delay: calc(var(--i) * 0.05s);
 }
-.live .v-grid i.on,
+.live .v-grid i.on {
+  background: var(--h-ink);
+}
 .live .v-dots i.on {
-  background: var(--hf-blue-mid);
+  background: var(--h-red);
 }
 
 /* ------------------------------------------------------------------------ 5 applications */
 
 .h-apps {
-  height: 360vh;
+  padding: clamp(96px, 14vh, 168px) 0;
   background: var(--h-bg);
 }
-.h-apps-pin {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: var(--vp-nav-height);
-}
-.h-apps-head {
-  width: 100%;
-  margin-bottom: clamp(24px, 4vh, 44px);
-}
-.h-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  padding: 0 max(var(--h-pad), calc((100vw - var(--h-max)) / 2 + var(--h-pad)));
-  will-change: transform;
+/* The deck: every card is sticky a little lower than the one before, so as the page scrolls
+   the next card slides up over the last and a strip of each stays showing above it, like
+   sheets dealt onto a pile. The card underneath sinks back (scale, set from the script) and
+   darkens under the one that covers it (--cover). */
+.h-deck {
+  display: grid;
+  gap: 8vh;
+  padding-bottom: 4vh;
 }
 .h-panel {
+  --cover: 0;
+  position: sticky;
+  top: calc(var(--vp-nav-height) + 28px);
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   align-items: center;
   gap: clamp(24px, 4vw, 56px);
-  width: min(1080px, 86vw);
-  min-height: min(62vh, 560px);
+  min-height: min(64svh, 580px);
   padding: clamp(28px, 4vw, 56px);
-  border-radius: 32px;
+  border-radius: var(--h-radius);
   background: var(--h-bg-alt);
   border: 1px solid var(--h-line);
+  border-top: 6px solid var(--h-ink);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.h-panel:nth-child(2) {
+  top: calc(var(--vp-nav-height) + 44px);
+  border-top-color: var(--h-red);
+}
+.h-panel:nth-child(3) {
+  top: calc(var(--vp-nav-height) + 60px);
+}
+.h-panel::after {
+  /* The shade a sheet casts on the one under it: deeper the more it covers. */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--h-ink);
+  opacity: calc(var(--cover) * 0.18);
+  pointer-events: none;
 }
 .h-panel-art {
   align-self: stretch;
@@ -755,10 +801,9 @@
   flex-direction: column;
   justify-content: center;
   padding: clamp(20px, 3vw, 36px);
-  border-radius: 22px;
+  border-radius: var(--h-radius);
   background: var(--h-card);
   border: 1px solid var(--h-line);
-  box-shadow: 0 40px 80px -50px rgba(15, 23, 42, 0.35);
 }
 
 .art-lean .art-cmd {
@@ -773,15 +818,11 @@
 .art-lean .art-cmd em {
   margin-left: 10px;
   padding: 2px 8px;
-  border-radius: 6px;
   font-style: normal;
   font-size: 12px;
-  color: #15803d;
-  background: rgba(21, 128, 61, 0.1);
-}
-.dark .art-lean .art-cmd em {
-  color: #86efac;
-  background: rgba(134, 239, 172, 0.1);
+  font-weight: 700;
+  color: var(--h-on-ink);
+  background: var(--h-ink);
 }
 .art-lean ul {
   margin: 0;
@@ -797,11 +838,11 @@
   font-size: 16px;
 }
 .art-lean li b {
-  color: #16a34a;
+  color: var(--h-red);
 }
 .art-lean li em {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--h-ink);
 }
@@ -823,10 +864,12 @@
   min-width: 70px;
   height: 38px;
   padding-right: 12px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, var(--hf-blue), var(--hf-blue-mid));
-  color: #fff;
+  background: var(--h-ink);
+  color: var(--h-on-ink);
   font-style: normal;
+}
+.art-bar:first-child i {
+  background: var(--h-red);
 }
 .art-bar b {
   font-size: 16px;
@@ -843,16 +886,18 @@
 .art-tiles {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 18px;
 }
 .art-tiles i {
   aspect-ratio: 1.3;
-  border-radius: 10px;
   background: var(--h-line);
 }
 .art-tiles i.on {
-  background: linear-gradient(135deg, var(--hf-blue), var(--hf-blue-mid));
+  background: var(--h-ink);
+}
+.art-tiles i.on:nth-child(5n + 1) {
+  background: var(--h-red);
 }
 
 /* --------------------------------------------------------------------------- 6 runtime */
@@ -861,8 +906,8 @@
   position: relative;
   margin: 0 0 clamp(48px, 7vh, 80px);
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  border-top: 2px solid var(--h-ink);
+  border-bottom: 2px solid var(--h-ink);
 }
 .h-marquee-row {
   display: flex;
@@ -873,15 +918,24 @@
   display: flex;
 }
 .h-marquee b {
-  margin-right: 18px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  border: 1px solid var(--h-line);
-  background: var(--h-bg-alt);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 18px 28px 18px 0;
   font-family: var(--vp-font-family-mono);
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 26px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--h-ink);
+}
+.h-marquee b::after {
+  /* A small red disc between names: the H's circle, as a bullet. */
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--h-red);
 }
 @keyframes h-marquee {
   to {
@@ -889,45 +943,50 @@
   }
 }
 
+/* The terminal is the one dark plate on a light page, and stays ink in both modes. */
 .h-term {
   max-width: 860px;
   margin: 0 auto;
-  border-radius: 18px;
+  border-radius: var(--h-radius);
   overflow: hidden;
-  background: #0b0f17;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 50px 100px -40px rgba(15, 23, 42, 0.55);
+  background: var(--hf-ink-k);
+  border: 1px solid color-mix(in srgb, var(--hf-paper) 14%, transparent);
+  box-shadow: 12px 12px 0 0 var(--h-red);
 }
 .h-term-bar {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid color-mix(in srgb, var(--hf-paper) 10%, transparent);
 }
 .h-term-bar i {
   width: 12px;
   height: 12px;
+  background: color-mix(in srgb, var(--hf-paper) 22%, transparent);
+}
+.h-term-bar i:first-child {
   border-radius: 50%;
-  background: #3a3f4b;
+  background: var(--hf-red);
 }
 .h-term-bar span {
   flex: 1;
   text-align: center;
+  font-family: var(--vp-font-family-mono);
   font-size: 12px;
-  color: #6b7280;
+  color: var(--hf-paper-3);
 }
 .h-copy {
   padding: 4px 12px;
-  border-radius: 999px;
+  font-family: var(--vp-font-family-mono);
   font-size: 12px;
-  font-weight: 600;
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+  color: var(--hf-paper);
+  background: color-mix(in srgb, var(--hf-paper) 10%, transparent);
   transition: background-color 0.2s;
 }
 .h-copy:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: color-mix(in srgb, var(--hf-paper) 18%, transparent);
 }
 /* Wrapped rather than scrolled: on a phone the install line is longer than the card, and a
    command you have to scroll sideways to read is a command people copy half of. */
@@ -939,10 +998,13 @@
   font-family: var(--vp-font-family-mono);
   font-size: clamp(13px, 1.25vw, 16px);
   line-height: 1.9;
-  color: #e2e8f0;
+  color: var(--hf-paper);
 }
 .h-term .p {
-  color: var(--hf-blue-light);
+  color: var(--hf-red);
+}
+.dark .h-term .p {
+  color: var(--h-red);
 }
 .h-caret {
   display: inline-block;
@@ -950,7 +1012,7 @@
   height: 1.15em;
   margin-left: 2px;
   vertical-align: -0.2em;
-  background: var(--hf-amber-light);
+  background: var(--hf-paper);
   animation: h-blink 1s steps(1) infinite;
 }
 @keyframes h-blink {
@@ -962,20 +1024,23 @@
 .h-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 0;
   max-width: 1080px;
-  margin: clamp(48px, 7vh, 80px) auto 0;
+  margin: clamp(56px, 8vh, 88px) auto 0;
+  border-top: 2px solid var(--h-ink);
 }
 .h-feature {
-  padding: 28px;
-  border-radius: 22px;
-  background: var(--h-bg-alt);
-  border: 1px solid var(--h-line);
+  padding: 24px 28px 8px 0;
+}
+.h-feature + .h-feature {
+  padding-left: 28px;
+  border-left: 1px solid var(--h-line);
 }
 .h-feature h3 {
   margin: 0;
   font-size: 21px;
   letter-spacing: -0.02em;
+  font-weight: 800;
   color: var(--h-ink);
 }
 .h-feature p {
@@ -992,27 +1057,26 @@
 
 .h-rail-nav {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 .h-rail-nav button {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 46px;
+  height: 46px;
   font-size: 24px;
   line-height: 1;
   color: var(--h-ink);
-  background: color-mix(in srgb, var(--h-ink) 7%, transparent);
-  transition: background-color 0.2s, transform 0.3s var(--h-ease);
+  box-shadow: inset 0 0 0 2px var(--h-ink);
+  transition: background-color 0.2s, color 0.2s;
 }
 .h-rail-nav button:hover {
-  background: color-mix(in srgb, var(--h-ink) 12%, transparent);
-  transform: scale(1.06);
+  color: var(--h-on-ink);
+  background: var(--h-ink);
 }
 .h-posts {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   padding: 6px max(var(--h-pad), calc((100vw - var(--h-max)) / 2 + var(--h-pad))) 28px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -1028,34 +1092,38 @@
   flex-direction: column;
   width: min(360px, 80vw);
   min-height: 300px;
-  padding: 28px;
-  border-radius: 24px;
+  padding: 26px;
+  border-radius: var(--h-radius);
   scroll-snap-align: start;
   background: var(--h-card);
   border: 1px solid var(--h-line);
+  border-top: 6px solid var(--h-ink);
   color: var(--h-ink) !important;
   text-decoration: none !important;
-  transition: transform 0.5s var(--h-ease), box-shadow 0.5s var(--h-ease);
+  transition: transform 0.4s var(--h-ease), border-color 0.3s;
 }
 .h-post:hover {
   transform: translateY(-4px);
-  box-shadow: 0 28px 50px -30px rgba(15, 23, 42, 0.3);
+  border-top-color: var(--h-red);
 }
 .h-post-meta {
   display: flex;
   gap: 10px;
-  font-size: 13px;
-  color: var(--h-ink-3);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  color: var(--h-ink-2);
 }
 .h-post-meta b {
   color: var(--h-accent);
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 .h-post-title {
   margin-top: 14px;
   font-size: 22px;
-  line-height: 1.22;
-  font-weight: 700;
+  line-height: 1.18;
+  font-weight: 800;
   letter-spacing: -0.02em;
 }
 .h-post-body {
@@ -1072,30 +1140,67 @@
   margin-top: auto;
   padding-top: 18px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--h-accent);
 }
 .h-post-all {
   justify-content: center;
   background: transparent;
   border-style: dashed;
+  border-top-style: solid;
 }
 
 /* ------------------------------------------------------------------------------- 8 cta */
 
+/* The last word, on the ink, with the red circle hanging in the corner where the H keeps it. */
 .h-cta {
   padding: clamp(140px, 22vh, 240px) 0;
-  background:
-    radial-gradient(50% 60% at 50% 100%, var(--h-glow), transparent 70%),
-    var(--h-bg);
+  overflow: hidden;
+  background: var(--hf-ink-k);
+  --h-ink: var(--hf-paper);
+  --h-ink-2: var(--hf-paper-2);
+  --h-ink-3: var(--hf-paper-3);
+  --h-on-ink: var(--hf-ink-k);
+  --h-accent: var(--hf-red);
+  --h-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
+}
+.dark .h-cta {
+  background: var(--hf-night);
+}
+.h-cta::before {
+  content: '';
+  position: absolute;
+  top: clamp(40px, 8vh, 90px);
+  right: clamp(24px, 9vw, 160px);
+  width: clamp(72px, 10vw, 150px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--hf-red);
+}
+.h-cta::after {
+  /* The diagonal, as a band under the last line. */
+  content: '';
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 18%;
+  height: 10px;
+  background: var(--hf-paper);
+  opacity: 0.08;
+  transform: rotate(-18.4deg);
+  transform-origin: 0 50%;
 }
 .h-cta .h-display {
   font-size: clamp(56px, 10vw, 150px);
-  padding-bottom: 0.08em;
+  padding-bottom: 0.06em;
+}
+.h-cta .h-gradient {
+  color: var(--h-ink);
 }
 .h-small {
   margin-top: 40px;
-  font-size: 15px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
   color: var(--h-ink-3);
 }
 .h-small a {
@@ -1105,6 +1210,10 @@
 .h-small a:hover {
   color: var(--h-accent) !important;
 }
+.h-cta .h-wrap {
+  position: relative;
+  z-index: 1;
+}
 
 /* -------------------------------------------------------------------------------- reveal */
 
@@ -1113,8 +1222,8 @@
   opacity: 0;
   transform: translate3d(0, 40px, 0);
   transition:
-    opacity 1s var(--h-ease) var(--rv-delay, 0ms),
-    transform 1.2s var(--h-ease) var(--rv-delay, 0ms);
+    opacity 0.9s var(--h-ease) var(--rv-delay, 0ms),
+    transform 1s var(--h-ease) var(--rv-delay, 0ms);
 }
 .hf-motion .rv.rv-in {
   opacity: 1;
@@ -1123,10 +1232,15 @@
 /* A tile's hover lift must not wait for its reveal delay. */
 .hf-motion .h-tile.rv.rv-in {
   transition:
-    opacity 1s var(--h-ease) var(--rv-delay, 0ms),
-    transform 0.6s var(--h-ease),
-    box-shadow 0.6s var(--h-ease),
+    opacity 0.9s var(--h-ease) var(--rv-delay, 0ms),
+    transform 0.45s var(--h-ease),
+    box-shadow 0.45s var(--h-ease),
     border-color 0.3s;
+}
+/* A card in the deck takes its transform from the scroll, every frame; a transition on it
+   would make the card lag the hand. */
+.hf-motion .h-panel.rv {
+  transition: opacity 0.9s var(--h-ease);
 }
 
 /* The applications' pictures play as their panel comes into view. */
@@ -1155,22 +1269,14 @@
 /* ------------------------------------------------------------------------------ narrow */
 
 @media (max-width: 900px) {
-  /* Stacked: the copy first, centred, and the H in whatever height it leaves. */
+  /* Stacked: the copy first, and the H in whatever height it leaves. */
   .h-hero-grid {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding-top: calc(var(--vp-nav-height) + clamp(24px, 5svh, 56px));
+    padding-top: calc(var(--vp-nav-height) + clamp(20px, 4svh, 48px));
     padding-bottom: clamp(16px, 4svh, 40px);
-    text-align: center;
-  }
-  .h-hero-copy .h-lead {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .h-hero-copy .h-actions {
-    justify-content: center;
   }
   .h-hero-art {
     flex: 1 1 auto;
@@ -1179,11 +1285,10 @@
   }
   /* Sized by the height as much as the width, so a short phone still has room for the H. */
   .h-hero .h-display {
-    font-size: clamp(32px, min(9vw, 6.2svh), 56px);
+    font-size: clamp(34px, min(10vw, 6.4svh), 60px);
   }
   .h-hero .h-kicker {
-    margin-bottom: 10px;
-    font-size: 14px;
+    margin-bottom: 12px;
   }
   .h-hero .h-lead {
     margin-top: 14px;
@@ -1194,69 +1299,60 @@
     gap: 10px;
   }
   .h-hero .h-btn {
-    height: 44px;
+    height: 46px;
     padding: 0 20px;
-    font-size: 16px;
+    font-size: 15px;
   }
   .h-cue {
     display: none;
   }
 
-  /* The gallery is not pinned on a narrow screen: a panel stacked over its picture is taller
-     than a phone, and a pinned window that cuts its own content off is worse than no pin. The
-     three panels are simply the next three things down the page. */
-  .h-apps {
-    height: auto;
-    padding-bottom: clamp(72px, 12vh, 120px);
-  }
-  .h-apps .h-pin {
+  /* The deck is not dealt on a narrow screen: a card stacked over its picture is taller than a
+     phone, and a sticky card that cuts its own content off is worse than none. */
+  .h-panel,
+  .h-panel:nth-child(2),
+  .h-panel:nth-child(3) {
     position: relative;
-    height: auto;
-    overflow: visible;
-    padding-top: clamp(72px, 12vh, 120px);
-  }
-  .h-track {
-    flex-direction: column;
-    width: auto;
-    padding: 0 var(--h-pad);
+    top: auto;
     transform: none !important;
+  }
+  .h-panel::after {
+    display: none;
+  }
+  .h-deck {
+    gap: 20px;
   }
 }
 
 @media (max-width: 960px) {
+  /* The picture rides at the top of the window, the paragraphs scroll under it. */
   .h-stack-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    align-content: start;
-    align-items: start;
     gap: 0;
-    padding-top: calc(var(--vp-nav-height) + 20px);
   }
-  .h-stack-copy .h-h2 br {
-    display: none;
+  .h-stack-art {
+    position: sticky;
+    top: var(--vp-nav-height);
+    z-index: 1;
+    margin: 0 calc(var(--h-pad) * -1);
+    background: var(--h-bg);
+    border-bottom: 1px solid var(--h-line);
   }
   .h-stack-canvas {
-    order: -1;
+    position: static;
     height: 34svh;
   }
+  .h-step {
+    min-height: 52svh;
+    padding-left: 20px;
+  }
   .h-step h3 {
-    font-size: clamp(21px, 5.6vw, 28px);
+    font-size: clamp(22px, 5.6vw, 28px);
   }
   .h-step p:not(.h-step-tag) {
     margin: 10px 0 12px;
     font-size: 15px;
     line-height: 1.5;
-  }
-  .h-steps {
-    min-height: 0;
-    margin-top: 20px;
-  }
-  .h-steps-rail {
-    margin-top: 18px;
-  }
-  .h-stack-copy .h-kicker,
-  .h-stack-copy .h-h2 {
-    display: none;
   }
   .h-tile.w7,
   .h-tile.w5,
@@ -1266,25 +1362,18 @@
   }
   .h-panel {
     grid-template-columns: 1fr;
-    width: 84vw;
     min-height: 0;
   }
   .h-features {
     grid-template-columns: 1fr;
   }
-}
-
-/* A short phone: the stack's picture gives up some height, and each layer keeps its sentence
-   but not its link -- the link is the same page the nav already offers. */
-@media (max-width: 960px) and (max-height: 720px) {
-  .h-stack-canvas {
-    height: 30svh;
+  .h-feature,
+  .h-feature + .h-feature {
+    padding: 22px 0 8px;
+    border-left: 0;
   }
-  .h-step .h-link {
-    display: none;
-  }
-  .h-steps-rail {
-    margin-top: 10px;
+  .h-feature + .h-feature {
+    border-top: 1px solid var(--h-line);
   }
 }
 
@@ -1309,9 +1398,6 @@
     height: auto;
     aspect-ratio: 1;
   }
-  .h-rail-label {
-    font-size: 10px;
-  }
   .h-panel-copy p:not(.h-step-tag) {
     display: none;
   }
@@ -1324,48 +1410,17 @@
 /* -------------------------------------------------------------------------- less motion */
 
 @media (prefers-reduced-motion: reduce) {
-  /* Nothing is pinned: every scene is laid out as the page it would be at the end of its
-     timeline, top to bottom. */
-  .h-hero,
-  .h-manifesto,
-  .h-stack,
-  .h-apps {
-    height: auto;
-  }
-  .h-pin {
-    position: relative;
-    height: auto;
-    min-height: 100svh;
-  }
-  .h-manifesto .h-pin {
-    min-height: 0;
-    padding: 120px 0;
-  }
   .h-step {
-    position: static;
-    margin-bottom: 40px;
+    opacity: 1;
   }
-  /* The five layers are read top to bottom, so the picture stays beside them while they are,
-     and the progress rail has no progress to show. */
-  .h-stack-grid {
-    align-items: start;
-    padding-top: calc(var(--vp-nav-height) + 64px);
-    padding-bottom: 64px;
+  .h-panel,
+  .h-panel:nth-child(2),
+  .h-panel:nth-child(3) {
+    position: relative;
+    top: auto;
   }
-  .h-stack-canvas {
-    position: sticky;
-    top: calc(var(--vp-nav-height) + 24px);
-  }
-  .h-steps-rail {
+  .h-panel::after {
     display: none;
-  }
-  .h-track {
-    flex-direction: column;
-    width: auto;
-    transform: none !important;
-  }
-  .h-panel {
-    width: auto;
   }
   .h-load,
   .h-cue span,

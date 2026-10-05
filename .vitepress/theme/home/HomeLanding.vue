@@ -1,13 +1,16 @@
 <script setup lang="ts">
 // The home page. It is one argument told in order -- what we build, how it is put together,
-// what came back, where to start -- and every section is either pinned while the scroll plays
-// it (the hero, the manifesto, the stack, the applications) or plays once when it arrives.
-// The numbers are the blog's numbers, and every one of them links to the post that says how
-// to check it.
+// what came back, where to start -- and nothing on it is pinned. The page moves at the speed of
+// the hand; the pictures are driven by where their section happens to be on screen (the hero
+// comes apart as it leaves, the manifesto lights as it is read, the stack turns to whichever
+// paragraph is in the middle of the window, the applications stack up like cards), or play
+// once when they arrive. The numbers are the blog's numbers, and every one of them links to
+// the post that says how to check it.
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { data as posts } from '../posts.data.mts'
-import { HeroField, StackField } from './fields'
+import { MARK } from './logo'
+import { HeroScene, StackField } from './fields'
 import {
   clamp,
   easeOut,
@@ -15,7 +18,7 @@ import {
   onScrollFrame,
   prefersReducedMotion,
   span,
-  useStickyProgress,
+  useScrollProgress,
   vReveal,
 } from './motion'
 
@@ -29,31 +32,31 @@ const DOCS = 'https://docs.humanfia.ai/humanize/'
 // ------------------------------------------------------------------------------------ hero
 
 const heroEl = ref<HTMLElement | null>(null)
-const heroCanvas = ref<HTMLCanvasElement | null>(null)
+const heroSvg = ref<SVGSVGElement | null>(null)
 const heroArt = ref<HTMLElement | null>(null)
-const heroP = useStickyProgress(heroEl)
-let hero: HeroField | null = null
+// How far the hero has scrolled off the top, 0..1: one screen of ordinary scrolling, not a pin.
+const heroP = useScrollProgress(heroEl, (box) => clamp(-box.top / box.height))
+let hero: HeroScene | null = null
 
 const heroCopy = computed(() => {
-  const out = span(heroP.value, 0, 0.32)
-  return {
-    opacity: 1 - out,
-    transform: `translate3d(0, ${-out * 90}px, 0) scale(${1 - out * 0.06})`,
-  }
+  if (!motion.value) return {}
+  const out = span(heroP.value, 0.05, 0.6)
+  return { opacity: 1 - out, transform: `translate3d(0, ${-out * 60}px, 0)` }
 })
-const cueOpacity = computed(() => 1 - span(heroP.value, 0, 0.08))
+const cueOpacity = computed(() => 1 - span(heroP.value, 0, 0.06))
 
 /** The box the H stands in at rest, read off the layout every frame: the copy decides how
  *  much room it leaves, and the H takes the height of that box or as much of its width as an
- *  H that shape can use, whichever is smaller. */
+ *  H that shape can use, whichever is smaller. The 0.62 leaves the construction round it --
+ *  the disc, the rail, the labels -- room inside the box rather than across the copy. */
 function heroAnchor() {
   const art = heroArt.value!.getBoundingClientRect()
-  const stage = heroCanvas.value!.getBoundingClientRect()
-  const aspect = 51 / 57
+  const stage = heroSvg.value!.getBoundingClientRect()
+  const aspect = MARK.width / MARK.height
   return {
     x: art.left - stage.left + art.width / 2,
     y: art.top - stage.top + art.height / 2,
-    size: Math.min(art.height * 0.9, (art.width * 0.9) / aspect),
+    size: Math.min(art.height * 0.62, (art.width * 0.62) / aspect),
   }
 }
 
@@ -66,10 +69,14 @@ const MANIFESTO =
 const STRONG = new Set(['flow', 'result:', 'open,', 'score.'])
 const words = MANIFESTO.split(' ').map((w) => ({ w, strong: STRONG.has(w) }))
 const manifestoEl = ref<HTMLElement | null>(null)
-const manifestoP = useStickyProgress(manifestoEl)
+// The words light as the paragraph is read: from when its top rises past the lower fifth of the
+// window to when its bottom reaches the middle, which is the stretch the eye is actually on it.
+const manifestoP = useScrollProgress(manifestoEl, (box, vh) =>
+  clamp((vh * 0.8 - box.top) / (box.height + vh * 0.3)),
+)
 const lit = (i: number) => {
   if (!motion.value) return 1
-  return 0.14 + 0.86 * clamp(span(manifestoP.value, 0.04, 0.82) * words.length - i)
+  return 0.16 + 0.84 * clamp(manifestoP.value * (words.length + 4) - i)
 }
 
 // ----------------------------------------------------------------------------------- stack
@@ -83,9 +90,9 @@ const STEPS = [
   },
   {
     tag: 'Runtime',
-    title: 'Humanize 2 runs the flows.',
+    title: 'Humanize runs the flows.',
     body: 'It opens and resumes sessions, keeps a budget in time, cost or tokens, puts the work in a worktree, a container or on another machine, and writes every turn down on one clock.',
-    link: { text: 'Meet Humanize 2', href: '/projects/humanize' },
+    link: { text: 'Meet Humanize', href: '/projects/humanize' },
   },
   {
     tag: 'Agents',
@@ -108,22 +115,14 @@ const STEPS = [
 ]
 const stackEl = ref<HTMLElement | null>(null)
 const stackCanvas = ref<HTMLCanvasElement | null>(null)
-const stackP = useStickyProgress(stackEl)
+// The five paragraphs are equally tall and scroll like any others; the picture beside them is
+// sticky. Progress is where the middle of the window is down the list, so layer k is the
+// subject exactly when paragraph k is in the middle -- the picture follows the reading.
+const stackP = useScrollProgress(stackEl, (box, vh) => clamp((vh / 2 - box.top) / box.height))
 let stack: StackField | null = null
 const focus = (k: number) => clamp(1 - Math.abs(stackP.value * 5 - 0.5 - k) * 1.15)
-const stepStyle = (k: number) => {
-  if (!motion.value) return {}
-  // Sharper than the canvas's own focus: the words for one layer are gone before the next
-  // layer's arrive, so two paragraphs are never on top of each other.
-  const dir = stackP.value * 5 - 0.5 - k
-  const f = clamp(1 - Math.max(0, Math.abs(dir) - 0.12) * 2.6)
-  return {
-    opacity: f,
-    transform: `translate3d(0, ${-dir * 28}px, 0)`,
-    pointerEvents: f > 0.5 ? 'auto' : 'none',
-  } as const
-}
-const stepFill = (k: number) => clamp(stackP.value * 5 - k)
+/** The paragraph being read is at full strength, the others are set back. */
+const stepOn = (k: number) => !motion.value || focus(k) > 0.4
 
 // --------------------------------------------------------------------------------- results
 
@@ -221,21 +220,28 @@ function spot(e: PointerEvent) {
 
 // ---------------------------------------------------------------------------- applications
 
-const appsEl = ref<HTMLElement | null>(null)
-const trackEl = ref<HTMLElement | null>(null)
-const appsP = useStickyProgress(appsEl)
-const shift = ref(0)
+// Three cards that stack as the page scrolls: each is sticky a step lower than the one before,
+// so the next slides up over it, and the one underneath sinks back a little as it is covered --
+// a deck being dealt, downwards, at the speed of the wheel. (The gallery used to scroll sideways
+// inside a three-and-a-half-screen pin; a sideways strip driven by a vertical wheel is the one
+// motion a reader cannot predict.) `covered[k]` is how far card k is under card k + 1, 0..1.
+const deckEl = ref<HTMLElement | null>(null)
+const covered = ref<number[]>([0, 0, 0])
 onScrollFrame(() => {
-  const track = trackEl.value
-  if (!track) return
-  shift.value = Math.max(0, track.scrollWidth - innerWidth)
+  const cards = deckEl.value?.children
+  if (!cards) return
+  covered.value = Array.from(cards, (card, k) => {
+    const next = cards[k + 1]
+    if (!next) return 0
+    const top = card.getBoundingClientRect().top
+    const rise = next.getBoundingClientRect().top - top
+    return clamp(1 - rise / card.getBoundingClientRect().height)
+  })
 })
-const trackStyle = computed(() => ({
-  transform: `translate3d(${-easeInOutSoft(appsP.value) * shift.value}px, 0, 0)`,
-}))
-/** Mostly linear, with a little rest at either end so the first and last panels settle. */
-function easeInOutSoft(p: number) {
-  return span(p, 0.06, 0.94)
+const cardStyle = (k: number) => {
+  if (!motion.value) return {}
+  const c = covered.value[k]
+  return { '--cover': c.toFixed(3), transform: `scale(${1 - 0.05 * c})` }
 }
 
 const HOA_CHECKS = [
@@ -312,8 +318,8 @@ function slide(dir: number) {
 onMounted(() => {
   const still = prefersReducedMotion()
   motion.value = !still
-  if (heroCanvas.value) hero = new HeroField(heroCanvas.value, isDark.value, still, heroAnchor)
-  if (stackCanvas.value) stack = new StackField(stackCanvas.value, isDark.value, still)
+  if (heroSvg.value) hero = new HeroScene(heroSvg.value, still, heroAnchor)
+  if (stackCanvas.value) stack = new StackField(stackCanvas.value, still)
   bentoIO = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
@@ -335,13 +341,12 @@ watch(heroP, (p) => {
 })
 watch(stackP, (p) => {
   if (!stack) return
-  stack.progress = p
+  stack.target = p
   stack.update()
 })
-watch(isDark, (dark) => {
-  hero?.setDark(dark)
-  stack?.setDark(dark)
-})
+// The hero is SVG whose fills are CSS variables, so it flips with the theme by itself; the
+// stack is a canvas and has to be told to read the palette again.
+watch(isDark, () => stack?.recolor())
 
 onBeforeUnmount(() => {
   hero?.destroy()
@@ -352,10 +357,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="hf-home-root" :class="{ 'hf-motion': motion }">
-    <!-- 1. The hero: the H assembles, then comes apart toward the reader. -->
+    <!-- 1. The hero: the H is built from its pieces, and comes apart again as it leaves. -->
     <section ref="heroEl" class="h-hero" aria-labelledby="hero-title">
-      <div class="h-pin">
-        <canvas ref="heroCanvas" class="h-hero-canvas" aria-hidden="true" />
+      <div class="h-hero-stage">
+        <svg ref="heroSvg" class="h-hero-svg" aria-hidden="true" />
         <div class="h-hero-grid">
           <div class="h-hero-copy" :style="heroCopy">
             <p class="h-kicker h-load" style="--d: 0.1s">Open-source agent flows</p>
@@ -380,9 +385,9 @@ onBeforeUnmount(() => {
     </section>
 
     <!-- 2. The argument, one word at a time. -->
-    <section ref="manifestoEl" class="h-manifesto" aria-label="Why Humanfia">
-      <div class="h-pin h-pin-center">
-        <p class="h-manifesto-text">
+    <section class="h-manifesto" aria-label="Why Humanfia">
+      <div class="h-wrap">
+        <p ref="manifestoEl" class="h-manifesto-text">
           <span
             v-for="(w, i) in words"
             :key="i"
@@ -395,28 +400,24 @@ onBeforeUnmount(() => {
     </section>
 
     <!-- 3. How it is put together: four layers and a referee. -->
-    <section ref="stackEl" class="h-stack" aria-labelledby="stack-title">
-      <div class="h-pin">
-        <div class="h-stack-grid">
-          <div class="h-stack-copy">
-            <p class="h-kicker">How it fits together</p>
-            <h2 id="stack-title" class="h-h2">Four layers<br />and a referee.</h2>
-            <ol class="h-steps-rail" aria-hidden="true">
-              <li v-for="(s, k) in STEPS" :key="s.tag">
-                <span class="h-rail-label" :class="{ on: focus(k) > 0.5 }">{{ s.tag }}</span>
-                <span class="h-rail-bar"><i :style="{ transform: `scaleX(${stepFill(k)})` }" /></span>
-              </li>
-            </ol>
-            <div class="h-steps">
-              <article v-for="(s, k) in STEPS" :key="s.tag" class="h-step" :style="stepStyle(k)">
-                <p class="h-step-tag" :class="{ warm: k === 4 }">{{ String(k + 1).padStart(2, '0') }} · {{ s.tag }}</p>
-                <h3>{{ s.title }}</h3>
-                <p>{{ s.body }}</p>
-                <a class="h-link" :href="s.link.href">{{ s.link.text }} <span aria-hidden="true">›</span></a>
-              </article>
-            </div>
-          </div>
+    <section class="h-stack" aria-labelledby="stack-title">
+      <div class="h-wrap">
+        <header class="h-head" v-reveal>
+          <p class="h-kicker">How it fits together</p>
+          <h2 id="stack-title" class="h-h2">Four layers<br />and a referee.</h2>
+        </header>
+      </div>
+      <div class="h-stack-grid">
+        <div class="h-stack-art">
           <canvas ref="stackCanvas" class="h-stack-canvas" aria-hidden="true" />
+        </div>
+        <div ref="stackEl" class="h-steps">
+          <article v-for="(s, k) in STEPS" :key="s.tag" class="h-step" :class="{ on: stepOn(k) }">
+            <p class="h-step-tag" :class="{ warm: k === 4 }">{{ String(k + 1).padStart(2, '0') }} · {{ s.tag }}</p>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.body }}</p>
+            <a class="h-link" :href="s.link.href">{{ s.link.text }} <span aria-hidden="true">›</span></a>
+          </article>
         </div>
       </div>
     </section>
@@ -472,17 +473,17 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 5. Where a flow is found out: a gallery that scrolls sideways while the page scrolls down. -->
-    <section ref="appsEl" class="h-apps" aria-labelledby="apps-title">
-      <div class="h-pin h-apps-pin">
-        <header class="h-wrap h-apps-head">
+    <!-- 5. Where a flow is found out: three cards dealt one over the other as the page scrolls. -->
+    <section class="h-apps" aria-labelledby="apps-title">
+      <div class="h-wrap">
+        <header class="h-head" v-reveal>
           <p class="h-kicker">Applications</p>
           <h2 id="apps-title" class="h-h2">Where a flow is found out.</h2>
         </header>
-        <div ref="trackEl" class="h-track" :style="trackStyle">
-          <article class="h-panel" v-reveal>
+        <div ref="deckEl" class="h-deck">
+          <article class="h-panel" :style="cardStyle(0)" v-reveal>
             <div class="h-panel-copy">
-              <p class="h-step-tag">HOA · Humanize Olympic Agents</p>
+              <p class="h-step-tag">HOA · Humanfia Olympiad Agents</p>
               <h3>Lean accepts it,<br />or it does not.</h3>
               <p>Competition and research mathematics, physics and quantum information — solved by agents and machine-checked in Lean 4. No rubric, no grader, no benefit of the doubt.</p>
               <a class="h-link" href="/projects/hoa">Explore HOA <span aria-hidden="true">›</span></a>
@@ -496,7 +497,7 @@ onBeforeUnmount(() => {
               </ul>
             </div>
           </article>
-          <article class="h-panel" v-reveal>
+          <article class="h-panel" :style="cardStyle(1)" v-reveal>
             <div class="h-panel-copy">
               <p class="h-step-tag">KDA · Kernel Design Agents</p>
               <h3>Faster,<br />or it is not.</h3>
@@ -511,7 +512,7 @@ onBeforeUnmount(() => {
               <p class="art-note">First on SOLExec Bench L1 · 0.7608</p>
             </div>
           </article>
-          <article class="h-panel" v-reveal>
+          <article class="h-panel" :style="cardStyle(2)" v-reveal>
             <div class="h-panel-copy">
               <p class="h-step-tag">HKA · Humanize Kaggle Agent</p>
               <h3>Kaggle says so,<br />or it does not.</h3>
@@ -533,7 +534,7 @@ onBeforeUnmount(() => {
     <section class="h-section" aria-labelledby="start-title">
       <div class="h-wrap">
         <header class="h-head h-center" v-reveal>
-          <p class="h-kicker">Humanize 2</p>
+          <p class="h-kicker">Humanize</p>
           <h2 id="start-title" class="h-h2">Bring the agents<br />you already pay for.</h2>
           <p class="h-lead">One runtime drives the coding-agent CLIs you already log into. It holds no API key of its own.</p>
         </header>
