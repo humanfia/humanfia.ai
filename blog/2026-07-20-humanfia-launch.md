@@ -144,8 +144,8 @@ Drag the divider to see what became of each piece.
 <SwipeCompare kicker="Humanfia, July → October 2026" before-label="July: promised" after-label="October: built" label="What the launch post promised in July 2026, against what was built by October 2026.">
 <template #before>
 <table class="sw-table"><thead><tr><th>#</th><th>In July</th></tr></thead><tbody>
-<tr><th>1</th><td><strong>Execution:</strong> oh-my-humanize, our own terminal agent</td></tr>
-<tr><th>2</th><td><strong>The loop:</strong> RLCR Flow, Claude builds and Codex reviews</td></tr>
+<tr><th>1</th><td><strong>Execution:</strong> oh-my-humanize, our own agent</td></tr>
+<tr><th>2</th><td><strong>The loop:</strong> RLCR Flow, Claude builds, Codex reviews</td></tr>
 <tr><th>3</th><td><strong>Review:</strong> a second model, recommended</td></tr>
 <tr><th>4</th><td><strong>Domains:</strong> KDA</td></tr>
 <tr><th>5</th><td><strong>Measurement:</strong> "publishing what we learn"</td></tr>
@@ -153,11 +153,11 @@ Drag the divider to see what became of each piece.
 </template>
 <template #after>
 <table class="sw-table"><thead><tr><th>#</th><th>By October</th></tr></thead><tbody>
-<tr><th>1</th><td><strong>Execution:</strong> the <a href="/projects/humanize">Humanize</a> runtime, driving the CLIs you already use</td></tr>
-<tr><th>2</th><td><strong>The loop:</strong> <a href="/flows/">flows</a> anyone can run: <a href="/flows/humanize1">humanize1</a>, <a href="/flows/rlar">RLAR</a> and more</td></tr>
-<tr><th>3</th><td><strong>Review:</strong> any CLI in any role, with a fresh reviewer every round</td></tr>
+<tr><th>1</th><td><strong>Execution:</strong> <a href="/projects/humanize">Humanize</a>, driving your CLIs</td></tr>
+<tr><th>2</th><td><strong>The loop:</strong> <a href="/flows/humanize1">humanize1</a>, <a href="/flows/rlar">RLAR</a> and more <a href="/flows/">flows</a></td></tr>
+<tr><th>3</th><td><strong>Review:</strong> any CLI, fresh every round</td></tr>
 <tr><th>4</th><td><strong>Domains:</strong> KDA, HOA and HMA</td></tr>
-<tr><th>5</th><td><strong>Measurement:</strong> <a href="/projects/flowbench">FlowBench</a>, to rank the flows</td></tr>
+<tr><th>5</th><td><strong>Measurement:</strong> <a href="/projects/flowbench">FlowBench</a>, ranking flows</td></tr>
 </tbody></table>
 </template>
 </SwipeCompare>
