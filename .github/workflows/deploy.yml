@@ -44,8 +44,12 @@ jobs:
 
       # Fails on a dead internal link, which is the point: a page moved without its inbound
       # links moving is a red build rather than a 404 somebody finds later.
+      # The build reads the flowverse and every flow repository it lists from the GitHub API
+      # (`.vitepress/flowverse.mts`); with the job's token that is not the anonymous 60 an hour.
       - name: Build
         run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       # VitePress checks that a link's page exists and stops there, so a `#fragment` written
       # the way GitHub would slugify it passes the build and silently drops the reader at the

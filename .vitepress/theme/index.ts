@@ -11,6 +11,7 @@ import PostMosaic from './components/PostMosaic.vue'
 import TeamRoster from './components/TeamRoster.vue'
 import TerminalReel from './components/TerminalReel.vue'
 import TraceReel from './components/TraceReel.vue'
+import { registerFlows } from './components/flow'
 import HomeLanding from './home/HomeLanding.vue'
 import './style.css'
 import './home/home.css'
@@ -31,5 +32,6 @@ export default {
     app.component('TerminalReel', TerminalReel)
     app.component('TraceReel', TraceReel)
     app.component('HomeLanding', HomeLanding)
+    registerFlows(app)
   },
 } satisfies Theme

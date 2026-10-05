@@ -1,0 +1,64 @@
+---
+pageClass: flow-page
+---
+
+# flame_chase
+
+Put two agents on one task and let them take turns. Each turn is a fresh session that starts
+from the task and the repository; neither agent is told what the other said, so the working
+tree is all that passes between them.
+
+<FlowFacts flow="flame_chase" />
+
+::: code-group
+
+```text [at the prompt]
+❯ $flame_chase make the importer handle every file in samples/
+```
+
+```sh [hmz exec]
+hmz exec -f flame_chase \
+    -a first_chaser=claude/claude-opus-5:max -a second_chaser=codex/gpt-5.6-sol:max \
+    -p budget.duration=8h,budget.cost=100 "$(cat TASK.md)"
+```
+
+:::
+
+<FlowPlayer flow="flame_chase" />
+
+## When to use it
+
+Two different models fail differently. A loop over one agent compounds that agent's blind
+spots; a loop that alternates hands every turn to an agent that did not write what it is
+looking at. Give both roles the same model and they are still two agents, which a
+[trace](https://docs.humanfia.ai/humanize/user/tracing) shows as two sets of sessions.
+
+If one of the two should judge rather than work, use [rlar](/flows/rlar).
+
+## Roles and params
+
+| Role | What it is | How it is filled | |
+| --- | --- | --- | --- |
+| `first_chaser` | agent, required | `-a first_chaser=…` | Takes the odd turns, each in a fresh session. |
+| `second_chaser` | agent, required | `-a second_chaser=…` | Takes the even turns, each in a fresh session. |
+| `workspace` | environment, local | the directory you start in; no `-e` | The one tree both chasers work in, and all that passes between them. |
+
+Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
+
+No params. The loop pauses 5 seconds between turns.
+
+## What ends it
+
+- **The [budget](https://docs.humanfia.ai/humanize/features/allowances).** The two spend one budget between them, not one each.
+- **Three failed turns in a row.** The run ends with the last failure. A turn that fails passes
+  to the other chaser, so three in a row means both have failed.
+
+## Picking it up
+
+`--resume` carries on with whichever chaser was next, so neither takes two turns in a row, and
+it keeps counting rounds: a round is one turn each. See [Picking a run up](https://docs.humanfia.ai/humanize/user/resuming).
+
+## See also
+
+- [agent_cleanup:flame_chase](/flows/flame-chase-agent-cleanup): this loop, with a cleaner between turns
+- [parallel_flame_chase](/flows/parallel-flame-chase): three of these at once, in three lanes
