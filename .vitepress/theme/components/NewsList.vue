@@ -176,7 +176,7 @@ function rowOf(post: (typeof posts)[number]) {
   vertical-align: 2px;
   background: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: 0.08em;
@@ -215,7 +215,7 @@ function rowOf(post: (typeof posts)[number]) {
   box-shadow: 0 0 0 2px var(--vp-c-bg);
   background: var(--vp-c-brand-soft);
   font-family: var(--vp-font-family-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
   transition: box-shadow 0.2s;

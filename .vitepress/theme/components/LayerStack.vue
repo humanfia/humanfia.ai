@@ -215,7 +215,7 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
 
 .rel {
   font-family: var(--vp-font-family-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--vp-c-text-3);
@@ -263,7 +263,7 @@ aside {
 .eyebrow {
   margin: 0;
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -312,7 +312,7 @@ aside {
 .entry span {
   display: block;
   margin-bottom: 4px;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--vp-c-text-3);

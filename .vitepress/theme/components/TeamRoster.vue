@@ -440,7 +440,7 @@ const profileLabel = (who: string) => person(who).profileLabel ?? `@${person(who
   border: 1px solid var(--vp-c-brand-2);
   border-radius: 999px;
   font-family: var(--vp-font-family-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   line-height: 1.5;
   font-weight: 700;
   letter-spacing: 0.11em;

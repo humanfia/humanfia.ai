@@ -159,7 +159,7 @@ const hold = (i: number) => {
 .eyebrow {
   margin: 0;
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -215,7 +215,7 @@ const hold = (i: number) => {
 .foot {
   margin: 12px 0 0;
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--vp-c-text-3);
@@ -320,7 +320,7 @@ const hold = (i: number) => {
 
 .by {
   font-family: var(--vp-font-family-mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--vp-c-text-3);
 }
 

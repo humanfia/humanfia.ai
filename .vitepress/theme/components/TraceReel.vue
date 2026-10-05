@@ -380,7 +380,7 @@ header code {
   align-items: center;
   padding-left: 5px;
   font-family: var(--vp-font-family-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   font-style: normal;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -440,7 +440,7 @@ header code {
 
 .tok {
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   text-align: right;
   color: var(--vp-c-text-3);
   font-variant-numeric: tabular-nums;
