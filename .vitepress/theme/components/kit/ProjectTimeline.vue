@@ -146,7 +146,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
           <svg :width="width" :height="height" :viewBox="`0 0 ${width} ${height}`" aria-hidden="true">
             <g v-for="m in months" :key="m.x" class="ptl-month">
               <line :x1="m.x" :x2="m.x" :y1="AXIS - 4" :y2="AXIS + 6" />
-              <text :x="m.x + 4" :y="AXIS + 22">{{ m.label }}<tspan v-if="m.year" class="ptl-year"> {{ m.year }}</tspan></text>
+              <text :x="m.x + 4" :y="AXIS + 22">{{ m.year ? `${m.label} ${m.year}` : m.label }}</text>
             </g>
             <line class="ptl-axis" :x1="PAD" :x2="width - PAD" :y1="AXIS" :y2="AXIS" />
             <line
@@ -256,11 +256,6 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
   font-family: var(--k-mono);
   font-size: 11px;
   fill: var(--k-fg-3);
-}
-
-.ptl-year {
-  fill: var(--k-fg-3);
-  opacity: 0.75;
 }
 
 .ptl-drop {

@@ -42,10 +42,10 @@ putnam:
   - { name: Leanstral 1.5, score: 588, detail: added 2026-07-19 }
   - { name: Seed-Prover 1.5 (ByteDance), score: 581, detail: added 2025-12-27 }
 putnamCost:
-  - { entry: Humanfia · GPT-5.6, added: 2026-08-27, cost: 44.5, basis: average, highlight: true }
-  - { entry: Aleph Prover, added: 2026-08-26, cost: 74, basis: 'average · maximum $1,468' }
-  - { entry: NEAR AI · DeepSeek V4, added: 2026-09-04, cost: 0.17, basis: 'mean · median $0.04' }
-  - { entry: Forall · Claude Opus 5, added: 2026-09-24, cost: 3.52, basis: 'mean, actor side only' }
+  - { entry: Humanfia · GPT-5.6, added: '2026-08-27', cost: 44.5, basis: average, highlight: true }
+  - { entry: Aleph Prover, added: '2026-08-26', cost: 74, basis: 'average · maximum $1,468' }
+  - { entry: NEAR AI · DeepSeek V4, added: '2026-09-04', cost: 0.17, basis: 'mean · median $0.04' }
+  - { entry: Forall · Claude Opus 5, added: '2026-09-24', cost: 3.52, basis: 'mean, actor side only' }
 
 # Lean-Eval: the board's published data (lean-lang.org/eval/site-data/v2), LeanEval v1 scope.
 leanEval:
@@ -99,14 +99,14 @@ works, who reviews, and what has to pass before anything counts.
 
 | | Result | Written up |
 | --- | --- | --- |
-| **PutnamBench** | 672 of 672, joint first on the official leaderboard, at $44.50 a problem (670 at the June write-up) | [26-10-05](/news/2026-10-05-putnambench-672) · [26-06-26](/news/2026-06-26-putnambench) |
-| **Lean-Eval** | On LeanEval v1, first by first solves (30) and second by total (79 to 80); 170 of 171 on the archive; 249 distinct problems accepted, the most of any entry | [26-10-05](/news/2026-10-05-lean-eval-v1) · [26-08-18](/news/2026-08-18-lean-eval-first) · [26-07-29](/news/2026-07-29-lean-eval-second) |
-| **IMO 2026** | Six of six, on two different backends, in 3.2× less API time than AxiomProver's reported run | [26-07-22](/news/2026-07-22-imo-2026) |
-| **IPhO 2026** | 30.00 of 30.00 on theory by our own grading; all 41 parts formalized in Lean | [26-10-05](/news/2026-10-05-olympiads) · [26-07-29](/news/2026-07-29-physics-and-quantum) |
-| **IChO 2026** | 68 of 68 theory subquestions formalized in Lean, against 32 for the same model without the review loop | [26-10-05](/news/2026-10-05-olympiads) |
-| **IOI 2026** | Six of six problems at 100%, judged on Codeforces | [26-10-05](/news/2026-10-05-olympiads) |
-| **IBO 2024** | 100 of 100 theory tasks; all 400 true/false verdicts match the official key | [26-10-05](/news/2026-10-05-olympiads) |
-| **QIT · QAlg** | 40 of 40 end to end (37 at the July write-up), and 36 of 36 blind | [26-10-05](/news/2026-10-05-olympiads) · [26-07-29](/news/2026-07-29-physics-and-quantum) |
+| **PutnamBench** | 672 of 672, joint first on the official leaderboard, at $44.50 a problem (670 at the June write-up) | [Aug 27](/news/2026-10-05-putnambench-672) · [Jun 26](/news/2026-06-26-putnambench) |
+| **Lean-Eval** | On LeanEval v1, first by first solves (30) and second by total (79 to 80); 170 of 171 on the archive; 249 distinct problems accepted, the most of any entry | [Oct 4](/news/2026-10-05-lean-eval-v1) · [Aug 18](/news/2026-08-18-lean-eval-first) · [Jul 29](/news/2026-07-29-lean-eval-second) |
+| **IMO 2026** | Six of six, on two different backends, in 3.2× less API time than AxiomProver's reported run | [Jul 18](/news/2026-07-22-imo-2026) |
+| **IPhO 2026** | 30.00 of 30.00 on theory by our own grading; all 41 parts formalized in Lean | [Sep 14](/news/2026-10-05-olympiads) · [Jul 29](/news/2026-07-29-physics-and-quantum) |
+| **IChO 2026** | 68 of 68 theory subquestions formalized in Lean, against 32 for the same model without the review loop | [Sep 14](/news/2026-10-05-olympiads) |
+| **IOI 2026** | Six of six problems at 100%, judged on Codeforces | [Sep 14](/news/2026-10-05-olympiads) |
+| **IBO 2024** | 100 of 100 theory tasks; all 400 true/false verdicts match the official key | [Sep 14](/news/2026-10-05-olympiads) |
+| **QIT · QAlg** | 40 of 40 end to end (37 at the July write-up), and 36 of 36 blind | [Sep 14](/news/2026-10-05-olympiads) · [Jul 29](/news/2026-07-29-physics-and-quantum) |
 
 None of the olympiad scores came from an official jury. Each line above means what its
 write-up says it means, and each write-up says who did the grading.
@@ -191,12 +191,18 @@ On Q1 and Q4, the two easiest problems, we lose. On Q3, the hardest, we are almo
 faster. A loop pays for itself when the problem is long enough for the loop to matter. On a
 problem a strong model closes in twenty minutes, the loop is overhead.
 
-## Five exams at full marks
+## Olympiads at full marks
 
-Since July the same open harness has also taken four olympiads and a quantum benchmark to the
-top of their scales. The scales differ, and so do the graders.
+After IMO, the same open harness took four more olympiads and a quantum benchmark to the top
+of their scales. The scales differ, and so do the graders.
 
 <PostCards>
+<PostCard kicker="IMO 2026" metric="6 / 6" metric-label="GPT-5.6 and Kimi-K3, separately" badge="Lean 4" title="Every proof accepted by the kernel.">
+
+Formal statements, both sets of Lean solutions and the scripts that reproduce the run are
+public, pinned to Lean 4.31.0 and Mathlib.
+
+</PostCard>
 <PostCard kicker="IPhO 2026 · theory" metric="30 / 30" metric-label="GPT-5.6 Sol and Kimi K3 Max" badge="Our grading" title="Every theory subpart answered.">
 
 Graded by us against the official solutions and marking scheme, which the workers never saw.
