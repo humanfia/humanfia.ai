@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PROJECTS } from '../projects'
+
 // The team, by project.
 //
 // Two lists rather than one alphabetical grid of faces: the same person shows up under three
@@ -83,7 +85,7 @@ interface Group {
   /** The id the group was published under before a rename, kept as a second anchor so an old
    *  link (/about/#hka, or /team/#hka through its redirect) still lands on the group. */
   formerly?: string
-  members: { who: string; role: string; lead?: boolean; coLead?: boolean }[]
+  members: { who: string; role: string }[]
 }
 
 const GROUPS: Group[] = [
@@ -93,7 +95,7 @@ const GROUPS: Group[] = [
     href: '/projects/humanize',
     what: 'The runtime: twelve coding-agent CLIs, one flow, and the whole run written down.',
     members: [
-      { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.', lead: true },
+      { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.' },
       { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
       { who: 'antoinegg1', role: 'Flows, the flowverse, and running the thing at Kaggle scale.' },
       { who: 'SihaoLiu', role: 'Harness alignment: every driver held to what its CLI really does.' },
@@ -107,7 +109,7 @@ const GROUPS: Group[] = [
     href: '/projects/flowbench',
     what: 'The referee. Scores flows against each other on work that takes a day, not a minute.',
     members: [
-      { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.', lead: true },
+      { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.' },
       { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },
       { who: 'JerryGJX', role: 'Kernel and systems tasks.' },
     ],
@@ -118,7 +120,7 @@ const GROUPS: Group[] = [
     href: '/projects/hoa',
     what: 'Humanfia Olympiad Agents. Mathematics, physics and quantum information, checked by Lean 4.',
     members: [
-      { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.', lead: true },
+      { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.' },
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },
       { who: 'hongzhoulin89', role: 'Research-level proofs, and what a Lean proof is worth.' },
       { who: 'JuiHuiChung', role: 'Set up the PutnamBench baseline and proposed recursive lemma proving for HOA.' },
@@ -130,7 +132,7 @@ const GROUPS: Group[] = [
     href: '/projects/kda',
     what: 'Kernel Design Agents. Faster on real hardware, or it does not count.',
     members: [
-      { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.', lead: true },
+      { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.' },
       { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
       { who: 'JerryGJX', role: 'Working on the self-evolving KernelWiki.' },
       { who: 'Waterpine', role: 'Working on the self-evolving KernelWiki.' },
@@ -145,13 +147,17 @@ const GROUPS: Group[] = [
     href: '/projects/hma',
     what: 'Humanize MLE Agents. Two native coding agents take turns over one workspace, and medal more often than either alone.',
     members: [
-      { who: 'antoinegg1', role: 'Co-lead. The method, the paper experiments, and the Kaggle entries and audit before them.', coLead: true },
-      { who: 'futrime', role: 'Co-lead. The runtime the agents run on, and the Kaggle leaderboard.', coLead: true },
+      { who: 'antoinegg1', role: 'Co-lead. The method, the paper experiments, and the Kaggle entries and audit before them.' },
+      { who: 'futrime', role: 'Co-lead. The runtime the agents run on, and the Kaggle leaderboard.' },
       { who: 'zgdllt', role: 'Kaggle submissions, across most of the competitions HMA grew out of.' },
       { who: 'apostle715', role: 'Kaggle submissions and reproduction.' },
     ],
   },
 ]
+
+/** Who leads a group is projects.ts's to say, the same list a news byline is credited from. */
+const isLead = (group: string, who: string) => PROJECTS[group].leads.includes(who)
+const isCoLead = (group: string, who: string) => PROJECTS[group].coLeads.includes(who)
 
 const person = (who: string) => PEOPLE[who]
 const avatar = (who: string) => person(who).avatarUrl
@@ -199,8 +205,8 @@ const profileLabel = (who: string) => person(who).profileLabel ?? `@${person(who
           <div class="person-said">
             <p class="person-name">
               {{ person(member.who).name }}
-              <span v-if="member.lead" class="lead">Lead</span>
-              <span v-else-if="member.coLead" class="lead">Co-lead</span>
+              <span v-if="isLead(group.id, member.who)" class="lead">Lead</span>
+              <span v-else-if="isCoLead(group.id, member.who)" class="lead">Co-lead</span>
             </p>
             <p class="person-handle">
               <a :href="profile(member.who)">{{ profileLabel(member.who) }}</a>

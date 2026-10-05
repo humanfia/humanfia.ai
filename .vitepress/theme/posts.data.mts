@@ -1,5 +1,6 @@
 import { createContentLoader } from 'vitepress'
 import { authorsOf } from './people'
+import { authorsWithDeps } from './projects'
 
 // Every post, from both sections, newest first, read at build time.
 //
@@ -62,15 +63,19 @@ export default createContentLoader(['blog/*.md', 'news/*.md'], {
       .filter((page) => page.frontmatter.date && !page.url.endsWith('/'))
       .map((page) => {
         const date = new Date(page.frontmatter.date)
+        const kind: Kind = page.url.startsWith('/news/') ? 'news' : 'blog'
         return {
-          kind: (page.url.startsWith('/news/') ? 'news' : 'blog') as Kind,
+          kind,
           title: page.frontmatter.title ?? page.url,
           url: page.url,
           date: FORMAT.format(date),
           short: SHORT.format(date),
           iso: date.toISOString(),
           description: page.frontmatter.description ?? '',
-          authors: authorsOf(page.frontmatter),
+          // A result also credits the leads of what it was built on -- see projects.ts.
+          authors: kind === 'news'
+            ? authorsWithDeps(authorsOf(page.frontmatter), page.frontmatter.tag)
+            : authorsOf(page.frontmatter),
           tag: page.frontmatter.tag ?? '',
           minutes: Math.max(1, Math.round(wordsIn(page.src) / 230)),
         }

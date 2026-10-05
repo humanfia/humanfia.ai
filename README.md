@@ -36,7 +36,12 @@ tag: HOA
 ---
 ```
 
-`tag` is the project the post belongs to. Everything else is generated from the frontmatter:
+`tag` is the project the post belongs to. A news post credits more than its `authors`: its
+byline, everywhere it is shown and in the feed, adds the leads and co-leads of every project
+the tagged project is built on, transitively. An HOA result therefore also names the Humanize
+lead, and a post about Humanize itself adds nobody. Projects, their tags, leads and
+dependencies live in one registry, `.vitepress/theme/projects.ts`, which the team roster reads
+too; a news tag it does not list fails the build. Everything else is generated from the frontmatter:
 the post's page (its hero, contents and related posts), the section index (a list for news,
 a mosaic for the blog), the blog's sidebar, the home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
 update. Figures come from the post kit: interactive charts, tables, diagrams and callouts
