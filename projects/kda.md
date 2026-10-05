@@ -16,8 +16,7 @@ project:
     - { value: 1.69, from: 1, decimals: 2, suffix: ×, kicker: MLSys 2026 · GDN prefill, text: 'Past the best human entry, as public KDA 0.5 kernels on B200', href: /news/2026-10-05-kda-upstream }
     - { value: 40, suffix: '+', kicker: SGLang, text: 'Agent-optimized operators merged upstream, with the numbers attached', href: /news/2026-06-05-kda-sglang }
     - { value: 6, kicker: SGLang · since August, text: 'More pull requests merged, the best adding 8.73% end to end', href: /news/2026-10-05-kda-upstream }
-    - { value: 53, kicker: SOL Bench, text: 'First-place rankings from one 8×B200 node in about a week', href: /news/2026-06-22-sol-bench-batch }
-  note: The SOL Bench count is a June snapshot, Humanfia-reported.
+    - { value: 71, kicker: SOL-ExecBench, text: 'Per-kernel first places of 235, the most of any entrant, read 5 October', href: /news/2026-06-22-sol-bench-batch }
 
 hero:
   kicker: KDA² · Kimi Delta Attention on B300
@@ -83,11 +82,11 @@ by public leaderboards, and by maintainers who did not ask for them and still me
 | --- | --- | --- |
 | **KDA², v0.6** | Kimi Delta Attention on B300, 2.96× geomean over FlashKDA at 8,192 tokens, with a tenth of its final-state error | [Sep 27](/blog/2026-09-27-kda-for-kda) |
 | **SGLang, upstream** | More than forty operators merged by June, and six more pull requests since August | [Oct 1](/news/2026-10-05-kda-upstream) · [Jun 19](/news/2026-06-05-kda-sglang) |
-| **MLSys 2026 FlashInfer** | Past the best human entry on all three tracks: 1.17× to 1.69× as the public KDA 0.5 kernels on B200 (1.25× to 1.39× on B300 in August, under a different protocol) | [Oct 1](/news/2026-10-05-kda-upstream) · [Aug 2](/news/2026-08-02-kda-15-past-human-sota) · [May 15](/news/2026-05-15-mlsys-flashinfer-top3) |
+| **MLSys 2026 FlashInfer** | In the contest, #1 on MoE, #2 on DSA and #3 on GDN in the Full-Agent tracks. Since then, past the best human entry on all three: 1.69×, 1.41× and 1.17× as the public KDA 0.5 kernels on B200 (1.25× to 1.39× on B300 in August, Humanfia-reported) | [Oct 1](/news/2026-10-05-kda-upstream) · [Aug 2](/news/2026-08-02-kda-15-past-human-sota) · [May 15](/news/2026-05-15-mlsys-flashinfer-top3) |
 | **MSA indexer, in production** | 6.5× geomean on prefill, up to 3.3× on long-context decode, bitwise identical (Humanfia-reported) | [Aug 14](/news/2026-08-14-msa-indexer) |
 | **SGLang-Diffusion** | A quality tier, so a fusion that changes bf16 rounding order can ship at all | [Aug 6](/blog/2026-08-06-sglang-diffusion-quality-tiers) |
-| **SOLExec Bench** | First on the L1 single-operation track, 0.7608 against 0.7584 (Humanfia-reported; private on the board) | [Jul 2](/news/2026-07-02-solexec-l1) |
-| **SOL Bench** | 53 first-place rankings from one 8×B200 node in about a week (Humanfia-reported) | [Jun 22](/news/2026-06-22-sol-bench-batch) |
+| **SOL-ExecBench L1** | 0.7639 on the v1.0 board, first by 0.00006 over ac4k and ahead of doubleAI's 0.7587; third on the v1.1 stack the board now defaults to | [Jul 2](/news/2026-07-02-solexec-l1) |
+| **SOL-ExecBench** | 71 per-kernel first places of 235 on the v1.1 board, the most of any entrant (53 in June, Humanfia-reported) | [Jun 22](/news/2026-06-22-sol-bench-batch) |
 | **Other hardware** | ASM, HIP and ROCm, where the documentation is thin; two pull requests in FlyDSL | [Jun 26](/news/2026-06-15-kda-generalizes) |
 
 ## The problem
@@ -172,8 +171,9 @@ any single trick.
 
 ## Speedups: past the best human kernels
 
-In May, KDA's kernels placed in the top three on every track of the MLSys 2026 FlashInfer
-contest. With CuteDSL, a profiling skill and a better flow, it went past the best human
+In May, KDA placed #1 on MoE, #2 on DSA and #3 on GDN in the Full-Agent tracks of the MLSys 2026
+FlashInfer contest. Its best kernel ran 19.08× faster than the FlashInfer baseline, and two of
+its five kernels were still slower than it. With CuteDSL, a profiling skill and a better flow, it went past the best human
 entries on all three. Those kernels are now public as **KDA 0.5**
 ([mit-han-lab/mlsys2026-flashinfer-contest-solution](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution#results)), with a benchmark that pins
 the human winners' own repositories and refuses to run if they are modified.
@@ -278,15 +278,15 @@ collected in the [KDA wishlist](https://docs.humanfia.ai/kda-wishlist/)
 
 <ProjectTimeline
   kicker="KDA · every write-up"
-  label="KDA results from May to October 2026: top three on every MLSys track, forty operators in SGLang, speedups on AMD hardware, 53 first places on SOL Bench, lossless SGLang-Omni numerics, first on SOLExec L1, KDA 1.5 past the human entries, quality tiers for diffusion, the MSA indexer, KDA², and six more SGLang pull requests."
+  label="KDA results from May to October 2026: first, second and third on the MLSys tracks, forty operators in SGLang, speedups on AMD hardware, 71 first places on SOL-ExecBench, lossless SGLang-Omni numerics, first on SOL-ExecBench L1, KDA 1.5 past the human entries, quality tiers for diffusion, the MSA indexer, KDA², and six more SGLang pull requests."
   :entries="[
-    { url: '/news/2026-05-15-mlsys-flashinfer-top3', metric: 'Top 3 × 3' },
+    { url: '/news/2026-05-15-mlsys-flashinfer-top3', metric: '#1 · #2 · #3' },
     { url: '/news/2026-06-05-kda-sglang', metric: '40+ ops' },
     { url: '/news/2026-06-15-kda-generalizes', metric: 'ASM · HIP · ROCm' },
-    { url: '/news/2026-06-22-sol-bench-batch', metric: '53 × #1' },
+    { url: '/news/2026-06-22-sol-bench-batch', metric: '71 × #1' },
     { url: '/blog/2026-07-02-sglang-omni-numerics', metric: '+20%' },
-    { url: '/news/2026-07-02-solexec-l1', metric: '#1 · 0.7608' },
-    { url: '/news/2026-08-02-kda-15-past-human-sota', metric: '1.25–1.39×' },
+    { url: '/news/2026-07-02-solexec-l1', metric: '#1 · 0.7639' },
+    { url: '/news/2026-08-02-kda-15-past-human-sota', metric: 'Past human SOTA' },
     { url: '/blog/2026-08-06-sglang-diffusion-quality-tiers', metric: 'Quality tiers' },
     { url: '/news/2026-08-14-msa-indexer', metric: '6.5×' },
     { url: '/blog/2026-09-27-kda-for-kda', metric: '2.96×' },
