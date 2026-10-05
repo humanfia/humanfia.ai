@@ -20,7 +20,7 @@ land somewhere else.</p>
 
 This page collects what we have measured so far: why one flow cannot serve every task, the
 flow-level ablations behind that claim, and five findings we did not expect. Every figure is
-rebuilt from the charts in our October 2026 "Humanize 2 Intro" talk. Hover over a figure, tap
+rebuilt from the charts in our October 2026 "Humanize Intro" talk. Hover over a figure, tap
 it or use the arrow keys to read values, and click a legend entry to hide that series. These
 are our own runs, **Humanfia-reported, 2026-10-05**, unless a figure links to something
 published.
@@ -40,7 +40,7 @@ The talk summed this up as **"80 cycles better, 80% tokens saved"** against `/go
 
 ## No free lunch: one flow cannot solve every problem
 
-Our first flow, Humanize 1's **RLCR** (Ralph loop with Codex review), is good at building a
+Our first flow, **RLCR Flow** (Ralph loop with Codex review), is good at building a
 project from scratch. Coding of that kind is a **constraint satisfaction problem**. Every
 requested feature must be implemented, the tests must pass and the lints must be clean, and we
 do not care about the exact shape of the code. One feasible solution is enough.

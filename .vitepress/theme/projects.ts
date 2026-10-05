@@ -14,7 +14,7 @@
 //   - KDA leaves flow orchestration to Humanize (humanfia/KDA-internal README).
 //   - HMA vendors `src/hmz` and ships as a Humanize flow (humanfia/hma).
 //
-// "Humanize 1" is not Humanize. It is PolyArch/humanize, the Claude Code plugin Humanize grew
+// "RLCR Flow" is not Humanize. It is PolyArch/humanize, the Claude Code plugin Humanize grew
 // out of, written and led by Sihao Liu; the Humanize lead never committed to it. Its posts are
 // credited to it and to nothing it does not depend on, which is nothing in this organisation.
 //
@@ -32,8 +32,8 @@ export interface Project {
 }
 
 export const PROJECTS: Record<string, Project> = {
-  humanize: { name: 'Humanize', tags: ['Humanize 2'], leads: ['futrime'], coLeads: [], dependsOn: [] },
-  humanize1: { name: 'Humanize 1', tags: ['Humanize 1'], leads: ['SihaoLiu'], coLeads: [], dependsOn: [] },
+  humanize: { name: 'Humanize', tags: ['Humanize'], leads: ['futrime'], coLeads: [], dependsOn: [] },
+  humanize1: { name: 'RLCR Flow', tags: ['RLCR Flow'], leads: ['SihaoLiu'], coLeads: [], dependsOn: [] },
   flowbench: { name: 'FlowBench', tags: ['FlowBench'], leads: ['futrime'], coLeads: [], dependsOn: ['humanize'] },
   hoa: { name: 'HOA', tags: ['HOA'], leads: ['ZhengyangZhang06'], coLeads: [], dependsOn: ['humanize'] },
   kda: { name: 'KDA', tags: ['KDA'], leads: ['DongyunZou'], coLeads: [], dependsOn: ['humanize'] },

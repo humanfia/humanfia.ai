@@ -30,7 +30,7 @@ const LAYERS: Layer[] = [
     key: 'flows',
     kicker: 'Flows',
     title: 'The method, as code',
-    body: 'RLAR, Flame Chase, Humanize 1, the Ralph loop — directories of Python anyone can read, fork or beat.',
+    body: 'RLAR, Flame Chase, RLCR Flow, the Ralph loop — directories of Python anyone can read, fork or beat.',
     links: [
       { text: 'humanfia/flowverse ↗', href: 'https://github.com/humanfia/flowverse' },
     ],

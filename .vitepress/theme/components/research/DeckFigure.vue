@@ -64,7 +64,7 @@ function key(e: KeyboardEvent) {
     />
     <figcaption class="df-cap">
       <p>{{ fig.summary }}</p>
-      <p class="df-src">{{ fig.note }} Read off the “Humanize 2 Intro” deck, {{ source }}; Humanfia-reported, 2026-10-05. Hover, tap or use the arrow keys to read values; click a legend entry to hide it.</p>
+      <p class="df-src">{{ fig.note }} Read off the “Humanize Intro” deck, {{ source }}; Humanfia-reported, 2026-10-05. Hover, tap or use the arrow keys to read values; click a legend entry to hide it.</p>
     </figcaption>
   </figure>
 </template>

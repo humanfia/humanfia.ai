@@ -4,7 +4,7 @@ description: "Two models that solve 0% and 0.5% of ProgramBench on their own sol
 date: 2026-08-11
 authors:
   - Zheng Du
-tag: Humanize 2
+tag: Humanize
 achievement:
   topic: ProgramBench
   value: 3.5
@@ -30,7 +30,7 @@ unusually clean instrument for measuring a loop.
 | --- | ---: |
 | Opus-4.8, on its own | **0%** |
 | GPT-5.5, on its own | **0.5%** |
-| Humanize 2 — Opus-4.8 building, GPT-5.5 reviewing | **3.5%** |
+| Humanize — Opus-4.8 building, GPT-5.5 reviewing | **3.5%** |
 | Reported state of the art (Opus-5) | 4.5% |
 
 Two models that solve almost nothing separately solve seven times the better one's share when

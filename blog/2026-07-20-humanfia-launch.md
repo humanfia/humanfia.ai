@@ -47,12 +47,12 @@ Our intended workflow has four stages:
 a workflow-native terminal coding agent with code intelligence, debugging, subagents, browser
 control, review, memory and broad model support.
 
-[**Humanize 1: RLCR Loop**](https://github.com/PolyArch/humanize) supplies the disciplined
+[**RLCR Flow**](https://github.com/PolyArch/humanize) supplies the disciplined
 feedback loop. Claude implements, Codex independently reviews, and review findings cycle back
 into implementation. The human stays responsible for the plan and the final decision.
 
 ::: tip Model peer-review
-The model that built the code should not be the only model judging the change. In Humanize 1,
+The model that built the code should not be the only model judging the change. In RLCR Flow,
 we recommend Claude as builder and Codex as reviewer.
 :::
 
@@ -79,7 +79,7 @@ better workflow — and give humans a better way to direct them.
 ---
 
 *Written in July 2026. Much of what this post promised has since been built and measured:
-the runtime became [Humanize 2](/projects/humanize), the loop became a
+the runtime became [Humanize](/projects/humanize), the loop became a
 [flowverse of flows](/projects/humanize#the-flows-it-runs) anyone can run, and the review
 discipline is now [RLAR](https://github.com/humanfia/flowverse). What that turned into is
 described in

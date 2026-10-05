@@ -1,6 +1,6 @@
 // The arithmetic under the research charts, kept apart from any one of them: scales, the path a
 // series draws, and reading a series at an arbitrary x. Self-contained on purpose -- the charts in
-// this folder were rebuilt from the "Humanize 2 Intro" deck before the site had a shared chart
+// this folder were rebuilt from the "Humanize Intro" deck before the site had a shared chart
 // kit, and keeping their maths in one plain module is what lets them move into one later.
 
 import { onBeforeUnmount, onMounted, ref, type Ref } from 'vue'
