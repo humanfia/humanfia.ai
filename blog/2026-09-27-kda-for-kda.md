@@ -58,7 +58,8 @@ distributional assumptions in the test suite, untested boundaries, or loose prec
 This post dissects those hacks and describes how we hardened acceptance along both hardware and
 numerical lines.
 
-The released CuTe-DSL and TIRx kernels are open source:
+The charts below are stills of the interactive ones in the original post; tap one to open it at
+full size. The released CuTe-DSL and TIRx kernels are open source:
 [NVlabs/kda@260927-kda-for-kda](https://github.com/NVlabs/kda/tree/260927-kda-for-kda).
 
 ## Results: 2.96× faster, and more accurate
@@ -68,14 +69,14 @@ We benchmarked the generated kernels on an NVIDIA B300 GPU against the forward p
 implementation. The workloads cover fixed-length sequences and variable-length (varlen) batches
 with several length distributions, each totaling 8,192 tokens of context.
 
-![Speedup over FlashKDA on B300 for six workloads. Geomean: KDA + CAKE 2.85×, KDA + TIRx 2.96×.](/blog/kda-for-kda/speedup.png)
+[![Speedup over FlashKDA on B300 for six workloads. Geomean: KDA + CAKE 2.85×, KDA + TIRx 2.96×.](/blog/kda-for-kda/speedup.png)](/blog/kda-for-kda/speedup.png)
 
 The timeline shows how the best KDA result moved from 1.61× on July 21 to 2.96× on
 September 12. It records CAKE results separately, including 2.94× on September 6. The captions
 call out the final KDA + CAKE and KDA + TIRx results; the six-workload chart above compares the
 released kernels.
 
-![KDA best rises from 1.61× on July 21 to 2.96× on September 12. Arrows mark Humanize at 2.45× on August 14; TIRx at 2.54× on August 30, 2.93× on September 2 and 2.96× on September 12; CAKE with KDA at 2.56× on September 1 and CAKE at 2.94× on September 6. The INT21 reference is 1.5× on June 16.](/blog/kda-for-kda/timeline.png)
+[![KDA best rises from 1.61× on July 21 to 2.96× on September 12. Arrows mark Humanize at 2.45× on August 14; TIRx at 2.54× on August 30, 2.93× on September 2 and 2.96× on September 12; CAKE with KDA at 2.56× on September 1 and CAKE at 2.94× on September 6. The INT21 reference is 1.5× on June 16.](/blog/kda-for-kda/timeline.png)](/blog/kda-for-kda/timeline.png)
 
 For accuracy, we built 151 real cases from
 [Kimi-Linear-48B-A3B](https://github.com/MoonshotAI/Kimi-Linear) prefills on GSM8K and
@@ -88,7 +89,7 @@ reaches 0.035, beyond our acceptance threshold.
 Both of our kernels hold final-state error to about 0.003 at 8k tokens: a tenth of FlashKDA's,
 and close to FLA. Output accuracy matches FlashKDA overall and pulls ahead on long sequences.
 
-![Output relative RMSE versus context length for a Kimi-Linear-48B prefill of 8,183 tokens: FlashKDA drifts from 0.43% to about 0.69%, while both of our kernels stay between 0.23% and 0.43%. Final-state relative RMSE: FlashKDA 3.45%, CuTe 0.22%, TIRx 0.29%.](/blog/kda-for-kda/accuracy.png)
+[![Output relative RMSE versus context length for a Kimi-Linear-48B prefill of 8,183 tokens: FlashKDA drifts from 0.43% to about 0.69%, while both of our kernels stay between 0.23% and 0.43%. Final-state relative RMSE: FlashKDA 3.45%, CuTe 0.22%, TIRx 0.29%.](/blog/kda-for-kda/accuracy.png)](/blog/kda-for-kda/accuracy.png)
 
 *Kimi-Linear-48B prefill of one MATH-500 prompt (8,183 tokens, 96 heads). Relative RMSE =
 rms(x − x<sub>fp64</sub>) / rms(x<sub>fp64</sub>), FlashKDA's own test metric; lower is
@@ -101,9 +102,9 @@ base model we tried: moving from a coding CLI (Claude Code or Codex) to a Humani
 a large jump in performance. There is a catch, though. The more capable the agent, the more
 room it has to hack.
 
-![Humanize ablation on PutnamBench, for the raw API, a coding CLI and a Humanize flow: GPT-5.6-sol 3 / 46 / 50, Kimi-K3 1 / 4 / 47, GLM-5.3 0 / 2 / 25, DeepSeek V4 Pro 0 / 4 / 13.](/blog/kda-for-kda/humanize.png)
+[![Humanize ablation on PutnamBench, for the raw API, a coding CLI and a Humanize flow: GPT-5.6-sol 3 / 46 / 50, Kimi-K3 1 / 4 / 47, GLM-5.3 0 / 2 / 25, DeepSeek V4 Pro 0 / 4 / 13.](/blog/kda-for-kda/humanize.png)](/blog/kda-for-kda/humanize.png)
 
-![Humanize ablation on Physics Cup, for the raw API, a coding CLI and a Humanize flow: GPT-5.6-sol 31 / 41 / 44, Kimi-K3 35 / 37 / 42, GLM-5.3 24 / 34 / 40, DeepSeek V4 Pro 32 / 35 / 39.](/blog/kda-for-kda/humanize-physics.png)
+[![Humanize ablation on Physics Cup, for the raw API, a coding CLI and a Humanize flow: GPT-5.6-sol 31 / 41 / 44, Kimi-K3 35 / 37 / 42, GLM-5.3 24 / 34 / 40, DeepSeek V4 Pro 32 / 35 / 39.](/blog/kda-for-kda/humanize-physics.png)](/blog/kda-for-kda/humanize-physics.png)
 
 *PutnamBench (top) and Physics Cup (bottom) scores for four base models at three levels of
 scaffolding: the raw model API, a coding CLI, and a Humanize flow.*
@@ -151,7 +152,7 @@ up to 9%, and 23 of 24 long real-world sequences fell outside tolerance.
 real model produces. In real Kimi-Linear, the gate decays by about 600 bits per 64 tokens at
 p99, an order of magnitude deeper than our random test data.
 
-![Gate decay depth per 64 tokens. Random tests reach about 52 bits, the hacked TIRx kernel underflows beyond 126 bits, and real Kimi-Linear gates reach about 600 bits at p99.](/blog/kda-for-kda/decay.png)
+[![Gate decay depth per 64 tokens. Random tests reach about 52 bits, the hacked TIRx kernel underflows beyond 126 bits, and real Kimi-Linear gates reach about 600 bits at p99.](/blog/kda-for-kda/decay.png)](/blog/kda-for-kda/decay.png)
 
 ## Hardening: closing the loopholes
 
@@ -188,7 +189,7 @@ synthesis that starts from a single fixed-length shape, and direct multi-objecti
 across all shapes. With the same hardware (NVIDIA B300) and the same 14-hour budget, their
 convergence curves diverged sharply.
 
-![Speedup and output tokens over a 14-hour budget. Focusing on one simple shape reaches 1.85× and 2.74 million output tokens; targeting all six shapes at once reaches 1.01× and 1.67 million output tokens.](/blog/kda-for-kda/ablation.png)
+[![Speedup and output tokens over a 14-hour budget. Focusing on one simple shape reaches 1.85× and 2.74 million output tokens; targeting all six shapes at once reaches 1.01× and 1.67 million output tokens.](/blog/kda-for-kda/ablation.png)](/blog/kda-for-kda/ablation.png)
 
 On the same evaluation shape, progressive synthesis reached **1.85×**; direct all-shape
 synthesis managed only **1.01×**. Two mechanisms explain the gap.
@@ -203,7 +204,7 @@ synthesis managed only **1.01×**. Two mechanisms explain the gap.
    and the core logic never got the attention it needed. Over the same 14 hours, it also
    produced far fewer output tokens than the single-shape agent.
 
-![Feedback loops: one simple shape takes a median 0.9 minutes per test and completes 248 tests and 120 commits; all six shapes take 1.9 minutes per test and complete 159 tests and 22 commits.](/blog/kda-for-kda/loops.png)
+[![Feedback loops: one simple shape takes a median 0.9 minutes per test and completes 248 tests and 120 commits; all six shapes take 1.9 minutes per test and complete 159 tests and 22 commits.](/blog/kda-for-kda/loops.png)](/blog/kda-for-kda/loops.png)
 
 > Splitting the work into two stages does not make the model any smarter. It shortens the
 > feedback loop until the model can stay busy.
