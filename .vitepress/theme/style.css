@@ -29,6 +29,16 @@
   --hf-amber: #b45309;
   --hf-amber-light: #efb358;
 
+  /* The mark's palette, which is a constructivist poster's: ink, the paper it is printed on, and
+     one red. The H is drawn in --hf-mark and its circle (the dot of the i in the wordmark) is
+     --hf-red; the home page is set in all three. In the dark the ink and the paper swap, and the
+     red is lifted a step so it keeps its weight on a dark ground. */
+  --hf-ink-k: #16161a;
+  --hf-paper: #ece6da;
+  --hf-paper-light: #f4f0e8;
+  --hf-red: #d6331f;
+  --hf-mark: var(--hf-ink-k);
+
   /* The darkest text is the mark's family too, so a heading and the logo above it are the same
      colour temperature. The softer two are the theme's, which are already cool enough. */
   --vp-c-text-1: var(--hf-ink);
@@ -42,6 +52,9 @@
 .dark {
   /* The theme's own is a warm white; the logo's is not, and one of them had to give. */
   --vp-c-text-1: var(--hf-slate-pale);
+
+  --hf-red: #ff5a43;
+  --hf-mark: var(--hf-paper);
 
   --vp-c-brand-1: var(--hf-blue-light);
   --vp-c-brand-2: var(--hf-blue-mid);
@@ -318,3 +331,8 @@ a.card:hover {
    and 12.5px alike, because the titles are sentences and no pixel was going to fix that; and
    the one outline entry that is too long is ellipsised at either size. A rule that changes
    nothing measurable is a rule to be read and kept in step forever, so there is none. */
+
+/* The wordmark in the nav, at the height the theme gives a logo. */
+.VPNavBarTitle .title {
+  --hf-wordmark-height: var(--vp-nav-logo-height);
+}
