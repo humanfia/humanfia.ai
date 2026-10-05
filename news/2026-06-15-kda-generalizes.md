@@ -1,7 +1,7 @@
 ---
 title: "Thin docs, no corpus: KDA still finds speedups on AMD hardware"
 description: "On ASM, HIP and ROCm — far less documentation, far fewer published kernels to copy from — KDA still lands the speedup. Two of them are merged in FlyDSL."
-date: 2026-06-15
+date: 2026-06-26
 authors:
   - Jin Pan
 tag: KDA

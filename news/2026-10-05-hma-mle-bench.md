@@ -1,7 +1,7 @@
 ---
 title: "78.2% medal rate on MLE-bench in six hours, by making two agents take turns"
 description: "Two coding agents alternating over one workspace, each starting fresh, beat both of them working alone on 75 MLE-bench tasks: 78.2% any-medal against 72.4% and 68.0%. Self-reported, and not on the official leaderboard."
-date: 2026-10-05
+date: 2026-10-03
 authors:
   - Changye Li
 tag: HMA

@@ -1,7 +1,7 @@
 ---
 title: "SGLang merges 40+ agent-tuned operators, one lifting throughput 71%"
 description: "More than forty agent-optimized operators are upstream in SGLang. Six of them, with the numbers: −41% TTFT, +71% throughput, 2.32× denoising and a 1.41× VAE decode."
-date: 2026-06-05
+date: 2026-06-19
 authors:
   - Xiaoyu Zhang
 tag: KDA

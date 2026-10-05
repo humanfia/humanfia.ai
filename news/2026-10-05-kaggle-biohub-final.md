@@ -1,7 +1,7 @@
 ---
 title: "Biohub closed at #188 of 3,947: top 5%, not the #8 the public board showed"
 description: "In August an agent workflow sat 8th on the Biohub cell-tracking public leaderboard. The private board has now spoken: 188th of 3,947, top 4.8%. A real finish, a smaller one, and what the Kaggle tally looks like when only final ranks count."
-date: 2026-10-05
+date: 2026-09-30
 authors:
   - Changye Li
 tag: HMA

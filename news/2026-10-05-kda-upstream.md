@@ -1,7 +1,7 @@
 ---
 title: "Six KDA pull requests land in SGLang, the best adding 8.7% end to end"
 description: "Since August, SGLang has merged six pull requests carrying kernels our agents wrote, and the MLSys contest kernels are now public with a benchmark anyone can rerun. One upstream merge was reverted the next day."
-date: 2026-10-05
+date: 2026-10-01
 authors:
   - Xiaoyu Zhang
   - Dongyun Zou
