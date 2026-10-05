@@ -54,5 +54,13 @@ pnpm check:docs     # every link out to the documentation reaches the page it na
 
 ## License
 
-None. © Humanfia, all rights reserved — this is the organisation's own website, and no right to
-use, copy or redistribute it is granted.
+The site's code — `.vitepress/` (configuration, theme, components and checks), `scripts/`,
+the workflows and the build configuration — is licensed under [Apache-2.0](LICENSE).
+
+The content — the pages in `index.md`, `blog/`, `projects/`, `team/` and `about/`, and the
+images under `public/` — is licensed under
+[CC-BY-4.0](LICENSE-CC-BY-4.0): reuse it with attribution to Humanfia and a link to the page.
+
+Material quoted or linked from others (problem statements, benchmark results, third-party
+repositories and papers) keeps its owners' terms. The Humanfia name and logo identify the
+organisation; the licences above do not grant any trademark rights.
