@@ -1,9 +1,14 @@
 import { onBeforeUnmount, onMounted, ref, type Directive, type Ref } from 'vue'
 
-// The home page's motion, in one place. Everything on it moves for one of two reasons: a section
-// is pinned and the scroll position inside it is a timeline (`useStickyProgress`), or something
-// arrived on screen and plays once (`vReveal`). Both are read off a single scroll listener and a
-// single IntersectionObserver, however many sections ask.
+// The home page's motion, in one place. Everything on it moves for one of two reasons: where a
+// section is on screen is a timeline (`useScrollProgress`), or something arrived on screen and
+// plays once (`vReveal`). Both are read off a single scroll listener and a single
+// IntersectionObserver, however many sections ask.
+//
+// Nothing is pinned for longer than the reader would scroll past it anyway. The page used to hold
+// its scenes still for two to five screens each, which made the wheel feel as if it were slipping;
+// now the page moves at the speed of the hand, and the pictures are driven by where their section
+// happens to be.
 
 export const clamp = (v: number, lo = 0, hi = 1) => (v < lo ? lo : v > hi ? hi : v)
 export const lerp = (a: number, b: number, u: number) => a + (b - a) * u
@@ -55,19 +60,15 @@ export function onScrollFrame(fn: Tick) {
 }
 
 /**
- * How far the reader has scrolled through a pinned section, 0 at the moment its top reaches the
- * top of the window and 1 when its bottom reaches the bottom. The section is taller than the
- * window and holds a `position: sticky` child, so for that whole distance the child stays put
- * and this number is its timeline.
+ * A number driven by where `el` is in the window, recomputed on every frame the page scrolls or
+ * resizes. `map` gets the element's box and the window height and returns whatever the section
+ * wants -- usually how far through the window the element has travelled, as 0..1.
  */
-export function useStickyProgress(el: Ref<HTMLElement | null>) {
+export function useScrollProgress(el: Ref<HTMLElement | null>, map: (box: DOMRect, vh: number) => number) {
   const progress = ref(0)
   onScrollFrame(() => {
     const node = el.value
-    if (!node) return
-    const box = node.getBoundingClientRect()
-    const travel = box.height - innerHeight
-    progress.value = travel > 0 ? clamp(-box.top / travel) : box.top < 0 ? 1 : 0
+    if (node) progress.value = map(node.getBoundingClientRect(), innerHeight)
   })
   return progress
 }
@@ -187,28 +188,42 @@ export class Stage {
   }
 }
 
-/** A soft round dot, drawn once and stamped thousands of times: far cheaper than `arc()`. */
-export function sprite(color: string, glow: boolean, size = 48) {
-  // Fade to the colour itself at zero alpha, not to `transparent`: that is black at zero alpha,
-  // and a gradient into it draws a grey fringe round every dot on a light page.
-  const n = parseInt(color.slice(1), 16)
-  const clear = `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},0)`
-  const c = document.createElement('canvas')
-  c.width = c.height = size
-  const g = c.getContext('2d')!
-  const r = size / 2
-  const grad = g.createRadialGradient(r, r, 0, r, r, r)
-  if (glow) {
-    grad.addColorStop(0, 'rgba(255,255,255,1)')
-    grad.addColorStop(0.22, color)
-    grad.addColorStop(1, clear)
-  } else {
-    grad.addColorStop(0, color)
-    grad.addColorStop(0.42, color)
-    grad.addColorStop(0.6, color.length === 7 ? `${color}66` : color)
-    grad.addColorStop(1, clear)
+/**
+ * The same loop for something that is not a canvas: `draw` gets the time in seconds on every
+ * frame while `el` is on screen, and none while it is not.
+ */
+export class Clock {
+  private raf = 0
+  private visible = false
+  private readonly start = performance.now()
+  private readonly vo: IntersectionObserver
+
+  constructor(
+    private readonly el: Element,
+    private readonly draw: (t: number) => void,
+    private readonly animated = true,
+  ) {
+    this.vo = new IntersectionObserver(([entry]) => {
+      this.visible = entry.isIntersecting
+      if (this.visible) this.loop()
+    })
+    this.vo.observe(el)
+    this.frame()
   }
-  g.fillStyle = grad
-  g.fillRect(0, 0, size, size)
-  return c
+
+  frame() {
+    this.draw((performance.now() - this.start) / 1000)
+  }
+
+  private loop = () => {
+    cancelAnimationFrame(this.raf)
+    if (!this.visible) return
+    this.frame()
+    if (this.animated) this.raf = requestAnimationFrame(this.loop)
+  }
+
+  destroy() {
+    cancelAnimationFrame(this.raf)
+    this.vo.disconnect()
+  }
 }

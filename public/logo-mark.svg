@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The Humanfia H without its circle: for wherever the circle is somewhere else (the wordmark, where
+  it is the dot of the i) or would be one red thing too many. Same 96 x 108 box as logo.svg, so the
+  two can be swapped in place without the mark moving. The ink follows the reader's colour scheme,
+  since this file is mostly used as an image. (No double hyphen in an XML comment.)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 108" role="img" aria-labelledby="humanfia-mark-title">
+  <title id="humanfia-mark-title">Humanfia</title>
+  <style>
+    .h { fill: #16161a; }
+    @media (prefers-color-scheme: dark) {
+      .h { fill: #ece6da; }
+    }
+  </style>
+  <path class="h" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
+</svg>

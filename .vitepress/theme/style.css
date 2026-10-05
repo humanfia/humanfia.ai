@@ -3,50 +3,95 @@
  * the theme has no component for. Everything here is either a VitePress variable being set or
  * a class the markdown writes by hand -- there is no second design system to keep in step.
  *
- * The palette is one hue. The mark is slate -- a blue-grey that is near-black on paper and a
- * matte, faintly blue white in the dark -- and the accent is that same hue with the chroma
- * turned up, so a link looks like it was cut from the logo. Amber is the only other colour on
- * the site, and it is spent on one thing: the arrow in the system map that runs the other way.
+ * The palette is a constructivist poster's: ink, the paper it is printed on, and one red. The
+ * page is the paper (warm, not white), the text is the ink, and the red is the H's circle --
+ * spent on links, the thing in focus, and the one arrow that runs the other way. In the dark the
+ * ink and the paper swap places and the red is lifted a step, so it keeps its weight on a dark
+ * ground. Two warm greys between ink and paper carry the secondary text.
  *
  * These are the tokens. Nothing below this block, and nothing in a component, should name a
- * colour that is not here.
+ * colour that is not here. (The slate, blue and amber further down are the previous palette,
+ * still drawn by the trace and architecture diagrams on the project pages; nothing new uses them.)
  */
 
 :root {
-  /* Slate: the mark's own colour, and the ink under everything. */
+  /* Ink, and the two greys it fades through toward the paper. */
+  --hf-ink-k: #16161a;
+  --hf-ink-2: #4a4740;
+  --hf-ink-3: #7c776d;
+
+  /* Paper: the page, the alternate band, and a sheet laid on either. */
+  --hf-paper: #ece6da;
+  --hf-paper-light: #f4f0e8;
+  --hf-paper-white: #faf8f3;
+  /* The paper's greys, for the dark mode's secondary text. */
+  --hf-paper-2: #bab3a6;
+  --hf-paper-3: #8c8679;
+
+  /* The night: the dark mode's page is the ink; these are the band below it and a raised sheet. */
+  --hf-night: #0f0f12;
+  --hf-night-2: #202026;
+
+  /* The red, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
+  --hf-red: #d6331f;
+  --hf-red-deep: #b0271a;
+
+  /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-red. */
+  --hf-mark: var(--hf-ink-k);
+
+  /* The previous palette, for the diagrams that still draw in it. */
   --hf-slate: #1e293b;
   --hf-slate-pale: #e2e8f0;
   --hf-ink: #0f172a;
-
-  /* The accent: slate's hue, more chroma. */
   --hf-blue: #2e599e;
   --hf-blue-dark: #24467c;
   --hf-blue-mid: #6e93cf;
   --hf-blue-light: #8daee2;
   --hf-blue-pale: #b6cbec;
-
-  /* The one warm colour. Used once, on purpose. */
   --hf-amber: #b45309;
   --hf-amber-light: #efb358;
 
-  /* The darkest text is the mark's family too, so a heading and the logo above it are the same
-     colour temperature. The softer two are the theme's, which are already cool enough. */
-  --vp-c-text-1: var(--hf-ink);
+  --vp-c-bg: var(--hf-paper-light);
+  --vp-c-bg-alt: var(--hf-paper);
+  --vp-c-bg-soft: var(--hf-paper);
+  --vp-c-bg-elv: var(--hf-paper-white);
 
-  --vp-c-brand-1: var(--hf-blue-dark);
-  --vp-c-brand-2: var(--hf-blue);
-  --vp-c-brand-3: var(--hf-blue);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-blue) 14%, transparent);
+  --vp-c-text-1: var(--hf-ink-k);
+  --vp-c-text-2: var(--hf-ink-2);
+  --vp-c-text-3: var(--hf-ink-3);
+
+  --vp-c-brand-1: var(--hf-red-deep);
+  --vp-c-brand-2: var(--hf-red);
+  --vp-c-brand-3: var(--hf-red-deep);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-red) 12%, transparent);
+
+  --vp-c-divider: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
+  --vp-c-gutter: color-mix(in srgb, var(--hf-ink-k) 8%, transparent);
 }
 
 .dark {
-  /* The theme's own is a warm white; the logo's is not, and one of them had to give. */
-  --vp-c-text-1: var(--hf-slate-pale);
+  --hf-red: #ff5a43;
+  --hf-red-deep: #ff7a66;
+  /* A button's fill: the lifted red is too light to carry white text. */
+  --hf-red-press: #c22a17;
+  --hf-mark: var(--hf-paper);
 
-  --vp-c-brand-1: var(--hf-blue-light);
-  --vp-c-brand-2: var(--hf-blue-mid);
-  --vp-c-brand-3: var(--hf-blue);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-blue-light) 16%, transparent);
+  --vp-c-bg: var(--hf-ink-k);
+  --vp-c-bg-alt: var(--hf-night);
+  --vp-c-bg-soft: var(--hf-night-2);
+  --vp-c-bg-elv: var(--hf-night-2);
+
+  --vp-c-text-1: var(--hf-paper);
+  --vp-c-text-2: var(--hf-paper-2);
+  --vp-c-text-3: var(--hf-paper-3);
+
+  --vp-c-brand-1: var(--hf-red-deep);
+  --vp-c-brand-2: var(--hf-red);
+  --vp-c-brand-3: var(--hf-red-press);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-red) 16%, transparent);
+
+  --vp-c-divider: color-mix(in srgb, var(--hf-paper) 14%, transparent);
+  --vp-c-gutter: color-mix(in srgb, var(--hf-paper) 6%, transparent);
 }
 
 /* ---------------------------------------------------------------------------------------
@@ -80,7 +125,7 @@
 .stat-strip > div {
   padding: 16px 18px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--vp-c-bg-soft);
 }
 
@@ -141,7 +186,7 @@
   display: block;
   padding: 18px 20px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--vp-c-bg-soft);
   color: inherit;
   text-decoration: none;
@@ -201,7 +246,7 @@ a.card:hover {
   margin: 26px 0 12px;
   padding: 20px 24px;
   border: 1px solid var(--vp-c-brand-1);
-  border-radius: 14px;
+  border-radius: 2px;
   background: var(--vp-c-brand-soft);
   color: inherit;
   text-decoration: none;
@@ -210,13 +255,7 @@ a.card:hover {
 
 .docs-cta:hover {
   border-color: var(--vp-c-brand-2);
-  background: color-mix(in srgb, var(--hf-blue) 22%, transparent);
-}
-
-/* The same step up as in the light mode, off the hue the dark mode's soft is mixed from --
-   the accent inverts between the two, and a hover that got darker would read as a press. */
-.dark .docs-cta:hover {
-  background: color-mix(in srgb, var(--hf-blue-light) 24%, transparent);
+  background: color-mix(in srgb, var(--hf-red) 20%, transparent);
 }
 
 /* Same reason as a.card: the theme underlines and recolours every `a` in the content, which
@@ -318,3 +357,9 @@ a.card:hover {
    and 12.5px alike, because the titles are sentences and no pixel was going to fix that; and
    the one outline entry that is too long is ellipsised at either size. A rule that changes
    nothing measurable is a rule to be read and kept in step forever, so there is none. */
+
+/* The wordmark in the nav, a little taller than the theme's logo height: the letters are a
+   wordmark's x-height under the mark's cap, and at 24px the i's dot is a speck. */
+.VPNavBarTitle .title {
+  --hf-wordmark-height: 27px;
+}

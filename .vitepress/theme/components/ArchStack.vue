@@ -38,10 +38,10 @@ const LAYERS: Layer[] = [
   {
     key: 'runtime',
     kicker: 'Runtime',
-    title: 'Humanize 2: Agent Flow System',
+    title: 'Humanize: Agent Flow System',
     body: 'Opens and resumes sessions, takes the turns a flow asks for, puts work in a container or on another machine, and writes the run down as a timeline.',
     links: [
-      { text: 'Humanize 2 →', href: '/projects/humanize' },
+      { text: 'Humanize →', href: '/projects/humanize' },
       { text: 'The documentation ↗', href: `${DOCS}/` },
     ],
     lit: true,

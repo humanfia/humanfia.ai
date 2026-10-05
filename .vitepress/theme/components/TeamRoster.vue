@@ -113,7 +113,7 @@ const GROUPS: Group[] = [
     id: 'hoa',
     name: 'HOA',
     href: '/projects/hoa',
-    what: 'Humanize Olympic Agents. Mathematics, physics and quantum information, checked by Lean 4.',
+    what: 'Humanfia Olympiad Agents. Mathematics, physics and quantum information, checked by Lean 4.',
     members: [
       { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.', lead: true },
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },

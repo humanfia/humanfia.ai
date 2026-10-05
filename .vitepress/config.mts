@@ -124,6 +124,20 @@ export default defineConfig({
 
   sitemap: { hostname: HOSTNAME },
 
+  // The footer has no slot, and its lines are HTML strings that cannot hold a component, so the
+  // wordmark gets there by replacing the theme's footer outright -- the theme's documented way of
+  // overriding one of its parts. SiteFooter.vue is the theme's own, with the wordmark on top.
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPFooter\.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/SiteFooter.vue', import.meta.url)),
+        },
+      ],
+    },
+  },
+
   // The feeds are written by `buildEnd` below, after the link check has run, so the check has
   // no way of knowing they are about to exist. Every other dead link is still a failed build.
   ignoreDeadLinks: [/^\/(?:blog|news)\/feed\.rss$/],
@@ -131,12 +145,12 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     // A home screen cannot use the SVG: it wants a raster of a known size and composites it
-    // onto its own background, so these are drawn on slate by scripts/icons.py.
+    // onto its own background, so these are drawn on ink by scripts/icons.py.
     ['link', { rel: 'apple-touch-icon', href: '/icon-180.png', sizes: '180x180' }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-    // The mark's own slate, not the accent: this tints the browser chrome around the page, and
-    // a saturated blue bar over a white page reads as a different site's.
-    ['meta', { name: 'theme-color', content: '#1e293b' }],
+    // The mark's own ink, not the red: this tints the browser chrome around the page, and a red
+    // bar over a paper page would shout louder than anything on it.
+    ['meta', { name: 'theme-color', content: '#16161a' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Humanfia' }],
     ['meta', { property: 'og:image', content: `${HOSTNAME}/og.png` }],
@@ -162,11 +176,11 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    // Two files rather than one with currentColor: the nav logo is an <img>, so the SVG cannot
-    // inherit the page's colour. The dark one is a matte, slightly blue white; the light one is
-    // the same slate the mark was drawn in.
-    logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'Humanfia' },
-    siteTitle: 'Humanfia',
+    // No logo and no title: the brand is the animated wordmark, put inside the theme's title link
+    // by the `nav-bar-title-after` slot in theme/index.ts -- the H and the word drawn as one SVG,
+    // with the dot of the i hopping to the H and back. `false` rather than leaving it out, which
+    // would have the theme print the site's title as text beside it.
+    siteTitle: false,
 
     // Projects is a menu, and so is Flows, beside it: the flows run on Humanize, and the menu
     // groups them as the catalogue at /flows/ does. The rest are plain links. There is no
@@ -208,7 +222,8 @@ export default defineConfig({
     footer: {
       message:
         'Built in public. <a href="https://github.com/humanfia">github.com/humanfia</a> · RSS: <a href="/blog/feed.rss">blog</a> · <a href="/news/feed.rss">news</a>',
-      copyright: 'Copyright © 2026 Humanfia',
+      // The name is the wordmark drawn over these two lines (theme/components/SiteFooter.vue).
+      copyright: 'Copyright © 2026',
     },
   },
 
