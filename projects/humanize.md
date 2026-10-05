@@ -1,18 +1,18 @@
 ---
-description: 'Humanize 2: Agent Flow System is the runtime everything Humanfia does runs on — it orchestrates, executes and observes agent flows across ten coding-agent CLIs, and holds no API key of its own.'
+description: 'Humanize is the agent flow system everything Humanfia does runs on — it orchestrates, executes and observes agent flows across twelve coding-agent CLIs, and any other that speaks the Agent Client Protocol.'
 ---
 
-# Humanize 2: Agent Flow System
+# Humanize
 
-<p class="lede">One flow, ten coding agents, and a timeline of everything they did. Humanize 2
+<p class="lede">One flow, twelve coding agents, and a timeline of everything they did. Humanize
 drives the coding-agent CLI you already log into, in the order a flow asks for, and writes the
 whole run down as it happens. Every other project on this site stands on it.</p>
 
 <a class="docs-cta" href="https://docs.humanfia.ai/humanize/">
   <span class="docs-cta-said">
     <span class="kicker">The documentation</span>
-    <strong>Every feature, every flow, every command</strong>
-    <span class="docs-cta-note">The install, the quickstart, and every feature and flow, at
+    <strong>Every feature, every command</strong>
+    <span class="docs-cta-note">The install, the quickstart, and every feature, at
     <code>docs.humanfia.ai/humanize</code>.</span>
   </span>
   <em>&#8599;</em>
@@ -46,7 +46,7 @@ happened and believing the last message.
   <div class="card">
     <span class="kicker">Accounts</span>
     <h3>Two accounts of one CLI</h3>
-    <p>A CLI signs in once. Humanize 2 runs it as an account it was never signed into, by answering the paths it opens with other paths.</p>
+    <p>A CLI signs in once. Humanize runs it as an account it was never signed into, by answering the paths it opens with other paths.</p>
   </div>
   <div class="card">
     <span class="kicker">Tracing</span>
@@ -70,8 +70,8 @@ happened and believing the last message.
 <div class="card-grid">
   <div class="card">
     <span class="kicker">Backends</span>
-    <h3>Ten CLIs, one agent</h3>
-    <p>Ten coding agents and anything speaking the Agent Client Protocol, each driven through whatever it actually offers.</p>
+    <h3>Twelve CLIs, one agent</h3>
+    <p>Twelve coding agents and anything speaking the Agent Client Protocol, each driven through whatever it actually offers.</p>
   </div>
   <div class="card">
     <span class="kicker">Flows</span>
@@ -121,11 +121,11 @@ credentials, and those are answered here.
 
 <AnchorSplit />
 
-## Twelve layers, one direction
+## Seventeen layers, and a test that holds them
 
-The runtime drives ten different CLIs without becoming ten different products because the
-layering is a rule rather than an intention: everything points downward, nothing points both
-ways, and a test fails a build that bends it.
+The runtime drives twelve different CLIs without becoming twelve different products because
+the layering is a rule rather than an intention: each layer may import only what a table lists
+for it, no two layers name each other but one pair, and a test fails a build that bends it.
 
 <LayerStack />
 
@@ -160,32 +160,35 @@ fetches, cover most of the loop shapes the field has converged on:
   <div class="card">
     <span class="kicker">Actor and reviewer</span>
     <h3>The review is the next prompt</h3>
-    <p><code>rlar</code> gives the actor one session and the reviewer none. What the reviewer
-    noticed is what the actor hears, word for word, and the reviewer is what ends the run.</p>
+    <p><code>rlar</code> gives the actor one session for the whole run and the reviewer a
+    fresh one every round. What the reviewer noticed is what the actor hears, word for word,
+    and the reviewer is what ends the run.</p>
   </div>
-  <div class="card">
+  <a class="card" href="/flows/humanize1">
     <span class="kicker">A plan first</span>
-    <h3>Humanize 1, as three flows</h3>
-    <p>An idea opened into a draft, a plan two sides converge on, and a build under review —
-    <a href="/projects/rlcr-loop">Humanize 1</a>'s three commands, on their own agents.</p>
-  </div>
+    <h3>Plan, then build under review</h3>
+    <p><code>humanize1</code>: an idea opened into a draft, a plan two agents agree on, and a
+    build under review until nothing is left to say — the Claude Code plugin Humanize grew out
+    of, as three flows.</p>
+  </a>
   <div class="card">
     <span class="kicker">Seven agents</span>
     <h3>Three lanes, one writer</h3>
-    <p>A coordinator plans three isolated lanes. Lane 1 alone owns your working tree; the other
-    two work in private snapshots and publish artifacts rather than writes.</p>
+    <p><code>parallel_flame_chase</code>: a coordinator plans three lanes and leaves. Lane 1
+    alone writes your tree; lanes 2 and 3 work on private copies and reach it by report.</p>
   </div>
-  <a class="card" href="https://docs.humanfia.ai/humanize/flows/">
+  <a class="card" href="/flows/">
     <span class="kicker">The catalogue</span>
-    <h3>Every flow, with its loop drawn ↗</h3>
+    <h3>Every flow, with its loop drawn</h3>
     <p>A page each: the <code>hmz exec</code> line, what it takes, what ends it, and what a run
     picked up a week later carries in.</p>
   </a>
 </div>
 
-Flows live in a **flowverse** — a git repository anybody can read, fork, publish or beat. The
-loops the field already converged on are in there beside ours, so comparing one method against
-another is a flag rather than a reimplementation. Which is actually better is
+The loops the field already converged on ship built in; the rest are listed in a
+**flowverse** — an index in git that pins each version of a flow to a commit of the repository
+it lives in, which anybody can read, fork, publish to or beat. Either way, comparing one method
+against another is a flag rather than a reimplementation. Which is actually better is
 [FlowBench](/projects/flowbench)'s question, and the answer is allowed to delete ours.
 
 [humanfia/flowverse ↗](https://github.com/humanfia/flowverse) ·
@@ -195,16 +198,18 @@ another is a flag rather than a reimplementation. Which is actually better is
 
 **Not a model.** We do not train one, serve one or resell one.
 
-**Not an API client.** Humanize 2 holds no API key and talks to no model provider. It drives
-the CLI you already log into, under your own subscription. The frontier moves every few weeks;
-a wrapper around one vendor is the least durable thing we could build.
+**Not a wrapper around one vendor.** Humanize drives the CLI you already log into, under your
+own subscription. It holds a credential only when you hand it one — an account can be a second
+login, an API key or a gateway of your own, kept apart from the CLI's own sign-in — and every
+turn is billed to the account you named. The frontier moves every few weeks; a wrapper around
+one vendor is the least durable thing we could build.
 
 **Not a coding agent.** It does not replace `claude` or `codex` — it takes turns on them. If a
 better one ships next month, it is a name in a list.
 
 ::: warning Permissions
-Humanize 2 runs every agent with permission prompts disabled, and nothing turns them back on.
-Read [Security ↗](https://docs.humanfia.ai/humanize/user/security) before pointing one at a
+Humanize runs every agent with approvals bypassed: nothing an agent does is put to you first.
+What holds it back is what its flow declares, role by role. Read [Security ↗](https://docs.humanfia.ai/humanize/user/security) before pointing one at a
 repository you care about.
 :::
 
@@ -214,7 +219,7 @@ repository you care about.
   <a class="card" href="https://docs.humanfia.ai/humanize/">
     <span class="kicker">All of it</span>
     <h3>The documentation ↗</h3>
-    <p>Install, quickstart, and every feature and flow.</p>
+    <p>Install, quickstart, and every feature.</p>
   </a>
   <a class="card" href="https://docs.humanfia.ai/humanize/reference/cli">
     <span class="kicker">Look it up</span>

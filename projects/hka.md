@@ -1,5 +1,5 @@
 ---
-description: HKA — Humanize Kaggle Agent. Agents entered in real Kaggle competitions, with every result audited, classified and published. Nineteen completed competitions, fourteen inside the top 5%.
+description: HKA — Humanize Kaggle Agent. Agents entered in real Kaggle competitions, with every result audited, classified and published. Nineteen completed competitions, fourteen inside the top 5% counting late estimates; four entered officially.
 ---
 
 # HKA
@@ -13,19 +13,21 @@ different claims, and we never report them as one.</p>
 [the audit](https://github.com/agentkaggle/kaggle-results-audit)
 
 <div class="stat-strip">
-  <div><b>19</b><span>Completed competitions, with fourteen more official ones still running</span><em>Scope</em></div>
-  <div><b>14</b><span>Of the completed nineteen finished inside the top 5%</span><em>Top 5%</em></div>
-  <div><b>5</b><span>Results at or inside the top 1% of their competition</span><em>Top 1%</em></div>
+  <div><b>19</b><span>Completed competitions: four entered officially, fifteen scored late</span><em>Scope</em></div>
+  <div><b>14</b><span>Of the nineteen inside the top 5%, official finishes and late estimates together; two official</span><em>Top 5%</em></div>
+  <div><b>5</b><span>At or inside the top 1%, every one of them a late estimate</span><em>Top 1%</em></div>
   <div><b>~10</b><span>Distinct agent workflows run against them, so the comparison is between methods</span><em>Method</em></div>
 </div>
 
 ## Where things stand
 
-**Completed — nineteen competitions.** Fourteen finished in the top 5%, five of them at or
-inside the top 1%.
+**Completed — nineteen competitions.** Fourteen landed in the top 5%, five of them at or
+inside the top 1% — counting both kinds of result below. Only four of the nineteen were entered
+before the deadline; two of those finished in the top 5%, none in the top 1%. The rest are late
+estimates.
 
 **Ongoing — fourteen official competitions.** Six currently sit in the top 5%, four of those in
-the top 3%. Public ranks move; this is a snapshot.
+the top 3%. Public ranks move; this is the audit's snapshot of 2026-08-15.
 
 For comparison, Codex on GPT-5.5 at `xhigh` reasoning effort peaked around the top-5% level
 across most of the same competitions. Same models, different arrangement.
@@ -43,8 +45,9 @@ have landed. Several of these sit at the very top, and none of them is a rank, a
 evidence of having competed. They are an estimate of score strength, labelled as one everywhere
 they appear.
 
-Mixing the two would make a better headline. It is also exactly the failure our [flows are
-built to catch](/about/#how-we-work), so we do not.
+Adding the two together makes a better headline, which is why every combined count on this
+page says so and gives the official count beside it. Reporting a late estimate as a finish is
+exactly the failure our [flows are built to catch](/about/#how-we-work).
 
 ## The audit
 
@@ -85,4 +88,4 @@ carries what can be published — for each best result, the session or evidence 
 and an explicit note where it could not be traced.
 
 The loops themselves are the flows we write about elsewhere, run on
-[Humanize 2](/projects/humanize).
+[Humanize](/projects/humanize).
