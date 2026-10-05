@@ -19,11 +19,13 @@
 //   pnpm flowverse            read the flowverse, and write what it says to the snapshot
 //   FLOWVERSE=offline pnpm build      build from the snapshot alone, as a build with no network
 //
-// It imports nothing but Node, and is written in the part of TypeScript Node runs as is, so the
-// same file is the build's loader and the refresh script.
+// It imports nothing but Node and a YAML parser, and is written in the part of TypeScript Node
+// runs as is, so the same file is the build's loader and the refresh script.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+
+import { parse } from 'yaml'
 
 export const FLOWVERSE = 'humanfia/flowverse'
 const BRANCH = 'main'
@@ -85,45 +87,23 @@ async function get(url: string, api = false): Promise<Response> {
   return answer
 }
 
-/** A `flow.yaml`. The flowverse's schema allows flat scalars and one map of strings, and its CI
- *  holds every manifest to that, so this reads exactly that much YAML rather than pulling in a
- *  parser for it. */
+/** A `flow.yaml`: flat scalars, and `dependencies`, a map from module to version range. */
 export function manifest(text: string): Release {
-  const out: Record<string, unknown> = {}
-  let inside: Record<string, string> | null = null
-  const scalar = (raw: string) => {
-    const v = raw.trim()
-    if (/^".*"$/.test(v)) return JSON.parse(v) as string
-    if (/^'.*'$/.test(v)) return v.slice(1, -1).replace(/''/g, "'")
-    return v
-  }
-  for (const line of text.split('\n')) {
-    if (!line.trim() || line.trimStart().startsWith('#')) continue
-    const nested = /^\s+([\w.-]+):\s*(.*)$/.exec(line)
-    if (nested && inside) {
-      inside[nested[1]] = scalar(nested[2])
-      continue
-    }
-    const top = /^([\w-]+):\s*(.*)$/.exec(line)
-    if (!top) continue
-    if (top[2].trim() === '') out[top[1]] = inside = {}
-    else {
-      out[top[1]] = scalar(top[2])
-      inside = null
-    }
-  }
+  const out = (parse(text) ?? {}) as Record<string, unknown>
+  const field = (key: string) => (out[key] == null ? '' : String(out[key]))
   for (const key of ['name', 'version', 'repo', 'commit']) {
-    if (typeof out[key] !== 'string' || !out[key]) throw new Error(`a manifest without ${key}`)
+    if (!field(key)) throw new Error(`a manifest without ${key}`)
   }
+  const needs = (out.dependencies ?? {}) as Record<string, unknown>
   return {
-    version: out.version as string,
-    description: (out.description as string) ?? '',
-    repo: out.repo as string,
-    ref: (out.ref as string) ?? '',
-    commit: out.commit as string,
-    subdir: (out.subdir as string) ?? '',
-    license: (out.license as string) ?? '',
-    dependencies: (out.dependencies as Record<string, string>) ?? {},
+    version: field('version'),
+    description: field('description'),
+    repo: field('repo'),
+    ref: field('ref'),
+    commit: field('commit'),
+    subdir: field('subdir'),
+    license: field('license'),
+    dependencies: Object.fromEntries(Object.entries(needs).map(([name, range]) => [name, String(range)])),
   }
 }
 
