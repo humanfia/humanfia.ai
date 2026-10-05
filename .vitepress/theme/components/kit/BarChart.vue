@@ -47,6 +47,9 @@ interface Dataset {
   label: string
   rows: Row[]
   max?: number
+  /** This dataset's own unit and precision, when it is not in the chart's. */
+  suffix?: string
+  decimals?: number
 }
 
 const props = withDefaults(
@@ -82,6 +85,8 @@ const seen = useInView(root, 0.3)
 const datasetKey = ref(props.datasets?.[0]?.key)
 const dataset = computed(() => props.datasets?.find((d) => d.key === datasetKey.value))
 const rows = computed<Row[]>(() => dataset.value?.rows ?? props.rows ?? [])
+const unit = computed(() => dataset.value?.suffix ?? props.suffix)
+const places = computed(() => dataset.value?.decimals ?? props.decimals)
 
 const visible = ref<Record<string, boolean>>(Object.fromEntries(props.series.map((s) => [s.key, true])))
 const shownSeries = computed(() =>
@@ -127,7 +132,7 @@ function relation(row: Row, key: string) {
   if (!base || key === base) return ''
   const b = row.values[base]
   const v = row.values[key]
-  if (props.compare === 'delta') return signed(v - b, props.decimals, props.suffix)
+  if (props.compare === 'delta') return signed(v - b, places.value, unit.value)
   return format(v / b, 2, '×')
 }
 
@@ -143,7 +148,7 @@ const ticks = computed(() => niceTicks(0, top.value, 4).filter((t) => t <= top.v
 const tickDecimals = computed(() =>
   Math.min(3, Math.max(0, ...ticks.value.map((t) => (String(t).split('.')[1] ?? '').length))),
 )
-const tickLabel = (t: number) => format(t, tickDecimals.value, rescaled.value ? '×' : props.suffix)
+const tickLabel = (t: number) => format(t, tickDecimals.value, rescaled.value ? '×' : unit.value)
 const refAt = computed(() => (rescaled.value ? 1 : props.reference?.value))
 const refLabel = computed(() =>
   rescaled.value ? `${props.series.find((s) => s.key === against.value)?.label} = 1×` : props.reference?.label,
@@ -161,7 +166,7 @@ function move(index: number, by: number) {
 function summary(row: Row) {
   const parts = shownSeries.value.map((s) => {
     const rel = relation(row, s.key)
-    return `${s.label} ${format(shown(row, s.key), rescaled.value ? 2 : props.decimals, rescaled.value ? '×' : props.suffix)}${rel ? ` (${rel})` : ''}`
+    return `${s.label} ${format(shown(row, s.key), rescaled.value ? 2 : places.value, rescaled.value ? '×' : unit.value)}${rel ? ` (${rel})` : ''}`
   })
   return `${row.label}${row.detail ? `, ${row.detail}` : ''}: ${parts.join('; ')}`
 }
@@ -170,11 +175,11 @@ const ariaLabel = computed(() => props.label ?? props.title ?? props.kicker ?? '
 
 const columns = computed(() => [
   { key: 'label', label: 'Category' },
-  ...props.series.map((s) => ({ key: s.key, label: s.label, decimals: props.decimals, suffix: props.suffix, bar: true })),
+  ...props.series.map((s) => ({ key: s.key, label: s.label, decimals: places.value, suffix: unit.value, bar: true })),
 ])
 const tableRows = computed(() => rows.value.map((row) => ({ label: row.label, ...row.values, highlight: Boolean(row.total) })))
 
-const fmt = (v: number) => format(v, rescaled.value ? 2 : props.decimals, rescaled.value ? '×' : props.suffix)
+const fmt = (v: number) => format(v, rescaled.value ? 2 : places.value, rescaled.value ? '×' : unit.value)
 
 // A new dataset or baseline re-runs the bars from where they are, which the CSS transition does
 // on its own; the readout is cleared so it never shows numbers from the previous one.
