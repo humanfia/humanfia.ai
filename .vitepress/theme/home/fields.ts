@@ -380,7 +380,7 @@ export class HeroScene {
 
 const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'opencode', 'mimo']
 const LAYERS = ['FLOWS', 'RUNTIME', 'AGENTS', 'APPLICATIONS']
-const APPS: [string, number, number][] = [['HOA', -0.55, 0.35], ['KDA', 0.15, -0.5], ['HKA', 0.6, 0.45]]
+const APPS: [string, number, number][] = [['HOA', -0.55, 0.35], ['KDA', 0.15, -0.5], ['HMA', 0.6, 0.45]]
 
 interface Mote { x: number; z: number; phase: number; speed: number; size: number }
 

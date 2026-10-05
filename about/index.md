@@ -10,7 +10,7 @@ pageClass: page-wide about-page
   believe is short enough to sit underneath them. /team/ redirects here (public/team/index.html)
   and keeps its hash, so /team/#hoa lands on #hoa.
 
-  `#how-we-work` is linked from projects/hka.md and a blog post. Rename that heading and both
+  `#how-we-work` is linked from projects/hma.md and a blog post. Rename that heading and both
   of them drop the reader at the top of the page -- `pnpm check:anchors` will say so.
 -->
 

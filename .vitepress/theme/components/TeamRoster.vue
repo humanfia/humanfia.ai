@@ -80,6 +80,9 @@ interface Group {
   name: string
   href: string
   what: string
+  /** The id the group was published under before a rename, kept as a second anchor so an old
+   *  link (/about/#hka, or /team/#hka through its redirect) still lands on the group. */
+  formerly?: string
   members: { who: string; role: string; lead?: boolean; coLead?: boolean }[]
 }
 
@@ -136,15 +139,16 @@ const GROUPS: Group[] = [
     ],
   },
   {
-    id: 'hka',
-    name: 'HKA',
-    href: '/projects/hka',
-    what: 'Humanize Kaggle Agent. Real competitions, real leaderboards, and an audit that refuses to flatter itself.',
+    id: 'hma',
+    formerly: 'hka',
+    name: 'HMA',
+    href: '/projects/hma',
+    what: 'Humanize MLE Agents. Two native coding agents take turns over one workspace, and medal more often than either alone.',
     members: [
-      { who: 'antoinegg1', role: 'Co-lead. The workflows, the entries and the audit.', coLead: true },
-      { who: 'futrime', role: 'Co-lead. The leaderboard, and the runtime underneath the runs.', coLead: true },
-      { who: 'zgdllt', role: 'Submissions, across most of the nineteen.' },
-      { who: 'apostle715', role: 'Submissions and reproduction.' },
+      { who: 'antoinegg1', role: 'Co-lead. The method, the paper experiments, and the Kaggle entries and audit before them.', coLead: true },
+      { who: 'futrime', role: 'Co-lead. The runtime the agents run on, and the Kaggle leaderboard.', coLead: true },
+      { who: 'zgdllt', role: 'Kaggle submissions, across most of the competitions HMA grew out of.' },
+      { who: 'apostle715', role: 'Kaggle submissions and reproduction.' },
     ],
   },
 ]
@@ -182,6 +186,7 @@ const profileLabel = (who: string) => person(who).profileLabel ?? `@${person(who
     <!-- And then everyone, under the thing they built. -->
     <section v-for="group in GROUPS" :key="group.id" :id="group.id" class="group">
       <header class="group-head">
+        <span v-if="group.formerly" :id="group.formerly" aria-hidden="true" />
         <h3><a :href="group.href">{{ group.name }}</a></h3>
         <p>{{ group.what }}</p>
       </header>

@@ -882,23 +882,6 @@
   color: var(--h-ink);
 }
 
-.art-tiles {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 18px;
-}
-.art-tiles i {
-  aspect-ratio: 1.3;
-  background: var(--h-line);
-}
-.art-tiles i.on {
-  background: var(--h-ink);
-}
-.art-tiles i.on:nth-child(5n + 1) {
-  background: var(--h-red);
-}
-
 /* --------------------------------------------------------------------------- 6 runtime */
 
 .h-marquee {
@@ -1253,14 +1236,8 @@
   transform-origin: left;
   transition: transform 1.2s var(--h-ease) calc(var(--i) * 0.15s);
 }
-.hf-motion .art-tiles i.on {
-  opacity: 0;
-  transform: scale(0.6);
-  transition: all 0.5s var(--h-ease) calc(var(--i) * 0.04s);
-}
 .hf-motion .h-panel.rv-in .art-lean li,
-.hf-motion .h-panel.rv-in .art-bar i,
-.hf-motion .h-panel.rv-in .art-tiles i.on {
+.hf-motion .h-panel.rv-in .art-bar i {
   opacity: 1;
   transform: none;
 }
