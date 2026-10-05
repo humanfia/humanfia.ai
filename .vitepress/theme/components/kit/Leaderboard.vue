@@ -181,12 +181,10 @@ function move(i: number, by: number) {
 
 .lb-name b {
   display: block;
-  overflow: hidden;
   font-family: var(--k-mono);
   font-size: 12px;
   font-weight: 600;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.35;
   color: var(--k-fg-2);
 }
 

@@ -95,9 +95,11 @@
 
 .geo-tag {
   position: absolute;
-  right: max(40px, calc(50% - 590px));
-  top: 50%;
-  font-size: clamp(110px, 15vw, 230px);
+  right: max(32px, calc(50% - 600px));
+  top: 42%;
+  /* Sized for a three-letter project tag and shrunk for a longer one, so "Architecture" fits
+     where "HOA" does. */
+  font-size: calc(clamp(96px, 12.5vw, 200px) * 3 / max(3, var(--n, 3)));
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
@@ -128,7 +130,7 @@
 }
 
 .post-hero:not(.has-card) .post-hero-copy {
-  max-width: 780px;
+  max-width: min(780px, 62%);
 }
 
 .post-back {
@@ -1119,13 +1121,23 @@ a.post-author:hover .post-author-name {
 
 /* ---- Narrower -------------------------------------------------------------------------- */
 
+@media (max-width: 1180px) {
+  .geo-tag {
+    display: none;
+  }
+
+  .post-hero:not(.has-card) .post-hero-copy {
+    max-width: 780px;
+  }
+}
+
 @media (max-width: 960px) {
   .post-hero.has-card .post-hero-inner {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .geo-tag {
-    display: none;
+  .post-hero:not(.has-card) .post-hero-copy {
+    max-width: none;
   }
 
   .geo-band {
@@ -1138,8 +1150,15 @@ a.post-author:hover .post-author-name {
 }
 
 @media (max-width: 640px) {
+  /* The band runs under the byline on a phone, not through it: the hero is taller at the
+     bottom by about the band's rise across the screen. */
   .post-hero {
-    padding: 28px 0 44px;
+    padding: 28px 0 104px;
+  }
+
+  .geo-band,
+  .geo-rule {
+    bottom: -64px;
   }
 
   .post-hero-inner,
@@ -1159,8 +1178,12 @@ a.post-author:hover .post-author-name {
   }
 
   .geo-band {
-    left: 10%;
-    height: 40px;
+    left: 8%;
+    height: 36px;
+  }
+
+  .geo-rule {
+    left: 0;
   }
 
   .post-body,

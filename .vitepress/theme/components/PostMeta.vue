@@ -106,7 +106,7 @@ const hero = computed<Hero | undefined>(() => frontmatter.value.hero)
       <span class="geo-band" />
       <span class="geo-rule" />
       <span class="geo-dot" />
-      <span v-if="!hero && frontmatter.tag" class="geo-tag">{{ frontmatter.tag }}</span>
+      <span v-if="!hero && frontmatter.tag" class="geo-tag" :style="{ '--n': String(frontmatter.tag).length }">{{ frontmatter.tag }}</span>
     </div>
 
     <div class="post-hero-inner">
