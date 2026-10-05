@@ -5,9 +5,9 @@ outline: [2, 3]
 ---
 
 <script setup>
-import PhobosDiagram from '../.vitepress/theme/components/research/PhobosDiagram.vue'
-import ExomythDiagram from '../.vitepress/theme/components/research/ExomythDiagram.vue'
-import CogAnchorDiagram from '../.vitepress/theme/components/research/CogAnchorDiagram.vue'
+import PhobosDiagram from '../.vitepress/theme/components/projects/humanize/PhobosDiagram.vue'
+import ExomythDiagram from '../.vitepress/theme/components/projects/humanize/ExomythDiagram.vue'
+import CogAnchorDiagram from '../.vitepress/theme/components/projects/humanize/CogAnchorDiagram.vue'
 </script>
 
 # Deep Tech

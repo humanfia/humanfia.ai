@@ -14,7 +14,8 @@ pnpm build    # build into .vitepress/dist
 ```
 
 Pages are Markdown: `index.md`, `projects/`, `flows/`, `research/`, `about/`, and one file per
-post in `news/` or `blog/`. Files in `public/` are published as they are.
+post in `news/` or `blog/`. Files in `public/` are published as they are. The Humanize page,
+Deep Tech included, is one component: `.vitepress/theme/components/projects/humanize/`.
 
 The figures on the research pages are drawn by `.vitepress/theme/components/research/`: a line
 chart with log and hand-spaced axes the post kit does not have yet, and the data it plots, read

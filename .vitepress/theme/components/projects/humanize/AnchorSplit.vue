@@ -146,7 +146,7 @@ const hold = (i: number) => {
 .end {
   padding: 16px 18px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--vp-c-bg-soft);
   transition: border-color 0.35s, background-color 0.35s;
 }
@@ -234,7 +234,7 @@ const hold = (i: number) => {
   flex-direction: column;
   padding: 16px 18px;
   border: 1px dashed var(--vp-c-divider);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--vp-c-bg);
 }
 
@@ -246,7 +246,7 @@ const hold = (i: number) => {
   margin-top: 8px;
   padding: 10px 12px;
   border: 1px solid var(--vp-c-brand-2);
-  border-radius: 9px;
+  border-radius: 2px;
   background: var(--vp-c-brand-soft);
   text-align: center;
 }
@@ -278,7 +278,7 @@ const hold = (i: number) => {
   align-items: center;
   gap: 8px;
   padding: 6px 8px;
-  border-radius: 7px;
+  border-radius: 2px;
   transition: background-color 0.3s, opacity 0.3s;
   opacity: 0.55;
 }

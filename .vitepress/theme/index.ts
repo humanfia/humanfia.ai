@@ -2,16 +2,11 @@ import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import { h } from 'vue'
 
-import AnchorSplit from './components/AnchorSplit.vue'
-import DemoVideo from './components/DemoVideo.vue'
 import Install from './components/Install.vue'
-import LayerStack from './components/LayerStack.vue'
 import NewsList from './components/NewsList.vue'
 import PostLayout from './components/PostLayout.vue'
 import PostMosaic from './components/PostMosaic.vue'
 import TeamRoster from './components/TeamRoster.vue'
-import TerminalReel from './components/TerminalReel.vue'
-import TraceReel from './components/TraceReel.vue'
 import { registerFlows } from './components/flow'
 import FlowsBack from './components/flow/FlowsBack.vue'
 import { registerKit } from './components/kit'
@@ -36,16 +31,11 @@ export default {
       'doc-before': () => h(FlowsBack),
     }),
   enhanceApp({ app }) {
-    app.component('AnchorSplit', AnchorSplit)
-    app.component('DemoVideo', DemoVideo)
     app.component('Install', Install)
-    app.component('LayerStack', LayerStack)
     app.component('NewsList', NewsList)
     app.component('PostMosaic', PostMosaic)
     app.component('post', PostLayout)
     app.component('TeamRoster', TeamRoster)
-    app.component('TerminalReel', TerminalReel)
-    app.component('TraceReel', TraceReel)
     app.component('HomeLanding', HomeLanding)
     registerFlows(app)
     registerKit(app)
