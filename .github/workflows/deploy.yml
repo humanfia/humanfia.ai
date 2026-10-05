@@ -96,3 +96,24 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  # The org profile (humanfia/.github) is generated from this site, so a deploy asks it to
+  # regenerate. That takes a fine-grained token with Contents: read and write on humanfia/.github,
+  # stored here as ORG_PROFILE_TOKEN; without one this job says so and passes, and the profile's
+  # own daily run catches up instead.
+  profile:
+    name: profile
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Ask humanfia/.github to regenerate the org profile
+        env:
+          GH_TOKEN: ${{ secrets.ORG_PROFILE_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::notice::ORG_PROFILE_TOKEN is not set; the org profile will catch up on its daily run."
+            exit 0
+          fi
+          gh api repos/humanfia/.github/dispatches -f event_type=humanfia-ai-deployed
