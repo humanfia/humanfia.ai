@@ -32,15 +32,13 @@ const route = (path, root, ext) =>
   ('/' + relative(root, path).replaceAll('\\', '/').slice(0, -ext.length))
     .replace(/\/index$/, '') || '/'
 
-// Two files can be one route: `flows.html`, the stub that sends a bare /flows on, and
-// `flows/index.html`, the page it sends it to. The ids of both count.
 const ids = new Map()
 for (const page of await walk(DIST, '.html')) {
   const html = await readFile(page, 'utf8')
-  const at = route(page, DIST, '.html')
-  const has = ids.get(at) ?? new Set()
-  for (const m of html.matchAll(/\bid="([^"]+)"/g)) has.add(m[1])
-  ids.set(at, has)
+  ids.set(
+    route(page, DIST, '.html'),
+    new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1])),
+  )
 }
 
 const squashed = (said) => said.toLowerCase().replace(/[^a-z0-9]/g, '')
