@@ -62,7 +62,7 @@ const COLUMNS: Column[] = [
     id: 'hma',
     name: 'HMA',
     full: 'Humanize MLE Agents',
-    href: 'https://github.com/humanfia/hma',
+    href: '/projects/hma',
     items: [
       { n: '78.2%', what: 'any-medal on 75 MLE-bench tasks in six hours, self-reported', href: '/news/2026-10-05-hma-mle-bench' },
       { n: '53.8%', what: 'gold on the same 75 tasks', href: '/news/2026-10-05-hma-mle-bench' },
