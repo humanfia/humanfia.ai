@@ -117,6 +117,12 @@
   max-width: 100%;
 }
 
+/* `pageClass: page-reader`, for the news index: a single column of rows, read down like a feed
+   reader, a little wider than prose so a title and its date sit on one line. */
+.Layout.page-reader .VPDoc .content {
+  max-width: 860px;
+}
+
 /* The numbers we lead with. One <div> per number, a <b> and a <span> inside it. */
 .stat-strip {
   display: grid;

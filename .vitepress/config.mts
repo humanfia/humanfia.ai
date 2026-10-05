@@ -72,8 +72,8 @@ const FLOW_LINKS = [{ text: 'Every flow', items: [{ text: 'The catalogue', link:
  *
  * News is the record -- one result per post, a number, its caveats and a date. The blog is what
  * we think -- essays, design arguments, the write-ups that are about a way of working rather
- * than a score. Each has its own directory, its own index, its own sidebar and its own feed, so
- * a reader who wants only the numbers subscribes to only the numbers.
+ * than a score. Each has its own directory, its own index and its own feed, so a reader who
+ * wants only the numbers subscribes to only the numbers.
  */
 const SECTIONS = {
   blog: { name: 'Blog', feed: 'Humanfia blog', about: 'Essays and arguments from the people building Humanfia.' },
@@ -210,12 +210,13 @@ export default defineConfig({
     ],
 
     // One sidebar per section, and a section only ever sees its own. About is a single page and
-    // gets none at all: a list of one is furniture, not navigation.
+    // gets none at all: a list of one is furniture, not navigation. Nor does News: its index is
+    // already the whole list, one row per post (theme/components/NewsList.vue), and a sidebar of
+    // the ten newest beside it would be the top of the same list twice.
     sidebar: {
       '/projects/': PROJECTS,
       '/flows/': [{ text: 'Flows', link: '/flows/' }, ...FLOW_GROUPS.map((group) => ({ ...group, collapsed: false }))],
       '/blog/': sectionSidebar('blog'),
-      '/news/': sectionSidebar('news'),
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/humanfia' }],
