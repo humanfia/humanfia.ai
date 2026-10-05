@@ -104,6 +104,9 @@ alternation to [Humanize](/projects/humanize) as a flow.
 
 ## Before HMA: live Kaggle
 
+<!-- The old HKA page's section ids, so a /projects/hka#... link still lands in this section. -->
+<span id="why-kaggle"></span>
+
 HMA grew out of our earlier work on live Kaggle competitions, which ran under the name
 AgentKaggle. That work is history here, not an HMA track. The two differ in three ways:
 
@@ -131,17 +134,20 @@ have landed. A late result is an estimate of score strength. It is not a rank, a
 evidence of having competed, and it is labelled as an estimate everywhere it appears. Reporting
 one as a finish is exactly the failure our [flows are built to catch](/about/#how-we-work).
 
-### Where it ended
+### Where it ended {#where-things-stand}
 
 - **[15 August](/news/2026-08-15-kaggle-nineteen-competitions):** 14 of 19 completed
   competitions in the top 5%, counting late estimates. Only two of those were official
   finishes.
-- **[5 October](/news/2026-10-05-kaggle-biohub-final):** counting only final ranks. Of 39
-  tracked completed competitions, 16 have a best result in the top 5%. Three of those are
+- **[5 October](/news/2026-10-05-kaggle-biohub-final):** of 39 tracked completed
+  competitions, 16 have a best result in the top 5%, and most of those are not finishes. Three of those are
   authenticated final private ranks: Student Health Risk (top 2.00%), ROGII (top 2.24%) and
-  Biohub (top 4.76%). Twelve are late estimates.
+  Biohub (top 4.76%). One is a public rank at the snapshot, with the final private rank not
+  yet recorded. Twelve are late estimates.
 
-The numbers come from
+### The audit {#the-audit}
+
+<span id="what-is-public-and-what-is-not"></span>The numbers come from
 [agentkaggle/kaggle-results-audit](https://github.com/agentkaggle/kaggle-results-audit). It
 marks each result as official or late, maps it to the session or evidence behind it, and
 reports coverage and failures. The
