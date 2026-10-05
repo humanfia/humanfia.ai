@@ -23,7 +23,7 @@
   --h-red: var(--hf-red);
   /* What sits on a red or an ink plate. */
   --h-on-ink: var(--hf-paper-light);
-  --h-max: 1180px;
+  --h-max: 1440px;
   --h-pad: clamp(20px, 5vw, 48px);
   --h-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --h-radius: 2px;
@@ -382,7 +382,7 @@
   border-top: 6px solid var(--h-ink);
 }
 .h-manifesto-text {
-  max-width: 1060px;
+  max-width: 1300px;
   margin: 0;
   font-size: clamp(28px, 4.1vw, 58px);
   line-height: 1.12;
@@ -485,7 +485,7 @@
   background: var(--h-bg-alt);
 }
 .h-head {
-  max-width: 820px;
+  max-width: 1000px;
   margin-bottom: clamp(44px, 6vh, 72px);
 }
 .h-row {
@@ -927,7 +927,7 @@
 
 /* The terminal is the one dark plate on a light page, and stays ink in both modes. */
 .h-term {
-  max-width: 860px;
+  max-width: 1040px;
   margin: 0 auto;
   border-radius: var(--h-radius);
   overflow: hidden;
@@ -1007,7 +1007,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  max-width: 1080px;
+  max-width: 1320px;
   margin: clamp(56px, 8vh, 88px) auto 0;
   border-top: 2px solid var(--h-ink);
 }
