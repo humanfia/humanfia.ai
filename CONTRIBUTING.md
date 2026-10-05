@@ -16,6 +16,12 @@ its source next to the rendered page.
   `authors` with their GitHub faces (`theme/people.ts` maps names to accounts). A news post's
   byline then adds the leads of the projects its `tag` is built on (`theme/projects.ts`). A title with a
   colon in its first 28 characters is set as a display line and a subtitle.
+- **A Cite button** beside the byline (`Cite.vue`) opens the post as a reference, credited
+  to the same authors the byline shows: BibTeX, BibLaTeX, APA 7, MLA 9, Chicago author-date,
+  IEEE, RIS and CSL-JSON, each with Copy and Download. It needs nothing from the frontmatter
+  beyond the title, date and authors. [Citation.js](https://citation.js.org/) does the
+  formatting (`theme/cite.ts`) with the official CSL styles in `theme/csl/`, and loads only
+  when the button is first used.
 - **An optional headline figure** sits to the right of the hero copy. Add it with a `hero:`
   block. Without one, the hero shows the tag in outline on the diagonal.
 

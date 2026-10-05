@@ -239,9 +239,16 @@
   border-top: 4px solid var(--vp-c-text-1);
 }
 
+.post-authors-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
 .post-authors-label {
   display: block;
-  margin-bottom: 12px;
   font-family: var(--vp-font-family-mono);
   font-size: 11px;
   font-weight: 700;
@@ -324,6 +331,287 @@ a.post-author:hover .post-author-name {
 
 .post-source a {
   color: var(--vp-c-brand-1);
+}
+
+/* ---- Cite: the button beside the byline, and the dialog it opens (Cite.vue) ------------- */
+
+.cite-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border: 1.5px solid var(--vp-c-text-1);
+  background: transparent;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-1);
+  box-shadow: 2px 2px 0 var(--vp-c-text-1);
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.cite-button:hover {
+  border-color: var(--hf-red);
+  color: var(--vp-c-brand-1);
+  box-shadow: 3px 3px 0 var(--hf-red);
+  transform: translate(-1px, -1px);
+}
+
+.cite-button:focus-visible,
+.cite-dialog :focus-visible {
+  outline: 2px solid var(--hf-red);
+  outline-offset: 2px;
+}
+
+/* The dialog is only the frame: its padding is zero, so a click that lands on it rather than
+   on the panel inside is a click on the backdrop. */
+.cite-dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-height: min(640px, calc(100dvh - 32px));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--vp-c-text-1);
+  overflow: visible;
+}
+
+.cite-dialog::backdrop {
+  background: color-mix(in srgb, var(--hf-ink-k) 55%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.cite-dialog[open] {
+  animation: cite-in 0.22s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+@keyframes cite-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.cite-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  border: 2px solid var(--vp-c-text-1);
+  background: var(--vp-c-bg-elv);
+  box-shadow: 8px 8px 0 var(--hf-red);
+}
+
+.cite-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 14px;
+}
+
+.cite-kicker {
+  margin: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+}
+
+.cite-title {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 6px 0 0;
+  border: 0;
+  padding: 0;
+  font-size: 19px;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cite-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+}
+
+.cite-close:hover {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+/* One row of tabs, scrolled sideways on a phone rather than wrapped into a block. */
+.cite-tabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  scrollbar-width: none;
+}
+
+.cite-tab {
+  flex: none;
+  padding: 9px 11px 8px;
+  border-bottom: 3px solid transparent;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.cite-tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.cite-tab:hover {
+  color: var(--vp-c-text-1);
+}
+
+.cite-tab[aria-selected='true'] {
+  border-bottom-color: var(--hf-red);
+  color: var(--vp-c-text-1);
+}
+
+.cite-body {
+  flex: 1 1 auto;
+  min-height: 120px;
+  overflow: auto;
+  padding: 16px 22px;
+}
+
+.cite-status {
+  margin: 0;
+  font-size: 14px;
+  color: var(--vp-c-text-3);
+}
+
+.cite-output {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--vp-c-text-1);
+  background: var(--vp-c-bg-soft);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+  overflow-wrap: anywhere;
+}
+
+pre.cite-output {
+  overflow-x: auto;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12.5px;
+  white-space: pre-wrap;
+}
+
+.cite-prose {
+  font-size: 15px;
+}
+
+/* IEEE's number is a block of its own in citeproc's HTML; here it leads the line. */
+.cite-prose :is(.csl-left-margin, .csl-right-inline) {
+  display: inline;
+}
+
+.cite-prose .csl-left-margin {
+  margin-right: 0.5em;
+}
+
+.cite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.cite-copy {
+  min-width: 96px;
+  padding: 8px 16px;
+  background: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vp-c-bg);
+  box-shadow: 3px 3px 0 var(--hf-red);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.cite-copy:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--hf-red);
+}
+
+.cite-copy:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cite-download {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cite-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* A phone: a sheet from the bottom edge, the full width. */
+@media (max-width: 640px) {
+  .cite-dialog {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 88dvh;
+    margin: auto 0 0;
+  }
+
+  .cite-panel {
+    border-width: 2px 0 0;
+    box-shadow: 0 -6px 0 var(--hf-red);
+  }
+
+  .cite-head,
+  .cite-body,
+  .cite-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cite-tabs {
+    padding: 0 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cite-dialog[open] {
+    animation: none;
+  }
 }
 
 /* The headline figure, when the frontmatter gives one: a sheet of the opposite colour, laid on

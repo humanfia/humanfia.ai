@@ -4,6 +4,7 @@ import { useData } from 'vitepress'
 import { authorsOf, avatarOf, initialsOf, personOf, profileOf } from '../people'
 import { authorsWithDeps } from '../projects'
 import { data as posts } from '../posts.data.mts'
+import Cite from './Cite.vue'
 import Leaderboard from './kit/Leaderboard.vue'
 import NumberTicker from './kit/NumberTicker.vue'
 
@@ -89,6 +90,15 @@ const authors = computed(() =>
   }),
 )
 
+/** The post as a reference, credited to exactly the byline above -- see Cite.vue. */
+const citable = computed(() => ({
+  kind: page.value.relativePath.startsWith('news/') ? ('news' as const) : ('blog' as const),
+  title: String(frontmatter.value.title ?? ''),
+  authors: names.value,
+  date: iso.value,
+  path: url.value,
+}))
+
 /** An imported post names where it was first published, and the page says so under the byline. */
 const canonical = computed<string | undefined>(() => frontmatter.value.canonical)
 const source = computed(() => (canonical.value ? new URL(canonical.value).host : ''))
@@ -135,7 +145,10 @@ const hero = computed<Hero | undefined>(() => frontmatter.value.hero)
         <p v-if="frontmatter.description" class="post-standfirst">{{ frontmatter.description }}</p>
 
         <div class="post-authors">
-          <span class="post-authors-label">{{ authors.length > 1 ? `${authors.length} authors` : 'Author' }}</span>
+          <div class="post-authors-head">
+            <span class="post-authors-label">{{ authors.length > 1 ? `${authors.length} authors` : 'Author' }}</span>
+            <Cite :post="citable" />
+          </div>
           <ul>
             <li v-for="(author, i) in authors" :key="author.name" :style="{ '--i': i }">
               <component

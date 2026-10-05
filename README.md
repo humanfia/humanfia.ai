@@ -42,7 +42,8 @@ the tagged project is built on, transitively. An HOA result therefore also names
 lead, and a post about Humanize itself adds nobody. Projects, their tags, leads and
 dependencies live in one registry, `.vitepress/theme/projects.ts`, which the team roster reads
 too; a news tag it does not list fails the build. Everything else is generated from the frontmatter:
-the post's page (its hero, contents and related posts), the section index (a list for news,
+the post's page (its hero, contents, related posts and a Cite button that exports the
+post in BibTeX, BibLaTeX, APA, MLA, Chicago, IEEE, RIS and CSL-JSON), the section index (a list for news,
 a mosaic for the blog), the blog's sidebar, the home page, and the section's feed (`news/feed.rss`, `blog/feed.rss`). There is no list to
 update. A news post that adds an `achievement:` block also gets a tile in the home page's
 Achievements, one per topic, from the newest post. Figures come from the post kit: interactive charts, tables, diagrams and callouts
@@ -75,6 +76,11 @@ the workflows and the build configuration — is licensed under [Apache-2.0](LIC
 The content — the pages in `index.md`, `blog/`, `projects/`, `research/`, `team/` and `about/`, and the
 images under `public/` — is licensed under
 [CC-BY-4.0](LICENSE-CC-BY-4.0): reuse it with attribution to Humanfia and a link to the page.
+
+The citation styles in `.vitepress/theme/csl/` are copied unchanged from
+[citation-style-language/styles](https://github.com/citation-style-language/styles) and are
+licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), as each file
+says.
 
 Material quoted or linked from others (problem statements, benchmark results, third-party
 repositories and papers) keeps its owners' terms. The Humanfia name and logo identify the
