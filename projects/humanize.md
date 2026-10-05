@@ -1,5 +1,5 @@
 ---
-title: "Humanize: the agent flow system"
+title: "Humanize: The agent flow system"
 description: The agent flow system everything Humanfia runs on. It orchestrates, runs and traces agent flows across twelve coding-agent CLIs, a model called directly through litellm, and any CLI that speaks the Agent Client Protocol.
 layout: post
 sidebar: false
@@ -10,11 +10,11 @@ project:
   links:
     - { text: humanfia/humanize, href: https://github.com/humanfia/humanize }
     - { text: The documentation, href: https://docs.humanfia.ai/humanize/ }
-    - { text: The flows, href: /flows/ }
+    - { text: The flows, href: /flows/, more: The catalogue }
   stats:
     - { value: 12, kicker: Coding-agent CLIs, text: 'Driven through what each one offers, plus any CLI that speaks the Agent Client Protocol' }
     - { display: litellm, kicker: New harness, text: 'A model called directly: one chat completion a turn, no tools, no environment' }
-    - { value: 7, kicker: Built-in flows, text: 'From chat to flame_chase, and a flowverse of more to install', href: /flows/ }
+    - { value: 7, kicker: Built-in flows, text: 'From chat to flame_chase, and a flowverse of more to install', href: /flows/, more: The catalogue }
     - { value: 17, kicker: Layers, text: 'Each may import only what a table lists for it, and a test holds the rule' }
 
 hero:
@@ -80,11 +80,13 @@ that turn's work lands.
 
 ```python
 @flow(agents=Agents, envs=Envs, params=FlowParams)
-async def twice(task: str, *, agents: Agents, envs: Envs, params: FlowParams, ctx: FlowContext) -> None:
+async def twice(task: str, *, agents: Agents, envs: Envs,
+                params: FlowParams, ctx: FlowContext) -> None:
     builder = agents["builder"]
-    session = await builder.spawn()                      # a conversation, and nothing else
-    await builder.run(task, session=session)             # env=None: the workspace
-    await builder.run("Review it; fix what is wrong.", session=session, env=envs["sandbox"])
+    session = await builder.spawn()           # history, and nothing else
+    await builder.run(task, session=session)  # env=None: the workspace
+    await builder.run("Review it; fix what is wrong.",
+                      session=session, env=envs["sandbox"])
 ```
 
 ```sh
@@ -117,7 +119,7 @@ a session into a second one that remembers everything up to there.
   <g data-step="1" data-pop>
     <rect class="ink" x="10" y="112" width="130" height="76" />
     <text class="on-ink t-lg" x="75" y="146" text-anchor="middle">Agent</text>
-    <text class="on-ink" x="75" y="170" text-anchor="middle">claude · opus · high</text>
+    <text class="on-ink" x="75" y="170" text-anchor="middle">claude · high</text>
   </g>
   <path class="line" d="M140 150 L 190 150" data-step="2" data-draw />
   <g data-step="2" data-pop>
@@ -303,75 +305,65 @@ same record is what lets a stopped run be [picked up where it stopped](https://d
 
 ## What it does
 
-<p class="kicker">The deep end</p>
+Eleven features, one line each.
 
-<div class="card-grid">
-  <div class="card">
-    <span class="kicker">The anchor</span>
-    <h3>The agent runs here. Its syscalls land there.</h3>
-    <p>Every syscall the agent makes is decided one at a time — replayed on another machine, or answered on this one. It is told none of it.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Accounts</span>
-    <h3>Two accounts of one CLI</h3>
-    <p>A CLI signs in once. Humanize runs it as an account it was never signed into, by answering the paths it opens with other paths.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Tracing</span>
-    <h3>One timeline</h3>
-    <p>Every agent, every sub-agent and every program those turns ran, on one clock, in one document you open in Perfetto.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Steering</span>
-    <h3>A line typed mid-turn</h3>
-    <p>It goes <em>into</em> the turn that is running. Not queued behind it, and never quietly counted as said.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Shapes</span>
-    <h3>Answers in a shape</h3>
-    <p>A turn given a pydantic model answers with that model. The model is the whole of the question, and the answer is read back through it.</p>
-  </div>
-</div>
+<PostCards>
+<PostCard kicker="The anchor" title="The agent runs here. Its syscalls land there.">
 
-<p class="kicker">The shape of a run</p>
+Every syscall the agent makes is decided one at a time — replayed on another machine, or answered on this one. It is told none of it.
 
-<div class="card-grid">
-  <div class="card">
-    <span class="kicker">Backends</span>
-    <h3>Twelve CLIs, one agent</h3>
-    <p>Twelve coding agents and anything speaking the Agent Client Protocol, each driven through whatever it actually offers.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Flows</span>
-    <h3>A flow is Python</h3>
-    <p>A loop, a subprocess call, a file read between turns. The agents are its arguments, and the shapes a loop takes are few.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Concurrency</span>
-    <h3>Many turns at once</h3>
-    <p>Turns are sequential only inside one session. Two hundred conversations are two hundred turns.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Resuming</span>
-    <h3>Picked up where it stopped</h3>
-    <p>A loop meant to run for a week is a loop that will be stopped. What it was keeping track of survives; the conversation does not.</p>
-  </div>
-</div>
+</PostCard>
+<PostCard kicker="Accounts" title="Two accounts of one CLI">
 
-<p class="kicker">Who is at the other end</p>
+A CLI signs in once. Humanize runs it as an account it was never signed into, by answering the paths it opens with other paths.
 
-<div class="card-grid">
-  <div class="card">
-    <span class="kicker">Goals</span>
-    <h3>It decides when it is done</h3>
-    <p>The backend's own goal feature: a turn that would have ended starts another, until the model says the objective is met.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">The person</span>
-    <h3>You, as one of the agents</h3>
-    <p>A flow asks a person the same way it asks a model — which is how a human stays the architect rather than the bottleneck.</p>
-  </div>
-</div>
+</PostCard>
+<PostCard kicker="Tracing" title="One timeline">
+
+Every agent, every sub-agent and every program those turns ran, on one clock, in one document you open in Perfetto.
+
+</PostCard>
+<PostCard kicker="Steering" title="A line typed mid-turn">
+
+It goes <em>into</em> the turn that is running. Not queued behind it, and never quietly counted as said.
+
+</PostCard>
+<PostCard kicker="Shapes" title="Answers in a shape">
+
+A turn given a pydantic model answers with that model. The model is the whole of the question, and the answer is read back through it.
+
+</PostCard>
+<PostCard kicker="Backends" title="Twelve CLIs, one agent">
+
+Twelve coding agents, a model called directly through litellm, and anything speaking the Agent Client Protocol, each driven through whatever it actually offers.
+
+</PostCard>
+<PostCard kicker="Flows" title="A flow is Python">
+
+A loop, a subprocess call, a file read between turns. The agents are its arguments, and the shapes a loop takes are few.
+
+</PostCard>
+<PostCard kicker="Concurrency" title="Many turns at once">
+
+Turns are sequential only inside one session. Two hundred conversations are two hundred turns.
+
+</PostCard>
+<PostCard kicker="Resuming" title="Picked up where it stopped">
+
+A loop meant to run for a week is a loop that will be stopped. What it was keeping track of survives; the conversation does not.
+
+</PostCard>
+<PostCard kicker="Goals" title="It decides when it is done">
+
+The backend's own goal feature: a turn that would have ended starts another, until the model says the objective is met.
+
+</PostCard>
+<PostCard kicker="The person" title="You, as one of the agents">
+
+A flow asks a person the same way it asks a model — which is how a human stays the architect rather than the bottleneck.
+
+</PostCard>
+</PostCards>
 
 Hooks, capabilities, surfaces and the daemon are in there too:
 [every feature, one picture each ↗](https://docs.humanfia.ai/humanize/features/).
@@ -423,46 +415,38 @@ A **flow** is a directory of Python that says which agents it drives, what each 
 what order and when to stop. The ones that ship with the runtime, plus the flowverse it
 fetches, cover most of the loop shapes the field has converged on:
 
-<div class="card-grid">
-  <div class="card">
-    <span class="kicker">One agent</span>
-    <h3>Forget every round, or remember all of them</h3>
-    <p><code>ralph_loop</code> opens a session of its own each round; <code>stateful_ralph</code>
-    and <code>continue_loop</code> hold one and keep going. Same loop, opposite trade.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Two agents</span>
-    <h3>Take turns on the same tree</h3>
-    <p><code>flame_chase</code> alternates two agents on one task, each reading the repository
-    rather than a history — so neither compounds the other's blind spot.</p>
-  </div>
-  <div class="card">
-    <span class="kicker">Actor and reviewer</span>
-    <h3>The review is the next prompt</h3>
-    <p><code>rlar</code> gives the actor one session for the whole run and the reviewer a
-    fresh one every round. What the reviewer noticed is what the actor hears, word for word,
-    and the reviewer is what ends the run.</p>
-  </div>
-  <a class="card" href="/flows/humanize1">
-    <span class="kicker">A plan first</span>
-    <h3>Plan, then build under review</h3>
-    <p><code>humanize1</code>: an idea opened into a draft, a plan two agents agree on, and a
-    build under review until nothing is left to say — the Claude Code plugin Humanize grew out
-    of, as three flows.</p>
-  </a>
-  <div class="card">
-    <span class="kicker">Seven agents</span>
-    <h3>Three lanes, one writer</h3>
-    <p><code>parallel_flame_chase</code>: a coordinator plans three lanes and leaves. Lane 1
-    alone writes your tree; lanes 2 and 3 work on private copies and reach it by report.</p>
-  </div>
-  <a class="card" href="/flows/">
-    <span class="kicker">The catalogue</span>
-    <h3>Every flow, with its loop drawn</h3>
-    <p>A page each: the <code>hmz exec</code> line, what it takes, what ends it, and what a run
-    picked up a week later carries in.</p>
-  </a>
-</div>
+<PostCards>
+<PostCard kicker="One agent" title="Forget every round, or remember all of them">
+
+<code>ralph_loop</code> opens a session of its own each round; <code>stateful_ralph</code> and <code>continue_loop</code> hold one and keep going. Same loop, opposite trade.
+
+</PostCard>
+<PostCard kicker="Two agents" title="Take turns on the same tree">
+
+<code>flame_chase</code> alternates two agents on one task, each reading the repository rather than a history — so neither compounds the other's blind spot.
+
+</PostCard>
+<PostCard kicker="Actor and reviewer" title="The review is the next prompt">
+
+<code>rlar</code> gives the actor one session for the whole run and the reviewer a fresh one every round. What the reviewer noticed is what the actor hears, word for word, and the reviewer is what ends the run.
+
+</PostCard>
+<PostCard kicker="A plan first" title="Plan, then build under review">
+
+<code>humanize1</code>: an idea opened into a draft, a plan two agents agree on, and a build under review until nothing is left to say — the Claude Code plugin Humanize grew out of, as three flows. [Read it →](/flows/humanize1)
+
+</PostCard>
+<PostCard kicker="Seven agents" title="Three lanes, one writer">
+
+<code>parallel_flame_chase</code>: a coordinator plans three lanes and leaves. Lane 1 alone writes your tree; lanes 2 and 3 work on private copies and reach it by report.
+
+</PostCard>
+<PostCard kicker="The catalogue" title="Every flow, with its loop drawn">
+
+A page each: the <code>hmz exec</code> line, what it takes, what ends it, and what a run picked up a week later carries in. [Read it →](/flows/)
+
+</PostCard>
+</PostCards>
 
 The loops the field already converged on ship built in; the rest are listed in a
 **flowverse** — an index in git that pins each version of a flow to a commit of the repository
@@ -511,20 +495,20 @@ repository you care about.
 
 ## Where to go next
 
-<div class="card-grid">
-  <a class="card" href="https://docs.humanfia.ai/humanize/">
-    <span class="kicker">All of it</span>
-    <h3>The documentation ↗</h3>
-    <p>Install, quickstart, and every feature.</p>
-  </a>
-  <a class="card" href="https://docs.humanfia.ai/humanize/reference/cli">
-    <span class="kicker">Look it up</span>
-    <h3>The CLI reference ↗</h3>
-    <p>Every command, key, flag and Python call, in one place.</p>
-  </a>
-  <a class="card" href="https://github.com/humanfia/humanize">
-    <span class="kicker">Read it</span>
-    <h3>humanfia/humanize ↗</h3>
-    <p>The source, Apache-2.0. Issues and pull requests are the fastest way to reach us.</p>
-  </a>
-</div>
+<PostCards>
+<PostCard kicker="All of it" title="The documentation">
+
+Install, quickstart, and every feature. [Open it ↗](https://docs.humanfia.ai/humanize/)
+
+</PostCard>
+<PostCard kicker="Look it up" title="The CLI reference">
+
+Every command, key, flag and Python call, in one place. [Open it ↗](https://docs.humanfia.ai/humanize/reference/cli)
+
+</PostCard>
+<PostCard kicker="Read it" title="humanfia/humanize">
+
+The source, Apache-2.0. Issues and pull requests are the fastest way to reach us. [Open it ↗](https://github.com/humanfia/humanize)
+
+</PostCard>
+</PostCards>

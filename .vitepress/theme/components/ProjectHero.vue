@@ -36,6 +36,8 @@ interface Stat {
   kicker?: string
   text?: string
   href?: string
+  /** The link's words, when it is not to a write-up. */
+  more?: string
 }
 
 interface Project {
@@ -167,7 +169,7 @@ const external = (href: string) => /^https?:/.test(href)
               <template v-else>{{ stat.display }}</template>
             </strong>
             <span v-if="stat.text" class="ph-text">{{ stat.text }}</span>
-            <span v-if="stat.href" class="ph-more" aria-hidden="true">The write-up →</span>
+            <span v-if="stat.href" class="ph-more" aria-hidden="true">{{ stat.more ?? 'The write-up' }} →</span>
           </component>
         </li>
       </ul>

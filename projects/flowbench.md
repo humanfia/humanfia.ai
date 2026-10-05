@@ -1,5 +1,5 @@
 ---
-title: "FlowBench: the referee"
+title: "FlowBench: The referee"
 description: Our benchmark for long-horizon agent work. It holds the model fixed and makes the flow the variable, on tasks that take hours and are scored by checks that already existed. It is not released yet.
 layout: post
 sidebar: false
@@ -148,23 +148,23 @@ but that loses on the board does not become a default, and does not stay in the
 [flowverse](/projects/humanize#the-flows-it-runs). It is a slow way to build a product, and the
 only way we know to tell craft from taste.
 
-<div class="card-grid">
-  <a class="card" href="/projects/humanize#the-flows-it-runs">
-    <span class="kicker">Context</span>
-    <h3>Where it sits</h3>
-    <p>How the benchmark feeds the flows, and the flows feed the runtime.</p>
-  </a>
-  <a class="card" href="https://github.com/humanfia/flowverse">
-    <span class="kicker">Method</span>
-    <h3>What it is scoring ↗</h3>
-    <p>The loops themselves: ours, and the ones the field converged on.</p>
-  </a>
-  <a class="card" href="/news/">
-    <span class="kicker">Later</span>
-    <h3>When it opens up</h3>
-    <p>The release, and the first cross-flow numbers, will be written up here.</p>
-  </a>
-</div>
+<PostCards>
+<PostCard kicker="Context" title="Where it sits">
+
+How the benchmark feeds the flows, and the flows feed the runtime. [Read it →](/projects/humanize#the-flows-it-runs)
+
+</PostCard>
+<PostCard kicker="Method" title="What it is scoring">
+
+The loops themselves: ours, and the ones the field converged on. [Open it ↗](https://github.com/humanfia/flowverse)
+
+</PostCard>
+<PostCard kicker="Later" title="When it opens up">
+
+The release, and the first cross-flow numbers, will be written up here. [Read it →](/news/)
+
+</PostCard>
+</PostCards>
 
 ## Where it stands
 
