@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/humanfia/flowverse",
-  "read": "2026-10-05T09:35:38.968Z",
+  "read": "2026-10-05T09:54:28.919Z",
   "modules": [
     {
       "name": "agent_cleanup",
@@ -23,7 +23,7 @@
         "url": "https://github.com/humanfia/agent-cleanup-flow",
         "description": "Agent Cleanup for hmz: a Ralph loop or a flame chase whose workspace a cleaner agent distills between turns.",
         "stars": 0,
-        "pushed": "2026-10-05T09:28:15Z"
+        "pushed": "2026-10-05T09:43:23Z"
       },
       "readme": {
         "summary": "Agent Cleanup for hmz: a Ralph loop or a flame chase whose workspace a cleaner agent distills between turns.",
@@ -51,7 +51,7 @@
         "url": "https://github.com/humanfia/aot-flow",
         "description": "AOT for hmz: the flow that writes a flow - a description in, a loaded, smoke-run and reviewed flow out.",
         "stars": 0,
-        "pushed": "2026-10-05T09:27:08Z"
+        "pushed": "2026-10-05T09:43:31Z"
       },
       "readme": {
         "summary": "AOT for hmz: the flow that writes a flow - a description in, a loaded, smoke-run and reviewed flow out.",
@@ -79,7 +79,7 @@
         "url": "https://github.com/humanfia/fixed-interrupt-flame-chase-flow",
         "description": "Fixed Interrupt Flame Chase for hmz: two fresh sessions alternate at accepted-experiment boundaries.",
         "stars": 0,
-        "pushed": "2026-10-05T09:28:27Z"
+        "pushed": "2026-10-05T09:43:37Z"
       },
       "readme": {
         "summary": "Fixed Interrupt Flame Chase for hmz: two fresh sessions alternate at accepted-experiment boundaries.",
@@ -107,7 +107,7 @@
         "url": "https://github.com/humanfia/humanize1-flow",
         "description": "PolyArch/humanize's gen-idea, gen-plan and RLCR loops as hmz flows: plan first, then build under review.",
         "stars": 0,
-        "pushed": "2026-10-05T09:28:33Z"
+        "pushed": "2026-10-05T09:43:43Z"
       },
       "readme": {
         "summary": "PolyArch/humanize's gen-idea, gen-plan and RLCR loops as hmz flows: plan first, then build under review.",
@@ -137,7 +137,7 @@
         "url": "https://github.com/humanfia/parallel-flame-chase-flow",
         "description": "Parallel Flame Chase for hmz: three report-driven lanes of alternating agents, with a Git PR variant.",
         "stars": 0,
-        "pushed": "2026-10-05T09:28:39Z"
+        "pushed": "2026-10-05T09:43:51Z"
       },
       "readme": {
         "summary": "Parallel Flame Chase for hmz: three report-driven lanes of alternating agents, with a Git PR variant.",
@@ -168,7 +168,7 @@
         "url": "https://github.com/humanfia/recursive-lean-prover-flow",
         "description": "Recursive Lean Prover for hmz: recursively plan, prove, compare, review and catalogue Lean theorems.",
         "stars": 0,
-        "pushed": "2026-10-05T09:27:26Z"
+        "pushed": "2026-10-05T09:43:58Z"
       },
       "readme": {
         "summary": "Recursive Lean Prover for hmz: recursively plan, prove, compare, review and catalogue Lean theorems.",
