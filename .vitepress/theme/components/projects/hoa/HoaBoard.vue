@@ -285,7 +285,7 @@ li.on .hb-tile::after {
 .hb-cap {
   margin-top: 8px;
   font-family: var(--vp-font-family-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--k-ink-3);
 }
 

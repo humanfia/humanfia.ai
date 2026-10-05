@@ -53,7 +53,7 @@ results:
     lean: true
     cells: 6
     filled: 6
-    note: In 3.2× less API time than AxiomProver's reported run. Statements, both sets of solutions and the scripts are public, pinned to Lean 4.31.0.
+    note: GPT-5.6 in 3.0× less API time than AxiomProver's reported run. Statements, both sets of solutions and the scripts are public, pinned to Lean 4.31.0.
     posts: [{ text: Jul 18, href: /news/2026-07-22-imo-2026 }]
   - id: ipho
     name: IPhO 2026 · theory
@@ -127,14 +127,15 @@ leanEval:
   - { name: NEAR AI · DeepSeek V4, total: 80, first: 12, unique: 3 }
   - { name: Axiom Prover, total: 74, first: 21, unique: 3 }
 
-# IMO 2026: API minutes per problem, from the write-up; AxiomProver's as it reported them.
+# IMO 2026: API minutes per problem, from the write-up (humanfia/hoa-qed imo2026/README.md);
+# AxiomProver's as it reported them. Kimi-K3's are its worker and Codex reviewer combined.
 imo:
-  - { label: Q1, gpt: 33.6, kimi: 77.7, axiom: 24 }
-  - { label: Q2, gpt: 96.2, kimi: 220.2, axiom: 360 }
-  - { label: Q3, gpt: 179.4, kimi: 338.4, axiom: 869 }
-  - { label: Q4, gpt: 53.3, kimi: 65.6, axiom: 39 }
-  - { label: Q5, gpt: 42.4, kimi: 86.7, axiom: 65 }
-  - { label: Q6, gpt: 62.7, kimi: 209.0, axiom: 139 }
+  - { label: Q1, gpt: 38.1, kimi: 87.1, axiom: 24 }
+  - { label: Q2, gpt: 100.4, kimi: 224.3, axiom: 360 }
+  - { label: Q3, gpt: 187.1, kimi: 343.7, axiom: 869 }
+  - { label: Q4, gpt: 58.7, kimi: 75.6, axiom: 39 }
+  - { label: Q5, gpt: 46.5, kimi: 91.9, axiom: 65 }
+  - { label: Q6, gpt: 66.9, kimi: 212.4, axiom: 139 }
 
 # The same model, three levels of scaffolding, 50 problems each: the Humanize ablation in the
 # KDA² post (2026-09-27), the latest measurement of it.

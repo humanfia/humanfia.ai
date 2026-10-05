@@ -2,7 +2,7 @@
 // IMO 2026 as a race against the clock: API minutes per problem for our two workers and for
 // AxiomProver as it reported them, one row per problem, on one shared axis. Each row ends in
 // how GPT-5.6 did against AxiomProver, so the shape of the table -- lose on the two easiest,
-// win by almost five times on the hardest -- is read off the margin. The switch sums the paper.
+// win by more than four times on the hardest -- is read off the margin. The switch sums the paper.
 import { computed, ref } from 'vue'
 import { vReveal } from '../../../home/motion'
 
@@ -74,9 +74,10 @@ function versus(r: Row) {
     </ol>
 
     <figcaption class="hoa-caption">
-      AxiomProver's times are as it reported them for the same statements. On Q1 and Q4, the two
-      easiest, we lose; on Q3, the hardest, we are almost five times faster. A loop pays for itself
-      when the problem is long enough for the loop to matter.
+      AxiomProver's times are as it reported them for the same statements; Kimi-K3's are its worker
+      and its Codex reviewer combined. On Q1 and Q4, the two easiest, we lose; on Q3, the hardest,
+      GPT-5.6 is more than four times faster. A loop pays for itself when the problem is long
+      enough for the loop to matter.
     </figcaption>
   </figure>
 </template>
@@ -172,7 +173,7 @@ function versus(r: Row) {
   content: 'hardest';
   display: block;
   font-family: var(--vp-font-family-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.04em;
   color: var(--k-accent);
@@ -239,7 +240,7 @@ function versus(r: Row) {
     gap: 6px 10px;
   }
   .hard .hi-q::after {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0;
   }
   .hi-vs {

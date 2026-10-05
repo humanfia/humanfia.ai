@@ -474,7 +474,7 @@ const external = (href: string) => /^https?:/.test(href)
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--vp-font-family-mono);
-  font-size: 0.68em;
+  font-size: max(11px, 0.68em);
   font-weight: 650;
   color: var(--k-plate-3);
   white-space: nowrap;
@@ -505,6 +505,9 @@ const external = (href: string) => /^https?:/.test(href)
   height: 0.7em;
   margin-bottom: 1px;
   background: var(--k-plate-red);
+}
+.lp-where sub {
+  font-size: max(11px, 0.7em);
 }
 .lp-where {
   margin: 18px 0 0;
