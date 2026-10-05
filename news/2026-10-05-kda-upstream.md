@@ -29,16 +29,16 @@ Two things in that table are worth reading slowly.
 
 **A kernel speedup is not a model speedup.** The two diffusion kernels are about 2.5× faster
 on their own and save one to two percent of a whole video generation, because they are a
-small part of it. Both pull requests report both numbers, and both get merged on the end-to-end
-number, not the kernel one.
+small part of it. Both pull requests report both numbers, and #41305 kept a kernel only if
+end-to-end time improved by at least 1.5% in both of its measurement groups.
 
 **A pull request can get smaller under review.** #41305 began with 40 kernel families. It
 merged with one, after every family that showed a measured regression, or had no established
 end-to-end benefit, was taken out. The other 39 are listed in its
 [selection record](https://github.com/BBuf/sglang/blob/42d1d19e5f876e7b5977fb55d90073230bce1655/diffusion-prs/kda-residual-gate-h200-20260927/selection.json).
 
-The last two diffusion pull requests are also the first we know of where the agent ran on an
-open model: they credit the candidate kernel to KDA with Codex CLI and **Kimi K3**.
+Three of the six (#36845, #41305 and #41459) credit the kernel to KDA running with Codex and
+**Kimi K3**.
 
 ## The contest kernels, public
 
