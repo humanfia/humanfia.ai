@@ -157,7 +157,7 @@ const togglePin = (index: number) => {
   border-bottom: 1px solid var(--k-line);
 }
 
-table {
+.rt table {
   display: table;
   width: 100%;
   margin: 0;
@@ -165,7 +165,7 @@ table {
   font-variant-numeric: tabular-nums;
 }
 
-caption {
+.rt caption {
   padding: 0 0 8px;
   text-align: left;
   font-family: var(--k-mono);
@@ -175,8 +175,8 @@ caption {
   color: var(--k-fg-3);
 }
 
-th,
-td {
+.rt th,
+.rt td {
   position: relative;
   padding: 9px 12px;
   border: 0;
@@ -188,13 +188,13 @@ td {
   white-space: nowrap;
 }
 
-.compact th,
-.compact td {
+.rt.compact th,
+.rt.compact td {
   padding: 7px 10px;
   font-size: 13px;
 }
 
-thead th {
+.rt thead th {
   padding-top: 6px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--k-line);
@@ -206,17 +206,17 @@ thead th {
   color: var(--k-fg-3);
 }
 
-tbody th {
+.rt tbody th {
   font-weight: 650;
   color: var(--k-fg);
   text-align: left;
 }
 
-.al-right {
+.rt .al-right {
   text-align: right;
 }
 
-.al-left {
+.rt .al-left {
   text-align: left;
 }
 
@@ -236,8 +236,8 @@ tbody th {
 }
 
 .rt-sort:hover,
-th[aria-sort='ascending'] .rt-sort,
-th[aria-sort='descending'] .rt-sort {
+.rt th[aria-sort='ascending'] .rt-sort,
+.rt th[aria-sort='descending'] .rt-sort {
   color: var(--k-fg);
 }
 
@@ -246,29 +246,29 @@ th[aria-sort='descending'] .rt-sort {
   color: var(--k-red-text);
 }
 
-tbody tr {
+.rt tbody tr {
   cursor: pointer;
   transition: background-color 0.15s;
 }
 
-tbody tr:hover,
-tbody tr:focus-visible {
+.rt tbody tr:hover,
+.rt tbody tr:focus-visible {
   background: color-mix(in srgb, var(--k-fg) 5%, transparent);
   outline: none;
 }
 
-tbody tr.pinned {
+.rt tbody tr.pinned {
   background: color-mix(in srgb, var(--k-red) 12%, transparent);
   box-shadow: inset 4px 0 0 var(--k-red);
 }
 
-tbody tr.us th,
-tbody tr.us td {
+.rt tbody tr.us th,
+.rt tbody tr.us td {
   color: var(--k-fg);
   font-weight: 700;
 }
 
-tbody tr.us th::before {
+.rt tbody tr.us th::before {
   content: '';
   display: inline-block;
   width: 7px;
@@ -279,7 +279,7 @@ tbody tr.us th::before {
 }
 
 /* The bar sits behind the number, growing from the cell's right edge for a right-aligned
-   number -- the same edge the digits line up on. */
+.rt number -- the same edge the digits line up on. */
 .rt-bar {
   position: absolute;
   top: 50%;
@@ -290,11 +290,11 @@ tbody tr.us th::before {
   background: color-mix(in srgb, var(--k-fg) 9%, transparent);
 }
 
-tr.us .rt-bar {
+.rt tr.us .rt-bar {
   background: color-mix(in srgb, var(--k-red) 22%, transparent);
 }
 
-.al-left .rt-bar {
+.rt .al-left .rt-bar {
   right: auto;
   left: 8px;
 }

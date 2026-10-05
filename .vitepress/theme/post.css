@@ -477,21 +477,28 @@ a.post-author:hover .post-author-name {
   color: var(--vp-c-text-1);
 }
 
-/* Everything sits in the reading column unless it is one of the things that may step out. */
-.post-body > * {
+/* Everything sits in the reading column unless it is one of the things that may step out.
+   (`> div`: the markdown renders inside one wrapping element of its own.) */
+.post-body > div > * {
   max-width: var(--post-text);
 }
 
-.post-body > :is(.kit-frame, .sg, .pcs, .lcmp, .pf-wide, .rt, .defs, .post-wide) {
+.post-body > div > :is(.kit-frame, .sg, .pcs, .lcmp, .pf-wide, .rt, .defs, .post-wide) {
   max-width: var(--post-wide);
 }
 
-.post-body > .pf-text {
+.post-body > div > .pf-text {
   max-width: var(--post-text);
 }
 
-.post-body > .pf-full {
+.post-body > div > .pf-full {
   max-width: none;
+}
+
+/* The theme's "return to top" bar is for doc pages; a post has the progress rule and its own
+   contents, and the bar would sit over the rule on a phone. */
+.Layout:has(.post-page) .VPLocalNav {
+  display: none;
 }
 
 .post-body p,
@@ -505,7 +512,7 @@ a.post-author:hover .post-author-name {
   color: var(--vp-c-text-1);
 }
 
-.post-body > p:first-child {
+.post-body > div > p:first-child {
   margin-top: 0;
 }
 
@@ -562,7 +569,7 @@ a.post-author:hover .post-author-name {
   color: var(--vp-c-brand-1);
 }
 
-.post-body > h2:first-child {
+.post-body > div > h2:first-child {
   margin-top: 8px;
 }
 
@@ -654,7 +661,7 @@ a.post-author:hover .post-author-name {
   font-variant-numeric: tabular-nums;
 }
 
-.post-body > table {
+.post-body > div > table {
   display: block;
   overflow-x: auto;
 }
@@ -1216,4 +1223,28 @@ a.post-author:hover .post-author-name {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* A table inside a SwipeCompare pane: the pane is the frame, so the table drops its margin and
+   takes the pane's colours. */
+.post-body .sw-pane table {
+  margin: 0;
+  border-top-color: var(--k-fg);
+}
+
+.post-body .sw-pane :is(th, td) {
+  font-size: 14px;
+  color: var(--k-fg-2);
+  white-space: normal;
+}
+
+.post-body .sw-pane tbody th {
+  width: 3em;
+  font-size: 13px;
+  color: var(--k-fg);
+}
+
+.post-body .sw-after td {
+  color: var(--k-fg);
+  font-weight: 600;
 }

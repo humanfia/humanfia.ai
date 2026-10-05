@@ -46,6 +46,8 @@ interface Axis {
   /** Tick labels: the value divided by `divide`, with `decimals` and `suffix`. */
   divide?: number
   decimals?: number
+  /** Decimals on the tick labels, when they want fewer than the readout ("2.5×" vs "2.45×"). */
+  tickDecimals?: number
   suffix?: string
   /** Named steps; a point's x is the index of its category. */
   categories?: string[]
@@ -116,6 +118,9 @@ const yHi = computed(() => {
 const fmtX = (v: number) =>
   cats.value ? (cats.value[Math.round(v)] ?? '') : format(v / (props.x.divide ?? 1), props.x.decimals ?? 0, props.x.suffix ?? '')
 const fmtY = (v: number) => format(v / (props.y.divide ?? 1), props.y.decimals ?? 0, props.y.suffix ?? '')
+const tickY = (v: number) => format(v / (props.y.divide ?? 1), props.y.tickDecimals ?? props.y.decimals ?? 0, props.y.suffix ?? '')
+const tickX = (v: number) =>
+  cats.value ? fmtX(v) : format(v / (props.x.divide ?? 1), props.x.tickDecimals ?? props.x.decimals ?? 0, props.x.suffix ?? '')
 const readX = (v: number) =>
   cats.value ? fmtX(v) : props.x.unit !== undefined ? format(v, 0, props.x.unit) : fmtX(v)
 
@@ -129,7 +134,7 @@ const M = computed(() => ({
   top: 14,
   right: props.endLabels ? 60 : 16,
   bottom: 30,
-  left: Math.max(...yTicks.value.map((t) => fmtY(t).length)) * 7 + 14,
+  left: Math.max(...yTicks.value.map((t) => tickY(t).length)) * 7 + 14,
 }))
 const sx = computed(() => scale([xMin.value, xMax.value], [M.value.left, width.value - M.value.right]))
 const sy = computed(() => scale([yLo.value, yHi.value], [props.height - M.value.bottom, M.value.top]))
@@ -349,10 +354,10 @@ const tableRows = computed(() => {
             <g>
               <g v-for="t in yTicks" :key="`y${t}`">
                 <line class="grid-line" :x1="M.left" :x2="width - M.right" :y1="sy(t)" :y2="sy(t)" />
-                <text :x="M.left - 8" :y="sy(t) + 4" text-anchor="end">{{ fmtY(t) }}</text>
+                <text :x="M.left - 8" :y="sy(t) + 4" text-anchor="end">{{ tickY(t) }}</text>
               </g>
               <line class="axis-line" :x1="M.left" :x2="width - M.right" :y1="height - M.bottom" :y2="height - M.bottom" />
-              <text v-for="t in xTicks" :key="`x${t}`" :x="sx(t)" :y="height - M.bottom + 18" text-anchor="middle">{{ fmtX(t) }}</text>
+              <text v-for="t in xTicks" :key="`x${t}`" :x="sx(t)" :y="height - M.bottom + 18" text-anchor="middle">{{ tickX(t) }}</text>
             </g>
 
             <g v-if="reference">

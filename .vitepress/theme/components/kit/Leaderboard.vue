@@ -139,7 +139,7 @@ function move(i: number, by: number) {
 
 .lb-row {
   display: grid;
-  grid-template-columns: 30px minmax(0, 1.2fr) minmax(60px, 1.6fr) auto;
+  grid-template-columns: 30px minmax(0, 1.7fr) minmax(48px, 1fr) auto;
   gap: 12px;
   align-items: center;
   margin: 0;

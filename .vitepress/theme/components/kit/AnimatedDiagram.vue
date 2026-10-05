@@ -75,6 +75,8 @@ function build() {
         const length = (el as unknown as SVGGeometryElement).getTotalLength()
         gsap.set(el, { strokeDasharray: length, strokeDashoffset: length })
         tl!.to(el, { strokeDashoffset: 0, duration: 0.9, ease: 'power2.inOut' }, `s${n}+=${offset}`)
+        // A dashed stroke draws on solid, then gets its dashes back from its class.
+        tl!.set(el, { strokeDasharray: '', strokeDashoffset: '' }, `s${n}+=${offset + 0.9}`)
       } else if (el.hasAttribute('data-travel')) {
         const path = svg.value!.querySelector(at(el, 'data-travel')!)
         const end = Number(at(el, 'data-stop') ?? 1)
@@ -111,7 +113,7 @@ function cloneRide(el: Element, path: SVGPathElement, end: number) {
   ride.fromTo(
     el,
     { opacity: 1 },
-    { duration: 1.4 * end, ease: 'none', motionPath: { path, align: path, alignOrigin: [0.5, 0.5], end } },
+    { duration: 1.4 * end, ease: 'none', immediateRender: false, motionPath: { path, align: path, alignOrigin: [0.5, 0.5], end } },
   )
   if (end < 1) ride.to(el, { scale: 1.6, transformOrigin: '50% 50%', duration: 0.15, yoyo: true, repeat: 1 })
   return ride

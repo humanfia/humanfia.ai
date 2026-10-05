@@ -71,7 +71,7 @@
 
 /* ---- The frame ----------------------------------------------------------------------------- */
 
-.kit-frame {
+.kit.kit-frame {
   position: relative;
   margin: 36px 0;
   padding: 18px 20px 16px;
@@ -80,13 +80,13 @@
   background: var(--k-bg);
 }
 
-.kit-frame.bare {
+.kit.kit-frame.bare {
   padding: 0;
   border: 0;
   background: none;
 }
 
-.kit-head {
+.kit .kit-head {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -95,7 +95,7 @@
   margin-bottom: 14px;
 }
 
-.kit-kicker {
+.kit .kit-kicker {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -109,7 +109,7 @@
 }
 
 /* The red square: every figure's kicker starts with the one mark the brand owns. */
-.kit-kicker::before {
+.kit .kit-kicker::before {
   content: '';
   flex: none;
   width: 8px;
@@ -117,7 +117,7 @@
   background: var(--k-red);
 }
 
-.kit-title {
+.kit .kit-title {
   margin: -4px 0 14px;
   font-size: clamp(19px, 2.2vw, 24px);
   line-height: 1.2;
@@ -126,14 +126,14 @@
   color: var(--k-fg);
 }
 
-.kit-sub {
+.kit .kit-sub {
   margin: -8px 0 14px;
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--k-fg-2);
 }
 
-.kit-foot {
+.kit .kit-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -142,27 +142,27 @@
   margin-top: 14px;
 }
 
-.kit-caption {
+.kit .kit-caption {
   margin: 12px 0 0;
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--vp-c-text-2);
 }
 
-.kit-frame .kit-caption {
+.kit.kit-frame .kit-caption {
   color: var(--k-fg-2);
 }
 
 /* ---- Toggles: a segmented row of square buttons, the pressed one inked in ----------------- */
 
-.kit-toggle {
+.kit .kit-toggle {
   display: inline-flex;
   flex-wrap: wrap;
   border: 1px solid var(--k-line);
 }
 
-.kit-toggle button,
-.kit-button {
+.kit .kit-toggle button,
+.kit .kit-button {
   min-height: 32px;
   padding: 6px 11px;
   border: 0;
@@ -177,25 +177,25 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.kit-toggle button + button {
+.kit .kit-toggle button + button {
   border-left: 1px solid var(--k-line);
 }
 
-.kit-toggle button:hover,
-.kit-button:hover {
+.kit .kit-toggle button:hover,
+.kit .kit-button:hover {
   color: var(--k-fg);
 }
 
-.kit-toggle button[aria-pressed='true'] {
+.kit .kit-toggle button[aria-pressed='true'] {
   background: var(--k-fg);
   color: var(--k-bg);
 }
 
-.kit-button {
+.kit .kit-button {
   border: 1px solid var(--k-line);
 }
 
-.kit-button[aria-expanded='true'] {
+.kit .kit-button[aria-expanded='true'] {
   border-color: var(--k-fg);
   color: var(--k-fg);
 }
@@ -205,7 +205,7 @@
   outline-offset: 2px;
 }
 
-.kit-label {
+.kit .kit-label {
   font-family: var(--k-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -215,7 +215,7 @@
 
 /* ---- The legend: a key that is also the series toggle ------------------------------------- */
 
-.kit-legend {
+.kit .kit-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 16px;
@@ -224,11 +224,11 @@
   list-style: none;
 }
 
-.kit-legend li {
+.kit .kit-legend li {
   margin: 0;
 }
 
-.kit-key {
+.kit .kit-key {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -247,39 +247,39 @@ span.kit-key {
   cursor: default;
 }
 
-.kit-key[aria-pressed='false'] {
+.kit .kit-key[aria-pressed='false'] {
   color: var(--k-fg-3);
   text-decoration: line-through;
 }
 
-.kit-key[aria-pressed='false'] .kit-swatch {
+.kit .kit-key[aria-pressed='false'] .kit-swatch {
   opacity: 0.3;
 }
 
-.kit-swatch {
+.kit .kit-swatch {
   flex: none;
   width: 16px;
   height: 8px;
   background: var(--s);
 }
 
-.kit-swatch.line {
+.kit .kit-swatch.line {
   height: 3px;
 }
 
-.kit-swatch.dashed {
+.kit .kit-swatch.dashed {
   height: 3px;
   background: repeating-linear-gradient(90deg, var(--s) 0 5px, transparent 5px 8px);
 }
 
-.kit-swatch.hatched {
+.kit .kit-swatch.hatched {
   background: repeating-linear-gradient(-45deg, var(--s) 0 2px, transparent 2px 4.5px);
   box-shadow: inset 0 0 0 1px var(--s);
 }
 
 /* ---- The readout: what the pointer (or the arrow keys) is on ------------------------------ */
 
-.kit-tip {
+.kit .kit-tip {
   position: absolute;
   z-index: 3;
   min-width: 140px;
@@ -296,44 +296,44 @@ span.kit-key {
   transition: opacity 0.15s;
 }
 
-.kit-tip strong {
+.kit .kit-tip strong {
   display: block;
   margin-bottom: 4px;
   font-size: 12px;
   font-weight: 700;
 }
 
-.kit-tip-row {
+.kit .kit-tip-row {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.kit-tip-row .kit-swatch {
+.kit .kit-tip-row .kit-swatch {
   width: 10px;
 }
 
-.kit-tip-row b {
+.kit .kit-tip-row b {
   margin-left: auto;
   padding-left: 12px;
   font-weight: 700;
 }
 
-.kit-tip-row em {
+.kit .kit-tip-row em {
   font-style: normal;
   color: var(--k-red-text);
 }
 
 /* ---- Wide plots on a narrow screen scroll sideways rather than shrink their type ---------- */
 
-.kit-scroll {
+.kit .kit-scroll {
   position: relative;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
 }
 
-.kit-hint {
+.kit .kit-hint {
   display: none;
   margin: 0 0 8px;
   font-family: var(--k-mono);
@@ -341,8 +341,8 @@ span.kit-key {
   color: var(--k-fg-3);
 }
 
-.kit-scroll.overflows + .kit-hint,
-.kit-hint.show {
+.kit .kit-scroll.overflows + .kit-hint,
+.kit .kit-hint.show {
   display: block;
 }
 
@@ -378,7 +378,7 @@ span.kit-key {
 }
 
 @media (max-width: 640px) {
-  .kit-frame {
+  .kit.kit-frame {
     margin-left: -12px;
     margin-right: -12px;
     padding: 14px 12px 12px;
@@ -406,7 +406,8 @@ span.kit-key {
 .kit .ad-svg .line.red { fill: none; stroke: var(--k-red); }
 .kit .ad-svg .line.ink { fill: none; stroke: var(--k-fg); }
 .kit .ad-svg .line.dash { stroke-dasharray: 5 5; }
-.kit .ad-svg text { font-family: var(--k-mono); font-size: 13px; fill: var(--k-fg-2); }
+.kit .ad-svg { font-size: 22px; }
+.kit .ad-svg text { font-family: var(--k-mono); font-size: inherit; fill: var(--k-fg-2); }
 .kit .ad-svg text.ink { fill: var(--k-fg); }
 .kit .ad-svg text.red { fill: var(--k-red-text); }
 .kit .ad-svg text.on-red { fill: var(--hf-paper); }
