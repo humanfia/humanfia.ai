@@ -50,7 +50,7 @@ onBeforeUnmount(() => io?.disconnect())
       </ol>
       <p class="vis-goal">to solve one big problem.</p>
       <p class="vis-astra">Ad astra.</p>
-      <p class="vis-note">A direction, not a measurement. What we can measure today is on <a href="/research/flow-science">Flow Science</a>.</p>
+      <p class="vis-note">A direction, not a measurement. What we can measure today is on <a href="/blog/2026-10-05-flow-is-the-new-scaling-dimension">Flow Science</a>.</p>
     </div>
   </section>
 </template>
