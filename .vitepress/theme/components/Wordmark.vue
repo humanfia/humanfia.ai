@@ -42,8 +42,10 @@ function transform({ x, y, sx, sy, rot, foot }: Pose) {
 const CROUCH = 0.2
 const FLIGHT = 0.7
 const SETTLE = 0.75
-/** Height of the arc above the cap line, in mark units: about a stem and a half. */
-const APEX = 84
+/** Height of the arc above the cap line, in mark units: a little over two stems. Bounded by the
+ *  nav: the wordmark is 27px tall in a 64px bar, so its top is ~18px from the window's edge, and
+ *  at 56 units the dot's top clears that edge with a few pixels to spare at the arc's peak. */
+const APEX = 56
 
 /** One hop: crouch, throw, land. */
 function hop(from: { x: number; y: number }, to: { x: number; y: number }): Segment[] {
