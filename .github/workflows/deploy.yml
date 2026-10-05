@@ -28,6 +28,7 @@ jobs:
         with:
           # `lastUpdated` reads each page's last commit, and a shallow clone has none.
           fetch-depth: 0
+          persist-credentials: false
 
       # No version pinned here on purpose: the action reads `packageManager` from
       # package.json, so the version this repository is developed against is the version CI
