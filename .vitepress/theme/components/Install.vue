@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Humanize 2, installed. The documentation is a site of its own and this is not a copy of it:
+// Humanize, installed. The documentation is a site of its own and this is not a copy of it:
 // it is the one screen that gets somebody from nothing to a flow running, and then hands them
 // over. Three ways in, because a Python tool that is only ever `pip install`ed in a README is
 // a tool half its readers cannot use.
@@ -75,7 +75,7 @@ const pick = (i: number) => {
  *  under this block. These four were links that read as text -- the rule that styled them took
  *  the colour and the underline back off -- which is a link nobody can see to take. */
 const FACTS = [
-  'Ten coding-agent CLIs, one flow',
+  'Twelve coding-agent CLIs, one flow',
   'Work lands in a container or on an ssh host',
   'Every run, a trace you open in Perfetto',
   'A loop that stopped on Thursday carries on',
@@ -85,13 +85,13 @@ const STEPS = [
   {
     n: '01',
     title: 'Check it landed',
-    body: 'One binary, no service, no key of its own.',
+    body: 'One command, and no account to sign up for.',
     lines: ['hmz --version'],
   },
   {
     n: '02',
     title: 'Log into an agent you already have',
-    body: 'It drives your CLI under your own subscription. Any one of ten will do.',
+    body: 'It drives your CLI under your own subscription. Any one of twelve will do.',
     lines: ['claude auth login', 'codex login'],
   },
   {
@@ -111,7 +111,7 @@ const STEPS = [
     <div class="install">
       <div class="install-main">
         <div class="install-head">
-          <div class="install-tabs" role="tablist" aria-label="How to install Humanize 2">
+          <div class="install-tabs" role="tablist" aria-label="How to install Humanize">
             <button
               v-for="(item, i) in WAYS"
               :key="item.key"
@@ -145,7 +145,7 @@ const STEPS = [
         <p class="install-note">{{ way.note }}</p>
 
         <p class="install-req">
-          Python ≥ 3.12 · drives the coding agent CLI you already log into · no API key of its own
+          Python ≥ 3.12 · drives the coding agent CLI you already log into · an API key only if you add one
         </p>
 
         <ul class="install-facts">

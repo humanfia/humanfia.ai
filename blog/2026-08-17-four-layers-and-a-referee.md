@@ -42,7 +42,7 @@ writes the whole run down as it happens so it reads back as a timeline. Its docu
 at [docs.humanfia.ai/humanize](https://docs.humanfia.ai/humanize/).
 
 **Flows.** [The flowverse](/projects/humanize#the-flows-it-runs): [RLAR](https://github.com/humanfia/flowverse),
-[Flame Chase](https://github.com/humanfia/flowverse), [Humanize 1](/projects/rlcr-loop), and the loops everyone
+[Flame Chase](https://github.com/humanfia/flowverse), [Humanize 1](/flows/humanize1), and the loops everyone
 already uses, kept alongside so a comparison is a flag rather than a reimplementation.
 
 **Applications.** [KDA](/projects/kda) for GPU kernels and [HOA](/projects/hoa) for

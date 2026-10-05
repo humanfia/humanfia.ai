@@ -9,19 +9,18 @@ import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 // everything here links out to it rather than restating it.
 const HOSTNAME = 'https://humanfia.ai'
 
-/** The projects, in the order they are worth reading: the runtime, the loop it grew out of,
- *  the referee, the three applications. Names only -- a list is a list of places, and the
- *  sentence explaining each one is already the first thing on the page it goes to.
+/** The projects, in the order they are worth reading: the runtime, the referee, the three
+ *  applications. Names only -- a list is a list of places, and the sentence explaining each
+ *  one is already the first thing on the page it goes to.
  *
- *  The two named ones carry their full names here because this is where they are labelled
- *  rather than talked about: Humanize 1 is the Claude Code plugin, Humanize 2 is the runtime,
- *  and a menu that said "Humanize" and "RLCR Loop" hid the fact that they are one lineage.
+ *  Humanize is labelled the way its own README names it. Humanize 1, the Claude Code plugin
+ *  it grew out of, is not a project here: it lives on as the humanize1 flow, under Flows, and
+ *  /projects/rlcr-loop redirects there.
  *
  *  One list, used twice: it is the nav's dropdown and it is the projects sidebar. There is no
  *  longer a page above them for it to be a table of contents for. */
 const PROJECT_LINKS = [
-  { text: 'Humanize 2: Agent Flow System', link: '/projects/humanize' },
-  { text: 'Humanize 1: RLCR Loop', link: '/projects/rlcr-loop' },
+  { text: 'Humanize', link: '/projects/humanize' },
   { text: 'FlowBench', link: '/projects/flowbench' },
   { text: 'HOA', link: '/projects/hoa' },
   { text: 'KDA', link: '/projects/kda' },
@@ -31,7 +30,7 @@ const PROJECT_LINKS = [
 const PROJECTS = [
   {
     // A heading, not an entry. It used to say the overview was reached from the nav; there is
-    // no overview now, so it is only ever a label over the six.
+    // no overview now, so it is only ever a label over the five.
     text: 'Projects',
     items: PROJECT_LINKS,
   },
@@ -82,7 +81,9 @@ export default defineConfig({
 
   // The feed is written by `buildEnd` below, after the link check has run, so the check has
   // no way of knowing it is about to exist. Every other dead link is still a failed build.
-  ignoreDeadLinks: [/^\/blog\/feed\.rss$/],
+  // `/flows/` is temporary: the Flows section lands in its own pull request, and the projects
+  // pages already point at it. Drop this once flows/ exists here.
+  ignoreDeadLinks: [/^\/blog\/feed\.rss$/, /^\/flows\//],
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
@@ -110,7 +111,6 @@ export default defineConfig({
         sameAs: [
           'https://github.com/humanfia',
           'https://github.com/humanfia/humanize',
-          'https://github.com/PolyArch/humanize',
         ],
       }),
     ],
