@@ -126,7 +126,8 @@ switch the baseline.
 ```
 
 - `orientation="vertical"` draws columns.
-- `datasets` is `[{ key, label, rows, max? }]` and replaces `rows` with a toggle.
+- `datasets` is `[{ key, label, rows, max?, suffix?, decimals? }]` and replaces `rows` with a
+  toggle. A dataset's `suffix` and `decimals` override the chart's, for datasets in other units.
 - `baselines` lists the series a reader may compare against. With `compare="ratio"` (the
   default), the bars rescale to "× the baseline". With `compare="delta"`, each bar is labelled
   with its gain. `baseline` picks the starting choice.
