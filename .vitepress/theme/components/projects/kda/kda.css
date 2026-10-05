@@ -1,0 +1,244 @@
+/**
+ * The KDA page's own look: a profiler's console set in the site's poster language. Ink, paper and
+ * one red; hairline grids like a trace viewer's; every number in the mono, tabular, so a column
+ * of speedups lines up the way a benchmark log does. Full-width bands alternate between the
+ * paper and the ink, and the red is spent on the kernel that won.
+ *
+ * Scoped under .kd-band, so nothing here reaches another page. Every colour is a site token
+ * (style.css), re-exposed under a short local name so an ink band can repaint its contents by
+ * swapping a handful of variables.
+ */
+
+.kd-band {
+  --kd-bg: var(--vp-c-bg);
+  --kd-card: var(--vp-c-bg-elv);
+  --kd-fg: var(--vp-c-text-1);
+  --kd-fg-2: var(--vp-c-text-2);
+  --kd-fg-3: var(--vp-c-text-3);
+  --kd-line: var(--vp-c-divider);
+  --kd-grid: var(--vp-c-gutter);
+  --kd-red: var(--hf-red);
+  --kd-red-text: var(--vp-c-brand-1);
+  --kd-on-red: var(--hf-paper-white);
+  --kd-mono: var(--vp-font-family-mono);
+  --kd-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --kd-max: 1400px;
+  --kd-pad: clamp(20px, 4.5vw, 56px);
+
+  position: relative;
+  color: var(--kd-fg);
+  background: var(--kd-bg);
+  padding: clamp(72px, 10vw, 140px) 0;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kd-band.kd-alt {
+  --kd-bg: var(--vp-c-bg-alt);
+  --kd-card: var(--vp-c-bg);
+}
+
+/* The ink band: paper on ink in the light, and a step darker than the page in the dark. */
+.kd-band.kd-ink {
+  --kd-bg: var(--hf-ink-k);
+  --kd-card: var(--hf-night-2);
+  --kd-fg: var(--hf-paper);
+  --kd-fg-2: var(--hf-paper-2);
+  --kd-fg-3: var(--hf-paper-3);
+  --kd-line: color-mix(in srgb, var(--hf-paper) 15%, transparent);
+  --kd-grid: color-mix(in srgb, var(--hf-paper) 6%, transparent);
+  --kd-red: var(--hf-red-on-ink);
+  --kd-red-text: var(--hf-red-on-ink);
+  --kd-on-red: var(--hf-ink-k);
+}
+
+.dark .kd-band.kd-ink {
+  --kd-bg: var(--hf-night);
+}
+
+.kd-wrap {
+  max-width: var(--kd-max);
+  margin: 0 auto;
+  padding: 0 var(--kd-pad);
+}
+
+/* ------------------------------------------------------------------------------ section head */
+
+.kd-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.kd-index {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-family: var(--kd-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kd-fg-2);
+}
+
+.kd-index b {
+  color: var(--kd-red-text);
+  font-weight: 700;
+}
+
+.kd-index::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--kd-line);
+}
+
+.kd-title {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(38px, 5.6vw, 80px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  color: var(--kd-fg);
+  scroll-margin-top: calc(var(--vp-nav-height) + 24px);
+}
+
+.kd-title em {
+  font-style: normal;
+  color: var(--kd-red-text);
+}
+
+.kd-lede {
+  max-width: 62ch;
+  margin: 0;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.6;
+  color: var(--kd-fg-2);
+}
+
+/* The prose a section keeps: short, and set for reading. */
+.kd-prose {
+  max-width: 62ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--kd-fg-2);
+}
+
+.kd-prose p {
+  margin: 0 0 1em;
+}
+
+.kd-prose strong {
+  color: var(--kd-fg);
+  font-weight: 650;
+}
+
+.kd-prose a,
+.kd-link {
+  color: var(--kd-red-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness 0.2s;
+}
+
+.kd-prose a:hover,
+.kd-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.kd-prose code {
+  font-family: var(--kd-mono);
+  font-size: 0.88em;
+  padding: 1px 5px;
+  background: var(--kd-grid);
+}
+
+/* The figure-talking-about-itself voice: kickers, ticks, legends, readouts. */
+.kd-mono {
+  font-family: var(--kd-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.kd-kicker {
+  margin: 0;
+  font-family: var(--kd-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kd-fg-3);
+}
+
+.kd-caption {
+  margin: 18px 0 0;
+  max-width: 80ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--kd-fg-3);
+}
+
+/* A segmented switch, for the figures that have two ways to be read. */
+.kd-switch {
+  display: inline-flex;
+  border: 1px solid var(--kd-line);
+}
+
+.kd-switch button {
+  padding: 8px 14px;
+  font-family: var(--kd-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--kd-fg-2);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s var(--kd-ease), color 0.25s var(--kd-ease);
+}
+
+.kd-switch button + button {
+  border-left: 1px solid var(--kd-line);
+}
+
+.kd-switch button[aria-pressed='true'] {
+  color: var(--kd-bg);
+  background: var(--kd-fg);
+}
+
+.kd-switch button:focus-visible,
+.kd-band a:focus-visible,
+.kd-band button:focus-visible {
+  outline: 2px solid var(--kd-red);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------------------ reveal */
+
+/* Hidden only once the band has mounted with motion allowed (useMotion), so the server-rendered
+   page, and a reader who asked for less motion, see everything at once. */
+.kd-motion .rv {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 0.9s var(--kd-ease) var(--rv-delay, 0ms),
+    transform 1s var(--kd-ease) var(--rv-delay, 0ms);
+}
+
+.kd-motion .rv.rv-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kd-band *,
+  .kd-band *::before,
+  .kd-band *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
