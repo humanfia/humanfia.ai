@@ -1,5 +1,6 @@
 ---
-pageClass: flow-page
+pageClass: page-wide flow-page
+aside: false
 ---
 
 # Flows
@@ -60,7 +61,7 @@ params and a budget, then remembers them for this project. `/flow` changes them 
 
 | On the command line | What it says |
 | --- | --- |
-| `-f rlar` | the flow, by the name on its card |
+| `-f rlar` | the flow, by the name on its tile |
 | `-a actor=claude/claude-opus-5:high` | the agent for one role, as `role=CLI[@PROVIDER]/MODEL[:EFFORT]`. Every flow's page lists its roles |
 | `-p max=20` | a param, for a flow that takes some |
 | `-p budget.duration=6h,budget.cost=60` | the [budget](https://docs.humanfia.ai/humanize/features/allowances). Every flow but `chat` needs one |
@@ -86,11 +87,11 @@ only where you would accept that, and read [Security](https://docs.humanfia.ai/h
 - **The budget.** Whichever of `duration`, `cost` and `output_tokens` runs out first stops the
   run, and `hmz exec` exits 0. See [Every run has a budget](https://docs.humanfia.ai/humanize/features/allowances).
 - **The flow itself.** Most flows also end on their own: a reviewer agrees, a goal is met, or
-  three rounds in a row fail or come back empty. Each card says when.
+  three rounds in a row fail or come back empty. Each tile says when.
 - **You.** `/stop` at the prompt, or <kbd>ctrl+c</kbd> under `hmz exec`. See
   [Stopping a run](https://docs.humanfia.ai/humanize/user/stopping).
 
-A flow whose card says what `--resume` keeps carries on from there, under a fresh budget. See
+A flow whose tile says what `--resume` keeps carries on from there, under a fresh budget. See
 [Picking a run up](https://docs.humanfia.ai/humanize/user/resuming).
 
 ## Where flows come from

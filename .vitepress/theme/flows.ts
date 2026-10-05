@@ -2,9 +2,8 @@
 //
 // Three things are written down here: how the catalogue is sorted (KINDS), what a flow *is* --
 // its name, the roles `-a` fills, what ends it, what `--resume` carries -- which <FlowCatalogue>
-// draws on /flows/ and the nav and the sidebar list, and what a run of it *looks like*, as a
-// scene <FlowPlayer> plays on each flow's page. Keeping all three here means the catalogue, the
-// menus and the diagrams cannot disagree.
+// tiles on /flows/, and what a run of it *looks like*, as a scene <FlowPlayer> plays on each
+// flow's page. Keeping all three here means the catalogue and the diagrams cannot disagree.
 //
 // Everything is read off the flows themselves: humanize's `src/hmz/flows/builtin/` for `chat`
 // and the six loops beside it, and for the rest the repository each is released from, as the
@@ -17,7 +16,8 @@
 // These pages moved here from humanize's documentation, at the same slugs, so every
 // `docs.humanfia.ai/humanize/flows/<slug>` that was ever linked lands on `/flows/<slug>`.
 //
-// This file is imported by `config.mts` as well as by the theme, so it imports nothing.
+// This file is imported by the dynamic route (`flows/[slug].paths.mts`) as well as by the
+// theme, so it imports nothing.
 
 /* ------------------------------------------------------------------------------------------
    How the catalogue is sorted: by how the agents in a flow work together.
@@ -27,7 +27,7 @@ export type Kind = 'talk' | 'solo' | 'relay' | 'tidy' | 'checked' | 'lanes' | 's
 
 export interface KindInfo {
   id: Kind
-  /** The heading, on /flows/ and in the sidebar. */
+  /** The label on its flows' tiles, on /flows/. */
   said: string
   /** One line: the pattern every flow under it shares. */
   how: string

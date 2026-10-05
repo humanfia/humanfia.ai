@@ -1,32 +1,58 @@
 <script setup lang="ts">
 // The catalogue on /flows/, and the chooser on top of it: pick what you want done, and the
-// cards narrow to the flows that do it, with a line saying which to start with.
+// tiles narrow to the flows that do it, with a line saying which to start with.
 //
-// The cards are sorted by how the agents in a flow work together (KINDS in `theme/flows.ts`,
-// which the nav and the sidebar are built from too), and each draws its flow's own scene -- the
-// one its page plays -- in the same grammar, small and without words. A card plays while it is
-// hovered or focused. Under the cards written here come the flows the flowverse releases that
-// nobody here has written up yet (`flowverse.data.mts`): the catalogue is the flowverse's, and
-// this site only adds the pictures.
+// The tiles are the blog's mosaic (../Mosaic.vue): one wall, every flow on it, in the order of
+// how the agents in a flow work together (KINDS in `theme/flows.ts`), each labelled with its
+// kind. Each draws its flow's own scene -- the one its page plays -- in the same grammar, small
+// and without words, and as big as its tile; a tile plays while it is hovered or focused. After
+// the flows written here come the ones the flowverse releases that nobody here has written up
+// yet (`flowverse.data.mts`): the catalogue is the flowverse's, and this site only adds the
+// pictures.
 import { withBase } from 'vitepress'
 import { computed, ref } from 'vue'
 
 import { data } from '../../flowverse.data.mts'
 import { FLOWS, JOBS, KINDS, type Job } from '../../flows'
+import Mosaic from '../Mosaic.vue'
 import FlowThumb from './FlowThumb.vue'
 
 const job = ref<Job | 'all'>('all')
-const shown = computed(() =>
-  KINDS.map((kind, n) => ({
-    kind,
-    n: n + 1,
-    flows: FLOWS.filter((one) => one.kind === kind.id && (job.value === 'all' || one.jobs.includes(job.value))),
-  })).filter((group) => group.flows.length),
-)
 
 const written = new Set(FLOWS.map((one) => one.module).filter(Boolean))
-const others = computed(() => (job.value === 'all' ? data.modules.filter((one) => !written.has(one.name)) : []))
 const versionOf = (module?: string) => data.modules.find((one) => one.name === module)?.versions[0]
+const kindOf = (id: string) => KINDS.findIndex((kind) => kind.id === id)
+
+/** Every tile, the flows drawn here first and the flowverse's others after. A picked job
+ *  leaves only the flows that do it; the others say no job, so they go. */
+const tiles = computed(() => [
+  ...FLOWS.filter((one) => job.value === 'all' || one.jobs.includes(job.value))
+    .sort((a, b) => kindOf(a.kind) - kindOf(b.kind))
+    .map((one) => ({
+      url: withBase(one.link),
+      name: one.phases ? `${one.name}:<phase>` : one.name,
+      runs: one.phases?.join(' · '),
+      kind: KINDS[kindOf(one.kind)].said,
+      from: one.module ? `flowverse · v${versionOf(one.module) ?? '?'}` : 'ships with humanize',
+      said: one.said,
+      roles: one.roles,
+      ends: one.ends,
+      keeps: one.keeps,
+      scene: one.scene,
+    })),
+  ...(job.value === 'all' ? data.modules.filter((one) => !written.has(one.name)) : []).map((one) => ({
+    url: withBase(`/flows/${one.slug}`),
+    name: one.name,
+    runs: undefined,
+    kind: 'Not yet drawn',
+    from: `flowverse · v${one.versions[0]}`,
+    said: one.latest.description || one.summary,
+    roles: undefined,
+    ends: undefined,
+    keeps: undefined,
+    scene: undefined,
+  })),
+])
 
 /** The advice for the picked job, cut at its backticks so the names can be set as code. */
 const hint = computed(() => {
@@ -63,57 +89,35 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
       </template>
     </p>
 
-    <section v-for="group in shown" :key="group.kind.id" class="kind">
-      <h3 :id="`kind-${group.kind.id}`">
-        <span class="num ignore-header">{{ String(group.n).padStart(2, '0') }}</span>{{ group.kind.said }}
-      </h3>
-      <p class="how">{{ group.kind.how }}</p>
-      <div class="grid">
-        <a
-          v-for="flow in group.flows"
-          :key="flow.name"
-          class="card"
-          :class="`k-${flow.kind}`"
-          :href="withBase(flow.link)"
-          @pointerenter="thumbs[flow.name]?.play()"
-          @pointerleave="thumbs[flow.name]?.stop()"
-          @focus="thumbs[flow.name]?.play()"
-          @blur="thumbs[flow.name]?.stop()"
-        >
-          <div class="pic">
-            <FlowThumb :ref="(el) => (thumbs[flow.name] = el as InstanceType<typeof FlowThumb> | null)" :scene="flow.scene" />
-          </div>
-          <div class="head">
-            <code>{{ flow.phases ? `${flow.name}:<phase>` : flow.name }}</code>
-            <span v-if="flow.phases" class="runs">{{ flow.phases.join(' · ') }}</span>
-            <span class="from">{{ flow.module ? `flowverse · v${versionOf(flow.module) ?? '?'}` : 'ships with humanize' }}</span>
-          </div>
-          <p class="said">{{ flow.said }}</p>
-          <dl>
-            <div><dt>-a</dt><dd>{{ flow.roles }}</dd></div>
-            <div><dt>ends</dt><dd>{{ flow.ends }}</dd></div>
-            <div><dt>--resume</dt><dd>{{ flow.keeps || 'starts afresh' }}</dd></div>
-          </dl>
-        </a>
+    <Mosaic
+      v-slot="{ item: tile }"
+      :items="tiles"
+      @enter="(tile) => thumbs[tile.url]?.play()"
+      @leave="(tile) => thumbs[tile.url]?.stop()"
+    >
+      <div v-if="tile.scene" class="pic">
+        <FlowThumb :ref="(el) => (thumbs[tile.url] = el as InstanceType<typeof FlowThumb> | null)" :scene="tile.scene" />
       </div>
-    </section>
 
-    <section v-if="others.length" class="kind">
-      <h3 id="kind-flowverse"><span class="num ignore-header">{{ String(KINDS.length + 1).padStart(2, '0') }}</span>Also in the flowverse</h3>
-      <p class="how">Released, and not yet drawn here: each page is the flow's own README.</p>
-      <div class="grid">
-        <a v-for="module in others" :key="module.name" class="card plain" :href="withBase(`/flows/${module.slug}`)">
-          <div class="head">
-            <code>{{ module.name }}</code>
-            <span class="from">flowverse · v{{ module.versions[0] }}</span>
-          </div>
-          <p class="said">{{ module.latest.description || module.summary }}</p>
-          <dl>
-            <div><dt>repo</dt><dd>{{ module.latest.repo }}</dd></div>
-          </dl>
-        </a>
+      <p class="tile-meta">
+        <span class="tile-tag">{{ tile.kind }}</span>
+        <span>{{ tile.from }}</span>
+      </p>
+
+      <h3>{{ tile.name }}</h3>
+      <p v-if="tile.runs" class="runs">{{ tile.runs }}</p>
+
+      <p class="tile-blurb">{{ tile.said }}</p>
+
+      <div class="tile-foot">
+        <dl v-if="tile.roles">
+          <div><dt>-a</dt><dd>{{ tile.roles }}</dd></div>
+          <div><dt>ends</dt><dd>{{ tile.ends }}</dd></div>
+          <div><dt>--resume</dt><dd>{{ tile.keeps || 'starts afresh' }}</dd></div>
+        </dl>
+        <span class="tile-more">Open it <span aria-hidden="true">→</span></span>
       </div>
-    </section>
+    </Mosaic>
 
     <p class="foot">
       Every run also stops when its budget is spent. Only <code>chat</code> may run without one.
@@ -181,83 +185,12 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
   font-size: 12.5px;
 }
 
-.kind {
-  margin-top: 30px;
-}
-
-.kind h3 {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-}
-
-/* The section's number, set like a poster's: big, mono, and in the red. */
-.kind h3 .num {
-  font-family: var(--vp-font-family-mono);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--flow-red);
-}
-
-.kind .how {
-  margin: 2px 0 12px;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 14px;
-}
-
-.card {
-  position: relative;
-  display: block;
-  padding: 0 0 16px;
-  overflow: hidden;
-  border: 1px solid var(--flow-panel-edge);
-  border-radius: 2px;
-  background: var(--flow-panel);
-  color: inherit;
-  text-decoration: none;
-  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.45s, box-shadow 0.45s;
-}
-
-/* A wedge of the role's colour slides in along the card's top edge when it is hovered: the
-   flow's first maker, as a strip of colour on the diagonal. */
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--flow-red) 0 30%, var(--flow-ink) 30% 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.card:hover,
-.card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--flow-ink);
-  box-shadow: 6px 6px 0 -1px color-mix(in srgb, var(--flow-ink) 12%, transparent);
-  outline: none;
-}
-
-.card:hover::after,
-.card:focus-visible::after {
-  transform: scaleX(1);
-}
-
+/* The scene runs edge to edge across the top of its tile, under the ink rule, so a wider tile
+   is a bigger picture -- and a taller one too: whatever height the tile's rows give it beyond
+   what its words need goes to the picture, not to air above the foot. */
 .pic {
+  flex: 1 0 auto;
+  margin: -18px -20px 16px;
   aspect-ratio: 300 / 130;
   border-bottom: 1px solid var(--flow-panel-edge);
   background: var(--flow-card);
@@ -269,59 +202,25 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
   height: 100%;
 }
 
-.head,
-.said,
-dl {
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
-.head {
-  margin-top: 12px;
-}
-
-.card.plain .head {
-  margin-top: 18px;
-}
-
-/* The name gets a line of its own: `parallel_flame_chase:git_pr` is wider than half a card. */
-.head code {
-  display: block;
-  padding: 0;
-  background: none;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--vp-c-text-1);
+/* A flow's name is what `-f` and `$` take, so it is set as code: `parallel_flame_chase:git_pr`
+   is wider than a small tile, and breaks anywhere rather than overflowing it. */
+h3 {
+  font-family: var(--vp-font-family-mono);
   overflow-wrap: anywhere;
 }
 
-.head .runs,
-.head .from {
-  display: block;
-  margin-top: 2px;
+.runs {
+  margin: 4px 0 0;
   font-family: var(--vp-font-family-mono);
   font-size: 11px;
   color: var(--vp-c-text-3);
 }
 
-.head .from {
-  margin-top: 6px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.said {
-  margin-top: 8px;
-  margin-bottom: 0;
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--vp-c-text-2);
-}
-
+/* What `-a` fills, what ends it and what `--resume` keeps: the three things to know before
+   starting one, over the way to its page. */
 dl {
-  margin-top: 12px;
-  margin-bottom: 0;
+  flex-basis: 100%;
+  margin: 0;
   padding-top: 10px;
   border-top: 1px solid var(--vp-c-divider);
   font-size: 11.5px;
@@ -352,12 +251,5 @@ dd {
   margin: 18px 0 0;
   font-size: 12.5px;
   color: var(--vp-c-text-3);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .card::after {
-    transition: none;
-  }
 }
 </style>

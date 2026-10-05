@@ -195,9 +195,9 @@ function readSnapshot(): Flowverse {
 }
 
 /**
- * The flowverse, read once per build however many places ask: the config (for the nav and the
- * sidebar), the dynamic route (for the pages nobody wrote) and the data loader (for the cards)
- * are bundled apart, but run in one process, and share this through `globalThis`.
+ * The flowverse, read once per build however many places ask: the dynamic route (for the pages
+ * nobody wrote) and the data loader (for the tiles) are bundled apart, but run in one process,
+ * and share this through `globalThis`.
  */
 export function loadFlowverse(): Promise<Flowverse> {
   const shared = globalThis as { __flowverse?: Promise<Flowverse> }

@@ -3,8 +3,6 @@ import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createContentLoader, defineConfig, type ContentData, type SiteConfig } from 'vitepress'
 
-import { loadFlowverse, slugOf } from './flowverse.mts'
-import { FLOWS, KINDS } from './theme/flows'
 import { authorsWithDeps } from './theme/projects'
 
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
@@ -46,34 +44,6 @@ const PROJECTS = [
     items: PROJECT_LINKS,
   },
 ]
-
-/**
- * The flows, as a menu: the catalogue first, then every flow under how its agents work together
- * -- the same grouping as the catalogue page, from the same list (`theme/flows.ts`) -- and last
- * whatever the flowverse releases that nobody here has written up yet, which is read at build
- * time (`flowverse.mts`) so a release is in the menu the next time the site is built.
- *
- * One list, used twice, as the projects' is: it is the nav's dropdown and the /flows/ sidebar.
- */
-const flowverse = await loadFlowverse()
-const written = new Set(FLOWS.map((one) => one.module).filter(Boolean))
-const FLOW_GROUPS = [
-  ...KINDS.map((kind) => ({
-    text: kind.said,
-    items: FLOWS.filter((one) => one.kind === kind.id).map((one) => ({ text: one.name, link: one.link })),
-  })).filter((group) => group.items.length),
-  ...(flowverse.modules.some((one) => !written.has(one.name))
-    ? [
-        {
-          text: 'Also in the flowverse',
-          items: flowverse.modules
-            .filter((one) => !written.has(one.name))
-            .map((one) => ({ text: one.name, link: `/flows/${slugOf(one.name)}` })),
-        },
-      ]
-    : []),
-]
-const FLOW_LINKS = [{ text: 'Every flow', items: [{ text: 'The catalogue', link: '/flows/' }] }, ...FLOW_GROUPS]
 
 /**
  * The two sections a post can be in, and what each one is called where it is named.
@@ -200,18 +170,19 @@ export default defineConfig({
     // would have the theme print the site's title as text beside it.
     siteTitle: false,
 
-    // Projects is a menu, and so is Flows, beside it: the flows run on Humanize, and the menu
-    // groups them as the catalogue at /flows/ does. The rest are plain links. There is no
-    // projects index any more: a page whose whole job was to list six links, when a menu lists the same six
-    // without costing a page load, and every one of those pages opens with the sentence the
-    // index was paraphrasing. The way in is now the project itself.
+    // Projects and Research are menus; the rest are plain links. Flows is one too: the way to a
+    // flow is the catalogue at /flows/, which shows every flow at once, drawn, where a menu
+    // could only list their names. There is no projects index any more: a page whose whole job
+    // was to list six links, when a menu lists the same six without costing a page load, and
+    // every one of those pages opens with the sentence the index was paraphrasing. The way in
+    // is now the project itself.
     //
     // Documentation is still not in here. It lives with the project it documents, and the way
     // to it is that project's page -- a Docs menu was a second table of contents for a site
     // this one does not own, and it went stale the moment that site moved a page.
     nav: [
       { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
-      { text: 'Flows', items: FLOW_LINKS, activeMatch: '/flows/' },
+      { text: 'Flows', link: '/flows/', activeMatch: '/flows/' },
       { text: 'Research', items: RESEARCH_LINKS, activeMatch: '/research/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'News', link: '/news/', activeMatch: '/news/' },
@@ -221,10 +192,10 @@ export default defineConfig({
     // One sidebar per section, and a section only ever sees its own. About is a single page and
     // gets none at all: a list of one is furniture, not navigation. Nor does News: its index is
     // already the whole list, one row per post (theme/components/NewsList.vue), and a sidebar of
-    // the ten newest beside it would be the top of the same list twice.
+    // the ten newest beside it would be the top of the same list twice. Nor do the flows: their
+    // catalogue is the index, and every flow's page leads back to it (FlowsBack.vue).
     sidebar: {
       '/projects/': PROJECTS,
-      '/flows/': [{ text: 'Flows', link: '/flows/' }, ...FLOW_GROUPS.map((group) => ({ ...group, collapsed: false }))],
       '/research/': [{ text: 'Research', items: RESEARCH_LINKS }],
       '/blog/': sectionSidebar('blog'),
     },
