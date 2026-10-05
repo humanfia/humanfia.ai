@@ -82,9 +82,9 @@ remain the external check, and the verdicts are not linked publicly.
 All 100 Theory A and B tasks were solved. All **400** true/false verdicts
 [match the official answer key](https://github.com/humanfia/ibo2024/blob/main/GRADING.md),
 with zero extraction errors. Two limits apply. The practical exams are excluded entirely, and
-this is agreement with an answer key, not an official points total. It is also the 2024 paper:
-IBO holds papers back for two years, so the 2024 one is the most recent public paper, and it
-has been public long enough that it may appear in a model's training data.
+this is agreement with an answer key, not an official points total. It is also the 2024 paper,
+because IBO withholds each paper for two years. A paper that has been public that long may
+appear in a model's training data.
 
 ## Quantum information theory: 37 of 40 is now 40 of 40
 
