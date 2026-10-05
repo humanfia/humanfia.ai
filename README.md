@@ -20,6 +20,10 @@ The figures on the research pages are drawn by `.vitepress/theme/components/rese
 chart with log and hand-spaced axes the post kit does not have yet, and the data it plots, read
 off the charts in our talk slides (`deck-data.json`, described in `figures.ts`).
 
+The HMA page (`projects/hma.md`) is one full-width component,
+`.vitepress/theme/components/projects/hma/`; its numbers live in `data.ts` there, each with its
+source.
+
 ### Adding a post
 
 A post is one file, named `YYYY-MM-DD-slug.md`. Put results in `news/`: one result per post.
