@@ -25,6 +25,10 @@ The HMA page (`projects/hma.md`) is one full-width component,
 `.vitepress/theme/components/projects/hma/`; its numbers live in `data.ts` there, each with its
 source.
 
+The KDA page (`projects/kda.md`) is drawn by its own components,
+`.vitepress/theme/components/projects/kda/`; its numbers live in the page's frontmatter, each
+block naming the write-up it comes from.
+
 ### Adding a post
 
 A post is one file, named `YYYY-MM-DD-slug.md`. Put results in `news/`: one result per post.
