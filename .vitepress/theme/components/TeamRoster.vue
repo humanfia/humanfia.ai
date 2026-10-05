@@ -88,7 +88,7 @@ const GROUPS: Group[] = [
     id: 'humanize',
     name: 'Humanize: Agent Flow System',
     href: '/projects/humanize',
-    what: 'The runtime: ten coding-agent CLIs, one flow, and the whole run written down.',
+    what: 'The runtime: twelve coding-agent CLIs, one flow, and the whole run written down.',
     members: [
       { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.', lead: true },
       { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
