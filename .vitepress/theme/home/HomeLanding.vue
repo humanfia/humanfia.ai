@@ -100,7 +100,7 @@ const STEPS = [
   {
     tag: 'Applications',
     title: 'Pointed where the score isn’t ours.',
-    body: 'HOA answers to Lean. KDA answers to the profiler. HKA answers to Kaggle. Each was chosen because somebody else keeps the scoreboard.',
+    body: 'HOA answers to Lean. KDA answers to the profiler. HMA answers to the MLE-bench grader. Each was chosen because somebody else keeps the scoreboard.',
     link: { text: 'See what came back', href: '#results' },
   },
   {
@@ -252,6 +252,11 @@ const KDA_BARS = [
   { label: 'MSA prefill indexer · B300', value: 6.5 },
   { label: 'Long-context decode indexer', value: 3.3 },
   { label: 'vs. best human · FlashInfer contest', value: 1.39 },
+]
+const HMA_BARS = [
+  { label: 'HMA · Opus 5 ↔ GPT-5.6-sol', value: 78.2 },
+  { label: 'Claude Opus 5 alone', value: 72.4 },
+  { label: 'GPT-5.6-sol alone', value: 68.0 },
 ]
 const KAGGLE = Array.from({ length: 19 }, (_, i) => i < 14)
 
@@ -511,16 +516,17 @@ onBeforeUnmount(() => {
           </article>
           <article class="h-panel" :style="cardStyle(2)" v-reveal>
             <div class="h-panel-copy">
-              <p class="h-step-tag">HKA · Humanize Kaggle Agent</p>
-              <h3>Kaggle says so,<br />or it does not.</h3>
-              <p>Agents entered in real competitions, every result audited before it is published. The gains came from disagreement between agents, not from a better model.</p>
-              <a class="h-link" href="/projects/hka">Explore HKA <span aria-hidden="true">›</span></a>
+              <p class="h-step-tag">HMA · Humanize MLE Agents</p>
+              <h3>Take turns,<br />or take longer.</h3>
+              <p>Two native coding agents alternate over one machine-learning workspace, each starting fresh. On 75 MLE-bench tasks in six hours, the pair medals more often than either agent alone.</p>
+              <a class="h-link" href="/projects/hma">Explore HMA <span aria-hidden="true">›</span></a>
             </div>
-            <div class="h-panel-art art-kaggle">
-              <div class="art-tiles">
-                <i v-for="(top, n) in KAGGLE" :key="n" :class="{ on: top }" :style="{ '--i': n }" />
+            <div class="h-panel-art art-hma">
+              <div v-for="(b, i) in HMA_BARS" :key="b.label" class="art-bar" :style="{ '--i': i, '--w': `${b.value}%` }">
+                <span>{{ b.label }}</span>
+                <i><b>{{ b.value }}%</b></i>
               </div>
-              <p class="art-note"><b>14</b> of <b>19</b> completed competitions in the top 5%</p>
+              <p class="art-note">Any-medal rate · 75 MLE-bench tasks · self-reported</p>
             </div>
           </article>
         </div>

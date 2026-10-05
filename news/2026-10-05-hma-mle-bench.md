@@ -4,7 +4,7 @@ description: "Two coding agents alternating over one workspace, each starting fr
 date: 2026-10-05
 authors:
   - Changye Li
-tag: HKA
+tag: HMA
 ---
 
 Take two strong coding agents. Give each the same machine-learning task and six hours, and
@@ -63,4 +63,4 @@ train of thought.
 The whole suite reruns from the repository: the baselines, HMA, and the cap and starting-order
 ablations.
 
-[humanfia/hma](https://github.com/humanfia/hma) · [HKA](/projects/hka)
+[humanfia/hma](https://github.com/humanfia/hma) · [HMA](/projects/hma)

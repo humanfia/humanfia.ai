@@ -4,10 +4,10 @@ description: "In August an agent workflow sat 8th on the Biohub cell-tracking pu
 date: 2026-10-05
 authors:
   - Changye Li
-tag: HKA
+tag: HMA
 ---
 
-[On 15 August](/news/2026-08-15-kaggle-nineteen-competitions), one of our Kaggle agent workflows was **8th of 2,378** on the public leaderboard
+[On 15 August](/news/2026-08-15-kaggle-nineteen-competitions), one of our agent workflows on Kaggle was **8th of 2,378** on the public leaderboard
 of [Biohub – Cell Tracking During Development](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development).
 That was the top 0.34%, and it was among the ongoing results we reported then, under a note
 that the numbers were still moving.
@@ -60,4 +60,4 @@ dropped. That is why we compare competitions one by one here, and do not compare
 totals with today's.
 
 [The audit](https://github.com/agentkaggle/kaggle-results-audit) ·
-[Team Radar](https://agentkaggle.github.io/leaderboard/) · [HKA](/projects/hka)
+[Team Radar](https://agentkaggle.github.io/leaderboard/) · [HMA](/projects/hma)

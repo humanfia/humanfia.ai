@@ -7,7 +7,7 @@ authors:
   - Menghan Li
   - Yitong Liu
   - Zijian Zhang
-tag: HKA
+tag: HMA
 ---
 
 ::: info Still running
@@ -62,4 +62,4 @@ which, one row at a time.
 
 [The audit](https://github.com/agentkaggle/kaggle-results-audit) ·
 [the live leaderboard](https://agentkaggle.github.io/leaderboard/) ·
-[HKA](/projects/hka)
+[HMA](/projects/hma)
