@@ -37,5 +37,5 @@ maintained by the PutnamBench team. Proof files are published as a dataset, and 
 [preview set](https://huggingface.co/datasets/humanfia-lab/putnambench-solution-preview) is
 open for review; the full solving pipeline is public.
 
-[humanfia/putnambench-solver](https://github.com/humanfia/putnambench-solver) ·
+[humanfia/hoa-qed/putnambench](https://github.com/humanfia/hoa-qed/tree/main/putnambench) ·
 [HOA](/projects/hoa)

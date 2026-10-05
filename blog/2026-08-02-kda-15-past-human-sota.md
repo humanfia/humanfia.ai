@@ -41,4 +41,4 @@ one. So we also pointed KDA 1.5 at **Flash-KMeans**, which nobody had worked ove
 k-means for the Wan 2.2 workload on B200 came back **6.1× faster**.
 
 [KDA](/projects/kda) ·
-[the contest kernels](https://github.com/mit-han-lab/mlsys2026-flashinfer-constest-solution)
+[the contest kernels](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution)

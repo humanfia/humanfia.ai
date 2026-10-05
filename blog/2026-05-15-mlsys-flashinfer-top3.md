@@ -23,6 +23,6 @@ faster because it has quietly become incorrect does not place, it fails.
 
 The kernels are published.
 
-[The contest kernels](https://github.com/mit-han-lab/mlsys2026-flashinfer-constest-solution) ·
+[The contest kernels](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution) ·
 [the contest](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest) ·
 [KDA](/projects/kda)

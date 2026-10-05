@@ -35,4 +35,4 @@ Accuracy was **bitwise identical** across every tested workload. That is the gat
 footnote: a kernel that is faster because it has quietly become incorrect will report a
 speedup just as happily as one that is faster because it is better.
 
-[KDA](/projects/kda) · [mit-han-lab/kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents)
+[KDA](/projects/kda) · [NVlabs/kda](https://github.com/NVlabs/kda)
