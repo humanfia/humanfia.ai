@@ -89,7 +89,7 @@ interface Group {
 const GROUPS: Group[] = [
   {
     id: 'humanize',
-    name: 'Humanize: Agent Flow System',
+    name: 'Humanize',
     href: '/projects/humanize',
     what: 'The runtime: twelve coding-agent CLIs, one flow, and the whole run written down.',
     members: [
