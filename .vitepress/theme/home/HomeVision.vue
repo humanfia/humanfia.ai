@@ -83,9 +83,9 @@ onBeforeUnmount(() => io?.disconnect())
 .vis-beam {
   position: absolute;
   left: -10%;
-  bottom: 18%;
+  bottom: 10%;
   width: 130%;
-  height: 14px;
+  height: 12px;
   background: var(--hf-red);
   transform: rotate(-18deg) scaleX(0);
   transform-origin: left center;
@@ -155,7 +155,7 @@ onBeforeUnmount(() => io?.disconnect())
   transform: none;
 }
 .vis-scale b {
-  min-width: 3.2ch;
+  min-width: 2.3em;
   font: 800 clamp(34px, 5.4vw, 64px) / 1 var(--vp-font-family-base);
   letter-spacing: -0.04em;
 }
@@ -188,6 +188,15 @@ onBeforeUnmount(() => io?.disconnect())
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--hf-red);
+}
+@media (max-width: 640px) {
+  .vis {
+    padding-top: 150px;
+  }
+  .vis.on .vis-dot {
+    left: calc(100% - 90px);
+    bottom: calc(100% - 110px);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .vis-beam,

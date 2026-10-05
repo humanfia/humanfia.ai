@@ -31,7 +31,7 @@ const u = computed(() => Math.min(1, t.value))
 // ---------------------------------------------------------------- constraint satisfaction
 // Three constraints as three bands; the feasible set is where all three overlap.
 const PROPOSALS = [
-  [70, 60], [250, 70], [120, 175], [230, 165], [180, 120],
+  [70, 60], [250, 70], [120, 175], [230, 165], [190, 128],
 ] as const
 const shown = computed(() => PROPOSALS.filter((_, i) => u.value > 0.12 + i * 0.16))
 const feasible = (p: readonly number[]) => p[0] > 140 && p[0] < 220 && p[1] > 90 && p[1] < 150
@@ -86,7 +86,7 @@ const trapped = minima.length ? minima[0] : 0.1
         <rect x="20" y="90" width="280" height="60" class="nfl-band b2" />
         <polygon points="100,210 180,20 260,20 180,210" class="nfl-band b3" />
         <rect x="140" y="90" width="80" height="60" class="nfl-feasible" :class="{ hit: done }" />
-        <text x="180" y="124" text-anchor="middle" class="nfl-tag">feasible</text>
+        <text x="146" y="104" class="nfl-tag">feasible</text>
         <g v-for="(p, i) in shown" :key="i" :transform="`translate(${p[0]},${p[1]})`" :class="['nfl-try', { ok: feasible(p) }]">
           <circle r="7" />
           <path v-if="feasible(p)" d="M-3.5 0 L-1 3 L4 -3" />
@@ -106,7 +106,7 @@ const trapped = minima.length ? minima[0] : 0.1
         <path :d="curve" class="nfl-ridge" />
         <g class="nfl-trap" :transform="`translate(${trapped * W},${Y(trapped)})`">
           <line y1="10" y2="34" />
-          <text y="48" text-anchor="middle">fine-tuning stops here</text>
+          <text x="-8" y="48">fine-tuning alone stops here</text>
         </g>
         <polyline :points="trail.map((p) => `${p.cx},${p.cy}`).join(' ')" class="nfl-path" />
         <circle v-for="(p, i) in trail" :key="i" :cx="p.cx" :cy="p.cy" r="3" :class="['nfl-dot', p.who]" />

@@ -53,10 +53,10 @@ const spoke = (i: number) => {
 
 <template>
   <div class="ax">
-    <svg viewBox="-170 -150 340 300" class="ax-svg" aria-hidden="true">
+    <svg viewBox="-185 -185 370 370" class="ax-svg" aria-hidden="true">
       <g v-for="(a, i) in AXES" :key="a.name" class="ax-spoke" :class="{ on: i === at }" @click="at = i">
         <rect :transform="`rotate(${spoke(i).deg}) translate(30,-5)`" :width="i === at ? R : R * 0.72" height="10" />
-        <text :x="spoke(i).x * 1.12" :y="spoke(i).y * 1.12" text-anchor="middle" dy="0.35em">{{ i + 1 }}</text>
+        <text :x="spoke(i).x * 1.42" :y="spoke(i).y * 1.42" text-anchor="middle" dy="0.35em">{{ i + 1 }}</text>
       </g>
       <circle r="26" class="ax-core" />
       <text class="ax-core-label" text-anchor="middle" dy="0.35em">FC</text>

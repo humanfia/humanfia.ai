@@ -79,6 +79,10 @@ const TIES = [
 .ex-clock span {
   position: absolute;
   transform: translateX(-50%);
+  white-space: nowrap;
+}
+.ex-clock span:last-child {
+  transform: translateX(-100%);
 }
 .ex-rows {
   position: relative;
@@ -126,7 +130,7 @@ const TIES = [
   position: absolute;
   top: 28px;
   width: 0;
-  height: calc(var(--rows) * 35px - 22px);
+  height: calc(var(--rows) * var(--rowh, 35px) - 22px);
   border-left: 1.5px dashed var(--hf-red);
 }
 .ex-tie em {
@@ -152,19 +156,22 @@ figcaption {
   color: var(--vp-c-text-2);
 }
 @media (max-width: 560px) {
+  .ex {
+    --rowh: 52px;
+  }
   .ex-row {
-    grid-template-columns: 96px 1fr;
-  }
-  .ex-clock,
-  .ex-head {
-    margin-left: 96px;
-  }
-  .ex-head {
-    left: calc(96px + (100% - 96px) * var(--p));
-    margin-left: 0;
+    grid-template-columns: 1fr;
+    min-height: 52px;
   }
   .ex-name {
+    padding-top: 4px;
     font-size: 11px;
+  }
+  .ex-clock {
+    margin-left: 0;
+  }
+  .ex-head {
+    left: calc(100% * var(--p));
   }
 }
 </style>
