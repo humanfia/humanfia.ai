@@ -200,7 +200,7 @@ const HOA_CHECKS = [
 const KDA_BARS = [
   { label: 'MSA prefill indexer · B300', value: 6.5 },
   { label: 'Long-context decode indexer', value: 3.3 },
-  { label: 'vs. best human · FlashInfer contest', value: 1.39 },
+  { label: 'vs. best human · MLSys GDN prefill', value: 1.69 },
 ]
 const HMA_BARS = [
   { label: 'HMA · Opus 5 ↔ GPT-5.6-sol', value: 78.2 },
@@ -447,7 +447,7 @@ onBeforeUnmount(() => {
                 <span>{{ b.label }}</span>
                 <i><b>{{ b.value }}×</b></i>
               </div>
-              <p class="art-note">First on SOLExec Bench L1 · 0.7608</p>
+              <p class="art-note">First on SOL-ExecBench L1 · 0.7639</p>
             </div>
           </article>
           <article class="h-panel" :style="cardStyle(2)" v-reveal>

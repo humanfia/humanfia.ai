@@ -1,24 +1,63 @@
 ---
-description: HMA — Humanize MLE Agents. Two native coding agents take turns over one shared workspace, each starting fresh. On 75 MLE-bench tasks with a six-hour budget, 78.2% any-medal and 53.8% gold, self-reported while the paper is pending.
+title: "HMA: Humanize MLE Agents"
+description: Two native coding agents take turns over one shared machine-learning workspace, each starting fresh. On 75 MLE-bench tasks with a six-hour budget, 78.2% any-medal and 53.8% gold, self-reported while the paper is pending.
+layout: post
+sidebar: false
+tag: HMA
+
+project:
+  status: Paper experiment code · self-reported results
+  links:
+    - { text: humanfia/hma, href: https://github.com/humanfia/hma }
+    - { text: The flow, href: /flows/fixed-interrupt-flame-chase }
+    - { text: The write-up, href: /news/2026-10-05-hma-mle-bench }
+  stats:
+    - { value: 53.8, decimals: 1, suffix: '%', kicker: Gold, text: 'Gold-medal rate on the same 75 tasks', href: /news/2026-10-05-hma-mle-bench }
+    - { value: 90.7, decimals: 1, suffix: '%', kicker: Median+, text: 'Of tasks above the human leaderboard median' }
+    - { value: 89.0, decimals: 1, kicker: Percentile, text: 'Mean leaderboard percentile across the tasks' }
+    - { value: 6.4, decimals: 1, prefix: '+', kicker: Average gain, text: 'Points of any-medal rate over the mean single-agent baseline, across six pairings' }
+  note: From the repository's results table. Not on the official MLE-bench leaderboard.
+
+hero:
+  kicker: MLE-bench · 75 tasks · 6 h
+  value: 78.2
+  from: 60
+  decimals: 1
+  suffix: '%'
+  label: any-medal rate, Claude Opus 5 ↔ GPT-5.6-sol taking turns
+  board:
+    - { name: HMA · Opus 5 ↔ GPT-5.6-sol, score: 78.2, us: true }
+    - { name: Opus 5 · native /goal, score: 72.4 }
+    - { name: ScienceFlow · 24 h, score: 70.2 }
+    - { name: GPT-5.6-sol · native /goal, score: 68.0 }
+    - { name: MLEvolve · 12 h, score: 65.3 }
+
+# The repository's main results table (humanfia/hma, README "Main results"); percentages.
+results:
+  - { label: Any medal, values: { opus: 72.4, gpt: 68.0, hma: 78.2, hmaRev: 73.3 } }
+  - { label: Gold, values: { opus: 50.7, gpt: 47.6, hma: 53.8, hmaRev: 50.7 } }
+  - { label: Median+, detail: above the human median, values: { opus: 85.3, gpt: 81.3, hma: 90.7, hmaRev: 85.3 } }
+  - { label: Mean percentile, values: { opus: 84.8, gpt: 81.3, hma: 89.0, hmaRev: 85.4 } }
+order:
+  - { name: HMA · Opus 5 ↔ GPT-5.6-sol, score: 78.2, us: true }
+  - { name: HMA · GPT-5.6-sol ↔ Opus 5, score: 73.3, us: true }
+  - { name: Opus 5 · native /goal, score: 72.4 }
+  - { name: HMA · GPT-5.6-sol ↔ DeepSeek V4.1 Flash, score: 72.0, us: true }
+  - { name: HMA · GPT-5.6-sol ↔ Kimi K3, score: 70.7, us: true }
+  - { name: ScienceFlow · 24 h, score: 70.2 }
+  - { name: GPT-5.6-sol · native /goal, score: 68.0 }
+  - { name: MLEvolve · 12 h, score: 65.3 }
+
+# Kaggle: authenticated final private ranks, from the 5 October write-up and the audit.
+kaggle:
+  - { name: Predicting Student Health Risk, score: 2.00, us: true }
+  - { name: ROGII Wellbore Geology, score: 2.24, us: true }
+  - { name: Biohub · Cell Tracking, score: 4.76, us: true, detail: 188th of 3,947 }
 ---
 
-# HMA
-
-<p class="lede">Humanize MLE Agents. Two native coding agents take turns over one shared
-machine-learning workspace, each starting with a fresh context. Each one builds on the other's
-code, models and candidate solutions, and together they medal more often than either does
-alone.</p>
-
-[humanfia/hma](https://github.com/humanfia/hma) ·
-[the flow](/flows/fixed-interrupt-flame-chase) ·
-[the write-up](/news/2026-10-05-hma-mle-bench)
-
-<div class="stat-strip">
-  <div><b>78.2%</b><span>Any-medal rate on 75 MLE-bench tasks, Opus 5 ↔ GPT-5.6-sol, six-hour budget</span><em>Medal</em></div>
-  <div><b>53.8%</b><span>Gold-medal rate on the same 75 tasks</span><em>Gold</em></div>
-  <div><b>90.7%</b><span>Of tasks above the human leaderboard median</span><em>Median+</em></div>
-  <div><b>89.0</b><span>Mean leaderboard percentile across the tasks</span><em>Percentile</em></div>
-</div>
+Two native coding agents take turns over one shared machine-learning workspace, each starting
+with a fresh context. Each one builds on the other's code, models and candidate solutions, and
+together they medal more often than either does alone.
 
 ::: warning Self-reported
 These numbers come from the [repository's results table](https://github.com/humanfia/hma#main-results).
@@ -42,6 +81,53 @@ agents across sessions instead:
 4. The last **15 minutes** go to a review that picks one of the candidates already accepted.
    Neither agent ever sees a private test score.
 
+<AnimatedDiagram
+  view-box="0 0 720 300"
+  :min-width="540"
+  kicker="HMA · one task, six hours"
+  label="HMA's alternation. Two agents take turns over one shared workspace. Agent A works a session in its own harness until five accepted submissions, then agent B starts a fresh session in the same workspace; the files carry over and the context does not. They alternate until the last fifteen minutes, which review the accepted candidates and pick one."
+  :steps="[
+    'One shared workspace: the code, the models, the evaluated results and the candidates.',
+    'Agent A works in its own native harness, until five accepted submissions or until it stops.',
+    'Agent B starts a fresh session in the same workspace. The files carry over. A\'s context does not.',
+    'They keep alternating, each session fresh, within the six-hour budget.',
+    'The last 15 minutes pick one candidate that was already accepted. No agent sees a private score.',
+  ]"
+>
+  <path id="hma-handoff" class="line dash" d="M95 64 L 95 150 L 245 150 L 245 236 L 395 236 L 395 150 L 545 150 L 545 64 L 545 150 L 655 150" data-step="4" data-draw />
+  <text class="ink" x="10" y="38">Agent A · Opus 5 · Claude Code</text>
+  <text class="ink" x="10" y="292">Agent B · GPT-5.6-sol · Codex</text>
+  <g data-step="1" data-pop>
+    <rect class="frame" x="20" y="128" width="690" height="44" />
+    <text class="ink" x="30" y="155">shared workspace</text>
+  </g>
+  <g data-step="2" data-pop>
+    <rect class="ink" x="20" y="46" width="150" height="40" />
+    <text class="on-ink" x="95" y="71" text-anchor="middle">fresh · ≤ 5 accepted</text>
+  </g>
+  <rect class="red" x="180" y="140" width="12" height="12" data-step="2" data-pop />
+  <rect class="red" x="198" y="140" width="12" height="12" data-step="2" data-pop />
+  <g data-step="3" data-pop>
+    <rect class="ink" x="170" y="214" width="150" height="40" />
+    <text class="on-ink" x="245" y="239" text-anchor="middle">fresh · ≤ 5 accepted</text>
+  </g>
+  <rect class="red" x="330" y="148" width="12" height="12" data-step="3" data-pop />
+  <g data-step="4" data-pop>
+    <rect class="ink" x="320" y="46" width="150" height="40" />
+    <text class="on-ink" x="395" y="71" text-anchor="middle">fresh session</text>
+    <rect class="ink" x="470" y="214" width="150" height="40" />
+    <text class="on-ink" x="545" y="239" text-anchor="middle">fresh session</text>
+  </g>
+  <rect class="red" x="480" y="140" width="12" height="12" data-step="4" data-pop />
+  <rect class="red" x="630" y="148" width="12" height="12" data-step="4" data-pop />
+  <g data-step="5" data-pop>
+    <rect class="red" x="620" y="46" width="90" height="40" />
+    <text class="on-red" x="665" y="71" text-anchor="middle">review</text>
+  </g>
+  <text class="red" x="665" y="104" text-anchor="middle" data-step="5">last 15 min</text>
+  <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#hma-handoff" data-loop />
+</AnimatedDiagram>
+
 The repository credits two effects. **Context renewal** restarts the improvement curve that a
 long session flattens. **Complementary capabilities** help because the second model searches
 differently from the first. No task-specific prior knowledge is added. The paper models the
@@ -64,11 +150,42 @@ the task-level leaderboard percentiles.
 | HMA: GPT-5.6-sol ↔ DeepSeek V4.1 Flash | 6 h | 72.0 | 50.7 | 85.3 | 84.4 |
 | HMA: GPT-5.6-sol ↔ Kimi K3 | 6 h | 70.7 | 50.7 | 85.3 | 83.9 |
 
+
+<BarChart
+  orientation="vertical"
+  kicker="MLE-bench · 75 tasks · six-hour budget · %"
+  label="HMA against its two single-agent baselines on 75 MLE-bench tasks. Any medal: Opus 5 /goal 72.4, GPT-5.6-sol /goal 68.0, HMA Opus first 78.2, HMA GPT first 73.3. Gold: 50.7, 47.6, 53.8, 50.7. Median+: 85.3, 81.3, 90.7, 85.3. Mean percentile: 84.8, 81.3, 89.0, 85.4."
+  caption="The same two models, alone and taking turns, in both orders. Compare against either baseline to read the gain as points."
+  :series="[
+    { key: 'opus', label: 'Opus 5 · /goal', tone: 'ink' },
+    { key: 'gpt', label: 'GPT-5.6-sol · /goal', tone: 'grey', hatched: true },
+    { key: 'hma', label: 'HMA · Opus first', tone: 'red' },
+    { key: 'hmaRev', label: 'HMA · GPT first', tone: 'pale' },
+  ]"
+  :rows="$frontmatter.results"
+  :baselines="['opus', 'gpt']"
+  compare="delta"
+  suffix="%"
+  :decimals="1"
+  :max="100"
+/>
+
 The best pairing beats the mean of its two single-agent baselines by **8.0 points** of
 any-medal rate and **5.9** of mean percentile. Across the six pairings evaluated, the average
 gain is **6.4 points**. Use that average when comparing, because the order of the agents
 matters a lot. The same two models score 78.2% with Opus first and 73.3% with GPT-5.6-sol
 first, so picking the better order afterwards flatters the headline.
+
+
+<Leaderboard
+  kicker="MLE-bench · any-medal rate · every row in the table"
+  title="Which agent goes first is worth nearly five points"
+  label="Any-medal rate on 75 MLE-bench tasks: HMA Opus 5 then GPT-5.6-sol 78.2; HMA GPT-5.6-sol then Opus 5 73.3; Opus 5 /goal 72.4; HMA GPT-5.6-sol with DeepSeek V4.1 Flash 72.0; HMA GPT-5.6-sol with Kimi K3 70.7; ScienceFlow 70.2 at 24 hours; GPT-5.6-sol /goal 68.0; MLEvolve 65.3 at 12 hours."
+  caption="HMA rows in red. ScienceFlow and MLEvolve ran with longer budgets."
+  :entries="$frontmatter.order"
+  :decimals="1"
+  suffix="%"
+/>
 
 ## The pairings
 
@@ -145,6 +262,18 @@ one as a finish is exactly the failure our [flows are built to catch](/about/#ho
   Biohub (top 4.76%). One is a public rank at the snapshot, with the final private rank not
   yet recorded. Twelve are late estimates.
 
+
+<Leaderboard
+  kicker="Kaggle · authenticated final private ranks in the top 5%"
+  label="Kaggle finishes with an authenticated final private rank in the top 5%: Predicting Student Health Risk top 2.00%, ROGII Wellbore Geology top 2.24%, Biohub Cell Tracking top 4.76%, 188th of 3,947."
+  caption="Top percent of the final private leaderboard, lower is better. Late estimates and public snapshot ranks are not finishes and are not on this board."
+  :entries="$frontmatter.kaggle"
+  :decimals="2"
+  prefix="top "
+  suffix="%"
+  lower-is-better
+/>
+
 ### The audit {#the-audit}
 
 <span id="what-is-public-and-what-is-not"></span>The numbers come from
@@ -154,3 +283,16 @@ reports coverage and failures. The
 [Team Radar leaderboard](https://agentkaggle.github.io/leaderboard/) is regenerated from the
 Kaggle API and is not audited. The per-entrant repositories stay private, because they hold
 competition data and account credentials.
+
+## Results, as they came in
+
+<ProjectTimeline
+  kicker="HMA and the Kaggle work before it"
+  label="HMA and Kaggle write-ups: fourteen of nineteen Kaggle competitions in the top 5% counting late estimates in August; in October, HMA's 78.2% medal rate on MLE-bench and Biohub's final rank of 188th of 3,947."
+  :entries="[
+    { url: '/news/2026-08-15-kaggle-nineteen-competitions', metric: '14 of 19' },
+    { url: '/news/2026-10-05-hma-mle-bench', metric: '78.2%' },
+    { url: '/news/2026-10-05-kaggle-biohub-final', metric: '188 / 3,947' },
+    { title: 'The HMA paper', pending: true, metric: 'Pending', note: 'The manuscript behind these numbers. Until it is out, every HMA number here is self-reported.' },
+  ]"
+/>
