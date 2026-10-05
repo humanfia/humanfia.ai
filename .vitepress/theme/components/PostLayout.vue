@@ -11,13 +11,17 @@
 // It replaces the theme's doc layout for posts only, so a post has no sidebar and no outline
 // aside -- the contents and the related posts are this page's own way round -- but it keeps the
 // nav, the footer, search and everything else the theme draws around the content.
+//
+// A project page uses it too (`layout: post` in its frontmatter, and a `project:` block): it has
+// no date, so PostMeta draws nothing and ProjectHero.vue draws the project's hero instead.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import PostMeta from './PostMeta.vue'
+import ProjectHero from './ProjectHero.vue'
 import PostRelated from './PostRelated.vue'
 import PostToc from './PostToc.vue'
 
-const { page, theme } = useData()
+const { frontmatter, page, theme } = useData()
 const main = ref<HTMLElement | null>(null)
 const progress = ref(0)
 let queued = false
@@ -68,6 +72,7 @@ const editUrl = computed(() => {
     </div>
 
     <PostMeta />
+    <ProjectHero />
 
     <div class="post-wrap">
       <aside class="post-aside">
@@ -77,7 +82,7 @@ const editUrl = computed(() => {
         <PostToc :progress="progress" inline />
         <Content class="vp-doc post-body" />
         <footer v-if="editUrl" class="post-end">
-          <a :href="editUrl" target="_blank" rel="noreferrer">Suggest an edit to this post ↗</a>
+          <a :href="editUrl" target="_blank" rel="noreferrer">Suggest an edit to this {{ frontmatter.project ? 'page' : 'post' }} ↗</a>
         </footer>
       </main>
     </div>

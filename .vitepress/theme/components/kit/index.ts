@@ -9,6 +9,7 @@ import NumberTicker from './NumberTicker.vue'
 import PostCard from './PostCard.vue'
 import PostCards from './PostCards.vue'
 import PostFigure from './PostFigure.vue'
+import ProjectTimeline from './ProjectTimeline.vue'
 import PullQuote from './PullQuote.vue'
 import RangeMeter from './RangeMeter.vue'
 import ResultsTable from './ResultsTable.vue'
@@ -30,6 +31,7 @@ const KIT = {
   PostCard,
   PostCards,
   PostFigure,
+  ProjectTimeline,
   PullQuote,
   RangeMeter,
   ResultsTable,
