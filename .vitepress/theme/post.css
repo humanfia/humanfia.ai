@@ -1226,10 +1226,17 @@ a.post-author:hover .post-author-name {
 }
 
 /* A table inside a SwipeCompare pane: the pane is the frame, so the table drops its margin and
-   takes the pane's colours. */
+   takes the pane's colours -- and both panes' tables are laid out fixed, so their columns line
+   up exactly and the divider wipes one row into the same row. */
 .post-body .sw-pane table {
+  display: table;
+  table-layout: fixed;
   margin: 0;
   border-top-color: var(--k-fg);
+}
+
+.post-body .sw-pane :is(thead th:first-child, tbody th) {
+  width: 4.5em;
 }
 
 .post-body .sw-pane :is(th, td) {
@@ -1239,7 +1246,6 @@ a.post-author:hover .post-author-name {
 }
 
 .post-body .sw-pane tbody th {
-  width: 3em;
   font-size: 13px;
   color: var(--k-fg);
 }

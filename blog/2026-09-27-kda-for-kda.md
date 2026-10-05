@@ -103,8 +103,9 @@ use KDA to write KDA?* So tonight, under a full moon made for a moonshot, we are
 the latest results from KDA(gent) v0.6: KDA optimizing KDA.
 
 <AnimatedDiagram
-  view-box="0 0 600 236"
+  view-box="0 0 600 250"
   :min-width="300"
+  :max-width="760"
   kicker="KDA → KDA"
   label="The loop: KDAgent writes kernels for KDAttn, and KDAttn's scores and traces come back to KDAgent."
   :steps="[
@@ -113,18 +114,18 @@ the latest results from KDA(gent) v0.6: KDA optimizing KDA.
     'Scores and traces come back, and the loop goes round again.',
   ]"
 >
-  <path id="kda-out" class="line dash" d="M150 78 C 220 18, 380 18, 450 78" data-step="2" data-draw />
-  <path id="kda-back" class="line dash" d="M450 158 C 380 218, 220 218, 150 158" data-step="3" data-draw />
+  <path id="kda-out" class="line dash" d="M150 85 C 220 25, 380 25, 450 85" data-step="2" data-draw />
+  <path id="kda-back" class="line dash" d="M450 165 C 380 225, 220 225, 150 165" data-step="3" data-draw />
   <g data-step="1" data-pop>
-    <rect class="ink" x="20" y="78" width="200" height="80" />
-    <text class="on-ink" x="120" y="126" text-anchor="middle" font-size="26" font-weight="700">KDAgent</text>
+    <rect class="ink" x="20" y="85" width="200" height="80" />
+    <text class="on-ink t-xl" x="120" y="133" text-anchor="middle">KDAgent</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="red" x="380" y="78" width="200" height="80" />
-    <text class="on-red" x="480" y="126" text-anchor="middle" font-size="26" font-weight="700">KDAttn</text>
+    <rect class="red" x="380" y="85" width="200" height="80" />
+    <text class="on-red t-xl" x="480" y="133" text-anchor="middle">KDAttn</text>
   </g>
-  <text class="ink" x="300" y="22" text-anchor="middle" font-size="22" data-step="2">writes kernels</text>
-  <text class="ink" x="300" y="230" text-anchor="middle" font-size="22" data-step="3">scores &amp; traces</text>
+  <text class="ink t-lg" x="300" y="22" text-anchor="middle" data-step="2">writes kernels</text>
+  <text class="ink t-lg" x="300" y="246" text-anchor="middle" data-step="3">scores &amp; traces</text>
   <rect class="red" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#kda-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#kda-back" data-loop />
 </AnimatedDiagram>
@@ -390,7 +391,8 @@ all six to be released.
 
 <AnimatedDiagram
   view-box="0 0 720 220"
-  :min-width="330"
+  :min-width="300"
+  :max-width="820"
   kicker="Acceptance gauntlet · 6 gates · 1 way out"
   label="Six acceptance gates. Hacked candidates are refused at a gate; an honest kernel passes all six and is released."
   :steps="[
@@ -399,30 +401,30 @@ all six to be released.
     'An honest kernel passes all six, and is released.',
   ]"
 >
-  <path id="gauntlet-lane" class="line dash" d="M20 120 H600" data-step="1" data-draw />
+  <path id="gauntlet-lane" class="line dash" d="M10 115 H566" data-step="1" data-draw />
   <g data-step="1">
-    <rect class="ink" x="96" y="70" width="8" height="100" />
-    <rect class="ink" x="176" y="70" width="8" height="100" />
-    <rect class="ink" x="256" y="70" width="8" height="100" />
-    <rect class="ink" x="336" y="70" width="8" height="100" />
-    <rect class="ink" x="416" y="70" width="8" height="100" />
-    <rect class="ink" x="496" y="70" width="8" height="100" />
-    <text class="ink" x="100" y="56" text-anchor="middle" font-size="24" font-weight="700">1</text>
-    <text class="ink" x="180" y="56" text-anchor="middle" font-size="24" font-weight="700">2</text>
-    <text class="ink" x="260" y="56" text-anchor="middle" font-size="24" font-weight="700">3</text>
-    <text class="ink" x="340" y="56" text-anchor="middle" font-size="24" font-weight="700">4</text>
-    <text class="ink" x="420" y="56" text-anchor="middle" font-size="24" font-weight="700">5</text>
-    <text class="ink" x="500" y="56" text-anchor="middle" font-size="24" font-weight="700">6</text>
+    <rect class="ink" x="76" y="70" width="8" height="90" />
+    <rect class="ink" x="156" y="70" width="8" height="90" />
+    <rect class="ink" x="236" y="70" width="8" height="90" />
+    <rect class="ink" x="316" y="70" width="8" height="90" />
+    <rect class="ink" x="396" y="70" width="8" height="90" />
+    <rect class="ink" x="476" y="70" width="8" height="90" />
+    <text class="ink t-lg" x="80" y="56" text-anchor="middle">1</text>
+    <text class="ink t-lg" x="160" y="56" text-anchor="middle">2</text>
+    <text class="ink t-lg" x="240" y="56" text-anchor="middle">3</text>
+    <text class="ink t-lg" x="320" y="56" text-anchor="middle">4</text>
+    <text class="ink t-lg" x="400" y="56" text-anchor="middle">5</text>
+    <text class="ink t-lg" x="480" y="56" text-anchor="middle">6</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="red" x="604" y="96" width="112" height="48" transform="rotate(-17 660 120)" />
-    <text class="on-red" x="660" y="129" text-anchor="middle" font-size="24" font-weight="700" transform="rotate(-17 660 120)">RELEASE</text>
+    <rect class="red" x="574" y="88" width="140" height="54" transform="rotate(-17 644 115)" />
+    <text class="on-red" x="644" y="120" text-anchor="middle" transform="rotate(-17 644 115)">RELEASE</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#gauntlet-lane" data-stop="0.4" data-loop />
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#gauntlet-lane" data-stop="0.68" data-loop />
   <rect class="red" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#gauntlet-lane" data-loop />
-  <text class="grey" x="20" y="200" font-size="22" data-step="2">■ hacked candidate</text>
-  <text class="red" x="330" y="200" font-size="22" data-step="3">■ honest kernel</text>
+  <text class="grey" x="10" y="208" data-step="2">■ hacked candidate</text>
+  <text class="red" x="370" y="208" data-step="3">■ honest kernel</text>
 </AnimatedDiagram>
 
 <PostCards numbered>

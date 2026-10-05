@@ -51,7 +51,6 @@ const root = ref<HTMLElement | null>(null)
 const seen = useInView(root, 0.45)
 const id = uid('meter')
 const at = ref(props.value)
-const started = ref(false)
 let frame = 0
 
 const pct = (v: number) => ((v - props.min) / (props.max - props.min)) * 100
@@ -60,7 +59,6 @@ const danger = computed(() => props.zones.find((z) => z.tone === 'red'))
 
 watch(seen, (now) => {
   if (!now || prefersReducedMotion()) return
-  started.value = true
   const begin = performance.now()
   const DURATION = 3200
   const tick = (t: number) => {
@@ -95,13 +93,12 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
         v-for="(m, i) in markers"
         :key="m.value"
         class="rm-mark"
-        :class="{ passed: at >= m.value, right: pct(m.value) > 70, low: i % 2 === 1 }"
+        :class="{ passed: at >= m.value }"
         :style="{ left: `${pct(m.value)}%` }"
         aria-hidden="true"
       >
         <i />
-        <strong>{{ m.label }}</strong>
-        <span v-if="m.note">{{ m.note }}</span>
+        <b>{{ i + 1 }}</b>
       </div>
       <label :for="id" class="sr-only">{{ kicker ?? label ?? 'Value' }}</label>
       <input
@@ -116,6 +113,13 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
         @input="input"
       />
     </div>
+
+    <ol v-if="markers.length" class="rm-notes">
+      <li v-for="(m, i) in markers" :key="m.value" :class="{ passed: at >= m.value }">
+        <b>{{ i + 1 }}</b>
+        <span><strong>{{ m.label }}</strong> {{ m.note }}</span>
+      </li>
+    </ol>
 
     <div v-if="zones.length" class="rm-status" :class="zone?.tone ? `tone-${zone.tone}` : ''" aria-live="polite">
       <span v-if="status" class="kit-label">{{ status }}</span>
@@ -147,7 +151,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
 .rm-track {
   position: relative;
   height: 30px;
-  margin: 8px 0 128px;
+  margin: 8px 0 40px;
   background: var(--k-grid);
 }
 
@@ -169,69 +173,88 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   background: linear-gradient(90deg, var(--k-fg) 0 40%, var(--k-red));
 }
 
+/* A mark: a tick through the track and its number under it; what the number means is in the
+   list below, where a long note has room to wrap. */
 .rm-mark {
   position: absolute;
-  top: 0;
+  top: -6px;
   width: 0;
 }
 
 .rm-mark i {
   position: absolute;
-  top: -6px;
   left: -1px;
   width: 2px;
-  height: 52px;
+  height: 42px;
   background: var(--k-fg-3);
 }
 
-.rm-mark.low i {
-  height: 96px;
-}
-
-.rm-mark strong,
-.rm-mark span {
-  position: absolute;
-  left: 8px;
-  width: max-content;
-  max-width: 180px;
+.rm-mark b,
+.rm-notes b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--k-bg-2);
+  border: 1.5px solid var(--k-fg-3);
   font-family: var(--k-mono);
-  line-height: 1.35;
-}
-
-.rm-mark strong {
-  top: 38px;
-  font-size: 15px;
-  color: var(--k-fg-3);
-  transition: color 0.3s;
-}
-
-.rm-mark span {
-  top: 58px;
   font-size: 11px;
+  font-weight: 700;
   color: var(--k-fg-3);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-.rm-mark.low strong {
-  top: 82px;
-}
-
-.rm-mark.low span {
-  top: 102px;
-}
-
-.rm-mark.right strong,
-.rm-mark.right span {
-  left: auto;
-  right: 8px;
-  text-align: right;
-}
-
-.rm-mark.passed strong {
-  color: var(--k-fg);
+.rm-mark b {
+  position: absolute;
+  top: 44px;
+  left: -11px;
 }
 
 .rm-mark.passed i {
   background: var(--k-fg);
+}
+
+.rm-mark.passed b,
+.rm-notes li.passed b {
+  border-color: var(--k-fg);
+  background: var(--k-fg);
+  color: var(--k-bg);
+}
+
+.rm-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 10px 20px;
+  margin: 28px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.rm-notes li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  font-family: var(--k-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--k-fg-3);
+  transition: color 0.3s;
+}
+
+.rm-notes li b {
+  flex: none;
+}
+
+.rm-notes li.passed {
+  color: var(--k-fg-2);
+}
+
+.rm-notes strong {
+  display: block;
+  font-size: 15px;
+  color: var(--k-fg);
 }
 
 .rm-input {
@@ -288,13 +311,4 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   color: var(--k-red-text);
 }
 
-@media (max-width: 560px) {
-  .rm-mark strong {
-    font-size: 13px;
-  }
-
-  .rm-mark span {
-    max-width: 120px;
-  }
-}
 </style>

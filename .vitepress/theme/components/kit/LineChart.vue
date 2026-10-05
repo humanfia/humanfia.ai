@@ -226,7 +226,8 @@ const valueText = computed(() => {
 
 /** The tip goes on whichever side of the cursor has room. */
 const tipLeft = computed(() => (cursor.value === null ? 0 : sx.value(cursor.value)))
-const tipFlip = computed(() => tipLeft.value > width.value * 0.6)
+const scrolled = ref(0)
+const tipFlip = computed(() => tipLeft.value - scrolled.value > boxWidth.value * 0.55)
 
 // ---- the sweep -------------------------------------------------------------------------------
 
@@ -326,7 +327,7 @@ const tableRows = computed(() => {
     </template>
 
     <div ref="box" class="lc-box">
-      <div class="kit-scroll" :class="{ overflows }">
+      <div class="kit-scroll" :class="{ overflows }" @scroll="scrolled = ($event.target as HTMLElement).scrollLeft">
         <div
           ref="plotEl"
           class="lc-plot"

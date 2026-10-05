@@ -97,7 +97,13 @@ function toggleSeries(key: string) {
 /** The baseline options: the fixed reference first (if any), then the comparable series. */
 const REF = '__reference'
 const baselineOptions = computed(() => [
-  ...(props.reference ? [{ key: REF, label: `vs ${props.reference.label.replace(/\s*[\d.]+\S*$/, '')}` }] : []),
+  // The values as given come first: against the fixed reference when there is one, plain
+  // otherwise -- so a chart with baselines still opens on its own numbers unless told not to.
+  ...(props.reference
+    ? [{ key: REF, label: `vs ${props.reference.label.replace(/\s*[\d.]+\S*$/, '')}` }]
+    : props.baselines?.length
+      ? [{ key: REF, label: 'Values' }]
+      : []),
   ...(props.baselines ?? []).map((key) => ({
     key,
     label: `vs ${props.series.find((s) => s.key === key)?.label ?? key}`,
@@ -260,7 +266,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
             </div>
           </div>
         </div>
-        <div v-if="refAt !== undefined" class="bc-reflabel" :style="{ '--ref': pct(refAt) }" aria-hidden="true">
+        <div v-if="refAt !== undefined" class="bc-reflabel" :class="{ flip: pct(refAt) > 0.6 }" :style="{ '--ref': pct(refAt) }" aria-hidden="true">
           <span>{{ refLabel }}</span>
         </div>
       </template>
@@ -491,6 +497,11 @@ watch([datasetKey, baselineKey], () => (active.value = null))
   font-size: 11px;
   color: var(--k-fg-2);
   white-space: nowrap;
+}
+
+.bc-reflabel.flip span {
+  padding: 0 6px 0 0;
+  transform: translateX(-100%);
 }
 
 .bc.horizontal .bc-tip {

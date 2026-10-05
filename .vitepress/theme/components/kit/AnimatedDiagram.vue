@@ -15,9 +15,12 @@
 // to a screen reader, and the step buttons walk it by hand. A reader who asked for less motion
 // gets the finished diagram, every step shown, nothing looping.
 //
-// The SVG scales to its column, so its type does too: set `min-width` to the narrowest the
-// diagram can be drawn with its smallest text still at 11px (smallest font size in viewBox units
-// x viewBox width / 11), and under that it scrolls sideways instead of shrinking.
+// The shapes scale with the column; the type does not. Text is sized in screen pixels -- 13px by
+// default, `t-lg` 17px, `t-xl` 22px -- whatever width the diagram is drawn at, so a label is as
+// legible on a phone as on a desktop (the component re-scales the font to the viewBox as the
+// column changes). Leave room in the shapes for that: on a phone a box is half the size and its
+// label is not. `min-width` sets the narrowest the diagram may be drawn, under which it scrolls
+// sideways; `max-width` the widest (820px by default), so it does not balloon on a wide column.
 //
 // Every colour comes from the kit's variables: give shapes the classes `ink`, `red`, `grey`,
 // `paper`, `line`, or use `var(--k-fg)` and friends in your own styles.
@@ -35,10 +38,11 @@ const props = withDefaults(
     steps?: string[]
     minWidth?: number
     invert?: boolean
+    maxWidth?: number
     /** Seconds each step holds before the next one starts, when it plays on its own. */
     hold?: number
   }>(),
-  { steps: () => [], minWidth: 0, invert: false, hold: 1.1 },
+  { steps: () => [], minWidth: 0, maxWidth: 820, invert: false, hold: 1.1 },
 )
 
 const root = ref<HTMLElement | null>(null)
@@ -47,6 +51,13 @@ const box = ref<HTMLElement | null>(null)
 const seen = useInView(root, 0.35)
 const boxWidth = useWidth(box, 720)
 const overflows = computed(() => props.minWidth > 0 && boxWidth.value < props.minWidth)
+/** viewBox units per screen pixel at the width the diagram is drawn: what a font size in pixels
+ *  is multiplied by to come out at that size on screen. */
+const unitsPerPx = computed(() => {
+  const vbWidth = Number(props.viewBox.split(/[\s,]+/)[2]) || 1
+  const drawn = Math.min(props.maxWidth, Math.max(boxWidth.value, props.minWidth))
+  return vbWidth / drawn
+})
 
 const step = ref(0)
 const playing = ref(false)
@@ -218,7 +229,7 @@ const captionNow = computed(() => (step.value > 0 ? props.steps[step.value - 1] 
         :viewBox="viewBox"
         role="img"
         :aria-label="label"
-        :style="minWidth ? { minWidth: `${minWidth}px` } : undefined"
+        :style="{ minWidth: minWidth ? `${minWidth}px` : undefined, maxWidth: `${maxWidth}px`, '--ad-k': unitsPerPx }"
       >
         <slot />
       </svg>
@@ -242,6 +253,7 @@ const captionNow = computed(() => (step.value > 0 ? props.steps[step.value - 1] 
 .ad-svg {
   display: block;
   width: 100%;
+  margin: 0 auto;
   height: auto;
   overflow: visible;
 }
