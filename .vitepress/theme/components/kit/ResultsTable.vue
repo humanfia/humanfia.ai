@@ -250,7 +250,11 @@ const togglePin = (index: number) => {
   color: var(--k-red-text);
 }
 
-.rt tbody tr {
+.rt thead tr,
+.rt tbody tr,
+.rt tbody tr:nth-child(n) {
+  border: 0;
+  background: none;
   cursor: pointer;
   transition: background-color 0.15s;
 }

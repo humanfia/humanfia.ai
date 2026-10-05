@@ -284,6 +284,7 @@ room it has to hack.
   ]"
   :datasets="$frontmatter.humanize"
   :baselines="['api', 'cli']"
+  baseline="api"
   compare="delta"
 />
 

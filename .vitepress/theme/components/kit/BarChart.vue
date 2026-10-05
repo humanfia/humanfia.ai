@@ -664,10 +664,6 @@ watch([datasetKey, baselineKey], () => (active.value = null))
     padding-left: 28px;
   }
 
-  .bc-top small {
-    display: none;
-  }
-
   .bc-name {
     font-size: 12px;
   }
