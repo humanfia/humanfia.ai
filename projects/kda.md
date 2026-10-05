@@ -60,8 +60,7 @@ timeline:
   int21: [[0, 1.5]]
   milestones:
     - { x: 4, y: 2.45, label: Humanize, detail: 8/14 · KDA 2.45×, tone: red }
-    - { x: 6, y: 2.54, label: TIRx, detail: 8/30 · 2.54×, tone: ink }
-    - { x: 8, y: 2.93, label: TIRx, detail: 9/2 · 2.93×, tone: ink }
+    - { x: 11, y: 2.94, label: CAKE, detail: 9/6 · 2.94×, tone: grey }
     - { x: 12, y: 2.96, label: TIRx, detail: 9/12 · 2.96×, tone: ink }
 
 # SGLang pull requests since August, from the upstream write-up.
@@ -175,13 +174,14 @@ any single trick.
 
 In May, KDA's kernels placed in the top three on every track of the MLSys 2026 FlashInfer
 contest. With CuteDSL, a profiling skill and a better flow, it went past the best human
-entries on all three. Those kernels are now public as **KDA 0.5**, with a benchmark that pins
+entries on all three. Those kernels are now public as **KDA 0.5**
+([mit-han-lab/mlsys2026-flashinfer-contest-solution](https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution#results)), with a benchmark that pins
 the human winners' own repositories and refuses to run if they are modified.
 
 <BarChart
   kicker="MLSys 2026 FlashInfer · B200 · speedup over the FlashInfer baseline"
   label="MLSys 2026 FlashInfer contest tracks on B200, speedup over the FlashInfer baseline. GDN prefill: KDA 0.1 1.42×, human SOTA 6.06×, KDA 0.5 10.36×. MoE FP8: 0.67×, 1.33×, 1.57×. DSA attention: 3.51×, 27.55×, 38.33×. KDA 0.5 over the best human entry: 1.688×, 1.173×, 1.408×."
-  caption="The public release's own table: the geomean over the official workloads, timed as CUPTI kernel spans, which is not how the contest scored. Pick a track, and compare with the best human entry to read KDA 0.5's margin: 1.69× on GDN prefill, 1.17× on MoE, 1.41× on DSA."
+  caption="The public release's own table: the geomean over the official workloads, timed as CUPTI kernel spans, which is not how the contest scored. Its margins over the best human entry are geomeans of per-workload ratios: 1.688× on GDN prefill, 1.173× on MoE, 1.408× on DSA."
   :series="[
     { key: 'kda01', label: 'KDA 0.1 · contest entry', tone: 'grey', hatched: true },
     { key: 'human', label: 'Best human entry', tone: 'ink' },
@@ -189,7 +189,6 @@ the human winners' own repositories and refuses to run if they are modified.
   ]"
   :datasets="$frontmatter.mlsys"
   :reference="{ value: 1, label: 'FlashInfer 1.00×' }"
-  :baselines="['human']"
   suffix="×"
   :decimals="2"
 />
@@ -205,7 +204,7 @@ Kernel Design Agents optimising Kimi Delta Attention, and its best result climbe
 <LineChart
   kicker="KDA² · best result over time · B300"
   title="From 1.61× to 2.96×"
-  label="KDA² best speedup over FlashKDA rises from 1.61× on July 21 to 2.96× on September 12. Humanize flows lift it to 2.45× on August 14; TIRx kernels reach 2.54× on August 30, 2.93× on September 2 and 2.96× on September 12. CAKE reaches 2.94× on September 6."
+  label="KDA² best speedup over FlashKDA rises from 1.61× on July 21 to 2.96× on September 12. Humanize flows lift it to 2.45× on August 14, CAKE reaches 2.94× on September 6, and TIRx 2.96× on September 12."
   :series="[
     { key: 'kda', label: 'KDA best', tone: 'red', data: $frontmatter.timeline.kda, dots: true },
     { key: 'cake', label: 'CAKE', tone: 'ink', data: $frontmatter.timeline.cake, dots: true, dashed: true },

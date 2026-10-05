@@ -68,6 +68,7 @@ const resolved = computed(() => {
       metric: entry.metric,
       pending: Boolean(entry.pending),
       time: iso ? +new Date(iso) : Number.NaN,
+      dated: Boolean(iso),
     }
   })
   const last = Math.max(...known.filter((e) => Number.isFinite(e.time)).map((e) => e.time))
@@ -75,7 +76,7 @@ const resolved = computed(() => {
   return known
     .map((e) => (Number.isFinite(e.time) ? e : { ...e, time: last + 24 * DAY }))
     .sort((a, b) => a.time - b.time || Number(a.pending) - Number(b.pending))
-    .map((e, i) => ({ ...e, i, date: e.pending && !Number.isFinite(e.time) ? 'Next' : FORMAT.format(new Date(e.time)) }))
+    .map((e, i) => ({ ...e, i, date: e.dated ? FORMAT.format(new Date(e.time)) : 'Next' }))
 })
 
 const root = ref<HTMLElement | null>(null)
