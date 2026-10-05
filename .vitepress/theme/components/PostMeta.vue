@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
+import { authorsOf, avatarOf, initialsOf, personOf, profileOf } from '../people'
 
-// A blog post's whole header: the kicker, the title, the standfirst and -- the point of it --
+// A post's whole header, on the blog and in the news alike: the kicker, the title, the standfirst and -- the point of it --
 // the people who did the work, named directly under the title where nobody can miss them.
 //
 // The title is rendered here rather than as an `#` in the markdown, because that is the only
@@ -12,9 +13,16 @@ import { useData } from 'vitepress'
 //
 // Every other page renders nothing from this component: a `date` in the frontmatter is what
 // makes a page a post, and no other page has one.
-const { frontmatter } = useData()
+const { frontmatter, page } = useData()
 
 const isPost = computed(() => Boolean(frontmatter.value.date))
+
+/** Which section the post is in, so "back" goes to the index it was reached from. */
+const section = computed(() =>
+  page.value.relativePath.startsWith('news/')
+    ? { href: '/news/', label: 'All news' }
+    : { href: '/blog/', label: 'All posts' },
+)
 
 const date = computed(() =>
   new Intl.DateTimeFormat('en-US', {
@@ -27,26 +35,27 @@ const date = computed(() =>
 
 const iso = computed(() => new Date(frontmatter.value.date).toISOString())
 
-const authors = computed<string[]>(() => {
-  const front = frontmatter.value
-  if (Array.isArray(front.authors)) return front.authors
-  if (typeof front.author === 'string') return [front.author]
-  return ['Humanfia']
-})
+/** Each author with their account when we know it -- see people.ts for who is, and why. */
+const authors = computed(() =>
+  authorsOf(frontmatter.value).map((name) => {
+    const person = personOf(name)
+    return {
+      name,
+      initials: initialsOf(name),
+      avatar: person && avatarOf(person, 28),
+      href: person && profileOf(person),
+    }
+  }),
+)
 
-/** First letter of the first and last word, which is right for both "Jin Pan" and "Humanfia". */
-function initials(name: string) {
-  const words = name.split(/\s+/).filter(Boolean)
-  if (!words.length) return '?'
-  const first = words[0][0]
-  const last = words.length > 1 ? words[words.length - 1][0] : ''
-  return (first + last).toUpperCase()
-}
+/** An imported post names where it was first published, and the page says so under the byline. */
+const canonical = computed<string | undefined>(() => frontmatter.value.canonical)
+const source = computed(() => (canonical.value ? new URL(canonical.value).host : ''))
 </script>
 
 <template>
   <header v-if="isPost" class="post-head">
-    <a class="post-back" href="/blog/">← All posts</a>
+    <a class="post-back" :href="section.href">← {{ section.label }}</a>
 
     <p class="post-kicker">
       <span v-if="frontmatter.tag" class="post-tag">{{ frontmatter.tag }}</span>
@@ -60,12 +69,30 @@ function initials(name: string) {
     <div class="post-authors">
       <span class="post-authors-label">{{ authors.length > 1 ? 'Authors' : 'Author' }}</span>
       <ul>
-        <li v-for="name in authors" :key="name">
-          <span class="post-avatar" aria-hidden="true">{{ initials(name) }}</span>
-          <span class="post-author-name">{{ name }}</span>
+        <li v-for="author in authors" :key="author.name">
+          <component
+            :is="author.href ? 'a' : 'span'"
+            class="post-author"
+            :href="author.href"
+            :target="author.href ? '_blank' : undefined"
+            :rel="author.href ? 'noreferrer' : undefined"
+          >
+            <!-- The initials sit under the image, so a slow or blocked avatar still shows
+                 something; the image covers them the moment it arrives. -->
+            <span class="post-avatar" aria-hidden="true">
+              {{ author.initials }}
+              <img v-if="author.avatar" :src="author.avatar" alt="" width="28" height="28" loading="lazy" decoding="async" />
+            </span>
+            <span class="post-author-name">{{ author.name }}</span>
+          </component>
         </li>
       </ul>
     </div>
+
+    <p v-if="canonical" class="post-source">
+      First published at <a :href="canonical" target="_blank" rel="noreferrer">{{ source }}</a>, and
+      reproduced here with its authors.
+    </p>
   </header>
 </template>
 
@@ -127,7 +154,9 @@ function initials(name: string) {
 /* ---- The byline ------------------------------------------------------------------------
    The reason this component exists. Long-horizon work is done by people, and a result page
    that reports a number without saying whose it is has left out the part that is accountable
-   for it -- so the names get an avatar, the full width of the column and their own rule. */
+   for it -- so the names get a face, the full width of the column and their own rule. The
+   face is the person's GitHub avatar and links to their profile, which is where the commits
+   behind the result are. */
 
 .post-authors {
   display: flex;
@@ -160,13 +189,34 @@ function initials(name: string) {
   list-style: none;
 }
 
-.post-authors li {
+.post-author {
   display: flex;
   align-items: center;
   gap: 9px;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.post-author:hover .post-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-author-name {
+  color: var(--vp-c-brand-1);
+}
+
+a.post-author:hover .post-avatar {
+  border-color: var(--vp-c-brand-1);
 }
 
 .post-avatar {
+  position: relative;
+  overflow: hidden;
+  flex: none;
   display: grid;
   place-items: center;
   width: 28px;
@@ -181,11 +231,29 @@ function initials(name: string) {
   color: var(--vp-c-brand-1);
 }
 
+.post-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .post-author-name {
   font-size: 15px;
   font-weight: 650;
   letter-spacing: -0.01em;
   color: var(--vp-c-text-1);
+}
+
+.post-source {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  color: var(--vp-c-text-3);
+}
+
+.post-source a {
+  color: var(--vp-c-brand-1);
 }
 
 @media (max-width: 640px) {

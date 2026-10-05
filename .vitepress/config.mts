@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
+import { createContentLoader, defineConfig, type ContentData, type SiteConfig } from 'vitepress'
 
 import { loadFlowverse, slugOf } from './flowverse.mts'
 import { FLOWS, KINDS } from './theme/flows'
@@ -68,22 +68,36 @@ const FLOW_GROUPS = [
 const FLOW_LINKS = [{ text: 'Every flow', items: [{ text: 'The catalogue', link: '/flows/' }] }, ...FLOW_GROUPS]
 
 /**
- * The blog's sidebar, read off the directory at config time so publishing a post is still
+ * The two sections a post can be in, and what each one is called where it is named.
+ *
+ * News is the record -- one result per post, a number, its caveats and a date. The blog is what
+ * we think -- essays, design arguments, the write-ups that are about a way of working rather
+ * than a score. Each has its own directory, its own index, its own sidebar and its own feed, so
+ * a reader who wants only the numbers subscribes to only the numbers.
+ */
+const SECTIONS = {
+  blog: { name: 'Blog', feed: 'Humanfia blog', about: 'Essays and arguments from the people building Humanfia.' },
+  news: { name: 'News', feed: 'Humanfia news', about: 'What the flows did, one result per post.' },
+} as const
+type Section = keyof typeof SECTIONS
+
+/**
+ * A section's sidebar, read off its directory at config time so publishing a post is still
  * writing one file. Ten most recent, newest first; the rest are one click away on the index.
  *
  * Deliberately its own list rather than the site-wide one: a reader inside a post is reading
- * the blog, and a sidebar that also offers them every project page is a table of contents for
- * a book they did not open.
+ * that section, and a sidebar that also offers them every project page is a table of contents
+ * for a book they did not open.
  */
-function blogSidebar() {
-  const dir = fileURLToPath(new URL('../blog', import.meta.url))
+function sectionSidebar(section: Section) {
+  const dir = fileURLToPath(new URL(`../${section}`, import.meta.url))
   const posts = readdirSync(dir)
     .filter((name) => name.endsWith('.md') && name !== 'index.md')
     .map((name) => {
       const front = readFileSync(resolve(dir, name), 'utf8').split('---')[1] ?? ''
       const title = /^title:\s*(.+)$/m.exec(front)?.[1]?.trim().replace(/^["']|["']$/g, '')
       const date = /^date:\s*(.+)$/m.exec(front)?.[1]?.trim() ?? ''
-      return { text: title ?? name, link: `/blog/${name.slice(0, -3)}`, date }
+      return { text: title ?? name, link: `/${section}/${name.slice(0, -3)}`, date }
     })
     // Newest first, and the filename breaks a tie so two posts dated the same day do not
     // swap places between builds.
@@ -92,7 +106,7 @@ function blogSidebar() {
   return [
     {
       // A heading, not an entry, for the same reason as Projects above.
-      text: 'Blog',
+      text: SECTIONS[section].name,
       items: posts.slice(0, 10),
     },
   ]
@@ -110,9 +124,9 @@ export default defineConfig({
 
   sitemap: { hostname: HOSTNAME },
 
-  // The feed is written by `buildEnd` below, after the link check has run, so the check has
-  // no way of knowing it is about to exist. Every other dead link is still a failed build.
-  ignoreDeadLinks: [/^\/blog\/feed\.rss$/],
+  // The feeds are written by `buildEnd` below, after the link check has run, so the check has
+  // no way of knowing they are about to exist. Every other dead link is still a failed build.
+  ignoreDeadLinks: [/^\/(?:blog|news)\/feed\.rss$/],
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
@@ -127,7 +141,9 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Humanfia' }],
     ['meta', { property: 'og:image', content: `${HOSTNAME}/og.png` }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['link', { rel: 'alternate', type: 'application/rss+xml', title: 'Humanfia blog', href: `${HOSTNAME}/blog/feed.rss` }],
+    // One alternate per feed, so a reader pointed at any page here is offered both.
+    ['link', { rel: 'alternate', type: 'application/rss+xml', title: SECTIONS.blog.feed, href: `${HOSTNAME}/blog/feed.rss` }],
+    ['link', { rel: 'alternate', type: 'application/rss+xml', title: SECTIONS.news.feed, href: `${HOSTNAME}/news/feed.rss` }],
     [
       'script',
       { type: 'application/ld+json' },
@@ -165,6 +181,7 @@ export default defineConfig({
       { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
       { text: 'Flows', items: FLOW_LINKS, activeMatch: '/flows/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
+      { text: 'News', link: '/news/', activeMatch: '/news/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
 
@@ -173,7 +190,8 @@ export default defineConfig({
     sidebar: {
       '/projects/': PROJECTS,
       '/flows/': [{ text: 'Flows', link: '/flows/' }, ...FLOW_GROUPS.map((group) => ({ ...group, collapsed: false }))],
-      '/blog/': blogSidebar(),
+      '/blog/': sectionSidebar('blog'),
+      '/news/': sectionSidebar('news'),
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/humanfia' }],
@@ -189,66 +207,70 @@ export default defineConfig({
 
     footer: {
       message:
-        'Built in public. <a href="https://github.com/humanfia">github.com/humanfia</a> · <a href="/blog/feed.rss">RSS</a>',
+        'Built in public. <a href="https://github.com/humanfia">github.com/humanfia</a> · RSS: <a href="/blog/feed.rss">blog</a> · <a href="/news/feed.rss">news</a>',
       copyright: 'Copyright © 2026 Humanfia',
     },
   },
 
-  // The blog's RSS feed, written straight into the built site. Hand-rolled rather than
+  // One RSS feed per section, written straight into the built site. Hand-rolled rather than
   // pulled from a package: a feed is a dozen lines of XML, and this way the build has one
   // dependency rather than two.
   async buildEnd(config: SiteConfig) {
-    const posts = await createContentLoader('blog/*.md', { excerpt: false }).load()
-
-    const items = posts
-      .filter((page) => page.url !== '/blog/' && page.frontmatter.date)
-      .sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date))
-      .map((page) => {
-        const link = `${HOSTNAME}${page.url}`
-        const authors: string[] = page.frontmatter.authors ??
-          (page.frontmatter.author ? [page.frontmatter.author] : [])
-        return [
-          '    <item>',
-          `      <title>${escapeXml(page.frontmatter.title ?? page.url)}</title>`,
-          `      <link>${link}</link>`,
-          `      <guid isPermaLink="true">${link}</guid>`,
-          `      <pubDate>${new Date(page.frontmatter.date).toUTCString()}</pubDate>`,
-          // `dc:creator`, not RSS's own `<author>`: that element is defined as an email address
-          // and nothing else, so a name in it is an error every feed validator reports and some
-          // readers drop the whole item over. We publish names and no addresses.
-          ...(authors.length ? [`      <dc:creator>${escapeXml(authors.join(', '))}</dc:creator>`] : []),
-          `      <description>${escapeXml(page.frontmatter.description ?? '')}</description>`,
-          '    </item>',
-        ].join('\n')
-      })
-
-    // The newest post's date rather than the clock: two builds of the same commit should
-    // produce the same bytes, and a reader polling us should see a changed feed only when the
-    // blog changed.
-    const latest = posts.reduce(
-      (newest, page) => Math.max(newest, +new Date(page.frontmatter.date ?? 0) || 0),
-      0,
-    )
-
-    const feed = [
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
-      '  <channel>',
-      '    <title>Humanfia</title>',
-      `    <link>${HOSTNAME}/blog/</link>`,
-      '    <description>What the flows did, one result per post.</description>',
-      '    <language>en-us</language>',
-      ...(latest ? [`    <lastBuildDate>${new Date(latest).toUTCString()}</lastBuildDate>`] : []),
-      `    <atom:link href="${HOSTNAME}/blog/feed.rss" rel="self" type="application/rss+xml"/>`,
-      ...items,
-      '  </channel>',
-      '</rss>',
-      '',
-    ].join('\n')
-
-    writeFileSync(resolve(config.outDir, 'blog/feed.rss'), feed)
+    for (const section of Object.keys(SECTIONS) as Section[]) {
+      const posts = await createContentLoader(`${section}/*.md`, { excerpt: false }).load()
+      writeFileSync(resolve(config.outDir, `${section}/feed.rss`), feedOf(section, posts))
+    }
   },
 })
+
+function feedOf(section: Section, posts: ContentData[]) {
+  const items = posts
+    .filter((page) => page.url !== `/${section}/` && page.frontmatter.date)
+    .sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date))
+    .map((page) => {
+      const link = `${HOSTNAME}${page.url}`
+      const authors: string[] = page.frontmatter.authors ??
+        (page.frontmatter.author ? [page.frontmatter.author] : [])
+      return [
+        '    <item>',
+        `      <title>${escapeXml(page.frontmatter.title ?? page.url)}</title>`,
+        `      <link>${link}</link>`,
+        `      <guid isPermaLink="true">${link}</guid>`,
+        `      <pubDate>${new Date(page.frontmatter.date).toUTCString()}</pubDate>`,
+        // `dc:creator`, not RSS's own `<author>`: that element is defined as an email address
+        // and nothing else, so a name in it is an error every feed validator reports and some
+        // readers drop the whole item over. We publish names and no addresses.
+        ...(authors.length ? [`      <dc:creator>${escapeXml(authors.join(', '))}</dc:creator>`] : []),
+        `      <description>${escapeXml(page.frontmatter.description ?? '')}</description>`,
+        '    </item>',
+      ].join('\n')
+    })
+
+  // The newest post's date rather than the clock: two builds of the same commit should
+  // produce the same bytes, and a reader polling us should see a changed feed only when the
+  // section changed.
+  const latest = posts.reduce(
+    (newest, page) => Math.max(newest, +new Date(page.frontmatter.date ?? 0) || 0),
+    0,
+  )
+
+  const { feed, about } = SECTIONS[section]
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
+    '  <channel>',
+    `    <title>${escapeXml(feed)}</title>`,
+    `    <link>${HOSTNAME}/${section}/</link>`,
+    `    <description>${escapeXml(about)}</description>`,
+    '    <language>en-us</language>',
+    ...(latest ? [`    <lastBuildDate>${new Date(latest).toUTCString()}</lastBuildDate>`] : []),
+    `    <atom:link href="${HOSTNAME}/${section}/feed.rss" rel="self" type="application/rss+xml"/>`,
+    ...items,
+    '  </channel>',
+    '</rss>',
+    '',
+  ].join('\n')
+}
 
 const escapeXml = (value: string) =>
   value

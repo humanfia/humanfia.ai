@@ -1,11 +1,18 @@
 ---
-title: 670 of 672 on PutnamBench
-description: A Ralph loop with Codex as both worker and reviewer closed 99.7% of PutnamBench and every problem in Putnam 2025 — past an EBM-based prover at 99.4% and an autoregressive one at 88.8%.
+title: "670 of 672 on PutnamBench: a Codex loop passes two purpose-built provers"
+description: "One Ralph loop with Codex as both worker and reviewer closed 99.7% of PutnamBench and all of Putnam 2025 — past an EBM-based prover at 99.4% and an autoregressive one at 88.8%."
 date: 2026-06-26
 authors:
   - Zhengyang Zhang
 tag: HOA
 ---
+
+::: tip This has since moved
+The solver later closed the last two: **672 of 672**, joint first on the
+[official leaderboard](https://trishullab.github.io/PutnamBench/leaderboard.html), every proof
+through Lean 4, Comparator and AXLE. The [solver's README](https://github.com/humanfia/putnambench-solver)
+has the run.
+:::
 
 PutnamBench is 672 formal statements. A Ralph loop running Codex as **both worker and
 reviewer** closed **670** of them — 99.7% — including every problem in Putnam 2025.

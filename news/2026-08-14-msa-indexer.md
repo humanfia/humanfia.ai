@@ -1,6 +1,6 @@
 ---
-title: The MSA indexer, 3.3× faster in production
-description: KDA 1.5 found the hardware underutilization in the MSA prefill and decode indexers on B300 — a 6.5× geometric mean on prefill, 3.3× on long-context decode, and bitwise-identical output throughout.
+title: "MSA indexer: 6.5× faster prefill in production, bitwise identical"
+description: "KDA 1.5 found the hardware underutilization in the MSA prefill and decode indexers on B300 — a 6.5× geometric mean on prefill, up to 3.3× on long-context decode, and bitwise-identical output throughout."
 date: 2026-08-14
 authors:
   - Jiaming Tang

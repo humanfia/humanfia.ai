@@ -8,7 +8,7 @@ description: FlowBench is our benchmark for long-horizon agent work — a way to
 day rather than a minute, and it decides which of our own loops survives.</p>
 
 ::: info In development
-FlowBench is not released yet. When it opens up we will say so [on the blog](/blog/) and at
+FlowBench is not released yet. When it opens up we will say so [in the news](/news/) and at
 [github.com/humanfia](https://github.com/humanfia).
 :::
 
@@ -55,7 +55,7 @@ only way we know to tell craft from taste.
     <h3>What it is scoring ↗</h3>
     <p>The loops themselves — ours, and the ones the field converged on.</p>
   </a>
-  <a class="card" href="/blog/">
+  <a class="card" href="/news/">
     <span class="kicker">Later</span>
     <h3>When it opens up</h3>
     <p>The release, and the first cross-flow numbers, will be written up here.</p>

@@ -1,6 +1,6 @@
-// The blog's feed, checked against the site that was just built.
+// The feeds -- the blog's and the news's -- checked against the site that was just built.
 //
-// Two things about the feed fail silently, and both of them have. The file is written by
+// Two things about a feed fail silently, and both of them have. The file is written by
 // `buildEnd`, so nothing else in the build looks at it: a feed with a dead link in it, or with
 // an element no reader accepts, builds green. And VitePress's router answers a click on any
 // same-origin link whose extension it does not recognise in-app, as a page -- its list has
@@ -16,56 +16,69 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const DIST = fileURLToPath(new URL('./dist/', import.meta.url))
-const FEED = join(DIST, 'blog/feed.rss')
 const HOSTNAME = 'https://humanfia.ai'
+
+/** One feed per section, each written by `buildEnd` into the section's own directory. */
+const SECTIONS = ['blog', 'news']
 
 const problems = []
 const fail = (said) => problems.push(said)
 
-/* ------------------------------------------------------------------ the feed itself */
+/* ------------------------------------------------------------------ the feeds themselves */
 
-if (!existsSync(FEED)) {
-  console.error('blog/feed.rss was not written -- see buildEnd in .vitepress/config.mts')
-  process.exit(1)
+const counts = {}
+for (const section of SECTIONS) {
+  const FEED = join(DIST, `${section}/feed.rss`)
+  const where = `${section}/feed.rss`
+
+  if (!existsSync(FEED)) {
+    console.error(`${where} was not written -- see buildEnd in .vitepress/config.mts`)
+    process.exit(1)
+  }
+
+  const feed = await readFile(FEED, 'utf8')
+
+  if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>\n<rss\b/.test(feed)) fail(`${where}: not an RSS document`)
+  if (!feed.trimEnd().endsWith('</rss>')) fail(`${where}: no closing </rss>`)
+
+  // Every `&` has to open an entity or the document is not well-formed, and a title with an
+  // ampersand in it is the way that happens.
+  for (const [stray] of feed.matchAll(/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)[^\s]{0,12}/g)) {
+    fail(`${where}: unescaped ampersand near \`${stray}\``)
+  }
+
+  // `<author>` is defined as an email address and nothing else, so a name in it is an error every
+  // validator reports. Names go in `dc:creator`, which has to be declared to be used.
+  if (/<author>/.test(feed)) fail(`${where}: <author> must be an email address -- use <dc:creator>`)
+  if (/<dc:creator>/.test(feed) && !/xmlns:dc="http:\/\/purl\.org\/dc\/elements\/1\.1\/"/.test(feed)) {
+    fail(`${where}: <dc:creator> used without the dc namespace declared on <rss>`)
+  }
+  if (!new RegExp(`<atom:link href="${HOSTNAME}/${section}/feed\\.rss" rel="self"`).test(feed)) {
+    fail(`${where}: no rel="self" link to itself`)
+  }
+
+  const items = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1])
+  if (!items.length) fail(`${where}: no items`)
+
+  for (const item of items) {
+    const title = /<title>([\s\S]*?)<\/title>/.exec(item)?.[1] ?? '(untitled)'
+    const link = /<link>([\s\S]*?)<\/link>/.exec(item)?.[1]
+    if (!link) { fail(`${where}: "${title}" has no <link>`); continue }
+    if (!/<pubDate>/.test(item)) fail(`${where}: "${title}" has no <pubDate>`)
+    // A feed carries its own section and nothing else, so a news item in the blog's feed is the
+    // split having leaked.
+    if (!link.startsWith(`${HOSTNAME}/${section}/`)) { fail(`${where}: "${title}" is not a ${section} post -- ${link}`); continue }
+    // cleanUrls, so /news/a-post is built as news/a-post.html.
+    const page = join(DIST, link.slice(HOSTNAME.length + 1) + '.html')
+    if (!existsSync(page)) fail(`${where}: "${title}" points at ${link}, which the build did not write`)
+  }
+
+  // One item per dated post, so a post that stops appearing in the feed is not a quiet change.
+  const dated = (await readdir(fileURLToPath(new URL(`../${section}/`, import.meta.url))))
+    .filter((name) => name.endsWith('.md') && name !== 'index.md').length
+  if (items.length !== dated) fail(`${where}: ${items.length} items for ${dated} posts`)
+  counts[section] = items.length
 }
-
-const feed = await readFile(FEED, 'utf8')
-
-if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>\n<rss\b/.test(feed)) fail('feed: not an RSS document')
-if (!feed.trimEnd().endsWith('</rss>')) fail('feed: no closing </rss>')
-
-// Every `&` has to open an entity or the document is not well-formed, and a title with an
-// ampersand in it is the way that happens.
-for (const [stray] of feed.matchAll(/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)[^\s]{0,12}/g)) {
-  fail(`feed: unescaped ampersand near \`${stray}\``)
-}
-
-// `<author>` is defined as an email address and nothing else, so a name in it is an error every
-// validator reports. Names go in `dc:creator`, which has to be declared to be used.
-if (/<author>/.test(feed)) fail('feed: <author> must be an email address -- use <dc:creator>')
-if (/<dc:creator>/.test(feed) && !/xmlns:dc="http:\/\/purl\.org\/dc\/elements\/1\.1\/"/.test(feed)) {
-  fail('feed: <dc:creator> used without the dc namespace declared on <rss>')
-}
-if (!/<atom:link[^>]+rel="self"/.test(feed)) fail('feed: no rel="self" link')
-
-const items = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1])
-if (!items.length) fail('feed: no items')
-
-for (const item of items) {
-  const title = /<title>([\s\S]*?)<\/title>/.exec(item)?.[1] ?? '(untitled)'
-  const link = /<link>([\s\S]*?)<\/link>/.exec(item)?.[1]
-  if (!link) { fail(`feed: "${title}" has no <link>`); continue }
-  if (!/<pubDate>/.test(item)) fail(`feed: "${title}" has no <pubDate>`)
-  if (!link.startsWith(`${HOSTNAME}/`)) { fail(`feed: "${title}" links off-site -- ${link}`); continue }
-  // cleanUrls, so /blog/a-post is built as blog/a-post.html.
-  const page = join(DIST, link.slice(HOSTNAME.length + 1) + '.html')
-  if (!existsSync(page)) fail(`feed: "${title}" points at ${link}, which the build did not write`)
-}
-
-// One item per dated post, so a post that stops appearing in the feed is not a quiet change.
-const dated = (await readdir(fileURLToPath(new URL('../blog/', import.meta.url))))
-  .filter((name) => name.endsWith('.md') && name !== 'index.md').length
-if (items.length !== dated) fail(`feed: ${items.length} items for ${dated} posts`)
 
 /* ------------------------------- the router, and whether it will let the links through */
 
@@ -89,7 +102,7 @@ for (const path of chunks) {
   if (!/(^|,)rss(,|$)/.test(list) && !/["']rss["']/.test(before)) {
     fail(
       'router: the client was built without `rss` among the extensions it will not route to, ' +
-        'so every link to the feed lands on the 404 page -- check VITE_EXTRA_EXTENSIONS in .env',
+        'so every link to a feed lands on the 404 page -- check VITE_EXTRA_EXTENSIONS in .env',
     )
   }
   break
@@ -107,21 +120,28 @@ const walk = async (at) => {
 }
 await walk(DIST)
 
-let links = 0
+// Every feed has to be reachable from the site, not only present on it.
+const linked = Object.fromEntries(SECTIONS.map((section) => [section, 0]))
 for (const page of pages) {
   const html = await readFile(page, 'utf8')
   for (const [, href] of html.matchAll(/(?:href|content)="([^"]*\.rss)"/g)) {
-    links += 1
     const path = href.startsWith(HOSTNAME) ? href.slice(HOSTNAME.length) : href
     if (!path.startsWith('/')) { fail(`${page}: relative feed link ${href}`); continue }
-    if (!existsSync(join(DIST, path))) fail(`${page}: links to ${href}, which does not exist`)
+    if (!existsSync(join(DIST, path))) { fail(`${page}: links to ${href}, which does not exist`); continue }
+    const section = /^\/(\w+)\/feed\.rss$/.exec(path)?.[1]
+    if (section in linked) linked[section] += 1
   }
 }
-if (!links) fail('no page links to the feed at all')
+for (const [section, links] of Object.entries(linked)) {
+  if (!links) fail(`no page links to ${section}/feed.rss at all`)
+}
 
 if (problems.length) {
   for (const said of problems) console.error(said)
   console.error(`\n${problems.length} problem(s) with the feed.`)
   process.exit(1)
 }
-console.log(`the feed is ${items.length} items, every link resolves, and the router will let ${links} link(s) to it through`)
+console.log(
+  SECTIONS.map((section) => `${section}/feed.rss is ${counts[section]} items, linked ${linked[section]} times`).join('; ') +
+    ' -- every link resolves, and the router will let them through',
+)

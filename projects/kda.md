@@ -25,14 +25,14 @@ built with [MIT HAN Lab](https://hanlab.mit.edu/)
 
 | | Result | Written up |
 | --- | --- | --- |
-| **KDA², v0.6** | Kimi Delta Attention on B300, 2.96× geomean over FlashKDA at 8,192 tokens, with a tenth of its final-state error | [NVlabs/kda ↗](https://nvlabs.github.io/kda/blog/2026-09-27-kda-for-kda/) |
-| **MSA indexer, in production** | 6.5× geomean on prefill, up to 3.3× on long-context decode, bitwise identical | [26-08-14](/blog/2026-08-14-msa-indexer) |
-| **MLSys 2026 FlashInfer** | Past human SOTA on all three tracks, 1.25–1.39× | [26-08-02](/blog/2026-08-02-kda-15-past-human-sota) · [26-05-15](/blog/2026-05-15-mlsys-flashinfer-top3) |
+| **KDA², v0.6** | Kimi Delta Attention on B300, 2.96× geomean over FlashKDA at 8,192 tokens, with a tenth of its final-state error | [26-09-27](/blog/2026-09-27-kda-for-kda) |
+| **MSA indexer, in production** | 6.5× geomean on prefill, up to 3.3× on long-context decode, bitwise identical | [26-08-14](/news/2026-08-14-msa-indexer) |
+| **MLSys 2026 FlashInfer** | Past human SOTA on all three tracks, 1.25–1.39× | [26-08-02](/news/2026-08-02-kda-15-past-human-sota) · [26-05-15](/news/2026-05-15-mlsys-flashinfer-top3) |
 | **SGLang-Diffusion** | A quality tier, so a bf16-order-changing fusion can ship at all | [26-08-06](/blog/2026-08-06-sglang-diffusion-quality-tiers) |
-| **SOLExec Bench** | First on the L1 single-operation track, 0.7608 against 0.7584 | [26-07-02](/blog/2026-07-02-solexec-l1) |
-| **SOL Bench** | 53 first-place rankings from one 8×B200 node in about a week | [26-06-22](/blog/2026-06-22-sol-bench-batch) |
-| **SGLang, upstream** | More than forty operators merged, with the numbers attached | [26-06-05](/blog/2026-06-05-kda-sglang) · [26-07-02](/blog/2026-07-02-sglang-omni-numerics) |
-| **Other hardware** | ASM, HIP and ROCm — it works where the corpus is thin | [26-06-15](/blog/2026-06-15-kda-generalizes) |
+| **SOLExec Bench** | First on the L1 single-operation track, 0.7608 against 0.7584 | [26-07-02](/news/2026-07-02-solexec-l1) |
+| **SOL Bench** | 53 first-place rankings from one 8×B200 node in about a week | [26-06-22](/news/2026-06-22-sol-bench-batch) |
+| **SGLang, upstream** | More than forty operators merged, with the numbers attached | [26-06-05](/news/2026-06-05-kda-sglang) · [26-07-02](/blog/2026-07-02-sglang-omni-numerics) |
+| **Other hardware** | ASM, HIP and ROCm — it works where the corpus is thin | [26-06-15](/news/2026-06-15-kda-generalizes) |
 
 ## The problem
 

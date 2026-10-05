@@ -34,7 +34,7 @@ the top 3%. Public ranks move; this is the audit's snapshot of 2026-08-15.
 For comparison, Codex on GPT-5.5 at `xhigh` reasoning effort peaked around the top-5% level
 across most of the same competitions. Same models, different arrangement.
 
-[The full write-up →](/blog/2026-08-15-kaggle-nineteen-competitions)
+[The full write-up →](/news/2026-08-15-kaggle-nineteen-competitions)
 
 ## What the two words mean
 

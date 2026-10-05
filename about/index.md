@@ -73,10 +73,10 @@ Tsinghua, and a long tail of community contributors. The full list is the one gi
     <b>Working on long-horizon agent systems</b>
     <span>We would like to compare notes. Open an issue on Humanize and say hello.</span>
   </a>
-  <a href="/blog/">
+  <a href="/news/">
     <b>Following along</b>
-    <span>The blog — its RSS feed is linked at the foot of every page. Everything we ship is
-    Apache-2.0.</span>
+    <span>The news for results and the blog for essays — each has its own RSS feed, linked at
+    the foot of every page. Everything we ship is Apache-2.0.</span>
   </a>
 </div>
 

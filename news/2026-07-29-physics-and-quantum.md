@@ -1,6 +1,6 @@
 ---
-title: Physics and quantum, formalized end to end
-description: All 23 IPhO 2026 theory subproblems machine-checked in Lean 4, 36 of 36 on a blind quantum-algorithms benchmark, and 92.5% end to end on quantum information theory.
+title: "23/23 IPhO 2026 subproblems and 36/36 quantum tasks, proved in Lean"
+description: "All 23 IPhO 2026 theory subproblems machine-checked in Lean 4, 36 of 36 on a blind quantum-algorithms benchmark, and 92.5% end to end on quantum information theory."
 date: 2026-07-29
 authors:
   - Jing Xiong

@@ -1,6 +1,6 @@
 ---
-title: Forty operators into SGLang
-description: Six shipped kernel PRs with the numbers attached — router tokenization, allreduce fusion, NVFP4 fused-MoE, KDA prefill, progressive diffusion and a VAE decode — with another twenty operators running.
+title: "SGLang merges 40+ agent-tuned operators, one lifting throughput 71%"
+description: "More than forty agent-optimized operators are upstream in SGLang. Six of them, with the numbers: −41% TTFT, +71% throughput, 2.32× denoising and a 1.41× VAE decode."
 date: 2026-06-05
 authors:
   - Xiaoyu Zhang

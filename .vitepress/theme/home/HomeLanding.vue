@@ -146,49 +146,49 @@ const TILES: Tile[] = [
     id: 'imo', to: 6, suffix: '/6', size: 'w7 tall', viz: 'six',
     label: 'IMO 2026',
     body: 'Every problem solved by a fully agentic run and machine-checked in Lean 4 — on two different backends.',
-    href: '/blog/2026-07-22-imo-2026',
+    href: '/news/2026-07-22-imo-2026',
   },
   {
     id: 'lean', to: 1, from: 12, prefix: '#', size: 'w5 tall',
     label: 'Lean-Eval leaderboard',
     body: '172 research-level mathematics problems, every accepted proof sorry-free and independently re-verified.',
-    href: '/blog/2026-08-18-lean-eval-first',
+    href: '/news/2026-08-18-lean-eval-first',
   },
   {
     id: 'kda', to: 1.39, from: 1, places: 2, suffix: '×', size: 'w4', viz: 'versus',
     label: 'Past the best human kernels',
     body: 'KDA 1.5 on every track of the MLSys 2026 FlashInfer contest.',
-    href: '/blog/2026-08-02-kda-15-past-human-sota',
+    href: '/news/2026-08-02-kda-15-past-human-sota',
   },
   {
     id: 'pb', to: 3.5, places: 1, suffix: '%', size: 'w4', viz: 'bars',
     label: 'ProgramBench',
     body: 'Two models that solve 0.5% and 0% alone, as a builder and a reviewer in a loop.',
-    href: '/blog/2026-08-11-programbench',
+    href: '/news/2026-08-11-programbench',
   },
   {
     id: 'putnam', to: 670, suffix: '/672', size: 'w4', viz: 'ring',
     label: 'PutnamBench',
     body: '99.7% of the benchmark, and every problem of Putnam 2025.',
-    href: '/blog/2026-06-26-putnambench',
+    href: '/news/2026-06-26-putnambench',
   },
   {
     id: 'sol', to: 53, size: 'w5', viz: 'grid',
     label: 'First places on SOL Bench',
     body: 'One week of unattended kernel generation on a single 8×B200 node.',
-    href: '/blog/2026-06-22-sol-bench-batch',
+    href: '/news/2026-06-22-sol-bench-batch',
   },
   {
     id: 'msa', to: 6.5, from: 1, places: 1, suffix: '×', size: 'w3',
     label: 'MSA indexer, in production',
     body: 'Prefill on B300, bitwise-identical output.',
-    href: '/blog/2026-08-14-msa-indexer',
+    href: '/news/2026-08-14-msa-indexer',
   },
   {
     id: 'kaggle', to: 14, suffix: '/19', size: 'w4', viz: 'dots',
     label: 'Kaggle top 5%',
     body: 'Nineteen completed competitions, ten agent workflows.',
-    href: '/blog/2026-08-15-kaggle-nineteen-competitions',
+    href: '/news/2026-08-15-kaggle-nineteen-competitions',
   },
 ]
 
@@ -295,9 +295,11 @@ const FEATURES = [
   { title: 'Wherever the work belongs', body: 'Locally, in a git worktree, in a container, or on another machine over SSH.' },
 ]
 
-// ------------------------------------------------------------------------------------ blog
+// ------------------------------------------------------------------------------------ news
 
-const latest = posts.slice(0, 8)
+// The results, not the essays: this section is "one result, one post", and the blog has its
+// own index for the arguments.
+const latest = posts.filter((post) => post.kind === 'news').slice(0, 8)
 const railEl = ref<HTMLElement | null>(null)
 function slide(dir: number) {
   const rail = railEl.value
@@ -570,7 +572,7 @@ onBeforeUnmount(() => {
       <div class="h-wrap">
         <header class="h-head h-row" v-reveal>
           <div>
-            <p class="h-kicker">From the blog</p>
+            <p class="h-kicker">Latest news</p>
             <h2 id="blog-title" class="h-h2">One result, one post.</h2>
           </div>
           <div class="h-rail-nav">
@@ -586,10 +588,10 @@ onBeforeUnmount(() => {
           <span class="h-post-body">{{ post.description }}</span>
           <span class="h-post-more">Read ›</span>
         </a>
-        <a href="/blog/" class="h-post h-post-all">
-          <span class="h-post-title">All posts</span>
+        <a href="/news/" class="h-post h-post-all">
+          <span class="h-post-title">All news</span>
           <span class="h-post-body">Every number we have published, newest first — and an RSS feed.</span>
-          <span class="h-post-more">Open the blog ›</span>
+          <span class="h-post-more">Open the news ›</span>
         </a>
       </div>
     </section>
@@ -608,7 +610,7 @@ onBeforeUnmount(() => {
         </div>
         <p class="h-small" v-reveal="300">
           <a :href="GITHUB">github.com/humanfia</a> · <a href="https://github.com/humanfia/flowverse">flowverse</a> ·
-          <a href="/blog/feed.rss">RSS</a>
+          <a href="/news/feed.rss">RSS</a>
         </p>
       </div>
     </section>

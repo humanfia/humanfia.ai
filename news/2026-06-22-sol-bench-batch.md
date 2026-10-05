@@ -1,6 +1,6 @@
 ---
-title: Fifty-three firsts on SOL Bench, from one node
-description: A week of unattended kernel generation on a single 8×B200 node produced 53 first-place rankings, and it had not stopped finding them.
+title: "One node, one week, nobody watching: 53 first places on SOL Bench"
+description: "A week of unattended kernel generation on a single 8×B200 node took 53 first-place rankings on SOL Bench — and it had not stopped finding them."
 date: 2026-06-22
 authors:
   - Lesheng Jin
