@@ -67,6 +67,7 @@ const FLOW_GROUPS = [
 ]
 const FLOW_LINKS = [{ text: 'Every flow', items: [{ text: 'The catalogue', link: '/flows/' }] }, ...FLOW_GROUPS]
 
+/**
  * The two sections a post can be in, and what each one is called where it is named.
  *
  * News is the record -- one result per post, a number, its caveats and a date. The blog is what

@@ -25,7 +25,7 @@ built with [MIT HAN Lab](https://hanlab.mit.edu/)
 
 | | Result | Written up |
 | --- | --- | --- |
-| **KDA², v0.6** | Kimi Delta Attention on B300, 2.96× geomean over FlashKDA at 8,192 tokens, with a tenth of its final-state error | [NVlabs/kda ↗](https://nvlabs.github.io/kda/blog/2026-09-27-kda-for-kda/) |
+| **KDA², v0.6** | Kimi Delta Attention on B300, 2.96× geomean over FlashKDA at 8,192 tokens, with a tenth of its final-state error | [26-09-27](/blog/2026-09-27-kda-for-kda) |
 | **MSA indexer, in production** | 6.5× geomean on prefill, up to 3.3× on long-context decode, bitwise identical | [26-08-14](/news/2026-08-14-msa-indexer) |
 | **MLSys 2026 FlashInfer** | Past human SOTA on all three tracks, 1.25–1.39× | [26-08-02](/news/2026-08-02-kda-15-past-human-sota) · [26-05-15](/news/2026-05-15-mlsys-flashinfer-top3) |
 | **SGLang-Diffusion** | A quality tier, so a bf16-order-changing fusion can ship at all | [26-08-06](/blog/2026-08-06-sglang-diffusion-quality-tiers) |
