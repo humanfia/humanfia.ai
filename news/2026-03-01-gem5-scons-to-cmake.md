@@ -1,6 +1,6 @@
 ---
-title: One person, some agents, and gem5's build system
-description: A full migration of gem5's build system from SCons to CMake — 567 files changed, one engineer, and agents running for weeks.
+title: "567 files, one engineer: agents port gem5's build from SCons to CMake"
+description: "gem5's whole build system, ported from SCons to CMake by one engineer directing agents for weeks — the least glamorous long-horizon task there is, and the one that taught us the most."
 date: 2026-03-01
 authors:
   - Sihao Liu
@@ -26,3 +26,6 @@ caring about the loop rather than the model, and it is the kind of task
 [FlowBench](/projects/flowbench) is being assembled out of.
 
 One engineer, some weeks, 567 files, and a build that works.
+
+[The pull request, gem5/gem5#2969](https://github.com/gem5/gem5/pull/2969) ·
+[FlowBench](/projects/flowbench)

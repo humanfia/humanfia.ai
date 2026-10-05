@@ -1,6 +1,6 @@
 ---
-title: "Lean-Eval: first place, and 172 research-level proofs"
-description: A fully agentic run took first place on the Lean-Eval leaderboard with 172 research-level mathematics problems — every accepted proof sorry-free and independently re-verified.
+title: "From #2 to #1 on Lean-Eval in three weeks: 172 research-level proofs"
+description: "A fully agentic run took first place on the Lean-Eval leaderboard with 172 research-level problems — every accepted proof sorry-free and independently re-verified."
 date: 2026-08-18
 authors:
   - Zhengyang Zhang
@@ -8,7 +8,7 @@ authors:
 tag: HOA
 ---
 
-Three weeks ago this flow was [second on Lean-Eval](/blog/2026-07-29-lean-eval-second), 149 of
+Three weeks ago this flow was [second on Lean-Eval](/news/2026-07-29-lean-eval-second), 149 of
 219, behind a specialist prover. It is now first, with **172 research-level problems** solved
 and machine-checked in Lean 4, using GPT-5.6 and a fully agentic workflow.
 

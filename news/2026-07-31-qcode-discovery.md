@@ -1,6 +1,6 @@
 ---
-title: QCode Discovery, made fail-closed
-description: A search that reported wins on a heuristic now reports them only on an exact construction, an independent verification and a replay against established IBM baselines — 17,520 definitions across 21 lattices.
+title: "No certificate, no win: QCode Discovery's search now fails closed"
+description: "17,520 definitions across 21 lattices, and no candidate counts as a win without an exact construction, an independent verification and a replay against the IBM baselines."
 date: 2026-07-31
 authors:
   - Jing Xiong

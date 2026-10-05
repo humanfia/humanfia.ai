@@ -1,13 +1,13 @@
 ---
-title: KDA 1.5 goes past human SOTA on every contest track
-description: A rerun of the MLSys 2026 FlashInfer kernel contest with CuteDSL support, a profiling skill and a better loop — 1.25× to 1.39× past the best human entries on all three tracks.
+title: "KDA 1.5 beats the best human kernels on every MLSys track, up to 1.39×"
+description: "A rerun of the MLSys 2026 FlashInfer contest with CuteDSL, a profiling skill and a better loop: 1.25× to 1.39× past the best human entries — including a track where KDA 1.0 was slower than the baseline."
 date: 2026-08-02
 authors:
   - Dongyun Zou
 tag: KDA
 ---
 
-In May, [KDA took top-three placements on every track](/blog/2026-05-15-mlsys-flashinfer-top3)
+In May, [KDA took top-three placements on every track](/news/2026-05-15-mlsys-flashinfer-top3)
 of the MLSys 2026 FlashInfer kernel contest. That was a good result against the field. It was
 not a good result against the field's best entries, which were written by people.
 

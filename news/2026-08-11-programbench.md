@@ -1,6 +1,6 @@
 ---
-title: "ProgramBench: 3.5%, against 0.5% and 0%"
-description: The same two models that solve 0.5% and 0% of ProgramBench on their own solve 3.5% of it arranged as a builder and a reviewer in a loop — and the curve had not flattened when the clock ran out.
+title: "0% and 0.5% alone, 3.5% together: a review loop on ProgramBench"
+description: "Two models that solve 0% and 0.5% of ProgramBench on their own solve 3.5% as a builder and a reviewer in a loop — and the curve was still rising when the four-hour clock ran out."
 date: 2026-08-11
 authors:
   - Zheng Du

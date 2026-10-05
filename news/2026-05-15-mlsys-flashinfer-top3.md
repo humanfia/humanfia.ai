@@ -1,6 +1,6 @@
 ---
-title: Top three on every track at the MLSys FlashInfer contest
-description: KDA-designed kernels placed in the top three on all tracks of the MLSys 2026 FlashInfer contest — 1.4× on FP8 MoE, 33.3× on DSA, 17.6× on GDN.
+title: "33× on DSA: KDA kernels place top three on every MLSys 2026 track"
+description: "KDA-designed kernels placed in the top three on all three tracks of the MLSys 2026 FlashInfer contest — 1.4× on FP8 MoE, 33.3× on DSA and 17.6× on GDN over the baseline."
 date: 2026-05-15
 authors:
   - Dongyun Zou

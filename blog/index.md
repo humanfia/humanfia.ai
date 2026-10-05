@@ -1,6 +1,6 @@
 ---
 title: Blog
-description: Every result Humanfia has published, one post each — what was run, who ran it, and what it can be checked against.
+description: What Humanfia thinks and how it works — essays, design arguments and long write-ups, signed by the people who wrote them.
 aside: false
 outline: false
 pageClass: page-wide
@@ -8,8 +8,9 @@ pageClass: page-wide
 
 # Blog
 
-<p class="lede">One result, one post. There is no separate results page any more: a number and
-its caveats belong in the same place, dated, with the people who produced it named at the top.
-Subscribe by <a href="/blog/feed.rss">RSS</a>.</p>
+<p class="lede">The arguments behind the work: how the system is put together, why a loop is
+shaped the way it is, and what a long run taught us that a number alone would not. The results
+themselves, one per post, are in <a href="/news/">the news</a>. Subscribe by
+<a href="/blog/feed.rss">RSS</a>.</p>
 
-<PostMosaic :limit="0" />
+<PostMosaic kind="blog" :limit="0" />

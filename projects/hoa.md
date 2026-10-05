@@ -19,12 +19,12 @@ accepts the proof or it does not.</p>
 
 | | Result | Written up |
 | --- | --- | --- |
-| **Lean-Eval** | 251 problems accepted, the most of any entry; on the v1 set, first by first solves and second by total, 79 of 128 | [26-08-18](/blog/2026-08-18-lean-eval-first) · [26-07-29](/blog/2026-07-29-lean-eval-second) |
-| **IMO 2026** | Six of six, on two different backends, 3.2× faster than the reported agentic result | [26-07-22](/blog/2026-07-22-imo-2026) |
-| **PutnamBench** | 672 of 672, joint first on the official leaderboard (670 at the June write-up), and every problem in Putnam 2025 | [26-06-26](/blog/2026-06-26-putnambench) |
-| **IPhO 2026** | 23 of 23 theory subproblems, sorry-free; 30 of 30 theory points by our own grading | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
-| **QAlg** | 36 of 36, blind | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
-| **QIT** | 40 of 40 end to end (37 of 40 at the July write-up) | [26-07-29](/blog/2026-07-29-physics-and-quantum) |
+| **Lean-Eval** | 251 problems accepted, the most of any entry; on the v1 set, first by first solves and second by total, 79 of 128 | [26-08-18](/news/2026-08-18-lean-eval-first) · [26-07-29](/news/2026-07-29-lean-eval-second) |
+| **IMO 2026** | Six of six, on two different backends, 3.2× faster than the reported agentic result | [26-07-22](/news/2026-07-22-imo-2026) |
+| **PutnamBench** | 672 of 672, joint first on the official leaderboard (670 at the June write-up), and every problem in Putnam 2025 | [26-06-26](/news/2026-06-26-putnambench) |
+| **IPhO 2026** | 23 of 23 theory subproblems, sorry-free; 30 of 30 theory points by our own grading | [26-07-29](/news/2026-07-29-physics-and-quantum) |
+| **QAlg** | 36 of 36, blind | [26-07-29](/news/2026-07-29-physics-and-quantum) |
+| **QIT** | 40 of 40 end to end (37 of 40 at the July write-up) | [26-07-29](/news/2026-07-29-physics-and-quantum) |
 | **Physics Cup · SuperChem · HLE** | The model / tool / flow comparison | [26-07-08](/blog/2026-07-08-model-tool-flow) |
 
 ## What counts as solved

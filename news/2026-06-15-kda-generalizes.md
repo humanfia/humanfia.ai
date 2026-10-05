@@ -1,6 +1,6 @@
 ---
-title: KDA generalizes to hardware it was never tuned for
-description: ASM, HIP and ROCm — the loop finds optimization opportunities on less popular, less documented hardware too, which is the property that matters for the parts that do not exist yet.
+title: "Thin docs, no corpus: KDA still finds speedups on AMD hardware"
+description: "On ASM, HIP and ROCm — far less documentation, far fewer published kernels to copy from — KDA still lands the speedup. Two of them are merged in FlyDSL."
 date: 2026-06-15
 authors:
   - Jin Pan

@@ -1,9 +1,18 @@
 import { createContentLoader } from 'vitepress'
+import { authorsOf } from './people'
 
-// Every post under blog/, newest first, read at build time. The index page renders this, the
-// news reel on the home page reads the first few of it, and the RSS feed in config.mts loads
-// the same glob for itself -- so adding a post is adding a file.
+// Every post, from both sections, newest first, read at build time.
+//
+// There are two kinds of post and they live in two directories. `news/` is the record: one
+// result per post, a number with its caveats and a date on it. `blog/` is what we think: the
+// essays, the design arguments, the write-ups that are about a way of working rather than a
+// score. Both indexes, the home page and the RSS feeds in config.mts read the same two globs,
+// so adding a post is still adding a file -- and which directory it is in is the whole of
+// deciding what kind it is.
+export type Kind = 'blog' | 'news'
+
 export interface Post {
+  kind: Kind
   title: string
   url: string
   date: string
@@ -31,21 +40,15 @@ const SHORT = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 })
 
-/** `authors` is the list; `author` is what the first three posts were written with. */
-const authorsOf = (front: Record<string, unknown>): string[] => {
-  if (Array.isArray(front.authors)) return front.authors as string[]
-  if (typeof front.author === 'string') return [front.author]
-  return ['Humanfia']
-}
-
-export default createContentLoader('blog/*.md', {
+export default createContentLoader(['blog/*.md', 'news/*.md'], {
   excerpt: false,
   transform(raw): Post[] {
     return raw
-      .filter((page) => page.url !== '/blog/' && page.frontmatter.date)
+      .filter((page) => page.frontmatter.date && !page.url.endsWith('/'))
       .map((page) => {
         const date = new Date(page.frontmatter.date)
         return {
+          kind: (page.url.startsWith('/news/') ? 'news' : 'blog') as Kind,
           title: page.frontmatter.title ?? page.url,
           url: page.url,
           date: FORMAT.format(date),

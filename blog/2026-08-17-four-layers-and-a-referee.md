@@ -81,7 +81,7 @@ Every layer below them can be evaluated with numbers we chose ourselves, and num
 choose yourself have a way of going up. A Lean 4 kernel does not care what we intended. A
 contest deadline does not care. A public leaderboard does not care. So far that has produced
 [all six IMO 2026 problems formally verified](/projects/hoa),
-[670 of 672 on PutnamBench](/blog/2026-06-26-putnambench), and top-three track placements at the
+[670 of 672 on PutnamBench](/news/2026-06-26-putnambench), and top-three track placements at the
 MLSys 2026 FlashInfer kernel contest with MIT HAN Lab.
 
 They are also where the hard tasks come from. A benchmark assembled out of a domain nobody

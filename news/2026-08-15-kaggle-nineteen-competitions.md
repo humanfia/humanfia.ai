@@ -1,9 +1,11 @@
 ---
-title: Ten workflows, nineteen competitions
-description: Roughly ten distinct agent workflows entered real Kaggle competitions. Of nineteen completed, fourteen finished in the top 5% — and the gains came from disagreement between agents, not from a better model.
+title: "14 of 19 Kaggle competitions in the top 5%, five inside the top 1%"
+description: "Ten agent workflows on live Kaggle competitions: of nineteen completed, fourteen finished in the top 5% — and our first read is that disagreement between agents, not a better model, did it."
 date: 2026-08-15
 authors:
   - Changye Li
+  - Menghan Li
+  - Yitong Liu
   - Zijian Zhang
 tag: HKA
 ---
