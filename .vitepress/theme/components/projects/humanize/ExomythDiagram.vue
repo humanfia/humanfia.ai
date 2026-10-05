@@ -3,7 +3,7 @@
 // programs they started, as rows on one clock. A playhead sweeps the run and each slice appears
 // as the clock reaches it; the dashed ties are what started what.
 import { onBeforeUnmount, ref, watch } from 'vue'
-import { still, useSeen } from './chart'
+import { prefersReducedMotion as still, useInView as useSeen } from '../../kit/shared'
 const ROWS = [
   { group: 'agent', name: 'builder · main', slices: [[2, 14, 'think'], [16, 34, 'Bash: pytest'], [36, 46, 'think'], [48, 66, 'Task: spawn'], [78, 88, 'Edit: calc.py']] },
   { group: 'agent', name: 'builder · subagent', slices: [[52, 62, 'think'], [64, 82, 'Read: …/test_calc.py']] },

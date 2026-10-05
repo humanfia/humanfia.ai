@@ -139,21 +139,25 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
         v-for="(layer, i) in LAYERS"
         :key="layer.name"
         :class="[where(i), { held }]"
+        :style="{ '--w': `${100 - Math.abs(i - 8) * 2.2}%` }"
       >
         <button
           type="button"
+          :aria-pressed="at === i"
           @mouseenter="pick(i)"
           @focus="pick(i)"
+          @click="pick(i)"
           @keydown="onKey($event, i)"
         >
+          <span class="n">{{ String(i + 1).padStart(2, '0') }}</span>
           <code>{{ layer.name }}</code>
           <span class="rel">{{ where(i) === 'on' ? '' : where(i) === 'above' ? 'above it' : 'below it' }}</span>
         </button>
       </li>
     </ol>
 
-    <aside>
-      <p class="eyebrow">{{ at === 0 ? 'the top' : at === LAYERS.length - 1 ? 'the bottom' : 'layer' }}</p>
+    <aside aria-live="polite">
+      <p class="eyebrow">{{ at === 0 ? 'the top' : at === LAYERS.length - 1 ? 'the bottom' : `layer ${at + 1} of ${LAYERS.length}` }}</p>
       <code class="name">{{ current.name }}</code>
       <p class="is">{{ current.is }}</p>
       <p v-if="current.note" class="note">{{ current.note }}</p>
@@ -174,46 +178,66 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
 <style scoped>
 .stack {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 1.05fr);
-  gap: 18px;
-  margin: 28px 0;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+  gap: clamp(20px, 4vw, 56px);
+  margin: 0;
 }
 
-/* ---- The tower --------------------------------------------------------------------------- */
+/* ---- The tower: seventeen plates, stacked, the one in hand pulled out ------------------- */
 
 .tower {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  align-items: center;
+  gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.tower li {
+  width: var(--w);
+  margin: 0;
+}
+
 .tower button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  padding: 9px 14px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--vp-c-text-1) 7%, transparent);
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.2s, background-color 0.2s, opacity 0.2s;
+  transition:
+    background-color 0.25s,
+    opacity 0.25s,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tower button:hover {
+  background: color-mix(in srgb, var(--vp-c-text-1) 12%, transparent);
+}
+
+.n {
+  font-family: var(--vp-font-family-mono);
+  font-size: 10.5px;
+  color: var(--vp-c-text-3);
 }
 
 .tower code {
   font-family: var(--vp-font-family-mono);
-  font-size: 12.5px;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--vp-c-text-1);
   background: none;
   padding: 0;
 }
 
 .rel {
+  margin-left: auto;
   font-family: var(--vp-font-family-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -227,25 +251,20 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
   opacity: 1;
 }
 
-/* The one under the pointer. */
+/* The one in hand: ink, a red edge, pulled a step out of the stack. */
 .on button {
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+  background: var(--vp-c-text-1);
+  box-shadow: inset 6px 0 0 var(--hf-red);
+  transform: translateX(10px);
 }
 
-.on code {
-  color: var(--vp-c-brand-1);
-  font-weight: 700;
+.on code,
+.on .n {
+  color: var(--vp-c-bg);
 }
 
-/* What names it, and what it may name. Only drawn once something is held, so the still
-   diagram is twelve equal layers rather than a state nobody asked for. */
 .held.above button {
-  opacity: 0.55;
-}
-
-.held.below button {
-  border-color: var(--vp-c-brand-2);
+  opacity: 0.5;
 }
 
 /* ---- The panel --------------------------------------------------------------------------- */
@@ -254,9 +273,8 @@ aside {
   align-self: start;
   position: sticky;
   top: calc(var(--vp-nav-height) + 24px);
-  padding: 18px 20px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  padding: 26px 28px 24px;
+  border-top: 6px solid var(--hf-red);
   background: var(--vp-c-bg-soft);
 }
 
@@ -272,40 +290,40 @@ aside {
 
 .name {
   display: block;
-  margin-top: 8px;
+  margin-top: 12px;
   font-family: var(--vp-font-family-mono);
-  font-size: 17px;
+  font-size: clamp(28px, 3vw, 40px);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
   color: var(--vp-c-text-1);
   background: none;
   padding: 0;
 }
 
 .is {
-  margin: 10px 0 0;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--vp-c-text-1);
+}
+
+.note {
+  margin: 14px 0 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--hf-red);
   font-size: 14px;
   line-height: 1.6;
   color: var(--vp-c-text-2);
 }
 
-.note {
-  margin: 12px 0 0;
-  padding-left: 12px;
-  border-left: 2px solid var(--vp-c-brand-2);
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--vp-c-text-3);
-}
-
 .entry {
-  margin: 14px 0 0;
-  padding-top: 12px;
+  margin: 18px 0 0;
+  padding-top: 14px;
   border-top: 1px solid var(--vp-c-divider);
   font-family: var(--vp-font-family-mono);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.7;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   overflow-wrap: anywhere;
 }
 
@@ -320,7 +338,8 @@ aside {
 
 figcaption {
   grid-column: 1 / -1;
-  font-size: 13px;
+  max-width: 900px;
+  font-size: 13.5px;
   line-height: 1.65;
   color: var(--vp-c-text-3);
 }
@@ -335,13 +354,32 @@ figcaption a {
   font-weight: 600;
 }
 
+figcaption a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 720px) {
   .stack {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tower li {
+    width: 100%;
+  }
+
+  .on button {
+    transform: none;
   }
 
   aside {
     position: static;
+    order: -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tower button {
+    transition: none;
   }
 }
 </style>

@@ -126,42 +126,142 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="reel">
-    <div ref="stage" class="stage" :aria-label="shown.what" role="img" @click="toggle" />
-
-    <div class="picks" role="group" aria-label="which screen">
+    <div class="picks" role="tablist" aria-label="Which screen">
       <button
         v-for="(shot, i) in SHOTS"
         :key="shot.cast"
         type="button"
+        role="tab"
+        :aria-selected="i === at"
         :class="{ on: i === at }"
         @click="show(i)"
       >
-        {{ shot.said }}
+        <code>{{ shot.said }}</code>
+        <span>{{ shot.what }}</span>
       </button>
+      <a class="guide" :href="`${DOCS}${shown.guide}`">Read the guide ↗</a>
     </div>
 
-    <p class="under">
-      {{ shown.what }}
-      <a :href="`${DOCS}${shown.guide}`">read the guide ↗</a>
-    </p>
+    <div class="screen">
+      <div class="bar" aria-hidden="true"><i /><code>{{ shown.said }}</code><span>recorded · click to pause</span></div>
+      <div ref="stage" class="stage" :aria-label="shown.what" role="img" @click="toggle" />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .reel {
-  margin: 28px 0;
-  padding: 16px 18px 14px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  border: 2px solid var(--vp-c-text-1);
   background: var(--vp-c-bg-soft);
+}
+
+/* ---- the screens, as a list ------------------------------------------------------------ */
+
+.picks {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid var(--vp-c-text-1);
+}
+
+.picks button {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  border: 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.picks button:hover {
+  background: color-mix(in srgb, var(--vp-c-text-1) 5%, transparent);
+}
+
+.picks code {
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  background: none;
+  padding: 0;
+}
+
+.picks span {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--vp-c-text-3);
+}
+
+.picks button.on {
+  background: var(--vp-c-text-1);
+  box-shadow: inset 6px 0 0 var(--hf-red);
+}
+
+.picks button.on code {
+  color: var(--vp-c-bg);
+}
+
+.picks button.on span {
+  color: color-mix(in srgb, var(--vp-c-bg) 75%, transparent);
+}
+
+.guide {
+  margin-top: auto;
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.guide:hover {
+  text-decoration: underline;
+}
+
+/* ---- the screen ------------------------------------------------------------------------ */
+
+.screen {
+  min-width: 0;
+  background: #16171d;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #2a2b33;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11.5px;
+  color: #8c8679;
+}
+
+.bar i {
+  width: 10px;
+  height: 10px;
+  background: #ff5a43;
+}
+
+.bar code {
+  font-size: 12px;
+  color: #e2e4ea;
+  background: none;
+}
+
+.bar span {
+  margin-left: auto;
 }
 
 .stage {
   position: relative;
   aspect-ratio: 25 / 14;
   overflow: hidden;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
   background: #16171d;
   cursor: pointer;
 }
@@ -178,51 +278,34 @@ onBeforeUnmount(() => {
   border-radius: 0;
 }
 
-.picks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 14px 0 0;
-}
+@media (max-width: 860px) {
+  .reel {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-.picks button {
-  padding: 5px 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 20px;
-  background: transparent;
-  color: var(--vp-c-text-3);
-  font-family: var(--vp-font-family-mono);
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
-}
+  .picks {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: 0;
+    border-bottom: 2px solid var(--vp-c-text-1);
+  }
 
-.picks button:hover {
-  color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-}
+  .picks button {
+    border-bottom: 0;
+    padding: 10px 12px;
+  }
 
-.picks button.on {
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  font-weight: 600;
-}
+  .picks span {
+    display: none;
+  }
 
-.under {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-  margin: 12px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--vp-c-text-3);
-}
+  .guide {
+    margin: 0 0 0 auto;
+    padding: 10px 12px;
+  }
 
-.under a {
-  margin-left: auto;
-  flex: none;
-  font-weight: 600;
-  color: var(--vp-c-brand-1);
+  .bar span {
+    display: none;
+  }
 }
 </style>
