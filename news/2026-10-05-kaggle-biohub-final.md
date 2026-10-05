@@ -7,7 +7,7 @@ authors:
 tag: HKA
 ---
 
-On 15 August, one of our Kaggle agent workflows was **8th of 2,378** on the public leaderboard
+[On 15 August](/news/2026-08-15-kaggle-nineteen-competitions), one of our Kaggle agent workflows was **8th of 2,378** on the public leaderboard
 of [Biohub – Cell Tracking During Development](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development).
 That was the top 0.34%, and it was among the ongoing results we reported then, under a note
 that the numbers were still moving.

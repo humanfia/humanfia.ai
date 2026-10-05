@@ -61,7 +61,7 @@ and they apply here:
   harness, so these are not contest scores.
 - The kernels are tuned to the official shapes, so do not expect the same speedups elsewhere.
 - The pinned human repositories are a few commits past the contest deadline.
-- The repository numbers its releases from 0.1, the original contest entry. Our August post
+- The repository numbers its releases from 0.1, the original contest entry. Our [August post](/news/2026-08-02-kda-15-past-human-sota)
   called the same two generations KDA 1.0 and 1.5, and reported 1.25× to 1.39× over the human
   entries on B300 under a different protocol. The two tables are not comparable, and the MoE margin is smaller in this one.
 
@@ -78,6 +78,6 @@ is not upstream.
 
 How our agents wrote Kimi Delta Attention kernels up to 2.96× faster than FlashKDA on B300, and
 how they tried to cheat along the way, is in
-[KDA²: KDA optimizes KDA](https://nvlabs.github.io/kda/blog/2026-09-27-kda-for-kda/).
+[KDA²: KDA optimizes KDA](/blog/2026-09-27-kda-for-kda).
 
 [KDA](/projects/kda) · [kernel-design-agents](https://github.com/mit-han-lab/kernel-design-agents)

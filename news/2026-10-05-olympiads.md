@@ -9,7 +9,8 @@ authors:
 tag: HOA
 ---
 
-Since July, the same open harness has finished IPhO and the quantum run we reported then, and
+Since July, the same open harness has finished IPhO and the quantum run
+[we reported then](/news/2026-07-29-physics-and-quantum), and
 has been pointed at three more olympiads. Each one reached the top of its own scale. **None of these scores came from an official
 jury,** and the scales are different, so each comes with a note on what was graded and by
 whom. The notes matter as much as the numbers.
