@@ -6,6 +6,12 @@ authors:
   - Lesheng Jin
   - Yuchen Jin
 tag: KDA
+achievement:
+  topic: SOL Bench
+  value: 53
+  viz: grid
+  label: "First places on SOL Bench"
+  body: "One week of unattended kernel generation on a single 8×B200 node."
 ---
 
 ::: info Ongoing

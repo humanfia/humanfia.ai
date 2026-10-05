@@ -6,6 +6,13 @@ authors:
   - Zhengyang Zhang
   - Hongzhou Lin
 tag: HOA
+achievement:
+  topic: Lean-Eval
+  value: 1
+  from: 12
+  prefix: "#"
+  label: "Lean-Eval leaderboard"
+  body: "172 research-level mathematics problems, every accepted proof sorry-free and independently re-verified."
 ---
 
 Three weeks ago this flow was [second on Lean-Eval](/news/2026-07-29-lean-eval-second), 149 of

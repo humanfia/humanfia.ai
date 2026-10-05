@@ -5,6 +5,14 @@ date: 2026-08-14
 authors:
   - Jiaming Tang
 tag: KDA
+achievement:
+  topic: MSA indexer
+  value: 6.5
+  from: 1
+  decimals: 1
+  suffix: ×
+  label: "MSA indexer, in production"
+  body: "Prefill on B300, bitwise-identical output."
 ---
 
 This one is not a contest. It is a kernel in a serving path that somebody is paying for by the

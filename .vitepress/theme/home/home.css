@@ -694,7 +694,7 @@
   max-width: none;
 }
 
-/* ----------------------------------------------------------------------------- 4 results */
+/* ------------------------------------------------------------------------ 4 achievements */
 
 .h-bento {
   display: grid;
@@ -748,6 +748,7 @@
 .h-tile.w5 { grid-column: span 5; }
 .h-tile.w4 { grid-column: span 4; }
 .h-tile.w3 { grid-column: span 3; }
+.h-tile.w12 { grid-column: span 12; }
 .h-tile.tall {
   min-height: 380px;
 }
@@ -794,31 +795,36 @@
 }
 
 /* The small pictures in the tiles. Each one is drawn empty and fills in when its tile counts. */
-.v-six {
+/* A box per point, ticked as it counts. In a tall tile the boxes stand in its corner. */
+.v-checks {
+  display: grid;
+  grid-template-columns: repeat(6, 36px);
+  gap: 8px;
+  margin-top: 22px;
+}
+.tall .v-checks {
   position: absolute;
   right: 28px;
   bottom: 28px;
-  display: grid;
   grid-template-columns: repeat(3, 44px);
-  gap: 8px;
+  margin-top: 0;
 }
-.v-six i {
+.v-checks i {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  aspect-ratio: 1;
   font-style: normal;
   font-weight: 800;
   color: transparent;
   border: 2px solid var(--h-line);
   transition: all 0.5s var(--h-ease) calc(var(--i) * 0.16s + 0.2s);
 }
-.live .v-six i {
+.live .v-checks i {
   color: var(--h-on-ink);
   background: var(--h-ink);
   border-color: var(--h-ink);
 }
-.live .v-six i:last-child {
+.live .v-checks i:last-child {
   background: var(--h-red);
   border-color: var(--h-red);
   border-radius: 50%;
@@ -910,7 +916,7 @@
   transition: stroke-dashoffset 1.6s var(--h-ease) 0.2s;
 }
 .live .v-ring circle.on {
-  stroke-dashoffset: 0.3;
+  stroke-dashoffset: var(--off);
 }
 
 .v-grid,
@@ -1534,6 +1540,10 @@
   .h-tile.w3 {
     grid-column: span 6;
   }
+  /* Two to a row: an odd last tile takes the whole row rather than leave a hole beside it. */
+  .h-tile:last-child:nth-child(odd) {
+    grid-column: span 12;
+  }
   .h-panel {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -1561,16 +1571,14 @@
   .h-tile {
     min-height: 220px;
   }
-  .v-six {
+  .tall .v-checks {
     position: static;
     margin-top: 22px;
+  }
+  .v-checks,
+  .tall .v-checks {
     grid-template-columns: repeat(6, 1fr);
     gap: 6px;
-  }
-  .v-six i {
-    width: auto;
-    height: auto;
-    aspect-ratio: 1;
   }
   .h-panel-copy p:not(.h-step-tag) {
     display: none;

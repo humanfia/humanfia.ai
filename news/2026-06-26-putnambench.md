@@ -5,6 +5,14 @@ date: 2026-06-26
 authors:
   - Zhengyang Zhang
 tag: HOA
+achievement:
+  topic: PutnamBench
+  value: 670
+  suffix: /672
+  of: 672
+  viz: ring
+  label: "PutnamBench"
+  body: "99.7% of the benchmark, and every problem of Putnam 2025."
 ---
 
 ::: tip This has since moved

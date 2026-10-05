@@ -5,6 +5,12 @@ date: 2026-06-19
 authors:
   - Xiaoyu Zhang
 tag: KDA
+achievement:
+  topic: SGLang
+  value: 40
+  suffix: "+"
+  label: "Agent-tuned operators merged into SGLang"
+  body: "One of them lifts Qwen3-Next throughput by 71%."
 ---
 
 More than **40 operators** optimized and merged into SGLang, with another batch of twenty

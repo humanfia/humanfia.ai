@@ -5,6 +5,18 @@ date: 2026-08-11
 authors:
   - Zheng Du
 tag: Humanize 2
+achievement:
+  topic: ProgramBench
+  value: 3.5
+  decimals: 1
+  suffix: "%"
+  viz: bars
+  board:
+    - { name: Opus, score: 0 }
+    - { name: GPT, score: 0.5 }
+    - { name: loop, score: 3.5, us: true }
+  label: "ProgramBench"
+  body: "Two models that solve 0% and 0.5% alone, as a builder and a reviewer in a loop."
 ---
 
 ::: info Ongoing

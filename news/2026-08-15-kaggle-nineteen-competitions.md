@@ -8,6 +8,14 @@ authors:
   - Yitong Liu
   - Zijian Zhang
 tag: HMA
+achievement:
+  topic: Kaggle
+  value: 14
+  suffix: /19
+  of: 19
+  viz: dots
+  label: "Kaggle top 5%"
+  body: "Nineteen completed competitions, ten agent workflows."
 ---
 
 ::: info Still running

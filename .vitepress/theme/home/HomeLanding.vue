@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The home page. It is one argument told in order -- what we build, how it is put together,
-// what came back, where to start -- and nothing on it is pinned. The page moves at the speed of
+// what it has achieved, where to start -- and nothing on it is pinned. The page moves at the speed of
 // the hand; the pictures are driven by where their section happens to be on screen (the hero
 // comes apart as it leaves, the stack turns to whichever paragraph is in the middle of the
 // window, the applications stack up like cards), or play once when they arrive (the manifesto,
@@ -9,6 +9,7 @@
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { data as posts } from '../posts.data.mts'
+import { data as achievements, type Achievement } from '../achievements.data.mts'
 import { HeroScene, StackField, fitScene } from './fields'
 import HomeRollup from './HomeRollup.vue'
 import HomeVision from './HomeVision.vue'
@@ -85,7 +86,7 @@ const STEPS = [
     tag: 'Applications',
     title: 'Pointed where the score isn’t ours.',
     body: 'HOA answers to Lean. KDA answers to the profiler. HMA answers to the MLE-bench grader. Each was chosen because somebody else keeps the scoreboard.',
-    link: { text: 'See what came back', href: '#results' },
+    link: { text: 'See the achievements', href: '#achievements' },
   },
   {
     tag: 'FlowBench',
@@ -105,87 +106,50 @@ const focus = (k: number) => clamp(1 - Math.abs(stackP.value * 5 - 0.5 - k) * 1.
 /** The paragraph being read is at full strength, the others are set back. */
 const stepOn = (k: number) => !motion.value || focus(k) > 0.4
 
-// --------------------------------------------------------------------------------- results
+// ---------------------------------------------------------------------------- achievements
 
-interface Tile {
-  id: string
-  to: number
-  from?: number
-  places?: number
-  prefix?: string
-  suffix?: string
-  label: string
-  body: string
-  href: string
-  size: string
-  viz?: 'six' | 'versus' | 'bars' | 'ring' | 'grid' | 'dots'
+// Every tile is a news post that declared an achievement (achievements.data.mts), one per
+// topic, newest first. Nothing here names a result: the sizes come from the count alone.
+//
+// The tiles are laid in rows that each fill the twelve columns: a tall pair first, then threes,
+// with a pair wherever a three would leave a tile on its own. The rows alternate their cut so
+// the mosaic does not read as a table.
+function sizes(n: number): string[] {
+  if (n < 2 || n === 3) return Array(n).fill(n === 1 ? 'w12' : 'w4')
+  const rows = [2]
+  let left = n - 2
+  while (left > 0) {
+    const k = left === 2 || left === 4 ? 2 : 3
+    rows.push(k)
+    left -= k
+  }
+  return rows.flatMap((k, r) => {
+    if (r === 0) return ['w7 tall', 'w5 tall']
+    if (k === 2) return r % 2 ? ['w5', 'w7'] : ['w7', 'w5']
+    return r % 2 ? ['w4', 'w4', 'w4'] : ['w5', 'w4', 'w3']
+  })
 }
+const SIZES = sizes(achievements.length)
 
-const TILES: Tile[] = [
-  {
-    id: 'imo', to: 6, suffix: '/6', size: 'w7 tall', viz: 'six',
-    label: 'IMO 2026',
-    body: 'Every problem solved by a fully agentic run and machine-checked in Lean 4 — on two different backends.',
-    href: '/news/2026-07-22-imo-2026',
-  },
-  {
-    id: 'lean', to: 1, from: 12, prefix: '#', size: 'w5 tall',
-    label: 'Lean-Eval leaderboard',
-    body: '172 research-level mathematics problems, every accepted proof sorry-free and independently re-verified.',
-    href: '/news/2026-08-18-lean-eval-first',
-  },
-  {
-    id: 'kda', to: 1.39, from: 1, places: 2, suffix: '×', size: 'w4', viz: 'versus',
-    label: 'Past the best human kernels',
-    body: 'KDA 1.5 on every track of the MLSys 2026 FlashInfer contest.',
-    href: '/news/2026-08-02-kda-15-past-human-sota',
-  },
-  {
-    id: 'pb', to: 3.5, places: 1, suffix: '%', size: 'w4', viz: 'bars',
-    label: 'ProgramBench',
-    body: 'Two models that solve 0.5% and 0% alone, as a builder and a reviewer in a loop.',
-    href: '/news/2026-08-11-programbench',
-  },
-  {
-    id: 'putnam', to: 670, suffix: '/672', size: 'w4', viz: 'ring',
-    label: 'PutnamBench',
-    body: '99.7% of the benchmark, and every problem of Putnam 2025.',
-    href: '/news/2026-06-26-putnambench',
-  },
-  {
-    id: 'sol', to: 53, size: 'w5', viz: 'grid',
-    label: 'First places on SOL Bench',
-    body: 'One week of unattended kernel generation on a single 8×B200 node.',
-    href: '/news/2026-06-22-sol-bench-batch',
-  },
-  {
-    id: 'msa', to: 6.5, from: 1, places: 1, suffix: '×', size: 'w3',
-    label: 'MSA indexer, in production',
-    body: 'Prefill on B300, bitwise-identical output.',
-    href: '/news/2026-08-14-msa-indexer',
-  },
-  {
-    id: 'kaggle', to: 14, suffix: '/19', size: 'w4', viz: 'dots',
-    label: 'Kaggle top 5%',
-    body: 'Nineteen completed competitions, ten agent workflows.',
-    href: '/news/2026-08-15-kaggle-nineteen-competitions',
-  },
-]
+/** How far up a bar or across a row an entry of the board reaches, against the board's best. */
+const reach = (t: Achievement, score: number) => `${(score / Math.max(...t.board!.map((b) => b.score))) * 100}%`
+/** The cells of the grid: `of` if the post gave one, else whole rows of twenty. */
+const cells = (t: Achievement) => t.of ?? Math.ceil(t.value / 20) * 20
 
-const fmt = (t: Tile, v: number) => `${t.prefix ?? ''}${v.toFixed(t.places ?? 0)}${t.suffix ?? ''}`
-const shown = reactive<Record<string, string>>(Object.fromEntries(TILES.map((t) => [t.id, fmt(t, t.to)])))
+const fmt = (t: Achievement, v: number) => `${t.prefix ?? ''}${v.toFixed(t.decimals ?? 0)}${t.suffix ?? ''}`
+const shown = reactive<Record<string, string>>(Object.fromEntries(achievements.map((t) => [t.url, fmt(t, t.value)])))
 const live = reactive<Record<string, boolean>>({})
 const bentoEl = ref<HTMLElement | null>(null)
 let bentoIO: IntersectionObserver | null = null
 
-function count(t: Tile) {
-  live[t.id] = true
+function count(t: Achievement) {
+  live[t.url] = true
   if (!motion.value) return
   const from = t.from ?? 0
   const t0 = performance.now()
   const tick = (now: number) => {
     const u = easeOut(clamp((now - t0) / 1500))
-    shown[t.id] = fmt(t, from + (t.to - from) * u)
+    shown[t.url] = fmt(t, from + (t.value - from) * u)
     if (u < 1) requestAnimationFrame(tick)
   }
   requestAnimationFrame(tick)
@@ -225,10 +189,11 @@ const cardStyle = (k: number) => {
   return { '--cover': c.toFixed(3), transform: `scale(${1 - 0.05 * c})` }
 }
 
+const putnam = achievements.find((a) => a.of && a.topic.trim().toLowerCase() === 'putnambench')
 const HOA_CHECKS = [
   ['IMO 2026', '6 / 6'],
   ['Lean-Eval', '#1 · 172 proofs'],
-  ['PutnamBench', '670 / 672'],
+  ...(putnam ? [['PutnamBench', `${putnam.value} / ${putnam.of}`]] : []),
   ['IPhO 2026 theory', '23 / 23'],
   ['Quantum algorithms', '36 / 36'],
 ]
@@ -242,7 +207,6 @@ const HMA_BARS = [
   { label: 'Claude Opus 5 alone', value: 72.4 },
   { label: 'GPT-5.6-sol alone', value: 68.0 },
 ]
-const KAGGLE = Array.from({ length: 19 }, (_, i) => i < 14)
 
 // ---------------------------------------------------------------------------------- runtime
 
@@ -310,7 +274,7 @@ onMounted(() => {
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue
-        const tile = TILES.find((t) => t.id === (entry.target as HTMLElement).dataset.tile)
+        const tile = achievements.find((t) => t.url === (entry.target as HTMLElement).dataset.tile)
         if (tile) count(tile)
         bentoIO?.unobserve(entry.target)
       }
@@ -396,50 +360,47 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 4. What came back. -->
-    <section id="results" class="h-section h-alt" aria-labelledby="results-title">
+    <!-- 4. Achievements: one tile per topic, from the news. -->
+    <section id="achievements" class="h-section h-alt" aria-labelledby="achievements-title">
       <div class="h-wrap">
         <header class="h-head" v-reveal>
-          <p class="h-kicker">What came back</p>
-          <h2 id="results-title" class="h-h2">The numbers,<br />and where to check them.</h2>
+          <p class="h-kicker">Achievements</p>
+          <h2 id="achievements-title" class="h-h2">The numbers,<br />and where to check them.</h2>
           <p class="h-lead">Every result is a post, dated, with the people who produced it named at the top.</p>
         </header>
         <div ref="bentoEl" class="h-bento">
           <a
-            v-for="(t, i) in TILES"
-            :key="t.id"
-            :href="t.href"
+            v-for="(t, i) in achievements"
+            :key="t.url"
+            :href="t.url"
             class="h-tile"
-            :class="[t.size, { live: live[t.id] }]"
-            :data-tile="t.id"
+            :class="[SIZES[i], { live: live[t.url] }]"
+            :data-tile="t.url"
             v-reveal="(i % 3) * 90"
             @pointermove="spot"
           >
             <span class="h-tile-label">{{ t.label }}</span>
-            <span class="h-tile-num">{{ shown[t.id] }}</span>
-            <span class="h-tile-body">{{ t.body }}</span>
+            <span class="h-tile-num">{{ shown[t.url] }}</span>
+            <span v-if="t.body" class="h-tile-body">{{ t.body }}</span>
 
-            <span v-if="t.viz === 'six'" class="v-six" aria-hidden="true">
-              <i v-for="n in 6" :key="n" :style="{ '--i': n }">✓</i>
+            <span v-if="t.viz === 'checks'" class="v-checks" aria-hidden="true">
+              <i v-for="n in t.value" :key="n" :style="{ '--i': n }">✓</i>
             </span>
-            <span v-else-if="t.viz === 'versus'" class="v-versus" aria-hidden="true">
-              <span><em>best human</em><i style="--w: 72%" /></span>
-              <span><em>KDA 1.5</em><i class="hot" style="--w: 100%" /></span>
+            <span v-else-if="t.viz === 'versus' && t.board" class="v-versus" aria-hidden="true">
+              <span v-for="b in t.board" :key="b.name"><em>{{ b.name }}</em><i :class="{ hot: b.us }" :style="{ '--w': reach(t, b.score) }" /></span>
             </span>
-            <span v-else-if="t.viz === 'bars'" class="v-bars" aria-hidden="true">
-              <span><i style="--h: 4%" /><em>0%</em></span>
-              <span><i style="--h: 15%" /><em>0.5%</em></span>
-              <span><i class="hot" style="--h: 100%" /><em>loop</em></span>
+            <span v-else-if="t.viz === 'bars' && t.board" class="v-bars" aria-hidden="true">
+              <span v-for="b in t.board" :key="b.name"><i :class="{ hot: b.us }" :style="{ '--h': reach(t, b.score) }" /><em>{{ b.name }}</em></span>
             </span>
-            <svg v-else-if="t.viz === 'ring'" class="v-ring" viewBox="0 0 44 44" aria-hidden="true">
+            <svg v-else-if="t.viz === 'ring' && t.of" class="v-ring" viewBox="0 0 44 44" aria-hidden="true">
               <circle cx="22" cy="22" r="19" />
-              <circle cx="22" cy="22" r="19" class="on" pathLength="100" />
+              <circle cx="22" cy="22" r="19" class="on" pathLength="100" :style="{ '--off': 100 * (1 - t.value / t.of) }" />
             </svg>
             <span v-else-if="t.viz === 'grid'" class="v-grid" aria-hidden="true">
-              <i v-for="n in 60" :key="n" :class="{ on: n <= 53 }" :style="{ '--i': n }" />
+              <i v-for="n in cells(t)" :key="n" :class="{ on: n <= t.value }" :style="{ '--i': n }" />
             </span>
-            <span v-else-if="t.viz === 'dots'" class="v-dots" aria-hidden="true">
-              <i v-for="(top, n) in KAGGLE" :key="n" :class="{ on: top }" :style="{ '--i': n }" />
+            <span v-else-if="t.viz === 'dots' && t.of" class="v-dots" aria-hidden="true">
+              <i v-for="n in t.of" :key="n" :class="{ on: n <= t.value }" :style="{ '--i': n }" />
             </span>
             <span class="h-tile-more" aria-hidden="true">Read the post ›</span>
           </a>

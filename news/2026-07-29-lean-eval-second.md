@@ -5,6 +5,12 @@ date: 2026-07-29
 authors:
   - Zhengyang Zhang
 tag: HOA
+achievement:
+  topic: Lean-Eval
+  value: 2
+  prefix: "#"
+  label: "Lean-Eval leaderboard"
+  body: "149 of 219 with a general model in a general agent loop."
 ---
 
 ::: tip This has since moved
