@@ -26,12 +26,12 @@ const DOCS = 'https://docs.humanfia.ai/humanize'
 
 /** The top-level directories the documentation is made of, `guide/` and `tutorials/` included:
  *  both are retired, both still answer through a stub, and a link that goes back to either is
- *  the regression this check exists for. */
+ *  the regression this check exists for. `flows/` is not one of them any more: the flow pages
+ *  moved to this site, under /flows/, and a link to the old place is a link to a redirect. */
 const SECTIONS = [
   'contributing',
   'demo',
   'features',
-  'flows',
   'guide',
   'reference',
   'tutorials',

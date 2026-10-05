@@ -3,6 +3,9 @@ import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createContentLoader, defineConfig, type SiteConfig } from 'vitepress'
 
+import { loadFlowverse, slugOf } from './flowverse.mts'
+import { FLOWS, KINDS } from './theme/flows'
+
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
 // so no base is prepended and every internal link is written from `/`. The documentation for
 // Humanize itself is a site of its own, built the same way from humanfia/humanize -- so
@@ -35,6 +38,34 @@ const PROJECTS = [
     items: PROJECT_LINKS,
   },
 ]
+
+/**
+ * The flows, as a menu: the catalogue first, then every flow under how its agents work together
+ * -- the same grouping as the catalogue page, from the same list (`theme/flows.ts`) -- and last
+ * whatever the flowverse releases that nobody here has written up yet, which is read at build
+ * time (`flowverse.mts`) so a release is in the menu the next time the site is built.
+ *
+ * One list, used twice, as the projects' is: it is the nav's dropdown and the /flows/ sidebar.
+ */
+const flowverse = await loadFlowverse()
+const written = new Set(FLOWS.map((one) => one.module).filter(Boolean))
+const FLOW_GROUPS = [
+  ...KINDS.map((kind) => ({
+    text: kind.said,
+    items: FLOWS.filter((one) => one.kind === kind.id).map((one) => ({ text: one.name, link: one.link })),
+  })).filter((group) => group.items.length),
+  ...(flowverse.modules.some((one) => !written.has(one.name))
+    ? [
+        {
+          text: 'Also in the flowverse',
+          items: flowverse.modules
+            .filter((one) => !written.has(one.name))
+            .map((one) => ({ text: one.name, link: `/flows/${slugOf(one.name)}` })),
+        },
+      ]
+    : []),
+]
+const FLOW_LINKS = [{ text: 'Every flow', items: [{ text: 'The catalogue', link: '/flows/' }] }, ...FLOW_GROUPS]
 
 /**
  * The blog's sidebar, read off the directory at config time so publishing a post is still
@@ -133,6 +164,7 @@ export default defineConfig({
     // this one does not own, and it went stale the moment that site moved a page.
     nav: [
       { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
+      { text: 'Flows', items: FLOW_LINKS, activeMatch: '/flows/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
@@ -141,6 +173,7 @@ export default defineConfig({
     // gets none at all: a list of one is furniture, not navigation.
     sidebar: {
       '/projects/': PROJECTS,
+      '/flows/': [{ text: 'Flows', link: '/flows/' }, ...FLOW_GROUPS.map((group) => ({ ...group, collapsed: false }))],
       '/blog/': blogSidebar(),
     },
 
