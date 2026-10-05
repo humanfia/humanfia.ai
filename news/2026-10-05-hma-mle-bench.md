@@ -39,11 +39,11 @@ The arrangement is simple, and almost all of it is about what is *not* carried o
 3. They alternate until the six hours are nearly up. The last **15 minutes** go to picking one
    of the candidates already accepted. Private test scores are never shown to either agent.
 
-Our reading is that a long session narrows. It commits to a line of attack and keeps
-refining it. A handoff to a different model with a blank context reopens the question while
-keeping everything the first one built. The paper behind the repository develops this into a
-formal model of the process. We have not yet shown that this is the mechanism, rather than something else
-about switching.
+The repository credits [two effects at once](https://github.com/humanfia/hma#figure-1-hma-overview):
+**context renewal**, because a long-running agent improves more and more slowly and a fresh
+session restarts that curve, and **complementary capabilities**, because the second model
+searches differently from the first. The handoff keeps everything the first agent built and drops only its
+train of thought.
 
 ## What to be careful with
 
