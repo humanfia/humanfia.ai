@@ -30,6 +30,13 @@ const PROJECT_LINKS = [
   { text: 'HMA', link: '/projects/hma' },
 ]
 
+/** The research: what the flows have taught us (Flow Science), and the machinery under the
+ *  runtime by codename (Deep Tech). A menu beside Flows, and the /research/ sidebar. */
+const RESEARCH_LINKS = [
+  { text: 'Flow Science', link: '/research/flow-science' },
+  { text: 'Deep Tech', link: '/research/deep-tech' },
+]
+
 const PROJECTS = [
   {
     // A heading, not an entry. It used to say the overview was reached from the nav; there is
@@ -204,6 +211,7 @@ export default defineConfig({
     nav: [
       { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
       { text: 'Flows', items: FLOW_LINKS, activeMatch: '/flows/' },
+      { text: 'Research', items: RESEARCH_LINKS, activeMatch: '/research/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'News', link: '/news/', activeMatch: '/news/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
@@ -214,6 +222,7 @@ export default defineConfig({
     sidebar: {
       '/projects/': PROJECTS,
       '/flows/': [{ text: 'Flows', link: '/flows/' }, ...FLOW_GROUPS.map((group) => ({ ...group, collapsed: false }))],
+      '/research/': [{ text: 'Research', items: RESEARCH_LINKS }],
       '/blog/': sectionSidebar('blog'),
       '/news/': sectionSidebar('news'),
     },

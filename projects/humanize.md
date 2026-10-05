@@ -121,6 +121,9 @@ credentials, and those are answered here.
 
 <AnchorSplit />
 
+This is CogAnchor, one of the three subsystems on the [Deep Tech](/research/deep-tech#coganchor)
+page, next to Phobos (the flow compiler) and Exomyth (the trace).
+
 ## Seventeen layers, and a test that holds them
 
 The runtime drives twelve different CLIs without becoming twelve different products because
@@ -134,6 +137,14 @@ for it, no two layers name each other but one pair, and a test fails a build tha
 Not drawn — recorded from `hmz` itself, in a container with a stand-in coding agent in it.
 
 <TerminalReel />
+
+And two takes from the talk where we introduced it: the same Ralph loop started from the command
+line, and from inside `hmz` with `/flow`, where you pick the flow, set up its agent, save, and
+type the task.
+
+<DemoVideo src="/media/ralph-loop-cli.mp4" poster="/media/ralph-loop-cli.webp" title="A Ralph loop started with hmz exec: two fresh rounds, each picking up from the repository" caption="hmz exec -f ralph_loop with a budget file and one agent: round 1 maps the palette and adds dark-mode tokens, round 2 starts fresh, wires the toggle and finishes TASK.md." />
+
+<DemoVideo src="/media/ralph-loop-tui.mp4" poster="/media/ralph-loop-tui.webp" title="The same Ralph loop from inside hmz: /flow, choose ralph_loop, set up the agent, save, then the task" caption="Inside hmz: /flow, choose ralph_loop, set up its one agent, save, then say what to do. Each round is a fresh session with its own codename." />
 
 ## The flows it runs
 

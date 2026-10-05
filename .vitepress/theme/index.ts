@@ -3,6 +3,7 @@ import type { Theme } from 'vitepress'
 import { h } from 'vue'
 
 import AnchorSplit from './components/AnchorSplit.vue'
+import DemoVideo from './components/DemoVideo.vue'
 import ArchStack from './components/ArchStack.vue'
 import Install from './components/Install.vue'
 import LayerStack from './components/LayerStack.vue'
@@ -34,6 +35,7 @@ export default {
   enhanceApp({ app }) {
     app.component('AnchorSplit', AnchorSplit)
     app.component('ArchStack', ArchStack)
+    app.component('DemoVideo', DemoVideo)
     app.component('Install', Install)
     app.component('LayerStack', LayerStack)
     app.component('PostMosaic', PostMosaic)
