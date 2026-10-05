@@ -97,13 +97,13 @@ const x = (t: number) => {
   return PAD + ((t - a) / Math.max(1, b - a)) * (width.value - 2 * PAD)
 }
 
-/** Month ticks, thinned on a narrow axis so their labels never touch. */
+/** Month ticks (the cards carry the year), thinned on a narrow axis so their labels never touch. */
 const months = computed(() => {
   const [a, b] = domain.value
-  const ticks: { x: number; label: string; year?: number }[] = []
+  const ticks: { x: number; label: string }[] = []
   const d = new Date(a)
   while (+d <= b) {
-    ticks.push({ x: x(+d), label: MONTH.format(d), year: d.getUTCMonth() === 0 || !ticks.length ? d.getUTCFullYear() : undefined })
+    ticks.push({ x: x(+d), label: MONTH.format(d) })
     d.setUTCMonth(d.getUTCMonth() + 1)
   }
   const gap = ticks.length > 1 ? ticks[1].x - ticks[0].x : width.value
@@ -146,7 +146,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
           <svg :width="width" :height="height" :viewBox="`0 0 ${width} ${height}`" aria-hidden="true">
             <g v-for="m in months" :key="m.x" class="ptl-month">
               <line :x1="m.x" :x2="m.x" :y1="AXIS - 4" :y2="AXIS + 6" />
-              <text :x="m.x + 4" :y="AXIS + 22">{{ m.year ? `${m.label} ${m.year}` : m.label }}</text>
+              <text :x="m.x + 4" :y="AXIS + 22">{{ m.label }}</text>
             </g>
             <line class="ptl-axis" :x1="PAD" :x2="width - PAD" :y1="AXIS" :y2="AXIS" />
             <line

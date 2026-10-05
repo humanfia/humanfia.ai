@@ -82,9 +82,10 @@ They do not differ in what the model can write. FlowBench measures that differen
     <text class="ink" x="355" y="235" text-anchor="middle">flame_chase</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="red" x="550" y="110" width="160" height="80" />
-    <text class="on-red t-lg" x="630" y="146" text-anchor="middle">Real check</text>
-    <text class="on-red" x="630" y="170" text-anchor="middle">faster · compiles · passes</text>
+    <rect class="red" x="550" y="100" width="160" height="100" />
+    <text class="on-red t-lg" x="630" y="134" text-anchor="middle">Real check</text>
+    <text class="on-red" x="630" y="160" text-anchor="middle">faster, compiles,</text>
+    <text class="on-red" x="630" y="180" text-anchor="middle">or passes</text>
   </g>
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#fb-a" data-loop />
   <rect class="red" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#fb-b" data-loop />

@@ -352,7 +352,15 @@ a.ph-stat:hover {
 @media (max-width: 640px) {
   /* Clear of the red circle, which sits in the top right corner on a phone. */
   .ph-tabs {
-    margin-right: 40px;
+    flex-wrap: nowrap;
+    max-width: calc(100% - 40px);
+    overflow-x: auto;
+  }
+
+  .ph-tabs a {
+    padding: 6px 8px;
+    font-size: 11.5px;
+    white-space: nowrap;
   }
 
   .ph-stats-wrap {

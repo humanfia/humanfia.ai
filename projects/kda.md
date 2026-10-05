@@ -119,7 +119,9 @@ report a win, and be wrong. The engineering is in what happens around that.
     'One that clears the bar fixed in advance is promoted, and the record says why.',
   ]"
 >
-  <path id="kda-loop" class="line dash" d="M250 150 L 360 150 L 470 150 L 580 150 L 580 240 L 250 240 Z" data-step="3" data-draw />
+  <path class="line dash" d="M286 150 L 324 150 M396 150 L 434 150 M506 150 L 544 150" data-step="3" data-draw />
+  <path id="kda-loop" class="line dash" d="M250 174 L 250 236 L 580 236 L 580 174" data-step="3" data-draw />
+  <path id="kda-try" d="M250 114 L 470 114" fill="none" />
   <g data-step="1" data-pop>
     <rect class="ink" x="10" y="40" width="160" height="56" />
     <text class="on-ink t-lg" x="90" y="74" text-anchor="middle">Research</text>
@@ -139,10 +141,10 @@ report a win, and be wrong. The engineering is in what happens around that.
     <text class="on-ink" x="470" y="155" text-anchor="middle">Bench</text>
     <rect class="ink" x="544" y="126" width="72" height="48" />
     <text class="on-ink" x="580" y="155" text-anchor="middle">Profile</text>
-    <text class="ink" x="415" y="266" text-anchor="middle">decide · and go round again</text>
+    <text class="ink" x="415" y="262" text-anchor="middle">decide, and go round again</text>
   </g>
-  <rect class="grey" x="-8" y="-8" width="16" height="16" data-step="4" data-travel="#kda-loop" data-stop="0.14" />
-  <text class="red" x="360" y="112" text-anchor="middle" data-step="4">faster, and wrong: refused</text>
+  <rect class="grey" x="-8" y="-8" width="16" height="16" data-step="4" data-travel="#kda-try" data-stop="0.5" />
+  <text class="red" x="360" y="96" text-anchor="middle" data-step="4">faster, and wrong: refused</text>
   <g data-step="5" data-pop>
     <rect class="red" x="560" y="30" width="150" height="56" />
     <text class="on-red t-lg" x="635" y="64" text-anchor="middle">Promoted</text>
