@@ -108,3 +108,19 @@ export const toneOf = (tone: Tone | undefined, index: number): Tone => tone ?? T
 
 /** A stable id for aria wiring: Vue's own, so the server and the browser agree on it. */
 export const uid = (prefix: string) => `${prefix}-${useId()}`
+
+/** A column of a results table (ResultsTable.vue), and of every chart's data view. */
+export interface Column {
+  key: string
+  label: string
+  /** Numbers are right-aligned by default and text left. */
+  align?: 'left' | 'right'
+  decimals?: number
+  prefix?: string
+  suffix?: string
+  /** Draw a bar behind the number, scaled to the column's largest value. */
+  bar?: boolean
+  /** Lower is better: sorting by this column puts the smallest first. */
+  lowerIsBetter?: boolean
+  sortable?: boolean
+}

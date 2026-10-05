@@ -124,6 +124,16 @@ export default defineConfig({
 
   sitemap: { hostname: HOSTNAME },
 
+  // Every post, in either section, is drawn by the post layout (theme/components/PostLayout.vue)
+  // without having to ask for it; the two indexes keep the default. A post has no sidebar: its
+  // contents and the posts to read next are the layout's own.
+  transformPageData(page) {
+    if (/^(?:blog|news)\/(?!index\.md$)[^/]+\.md$/.test(page.relativePath)) {
+      page.frontmatter.layout ??= 'post'
+      page.frontmatter.sidebar ??= false
+    }
+  },
+
   // The footer has no slot, and its lines are HTML strings that cannot hold a component, so the
   // wordmark gets there by replacing the theme's footer outright -- the theme's documented way of
   // overriding one of its parts. SiteFooter.vue is the theme's own, with the wordmark on top.

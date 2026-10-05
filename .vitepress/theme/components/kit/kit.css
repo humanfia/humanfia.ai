@@ -394,3 +394,20 @@ span.kit-key {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ---- AnimatedDiagram's vocabulary: the classes a diagram's shapes are painted with ---------- */
+
+.kit .ad-svg .ink { fill: var(--k-fg); }
+.kit .ad-svg .red { fill: var(--k-red); }
+.kit .ad-svg .grey { fill: var(--k-fg-3); }
+.kit .ad-svg .paper { fill: var(--k-bg); }
+.kit .ad-svg .frame { fill: var(--k-bg-2); stroke: var(--k-line); }
+.kit .ad-svg .line { fill: none; stroke: var(--k-fg-2); stroke-width: 1.5; }
+.kit .ad-svg .line.red { fill: none; stroke: var(--k-red); }
+.kit .ad-svg .line.ink { fill: none; stroke: var(--k-fg); }
+.kit .ad-svg .line.dash { stroke-dasharray: 5 5; }
+.kit .ad-svg text { font-family: var(--k-mono); font-size: 13px; fill: var(--k-fg-2); }
+.kit .ad-svg text.ink { fill: var(--k-fg); }
+.kit .ad-svg text.red { fill: var(--k-red-text); }
+.kit .ad-svg text.on-red { fill: var(--hf-paper); }
+.kit .ad-svg text.on-ink { fill: var(--k-bg); }
