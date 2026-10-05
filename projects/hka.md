@@ -1,5 +1,5 @@
 ---
-description: HKA — Humanize Kaggle Agent. Agents entered in real Kaggle competitions, with every result audited, classified and published. Nineteen completed competitions, fourteen inside the top 5% counting late estimates; four entered officially.
+description: HKA — Humanize Kaggle Agent. Agents entered in real Kaggle competitions, with every result audited, classified and published. As of the 2026-08-15 audit, nineteen completed competitions, fourteen inside the top 5% counting late estimates; four entered officially.
 ---
 
 # HKA
@@ -24,7 +24,9 @@ different claims, and we never report them as one.</p>
 **Completed — nineteen competitions.** Fourteen landed in the top 5%, five of them at or
 inside the top 1% — counting both kinds of result below. Only four of the nineteen were entered
 before the deadline; two of those finished in the top 5%, none in the top 1%. The rest are late
-estimates.
+estimates. These counts are the audit's, as of 2026-08-15; the
+[live leaderboard](https://agentkaggle.github.io/leaderboard/) has added competitions since and
+is not audited.
 
 **Ongoing — fourteen official competitions.** Six currently sit in the top 5%, four of those in
 the top 3%. Public ranks move; this is the audit's snapshot of 2026-08-15.
