@@ -291,7 +291,7 @@ at least 1.5% in both of two measurement groups. The other 39 are listed in its
   </g>
   <text class="ink" x="20" y="24" data-step="1">40 families</text>
   <text class="grey" x="20" y="205" data-step="2">■ removed · 39</text>
-  <text class="red" x="300" y="205" data-step="3">■ residual-gate add · 1</text>
+  <text class="red" x="250" y="205" data-step="3">■ kept · 1</text>
   <rect class="red" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#up-keep" data-loop />
 </AnimatedDiagram>
 

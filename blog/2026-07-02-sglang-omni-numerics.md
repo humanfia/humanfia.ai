@@ -156,6 +156,7 @@ wins on the large shapes and is slightly slower on the two smallest.
     { key: 'triton', label: 'Triton', tone: 'ink' },
     { key: 'cuda', label: 'CUDA fast path', tone: 'red' },
   ]"
+  caption="Time per call; lower is faster. Against a baseline, each bar is a fraction of that baseline's time."
   :rows="$frontmatter.gate"
   :baselines="['triton', 'torch']"
   baseline="triton"
