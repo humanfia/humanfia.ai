@@ -13,7 +13,8 @@ its source next to the rendered page.
 
 - **The hero** (`PostMeta.vue`) is built from the frontmatter. It shows the tag, the section,
   the date, the reading time, the title, the `description` as the standfirst, and the
-  `authors` with their GitHub faces (`theme/people.ts` maps names to accounts). A title with a
+  `authors` with their GitHub faces (`theme/people.ts` maps names to accounts). A news post's
+  byline then adds the leads of the projects its `tag` is built on (`theme/projects.ts`). A title with a
   colon in its first 28 characters is set as a display line and a subtitle.
 - **An optional headline figure** sits to the right of the hero copy. Add it with a `hero:`
   block. Without one, the hero shows the tag in outline on the diagonal.

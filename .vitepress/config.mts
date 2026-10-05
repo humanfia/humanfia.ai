@@ -5,6 +5,7 @@ import { createContentLoader, defineConfig, type ContentData, type SiteConfig } 
 
 import { loadFlowverse, slugOf } from './flowverse.mts'
 import { FLOWS, KINDS } from './theme/flows'
+import { authorsWithDeps } from './theme/projects'
 
 // humanfia.ai, served from the repository root: the CNAME in public/ is the custom domain,
 // so no base is prepended and every internal link is written from `/`. The documentation for
@@ -264,8 +265,10 @@ function feedOf(section: Section, posts: ContentData[]) {
     .sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date))
     .map((page) => {
       const link = `${HOSTNAME}${page.url}`
-      const authors: string[] = page.frontmatter.authors ??
+      const own: string[] = page.frontmatter.authors ??
         (page.frontmatter.author ? [page.frontmatter.author] : [])
+      // The same byline the post's page shows: a result credits what it was built on.
+      const authors = section === 'news' ? authorsWithDeps(own, page.frontmatter.tag) : own
       return [
         '    <item>',
         `      <title>${escapeXml(page.frontmatter.title ?? page.url)}</title>`,

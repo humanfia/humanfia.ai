@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { authorsOf, avatarOf, initialsOf, personOf, profileOf } from '../people'
+import { authorsWithDeps } from '../projects'
 import { data as posts } from '../posts.data.mts'
 import Leaderboard from './kit/Leaderboard.vue'
 import NumberTicker from './kit/NumberTicker.vue'
@@ -69,9 +70,15 @@ const title = computed(() => {
 })
 const size = computed(() => (title.value.main.length <= 14 ? 'xl' : title.value.main.length <= 48 ? 'lg' : 'md'))
 
-/** Each author with their account when we know it -- see people.ts for who is, and why. */
+/** Each author with their account when we know it -- see people.ts for who is, and why. A
+ *  news post also credits the leads of what it was built on -- see projects.ts. */
+const names = computed(() =>
+  page.value.relativePath.startsWith('news/')
+    ? authorsWithDeps(authorsOf(frontmatter.value), frontmatter.value.tag)
+    : authorsOf(frontmatter.value),
+)
 const authors = computed(() =>
-  authorsOf(frontmatter.value).map((name) => {
+  names.value.map((name) => {
     const person = personOf(name)
     return {
       name,
