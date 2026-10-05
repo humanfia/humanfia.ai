@@ -19,30 +19,14 @@ const HOSTNAME = 'https://humanfia.ai'
  *  it grew out of, is not a project here: it lives on as the humanize1 flow, under Flows, and
  *  /projects/rlcr-loop redirects there.
  *
- *  One list, used twice: it is the nav's dropdown and it is the projects sidebar. There is no
- *  longer a page above them for it to be a table of contents for. */
+ *  The nav's dropdown, and nothing else: a project page is drawn full width, with no sidebar,
+ *  so this is the one way between them. There is no longer a page above them either. */
 const PROJECT_LINKS = [
   { text: 'Humanize', link: '/projects/humanize' },
   { text: 'FlowBench', link: '/projects/flowbench' },
   { text: 'HOA', link: '/projects/hoa' },
   { text: 'KDA', link: '/projects/kda' },
   { text: 'HMA', link: '/projects/hma' },
-]
-
-/** The research: what the flows have taught us (Flow Science), and the machinery under the
- *  runtime by codename (Deep Tech). A menu beside Flows, and the /research/ sidebar. */
-const RESEARCH_LINKS = [
-  { text: 'Flow Science', link: '/research/flow-science' },
-  { text: 'Deep Tech', link: '/research/deep-tech' },
-]
-
-const PROJECTS = [
-  {
-    // A heading, not an entry. It used to say the overview was reached from the nav; there is
-    // no overview now, so it is only ever a label over the five.
-    text: 'Projects',
-    items: PROJECT_LINKS,
-  },
 ]
 
 /**
@@ -83,7 +67,8 @@ function sectionSidebar(section: Section) {
 
   return [
     {
-      // A heading, not an entry, for the same reason as Projects above.
+      // A heading, not an entry: there is no page above the posts for it to link to but the
+      // index, and the nav already goes there.
       text: SECTIONS[section].name,
       items: posts.slice(0, 10),
     },
@@ -170,8 +155,9 @@ export default defineConfig({
     // would have the theme print the site's title as text beside it.
     siteTitle: false,
 
-    // Projects and Research are menus; the rest are plain links. Flows is one too: the way to a
-    // flow is the catalogue at /flows/, which shows every flow at once, drawn, where a menu
+    // Projects is a menu; the rest are plain links. There is no Research menu: Flow Science is a
+    // series on the blog, and Deep Tech is part of the Humanize page, the project it is the engine
+    // of. Flows is a plain link too: the way to a flow is the catalogue at /flows/, which shows every flow at once, drawn, where a menu
     // could only list their names. There is no projects index any more: a page whose whole job
     // was to list six links, when a menu lists the same six without costing a page load, and
     // every one of those pages opens with the sentence the index was paraphrasing. The way in
@@ -183,20 +169,18 @@ export default defineConfig({
     nav: [
       { text: 'Projects', items: PROJECT_LINKS, activeMatch: '/projects/' },
       { text: 'Flows', link: '/flows/', activeMatch: '/flows/' },
-      { text: 'Research', items: RESEARCH_LINKS, activeMatch: '/research/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       { text: 'News', link: '/news/', activeMatch: '/news/' },
       { text: 'About', link: '/about/', activeMatch: '/about/' },
     ],
 
-    // One sidebar per section, and a section only ever sees its own. About is a single page and
-    // gets none at all: a list of one is furniture, not navigation. Nor does News: its index is
-    // already the whole list, one row per post (theme/components/NewsList.vue), and a sidebar of
-    // the ten newest beside it would be the top of the same list twice. Nor do the flows: their
-    // catalogue is the index, and every flow's page leads back to it (FlowsBack.vue).
+    // The blog is the one section with a sidebar. About is a single page and gets none at all: a
+    // list of one is furniture, not navigation. Nor does News: its index is already the whole
+    // list, one row per post (theme/components/NewsList.vue), and a sidebar of the ten newest
+    // beside it would be the top of the same list twice. Nor do the flows: their catalogue is the
+    // index, and every flow's page leads back to it (FlowsBack.vue). Nor do the projects: each
+    // page is drawn full width, and the nav's menu is the way between them.
     sidebar: {
-      '/projects/': PROJECTS,
-      '/research/': [{ text: 'Research', items: RESEARCH_LINKS }],
       '/blog/': sectionSidebar('blog'),
     },
 
