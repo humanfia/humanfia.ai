@@ -143,6 +143,10 @@ export interface Flow {
   kind: Kind
   /** The scene its card draws, by its key in SCENES. */
   scene: string
+  /** Drawn big, at the head of the catalogue, in this order: the flows to start from. */
+  featured?: number
+  /** Left off the catalogue (its page stays): a flow that is a conversation, not a loop. */
+  unlisted?: true
 }
 
 export const FLOWS: Flow[] = [
@@ -157,6 +161,7 @@ export const FLOWS: Flow[] = [
     jobs: ['talk'],
     kind: 'talk',
     scene: 'chat',
+    unlisted: true,
   },
   {
     name: 'ralph_loop',
@@ -217,6 +222,7 @@ export const FLOWS: Flow[] = [
     jobs: ['pair'],
     kind: 'relay',
     scene: 'flame_chase',
+    featured: 1,
   },
   {
     name: 'fixed_interrupt_flame_chase',
@@ -243,6 +249,7 @@ export const FLOWS: Flow[] = [
     jobs: ['grind'],
     kind: 'tidy',
     scene: 'ralph_loop_agent_cleanup',
+    featured: 4,
   },
   {
     name: 'agent_cleanup:flame_chase',
@@ -256,6 +263,7 @@ export const FLOWS: Flow[] = [
     jobs: ['pair'],
     kind: 'tidy',
     scene: 'flame_chase_agent_cleanup',
+    featured: 5,
   },
   {
     name: 'rlar',
@@ -282,6 +290,7 @@ export const FLOWS: Flow[] = [
     jobs: ['review', 'plan'],
     kind: 'checked',
     scene: 'humanize1-rlcr',
+    featured: 2,
   },
   {
     name: 'aot',
@@ -321,6 +330,7 @@ export const FLOWS: Flow[] = [
     jobs: ['parallel', 'score'],
     kind: 'lanes',
     scene: 'parallel_flame_chase_git_pr',
+    featured: 3,
   },
   {
     name: 'recursive_lean_prover',

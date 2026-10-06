@@ -15,8 +15,18 @@
 import { computed } from 'vue'
 
 export type Size = 'sm' | 'md' | 'lg' | 'xl'
+/** `[columns, rows, how much fits]` for one tile; see PATTERN. */
+export type Span = readonly [number, number, Size]
 
-const props = withDefaults(defineProps<{ items: T[]; empty?: string }>(), { empty: 'Nothing published yet.' })
+const props = withDefaults(
+  defineProps<{
+    items: T[]
+    empty?: string
+    /** A tile's span, for a wall whose sizes mean something; PATTERN's otherwise. */
+    layout?: (item: T, i: number) => Span
+  }>(),
+  { empty: 'Nothing published yet.', layout: undefined },
+)
 
 /** A tile was pointed at or focused, and then left: for a tile with something to play. */
 const emit = defineEmits<{ enter: [item: T]; leave: [item: T] }>()
@@ -34,7 +44,7 @@ defineSlots<{ default(props: { item: T; size: Size; big: boolean }): unknown }>(
  * and a title one line longer than its tile was cut through the middle of that line. Now the row
  * grows instead, and any extra height is air above the footer, which is pinned to the bottom.
  */
-const PATTERN: readonly (readonly [number, number, Size])[] = [
+const PATTERN: readonly Span[] = [
   [4, 6, 'xl'],
   [2, 3, 'sm'],
   [2, 3, 'sm'],
@@ -57,7 +67,7 @@ const PATTERN: readonly (readonly [number, number, Size])[] = [
 
 const tiles = computed(() =>
   props.items.map((item, i) => {
-    const [cols, rows, size] = PATTERN[i % PATTERN.length]
+    const [cols, rows, size] = props.layout?.(item, i) ?? PATTERN[i % PATTERN.length]
     return { item, cols, rows, size, big: size === 'xl' || size === 'lg', wash: i % 5 === 0 }
   }),
 )
