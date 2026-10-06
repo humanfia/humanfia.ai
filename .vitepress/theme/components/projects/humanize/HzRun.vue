@@ -106,7 +106,6 @@ const pct = (v: number) => `${v}%`
     ref="root"
     class="run"
     :class="{ live, done }"
-    :style="{ '--now': SPAN }"
     aria-label="One flow running four agents: each agent's turns and tool calls land on one shared clock, and the whole run is written down as one trace."
   >
     <div class="run-bar">
@@ -155,6 +154,9 @@ const pct = (v: number) => `${v}%`
 
 <style scoped>
 .run {
+  /* At rest, the run finished. Only the Clock writes it inline: bound in the template, every
+     re-render (a few a second) would put it back to SPAN for a frame, and the trace would flash. */
+  --now: 100;
   --ink: #16161a;
   --paper: #ece6da;
   --paper-2: #bab3a6;
