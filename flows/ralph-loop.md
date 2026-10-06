@@ -34,7 +34,7 @@ decisions into the repository, and every round reads them back.
 - The agent has to remember what it tried: [stateful_ralph](/flows/stateful-ralph).
 - The model should decide when it is done: [goal](/flows/goal).
 - The tree fills up with clutter over a long run:
-  [agent_cleanup:ralph_loop](/flows/ralph-loop-agent-cleanup).
+  [flame_chasoid:agent_cleanup_ralph_loop](/flows/ralph-loop-agent-cleanup).
 
 ## Roles and params
 
