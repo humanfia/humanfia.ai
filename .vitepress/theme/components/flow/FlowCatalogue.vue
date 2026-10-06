@@ -2,9 +2,10 @@
 // The catalogue on /flows/, and the chooser on top of it: pick what you want done, and the
 // tiles narrow to the flows that do it, with a line saying which to start with.
 //
-// The tiles are the blog's mosaic (../Mosaic.vue): one wall, every flow on it, in the order of
-// how the agents in a flow work together (KINDS in `theme/flows.ts`), each labelled with its
-// kind. Each draws its flow's own scene -- the one its page plays -- in the same grammar, small
+// The tiles are the blog's mosaic (../Mosaic.vue): one wall, the featured flows first and big,
+// then every other flow small, in the order of how the agents in a flow work together (KINDS in
+// `theme/flows.ts`), each labelled with its kind. `chat` is a conversation, not a loop, and is
+// left off. Each draws its flow's own scene -- the one its page plays -- in the same grammar, small
 // and without words, and as big as its tile; a tile plays while it is hovered or focused. After
 // the flows written here come the ones the flowverse releases that nobody here has written up
 // yet (`flowverse.data.mts`): the catalogue is the flowverse's, and this site only adds the
@@ -14,7 +15,7 @@ import { computed, ref } from 'vue'
 
 import { data } from '../../flowverse.data.mts'
 import { FLOWS, JOBS, KINDS, type Job } from '../../flows'
-import Mosaic from '../Mosaic.vue'
+import Mosaic, { type Span } from '../Mosaic.vue'
 import FlowThumb from './FlowThumb.vue'
 
 const job = ref<Job | 'all'>('all')
@@ -22,13 +23,23 @@ const job = ref<Job | 'all'>('all')
 const written = new Set(FLOWS.map((one) => one.module).filter(Boolean))
 const versionOf = (module?: string) => data.modules.find((one) => one.name === module)?.versions[0]
 const kindOf = (id: string) => KINDS.findIndex((kind) => kind.id === id)
+const listed = FLOWS.filter((one) => !one.unlisted)
+/** Only the jobs some listed flow does: a button that empties the wall is no choice. */
+const jobs = JOBS.filter((one) => listed.some((flow) => flow.jobs.includes(one.id)))
+
+/** The first two featured tiles take half the wall each, the next ones a third; every other
+ *  tile is a third and short, so each run of tiles still adds up to the six columns. */
+const layout = (tile: { featured: boolean }, i: number): Span =>
+  !tile.featured ? [2, 3, 'sm'] : i < 2 ? [3, 6, 'xl'] : [2, 6, 'lg']
 
 /** Every tile, the flows drawn here first and the flowverse's others after. A picked job
  *  leaves only the flows that do it; the others say no job, so they go. */
 const tiles = computed(() => [
-  ...FLOWS.filter((one) => job.value === 'all' || one.jobs.includes(job.value))
-    .sort((a, b) => kindOf(a.kind) - kindOf(b.kind))
+  ...listed
+    .filter((one) => job.value === 'all' || one.jobs.includes(job.value))
+    .sort((a, b) => (a.featured ?? Infinity) - (b.featured ?? Infinity) || kindOf(a.kind) - kindOf(b.kind))
     .map((one) => ({
+      featured: !!one.featured,
       url: withBase(one.link),
       name: one.phases ? `${one.name}:<phase>` : one.name,
       runs: one.phases?.join(' · '),
@@ -42,6 +53,7 @@ const tiles = computed(() => [
     })),
   ...(job.value === 'all' ? data.modules.filter((one) => !written.has(one.name)) : []).map((one) => ({
     url: withBase(`/flows/${one.slug}`),
+    featured: false,
     name: one.name,
     runs: undefined,
     kind: 'Not yet drawn',
@@ -71,7 +83,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
         show every flow
       </button>
       <button
-        v-for="one in JOBS"
+        v-for="one in jobs"
         :key="one.id"
         type="button"
         :class="{ on: job === one.id }"
@@ -90,8 +102,9 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
     </p>
 
     <Mosaic
-      v-slot="{ item: tile }"
+      v-slot="{ item: tile, size }"
       :items="tiles"
+      :layout="layout"
       @enter="(tile) => thumbs[tile.url]?.play()"
       @leave="(tile) => thumbs[tile.url]?.stop()"
     >
@@ -104,13 +117,14 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
         <span>{{ tile.from }}</span>
       </p>
 
-      <h3>{{ tile.name }}</h3>
+      <!-- A line may break after each colon, so `parallel_flame_chase:git_pr` wraps at its parts. -->
+      <h3><template v-for="(part, n) in tile.name.split(':')" :key="n"><template v-if="n">:<wbr /></template>{{ part }}</template></h3>
       <p v-if="tile.runs" class="runs">{{ tile.runs }}</p>
 
       <p class="tile-blurb">{{ tile.said }}</p>
 
       <div class="tile-foot">
-        <dl v-if="tile.roles">
+        <dl v-if="tile.roles && size !== 'sm'">
           <div><dt>-a</dt><dd>{{ tile.roles }}</dd></div>
           <div><dt>ends</dt><dd>{{ tile.ends }}</dd></div>
           <div><dt>--resume</dt><dd>{{ tile.keeps || 'starts afresh' }}</dd></div>
@@ -120,7 +134,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
     </Mosaic>
 
     <p class="foot">
-      Every run also stops when its budget is spent. Only <code>chat</code> may run without one.
+      Every run also stops when its budget is spent.
     </p>
   </div>
 </template>
