@@ -117,7 +117,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
         <span>{{ tile.from }}</span>
       </p>
 
-      <!-- A line may break after each colon, so `parallel_flame_chase:git_pr` wraps at its parts. -->
+      <!-- A line may break after each colon, so `flame_chasoid:parallel_git_pr` wraps at its parts. -->
       <h3><template v-for="(part, n) in tile.name.split(':')" :key="n"><template v-if="n">:<wbr /></template>{{ part }}</template></h3>
       <p v-if="tile.runs" class="runs">{{ tile.runs }}</p>
 
@@ -216,7 +216,7 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
   height: 100%;
 }
 
-/* A flow's name is what `-f` and `$` take, so it is set as code: `parallel_flame_chase:git_pr`
+/* A flow's name is what `-f` and `$` take, so it is set as code: `flame_chasoid:parallel_git_pr`
    is wider than a small tile, and breaks anywhere rather than overflowing it. */
 h3 {
   font-family: var(--vp-font-family-mono);

@@ -2,23 +2,23 @@
 pageClass: flow-page
 ---
 
-# parallel_flame_chase
+# flame_chasoid:parallel
 
 Chase three leads at once. A coordinator plans three lanes and leaves; in each lane two actors
 take turns in fresh sessions, and the lanes keep each other informed by report. **Only lane 1
 writes your tree**: lanes 2 and 3 work on private copies, and what they find reaches lane 1 as
 a report and an artifact.
 
-<FlowFacts flow="parallel_flame_chase" />
+<FlowFacts flow="flame_chasoid:parallel" />
 
 ::: code-group
 
 ```text [at the prompt]
-❯ $parallel_flame_chase get the solver under 10 s on every benchmark in bench/
+❯ $flame_chasoid:parallel get the solver under 10 s on every benchmark in bench/
 ```
 
 ```sh [hmz exec]
-hmz exec -f parallel_flame_chase \
+hmz exec -f flame_chasoid:parallel \
     -a coordinator=codex/gpt-5.6-sol:max \
     -a lane_1_actor_a=claude/claude-opus-5:max,lane_1_actor_b=codex/gpt-5.6-sol:max \
     -a lane_2_actor_a=claude/claude-opus-5:max,lane_2_actor_b=codex/gpt-5.6-sol:max \
@@ -36,7 +36,7 @@ When the task is open enough that three approaches are worth trying side by side
 the budget for seven agents. It is [flame_chase](/flows/flame-chase) three times over, with a
 plan up front and one lane in charge of the tree. If every lane should get a clone and compete
 through pull requests instead, use
-[parallel_flame_chase:git_pr](/flows/parallel-flame-chase-git-pr).
+[flame_chasoid:parallel_git_pr](/flows/parallel-flame-chase-git-pr).
 
 It coordinates local work only: nothing in it releases, deploys, submits or sends anything.
 
@@ -82,10 +82,10 @@ one. Given a changed objective, it plans again against a fresh copy of your tree
 run. See [Picking a run up](https://docs.humanfia.ai/humanize/user/resuming).
 
 Only one run may hold a source tree at a time, whether of this flow or of
-`parallel_flame_chase:git_pr`: a second one refuses to start.
+`flame_chasoid:parallel_git_pr`: a second one refuses to start.
 
 ## See also
 
-- [parallel_flame_chase:git_pr](/flows/parallel-flame-chase-git-pr): the same lanes, each with
+- [flame_chasoid:parallel_git_pr](/flows/parallel-flame-chase-git-pr): the same lanes, each with
   a clone and pull requests
 - [flame_chase](/flows/flame-chase): one lane of this, on its own

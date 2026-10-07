@@ -25,7 +25,7 @@ import { vReveal } from '../../../home/motion'
         </a>
         <a class="hma-plate ink" href="/flows/fixed-interrupt-flame-chase" v-reveal="100">
           <p class="hma-mini">Use · a Humanize flow</p>
-          <h3><code>fixed_interrupt_flame_chase</code></h3>
+          <h3><code>flame_chasoid:fixed_interrupt</code></h3>
           <p>
             The same fixed-<i>k</i> alternation, as a flow for
             <span class="u">Humanize</span>: two agents, one workspace, a turn ending after <i>k</i>

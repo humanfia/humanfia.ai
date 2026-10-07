@@ -2,7 +2,7 @@
 pageClass: flow-page
 ---
 
-# fixed_interrupt_flame_chase
+# flame_chasoid:fixed_interrupt
 
 [flame_chase](/flows/flame-chase) on a clock. Two agents take turns in one workspace, each turn
 a fresh session, but a turn does not end when the agent says so: it ends after *k* **accepted
@@ -10,18 +10,18 @@ experiments**, as a trusted evaluator counts them. At the end, the agent that di
 latest accepted candidate reviews them all blind, and may pick an older one. This is the HMA
 paper's fixed-*k* alternation, as a flow.
 
-<FlowFacts flow="fixed_interrupt_flame_chase" />
+<FlowFacts flow="flame_chasoid:fixed_interrupt" />
 
 ::: code-group
 
 ```sh [FlowBench task]
-hmz exec -f fixed_interrupt_flame_chase \
+hmz exec -f flame_chasoid:fixed_interrupt \
     -a first_chaser=claude/claude-opus-5:max -a second_chaser=codex/gpt-5.6-sol:max \
     -p budget.duration=6h "$(cat TASK.md)"
 ```
 
 ```sh [native evaluator]
-hmz exec -f fixed_interrupt_flame_chase \
+hmz exec -f flame_chasoid:fixed_interrupt \
     -a first_chaser=claude/claude-opus-5:max -a second_chaser=codex/gpt-5.6-sol:max \
     -p budget.duration=6h \
     -p gate_config=/ABS/trusted/gate.json -p run_dir=/ABS/results/new-task-run \
@@ -50,7 +50,7 @@ Two admission backends do the counting, chosen by whether `gate_config` is given
 
 The native backend needs a trusted evaluator started beside the run, with control files outside
 the workspace. Its
-[README](https://github.com/humanfia/fixed-interrupt-flame-chase-flow#start-the-trusted-admission-service)
+[README](https://github.com/humanfia/flame-chasoid-flows#start-the-trusted-admission-service)
 walks through it.
 
 ## Roles and params
@@ -78,7 +78,7 @@ Every param has a default, so FlowBench, which passes none, can run it:
 
 The rest, `finalize_reserve_seconds`, `cleanup_reserve_seconds`, `build_timeout_seconds` and
 `poll_seconds`, are in the
-[README](https://github.com/humanfia/fixed-interrupt-flame-chase-flow#params).
+[README](https://github.com/humanfia/flame-chasoid-flows#params).
 
 ## What ends it
 
@@ -109,6 +109,6 @@ reproduction's isolated runner for results that must match the paper's containme
 ## See also
 
 - [flame_chase](/flows/flame-chase): the same relay, where a turn ends when the agent says so
-- [parallel_flame_chase:git_pr](/flows/parallel-flame-chase-git-pr): three lanes, where main
+- [flame_chasoid:parallel_git_pr](/flows/parallel-flame-chase-git-pr): three lanes, where main
   moves only for a measured improvement
 - [FlowBench](/projects/flowbench): where flows like this one are scored

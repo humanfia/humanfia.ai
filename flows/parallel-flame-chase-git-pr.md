@@ -2,23 +2,23 @@
 pageClass: flow-page
 ---
 
-# parallel_flame_chase:git_pr
+# flame_chasoid:parallel_git_pr
 
 Chase three leads at once, the way a team works a repository: **every lane has a clone of its
 own and opens pull requests**, and a pull request reaches `main` only when a measurement shows
 it is better. There is no reviewer. Its setup is fixed to the one that did best in a
 twelve-hour experiment.
 
-<FlowFacts flow="parallel_flame_chase:git_pr" />
+<FlowFacts flow="flame_chasoid:parallel_git_pr" />
 
 ::: code-group
 
 ```text [at the prompt]
-❯ $parallel_flame_chase:git_pr get the solver under 10 s on every benchmark in bench/
+❯ $flame_chasoid:parallel_git_pr get the solver under 10 s on every benchmark in bench/
 ```
 
 ```sh [hmz exec]
-hmz exec -f parallel_flame_chase:git_pr \
+hmz exec -f flame_chasoid:parallel_git_pr \
     -a orchestrator=codex/gpt-5.6-sol:max \
     -a lane_1_actor_a=codex/gpt-5.6-sol:max,lane_1_actor_b=claude/claude-opus-5:max \
     -a lane_2_actor_a=claude/claude-opus-5:max,lane_2_actor_b=codex/gpt-5.6-sol:max \
@@ -34,7 +34,7 @@ hmz exec -f parallel_flame_chase:git_pr \
 
 When the task has a number to beat, such as a benchmark, a score or a size, and a command that
 measures it. Nothing here asks a model whether a change is good: the measurement decides. If
-the task has no such number, use [parallel_flame_chase](/flows/parallel-flame-chase), where
+the task has no such number, use [flame_chasoid:parallel](/flows/parallel-flame-chase), where
 one lane writes your tree and the other two report to it.
 
 ## How a change reaches main
@@ -90,10 +90,10 @@ carries on. `-p resume_mode=fresh` starts another run instead. See
 [Picking a run up](https://docs.humanfia.ai/humanize/user/resuming).
 
 Leave your source tree alone while a run holds it. Only one run may hold a source tree at a
-time, whether of this flow or of `parallel_flame_chase`: a second one refuses to start.
+time, whether of this flow or of `flame_chasoid:parallel`: a second one refuses to start.
 
 ## See also
 
-- [parallel_flame_chase](/flows/parallel-flame-chase): the same lanes, with one writer and two
+- [flame_chasoid:parallel](/flows/parallel-flame-chase): the same lanes, with one writer and two
   private copies
 - [Many turns at once](https://docs.humanfia.ai/humanize/features/concurrency): why the lanes run side by side, not in a queue

@@ -99,7 +99,7 @@ A flow whose tile says what `--resume` keeps carries on from there, under a fres
 | You type | The flow is |
 | --- | --- |
 | `ralph_loop` | built into humanize: `chat`, `ralph_loop`, `goal`, `flame_chase`, `stateful_ralph`, `continue_loop` and `rlar` |
-| `parallel_flame_chase` | one of humanfia's you installed from humanize's official flowverse, [humanfia/flowverse](https://github.com/humanfia/flowverse) |
+| `aot` | one of humanfia's you installed from humanize's official flowverse, [humanfia/flowverse](https://github.com/humanfia/flowverse) |
 | `alice/review` | one of somebody else's you installed from it, listed under its author's GitHub user |
 | `@theirs/review` | one you installed from a flowverse you added |
 | `@local/scheduler` | one of this project's, in `.hmz/flows/` |

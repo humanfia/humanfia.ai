@@ -2,25 +2,25 @@
 pageClass: flow-page
 ---
 
-# agent_cleanup:ralph_loop
+# flame_chasoid:agent_cleanup_ralph_loop
 
 Keep a long run's workspace tidy. [ralph_loop](/flows/ralph-loop), with a `cleaner` that
 steps in every few turns: it keeps the work, deletes what strayed, writes down what is next,
 and the repository's history becomes one commit of what survived. The same cleaner between two
-agents taking turns is [agent_cleanup:flame_chase](/flows/flame-chase-agent-cleanup).
+agents taking turns is [flame_chasoid:agent_cleanup_flame_chase](/flows/flame-chase-agent-cleanup).
 
-<FlowFacts flow="agent_cleanup:ralph_loop" />
+<FlowFacts flow="flame_chasoid:agent_cleanup_ralph_loop" />
 
 <Badge type="warning" text="every role: claude · codex · kimi · pi" />
 
 ::: code-group
 
 ```text [at the prompt]
-❯ $agent_cleanup:ralph_loop make every test in tests/ pass
+❯ $flame_chasoid:agent_cleanup_ralph_loop make every test in tests/ pass
 ```
 
 ```sh [hmz exec]
-hmz exec -f agent_cleanup:ralph_loop \
+hmz exec -f flame_chasoid:agent_cleanup_ralph_loop \
     -a agent=claude/claude-opus-5:high -a cleaner=claude/claude-opus-5:high \
     -p work_paths=src -p budget.duration=12h,budget.cost=100 "$(cat TASK.md)"
 ```
@@ -32,7 +32,7 @@ hmz exec -f agent_cleanup:ralph_loop \
 ::: danger Each cleaning rewrites your git history
 Every cleaning replaces the repository's history with a single commit, `epoch N: distilled
 tree`. The history it replaces is archived outside the repository, never deleted; the flow's
-[README](https://github.com/humanfia/agent-cleanup-flow) says how to read it back. Run this on a clone you are willing to have rewritten.
+[README](https://github.com/humanfia/flame-chasoid-flows/blob/main/flame_chasoid/_agent_cleanup/README.md#history-archive) says how to read it back. Run this on a clone you are willing to have rewritten.
 :::
 
 ## When to use it
@@ -86,6 +86,6 @@ when it would have. See [Picking a run up](https://docs.humanfia.ai/humanize/use
 ## See also
 
 - [ralph_loop](/flows/ralph-loop): the loop, without the cleaning
-- [agent_cleanup:flame_chase](/flows/flame-chase-agent-cleanup): the same cleaning, between two
+- [flame_chasoid:agent_cleanup_flame_chase](/flows/flame-chase-agent-cleanup): the same cleaning, between two
   chasers
 - [Talking to a running turn](https://docs.humanfia.ai/humanize/user/steering): what telling a turn to wrap up is

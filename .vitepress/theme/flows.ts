@@ -94,12 +94,12 @@ export const JOBS: JobInfo[] = [
   {
     id: 'parallel',
     said: 'chase several leads at once',
-    hint: 'Seven agents in three lanes. In `parallel_flame_chase` one lane writes your tree and two work on copies; in `parallel_flame_chase:git_pr` every lane has a clone and main moves only for a measured improvement.',
+    hint: 'Seven agents in three lanes. In `flame_chasoid:parallel` one lane writes your tree and two work on copies; in `flame_chasoid:parallel_git_pr` every lane has a clone and main moves only for a measured improvement.',
   },
   {
     id: 'score',
     said: 'beat a measured score',
-    hint: 'When a command measures the work, let it decide. `parallel_flame_chase:git_pr` merges a pull request only when its receipt beats main; `fixed_interrupt_flame_chase` hands the workspace to the other agent after every k accepted experiments, as in the HMA paper.',
+    hint: 'When a command measures the work, let it decide. `flame_chasoid:parallel_git_pr` merges a pull request only when its receipt beats main; `flame_chasoid:fixed_interrupt` hands the workspace to the other agent after every k accepted experiments, as in the HMA paper.',
   },
   {
     id: 'lean',
@@ -225,9 +225,9 @@ export const FLOWS: Flow[] = [
     featured: 1,
   },
   {
-    name: 'fixed_interrupt_flame_chase',
+    name: 'flame_chasoid:fixed_interrupt',
     slug: 'fixed-interrupt-flame-chase',
-    module: 'fixed_interrupt_flame_chase',
+    module: 'flame_chasoid',
     link: '/flows/fixed-interrupt-flame-chase',
     roles: 'first_chaser · second_chaser',
     said: 'flame_chase on a clock: a trusted evaluator hands the tree over after every k accepted experiments, and one blind review picks the winner.',
@@ -238,9 +238,9 @@ export const FLOWS: Flow[] = [
     scene: 'fixed_interrupt_flame_chase',
   },
   {
-    name: 'agent_cleanup:ralph_loop',
+    name: 'flame_chasoid:agent_cleanup_ralph_loop',
     slug: 'ralph-loop-agent-cleanup',
-    module: 'agent_cleanup',
+    module: 'flame_chasoid',
     link: '/flows/ralph-loop-agent-cleanup',
     roles: 'agent · cleaner',
     said: 'ralph_loop, plus a cleaner that distills the tree into one commit every few turns.',
@@ -252,9 +252,9 @@ export const FLOWS: Flow[] = [
     featured: 4,
   },
   {
-    name: 'agent_cleanup:flame_chase',
+    name: 'flame_chasoid:agent_cleanup_flame_chase',
     slug: 'flame-chase-agent-cleanup',
-    module: 'agent_cleanup',
+    module: 'flame_chasoid',
     link: '/flows/flame-chase-agent-cleanup',
     roles: 'first_chaser · second_chaser · cleaner',
     said: 'flame_chase, with the same cleaner working between the two chasers.',
@@ -306,9 +306,9 @@ export const FLOWS: Flow[] = [
     scene: 'aot',
   },
   {
-    name: 'parallel_flame_chase',
+    name: 'flame_chasoid:parallel',
     slug: 'parallel-flame-chase',
-    module: 'parallel_flame_chase',
+    module: 'flame_chasoid',
     link: '/flows/parallel-flame-chase',
     roles: 'coordinator · six lane actors',
     said: 'A coordinator plans three lanes once; lane 1 writes your tree, lanes 2 and 3 work on copies.',
@@ -319,9 +319,9 @@ export const FLOWS: Flow[] = [
     scene: 'parallel_flame_chase',
   },
   {
-    name: 'parallel_flame_chase:git_pr',
+    name: 'flame_chasoid:parallel_git_pr',
     slug: 'parallel-flame-chase-git-pr',
-    module: 'parallel_flame_chase',
+    module: 'flame_chasoid',
     link: '/flows/parallel-flame-chase-git-pr',
     roles: 'orchestrator · six lane actors',
     said: 'Three lanes, each with a clone and pull requests; main moves only for a measured improvement.',
@@ -550,7 +550,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   fixed_interrupt_flame_chase: {
-    of: 'fixed_interrupt_flame_chase',
+    of: 'flame_chasoid:fixed_interrupt',
     envs: [
       { id: 'ws', name: 'one shared workspace' },
       { id: 'trusted', name: 'outside it: the trusted evaluator' },
@@ -586,7 +586,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   ralph_loop_agent_cleanup: {
-    of: 'agent_cleanup:ralph_loop',
+    of: 'flame_chasoid:agent_cleanup_ralph_loop',
     beat: 146,
     envs: [{ id: 'repo', name: 'your repository — its history rewritten every epoch' }],
     roles: [
@@ -624,7 +624,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   flame_chase_agent_cleanup: {
-    of: 'agent_cleanup:flame_chase',
+    of: 'flame_chasoid:agent_cleanup_flame_chase',
     beat: 146,
     envs: [{ id: 'repo', name: 'your repository — its history rewritten every epoch' }],
     roles: [
@@ -881,7 +881,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   parallel_flame_chase: {
-    of: 'parallel_flame_chase',
+    of: 'flame_chasoid:parallel',
     depth: 'lanes',
     envs: [
       { id: 'plan', name: 'a planning snapshot' },
@@ -939,7 +939,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   parallel_flame_chase_git_pr: {
-    of: 'parallel_flame_chase:git_pr',
+    of: 'flame_chasoid:parallel_git_pr',
     depth: 'lanes',
     beat: 150,
     envs: [
