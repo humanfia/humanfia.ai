@@ -55,8 +55,9 @@ against each other in public; when one of ours loses, it goes.
 
 Each result is credited at the top of the post that reports it, not folded into a team byline.
 Everything has been built with many more people than are named above — [NVIDIA
-Research](https://www.nvidia.com/en-us/research/), [MIT HAN Lab](https://hanlab.mit.edu), UCLA,
-Tsinghua, and a long tail of community contributors. The full list is the one git keeps:
+Research](https://www.nvidia.com/en-us/research/), [MIT HAN Lab](https://hanlab.mit.edu),
+[UCLA PolyArch](https://polyarch.cs.ucla.edu/), Tsinghua, [Nunchux](https://nunchux.ai), and a long
+tail of community contributors. The full list is the one git keeps:
 [Humanize](https://github.com/humanfia/humanize/graphs/contributors) ·
 [the flowverse](https://github.com/humanfia/flowverse/graphs/contributors) ·
 [this site](https://github.com/humanfia/humanfia.ai/graphs/contributors).

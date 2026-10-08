@@ -37,6 +37,13 @@ const PEOPLE: Record<string, Person> = {
   smoothsmooth: { gh: 'smoothsmooth', id: 18200776, name: 'Yahui Cui', at: 'NVIDIA' },
   hongzhoulin89: { gh: 'hongzhoulin89', id: 29802555, name: 'Hongzhou Lin', at: 'Amazon AGI' },
   JuiHuiChung: { gh: 'unixtomato', id: 72721270, name: 'Jui-Hui Chung', at: 'Princeton University' },
+  mark_sf: {
+    name: 'Mark Kim',
+    at: 'Independent Researcher',
+    href: 'https://markkim.bearblog.dev',
+    profileLabel: '@mark_sf',
+    avatarUrl: '/media/mark-kim.jpg',
+  },
   menik1126: { gh: 'menik1126', id: 49935767, name: 'Jing Xiong' },
   dongz9: { gh: 'dongz9', id: 627593, name: 'Dong Zhou', at: 'Carnegie Mellon University' },
   crmsndu: { gh: 'crmsndu', id: 74142908, name: 'Zheng Du', at: 'Georgia Tech' },
@@ -71,8 +78,10 @@ const FOUNDING = [
     role: 'Built the team',
     body:
       'Assembled Humanfia. Everyone here is here because he went and found them — across NVIDIA, '
-      + 'MIT, UCLA, Tsinghua and half a dozen other places — and pointed the loop at problems '
-      + 'somebody else keeps the scoreboard for. He works on every project.',
+      + 'MIT, UCLA, Tsinghua and a dozen of other places — and pointed the loop at problems '
+      + 'somebody else keeps the scoreboard for. He scales both the team and agents, and keeps '
+      + 'improving the efficiency & productivity of token maxing at Nvidia Research. '
+      + 'He works on every project.',
     links: [{ text: 'lzhu.me', href: 'https://lzhu.me' }],
   },
 ]
@@ -104,14 +113,17 @@ const GROUPS: Group[] = [
     ],
   },
   {
-    id: 'flowbench',
-    name: 'FlowBench',
-    href: '/projects/flowbench',
-    what: 'The referee. Scores flows against each other on work that takes a day, not a minute.',
+    id: 'kda',
+    name: 'KDA',
+    href: '/projects/kda',
+    what: 'Kernel Design Agents. Faster on real hardware, or it does not count.',
     members: [
-      { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.' },
-      { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },
-      { who: 'JerryGJX', role: 'Kernel and systems tasks.' },
+      { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.' },
+      { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
+      { who: 'JerryGJX', role: 'Working on the self-evolving KernelWiki.' },
+      { who: 'Waterpine', role: 'Working on the self-evolving KernelWiki.' },
+      { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
+      { who: 'smoothsmooth', role: 'Bootstrapped CuteDSL-related primitives into KDA.' },
     ],
   },
   {
@@ -124,20 +136,18 @@ const GROUPS: Group[] = [
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },
       { who: 'hongzhoulin89', role: 'Research-level proofs, and what a Lean proof is worth.' },
       { who: 'JuiHuiChung', role: 'Set up the PutnamBench baseline and proposed recursive lemma proving for HOA.' },
+      { who: 'mark_sf', role: 'Discuss the math autoformalization and help setup the 1stproof contest.' },
     ],
   },
   {
-    id: 'kda',
-    name: 'KDA',
-    href: '/projects/kda',
-    what: 'Kernel Design Agents. Faster on real hardware, or it does not count.',
+    id: 'flowbench',
+    name: 'FlowBench',
+    href: '/projects/flowbench',
+    what: 'The referee. Scores flows against each other on work that takes a day, not a minute.',
     members: [
-      { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.' },
-      { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
-      { who: 'JerryGJX', role: 'Working on the self-evolving KernelWiki.' },
-      { who: 'Waterpine', role: 'Working on the self-evolving KernelWiki.' },
-      { who: 'BBuf', role: 'KDA-Pilot, and the forty-plus operators merged into SGLang.' },
-      { who: 'smoothsmooth', role: 'Bootstrapped CuteDSL-related primitives into KDA.' },
+      { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.' },
+      { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },
+      { who: 'JerryGJX', role: 'Kernel and systems tasks.' },
     ],
   },
   {
