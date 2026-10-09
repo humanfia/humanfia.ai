@@ -4,9 +4,10 @@ pageClass: flow-page
 
 # rlar
 
-Have every round of work reviewed, and stop when the reviewer agrees it is done. An actor works
-in one session that remembers; a fresh reviewer reads the repository after each round, and its
-review is the actor's next prompt, word for word.
+RLAR -- **R**alph **L**oop with **A**gentic **R**eview: Have every round of work reviewed, and stop
+when the reviewer agrees it is done. An actor works in one session that remembers; a fresh
+reviewer reads the repository after each round, and its review is the actor's next prompt,
+word for word.
 
 <FlowFacts flow="rlar" />
 
