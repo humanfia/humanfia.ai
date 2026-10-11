@@ -127,6 +127,12 @@ const INDEX = [
             each other, a broker introduces them and relays the connection. The fence, which limits
             what an agent’s processes may reach, is enforced on both machines.
           </p>
+          <p class="hz-copy">
+            The name is from the Chronocognitive Anchor (识刻锚) of <i>Honkai: Star Rail</i>, which
+            Screwllum builds into the Emperor’s Scepter that runs Amphoreus. It keeps one person
+            whole inside that other world and still in reach of the rest of the cosmos, as
+            CogAnchor keeps an agent itself while its work is on another machine.
+          </p>
           <p class="dt-links">
             <a class="hz-link" :href="`${DOCS}/user/remote-execution`">Remote execution ↗</a>
             <a class="hz-link" :href="`${DOCS}/reference/remote-execution`">The reference ↗</a>
