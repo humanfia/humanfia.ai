@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // What the loop is worth: the same four models, three levels of scaffolding, fifty problems.
 // A switch between the two benchmarks; each model is three bars on a scale of 50, the flow's in
-// green, with what it gained over the coding CLI beside it. The bars grow in the first time the
+// accent, with what it gained over the coding CLI beside it. The bars grow in the first time the
 // figure is seen, and re-grow from where they were when the benchmark changes.
 import { computed, onMounted, ref } from 'vue'
 import { useInView } from '../../kit/shared'
@@ -126,7 +126,7 @@ const label = computed(() =>
   --c: var(--hz-ink-2);
 }
 .flow {
-  --c: var(--hz-green);
+  --c: var(--hz-mark);
 }
 
 .ab-grid {
@@ -218,7 +218,7 @@ const label = computed(() =>
   letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .ab-gain small {
   margin-top: 4px;

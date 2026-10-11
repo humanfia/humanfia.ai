@@ -1,33 +1,33 @@
 /* The colours of the flow grammar (see grammar.ts): one per kind of role, one per way a run
    ends, and nothing else.
 
-   Constructivist, because the rest of the site is: ink on paper, one green, and a few flat
-   poster colours from Hyacine's, no gradients on the marks. A role's colour says what it is --
-   does the work (periwinkle), takes turns with the one that does (sky), judges (the green, a
-   reviewer's pen), plans and cleans (gold) -- so a reviewer is the same green in every diagram. You are drawn in ink and
-   a program in grey: neither is a model. The four endings each carry a glyph as well, so no
-   colour is ever the only thing that says it.
+   Constructivist, because the rest of the site is: ink on paper and a few flat poster colours,
+   Hyacine's, no gradients on the marks. A role's colour says what it is -- does the work (cyan),
+   takes turns with the one that does (lavender), judges (pink, a reviewer's pen), plans and
+   cleans (gold) -- so a reviewer is the same pink in every diagram. You are drawn in ink and a
+   program in grey: neither is a model. The four endings each carry a glyph as well, so no colour
+   is ever the only thing that says it.
 
    Every colour is a variable, and the dark set is the same poster printed on black: the hues
-   are lifted until they read on ink, never swapped for others. The green is the site's own when
-   it defines one (`--hf-green`), and Hyacine's green otherwise. */
+   are lifted until they read on ink, never swapped for others. The pink is the site's own when
+   it defines one (`--hf-pink`), and Hyacine's pink otherwise. */
 
 .hmz-flow,
 .flow-ui {
-  --flow-green: var(--hf-green, #76b900);
-  --flow-maker: #3b5fb5;
-  --flow-partner: #14768a;
-  --flow-checker: var(--flow-green);
-  --flow-steward: #a8730f;
+  --flow-mark: var(--hf-pink, #ec6fa3);
+  --flow-maker: #0e8696;
+  --flow-partner: #8b72d6;
+  --flow-checker: var(--flow-mark);
+  --flow-steward: #b8862a;
   --flow-human: var(--vp-c-text-1);
-  --flow-program: #6c6472;
+  --flow-program: #6b7a82;
 
-  --flow-done: #23805a;
-  --flow-fail: #c92e4b;
-  --flow-budget: #c08a1e;
+  --flow-done: #2a9468;
+  --flow-fail: #cf3552;
+  --flow-budget: #c99232;
   --flow-you: var(--vp-c-text-1);
 
-  --flow-accent: var(--flow-green);
+  --flow-accent: var(--flow-mark);
   --flow-ink: var(--vp-c-text-1);
   --flow-ink-2: var(--vp-c-text-2);
   --flow-ink-3: var(--vp-c-text-3);
@@ -46,15 +46,15 @@
 .dark .flow-ui,
 .dark.hmz-flow,
 .dark.flow-ui {
-  --flow-green: var(--hf-green, #76b900);
-  --flow-maker: #9db8f0;
-  --flow-partner: #5fd4e3;
-  --flow-steward: #f2c55c;
-  --flow-program: #a49fb3;
+  --flow-mark: var(--hf-pink, #ff94c2);
+  --flow-maker: #4fd8ea;
+  --flow-partner: #b9a6f5;
+  --flow-steward: #f2c862;
+  --flow-program: #94a3aa;
 
-  --flow-done: #6fdba5;
-  --flow-fail: #ff7088;
-  --flow-budget: #f2c55c;
+  --flow-done: #5fdca3;
+  --flow-fail: #ff6f88;
+  --flow-budget: #f2c862;
 
   --flow-plate: color-mix(in srgb, var(--vp-c-text-1) 5%, transparent);
   --flow-plate-edge: color-mix(in srgb, var(--vp-c-text-1) 20%, transparent);
@@ -95,13 +95,14 @@
 
 /* Flat planes far behind the run, on the poster's diagonal, drifting at their own depth as the
    camera moves: the parallax that says there is depth, in shapes rather than in dust. Faint
-   enough to be felt rather than read; the one green bar is the only colour in them. */
+   enough to be felt rather than read; the one cyan bar is the only colour in them -- cyan rather
+   than the pink, which at a whisper on the night turns to mud. */
 .hmz-flow .f-plane {
   fill: var(--flow-plane);
 }
 
-.hmz-flow .f-plane.green {
-  fill: var(--flow-green);
+.hmz-flow .f-plane.accent {
+  fill: var(--flow-maker);
 }
 
 .hmz-flow .f-plane.line {

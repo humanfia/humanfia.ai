@@ -8,7 +8,7 @@
 // screen; a reader who asked for less motion gets them all at once.
 //
 //   <ScatterChart
-//     :groups="[{ key: 'us', label: 'Humanfia', tone: 'green' }, { key: 'them', label: 'Others', tone: 'grey' }]"
+//     :groups="[{ key: 'us', label: 'Humanfia', tone: 'accent' }, { key: 'them', label: 'Others', tone: 'grey' }]"
 //     :points="[{ x: 44.5, y: 672, group: 'us', label: 'Humanfia', highlight: true }, { x: 74, y: 672, group: 'them', label: 'Aleph' }]"
 //     :x="{ label: 'Cost per problem', prefix: '$', log: true }" :y="{ label: 'Solved' }"
 //   />
@@ -291,7 +291,7 @@ const tableRows = computed(() => props.points.map((p) => ({ label: p.label ?? ''
 }
 
 .sc-plot:focus-visible {
-  box-shadow: 0 0 0 2px var(--k-green);
+  box-shadow: 0 0 0 2px var(--k-mark);
 }
 
 .sc-plot svg {

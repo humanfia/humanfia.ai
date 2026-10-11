@@ -9,10 +9,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="humanfia-favicon-title">
   <title id="humanfia-favicon-title">Humanfia</title>
   <style>
-    .h { fill: #1b1720; }
+    .h { fill: #141a1f; }
     .dot { fill: #76b900; }
     @media (prefers-color-scheme: dark) {
-      .h { fill: #efe4e9; }
+      .h { fill: #e8f0f2; }
       .dot { fill: #76b900; }
     }
   </style>

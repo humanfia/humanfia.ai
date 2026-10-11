@@ -136,7 +136,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   font: 700 12px/1.3 var(--vp-font-family-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .ru-title {
   margin: 0;
@@ -151,7 +151,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   margin: 0;
 }
 .ru-span div {
-  border-left: 6px solid var(--hf-green);
+  border-left: 6px solid var(--hf-cyan);
   padding-left: 12px;
 }
 .ru-span dt {
@@ -176,7 +176,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   cursor: pointer;
 }
 .ru-switch input {
-  accent-color: var(--hf-green);
+  accent-color: var(--hf-cyan);
   width: 16px;
   height: 16px;
 }
@@ -196,7 +196,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   padding-top: 12px;
 }
 .ru-col:nth-child(2) {
-  border-top-color: var(--hf-green);
+  border-top-color: var(--hf-cyan);
 }
 .ru-name {
   display: flex;
@@ -214,7 +214,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   color: var(--vp-c-text-2);
 }
 .ru-name:hover b {
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .ru-col ul {
   margin: 10px 0 0;
@@ -232,7 +232,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   transition: background 0.2s, padding 0.2s;
 }
 a.ru-item:hover {
-  background: color-mix(in srgb, var(--hf-green) 8%, transparent);
+  background: color-mix(in srgb, var(--hf-cyan) 8%, transparent);
   padding-left: 6px;
 }
 .ru-item b {
@@ -248,6 +248,6 @@ a.ru-item:hover {
   display: block;
   margin-top: 2px;
   font: normal 11px/1.3 var(--vp-font-family-mono);
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 </style>

@@ -136,11 +136,11 @@ onUnmounted(() => {
       <rect class="f-plane" x="-60" y="150" width="760" height="54" transform="rotate(-17 330 177)" opacity="0.05" />
     </g>
     <g :transform="frame.drift(0.07)">
-      <circle class="f-plane green" cx="842" cy="70" r="58" opacity="0.14" />
+      <circle class="f-plane accent" cx="842" cy="70" r="58" opacity="0.14" />
     </g>
     <g :transform="frame.drift(0.09)">
       <rect class="f-plane line" x="620" y="150" width="120" height="120" transform="rotate(-17 680 210)" opacity="0.18" />
-      <rect class="f-plane green" x="40" y="58" width="420" height="7" transform="rotate(-17 250 61)" opacity="0.5" />
+      <rect class="f-plane accent" x="40" y="58" width="420" height="7" transform="rotate(-17 250 61)" opacity="0.5" />
     </g>
     <g :transform="frame.drift(0.05)">
       <rect class="f-plane" x="360" y="210" width="560" height="14" transform="rotate(-17 640 217)" opacity="0.08" />

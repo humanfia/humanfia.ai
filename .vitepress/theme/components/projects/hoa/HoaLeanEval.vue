@@ -159,7 +159,7 @@ const max = computed(() => Math.max(...props.entries.map((e) => e[metric.value])
   transition: transform 0.7s var(--k-ease);
 }
 .us .hl-bar i {
-  background: var(--k-green);
+  background: var(--k-mark);
 }
 .hl-v {
   grid-area: v;

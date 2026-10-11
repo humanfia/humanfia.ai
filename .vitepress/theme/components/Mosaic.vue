@@ -5,7 +5,7 @@
 // on a tile is the slot's, and the slot is told how big its tile is.
 //
 // Squares, not cards with round corners: the same flat, hard-edged sheets as the rest of the
-// site, an ink rule across the top of each, the green band across every fifth.
+// site, an ink rule across the top of each, the accent band across every fifth.
 //
 // The sizes come from a fixed pattern rather than from anything random, because the server
 // renders this and the browser has to agree with it. The pattern repeats every eighteen tiles,
@@ -126,7 +126,7 @@ const tiles = computed(() =>
   transition: border-color 0.25s, background-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-/* Every fifth tile is the soft surface instead of the plain one, and carries a short green band
+/* Every fifth tile is the soft surface instead of the plain one, and carries a short accent band
    across its top corner on the site's diagonal -- so the grid has a texture running through it
    rather than twenty identical panels. */
 .tile.wash {
@@ -141,13 +141,13 @@ const tiles = computed(() =>
   width: 150px;
   height: 14px;
   pointer-events: none;
-  background: var(--hf-green);
+  background: var(--hf-pink);
   transform: rotate(-17deg);
 }
 
 .tile:hover {
   border-color: var(--vp-c-text-1);
-  border-top-color: var(--hf-green);
+  border-top-color: var(--hf-pink);
   background: var(--vp-c-bg-soft);
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0 var(--vp-c-text-1);

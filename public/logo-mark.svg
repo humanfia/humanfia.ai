@@ -8,9 +8,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 108" role="img" aria-labelledby="humanfia-mark-title">
   <title id="humanfia-mark-title">Humanfia</title>
   <style>
-    .h { fill: #1b1720; }
+    .h { fill: #141a1f; }
     @media (prefers-color-scheme: dark) {
-      .h { fill: #efe4e9; }
+      .h { fill: #e8f0f2; }
     }
   </style>
   <path class="h" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>

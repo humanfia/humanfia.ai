@@ -50,8 +50,8 @@ onBeforeUnmount(() => io?.disconnect())
 }
 .demo-frame {
   border: 2px solid var(--vp-c-text-1);
-  box-shadow: 6px 6px 0 var(--hf-green);
-  background: #171519;
+  box-shadow: 6px 6px 0 var(--hf-cyan);
+  background: #0f1418;
   line-height: 0;
 }
 .demo video {

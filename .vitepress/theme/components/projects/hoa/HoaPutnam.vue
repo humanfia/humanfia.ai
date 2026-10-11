@@ -185,7 +185,7 @@ const money = (v: number) => `$${v < 1 ? v.toFixed(2) : v % 1 ? v.toFixed(2) : v
   background: var(--k-ink);
 }
 .us .hp-bar i {
-  background: var(--k-green);
+  background: var(--k-mark);
 }
 .hot .hp-bar i {
   background: var(--k-accent);
@@ -268,10 +268,10 @@ const money = (v: number) => `$${v < 1 ? v.toFixed(2) : v % 1 ? v.toFixed(2) : v
   transition: transform 1s var(--k-ease) calc(var(--i) * 90ms), opacity 0.6s calc(var(--i) * 90ms);
 }
 .us .hp-dot {
-  background: var(--k-green);
+  background: var(--k-mark);
 }
 .hot .hp-dot {
-  outline: 2px solid var(--k-green);
+  outline: 2px solid var(--k-mark);
   outline-offset: 2px;
 }
 .hp-val {

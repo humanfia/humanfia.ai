@@ -10,7 +10,7 @@
 //   <RangeMeter
 //     kicker="Gate decay within one 64-token chunk" unit=" bits" :max="650" :value="600"
 //     :markers="[{ value: 52, label: '≈52 bits', note: 'random tests' }]"
-//     :zones="[{ from: 0, to: 126, label: 'test passes' }, { from: 126, to: 650, label: 'NaN', tone: 'green' }]"
+//     :zones="[{ from: 0, to: 126, label: 'test passes' }, { from: 126, to: 650, label: 'NaN', tone: 'accent' }]"
 //   />
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { format, prefersReducedMotion, uid, useInView, type Tone } from './shared'
@@ -55,7 +55,7 @@ let frame = 0
 
 const pct = (v: number) => ((v - props.min) / (props.max - props.min)) * 100
 const zone = computed(() => props.zones.find((z) => at.value >= z.from && at.value <= z.to))
-const danger = computed(() => props.zones.find((z) => z.tone === 'green'))
+const danger = computed(() => props.zones.find((z) => z.tone === 'accent'))
 
 watch(seen, (now) => {
   if (!now || prefersReducedMotion()) return
@@ -88,7 +88,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
 
     <div class="rm-track" :style="{ '--at': `${pct(at)}%` }">
       <div v-if="danger" class="rm-danger" :style="{ left: `${pct(danger.from)}%`, right: `${100 - pct(danger.to)}%` }" aria-hidden="true" />
-      <div class="rm-fill" :class="{ hot: zone?.tone === 'green' }" aria-hidden="true" />
+      <div class="rm-fill" :class="{ hot: zone?.tone === 'accent' }" aria-hidden="true" />
       <div
         v-for="(m, i) in markers"
         :key="m.value"
@@ -145,7 +145,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--k-green);
+  background: var(--k-mark);
 }
 
 .rm-track {
@@ -159,7 +159,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   position: absolute;
   top: 0;
   bottom: 0;
-  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--k-green) 35%, transparent) 0 2px, transparent 2px 8px);
+  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--k-mark) 35%, transparent) 0 2px, transparent 2px 8px);
 }
 
 .rm-fill {
@@ -170,7 +170,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
 }
 
 .rm-fill.hot {
-  background: linear-gradient(90deg, var(--k-fg) 0 40%, var(--k-green));
+  background: linear-gradient(90deg, var(--k-fg) 0 40%, var(--k-mark));
 }
 
 /* A mark: a tick through the track and its number under it; what the number means is in the
@@ -267,7 +267,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   cursor: ew-resize;
 }
 
-/* The thumb is drawn, not the input's own: a green square tilted onto the diagonal. */
+/* The thumb is drawn, not the input's own: a accent square tilted onto the diagonal. */
 .rm-track::after {
   content: '';
   position: absolute;
@@ -276,7 +276,7 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
-  background: var(--k-green);
+  background: var(--k-mark);
   border: 2px solid var(--k-bg);
   transform: rotate(-17deg);
   pointer-events: none;
@@ -303,12 +303,12 @@ const fmt = (v: number) => format(v, props.decimals, props.unit)
   color: var(--k-fg);
 }
 
-.rm-status.tone-green {
-  border-color: var(--k-green);
+.rm-status.tone-accent {
+  border-color: var(--k-mark);
 }
 
-.rm-status.tone-green b {
-  color: var(--k-green-text);
+.rm-status.tone-accent b {
+  color: var(--k-mark-text);
 }
 
 </style>

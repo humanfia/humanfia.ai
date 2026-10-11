@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
 
 .picks button.on {
   background: var(--vp-c-text-1);
-  box-shadow: inset 6px 0 0 var(--hf-green);
+  box-shadow: inset 6px 0 0 var(--hf-cyan);
 }
 
 .picks button.on code {
@@ -228,7 +228,7 @@ onBeforeUnmount(() => {
 
 .screen {
   min-width: 0;
-  background: #18161d;
+  background: #0f1418;
 }
 
 .bar {
@@ -236,10 +236,10 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  border-bottom: 1px solid #2c2834;
+  border-bottom: 1px solid #24323b;
   font-family: var(--vp-font-family-mono);
   font-size: 11.5px;
-  color: #8e8590;
+  color: #82939a;
 }
 
 .bar i {
@@ -250,7 +250,7 @@ onBeforeUnmount(() => {
 
 .bar code {
   font-size: 12px;
-  color: #ece4ea;
+  color: #e3edf0;
   background: none;
 }
 
@@ -262,7 +262,7 @@ onBeforeUnmount(() => {
   position: relative;
   aspect-ratio: 25 / 14;
   overflow: hidden;
-  background: #18161d;
+  background: #0f1418;
   cursor: pointer;
 }
 
@@ -273,8 +273,8 @@ onBeforeUnmount(() => {
 }
 
 .stage :deep(.ap-player) {
-  --term-color-foreground: #ece4ea;
-  --term-color-background: #18161d;
+  --term-color-foreground: #e3edf0;
+  --term-color-background: #0f1418;
   border-radius: 0;
 }
 

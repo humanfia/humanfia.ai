@@ -79,8 +79,8 @@ loop, with no component anywhere in it that knows Lean specifically.
     <text class="on-ink" x="530" y="53" text-anchor="middle">Lean proofs</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="green" x="20" y="157" width="180" height="56" />
-    <text class="on-green t-lg" x="110" y="191" text-anchor="middle">Humanize</text>
+    <rect class="accent" x="20" y="157" width="180" height="56" />
+    <text class="on-accent t-lg" x="110" y="191" text-anchor="middle">Humanize</text>
   </g>
   <g data-step="3" data-pop>
     <rect class="ink" x="440" y="102" width="180" height="56" />
@@ -91,9 +91,9 @@ loop, with no component anywhere in it that knows Lean specifically.
     <text class="on-ink" x="530" y="217" text-anchor="middle">Kaggle</text>
   </g>
   <rect class="grey" x="-6" y="-6" width="12" height="12" data-step="1" data-travel="#le2-seed" data-loop />
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#le2-lean" data-loop />
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#le2-kda" data-loop />
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#le2-hma" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#le2-lean" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#le2-kda" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#le2-hma" data-loop />
 </AnimatedDiagram>
 
 The loop is the same one that runs [kernel work](/projects/kda) and

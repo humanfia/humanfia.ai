@@ -34,8 +34,8 @@ race:
   aristotle: [[0, 124], [10, 125], [11, 126], [12, 136], [13, 139], [14, 141], [19, 142], [21, 151], [22, 156], [23, 162]]
   notes:
     - { x: 0, y: 130, label: '#2', detail: '7/28 · first 130 accepted', tone: ink }
-    - { x: 19, y: 167, label: '#1', detail: '8/16 · past Seed Prover’s 156', tone: green }
-    - { x: 21, y: 174, label: '174', detail: '8/18 · the 172nd at 13:28 UTC', tone: green }
+    - { x: 19, y: 167, label: '#1', detail: '8/16 · past Seed Prover’s 156', tone: accent }
+    - { x: 21, y: 174, label: '174', detail: '8/18 · the 172nd at 13:28 UTC', tone: accent }
 # The board at 13:28 UTC on 18 August, when our 172nd proof was accepted; `from` is each
 # entry's rank on 29 July.
 board:
@@ -70,7 +70,7 @@ past Seed Prover's 156 for the first time.
   title="From #2 to #1"
   label="Accepted Lean-Eval proofs by day from 28 July to 20 August 2026. Humanfia rises from 130 to 149 on 4 August and 167 on 16 August, passing Seed Prover, which ends at 156; Humanfia reaches 174 on 18 August and 183 on 20 August. Aristotle climbs from 124 to 162."
   :series="[
-    { key: 'ours', label: 'Humanfia', tone: 'green', data: $frontmatter.race.ours, step: true, dots: true },
+    { key: 'ours', label: 'Humanfia', tone: 'accent', data: $frontmatter.race.ours, step: true, dots: true },
     { key: 'seed', label: 'Seed Prover', tone: 'ink', data: $frontmatter.race.seed, step: true, dashed: true },
     { key: 'aristotle', label: 'Aristotle', tone: 'grey', data: $frontmatter.race.aristotle, step: true },
   ]"
@@ -125,12 +125,12 @@ past Seed Prover's 156 for the first time.
     <text x="455" y="236" text-anchor="middle">AXLE</text>
   </g>
   <g data-step="5" data-pop>
-    <rect class="green" x="400" y="26" width="136" height="36" transform="rotate(-10 468 44)" />
-    <text class="on-green" x="468" y="49" text-anchor="middle" transform="rotate(-10 468 44)">ACCEPTED</text>
+    <rect class="accent" x="400" y="26" width="136" height="36" transform="rotate(-10 468 44)" />
+    <text class="on-accent" x="468" y="49" text-anchor="middle" transform="rotate(-10 468 44)">ACCEPTED</text>
   </g>
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#le1-err" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#le1-err" data-loop />
   <rect class="grey" x="-8" y="-8" width="16" height="16" data-step="4" data-travel="#le1-lane" data-stop="0.2" data-loop />
-  <rect class="green" x="-8" y="-8" width="16" height="16" data-step="5" data-travel="#le1-lane" data-loop />
+  <rect class="accent" x="-8" y="-8" width="16" height="16" data-step="5" data-travel="#le1-lane" data-loop />
 </AnimatedDiagram>
 
 <PostCards numbered>

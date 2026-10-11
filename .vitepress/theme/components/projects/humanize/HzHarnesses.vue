@@ -52,10 +52,10 @@ const line = computed(() => {
         <p class="hz-copy">The CLI works with its tools, in the env the turn names.</p>
       </div>
       <div class="hn-turn">
-        <p class="hn-tag green">A litellm turn</p>
+        <p class="hn-tag accent">A litellm turn</p>
         <div class="hn-flow">
-          <span class="box green">turn · litellm</span>
-          <span class="wire long"><i class="green" /><small>history + prompt → one completion</small></span>
+          <span class="box accent">turn · litellm</span>
+          <span class="wire long"><i class="accent" /><small>history + prompt → one completion</small></span>
           <span class="box frame">model</span>
         </div>
         <p class="hz-copy"><b>env=None, always.</b> The history and the prompt go to the model, and an answer comes back.</p>
@@ -158,11 +158,11 @@ const line = computed(() => {
   font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--hf-on-green);
-  background: var(--hz-green);
+  color: var(--hf-on-fill);
+  background: var(--hz-mark);
 }
 .hn-grid .hi button {
-  box-shadow: inset 0 0 0 2px var(--hz-green);
+  box-shadow: inset 0 0 0 2px var(--hz-mark);
 }
 .hn-grid .proto button {
   background-image: repeating-linear-gradient(135deg, var(--hz-line-2) 0 1px, transparent 1px 7px);
@@ -197,7 +197,7 @@ const line = computed(() => {
   text-transform: uppercase;
   color: var(--hz-ink-2);
 }
-.hn-tag.green {
+.hn-tag.accent {
   color: var(--hz-accent);
 }
 .hn-flow {
@@ -215,9 +215,9 @@ const line = computed(() => {
   color: var(--hz-on-ink);
   background: var(--hz-ink);
 }
-.box.green {
-  color: var(--hf-on-green);
-  background: var(--hz-green);
+.box.accent {
+  color: var(--hf-on-fill);
+  background: var(--hz-mark);
 }
 .box.grey {
   color: var(--hz-on-ink);
@@ -243,8 +243,8 @@ const line = computed(() => {
   background: var(--hz-ink);
   animation: hn-run 2.4s var(--hz-ease) infinite;
 }
-.wire i.green {
-  background: var(--hz-green);
+.wire i.accent {
+  background: var(--hz-mark);
 }
 .wire small {
   position: absolute;

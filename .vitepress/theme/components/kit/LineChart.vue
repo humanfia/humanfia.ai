@@ -16,7 +16,7 @@
 // rather than shrinking its type below the site's 11px floor.
 //
 //   <LineChart
-//     :series="[{ key: 'ours', label: 'Ours', tone: 'green', data: [[0, 1.1], [4, 1.5], [8, 1.85]] }]"
+//     :series="[{ key: 'ours', label: 'Ours', tone: 'accent', data: [[0, 1.1], [4, 1.5], [8, 1.85]] }]"
 //     :x="{ suffix: 'h' }" :y="{ suffix: '×', decimals: 1 }"
 //   />
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
@@ -385,7 +385,7 @@ const tableRows = computed(() => {
                 </template>
               </g>
 
-              <g v-for="(a, i) in annotations ?? []" :key="`a${i}`" class="lc-note" :class="[`tone-${a.tone ?? 'green'}`, { on: focusedNote === i }]">
+              <g v-for="(a, i) in annotations ?? []" :key="`a${i}`" class="lc-note" :class="[`tone-${a.tone ?? 'accent'}`, { on: focusedNote === i }]">
                 <circle :cx="sx(a.x)" :cy="sy(a.y)" r="10" />
                 <text class="lc-note-num" :x="sx(a.x)" :y="sy(a.y) - 16" text-anchor="middle">{{ i + 1 }}</text>
               </g>
@@ -422,7 +422,7 @@ const tableRows = computed(() => {
     </div>
 
     <ol v-if="annotations?.length" class="lc-notes">
-      <li v-for="(a, i) in annotations" :key="i" :class="`tone-${a.tone ?? 'green'}`">
+      <li v-for="(a, i) in annotations" :key="i" :class="`tone-${a.tone ?? 'accent'}`">
         <button
           type="button"
           :aria-pressed="focusedNote === i"
@@ -469,7 +469,7 @@ const tableRows = computed(() => {
 }
 
 .lc-plot:focus-visible {
-  box-shadow: 0 0 0 2px var(--k-green);
+  box-shadow: 0 0 0 2px var(--k-mark);
 }
 
 .lc-plot svg {
@@ -488,7 +488,7 @@ const tableRows = computed(() => {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--k-green);
+  background: var(--k-mark);
 }
 
 .lc-line {

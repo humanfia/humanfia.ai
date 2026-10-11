@@ -4,7 +4,7 @@
 // It is a scoreboard more than a document -- a hero with the board HMA tops and the relay that put
 // it there, then one section per question a reader brings (how, how well, with whom, how do I run
 // it, and what came before) -- so it is drawn full width in components rather than in a column
-// of markdown. The look is the site's: ink, paper and one green, square corners, mono for anything
+// of markdown. The look is the site's: ink, paper and one accent, square corners, mono for anything
 // the site says about itself. What is HMA's own is the scoreboard: tabular figures, ranks, rules
 // between rows, and the flow grammar's blue and teal for the two agents taking turns.
 //

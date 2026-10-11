@@ -111,7 +111,7 @@ const h = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 
 .legend .new i,
 .col.new .bar {
-  background: var(--kd-green);
+  background: var(--kd-mark);
 }
 
 .legend .base i {
@@ -207,7 +207,7 @@ const h = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 }
 
 .col.new .val {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
   font-size: 14px;
 }
 
@@ -238,7 +238,7 @@ const h = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
   font-variant-numeric: tabular-nums;
 }
 

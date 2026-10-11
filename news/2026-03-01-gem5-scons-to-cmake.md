@@ -71,7 +71,7 @@ Dockerfile or a step in a CI job. None of it is hard, and all of it has to be fo
   kicker="gem5/gem5#2969 · where the change went"
   label="The 567 files by kind: 193 SCons files removed, 145 CMake files added, 111 other files modified, 110 Bazel files added, 6 other files added, 2 vendored CMake files modified. In lines: 15,794 SCons lines removed, 14,244 Bazel added, 10,003 CMake added, 2,244 other added, 651 other removed, 31 CMake removed."
   caption="Counted from the pull request's file list. Switch to lines for the size of each part."
-  :series="[{ key: 'n', label: 'Count', tone: 'green' }]"
+  :series="[{ key: 'n', label: 'Count', tone: 'accent' }]"
   :datasets="[
     { key: 'files', label: 'Files', rows: $frontmatter.files },
     { key: 'lines', label: 'Lines', rows: $frontmatter.lines },
@@ -112,23 +112,23 @@ and keep running on the same Python tools.
     <text class="on-ink" x="300" y="59" text-anchor="middle">193 files</text>
   </g>
   <g data-step="2" data-pop>
-    <path class="line green" d="M226 19 L374 67 M374 19 L226 67" style="stroke-width: 4" />
+    <path class="line accent" d="M226 19 L374 67 M374 19 L226 67" style="stroke-width: 4" />
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="10" y="115" width="140" height="70" />
-    <text class="on-green t-lg" x="80" y="146" text-anchor="middle">CMake</text>
-    <text class="on-green" x="80" y="168" text-anchor="middle">147 files</text>
+    <rect class="accent" x="10" y="115" width="140" height="70" />
+    <text class="on-accent t-lg" x="80" y="146" text-anchor="middle">CMake</text>
+    <text class="on-accent" x="80" y="168" text-anchor="middle">147 files</text>
   </g>
   <g data-step="4" data-pop>
     <rect class="ink" x="450" y="115" width="140" height="70" />
     <text class="on-ink t-lg" x="520" y="146" text-anchor="middle">Bazel</text>
     <text class="on-ink" x="520" y="168" text-anchor="middle">110 files</text>
   </g>
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#g5-left" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#g5-left" data-loop />
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#g5-right" data-loop />
   <g data-step="5">
     <rect class="frame" x="150" y="232" width="300" height="56" />
-    <text class="green t-lg" x="300" y="258" text-anchor="middle">1,098 / 1,098</text>
+    <text class="accent t-lg" x="300" y="258" text-anchor="middle">1,098 / 1,098</text>
     <text x="300" y="279" text-anchor="middle">SimObjects match</text>
   </g>
 </AnimatedDiagram>

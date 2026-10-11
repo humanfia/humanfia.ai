@@ -95,15 +95,15 @@ judges what compiles.
     <text class="ink t-lg" x="240" y="74" text-anchor="middle">Lean</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="320" y="115" width="150" height="70" />
-    <text class="on-green t-lg" x="395" y="156" text-anchor="middle">Reviewer</text>
+    <rect class="accent" x="320" y="115" width="150" height="70" />
+    <text class="on-accent t-lg" x="395" y="156" text-anchor="middle">Reviewer</text>
   </g>
   <text class="ink" x="240" y="288" text-anchor="middle" data-step="4">turn after turn</text>
   <g data-step="5" data-pop>
     <rect class="ink" x="330" y="10" width="140" height="34" transform="rotate(-8 400 27)" />
     <text class="on-ink" x="400" y="32" text-anchor="middle" transform="rotate(-8 400 27)">campaign 2</text>
   </g>
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#ralph-ring" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#ralph-ring" data-loop />
 </AnimatedDiagram>
 
 ## Where the turns go
@@ -129,7 +129,7 @@ the budget.
   ]"
   :zones="[
     { from: 0, to: 10, label: 'most of the benchmark is closed' },
-    { from: 10, to: 50, label: 'the hard tail: more turns, more proofs', tone: 'green' },
+    { from: 10, to: 50, label: 'the hard tail: more turns, more proofs', tone: 'accent' },
   ]"
 />
 

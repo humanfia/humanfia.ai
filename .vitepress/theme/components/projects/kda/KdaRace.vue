@@ -104,7 +104,7 @@ const label = computed(
   padding: 22px 22px 18px;
   border: 1px solid var(--kd-line);
   background: color-mix(in srgb, var(--kd-bg) 70%, var(--kd-card));
-  box-shadow: 14px 14px 0 0 var(--kd-green);
+  box-shadow: 14px 14px 0 0 var(--kd-mark);
 }
 
 .race-top {
@@ -122,7 +122,7 @@ const label = computed(
   width: 8px;
   height: 8px;
   margin-right: 8px;
-  background: var(--kd-green);
+  background: var(--kd-mark);
 }
 
 .race-clock {
@@ -226,7 +226,7 @@ const label = computed(
 }
 
 .race-lane.best .race-bar {
-  background-color: var(--kd-green);
+  background-color: var(--kd-mark);
 }
 
 .race-end {
@@ -263,7 +263,7 @@ const label = computed(
 }
 
 .race-lane.best .race-score {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .race-axis {
@@ -300,7 +300,7 @@ const label = computed(
 @media (max-width: 560px) {
   .race {
     padding: 16px 14px 14px;
-    box-shadow: 8px 8px 0 0 var(--kd-green);
+    box-shadow: 8px 8px 0 0 var(--kd-mark);
   }
   .race-body {
     --tiles: 12;

@@ -205,7 +205,7 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .branch.on {
-  stroke: var(--kd-green);
+  stroke: var(--kd-mark);
   stroke-width: 2.5;
 }
 
@@ -260,7 +260,7 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .fold:hover b {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .lane-label {
@@ -304,8 +304,8 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .node.on {
-  background: var(--kd-green);
-  border-color: var(--kd-green);
+  background: var(--kd-mark);
+  border-color: var(--kd-mark);
   transform: scale(1.25);
 }
 
@@ -326,7 +326,7 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .node-label.on {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .chips {
@@ -346,9 +346,9 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .chips button[aria-pressed='true'] {
-  color: var(--kd-on-green);
-  background: var(--kd-green);
-  border-color: var(--kd-green);
+  color: var(--kd-on-fill);
+  background: var(--kd-mark);
+  border-color: var(--kd-mark);
 }
 
 .km {
@@ -401,7 +401,7 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
   padding: clamp(22px, 3vw, 36px);
   background: var(--kd-card);
   border: 1px solid var(--kd-line);
-  border-top: 4px solid var(--kd-green);
+  border-top: 4px solid var(--kd-mark);
 }
 
 .card-pr {
@@ -457,7 +457,7 @@ const bar = (v: number) => `${Math.min(100, (v / 3) * 100)}%`
 }
 
 .kvm.model b {
-  background: var(--kd-green);
+  background: var(--kd-mark);
 }
 
 .kvm-v {

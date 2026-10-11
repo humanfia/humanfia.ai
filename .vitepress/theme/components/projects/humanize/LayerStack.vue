@@ -251,10 +251,10 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
   opacity: 1;
 }
 
-/* The one in hand: ink, a green edge, pulled a step out of the stack. */
+/* The one in hand: ink, a accent edge, pulled a step out of the stack. */
 .on button {
   background: var(--vp-c-text-1);
-  box-shadow: inset 6px 0 0 var(--hf-green);
+  box-shadow: inset 6px 0 0 var(--hf-cyan);
   transform: translateX(10px);
 }
 
@@ -274,7 +274,7 @@ aside {
   position: sticky;
   top: calc(var(--vp-nav-height) + 24px);
   padding: 26px 28px 24px;
-  border-top: 6px solid var(--hf-green);
+  border-top: 6px solid var(--hf-cyan);
   background: var(--vp-c-bg-soft);
 }
 
@@ -310,7 +310,7 @@ aside {
 .note {
   margin: 14px 0 0;
   padding-left: 12px;
-  border-left: 3px solid var(--hf-green);
+  border-left: 3px solid var(--hf-cyan);
   font-size: 14px;
   line-height: 1.6;
   color: var(--vp-c-text-2);

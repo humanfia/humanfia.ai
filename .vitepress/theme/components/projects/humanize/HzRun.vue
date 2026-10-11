@@ -157,11 +157,11 @@ const pct = (v: number) => `${v}%`
   /* At rest, the run finished. Only the Clock writes it inline: bound in the template, every
      re-render (a few a second) would put it back to SPAN for a frame, and the trace would flash. */
   --now: 100;
-  --ink: #1b1720;
-  --paper: #efe4e9;
-  --paper-2: #bcb1b8;
-  --paper-3: #8e8590;
-  --green: #76b900;
+  --ink: #141a1f;
+  --paper: #e8f0f2;
+  --paper-2: #b3c3c8;
+  --paper-3: #82939a;
+  --accent: #76b900;
   --who: 196px;
   --tok: 64px;
   position: relative;
@@ -169,7 +169,7 @@ const pct = (v: number) => `${v}%`
   padding: 18px 20px 16px;
   color: var(--paper);
   background: var(--ink);
-  box-shadow: 14px 14px 0 0 var(--hf-green);
+  box-shadow: 14px 14px 0 0 var(--hf-cyan);
   font-family: var(--vp-font-family-mono);
   container-type: inline-size;
 }
@@ -177,7 +177,7 @@ const pct = (v: number) => `${v}%`
   background: var(--hf-night-2);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--hf-paper) 12%, transparent),
-    14px 14px 0 0 var(--hf-green);
+    14px 14px 0 0 var(--hf-cyan);
 }
 
 /* ---- the command ----------------------------------------------------------------------- */
@@ -193,7 +193,7 @@ const pct = (v: number) => `${v}%`
   flex: none;
   width: 12px;
   height: 12px;
-  background: var(--green);
+  background: var(--accent);
 }
 .run-cmd {
   flex: 1;
@@ -207,7 +207,7 @@ const pct = (v: number) => `${v}%`
 }
 .run-prompt {
   margin-right: 10px;
-  color: var(--green);
+  color: var(--accent);
 }
 .run-caret {
   display: inline-block;
@@ -243,18 +243,18 @@ const pct = (v: number) => `${v}%`
   color: var(--paper);
 }
 .run-state.on i {
-  background: var(--green);
+  background: var(--accent);
   animation: run-pulse 1.2s ease-in-out infinite;
 }
 .done .run-state {
-  color: var(--green);
+  color: var(--accent);
 }
 .done .run-state i {
-  background: var(--green);
+  background: var(--accent);
 }
 @keyframes run-pulse {
   50% {
-    box-shadow: 0 0 0 5px color-mix(in srgb, var(--green) 25%, transparent);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 25%, transparent);
   }
 }
 
@@ -331,7 +331,7 @@ const pct = (v: number) => `${v}%`
   --on: var(--ink);
 }
 .run-slice.exec {
-  --fill: var(--green);
+  --fill: var(--accent);
   --on: var(--ink);
 }
 .run-tok {
@@ -352,7 +352,7 @@ const pct = (v: number) => `${v}%`
   bottom: 0;
   left: calc(var(--who) + 12px + (100% - var(--who) - var(--tok) - 24px) * var(--now) / 100);
   width: 2px;
-  background: var(--green);
+  background: var(--accent);
   pointer-events: none;
 }
 .run-head span {
@@ -364,7 +364,7 @@ const pct = (v: number) => `${v}%`
   font-size: 11px;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
-  background: var(--green);
+  background: var(--accent);
 }
 .run:not(.live) .run-head {
   display: none;
@@ -401,7 +401,7 @@ const pct = (v: number) => `${v}%`
   background: var(--paper);
 }
 .run-key i.exec {
-  background: var(--green);
+  background: var(--accent);
 }
 .run-out {
   margin-left: auto;
@@ -412,7 +412,7 @@ const pct = (v: number) => `${v}%`
   color: var(--paper);
 }
 .done .run-out b {
-  color: var(--green);
+  color: var(--accent);
 }
 
 /* ---- narrow ---------------------------------------------------------------------------- */

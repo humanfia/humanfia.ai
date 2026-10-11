@@ -24,11 +24,11 @@ timeline:
   dates: ['4/18', '6/6', '6/8', '6/9', '6/10', '6/19']
   merged: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
   prs:
-    - { x: 0, y: 1, label: '#22664', detail: 'Qwen3-Next allreduce fusion · +71.4% throughput', tone: green }
+    - { x: 0, y: 1, label: '#22664', detail: 'Qwen3-Next allreduce fusion · +71.4% throughput', tone: accent }
     - { x: 1, y: 2, label: '#27401', detail: 'Cohere2Moe NVFP4 fused MoE · +26% chat', tone: ink }
     - { x: 2, y: 3, label: '#27524', detail: 'Spectral progressive diffusion · up to 2.78×', tone: ink }
     - { x: 3, y: 4, label: '#27431', detail: 'LTX-2 VAE decode · 1.41×', tone: ink }
-    - { x: 4, y: 5, label: '#27488', detail: 'KDA CuteDSL prefill · up to 1.52×', tone: green }
+    - { x: 4, y: 5, label: '#27488', detail: 'KDA CuteDSL prefill · up to 1.52×', tone: accent }
     - { x: 5, y: 6, label: '#28744', detail: 'Router tokenises once · −41% TTFT', tone: ink }
 prefill:
   - { label: 2,048 tokens, detail: 0.525 → 0.346 ms, values: { cute: 1.52 } }
@@ -55,7 +55,7 @@ showing.
   kicker="Six merged pull requests · sgl-project/sglang · 2026"
   title="When each one landed"
   label="Merge dates of the six pull requests: #22664 on April 18, #27401 on June 6, #27524 on June 8, #27431 on June 9, #27488 on June 10 and #28744 on June 19."
-  :series="[{ key: 'merged', label: 'Merged', tone: 'green', data: $frontmatter.timeline.merged, step: true, dots: true }]"
+  :series="[{ key: 'merged', label: 'Merged', tone: 'accent', data: $frontmatter.timeline.merged, step: true, dots: true }]"
   :x="{ categories: $frontmatter.timeline.dates, label: 'Merged' }"
   :y="{ min: 0, max: 6, ticks: [0, 2, 4, 6], decimals: 0, label: 'Pull requests' }"
   :annotations="$frontmatter.timeline.prs"
@@ -75,7 +75,7 @@ between calls. On B200, with real Kimi-Linear gates:
   kicker="KDA prefill · CuteDSL vs. Triton · B200 · H = 32"
   label="Kimi Delta Attention prefill on B200: CuteDSL is 1.52× faster than Triton at 2,048 tokens, 1.22× at 4,096 and 1.08× at 8,192."
   caption="Single sequence, K = V = 128, bf16. GSM8K on Kimi-Linear-48B: 0.915 with Triton, 0.920 with this prefill."
-  :series="[{ key: 'cute', label: 'CuteDSL prefill', tone: 'green' }]"
+  :series="[{ key: 'cute', label: 'CuteDSL prefill', tone: 'accent' }]"
   :rows="$frontmatter.prefill"
   :reference="{ value: 1, label: 'Triton 1.00×' }"
   suffix="×"
@@ -105,7 +105,7 @@ fused-MoE kernels for Command-A-Plus on B300. Switch the baseline to compare aga
   :series="[
     { key: 'base', label: 'SGLang before', tone: 'grey', hatched: true },
     { key: 'vllm', label: 'vLLM 0.22.1', tone: 'ink' },
-    { key: 'pr', label: 'SGLang + #27401', tone: 'green' },
+    { key: 'pr', label: 'SGLang + #27401', tone: 'accent' },
   ]"
   :rows="$frontmatter.cohere"
   :baselines="['base', 'vllm']"
@@ -118,7 +118,7 @@ once and hand the token ids to the engine, rather than both tokenising it.
 <BarChart
   kicker="Router tokenises once · DeepSeek-V4-Flash · 7 engines"
   label="Time to first token, reduction: 29% idle at 60k tokens, 41% idle at 125k tokens, and 34% to 49% under load at 60k tokens."
-  :series="[{ key: 'cut', label: 'Lower TTFT', tone: 'green' }]"
+  :series="[{ key: 'cut', label: 'Lower TTFT', tone: 'accent' }]"
   :rows="[
     { label: 'Idle', detail: '60k-token prompt', values: { cut: 29 } },
     { label: 'Idle', detail: '125k-token prompt', values: { cut: 41 } },
@@ -141,7 +141,7 @@ it. Drag across the plot to read each model.
   label="Denoising speedup against the tolerance delta. At delta 0.05: FLUX.1 1.63×, FLUX.2-klein 1.77×, Z-Image 2.07×, Wan 2.1 2.32×, Qwen-Image 1.29×. Wan 2.1 reaches 2.78× at delta 0.10; Qwen-Image 1.69× at 0.20."
   caption="δ = 0 is the full-resolution run. The pull request's summary gives Qwen-Image 1.6× at δ = 0.05; its own table measures 1.29× there and 1.69× at δ = 0.20, which is what is drawn."
   :series="[
-    { key: 'wan', label: 'Wan 2.1', tone: 'green', data: $frontmatter.spectral.wan, dots: true },
+    { key: 'wan', label: 'Wan 2.1', tone: 'accent', data: $frontmatter.spectral.wan, dots: true },
     { key: 'zimage', label: 'Z-Image', tone: 'ink', data: $frontmatter.spectral.zimage, dots: true },
     { key: 'flux2', label: 'FLUX.2-klein', tone: 'grey', data: $frontmatter.spectral.flux2, dots: true },
     { key: 'flux1', label: 'FLUX.1', tone: 'pale', data: $frontmatter.spectral.flux1, dots: true },
@@ -191,14 +191,14 @@ number above survived that.
     <text class="ink" x="380" y="40" text-anchor="middle">maintainers</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="520" y="72" width="110" height="56" />
-    <text class="on-green t-lg" x="575" y="106" text-anchor="middle">main</text>
+    <rect class="accent" x="520" y="72" width="110" height="56" />
+    <text class="on-accent t-lg" x="575" y="106" text-anchor="middle">main</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#sg-lane" data-stop="0.34" data-loop />
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#sg-lane" data-stop="0.7" data-loop />
-  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#sg-lane" data-loop />
+  <rect class="accent" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#sg-lane" data-loop />
   <text class="grey" x="20" y="190" data-step="2">■ refused</text>
-  <text class="green" x="200" y="190" data-step="3">■ merged</text>
+  <text class="accent" x="200" y="190" data-step="3">■ merged</text>
 </AnimatedDiagram>
 
 [KDA](/projects/kda) · [KDA-Pilot](https://github.com/BBuf/KDA-Pilot)

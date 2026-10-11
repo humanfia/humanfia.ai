@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The record: one tile per exam or board, each with its score and a grid with one cell per
-// problem in it, a green cell for every one that is done. The grids are the point -- 672 cells and
+// problem in it, a accent cell for every one that is done. The grids are the point -- 672 cells and
 // 6 cells side by side say more about what "full marks" covers than the two fractions do.
 //
 // Two controls. The switch dims every tile whose result was not accepted by Lean, or every one
@@ -19,7 +19,7 @@ interface Result {
   lean: boolean
   cells: number
   filled: number
-  green?: number
+  accent?: number
   legend?: string
   note: string
   posts: { text: string; href: string }[]
@@ -49,11 +49,11 @@ const GAP = 2
 const grids = computed(() =>
   props.results.map((r) => {
     const { cols, rows } = layout(r.cells)
-    const green = r.green ?? r.filled
+    const accent = r.accent ?? r.filled
     const cells = Array.from({ length: r.cells }, (_, i) => ({
       x: (i % cols) * (CELL + GAP),
       y: Math.floor(i / cols) * (CELL + GAP),
-      kind: i < green ? 'green' : i < r.filled ? 'ink' : 'open',
+      kind: i < accent ? 'accent' : i < r.filled ? 'ink' : 'open',
       // The fill sweeps through the grid in reading order, in about a second whatever its size.
       delay: Math.round((i / r.cells) * 900),
     }))
@@ -75,8 +75,8 @@ const grids = computed(() =>
         >{{ f.label }}</button>
       </div>
       <p class="hb-legend" aria-hidden="true">
-        <span><i class="green" /> done</span>
-        <span v-if="results.some((r) => r.green !== undefined)"><i class="ink" /> done, not first</span>
+        <span><i class="accent" /> done</span>
+        <span v-if="results.some((r) => r.accent !== undefined)"><i class="ink" /> done, not first</span>
         <span><i class="open" /> open</span>
       </p>
     </div>
@@ -163,8 +163,8 @@ const grids = computed(() =>
   width: 10px;
   height: 10px;
 }
-.hb-legend .green {
-  background: var(--k-green);
+.hb-legend .accent {
+  background: var(--k-mark);
 }
 .hb-legend .ink {
   background: var(--k-ink);
@@ -215,7 +215,7 @@ const grids = computed(() =>
   right: 0;
   top: -3px;
   height: 3px;
-  background: var(--k-green);
+  background: var(--k-mark);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s var(--k-ease);
@@ -270,8 +270,8 @@ li.on .hb-tile::after {
 .hb-cells rect {
   transition: opacity 0.3s;
 }
-.hb-cells .green {
-  fill: var(--k-green);
+.hb-cells .accent {
+  fill: var(--k-mark);
 }
 .hb-cells .ink {
   fill: var(--k-ink);
@@ -336,10 +336,10 @@ li.on .hb-tile::after {
   content: ' →';
 }
 .hb-read-l a:hover {
-  color: var(--hf-green-on-ink) !important;
+  color: var(--hf-cyan-on-ink) !important;
 }
 .dark .hb-read-l a:hover {
-  color: var(--hf-green-on-paper) !important;
+  color: var(--hf-cyan-on-paper) !important;
 }
 
 @media (max-width: 1100px) {

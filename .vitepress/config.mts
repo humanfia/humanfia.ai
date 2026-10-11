@@ -91,7 +91,7 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     // The mark's own ink, not the green: this tints the browser chrome around the page, and a green
     // bar over a paper page would shout louder than anything on it.
-    ['meta', { name: 'theme-color', content: '#1b1720' }],
+    ['meta', { name: 'theme-color', content: '#141a1f' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Humanfia' }],
     ['meta', { property: 'og:image', content: `${HOSTNAME}/og.png` }],

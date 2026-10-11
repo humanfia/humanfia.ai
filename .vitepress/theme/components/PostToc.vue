@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The post's contents. On a wide screen it is pinned in the left margin: one line per section,
-// numbered the way the sections are, the one being read marked in green, and a hairline down the
+// numbered the way the sections are, the one being read marked in accent, and a hairline down the
 // side that fills as the post is read. Narrower than that (`inline`), it is a "Contents" fold at
 // the top of the post, closed until asked for.
 //

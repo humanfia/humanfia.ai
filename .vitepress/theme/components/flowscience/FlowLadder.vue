@@ -72,7 +72,7 @@ const RUNGS = [
   transform: skewX(-18deg);
 }
 .fl li.top .fl-bar {
-  background: var(--hf-green);
+  background: var(--hf-pink);
   height: 10px;
 }
 .fl-copy {
@@ -81,7 +81,7 @@ const RUNGS = [
   margin-top: 6px;
 }
 .fl li.top .fl-copy {
-  border-left-color: var(--hf-green);
+  border-left-color: var(--hf-pink);
 }
 .fl-copy b {
   display: block;

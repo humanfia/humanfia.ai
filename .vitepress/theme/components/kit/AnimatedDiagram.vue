@@ -8,7 +8,7 @@
 //   data-draw             a stroke that draws itself on, rather than fading in
 //   data-pop              scales up from its own centre, rather than fading in
 //   data-travel="#path"   rides along the path with that id (MotionPathPlugin)
-//   data-stop="0.6"       ... and stops 60% of the way along, where it is refused (it turns green)
+//   data-stop="0.6"       ... and stops 60% of the way along, where it is refused (it turns accent)
 //   data-loop             after the build, keeps doing what it does, forever, while on screen
 //
 // `steps` captions each step; the caption under the diagram follows the timeline and is read out
@@ -22,7 +22,7 @@
 // label is not. `min-width` sets the narrowest the diagram may be drawn, under which it scrolls
 // sideways; `max-width` the widest (820px by default), so it does not balloon on a wide column.
 //
-// Every colour comes from the kit's variables: give shapes the classes `ink`, `green`, `grey`,
+// Every colour comes from the kit's variables: give shapes the classes `ink`, `accent`, `grey`,
 // `paper`, `line`, or use `var(--k-fg)` and friends in your own styles.
 import { gsap } from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
@@ -99,7 +99,7 @@ function build() {
           ease: end < 1 ? 'power1.in' : 'power1.inOut',
           motionPath: { path: path as SVGPathElement, align: path as SVGPathElement, alignOrigin: [0.5, 0.5], end },
         })
-        if (end < 1) ride.to(el, { fill: 'var(--k-green)', scale: 1.6, transformOrigin: '50% 50%', duration: 0.15, yoyo: true, repeat: 1 })
+        if (end < 1) ride.to(el, { fill: 'var(--k-mark)', scale: 1.6, transformOrigin: '50% 50%', duration: 0.15, yoyo: true, repeat: 1 })
         tl!.add(ride, `s${n}+=${offset}`)
         if (el.hasAttribute('data-loop')) loops.push(gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.4 }).add(cloneRide(el, path as SVGPathElement, end)))
       } else if (el.hasAttribute('data-pop')) {
@@ -274,7 +274,7 @@ const captionNow = computed(() => (step.value > 0 ? props.steps[step.value - 1] 
   font-family: var(--k-mono);
   font-size: 11px;
   font-weight: 700;
-  color: var(--k-green-text);
+  color: var(--k-mark-text);
 }
 
 </style>

@@ -73,7 +73,7 @@ const thumbs = ref<(InstanceType<typeof FlowThumb> | null)[]>([])
 .fl-card:focus-visible {
   transform: translate(-4px, -4px);
   border-color: var(--hz-ink);
-  box-shadow: 8px 8px 0 0 var(--hz-green);
+  box-shadow: 8px 8px 0 0 var(--hz-mark);
   outline: none;
 }
 .fl-pic {

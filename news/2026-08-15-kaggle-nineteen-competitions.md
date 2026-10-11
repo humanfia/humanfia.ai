@@ -116,7 +116,7 @@ The public leaderboard of a competition still open. It is official, and it is a 
   label="Competitions with a best result in the top 5%: of 19 completed, 2 by official final rank and 12 by late estimate; of 14 ongoing, 6 on the live public board. In the top 1%: of the completed, 5 by late estimate and none by final rank; of the ongoing, 2 on the live public board."
   caption="Each competition counts once, by its best tracked result. Switch to see the top 1%."
   :series="[
-    { key: 'final', label: 'Official final', tone: 'green' },
+    { key: 'final', label: 'Official final', tone: 'accent' },
     { key: 'live', label: 'Live public', tone: 'ink' },
     { key: 'late', label: 'Late estimate', tone: 'grey', hatched: true },
   ]"

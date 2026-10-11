@@ -267,12 +267,12 @@ const TICKS = [0, 10, 20, 30, 40, 50]
   font-weight: 700;
 }
 .hlp-line.hot polyline {
-  stroke: var(--k-green);
+  stroke: var(--k-mark);
   stroke-width: 3;
 }
 .hlp-line.hot rect {
-  fill: var(--k-green);
-  stroke: var(--k-green);
+  fill: var(--k-mark);
+  stroke: var(--k-mark);
 }
 .hlp-line.hot .hlp-end {
   fill: var(--k-ink);
@@ -314,7 +314,7 @@ const TICKS = [0, 10, 20, 30, 40, 50]
   color: var(--k-ink-3);
 }
 .hlp-keys button[aria-pressed='true'] {
-  border-color: var(--k-green);
+  border-color: var(--k-mark);
   color: var(--k-ink);
 }
 
@@ -357,7 +357,7 @@ const TICKS = [0, 10, 20, 30, 40, 50]
   left: calc(var(--a) * 100%);
   width: calc((var(--b) - var(--a)) * 100%);
   height: 2px;
-  background: var(--k-green);
+  background: var(--k-mark);
   transform-origin: left;
   transition: transform 1s var(--k-ease) calc(0.3s + var(--i) * 0.15s);
 }
@@ -374,7 +374,7 @@ const TICKS = [0, 10, 20, 30, 40, 50]
   width: 12px;
   height: 12px;
   margin-left: -12px;
-  background: var(--k-green);
+  background: var(--k-mark);
   transition: transform 1s var(--k-ease) calc(0.3s + var(--i) * 0.15s), opacity 0.4s calc(0.3s + var(--i) * 0.15s);
 }
 .hlp-db-v {

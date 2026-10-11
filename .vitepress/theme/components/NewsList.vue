@@ -117,12 +117,12 @@ function rowOf(post: (typeof posts)[number]) {
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-/* The hover is a soft wash and a green edge on the left: enough to say which row the pointer is
+/* The hover is a soft wash and a accent edge on the left: enough to say which row the pointer is
    on, without the rows jumping about the way the mosaic's tiles lift. */
 .news-row:hover,
 .news-row:focus-within {
   background: var(--vp-c-bg-soft);
-  box-shadow: inset 3px 0 0 var(--hf-green);
+  box-shadow: inset 3px 0 0 var(--hf-pink);
 }
 
 .news-date {

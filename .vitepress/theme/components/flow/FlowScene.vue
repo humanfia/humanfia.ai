@@ -63,17 +63,17 @@ const wordsAt = (k: number[]) => legible(Math.hypot(k[2], k[3]))
  *  picture has depth; and each drifts slowly along the diagonal while the run plays, so the
  *  page breathes even while the camera holds still. Laid out from the scene's own size, so it
  *  is the same composition every time. */
-type Plane = { at: P3; w: number; h: number; shape: 'bar' | 'disc' | 'frame'; green?: boolean; o: number; drift: number }
+type Plane = { at: P3; w: number; h: number; shape: 'bar' | 'disc' | 'frame'; accent?: boolean; o: number; drift: number }
 const planes = computed<Plane[]>(() => {
   const W = props.lay.width
   const H = props.lay.height
   return [
     { at: [W * 0.18, H * 0.12, 1000], w: 620, h: 30, shape: 'bar', o: 0.05, drift: 7 },
     { at: [W * 0.82, H * 0.28, 1400], w: 420, h: 420, shape: 'disc', o: 0.035, drift: -4 },
-    { at: [W * 0.58, H * 1.02, 700], w: 760, h: 9, shape: 'bar', green: true, o: 0.13, drift: 9 },
+    { at: [W * 0.58, H * 1.02, 700], w: 760, h: 9, shape: 'bar', accent: true, o: 0.13, drift: 9 },
     { at: [W * 0.34, H * 0.62, 1600], w: 340, h: 180, shape: 'bar', o: 0.03, drift: 4 },
     { at: [W * 0.98, H * -0.02, 600], w: 210, h: 210, shape: 'frame', o: 0.09, drift: -6 },
-    { at: [W * -0.04, H * 0.55, 1150], w: 300, h: 7, shape: 'bar', green: true, o: 0.08, drift: 6 },
+    { at: [W * -0.04, H * 0.55, 1150], w: 300, h: 7, shape: 'bar', accent: true, o: 0.08, drift: 6 },
   ]
 })
 /** The diagonal everything in the backdrop lies on, in degrees: the rise of a constructivist
@@ -450,7 +450,7 @@ const frame = computed(() => {
         return {
           key: `p${n}`,
           shape: plane.shape,
-          green: !!plane.green,
+          accent: !!plane.accent,
           m: `translate(${f(q.x)} ${f(q.y)}) rotate(${RISE}) scale(${q.s.toFixed(3)})`,
           w: plane.w,
           h: plane.h,
@@ -511,7 +511,7 @@ const frame = computed(() => {
           :width="plane.w"
           :height="plane.h"
         />
-        <rect v-else class="f-plane" :class="{ green: plane.green }" :x="-plane.w / 2" :y="-plane.h / 2" :width="plane.w" :height="plane.h" />
+        <rect v-else class="f-plane" :class="{ accent: plane.accent }" :x="-plane.w / 2" :y="-plane.h / 2" :width="plane.w" :height="plane.h" />
       </g>
 
       <g v-for="layer in frame.layers" :key="layer.key" class="f-layer" :opacity="layer.fog">

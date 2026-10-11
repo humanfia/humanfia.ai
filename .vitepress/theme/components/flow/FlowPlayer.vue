@@ -427,7 +427,7 @@ onUnmounted(() => {
 
 <style scoped>
 /* Square-cornered and flat, as the poster around it: a ruled bar on top with the flow's name,
-   the picture, and a deck of controls set like a type case. The one green is the accent: the
+   the picture, and a deck of controls set like a type case. The one accent is the accent: the
    playing control, the playhead's lens on the map, the scrubber. */
 .bar {
   display: flex;
@@ -476,7 +476,7 @@ onUnmounted(() => {
   color: var(--vp-c-text-1);
 }
 
-/* The flow's name is marked with the poster's green square, the one solid colour in the bar. */
+/* The flow's name is marked with the poster's accent square, the one solid colour in the bar. */
 .only::before {
   content: '';
   position: absolute;
@@ -485,7 +485,7 @@ onUnmounted(() => {
   width: 8px;
   height: 8px;
   margin-top: -4px;
-  background: var(--flow-green);
+  background: var(--flow-mark);
 }
 
 .sim {

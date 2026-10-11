@@ -220,7 +220,7 @@ const verdict = () => {
   color: var(--k-ink-2);
 }
 
-/* The gate's own light: a square that is hollow, scanning, green-filled or struck through. */
+/* The gate's own light: a square that is hollow, scanning, accent-filled or struck through. */
 .hg-mark {
   position: absolute;
   top: 16px;
@@ -235,8 +235,8 @@ const verdict = () => {
   animation: hg-scan 0.45s ease-in-out infinite alternate;
 }
 .pass .hg-mark {
-  border-color: var(--k-green);
-  background: var(--k-green);
+  border-color: var(--k-mark);
+  background: var(--k-mark);
 }
 .fail {
   background: color-mix(in srgb, var(--k-ink) 92%, transparent) !important;
@@ -285,7 +285,7 @@ const verdict = () => {
   right: 0;
   top: -3px;
   height: 3px;
-  background: var(--k-green);
+  background: var(--k-mark);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s var(--k-ease);
@@ -306,8 +306,8 @@ const verdict = () => {
   background: #fff;
 }
 .hg-end.on {
-  background: var(--k-green) !important;
-  color: var(--hf-on-green);
+  background: var(--k-mark) !important;
+  color: var(--hf-on-fill);
 }
 .hg-end.on .hg-n,
 .hg-end.on .hg-rule {
