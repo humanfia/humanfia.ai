@@ -1,7 +1,7 @@
 /**
- * The HOA page's own look. The house language (ink, paper, one red, hard edges, no gradients;
+ * The HOA page's own look. The house language (ink, paper, one green, hard edges, no gradients;
  * style.css) set as a mathematics paper: a ruled ground like squared paper, numbered sections,
- * Lean in the mono, and the tombstone -- the red square that ends a proof -- as the one mark the
+ * Lean in the mono, and the tombstone -- the green square that ends a proof -- as the one mark the
  * page repeats. Scoped under .hoa-root, so nothing here reaches another page.
  */
 
@@ -14,16 +14,16 @@
   --k-ink-3: var(--hf-ink-3);
   --k-line: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
   --k-rule: color-mix(in srgb, var(--hf-ink-k) 5%, transparent);
-  /* The red as a shape, and as text (deeper, for contrast on paper). */
-  --k-red: var(--hf-pink);
-  --k-accent: var(--hf-pink-deep);
+  /* The green as a shape, and as text (deeper, for contrast on paper). */
+  --k-green: var(--hf-green);
+  --k-accent: var(--hf-green-deep);
   /* The editor plate: an ink sheet in the light, a raised one in the dark. */
   --k-plate: var(--hf-ink-k);
   --k-plate-ink: var(--hf-paper);
   --k-plate-2: var(--hf-paper-2);
   --k-plate-3: var(--hf-paper-3);
   --k-plate-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
-  --k-plate-red: var(--hf-pink-on-ink);
+  --k-plate-green: var(--hf-green-on-ink);
   --k-max: 1240px;
   --k-pad: clamp(20px, 5vw, 48px);
   --k-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -47,7 +47,7 @@
   --k-ink-3: var(--hf-paper-3);
   --k-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
   --k-rule: color-mix(in srgb, var(--hf-paper) 4%, transparent);
-  --k-accent: var(--hf-pink);
+  --k-accent: var(--hf-green);
   --k-plate: var(--hf-night);
 }
 
@@ -63,17 +63,17 @@
 }
 
 .hoa-root :focus-visible {
-  outline: 2px solid var(--k-red);
+  outline: 2px solid var(--k-green);
   outline-offset: 2px;
 }
 
-/* The tombstone: ∎, as a square of red rather than a glyph, so it is the same in every font. */
+/* The tombstone: ∎, as a square of green rather than a glyph, so it is the same in every font. */
 .hoa-root .qed {
   display: inline-block;
   width: 0.62em;
   height: 0.62em;
   margin-left: 0.4em;
-  background: var(--k-red);
+  background: var(--k-green);
   vertical-align: -0.02em;
 }
 

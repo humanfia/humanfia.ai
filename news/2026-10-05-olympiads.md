@@ -92,8 +92,8 @@ answer keys come in only after the run is over, for grading.
     <text class="on-ink" x="65" y="133" text-anchor="middle">Builder</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="red" x="200" y="100" width="110" height="56" />
-    <text class="on-red" x="255" y="133" text-anchor="middle">Reviewer</text>
+    <rect class="green" x="200" y="100" width="110" height="56" />
+    <text class="on-green" x="255" y="133" text-anchor="middle">Reviewer</text>
   </g>
   <path class="line ink" d="M340 4 V 246" data-step="3" data-draw />
   <g data-step="3" data-pop>
@@ -105,7 +105,7 @@ answer keys come in only after the run is over, for grading.
     <text class="on-ink" x="435" y="133" text-anchor="middle">Grader</text>
   </g>
   <text x="435" y="184" text-anchor="middle" data-step="4">after the run</text>
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#ol-loop" data-loop />
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#ol-loop" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#ol-out" />
 </AnimatedDiagram>
 
@@ -133,7 +133,7 @@ elaborates without `sorry`, `admit` or custom axioms.
   label="IPhO 2026 scores as a share of the points. Natural-language answers: GPT-5.6 Sol 100%, Kimi K3 Max 100%. Lean formalizations: GPT-5.6 Sol 94.9% (47.45 of 50), Kimi K3 Max 59.8% (29.90 of 50)."
   :series="[
     { key: 'kimi', label: 'Kimi K3 Max', tone: 'ink' },
-    { key: 'gpt', label: 'GPT-5.6 Sol', tone: 'red' },
+    { key: 'gpt', label: 'GPT-5.6 Sol', tone: 'green' },
   ]"
   :rows="$frontmatter.ipho"
   suffix="%"
@@ -157,10 +157,10 @@ The comparison that matters is the same models without the review loop. Run as a
   orientation="vertical"
   kicker="IChO 2026 · formalizations accepted, of 68"
   label="IChO 2026 formalizations accepted, of 68: GPT-5.6 Sol 32 with a plain Codex goal and 68 with the Humanize loop; Kimi-K3 31 and 68."
-  caption="The same models on the same 68 targets, with and without the review loop. The small red numbers are the loop's gain."
+  caption="The same models on the same 68 targets, with and without the review loop. The small green numbers are the loop's gain."
   :series="[
     { key: 'goal', label: 'Plain Codex /goal', tone: 'grey', hatched: true },
-    { key: 'loop', label: 'Humanize loop', tone: 'red' },
+    { key: 'loop', label: 'Humanize loop', tone: 'green' },
   ]"
   :rows="$frontmatter.icho"
   :baselines="['goal']"

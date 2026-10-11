@@ -41,13 +41,13 @@ merged.
   label="#685 was opened on June 16 and merged on June 18. #711 was opened on June 20 and merged on June 26."
   :series="[
     { key: 'p685', label: '#685 routing', tone: 'ink', data: [[0, 1], [2, 1]], dots: true },
-    { key: 'p711', label: '#711 fp8 forward', tone: 'red', data: [[4, 2], [10, 2]], dots: true },
+    { key: 'p711', label: '#711 fp8 forward', tone: 'green', data: [[4, 2], [10, 2]], dots: true },
   ]"
   :x="{ min: 0, max: 10, ticks: [0, 2, 4, 6, 8, 10], decimals: 0, tickDecimals: 0, label: 'Days after June 16', unit: ' days' }"
   :y="{ min: 0, max: 3, ticks: [1, 2], decimals: 0, label: 'Pull request' }"
   :annotations="[
     { x: 2, y: 1, label: '#685 merged', detail: 'June 18', tone: 'ink' },
-    { x: 10, y: 2, label: '#711 merged', detail: 'June 26', tone: 'red' },
+    { x: 10, y: 2, label: '#711 merged', detail: 'June 26', tone: 'green' },
   ]"
   :end-labels="false"
   :height="200"
@@ -67,7 +67,7 @@ shapes it re-routes get faster:
   caption="Switch the baseline to read each as a fraction of the old time. MHA at the same shape is within ±2%, and every other shape keeps its old routing; 160 of 160 correctness runs pass."
   :series="[
     { key: 'generic', label: 'Generic (old rule)', tone: 'grey', hatched: true },
-    { key: 'swp', label: 'Pipelined (#685)', tone: 'red' },
+    { key: 'swp', label: 'Pipelined (#685)', tone: 'green' },
   ]"
   :rows="$frontmatter.routing"
   :baselines="['generic']"
@@ -90,7 +90,7 @@ occupancy, not by compute.
   kicker="Attention forward · B 1 · S 2048 · H 64 · D 128 · non-causal"
   label="Attention forward throughput on MI350X: aiter assembly fp8 about 1,300 to 1,351 TFLOPS, FlyDSL bf16 1,113, FlyDSL fp8 default 969, native 721, packed 643."
   caption="The assembly kernel is drawn at the low end of its 1,300–1,351 TFLOPS range. The default fp8 path reaches about 72–75% of it."
-  :series="[{ key: 'tf', label: 'TFLOPS', tone: 'red' }]"
+  :series="[{ key: 'tf', label: 'TFLOPS', tone: 'green' }]"
   :rows="$frontmatter.fp8"
   suffix=" TF"
   :max="1400"
@@ -115,12 +115,12 @@ occupancy, not by compute.
     <text class="on-ink t-lg" x="105" y="121" text-anchor="middle">KDA agent</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="red" x="440" y="80" width="190" height="70" />
-    <text class="on-red t-lg" x="535" y="121" text-anchor="middle">MI350X</text>
+    <rect class="green" x="440" y="80" width="190" height="70" />
+    <text class="on-green t-lg" x="535" y="121" text-anchor="middle">MI350X</text>
   </g>
   <text class="ink" x="320" y="26" text-anchor="middle" data-step="2">kernel + reference check</text>
   <text class="ink" x="320" y="222" text-anchor="middle" data-step="3">timings &amp; profile</text>
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#amd-out" data-loop />
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#amd-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#amd-back" data-loop />
 </AnimatedDiagram>
 

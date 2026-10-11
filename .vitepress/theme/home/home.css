@@ -1,11 +1,11 @@
 /**
- * The home page's own look, in the mark's language: ink, paper and one red; flat planes with
+ * The home page's own look, in the mark's language: ink, paper and one green; flat planes with
  * hard edges; one diagonal. It borrows the site's tokens (style.css) and adds what a page made
  * of full-width sections needs and a document does not: a big type scale, the paper's two
  * bands, the hero's construction, and the start state of everything that moves.
  *
  * Corners are square or nearly so -- a constructivist plate is cut, not moulded -- and there
- * are no gradients or glows: emphasis is the red, or a heavier weight of ink.
+ * are no gradients or glows: emphasis is the green, or a heavier weight of ink.
  *
  * Scoped under .hf-home-root, so nothing here reaches a project page or a post.
  */
@@ -18,10 +18,10 @@
   --h-ink-2: var(--hf-ink-2);
   --h-ink-3: var(--hf-ink-3);
   --h-line: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
-  /* The red as text (deeper, for contrast on paper) and as a shape. */
-  --h-accent: var(--hf-pink-deep);
-  --h-red: var(--hf-pink);
-  /* What sits on a red or an ink plate. */
+  /* The green as text (deeper, for contrast on paper) and as a shape. */
+  --h-accent: var(--hf-green-deep);
+  --h-green: var(--hf-green);
+  /* What sits on a green or an ink plate. */
   --h-on-ink: var(--hf-paper-light);
   --h-max: 1440px;
   --h-pad: clamp(20px, 5vw, 48px);
@@ -42,7 +42,7 @@
   --h-ink-2: var(--hf-paper-2);
   --h-ink-3: var(--hf-paper-3);
   --h-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
-  --h-accent: var(--hf-pink);
+  --h-accent: var(--hf-green);
   --h-on-ink: var(--hf-ink-k);
 }
 
@@ -87,7 +87,7 @@
   padding: 0 var(--h-pad);
 }
 
-/* A kicker is a label on a plate: mono capitals, and a short red bar in front of it. */
+/* A kicker is a label on a plate: mono capitals, and a short green bar in front of it. */
 .h-kicker {
   display: flex;
   align-items: center;
@@ -105,7 +105,7 @@
   flex: none;
   width: 28px;
   height: 6px;
-  background: var(--h-red);
+  background: var(--h-green);
 }
 .h-center .h-kicker,
 .h-kicker.h-center {
@@ -144,9 +144,9 @@
   text-wrap: pretty;
 }
 
-/* The one emphasised word in a headline is the red, not a gradient. */
-.h-red {
-  color: var(--h-red);
+/* The one emphasised word in a headline is the green, not a gradient. */
+.h-green {
+  color: var(--hf-green-deep);
 }
 
 .h-center {
@@ -183,8 +183,8 @@
   justify-content: center;
 }
 
-/* Square plates. The primary is the ink with a red edge that slides out under the pointer --
-   the mark's own relation between the big plane and the small red thing beside it. */
+/* Square plates. The primary is the ink with a green edge that slides out under the pointer --
+   the mark's own relation between the big plane and the small green thing beside it. */
 .h-btn {
   position: relative;
   display: inline-flex;
@@ -202,11 +202,11 @@
 .h-btn-primary {
   color: var(--h-on-ink) !important;
   background: var(--h-ink);
-  box-shadow: 0 0 0 0 var(--h-red);
+  box-shadow: 0 0 0 0 var(--h-green);
 }
 .h-btn-primary:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 0 var(--h-red);
+  box-shadow: 6px 6px 0 0 var(--h-green);
 }
 .h-btn-ghost {
   color: var(--h-ink) !important;
@@ -218,7 +218,7 @@
 }
 .h-btn:active {
   transform: none;
-  box-shadow: 0 0 0 0 var(--h-red);
+  box-shadow: 0 0 0 0 var(--h-green);
 }
 
 /* -------------------------------------------------------------------------------- 1 hero */
@@ -282,13 +282,13 @@
 .hf-c-ink {
   fill: var(--hf-mark);
 }
-.hf-c-red {
-  fill: var(--h-red);
+.hf-c-green {
+  fill: var(--h-green);
 }
-/* The disc is a tone of the ink, not a colour: a plane behind the letter, loud enough to be a
-   shape in its own right and quiet enough that the red is still the only thing that shouts. */
+/* The disc is Hyacine's lavender at a whisper: a plane behind the letter, loud enough to be a
+   shape in its own right and quiet enough that the green is still the only thing that shouts. */
 .hf-c-disc {
-  fill: color-mix(in srgb, var(--h-ink) 9%, var(--h-bg));
+  fill: color-mix(in srgb, var(--hf-lavender) 20%, var(--h-bg));
 }
 .hf-c-hair line,
 .hf-c-hair path,
@@ -305,7 +305,7 @@
 }
 .hf-c-outline {
   fill: none;
-  stroke: var(--h-red);
+  stroke: var(--hf-pink);
   stroke-width: 2px;
   vector-effect: non-scaling-stroke;
 }
@@ -316,7 +316,7 @@
 }
 .hf-c-ring {
   fill: none;
-  stroke: var(--h-red);
+  stroke: var(--h-green);
   stroke-width: 2px;
   vector-effect: non-scaling-stroke;
 }
@@ -324,7 +324,7 @@
   fill: var(--h-bg);
 }
 .hf-c-wedge {
-  fill: var(--h-red);
+  fill: var(--h-green);
 }
 .hf-c-band {
   fill: var(--h-ink);
@@ -365,7 +365,7 @@
   top: 0;
   width: 2px;
   height: 16px;
-  background: var(--h-red);
+  background: var(--h-green);
   animation: h-cue 1.8s var(--h-ease) infinite;
 }
 @keyframes h-cue {
@@ -408,7 +408,7 @@
   margin-top: 0.42em;
 }
 .h-manifesto-acts li.last {
-  color: var(--h-red);
+  color: var(--hf-green-deep);
 }
 .h-manifesto-replay {
   display: inline-flex;
@@ -464,7 +464,7 @@
 }
 .h-manifesto .m-pulse {
   fill: none;
-  stroke: var(--h-red);
+  stroke: var(--h-green);
   stroke-width: 3;
   opacity: 0;
 }
@@ -515,7 +515,7 @@
   font-weight: 800;
 }
 .h-manifesto .m-verdict.no {
-  fill: var(--flow-pink);
+  fill: var(--flow-green);
 }
 .h-manifesto .m-gate-edge {
   fill: var(--h-card);
@@ -526,7 +526,7 @@
   fill: var(--flow-done);
 }
 .h-manifesto .m-token {
-  fill: var(--h-red);
+  fill: var(--h-green);
 }
 .h-manifesto .m-board-frame {
   fill: var(--h-card);
@@ -535,7 +535,7 @@
 }
 .h-manifesto .m-board-flash {
   fill: none;
-  stroke: var(--h-red);
+  stroke: var(--h-green);
   stroke-width: 3;
 }
 .h-manifesto .m-board-title {
@@ -557,7 +557,7 @@
   opacity: 0.45;
 }
 .h-manifesto .m-bar-ours {
-  fill: var(--h-red);
+  fill: var(--h-green);
   opacity: 1;
 }
 .h-manifesto .m-score {
@@ -640,7 +640,7 @@
 }
 .h-step.on {
   opacity: 1;
-  border-left-color: var(--h-red);
+  border-left-color: var(--h-green);
 }
 .h-step h3,
 .h-panel h3 {
@@ -702,7 +702,7 @@
   gap: 16px;
 }
 /* A tile is a sheet on the band. Under the pointer it lifts off along the diagonal and casts
-   a hard red shadow -- the print offset, not a blur. */
+   a hard green shadow -- the print offset, not a blur. */
 .h-tile {
   position: relative;
   display: flex;
@@ -722,7 +722,7 @@
     border-color 0.3s;
 }
 .h-tile::after {
-  /* A red corner, folded in from the top right: where the H keeps its circle. */
+  /* A green corner, folded in from the top right: where the H keeps its circle. */
   content: '';
   position: absolute;
   top: 0;
@@ -731,7 +731,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 22px 22px 0;
-  border-color: transparent var(--h-red) transparent transparent;
+  border-color: transparent var(--h-green) transparent transparent;
   transform: scale(0);
   transform-origin: top right;
   transition: transform 0.45s var(--h-ease);
@@ -825,8 +825,8 @@
   border-color: var(--h-ink);
 }
 .live .v-checks i:last-child {
-  background: var(--h-red);
-  border-color: var(--h-red);
+  background: var(--h-green);
+  border-color: var(--h-green);
   border-radius: 50%;
 }
 
@@ -859,7 +859,7 @@
 }
 .v-versus i.hot,
 .v-bars i.hot {
-  background: var(--h-red);
+  background: var(--h-green);
 }
 .live .v-versus i {
   transform: scaleX(1);
@@ -910,7 +910,7 @@
   stroke-width: 6;
 }
 .v-ring circle.on {
-  stroke: var(--h-red);
+  stroke: var(--h-green);
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
   transition: stroke-dashoffset 1.6s var(--h-ease) 0.2s;
@@ -947,7 +947,7 @@
   background: var(--h-ink);
 }
 .live .v-dots i.on {
-  background: var(--h-red);
+  background: var(--h-green);
 }
 
 /* ------------------------------------------------------------------------ 5 applications */
@@ -984,7 +984,7 @@
 }
 .h-panel:nth-child(2) {
   top: calc(var(--vp-nav-height) + 44px);
-  border-top-color: var(--h-red);
+  border-top-color: var(--h-green);
 }
 .h-panel:nth-child(3) {
   top: calc(var(--vp-nav-height) + 60px);
@@ -1041,7 +1041,7 @@
   font-size: 16px;
 }
 .art-lean li b {
-  color: var(--h-red);
+  color: var(--hf-green-deep);
 }
 .art-lean li em {
   font-style: normal;
@@ -1072,7 +1072,7 @@
   font-style: normal;
 }
 .art-bar:first-child i {
-  background: var(--h-red);
+  background: var(--h-green);
 }
 .art-bar b {
   font-size: 16px;
@@ -1116,12 +1116,12 @@
   color: var(--h-ink);
 }
 .h-marquee b::after {
-  /* A small red disc between names: the H's circle, as a bullet. */
+  /* A small green disc between names: the H's circle, as a bullet. */
   content: '';
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--h-red);
+  background: var(--h-green);
 }
 @keyframes h-marquee {
   to {
@@ -1137,7 +1137,7 @@
   overflow: hidden;
   background: var(--hf-ink-k);
   border: 1px solid color-mix(in srgb, var(--hf-paper) 14%, transparent);
-  box-shadow: 12px 12px 0 0 var(--h-red);
+  box-shadow: 12px 12px 0 0 var(--h-green);
 }
 .h-term-bar {
   display: flex;
@@ -1153,7 +1153,7 @@
 }
 .h-term-bar i:first-child {
   border-radius: 50%;
-  background: var(--hf-pink);
+  background: var(--hf-green);
 }
 .h-term-bar span {
   flex: 1;
@@ -1187,10 +1187,10 @@
   color: var(--hf-paper);
 }
 .h-term .p {
-  color: var(--hf-pink);
+  color: var(--hf-green-deep);
 }
 .dark .h-term .p {
-  color: var(--h-red);
+  color: var(--hf-green-deep);
 }
 .h-caret {
   display: inline-block;
@@ -1290,7 +1290,7 @@
 }
 .h-post:hover {
   transform: translateY(-4px);
-  border-top-color: var(--h-red);
+  border-top-color: var(--h-green);
 }
 .h-post-meta {
   display: flex;
@@ -1338,7 +1338,7 @@
 
 /* ------------------------------------------------------------------------------- 8 cta */
 
-/* The last word, on the ink, with the red circle hanging in the corner where the H keeps it. */
+/* The last word, on the ink, with the green circle hanging in the corner where the H keeps it. */
 .h-cta {
   padding: clamp(140px, 22vh, 240px) 0;
   overflow: hidden;
@@ -1347,7 +1347,7 @@
   --h-ink-2: var(--hf-paper-2);
   --h-ink-3: var(--hf-paper-3);
   --h-on-ink: var(--hf-ink-k);
-  --h-accent: var(--hf-pink);
+  --h-accent: var(--hf-green);
   --h-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
 }
 .dark .h-cta {
@@ -1361,7 +1361,7 @@
   width: clamp(72px, 10vw, 150px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--hf-pink);
+  background: var(--hf-green);
 }
 .h-cta::after {
   /* The diagonal, as a band under the last line. */

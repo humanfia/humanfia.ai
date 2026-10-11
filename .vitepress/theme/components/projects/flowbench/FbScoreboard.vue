@@ -32,7 +32,7 @@ const ROWS = ['ralph_loop', 'rlar', 'flame_chase']
           <td><FbFlap :text="flow" :delay="200 + i * 160" /></td>
           <td class="opt"><FbFlap text="same" :delay="700 + i * 160" /></td>
           <td class="opt"><FbFlap text="real" :delay="900 + i * 160" /></td>
-          <td class="num red"><FbFlap text="--.-" :delay="1100 + i * 160" :every="9000 + i * 400" /></td>
+          <td class="num green"><FbFlap text="--.-" :delay="1100 + i * 160" :every="9000 + i * 400" /></td>
         </tr>
       </tbody>
     </table>

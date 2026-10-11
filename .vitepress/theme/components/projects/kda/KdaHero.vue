@@ -151,7 +151,7 @@ const external = (href: string) => /^https?:/.test(href)
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  color: var(--kd-red-text);
+  color: var(--kd-green-text);
 }
 
 .hero-tag {
@@ -222,9 +222,9 @@ const external = (href: string) => /^https?:/.test(href)
 }
 
 .hero-links li:first-child a {
-  color: var(--kd-on-red);
-  background: var(--kd-red);
-  border-color: var(--kd-red);
+  color: var(--kd-on-green);
+  background: var(--kd-green);
+  border-color: var(--kd-green);
 }
 
 .hero-number {
@@ -237,7 +237,7 @@ const external = (href: string) => /^https?:/.test(href)
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -0.06em;
-  color: var(--kd-red);
+  color: var(--kd-green-text);
   font-variant-numeric: tabular-nums;
 }
 

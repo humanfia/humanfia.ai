@@ -74,12 +74,12 @@ the expensive check. Everything after that point is the part that changed.
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#qc-lane" data-stop="0.3" data-loop />
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="4" data-travel="#qc-lane" data-stop="0.81" data-loop />
   <g data-step="5" data-pop>
-    <rect class="red" x="574" y="93" width="136" height="54" transform="rotate(-17 642 120)" />
-    <text class="on-red t-lg" x="642" y="126" text-anchor="middle" transform="rotate(-17 642 120)">WIN</text>
+    <rect class="green" x="574" y="93" width="136" height="54" transform="rotate(-17 642 120)" />
+    <text class="on-green t-lg" x="642" y="126" text-anchor="middle" transform="rotate(-17 642 120)">WIN</text>
   </g>
-  <rect class="red" x="-9" y="-9" width="18" height="18" data-step="5" data-travel="#qc-lane" data-loop />
+  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="5" data-travel="#qc-lane" data-loop />
   <text class="grey" x="10" y="222" data-step="2">■ refused</text>
-  <text class="red" x="400" y="222" data-step="5">■ certified</text>
+  <text class="green" x="400" y="222" data-step="5">■ certified</text>
 </AnimatedDiagram>
 
 <PostCards numbered>

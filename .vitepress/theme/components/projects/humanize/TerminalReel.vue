@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
 
 .picks button.on {
   background: var(--vp-c-text-1);
-  box-shadow: inset 6px 0 0 var(--hf-pink);
+  box-shadow: inset 6px 0 0 var(--hf-green);
 }
 
 .picks button.on code {
@@ -245,7 +245,7 @@ onBeforeUnmount(() => {
 .bar i {
   width: 10px;
   height: 10px;
-  background: #ff8fbd;
+  background: #76b900;
 }
 
 .bar code {

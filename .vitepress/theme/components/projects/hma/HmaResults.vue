@@ -127,7 +127,7 @@ const TICKS = [0, 25, 50, 75, 100]
             <span>{{ m.short }} <b>{{ fmt(shown.values[m.key]) }}</b></span>
           </template>
           <span v-if="gainOverBaselines(shown) !== undefined">
-            any medal vs the two alone <b class="hma-red">{{ signedPts(gainOverBaselines(shown)) }}</b>
+            any medal vs the two alone <b class="hma-green">{{ signedPts(gainOverBaselines(shown)) }}</b>
           </span>
         </p>
       </div>

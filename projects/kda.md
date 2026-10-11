@@ -69,7 +69,7 @@ records:
     viz: blocks
     blocks:
       - { count: 40, label: 40+ operators by June 19 }
-      - { count: 6, label: 6 pull requests since August, red: true }
+      - { count: 6, label: 6 pull requests since August, green: true }
   - kicker: MSA indexer · B300 · in production
     value: 6.5×
     text: Geomean on prefill, up to 3.3× on long-context decode, with bitwise-identical output (Humanfia-reported).
@@ -156,12 +156,12 @@ timeline:
   cake: [[2, 2.048], [3, 2.048], [4, 2.09], [5, 2.373], [6, 2.373], [7, 2.373], [8, 2.373], [9, 2.373], [10, 2.732], [11, 2.94]]
   reference: { x: 0, y: 1.5, label: INT21 reference }
   milestones:
-    - { x: 4, label: Humanize, tone: red }
+    - { x: 4, label: Humanize, tone: green }
     - { x: 6, label: TIRx }
     - { x: 7, label: CAKE with KDA }
     - { x: 8, label: TIRx }
     - { x: 11, label: CAKE }
-    - { x: 12, label: TIRx, tone: red }
+    - { x: 12, label: TIRx, tone: green }
   refused: [3.28, 3.57, 3.74]
 
 # SGLang pull requests since August, from the upstream write-up. Merge dates are GitHub's.

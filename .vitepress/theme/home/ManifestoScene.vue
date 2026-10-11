@@ -9,7 +9,7 @@
 // The markup is the last frame, so the server-rendered page, a reader who asked for less motion
 // and a reader who scrolled past all see the whole argument; the timeline (GSAP) rewinds it to
 // the first frame once the page has mounted, and plays the first time the scene is on screen.
-// The work is the mark's red circle, and the roles are the flow grammar's colours (`flow-ui`).
+// The work is the mark's green circle, and the roles are the flow grammar's colours (`flow-ui`).
 //
 // The loop is drawn the same at every width; the leaderboard sits beside it, or under it on a
 // phone, where the scene is taller rather than smaller so that its labels stay legible.

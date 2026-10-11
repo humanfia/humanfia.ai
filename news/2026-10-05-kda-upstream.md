@@ -36,12 +36,12 @@ timeline:
   prs:
     - { x: 0, y: 1, label: 'flash-kmeans#23', detail: 'CuTe backend merged · 7.31×', tone: grey }
     - { x: 1, y: 0, label: 'flash-kmeans#24', detail: 'reverted the next day', tone: grey }
-    - { x: 2, y: 1, label: '#36845', detail: 'QSA decode on GB10 · a correctness fix', tone: red }
+    - { x: 2, y: 1, label: '#36845', detail: 'QSA decode on GB10 · a correctness fix', tone: green }
     - { x: 3, y: 2, label: '#37385', detail: 'KernelBackend.KDA provenance', tone: ink }
-    - { x: 4, y: 3, label: '#36865', detail: 'NVFP4 GEMM · +8.73% end to end', tone: red }
+    - { x: 4, y: 3, label: '#36865', detail: 'NVFP4 GEMM · +8.73% end to end', tone: green }
     - { x: 5, y: 4, label: '#38082', detail: 'FP8 skinny GEMM · up to +4.06%', tone: ink }
-    - { x: 6, y: 5, label: '#41305', detail: 'SANA-Video residual gate · 2.54×', tone: red }
-    - { x: 7, y: 6, label: '#41459', detail: 'LTX-2.3 QK norm + RoPE · 2.59×', tone: red }
+    - { x: 6, y: 5, label: '#41305', detail: 'SANA-Video residual gate · 2.54×', tone: green }
+    - { x: 7, y: 6, label: '#41459', detail: 'LTX-2.3 QK norm + RoPE · 2.59×', tone: green }
 kernelVsModel:
   - { label: '#41305', detail: SANA-Video · H200, values: { kernel: 2.54, model: 1.017 } }
   - { label: '#41459', detail: LTX-2.3 · H200, values: { kernel: 2.59, model: 1.011 } }
@@ -80,7 +80,7 @@ merge elsewhere that did not stay.
   title="Six in, one out"
   label="KDA pull requests merged into SGLang: #36845 on August 30, #37385 on September 1, #36865 on September 2, #38082 on September 5, #41305 on September 27 and #41459 on October 1. Flash-KMeans #23 was merged on August 27 and reverted on August 28."
   :series="[
-    { key: 'sglang', label: 'SGLang, merged', tone: 'red', data: $frontmatter.timeline.sglang, step: true, dots: true },
+    { key: 'sglang', label: 'SGLang, merged', tone: 'green', data: $frontmatter.timeline.sglang, step: true, dots: true },
     { key: 'kmeans', label: 'Flash-KMeans', tone: 'grey', data: $frontmatter.timeline.kmeans, step: true, dashed: true },
   ]"
   :x="{ categories: $frontmatter.timeline.dates, label: 'Merged' }"
@@ -114,7 +114,7 @@ as a fraction of the other.
   caption="Kernel: geometric mean over the pull request's workloads (#41459 is the median of its three runs). Model: SANA-Video and LTX-2.3 saved-request time; Qwen3.5-4B output throughput at concurrency 1."
   :series="[
     { key: 'kernel', label: 'The kernel alone', tone: 'ink' },
-    { key: 'model', label: 'The whole model', tone: 'red' },
+    { key: 'model', label: 'The whole model', tone: 'green' },
   ]"
   :rows="$frontmatter.kernelVsModel"
   :reference="{ value: 1, label: 'Before 1.00×' }"
@@ -131,7 +131,7 @@ as a fraction of the other.
   title="Output throughput gain by concurrency"
   label="Output throughput gain from the KDA NVFP4 GEMM. Qwen3.5-4B: 8.73% at concurrency 1, 6.84% at 2, 7.12% at 4, 6.52% at 8. Qwen3.5-9B: 3.18%, 2.78%, 2.82% and 2.70%."
   :series="[
-    { key: 'q4b', label: 'Qwen3.5-4B', tone: 'red', data: $frontmatter.sweep.q4b, dots: true },
+    { key: 'q4b', label: 'Qwen3.5-4B', tone: 'green', data: $frontmatter.sweep.q4b, dots: true },
     { key: 'q9b', label: 'Qwen3.5-9B', tone: 'ink', data: $frontmatter.sweep.q9b, dots: true, dashed: true },
   ]"
   :x="{ categories: ['1', '2', '4', '8'], label: 'Concurrent requests' }"
@@ -151,7 +151,7 @@ and batch size more than by anything else:
     { key: 'm1', label: 'M = 1', tone: 'pale' },
     { key: 'm2', label: 'M = 2', tone: 'grey' },
     { key: 'm4', label: 'M = 4', tone: 'ink' },
-    { key: 'm8', label: 'M = 8', tone: 'red' },
+    { key: 'm8', label: 'M = 8', tone: 'green' },
   ]"
   :rows="$frontmatter.fp8"
   suffix="%"
@@ -171,7 +171,7 @@ original correct Triton kernel, across batch sizes:
   label="QSA decode speedup over the original correct Triton kernel by batch size: geometric mean 2.72× at batch 1, falling to 1.61× at batch 12 and 1.86× at batch 17; the minimum never drops below 1.41×."
   caption="64 of 64 sweep cases pass, with a maximum relative L2 error of 0.0024."
   :series="[
-    { key: 'g', label: 'Geometric mean', tone: 'red', data: $frontmatter.qsa.geomean, dots: true },
+    { key: 'g', label: 'Geometric mean', tone: 'green', data: $frontmatter.qsa.geomean, dots: true },
     { key: 'm', label: 'Slowest case', tone: 'ink', data: $frontmatter.qsa.min, dashed: true },
   ]"
   :x="{ min: 1, max: 17, ticks: [1, 4, 8, 12, 16], decimals: 0, tickDecimals: 0, label: 'Batch size', unit: ' requests' }"
@@ -283,16 +283,16 @@ at least 1.5% in both of two measurement groups. The other 39 are listed in its
   </g>
   <path id="up-keep" class="line dash" d="M114 116 C 114 196, 340 196, 440 125" data-step="3" data-draw />
   <g data-step="3" data-pop>
-    <rect class="red" x="104" y="96" width="20" height="20" />
+    <rect class="green" x="104" y="96" width="20" height="20" />
   </g>
   <g data-step="3" data-pop>
-    <rect class="red" x="440" y="85" width="150" height="70" />
-    <text class="on-red t-lg" x="515" y="126" text-anchor="middle">merged</text>
+    <rect class="green" x="440" y="85" width="150" height="70" />
+    <text class="on-green t-lg" x="515" y="126" text-anchor="middle">merged</text>
   </g>
   <text class="ink" x="20" y="24" data-step="1">40 families</text>
   <text class="grey" x="20" y="205" data-step="2">■ removed · 39</text>
-  <text class="red" x="250" y="205" data-step="3">■ kept · 1</text>
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#up-keep" data-loop />
+  <text class="green" x="250" y="205" data-step="3">■ kept · 1</text>
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#up-keep" data-loop />
 </AnimatedDiagram>
 
 Three of the six (#36845, #41305 and #41459) credit the kernel to KDA running with Codex and
@@ -309,7 +309,7 @@ workloads:
 <BarChart
   kicker="KDA 0.5 vs. the best human entry · B200"
   label="KDA 0.5 against the best human entry on B200: GDN prefill 1.688×, DSA attention 1.408×, MoE FP8 1.173×. Over the FlashInfer baseline: 10.36×, 38.33× and 1.57×."
-  :series="[{ key: 's', label: 'KDA 0.5', tone: 'red' }]"
+  :series="[{ key: 's', label: 'KDA 0.5', tone: 'green' }]"
   :rows="$frontmatter.contest"
   :reference="{ value: 1, label: 'Best human entry 1.00×' }"
   suffix="×"

@@ -92,33 +92,33 @@ The arrangement is simple, and almost all of it is about what is *not* carried o
   <path id="hma-d4" class="line dash" d="M440 96 V200" data-step="4" data-draw />
   <path id="hma-d5" class="line dash" d="M547 96 V200" data-step="4" data-draw />
   <g data-step="2" data-pop>
-    <rect class="red" x="20" y="40" width="120" height="56" />
-    <text class="on-red" x="80" y="73" text-anchor="middle">Opus 5</text>
+    <rect class="green" x="20" y="40" width="120" height="56" />
+    <text class="on-green" x="80" y="73" text-anchor="middle">Opus 5</text>
   </g>
   <g data-step="3" data-pop>
     <rect class="ink" x="140" y="40" width="120" height="56" />
     <text class="on-ink" x="200" y="73" text-anchor="middle">GPT-5.6</text>
   </g>
   <g data-step="4" data-pop>
-    <rect class="red" x="260" y="40" width="120" height="56" />
-    <text class="on-red" x="320" y="73" text-anchor="middle">Opus 5</text>
+    <rect class="green" x="260" y="40" width="120" height="56" />
+    <text class="on-green" x="320" y="73" text-anchor="middle">Opus 5</text>
   </g>
   <g data-step="4" data-pop>
     <rect class="ink" x="380" y="40" width="120" height="56" />
     <text class="on-ink" x="440" y="73" text-anchor="middle">GPT-5.6</text>
   </g>
   <g data-step="4" data-pop>
-    <rect class="red" x="500" y="40" width="95" height="56" />
+    <rect class="green" x="500" y="40" width="95" height="56" />
   </g>
   <g data-step="5" data-pop>
     <rect class="grey" x="595" y="40" width="25" height="56" />
   </g>
-  <text class="red" x="620" y="298" text-anchor="end" data-step="5">last 15 min: pick one</text>
-  <rect class="red" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#hma-d1" data-loop />
+  <text class="green" x="620" y="298" text-anchor="end" data-step="5">last 15 min: pick one</text>
+  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#hma-d1" data-loop />
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#hma-d2" data-loop />
-  <rect class="red" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#hma-d3" data-loop />
+  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#hma-d3" data-loop />
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#hma-d4" data-loop />
-  <rect class="red" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#hma-d5" data-loop />
+  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#hma-d5" data-loop />
 </AnimatedDiagram>
 
 1. One agent works the task in its own native harness and submits candidate solutions.
@@ -144,7 +144,7 @@ and drops only its train of thought.
   :series="[
     { key: 'gpt', label: 'GPT-5.6-sol alone', tone: 'pale', hatched: true },
     { key: 'opus', label: 'Opus 5 alone', tone: 'grey' },
-    { key: 'hma', label: 'HMA · Opus 5 ⇄ GPT-5.6-sol', tone: 'red' },
+    { key: 'hma', label: 'HMA · Opus 5 ⇄ GPT-5.6-sol', tone: 'green' },
   ]"
   :rows="[
     { label: 'Any medal', values: { gpt: 68.0, opus: 72.4, hma: 78.2 } },
@@ -167,7 +167,7 @@ hours, and MLEvolve 65.3% in 12. Every HMA pairing uses six.
   kicker="Any-medal rate against time budget"
   label="Any-medal rate against time budget. At 6 hours: HMA pairings 78.2, 73.3, 72.0 and 70.7; Opus 5 alone 72.4; GPT-5.6-sol alone 68.0. ScienceFlow 70.2 at 24 hours; MLEvolve 65.3 at 12 hours."
   :groups="[
-    { key: 'hma', label: 'HMA pairings', tone: 'red' },
+    { key: 'hma', label: 'HMA pairings', tone: 'green' },
     { key: 'solo', label: 'One agent alone', tone: 'ink' },
     { key: 'ext', label: 'External systems', tone: 'grey' },
   ]"

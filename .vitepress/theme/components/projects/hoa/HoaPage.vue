@@ -5,7 +5,7 @@
 // is why it says something about loops rather than models, and here is where to check it
 // yourself.
 //
-// The page's own mark is the tombstone: the red square that ends a proof (∎). It closes the
+// The page's own mark is the tombstone: the green square that ends a proof (∎). It closes the
 // proof in the hero, it is every solved cell on the record, and it ends each section's lead.
 //
 // Motion follows the home page's rules (home/motion.ts): the server renders the last frame, and

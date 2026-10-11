@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The name, drawn rather than typed: the H, then "humanfia" in the same stems and bars, and one
-// red circle that belongs to both. It rests as the dot of the i. Every so often -- the first time
+// green circle that belongs to both. It rests as the dot of the i. Every so often -- the first time
 // the wordmark is on screen, when a pointer comes to it, and then on a slow loop while it stays in
 // view -- it hops across the word into the slot over the H's right stem, waits there, and hops
 // back. Either resting place is a finished lockup: the H is complete without its circle, and the
@@ -215,6 +215,6 @@ defineExpose({ poke })
 }
 
 .hf-wordmark-dot {
-  fill: var(--hf-pink);
+  fill: var(--hf-green);
 }
 </style>

@@ -1,8 +1,8 @@
 /**
  * The KDA page's own look: a profiler's console set in the site's poster language. Ink, paper and
- * one red; hairline grids like a trace viewer's; every number in the mono, tabular, so a column
+ * one green; hairline grids like a trace viewer's; every number in the mono, tabular, so a column
  * of speedups lines up the way a benchmark log does. Full-width bands alternate between the
- * paper and the ink, and the red is spent on the kernel that won.
+ * paper and the ink, and the green is spent on the kernel that won.
  *
  * Scoped under .kd-band, so nothing here reaches another page. Every colour is a site token
  * (style.css), re-exposed under a short local name so an ink band can repaint its contents by
@@ -17,9 +17,9 @@
   --kd-fg-3: var(--vp-c-text-3);
   --kd-line: var(--vp-c-divider);
   --kd-grid: var(--vp-c-gutter);
-  --kd-red: var(--hf-pink);
-  --kd-red-text: var(--vp-c-brand-1);
-  --kd-on-red: var(--hf-paper-white);
+  --kd-green: var(--hf-green);
+  --kd-green-text: var(--vp-c-brand-1);
+  --kd-on-green: var(--hf-on-green);
   --kd-mono: var(--vp-font-family-mono);
   --kd-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --kd-max: 1400px;
@@ -47,9 +47,9 @@
   --kd-fg-3: var(--hf-paper-3);
   --kd-line: color-mix(in srgb, var(--hf-paper) 15%, transparent);
   --kd-grid: color-mix(in srgb, var(--hf-paper) 6%, transparent);
-  --kd-red: var(--hf-pink-on-ink);
-  --kd-red-text: var(--hf-pink-on-ink);
-  --kd-on-red: var(--hf-ink-k);
+  --kd-green: var(--hf-green-on-ink);
+  --kd-green-text: var(--hf-green-on-ink);
+  --kd-on-green: var(--hf-on-green);
 }
 
 .dark .kd-band.kd-ink {
@@ -85,7 +85,7 @@
 }
 
 .kd-index b {
-  color: var(--kd-red-text);
+  color: var(--kd-green-text);
   font-weight: 700;
 }
 
@@ -110,7 +110,7 @@
 
 .kd-title em {
   font-style: normal;
-  color: var(--kd-red-text);
+  color: var(--kd-green-text);
 }
 
 .kd-lede {
@@ -140,7 +140,7 @@
 
 .kd-prose a,
 .kd-link {
-  color: var(--kd-red-text);
+  color: var(--kd-green-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -212,7 +212,7 @@
 .kd-switch button:focus-visible,
 .kd-band a:focus-visible,
 .kd-band button:focus-visible {
-  outline: 2px solid var(--kd-red);
+  outline: 2px solid var(--kd-green);
   outline-offset: 2px;
 }
 

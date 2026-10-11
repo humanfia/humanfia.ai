@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The pairings: who goes first down the side, who goes second across the top. A cell the main
-// table has a run for is filled, deeper red for a higher any-medal rate; the diagonal is a model
+// table has a run for is filled, deeper green for a higher any-medal rate; the diagonal is a model
 // working alone, where the table has that; every other cell is empty and says so rather than
 // guessing. Pick a cell to read it, and to see the same two models in the other order.
 //

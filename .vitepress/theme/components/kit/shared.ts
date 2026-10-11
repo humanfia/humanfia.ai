@@ -108,13 +108,13 @@ export function niceTicks(lo: number, hi: number, count = 5) {
 
 /**
  * The tones a series can be drawn in. The palette is a constructivist poster's -- ink, paper and
- * one red -- so a chart has three inks to spend, and every one of them is a CSS variable that
- * flips with the page: the red is ours, the ink is the comparison, the grey is the baseline. A
+ * one green -- so a chart has three inks to spend, and every one of them is a CSS variable that
+ * flips with the page: the green is ours, the ink is the comparison, the grey is the baseline. A
  * fourth tone, `pale`, is the grey a step lighter, for a context series nobody should look at
  * first. Colour is never the only difference: a baseline is also hatched or dashed.
  */
-export type Tone = 'red' | 'ink' | 'grey' | 'pale'
-export const TONES: Tone[] = ['red', 'ink', 'grey', 'pale']
+export type Tone = 'green' | 'ink' | 'grey' | 'pale'
+export const TONES: Tone[] = ['green', 'ink', 'grey', 'pale']
 export const toneOf = (tone: Tone | undefined, index: number): Tone => tone ?? TONES[index % TONES.length]
 
 /** A stable id for aria wiring: Vue's own, so the server and the browser agree on it. */

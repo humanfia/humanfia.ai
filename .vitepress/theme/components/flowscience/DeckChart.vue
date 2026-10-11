@@ -208,10 +208,10 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
 
 <style scoped>
 .dc {
-  /* The six inks a chart may use, all from the site's palette. The red is the flow the figure
+  /* The six inks a chart may use, all from the site's palette. The green is the flow the figure
      is about; the rest are ink, a warm grey, ochre, the old blue and a mid grey, told apart by
      dash as well as by colour so the chart still reads in greyscale. */
-  --dc-0: var(--hf-pink);
+  --dc-0: var(--hf-green);
   --dc-1: var(--vp-c-text-1);
   --dc-2: #a8730f;
   --dc-3: var(--hf-blue);
@@ -279,7 +279,7 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
   touch-action: pan-y;
 }
 .dc-svg:focus-visible {
-  outline: 2px solid var(--hf-pink);
+  outline: 2px solid var(--hf-green);
   outline-offset: 4px;
 }
 .dc-grid line {

@@ -1,5 +1,5 @@
 /**
- * The HMA page's look: the site's poster -- ink, paper, one red, square corners, mono for what the
+ * The HMA page's look: the site's poster -- ink, paper, one green, square corners, mono for what the
  * site says about itself -- set as a scoreboard. Figures are tabular, ranks are numerals, rows are
  * ruled, and the two agents keep the flow grammar's blue and teal (grammar.css, through the
  * `flow-ui` class on the root) so they read the same here as on /flows/.
@@ -20,8 +20,8 @@
   --m-bg: var(--vp-c-bg);
   --m-band: var(--vp-c-bg-alt);
   --m-card: var(--vp-c-bg-elv);
-  --m-red: var(--hf-pink);
-  --m-red-text: var(--hf-pink-deep);
+  --m-green: var(--hf-green);
+  --m-green-text: var(--hf-green-deep);
   --m-a: var(--flow-maker);
   --m-b: var(--flow-partner);
   --m-mono: var(--vp-font-family-mono);
@@ -51,7 +51,7 @@
 }
 
 .hma-root a {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -64,8 +64,8 @@
   background: color-mix(in srgb, var(--m-ink) 7%, transparent);
 }
 
-.hma-red {
-  color: var(--m-red-text);
+.hma-green {
+  color: var(--m-green-text);
 }
 
 /* ---------------------------------------------------------------------------------- type */
@@ -87,10 +87,10 @@
   flex: none;
   width: 28px;
   height: 6px;
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-num {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 
 .hma-display {
@@ -173,7 +173,7 @@
 }
 
 .hma-root :focus-visible {
-  outline: 2px solid var(--m-red);
+  outline: 2px solid var(--m-green);
   outline-offset: 2px;
 }
 
@@ -200,7 +200,7 @@
   padding: clamp(40px, 6vw, 88px) 0 clamp(48px, 6vw, 80px);
   border-bottom: 1px solid var(--m-line);
 }
-/* The one diagonal: a red bar cut across the top-right corner, behind the board. */
+/* The one diagonal: a green bar cut across the top-right corner, behind the board. */
 .hma-hero::before {
   content: '';
   position: absolute;
@@ -208,7 +208,7 @@
   right: -6vw;
   width: 46vw;
   height: 140px;
-  background: var(--m-red);
+  background: var(--m-green);
   transform: rotate(-14deg);
   transform-origin: right top;
   opacity: 0.9;
@@ -255,9 +255,9 @@
   color: var(--m-bg);
 }
 .hma-root a.hma-btn.primary:hover {
-  background: var(--m-red);
-  border-color: var(--m-red);
-  color: #fff;
+  background: var(--m-green);
+  border-color: var(--m-green);
+  color: var(--hf-on-green);
 }
 
 /* The board. */
@@ -293,7 +293,7 @@
   line-height: 0.86;
   font-weight: 800;
   letter-spacing: -0.055em;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-board-num small {
   font-size: 0.42em;
@@ -380,10 +380,10 @@
 }
 .hma-board-row.us .rk,
 .hma-board-row.us .sc {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-board-row.us .tr i {
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-board-row.us::before {
   content: '';
@@ -392,7 +392,7 @@
   top: 0;
   bottom: 0;
   width: 5px;
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-board-foot {
   margin: 14px 0 0;
@@ -531,8 +531,8 @@
   position: absolute;
   top: -6px;
   bottom: -6px;
-  border-left: 2px solid var(--m-red);
-  background: color-mix(in srgb, var(--m-red) 10%, transparent);
+  border-left: 2px solid var(--m-green);
+  background: color-mix(in srgb, var(--m-green) 10%, transparent);
   transition: background-color 0.4s;
 }
 .relay-review span {
@@ -545,10 +545,10 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .reviewing .relay-review {
-  background: color-mix(in srgb, var(--m-red) 22%, transparent);
+  background: color-mix(in srgb, var(--m-green) 22%, transparent);
 }
 
 .relay-pass {
@@ -624,9 +624,9 @@
   background: var(--m-ink);
 }
 .relay-cand.picked {
-  background: var(--m-red);
-  border-color: var(--m-red);
-  box-shadow: 0 0 0 3px var(--m-bg), 0 0 0 5px var(--m-red);
+  background: var(--m-green);
+  border-color: var(--m-green);
+  box-shadow: 0 0 0 3px var(--m-bg), 0 0 0 5px var(--m-green);
   z-index: 1;
 }
 
@@ -669,7 +669,7 @@
   top: 0;
   bottom: 0;
   right: 0;
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .relay-tick {
   position: absolute;
@@ -714,7 +714,7 @@
 }
 .relay-scrub {
   flex: 1 1 200px;
-  accent-color: var(--m-red);
+  accent-color: var(--m-green);
   cursor: pointer;
 }
 .relay-clock,
@@ -792,7 +792,7 @@
   right: 12px;
   bottom: -1px;
   height: 3px;
-  background: var(--m-red);
+  background: var(--m-green);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s var(--h-ease);
@@ -801,7 +801,7 @@
   transform: scaleX(1);
 }
 .hma-chapters a.on span {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
   opacity: 1;
 }
 
@@ -827,7 +827,7 @@
   font-family: var(--m-mono);
   font-size: 12px;
   font-weight: 700;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-rule-big {
   margin: 14px 0 18px;
@@ -894,7 +894,7 @@
 .hma-handoff-side.dropped li {
   color: var(--m-ink-3);
   text-decoration: line-through;
-  text-decoration-color: var(--m-red);
+  text-decoration-color: var(--m-green);
   text-decoration-thickness: 2px;
   background: transparent;
 }
@@ -1042,8 +1042,8 @@
   max-width: 860px;
   margin: 0 0 40px;
   padding: 14px 18px;
-  border-left: 5px solid var(--m-red);
-  background: color-mix(in srgb, var(--m-red) 8%, transparent);
+  border-left: 5px solid var(--m-green);
+  background: color-mix(in srgb, var(--m-green) 8%, transparent);
   font-size: 15px;
   line-height: 1.6;
   color: var(--m-ink-2);
@@ -1162,7 +1162,7 @@
   color: var(--m-ink-3);
 }
 .hma-ladder-row.us .rk {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-ladder-row .nm {
   min-width: 0;
@@ -1181,7 +1181,7 @@
   color: var(--m-ink-3);
 }
 .hma-ladder-row.us .nm em {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-ladder-row .tr {
   position: relative;
@@ -1201,8 +1201,8 @@
 }
 .tr .medal,
 .hma-ladder-legend .medal {
-  background: repeating-linear-gradient(-45deg, var(--m-red) 0 3px, transparent 3px 6px);
-  box-shadow: inset 0 0 0 1.5px var(--m-red);
+  background: repeating-linear-gradient(-45deg, var(--m-green) 0 3px, transparent 3px 6px);
+  box-shadow: inset 0 0 0 1.5px var(--m-green);
 }
 .hma-ladder-row:not(.us) .tr .medal {
   background: repeating-linear-gradient(-45deg, var(--m-ink-2) 0 3px, transparent 3px 6px);
@@ -1210,7 +1210,7 @@
 }
 .tr .gold,
 .hma-ladder-legend .gold {
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-ladder-row:not(.us) .tr .gold {
   background: var(--m-ink);
@@ -1254,7 +1254,7 @@
   text-align: right;
 }
 .hma-ladder-row.us .sc {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-ladder-legend {
   display: flex;
@@ -1321,7 +1321,7 @@
   letter-spacing: -0.05em;
 }
 .hma-callout.primary .big {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-callout .big small {
   margin-left: 6px;
@@ -1383,7 +1383,7 @@
   font-weight: 700;
 }
 .hma-table tbody tr:first-child td {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 
 /* --------------------------------------------------------------------------- pairings */
@@ -1405,7 +1405,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-matrix-axis.top {
   top: 0;
@@ -1490,7 +1490,7 @@
 .hma-cell.has:not(.diag) {
   border: 0;
   color: #fff;
-  background: color-mix(in srgb, #d9508c calc(var(--heat) * 100%), #5e4a5c);
+  background: color-mix(in srgb, #76b900 calc(var(--heat) * 100%), #5e4a5c);
 }
 .hma-cell.on {
   z-index: 1;
@@ -1509,7 +1509,7 @@
   padding: 24px 26px;
   border: 1.5px solid var(--m-ink);
   background: var(--m-card);
-  box-shadow: 8px 8px 0 var(--m-red);
+  box-shadow: 8px 8px 0 var(--m-green);
 }
 .hma-pair-who {
   display: flex;
@@ -1541,7 +1541,7 @@
   line-height: 0.9;
   font-weight: 800;
   letter-spacing: -0.05em;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-pair-big small {
   margin-left: 6px;
@@ -1589,12 +1589,12 @@
   color: var(--m-ink-2);
 }
 .hma-pair-note b {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-link {
   font: inherit;
   font-weight: 700;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
@@ -1695,7 +1695,7 @@
 }
 .hma-root a.hma-plate:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--m-red);
+  box-shadow: 8px 8px 0 var(--m-green);
 }
 .hma-plate h3 {
   margin: 14px 0 12px;
@@ -1762,7 +1762,7 @@
   color: var(--m-ink-3);
 }
 .hma-diffs-head span:last-child {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-diffs-row span {
   font-size: 15.5px;
@@ -1825,7 +1825,7 @@
 .hma-word-art.official i.us {
   position: relative;
   height: 22px;
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-word-art.official i.us span,
 .hma-word-art.late b span {
@@ -1837,7 +1837,7 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
   white-space: nowrap;
 }
 .hma-word-art.late i {
@@ -1891,7 +1891,7 @@
   line-height: 0.9;
   font-weight: 800;
   letter-spacing: -0.05em;
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-tally-big small {
   font-size: 0.45em;
@@ -1911,16 +1911,16 @@
 }
 .hma-dots .final,
 .hma-dots-legend .final {
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-dots .snapshot,
 .hma-dots-legend .snapshot {
-  border: 2px solid var(--m-red);
+  border: 2px solid var(--m-green);
 }
 .hma-dots .late,
 .hma-dots-legend .late {
-  background: repeating-linear-gradient(-45deg, var(--m-red) 0 2px, transparent 2px 5px);
-  border: 1px solid var(--m-red);
+  background: repeating-linear-gradient(-45deg, var(--m-green) 0 2px, transparent 2px 5px);
+  border: 1px solid var(--m-green);
 }
 .hma-dots .out,
 .hma-dots-legend .out {
@@ -2018,7 +2018,7 @@
   width: 18px;
   height: 18px;
   margin-left: -9px;
-  background: var(--m-red);
+  background: var(--m-green);
 }
 .hma-biohub-axis .mark.ghost {
   background: transparent;
@@ -2062,7 +2062,7 @@
   color: var(--m-ink);
 }
 .hma-biohub-labels p.end b {
-  color: var(--m-red-text);
+  color: var(--m-green-text);
 }
 .hma-biohub figcaption {
   margin-top: 16px;
@@ -2332,7 +2332,7 @@
   }
   .hma-pair-card {
     padding: 20px 18px;
-    box-shadow: 6px 6px 0 var(--m-red);
+    box-shadow: 6px 6px 0 var(--m-green);
   }
   .hma-pair-bars li {
     grid-template-columns: 100px minmax(0, 1fr) 40px;
@@ -2363,7 +2363,7 @@
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--m-red-text);
+    color: var(--m-green-text);
   }
   .hma-dots {
     grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));

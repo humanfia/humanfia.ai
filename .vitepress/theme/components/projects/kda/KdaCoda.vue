@@ -71,7 +71,7 @@ onBeforeUnmount(() => clearTimeout(timer))
   margin-bottom: 26px;
   border: 1px solid var(--kd-line);
   background: var(--hf-night-2);
-  box-shadow: 10px 10px 0 var(--kd-red);
+  box-shadow: 10px 10px 0 var(--kd-green);
 }
 
 .term-bar {
@@ -90,7 +90,7 @@ onBeforeUnmount(() => clearTimeout(timer))
 }
 
 .term-bar i:first-child {
-  background: var(--kd-red);
+  background: var(--kd-green);
   opacity: 1;
 }
 
@@ -117,7 +117,7 @@ onBeforeUnmount(() => clearTimeout(timer))
 }
 
 .term-prompt {
-  color: var(--kd-red);
+  color: var(--kd-green-text);
   user-select: none;
 }
 

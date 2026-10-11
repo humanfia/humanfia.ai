@@ -5,7 +5,7 @@
 // each agent a lane with a disc, coloured by what the role is -- the one that does the work in
 // blue, the one taking turns with it in teal -- each turn a bar with a spark on its left edge,
 // because every turn is a fresh session; files handed on as square comets; the workspace a plate
-// under the lanes; the budget a bar along the bottom; the review in the reviewer's red.
+// under the lanes; the budget a bar along the bottom; the review in the reviewer's green.
 //
 // Everything on screen is a function of one number, the minute of the six hours the playhead is
 // at, so playing, dragging the budget bar and the arrow keys are all that number moving. It plays

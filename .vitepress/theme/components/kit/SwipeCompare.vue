@@ -165,7 +165,7 @@ const valueText = computed(
 .sw-after {
   clip-path: inset(0 0 0 var(--at));
   background: var(--k-bg);
-  box-shadow: inset 0 4px 0 var(--k-red);
+  box-shadow: inset 0 4px 0 var(--k-green);
 }
 
 .sw-tag {
@@ -185,8 +185,8 @@ const valueText = computed(
 .sw-tag.right {
   left: auto;
   right: 14px;
-  background: var(--k-red);
-  color: var(--hf-paper);
+  background: var(--k-green);
+  color: var(--hf-on-green);
 }
 
 .sw-rule {
@@ -196,7 +196,7 @@ const valueText = computed(
   left: var(--at);
   width: 3px;
   margin-left: -1.5px;
-  background: var(--k-red);
+  background: var(--k-green);
   pointer-events: none;
 }
 
@@ -210,11 +210,11 @@ const valueText = computed(
   height: 44px;
   margin: -22px 0 0 -22px;
   padding: 0;
-  border: 3px solid var(--k-red);
+  border: 3px solid var(--k-green);
   background: var(--k-bg);
   font-size: 11px;
   letter-spacing: -0.1em;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
   cursor: ew-resize;
   transform: rotate(-17deg);
 }

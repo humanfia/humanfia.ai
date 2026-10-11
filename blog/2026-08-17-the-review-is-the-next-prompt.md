@@ -26,12 +26,12 @@ and both sound like details until you watch a hundred hours of runs without them
 >
   <path id="rr-work" class="line dash" d="M105 115 C 105 210, 150 285, 220 285" data-step="1" data-draw />
   <path id="rr-read" class="line dash" d="M380 285 C 450 285, 475 210, 475 115" data-step="2" data-draw />
-  <path id="rr-notes" class="line red" d="M400 60 C 340 10, 260 10, 200 60" data-step="4" data-draw />
+  <path id="rr-notes" class="line green" d="M400 60 C 340 10, 260 10, 200 60" data-step="4" data-draw />
   <path id="rr-done" class="line dash" d="M560 115 V170" data-step="5" data-draw />
   <g data-step="1" data-pop>
-    <rect class="red" x="20" y="45" width="180" height="70" />
-    <text class="on-red t-lg" x="110" y="78" text-anchor="middle">actor</text>
-    <text class="on-red" x="110" y="100" text-anchor="middle">one session</text>
+    <rect class="green" x="20" y="45" width="180" height="70" />
+    <text class="on-green t-lg" x="110" y="78" text-anchor="middle">actor</text>
+    <text class="on-green" x="110" y="100" text-anchor="middle">one session</text>
   </g>
   <g data-step="1">
     <rect class="frame" x="220" y="255" width="160" height="60" />
@@ -47,14 +47,14 @@ and both sound like details until you watch a hundred hours of runs without them
     <text class="ink" x="300" y="162" text-anchor="middle">done: bool</text>
     <text class="ink" x="300" y="185" text-anchor="middle">notes: str</text>
   </g>
-  <text class="red" x="300" y="22" text-anchor="middle" data-step="4">notes, verbatim</text>
+  <text class="green" x="300" y="22" text-anchor="middle" data-step="4">notes, verbatim</text>
   <g data-step="5" data-pop>
-    <rect class="red" x="500" y="170" width="90" height="44" />
-    <text class="on-red" x="545" y="197" text-anchor="middle">end</text>
+    <rect class="green" x="500" y="170" width="90" height="44" />
+    <text class="on-green" x="545" y="197" text-anchor="middle">end</text>
   </g>
-  <rect class="red" x="-6" y="-6" width="12" height="12" data-step="1" data-travel="#rr-work" data-loop />
+  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="1" data-travel="#rr-work" data-loop />
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#rr-read" data-loop />
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#rr-notes" data-loop />
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#rr-notes" data-loop />
 </AnimatedDiagram>
 
 ## One: the review is the next prompt, verbatim

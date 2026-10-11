@@ -116,7 +116,7 @@ to see each board then and now.
   caption="A shorter bar is a better place."
   :series="[
     { key: 'aug', label: '15 August, public', tone: 'grey', hatched: true },
-    { key: 'final', label: 'Final, private', tone: 'red' },
+    { key: 'final', label: 'Final, private', tone: 'green' },
   ]"
   :rows="$frontmatter.closed"
   suffix="%"

@@ -4,7 +4,7 @@
  * (components/kit/kit.css) and only their width is decided here.
  *
  * The page is a poster with a long column of text under it. The poster is where the site's
- * diagonal lives -- one red band at -17° -- and nothing below it is tilted except the odd
+ * diagonal lives -- one green band at -17° -- and nothing below it is tilted except the odd
  * marker that points back up at it. The column is set for reading: 680px of text at 18px, 1.75
  * leading; to its right a margin for sidenotes, to its left (on a wide screen) the contents.
  */
@@ -19,7 +19,7 @@
   counter-reset: post-section post-sidenote post-figure;
 }
 
-/* ---- Reading progress: a red rule pinned under the nav ------------------------------------ */
+/* ---- Reading progress: a green rule pinned under the nav ------------------------------------ */
 
 .post-progress {
   position: fixed;
@@ -34,7 +34,7 @@
 .post-progress i {
   display: block;
   height: 100%;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform-origin: 0 50%;
   will-change: transform;
 }
@@ -64,7 +64,7 @@
   bottom: -40px;
   width: 90%;
   height: clamp(54px, 7vw, 104px);
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform-origin: 0 100%;
   transform: rotate(var(--post-angle));
   animation: post-band 1.1s cubic-bezier(0.2, 0.7, 0.1, 1) both;
@@ -89,7 +89,7 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   animation: post-dot 0.9s 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) both;
 }
 
@@ -308,7 +308,7 @@
 }
 
 a.post-author:hover .post-avatar {
-  box-shadow: 3px 3px 0 var(--hf-pink);
+  box-shadow: 3px 3px 0 var(--hf-green);
   transform: translate(-1px, -1px);
 }
 
@@ -354,15 +354,15 @@ a.post-author:hover .post-author-name {
 }
 
 .cite-button:hover {
-  border-color: var(--hf-pink);
+  border-color: var(--hf-green);
   color: var(--vp-c-brand-1);
-  box-shadow: 3px 3px 0 var(--hf-pink);
+  box-shadow: 3px 3px 0 var(--hf-green);
   transform: translate(-1px, -1px);
 }
 
 .cite-button:focus-visible,
 .cite-dialog :focus-visible {
-  outline: 2px solid var(--hf-pink);
+  outline: 2px solid var(--hf-green);
   outline-offset: 2px;
 }
 
@@ -401,7 +401,7 @@ a.post-author:hover .post-author-name {
   max-height: inherit;
   border: 2px solid var(--vp-c-text-1);
   background: var(--vp-c-bg-elv);
-  box-shadow: 8px 8px 0 var(--hf-pink);
+  box-shadow: 8px 8px 0 var(--hf-green);
 }
 
 .cite-head {
@@ -483,7 +483,7 @@ a.post-author:hover .post-author-name {
 }
 
 .cite-tab[aria-selected='true'] {
-  border-bottom-color: var(--hf-pink);
+  border-bottom-color: var(--hf-green);
   color: var(--vp-c-text-1);
 }
 
@@ -550,14 +550,14 @@ pre.cite-output {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--vp-c-bg);
-  box-shadow: 3px 3px 0 var(--hf-pink);
+  box-shadow: 3px 3px 0 var(--hf-green);
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .cite-copy:hover:not(:disabled) {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--hf-pink);
+  box-shadow: 4px 4px 0 var(--hf-green);
 }
 
 .cite-copy:disabled {
@@ -593,7 +593,7 @@ pre.cite-output {
 
   .cite-panel {
     border-width: 2px 0 0;
-    box-shadow: 0 -6px 0 var(--hf-pink);
+    box-shadow: 0 -6px 0 var(--hf-green);
   }
 
   .cite-head,
@@ -620,7 +620,7 @@ pre.cite-output {
   position: relative;
   padding: 22px 24px 18px;
   background: var(--k-bg);
-  box-shadow: 10px 10px 0 var(--hf-pink);
+  box-shadow: 10px 10px 0 var(--hf-green);
   animation: post-rise 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.1, 1) both;
 }
 
@@ -634,7 +634,7 @@ pre.cite-output {
   line-height: 0.9;
   font-weight: 800;
   letter-spacing: -0.06em;
-  color: var(--k-red);
+  color: var(--k-green-text, var(--hf-green-deep));
 }
 
 .post-hero-label {
@@ -704,7 +704,7 @@ pre.cite-output {
 .post-toc-rail i {
   display: block;
   height: 100%;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform-origin: 50% 0;
 }
 
@@ -870,7 +870,7 @@ pre.cite-output {
   color: var(--vp-c-text-1);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: var(--hf-pink);
+  text-decoration-color: var(--hf-green);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   transition: color 0.2s;
@@ -949,7 +949,7 @@ pre.cite-output {
 }
 
 .post-body ul > li::marker {
-  color: var(--hf-pink);
+  color: var(--hf-green-deep);
 }
 
 .post-body hr {
@@ -957,7 +957,7 @@ pre.cite-output {
   height: 8px;
   margin: 64px 0;
   border: 0;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform: skewX(var(--post-angle));
 }
 
@@ -1058,7 +1058,7 @@ pre.cite-output {
   bottom: 0;
   left: 0;
   width: 10px;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform: skewY(var(--post-angle));
   transform-origin: 0 0;
 }
@@ -1121,8 +1121,8 @@ pre.cite-output {
 
 .sn.open .sn-ref,
 .sn-ref:hover {
-  background: var(--hf-pink);
-  color: var(--hf-paper);
+  background: var(--hf-green);
+  color: var(--hf-on-green);
 }
 
 .sn-note {
@@ -1145,7 +1145,7 @@ pre.cite-output {
   display: block;
   margin: 10px 0 12px;
   padding: 10px 14px;
-  border-left: 4px solid var(--hf-pink);
+  border-left: 4px solid var(--hf-green);
   background: var(--vp-c-bg-soft);
 }
 
@@ -1162,7 +1162,7 @@ pre.cite-output {
     margin: 4px calc(-1 * (var(--post-note) + var(--post-gap))) 12px 0;
     padding: 8px 0 0;
     border: 0;
-    border-top: 2px solid var(--hf-pink);
+    border-top: 2px solid var(--hf-green);
     background: none;
     font-size: 13.5px;
   }
@@ -1246,7 +1246,7 @@ pre.cite-output {
   font-family: var(--vp-font-family-mono);
   font-size: 12px;
   font-weight: 700;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .pc-top {
@@ -1267,14 +1267,14 @@ pre.cite-output {
   align-items: center;
   gap: 6px;
   flex: none;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .pc-badge i {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--k-red);
+  background: var(--k-green);
 }
 
 .pc-metric {
@@ -1287,11 +1287,11 @@ pre.cite-output {
   line-height: 0.95;
   letter-spacing: -0.055em;
   font-weight: 800;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .pc.invert .pc-metric strong {
-  color: var(--k-red);
+  color: var(--k-green-text, var(--hf-green-deep));
 }
 
 .pc-metric span {
@@ -1337,7 +1337,7 @@ pre.cite-output {
   margin: 0 0 40px;
   padding: 0;
   list-style: none;
-  border-top: 4px solid var(--hf-pink);
+  border-top: 4px solid var(--hf-green);
 }
 
 .post-body .defs li {
@@ -1393,7 +1393,7 @@ pre.cite-output {
   bottom: 30px;
   width: 50%;
   height: 22px;
-  background: var(--hf-pink);
+  background: var(--hf-green);
   transform: rotate(var(--post-angle));
   transform-origin: 0 100%;
 }
@@ -1433,7 +1433,7 @@ pre.cite-output {
 }
 
 .post-related-card:hover {
-  border-top-color: var(--hf-pink);
+  border-top-color: var(--hf-green);
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0 var(--vp-c-text-1);
 }
@@ -1555,7 +1555,7 @@ pre.cite-output {
   }
 
   .post-hero-card {
-    box-shadow: 6px 6px 0 var(--hf-pink);
+    box-shadow: 6px 6px 0 var(--hf-green);
   }
 
   .post-body .defs li + li {

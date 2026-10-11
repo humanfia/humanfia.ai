@@ -7,7 +7,7 @@
  * dark -- by swapping six variables on its root rather than restating every rule. Nothing in the
  * kit names a hex value; a theme toggle repaints every chart live, mid-animation included.
  *
- * The shapes are the site's: hard corners, flat fills, hairlines in the divider colour, the pink
+ * The shapes are the site's: hard corners, flat fills, hairlines in the divider colour, the green
  * spent on the thing in focus. Type is the site's mono for everything that is the figure talking
  * about itself (kickers, ticks, legends, readouts) and never under 11px.
  */
@@ -23,8 +23,8 @@
   --k-fg-3: var(--vp-c-text-3);
   --k-line: var(--vp-c-divider);
   --k-grid: var(--vp-c-gutter);
-  --k-red: var(--hf-pink);
-  --k-red-text: var(--vp-c-brand-1);
+  --k-green: var(--hf-green);
+  --k-green-text: var(--vp-c-brand-1);
   --k-ink: var(--vp-c-text-1);
   --k-grey: var(--vp-c-text-3);
   --k-pale: color-mix(in srgb, var(--vp-c-text-3) 45%, transparent);
@@ -46,8 +46,8 @@
   --k-fg-3: var(--hf-paper-3);
   --k-line: color-mix(in srgb, var(--hf-paper) 16%, transparent);
   --k-grid: color-mix(in srgb, var(--hf-paper) 7%, transparent);
-  --k-red: var(--hf-pink-on-ink);
-  --k-red-text: var(--hf-pink-on-ink);
+  --k-green: var(--hf-green-on-ink);
+  --k-green-text: var(--hf-green-on-ink);
   --k-ink: var(--hf-paper);
   --k-grey: var(--hf-paper-3);
   --k-pale: color-mix(in srgb, var(--hf-paper-3) 45%, transparent);
@@ -61,15 +61,15 @@
   --k-fg-3: var(--hf-ink-3);
   --k-line: color-mix(in srgb, var(--hf-ink-k) 16%, transparent);
   --k-grid: color-mix(in srgb, var(--hf-ink-k) 7%, transparent);
-  --k-red: var(--hf-pink-on-paper);
-  --k-red-text: var(--hf-pink-on-paper);
+  --k-green: var(--hf-green-on-paper);
+  --k-green-text: var(--hf-green-on-paper);
   --k-ink: var(--hf-ink-k);
   --k-grey: var(--hf-ink-3);
   --k-pale: color-mix(in srgb, var(--hf-ink-3) 45%, transparent);
 }
 
 /* A series' colour, by tone. `--s` is what every mark of the series is painted with. */
-.kit .tone-red { --s: var(--k-red); }
+.kit .tone-green { --s: var(--k-green); }
 .kit .tone-ink { --s: var(--k-ink); }
 .kit .tone-grey { --s: var(--k-grey); }
 .kit .tone-pale { --s: var(--k-pale); }
@@ -113,13 +113,13 @@
   color: var(--k-fg-3);
 }
 
-/* The red square: every figure's kicker starts with the one mark the brand owns. */
+/* The green square: every figure's kicker starts with the one mark the brand owns. */
 .kit .kit-kicker::before {
   content: '';
   flex: none;
   width: 8px;
   height: 8px;
-  background: var(--k-red);
+  background: var(--k-green);
 }
 
 .kit .kit-title {
@@ -206,7 +206,7 @@
 }
 
 .kit :focus-visible {
-  outline: 2px solid var(--k-red);
+  outline: 2px solid var(--k-green);
   outline-offset: 2px;
 }
 
@@ -292,7 +292,7 @@ span.kit-key {
   padding: 9px 11px;
   border: 1px solid var(--k-fg);
   background: var(--k-bg-2);
-  box-shadow: 4px 4px 0 var(--k-red);
+  box-shadow: 4px 4px 0 var(--k-green);
   pointer-events: none;
   font-family: var(--k-mono);
   font-size: 11.5px;
@@ -326,7 +326,7 @@ span.kit-key {
 
 .kit .kit-tip-row em {
   font-style: normal;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 /* ---- Wide plots on a narrow screen scroll sideways rather than shrink their type ---------- */
@@ -403,18 +403,18 @@ span.kit-key {
 /* ---- AnimatedDiagram's vocabulary: the classes a diagram's shapes are painted with ---------- */
 
 .kit .ad-svg .ink { fill: var(--k-fg); }
-.kit .ad-svg .red { fill: var(--k-red); }
+.kit .ad-svg .green { fill: var(--k-green); }
 .kit .ad-svg .grey { fill: var(--k-fg-3); }
 .kit .ad-svg .paper { fill: var(--k-bg); }
 .kit .ad-svg .frame { fill: var(--k-bg-2); stroke: var(--k-line); }
 .kit .ad-svg .line { fill: none; stroke: var(--k-fg-2); stroke-width: 1.5; }
-.kit .ad-svg .line.red { fill: none; stroke: var(--k-red); }
+.kit .ad-svg .line.green { fill: none; stroke: var(--k-green); }
 .kit .ad-svg .line.ink { fill: none; stroke: var(--k-fg); }
 .kit .ad-svg .line.dash { stroke-dasharray: 5 5; }
 .kit .ad-svg text { font-family: var(--k-mono); font-size: calc(13px * var(--ad-k, 1)); fill: var(--k-fg-2); }
 .kit .ad-svg text.t-lg { font-size: calc(17px * var(--ad-k, 1)); }
 .kit .ad-svg text.t-xl { font-size: calc(22px * var(--ad-k, 1)); font-weight: 700; }
 .kit .ad-svg text.ink { fill: var(--k-fg); }
-.kit .ad-svg text.red { fill: var(--k-red-text); }
-.kit .ad-svg text.on-red { fill: var(--hf-paper); }
+.kit .ad-svg text.green { fill: var(--k-green-text); }
+.kit .ad-svg text.on-green { fill: var(--hf-on-green); }
 .kit .ad-svg text.on-ink { fill: var(--k-bg); }

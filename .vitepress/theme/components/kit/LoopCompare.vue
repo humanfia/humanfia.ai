@@ -129,7 +129,7 @@ const seen = useInView(root, 0.35)
 }
 
 .lcmp-packet {
-  fill: var(--k-red);
+  fill: var(--k-green);
 }
 
 .lcmp-card:not(.invert) .lcmp-packet {
@@ -193,7 +193,7 @@ const seen = useInView(root, 0.35)
 }
 
 .lcmp-card.invert .lcmp-copy dd {
-  color: var(--k-red);
+  color: var(--k-green-text, var(--hf-green-deep));
 }
 
 @keyframes lcmp-spin {

@@ -27,7 +27,7 @@ INK_2 = "#4b4452"
 INK_3 = "#766e7c"
 PAPER = "#efe4e9"
 PAPER_LIGHT = "#f7f0f3"
-PINK = "#d9508c"
+GREEN = "#76b900"
 
 W, H = 1200, 630
 
@@ -58,7 +58,7 @@ def wordmark(x: float, y: float, height: float) -> str:
         )
         if name.startswith("i"):
             i_x = word_x + float(lx) + 8  # the i is a 16-wide stem; its dot is centred on it
-    parts.append(f'<circle fill="{PINK}" cx="{i_x}" cy="{dot["cy"]}" r="{dot["r"]}"/>')
+    parts.append(f'<circle fill="{GREEN}" cx="{i_x}" cy="{dot["cy"]}" r="{dot["r"]}"/>')
     s = height / 108
     return f'<g transform="translate({x} {y}) scale({s})">{"".join(parts)}</g>'
 
@@ -87,7 +87,7 @@ def construction(x: float, y: float, height: float) -> str:
       <line x1="-10" y1="{50 + 34 * slope}" x2="210" y2="{50 - 186 * slope}"/>
     </g>
     <path fill="{INK}" d="{path}"/>
-    <circle fill="{PINK}" cx="{dot["cx"]}" cy="{dot["cy"]}" r="{dot["r"]}"/>
+    <circle fill="{GREEN}" cx="{dot["cx"]}" cy="{dot["cy"]}" r="{dot["r"]}"/>
     <rect x="-30" y="116" width="400" height="4" fill="{INK}"/>
     <g stroke="{INK}" stroke-width="{2 / s}">
       <line x1="110" y1="92" x2="152" y2="78"/><line x1="110" y1="99" x2="152" y2="85"/>
@@ -102,7 +102,7 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
 
   {wordmark(72, 72, 56)}
 
-  <rect x="72" y="234" width="40" height="8" fill="{PINK}"/>
+  <rect x="72" y="234" width="40" height="8" fill="{GREEN}"/>
   <text x="128" y="243" font-family="{MONO}" font-size="20" font-weight="bold"
         letter-spacing="3" fill="{INK}">OPEN-SOURCE AGENT FLOWS</text>
   <text x="68" y="336" font-family="{SANS}" font-size="78" font-weight="bold"
