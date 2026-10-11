@@ -80,15 +80,15 @@ are counted separately: a **semantic review** of the formal statement against th
     <text class="ink" x="401" y="56" text-anchor="middle">2 · proof</text>
   </g>
   <g data-step="4" data-pop>
-    <rect class="red" x="544" y="94" width="136" height="52" transform="rotate(-14 612 120)" />
-    <text class="on-red" x="612" y="125" text-anchor="middle" transform="rotate(-14 612 120)">ACCEPTED</text>
+    <rect class="green" x="544" y="94" width="136" height="52" transform="rotate(-14 612 120)" />
+    <text class="on-green" x="612" y="125" text-anchor="middle" transform="rotate(-14 612 120)">ACCEPTED</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#pq-lane" data-stop="0.33" data-loop />
   <rect class="ink" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#pq-lane" data-stop="0.69" data-loop />
-  <rect class="red" x="-9" y="-9" width="18" height="18" data-step="4" data-travel="#pq-lane" data-loop />
+  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="4" data-travel="#pq-lane" data-loop />
   <text class="grey" x="10" y="214" data-step="2">■ wrong claim</text>
   <text class="ink" x="250" y="214" data-step="3">■ gap in proof</text>
-  <text class="red" x="490" y="214" data-step="4">■ accepted</text>
+  <text class="green" x="490" y="214" data-step="4">■ accepted</text>
 </AnimatedDiagram>
 
 > A perfectly checked proof of the wrong statement is the exact failure this pair of gates
@@ -99,7 +99,7 @@ are counted separately: a **semantic review** of the formal statement against th
   label="Share of tasks passing each gate. IPhO 2026 theory: semantic review 100%, proof review 100%. QAlg: 100% and 100%. QIT: 95% and 92.5%."
   :series="[
     { key: 'semantic', label: 'Semantic review', tone: 'ink' },
-    { key: 'proof', label: 'Proof review, end to end', tone: 'red' },
+    { key: 'proof', label: 'Proof review, end to end', tone: 'green' },
   ]"
   :rows="$frontmatter.gates"
   suffix="%"

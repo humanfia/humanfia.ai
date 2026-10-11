@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// A leaderboard: ranked entries, a bar each, ours in the red.
+// A leaderboard: ranked entries, a bar each, ours in the green.
 //
 // Give an entry a `from` (the rank it held before) and the board opens in the old order and
 // re-sorts itself into the new one the first time it is on screen -- the climb is the news, so it
@@ -18,7 +18,7 @@ interface Entry {
   name: string
   score: number
   detail?: string
-  /** Ours: drawn in the red. */
+  /** Ours: drawn in the green. */
   us?: boolean
   /** The rank this entry held before; the board animates from that order to this one. */
   from?: number
@@ -173,8 +173,8 @@ function move(event: KeyboardEvent, by: number) {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--k-red);
-  color: var(--hf-paper);
+  background: var(--k-green);
+  color: var(--hf-on-green);
 }
 
 .lb-name {
@@ -216,7 +216,7 @@ function move(event: KeyboardEvent, by: number) {
 }
 
 .lb-row.us .lb-track i {
-  background: var(--k-red);
+  background: var(--k-green);
 }
 
 .lb-score {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// A project's hero: the post hero's poster (the red band on the diagonal, the ink rule, the red
+// A project's hero: the post hero's poster (the green band on the diagonal, the ink rule, the green
 // circle where the band leaves the frame), set for a page that is a project rather than a post.
 //
 // A project page asks for the post layout in its frontmatter (`layout: post`, `sidebar: false`)
@@ -244,7 +244,7 @@ const external = (href: string) => /^https?:/.test(href)
 
 .ph-links a:hover {
   color: var(--vp-c-brand-1);
-  box-shadow: 3px 3px 0 var(--hf-pink);
+  box-shadow: 3px 3px 0 var(--hf-green);
   transform: translate(-1px, -1px);
 }
 
@@ -350,7 +350,7 @@ a.ph-stat:hover {
 }
 
 @media (max-width: 640px) {
-  /* Clear of the red circle, which sits in the top right corner on a phone. */
+  /* Clear of the green circle, which sits in the top right corner on a phone. */
   .ph-tabs {
     flex-wrap: nowrap;
     max-width: calc(100% - 40px);

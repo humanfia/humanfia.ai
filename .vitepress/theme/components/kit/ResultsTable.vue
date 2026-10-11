@@ -21,7 +21,7 @@ const props = withDefaults(
     columns: Column[]
     rows: Row[]
     caption?: string
-    /** The field that marks a row as ours; those rows are drawn in the red. */
+    /** The field that marks a row as ours; those rows are drawn in the green. */
     highlight?: string
     /** Initial sort: a column key, or none to keep the rows in the order given. */
     sort?: string
@@ -247,7 +247,7 @@ const togglePin = (index: number) => {
 
 .rt-arrow {
   font-size: 11px;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .rt thead tr,
@@ -266,8 +266,8 @@ const togglePin = (index: number) => {
 }
 
 .rt tbody tr.pinned {
-  background: color-mix(in srgb, var(--k-red) 12%, transparent);
-  box-shadow: inset 4px 0 0 var(--k-red);
+  background: color-mix(in srgb, var(--k-green) 12%, transparent);
+  box-shadow: inset 4px 0 0 var(--k-green);
 }
 
 .rt tbody tr.us th,
@@ -283,7 +283,7 @@ const togglePin = (index: number) => {
   height: 7px;
   margin-right: 8px;
   vertical-align: 1px;
-  background: var(--k-red);
+  background: var(--k-green);
 }
 
 /* The bar sits behind the number, growing from the cell's right edge for a right-aligned
@@ -299,7 +299,7 @@ const togglePin = (index: number) => {
 }
 
 .rt tr.us .rt-bar {
-  background: color-mix(in srgb, var(--k-red) 22%, transparent);
+  background: color-mix(in srgb, var(--k-green) 22%, transparent);
 }
 
 .rt .al-left .rt-bar {

@@ -52,10 +52,10 @@ const line = computed(() => {
         <p class="hz-copy">The CLI works with its tools, in the env the turn names.</p>
       </div>
       <div class="hn-turn">
-        <p class="hn-tag red">A litellm turn</p>
+        <p class="hn-tag green">A litellm turn</p>
         <div class="hn-flow">
-          <span class="box red">turn · litellm</span>
-          <span class="wire long"><i class="red" /><small>history + prompt → one completion</small></span>
+          <span class="box green">turn · litellm</span>
+          <span class="wire long"><i class="green" /><small>history + prompt → one completion</small></span>
           <span class="box frame">model</span>
         </div>
         <p class="hz-copy"><b>env=None, always.</b> The history and the prompt go to the model, and an answer comes back.</p>
@@ -90,7 +90,7 @@ const line = computed(() => {
   color: color-mix(in srgb, var(--hz-on-ink) 55%, transparent);
 }
 .hn-line b {
-  color: #ff8fbd;
+  color: #76b900;
   font-weight: 700;
 }
 .hn-line p {
@@ -158,11 +158,11 @@ const line = computed(() => {
   font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--hz-pink);
+  color: var(--hf-on-green);
+  background: var(--hz-green);
 }
 .hn-grid .hi button {
-  box-shadow: inset 0 0 0 2px var(--hz-pink);
+  box-shadow: inset 0 0 0 2px var(--hz-green);
 }
 .hn-grid .proto button {
   background-image: repeating-linear-gradient(135deg, var(--hz-line-2) 0 1px, transparent 1px 7px);
@@ -197,7 +197,7 @@ const line = computed(() => {
   text-transform: uppercase;
   color: var(--hz-ink-2);
 }
-.hn-tag.red {
+.hn-tag.green {
   color: var(--hz-accent);
 }
 .hn-flow {
@@ -215,9 +215,9 @@ const line = computed(() => {
   color: var(--hz-on-ink);
   background: var(--hz-ink);
 }
-.box.red {
-  color: #fff;
-  background: var(--hz-pink);
+.box.green {
+  color: var(--hf-on-green);
+  background: var(--hz-green);
 }
 .box.grey {
   color: var(--hz-on-ink);
@@ -243,8 +243,8 @@ const line = computed(() => {
   background: var(--hz-ink);
   animation: hn-run 2.4s var(--hz-ease) infinite;
 }
-.wire i.red {
-  background: var(--hz-pink);
+.wire i.green {
+  background: var(--hz-green);
 }
 .wire small {
   position: absolute;

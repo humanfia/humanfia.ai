@@ -12,8 +12,8 @@ import NumberTicker from './kit/NumberTicker.vue'
 // standfirst and -- the point of it -- the people who did the work, with their faces, named
 // directly under the title where nobody can miss them.
 //
-// It is drawn as a poster. One red band crosses it on the site's diagonal, a thin ink rule runs
-// beside the band, and the red circle -- the dot of the H -- sits where the band leaves the frame.
+// It is drawn as a poster. One green band crosses it on the site's diagonal, a thin ink rule runs
+// beside the band, and the green circle -- the dot of the H -- sits where the band leaves the frame.
 // The title is the largest type on the site: a title with a colon is set as a display line and a
 // second line under it ("KDA²" / "Kernel Design Agents ..."), which is the same title, read the
 // way it is built.

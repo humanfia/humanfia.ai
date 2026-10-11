@@ -78,18 +78,18 @@ The second generation of KDA changes three things and reruns the contest.
     <text class="on-ink t-lg" x="535" y="121" text-anchor="middle">Verifier</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="red" x="40" y="186" width="130" height="40" />
-    <text class="on-red" x="105" y="211" text-anchor="middle">1 · CuteDSL</text>
+    <rect class="green" x="40" y="186" width="130" height="40" />
+    <text class="on-green" x="105" y="211" text-anchor="middle">1 · CuteDSL</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="red" x="470" y="186" width="130" height="40" />
-    <text class="on-red" x="535" y="211" text-anchor="middle">2 · IKET</text>
+    <rect class="green" x="470" y="186" width="130" height="40" />
+    <text class="on-green" x="535" y="211" text-anchor="middle">2 · IKET</text>
   </g>
   <g data-step="4" data-pop>
-    <rect class="red" x="245" y="96" width="150" height="40" />
-    <text class="on-red" x="320" y="121" text-anchor="middle">3 · the flow</text>
+    <rect class="green" x="245" y="96" width="150" height="40" />
+    <text class="on-green" x="320" y="121" text-anchor="middle">3 · the flow</text>
   </g>
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#k15-out" data-loop />
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#k15-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#k15-back" data-loop />
 </AnimatedDiagram>
 
@@ -114,7 +114,7 @@ or the contest entry, or switch to the B300 numbers this post first reported.
   :series="[
     { key: 'old', label: 'KDA, contest entry', tone: 'pale', hatched: true },
     { key: 'human', label: 'Best human entry', tone: 'ink' },
-    { key: 'new', label: 'KDA, second generation', tone: 'red' },
+    { key: 'new', label: 'KDA, second generation', tone: 'green' },
   ]"
   :datasets="$frontmatter.tracks"
   :reference="{ value: 1, label: 'FlashInfer baseline 1.00×' }"

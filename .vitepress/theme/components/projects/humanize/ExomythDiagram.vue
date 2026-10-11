@@ -121,25 +121,25 @@ const TIES = [
   background: var(--vp-c-text-1);
 }
 .program .ex-slice {
-  background: var(--hf-pink);
-  color: #fff;
+  background: var(--hf-green);
+  color: var(--hf-on-green);
 }
 .dark .program .ex-slice {
-  background: var(--hf-pink-press);
+  background: var(--hf-green-press);
 }
 .ex-tie {
   position: absolute;
   top: 28px;
   width: 0;
   height: calc(var(--rows) * var(--rowh, 35px) - 22px);
-  border-left: 1.5px dashed var(--hf-pink);
+  border-left: 1.5px dashed var(--hf-green);
 }
 .ex-tie em {
   position: absolute;
   left: 4px;
   top: 2px;
   font: italic 11px var(--vp-font-family-mono);
-  color: var(--hf-pink);
+  color: var(--hf-green-deep);
   white-space: nowrap;
 }
 .ex-head {
@@ -148,7 +148,7 @@ const TIES = [
   bottom: 0;
   left: calc(150px + (100% - 150px) * var(--p));
   width: 2px;
-  background: var(--hf-pink);
+  background: var(--hf-green);
 }
 figcaption {
   margin-top: 12px;

@@ -69,13 +69,13 @@ change the numbers and the ones that do not, and kept only the second kind.
     <text class="ink" x="260" y="44" text-anchor="middle">same output as the reference?</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="red" x="520" y="80" width="110" height="60" />
-    <text class="on-red" x="575" y="115" text-anchor="middle">KDA-Pilot → PR</text>
+    <rect class="green" x="520" y="80" width="110" height="60" />
+    <text class="on-green" x="575" y="115" text-anchor="middle">KDA-Pilot → PR</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#om-lane" data-stop="0.47" data-loop />
-  <rect class="red" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#om-lane" data-loop />
+  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#om-lane" data-loop />
   <text class="grey" x="20" y="215" data-step="2">■ approximate · cached · skipped</text>
-  <text class="red" x="380" y="215" data-step="3">■ lossless</text>
+  <text class="green" x="380" y="215" data-step="3">■ lossless</text>
 </AnimatedDiagram>
 
 Three pull requests came out of it, each measured on its own against main, on LTX-2.3 on B200:
@@ -94,7 +94,7 @@ Three pull requests came out of it, each measured on its own against main, on LT
   caption="Each pair is that pull request's own measurement. #29708 was timed on a shorter HQ run than the other two, so compare within a pair, not across. Switch the baseline to read each as a fraction of main."
   :series="[
     { key: 'main', label: 'main', tone: 'grey', hatched: true },
-    { key: 'pr', label: 'with the PR', tone: 'red' },
+    { key: 'pr', label: 'with the PR', tone: 'green' },
   ]"
   :rows="$frontmatter.e2e"
   :baselines="['main']"
@@ -140,7 +140,7 @@ claim.</Sidenote> Where on the scale it sits:
   ]"
   :zones="[
     { from: 15, to: 25, label: 'below the bar a fast path must clear' },
-    { from: 25, to: 60, label: 'not bit-identical, but above the bar', tone: 'red' },
+    { from: 25, to: 60, label: 'not bit-identical, but above the bar', tone: 'green' },
   ]"
 />
 
@@ -154,7 +154,7 @@ wins on the large shapes and is slightly slower on the two smallest.
   :series="[
     { key: 'torch', label: 'PyTorch', tone: 'pale', hatched: true },
     { key: 'triton', label: 'Triton', tone: 'ink' },
-    { key: 'cuda', label: 'CUDA fast path', tone: 'red' },
+    { key: 'cuda', label: 'CUDA fast path', tone: 'green' },
   ]"
   caption="Time per call; lower is faster. Against a baseline, each bar is a fraction of that baseline's time."
   :rows="$frontmatter.gate"

@@ -77,9 +77,9 @@ ablation with four newer models, and found the same pattern for every one of the
   ]"
 >
   <g data-step="3" data-pop>
-    <rect class="red" x="10" y="10" width="580" height="280" />
-    <text class="on-red t-lg" x="30" y="42">Flow</text>
-    <text class="on-red t-xl" x="570" y="46" text-anchor="end">50</text>
+    <rect class="green" x="10" y="10" width="580" height="280" />
+    <text class="on-green t-lg" x="30" y="42">Flow</text>
+    <text class="on-green t-xl" x="570" y="46" text-anchor="end">50</text>
   </g>
   <g data-step="2" data-pop>
     <rect class="ink" x="60" y="70" width="480" height="200" />
@@ -102,7 +102,7 @@ ablation with four newer models, and found the same pattern for every one of the
   :series="[
     { key: 'api', label: 'Model (API)', tone: 'pale', hatched: true },
     { key: 'cli', label: 'Tool (CLI)', tone: 'grey' },
-    { key: 'flow', label: 'Flow (Humanize)', tone: 'red' },
+    { key: 'flow', label: 'Flow (Humanize)', tone: 'green' },
   ]"
   :datasets="$frontmatter.levels"
   :baselines="['api', 'cli']"
@@ -133,7 +133,7 @@ visibly running into something the loop cannot fix.
   title="Not every benchmark is loop-limited"
   label="Share solved at the model, tool and flow level. PutnamBench 4, 36, 100 percent. Physics Cup 44, 66, 80 percent. SuperChem 47.0, 56.8, 62.4 percent. HLE subset 29, 42, 63 percent."
   :series="[
-    { key: 'putnam', label: 'PutnamBench', tone: 'red', data: $frontmatter.ladder.putnam, dots: true },
+    { key: 'putnam', label: 'PutnamBench', tone: 'green', data: $frontmatter.ladder.putnam, dots: true },
     { key: 'hle', label: 'HLE subset', tone: 'ink', data: $frontmatter.ladder.hle, dots: true },
     { key: 'physics', label: 'Physics Cup', tone: 'grey', data: $frontmatter.ladder.physics, dots: true, dashed: true },
     { key: 'superchem', label: 'SuperChem', tone: 'pale', data: $frontmatter.ladder.superchem, dots: true, dashed: true },

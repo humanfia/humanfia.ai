@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The axes a Flame Chase can be ablated along, drawn as bars radiating from the flow (the red
+// The axes a Flame Chase can be ablated along, drawn as bars radiating from the flow (the green
 // circle) -- a Rodchenko compass rather than a radar chart, because the axes are not on one
 // scale. Pick one to see what varies along it and which figure on this page already moves it.
 import { computed, ref } from 'vue'
@@ -111,17 +111,17 @@ const spoke = (i: number) => {
   transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), fill 0.3s;
 }
 .ax-spoke.on rect {
-  fill: var(--hf-pink);
+  fill: var(--hf-green);
 }
 .ax-spoke text {
   font: 700 16px var(--vp-font-family-mono);
   fill: var(--vp-c-text-2);
 }
 .ax-spoke.on text {
-  fill: var(--hf-pink);
+  fill: var(--hf-green);
 }
 .ax-core {
-  fill: var(--hf-pink);
+  fill: var(--hf-green);
 }
 .ax-core-label {
   font: 700 14px var(--vp-font-family-mono);
@@ -148,11 +148,11 @@ const spoke = (i: number) => {
   color: var(--vp-c-text-3);
 }
 .ax-tabs button.on {
-  border-color: var(--hf-pink);
-  box-shadow: 3px 3px 0 var(--hf-pink);
+  border-color: var(--hf-green);
+  box-shadow: 3px 3px 0 var(--hf-green);
 }
 .ax-tabs button.on span {
-  color: var(--hf-pink);
+  color: var(--hf-green-deep);
 }
 .ax-detail {
   margin-top: 12px;

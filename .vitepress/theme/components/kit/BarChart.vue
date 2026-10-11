@@ -17,7 +17,7 @@
 //
 //   <BarChart
 //     kicker="Speedup vs. FlashKDA"
-//     :series="[{ key: 'ours', label: 'Ours', tone: 'red' }]"
+//     :series="[{ key: 'ours', label: 'Ours', tone: 'green' }]"
 //     :rows="[{ label: 'H96 fixed', values: { ours: 3.11 } }]"
 //     :reference="{ value: 1, label: 'FlashKDA 1.00×' }"
 //     suffix="×" :decimals="2"
@@ -38,7 +38,7 @@ interface Row {
   label: string
   detail?: string
   values: Record<string, number>
-  /** A summary row (a geomean, a total): set off by a rule and set in the red. */
+  /** A summary row (a geomean, a total): set off by a rule and set in the green. */
   total?: boolean
 }
 
@@ -408,7 +408,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
 }
 
 .bc-row:focus-visible {
-  box-shadow: inset 3px 0 0 var(--k-red);
+  box-shadow: inset 3px 0 0 var(--k-green);
 }
 
 .bc-label strong {
@@ -420,7 +420,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
 }
 
 .bc-row.total .bc-label strong {
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .bc-label span {
@@ -567,7 +567,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
 }
 
 .bc-group:focus-visible .bc-name {
-  color: var(--k-red-text);
+  color: var(--k-green-text);
   text-decoration: underline;
 }
 
@@ -624,7 +624,7 @@ watch([datasetKey, baselineKey], () => (active.value = null))
 .bc-top small {
   font-size: 11px;
   font-weight: 700;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .bc-name {

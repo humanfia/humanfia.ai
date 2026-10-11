@@ -186,7 +186,7 @@ export class HeroScene {
     make('polygon', { class: 'hf-c-ink', points: pts(PIECES.post) }, make('g', { 'clip-path': 'url(#hf-hero-ground)' }, mark), 'post')
     make('polygon', { class: 'hf-c-ink', points: pts(PIECES.bar) }, mark, 'bar')
     const dot = make('g', {}, mark, 'dot')
-    make('circle', { class: 'hf-c-red', cx: 0, cy: 0, r: R }, dot)
+    make('circle', { class: 'hf-c-green', cx: 0, cy: 0, r: R }, dot)
     // A notch in the circle so its rolling can be seen; it fades once the circle is home.
     make('rect', { class: 'hf-c-notch', x: -1.4, y: -R, width: 2.8, height: R * 0.62 }, dot, 'notch')
     return world as SVGGElement
@@ -404,7 +404,7 @@ function project(x: number, y: number, z: number, yaw: number, pitch: number, de
 function palette(el: Element) {
   const css = getComputedStyle(el)
   const read = (name: string) => css.getPropertyValue(name).trim() || '#000'
-  return { ink: read('--h-ink'), ink3: read('--h-ink-3'), red: read('--h-red'), plane: read('--h-bg-alt'), bg: read('--h-bg') }
+  return { ink: read('--h-ink'), ink3: read('--h-ink-3'), green: read('--h-green'), plane: read('--h-bg-alt'), bg: read('--h-bg') }
 }
 
 /**
@@ -412,7 +412,7 @@ function palette(el: Element) {
  * applications. As the reader moves down the five paragraphs beside it, the stack turns and one
  * layer at a time is the subject; work falls through all four as small square blocks; and at the
  * end the one arrow that runs the other way -- the benchmark's -- carries the winner back up to
- * the top, in the page's one red.
+ * the top, in the page's one green.
  *
  * `target` is set from the scroll, 0..1 across the five paragraphs; `progress` follows it on a
  * critically damped spring, so a flick of the wheel turns the stack rather than jumping it.
@@ -420,7 +420,7 @@ function palette(el: Element) {
 export class StackField {
   target = 0
   progress = 0
-  private colors = { ink: '#000', ink3: '#888', red: '#f00', plane: '#eee', bg: '#fff' }
+  private colors = { ink: '#000', ink3: '#888', green: '#f00', plane: '#eee', bg: '#fff' }
   private velocity = 0
   private last = 0
   private readonly motes: Mote[]
@@ -469,7 +469,7 @@ export class StackField {
     const t = this.still ? 0 : time
     this.follow(time)
     this.pointer.step(0.04)
-    const { ink, ink3, red, plane } = this.colors
+    const { ink, ink3, green, plane } = this.colors
     const p = this.progress
     const narrow = width < 640
     const unit = Math.min(width * (narrow ? 0.3 : 0.25), height * 0.3)
@@ -491,7 +491,7 @@ export class StackField {
     ctx.clearRect(0, 0, width, height)
 
     // Planes, bottom first: the camera is above the stack, so the lowest is the furthest away.
-    // Flat and opaque, like cut paper laid over cut paper; the one in focus is edged in red.
+    // Flat and opaque, like cut paper laid over cut paper; the one in focus is edged in green.
     for (let k = LAYERS.length - 1; k >= 0; k--) {
       const y = levels[k]
       const on = this.focus(k)
@@ -504,7 +504,7 @@ export class StackField {
       ctx.fill()
       ctx.globalAlpha = 1
       ctx.lineWidth = 1 + on * 1.5
-      ctx.strokeStyle = on > 0.05 ? red : ink
+      ctx.strokeStyle = on > 0.05 ? green : ink
       ctx.globalAlpha = 0.55 + on * 0.45
       ctx.stroke()
       // One rule across each plane on the diagonal, the mark's own construction line.
@@ -520,7 +520,7 @@ export class StackField {
       // The label hangs off whichever corner is leftmost right now, so it never sits on a plane.
       const label = c.reduce((a, b) => (b.x < a.x ? b : a))
       ctx.font = mono(700, narrow ? 11 : 12)
-      ctx.fillStyle = on > 0.05 ? red : ink
+      ctx.fillStyle = on > 0.05 ? green : ink
       ctx.globalAlpha = 0.6 + on * 0.4
       ctx.textAlign = 'right'
       ctx.fillText(LAYERS[k], Math.max(label.x - 12, ctx.measureText(LAYERS[k]).width + 4), label.y + 4)
@@ -553,14 +553,14 @@ export class StackField {
       ctx.fillText(name, q.x, q.y)
     })
 
-    // The applications: three red circles on the bottom plane, each where a flow is found out.
+    // The applications: three green circles on the bottom plane, each where a flow is found out.
     const appsOn = this.focus(3)
     for (const [name, x, z] of APPS) {
       const q = P(x, levels[3], z)
       const pulse = 1 + 0.08 * Math.sin(t * 2 + x * 3)
       const s = (4 + appsOn * 5) * q.f * pulse * (unit / 260)
       ctx.globalAlpha = 0.35 + appsOn * 0.65
-      ctx.fillStyle = red
+      ctx.fillStyle = green
       ctx.beginPath()
       ctx.arc(q.x, q.y, s, 0, Math.PI * 2)
       ctx.fill()
@@ -571,7 +571,7 @@ export class StackField {
     }
 
     // The referee's arrow: from the applications back up to the flows, the one that runs the
-    // other way. A solid red band with a hard arrowhead, and blocks riding up it.
+    // other way. A solid green band with a hard arrowhead, and blocks riding up it.
     const refOn = this.focus(4)
     if (refOn > 0.01) {
       // Held to the right of the stack on screen whichever way the stack has turned: the point
@@ -590,9 +590,9 @@ export class StackField {
       }
       ctx.lineWidth = 3
       ctx.lineCap = 'butt'
-      ctx.strokeStyle = red
+      ctx.strokeStyle = green
       ctx.stroke()
-      ctx.fillStyle = red
+      ctx.fillStyle = green
       for (let i = 0; i < 9; i++) {
         const u = ((i / 9 + t * 0.14) % 1) * reach
         const q = arc(u)

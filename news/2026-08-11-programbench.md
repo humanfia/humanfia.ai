@@ -79,9 +79,9 @@ order, is.
   <path id="pb-out" class="line dash" d="M150 95 C 220 35, 380 35, 450 95" data-step="2" data-draw />
   <path id="pb-back" class="line dash" d="M450 175 C 380 235, 220 235, 150 175" data-step="3" data-draw />
   <g data-step="1" data-pop>
-    <rect class="red" x="20" y="95" width="200" height="80" />
-    <text class="on-red t-lg" x="120" y="130" text-anchor="middle">Opus-4.8</text>
-    <text class="on-red" x="120" y="154" text-anchor="middle">builds</text>
+    <rect class="green" x="20" y="95" width="200" height="80" />
+    <text class="on-green t-lg" x="120" y="130" text-anchor="middle">Opus-4.8</text>
+    <text class="on-green" x="120" y="154" text-anchor="middle">builds</text>
   </g>
   <g data-step="2" data-pop>
     <rect class="ink" x="380" y="95" width="200" height="80" />
@@ -90,7 +90,7 @@ order, is.
   </g>
   <text class="ink t-lg" x="300" y="30" text-anchor="middle" data-step="2">the rebuild</text>
   <text class="ink t-lg" x="300" y="254" text-anchor="middle" data-step="3">the review</text>
-  <rect class="red" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#pb-out" data-loop />
+  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#pb-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#pb-back" data-loop />
 </AnimatedDiagram>
 

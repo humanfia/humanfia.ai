@@ -3,13 +3,13 @@
  * the theme has no component for. Everything here is either a VitePress variable being set or
  * a class the markdown writes by hand -- there is no second design system to keep in step.
  *
- * The palette is a constructivist poster's printed in Hyacine's colours: ink, the paper it is
- * printed on, and one pink. The page is the paper (rose-tinted, not white), the text is the ink,
- * and the pink is the H's circle -- spent on links, the thing in focus, and the one arrow that
- * runs the other way. In the dark the ink and the paper swap places and the pink is lifted a
- * step, so it keeps its weight on a dark ground. Two greys between ink and paper carry the
- * secondary text. The post kit still calls the pink `red` (`tone: 'red'`, `.red`), the name it
- * was given when the accent was one.
+ * The palette is a constructivist poster's: ink, the paper it is printed on, and one green,
+ * NVIDIA's. The page is the paper (rose-tinted, not white), the text is the ink, and the green is
+ * the H's circle -- spent on links, the thing in focus, and the one arrow that runs the other
+ * way; where it is text on paper it is cut deeper. In the dark the ink and the paper swap places.
+ * Two greys between ink and paper carry the secondary text. Everything else that has a colour
+ * is in Hyacine's -- her pink, lavender, sky and gold -- as flat bands and squares: the band
+ * across the top of every page, what is selected, inline code and the callouts.
  *
  * These are the tokens. Nothing below this block, and nothing in a component, should name a
  * colour that is not here. (The slate, blue and amber further down are the trace and
@@ -34,16 +34,30 @@
   --hf-night: #110f14;
   --hf-night-2: #221f28;
 
-  /* The pink, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
-  --hf-pink: #d9508c;
-  --hf-pink-deep: #b2386f;
-  /* The two pinks again, pinned rather than flipped with the theme: a figure drawn inverted (ink
-     on paper in the dark, paper on ink in the light) needs the pink of the ground it is drawn on,
+  /* The green, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
+  --hf-green: #76b900;
+  --hf-green-deep: #4a7700;
+  /* The two greens again, pinned rather than flipped with the theme: a figure drawn inverted (ink
+     on paper in the dark, paper on ink in the light) needs the green of the ground it is drawn on,
      not of the page around it. */
-  --hf-pink-on-paper: #b2386f;
-  --hf-pink-on-ink: #ff8fbd;
+  --hf-green-on-paper: #4a7700;
+  --hf-green-on-ink: #76b900;
 
-  /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-pink. */
+  /* Hyacine's four, for everything that has a colour and is not the green. */
+  --hf-pink: #e06a9a;
+  --hf-lavender: #8a6bd1;
+  --hf-lavender-deep: #6a4fb8;
+  --hf-sky: #2a9fd4;
+  --hf-sky-deep: #14678f;
+  --hf-gold: #d6a23a;
+  --hf-gold-deep: #83590c;
+  /* The green and her four, as flat bands side by side. */
+  --hf-band: linear-gradient(90deg, var(--hf-green) 0 40%, var(--hf-pink) 40% 55%, var(--hf-lavender) 55% 70%, var(--hf-sky) 70% 85%, var(--hf-gold) 85%);
+
+  /* Text set on the green, in either theme: the green is too light to carry paper. */
+  --hf-on-green: var(--hf-ink-k);
+
+  /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-green. */
   --hf-mark: var(--hf-ink-k);
 
   /* The diagrams' palette, for the trace and architecture diagrams that draw in it. */
@@ -67,21 +81,45 @@
   --vp-c-text-2: var(--hf-ink-2);
   --vp-c-text-3: var(--hf-ink-3);
 
-  --vp-c-brand-1: var(--hf-pink-deep);
-  --vp-c-brand-2: var(--hf-pink);
-  --vp-c-brand-3: var(--hf-pink-deep);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-pink) 12%, transparent);
+  --vp-c-brand-1: var(--hf-green-deep);
+  --vp-c-brand-2: var(--hf-green);
+  --vp-c-brand-3: var(--hf-green-deep);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-green) 12%, transparent);
 
   --vp-c-divider: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
   --vp-c-gutter: color-mix(in srgb, var(--hf-ink-k) 8%, transparent);
+
+  /* A tip in her sky, an important note in her lavender, a warning in her gold; code in
+     lavender. */
+  --vp-c-tip-1: var(--hf-sky-deep);
+  --vp-c-tip-2: var(--hf-sky);
+  --vp-c-tip-3: var(--hf-sky-deep);
+  --vp-c-tip-soft: color-mix(in srgb, var(--hf-sky) 14%, transparent);
+  --vp-c-important-1: var(--hf-lavender-deep);
+  --vp-c-important-2: var(--hf-lavender);
+  --vp-c-important-3: var(--hf-lavender-deep);
+  --vp-c-important-soft: color-mix(in srgb, var(--hf-lavender) 14%, transparent);
+  --vp-c-warning-1: var(--hf-gold-deep);
+  --vp-c-warning-2: var(--hf-gold);
+  --vp-c-warning-3: var(--hf-gold-deep);
+  --vp-c-warning-soft: color-mix(in srgb, var(--hf-gold) 16%, transparent);
+  --vp-code-color: var(--hf-lavender-deep);
 }
 
 .dark {
-  --hf-pink: #ff8fbd;
-  --hf-pink-deep: #ffa6cc;
-  /* A button's fill: the lifted red is too light to carry white text. */
-  --hf-pink-press: #b2386f;
+  --hf-green: #76b900;
+  --hf-green-deep: #8fd11a;
+  /* A button's fill: the lifted green is too light to carry white text. */
+  --hf-green-press: #4a7700;
   --hf-mark: var(--hf-paper);
+
+  --hf-pink: #ff8fbd;
+  --hf-lavender: #b9a2f2;
+  --hf-lavender-deep: #c9b6f5;
+  --hf-sky: #6cc8f2;
+  --hf-sky-deep: #9ad9f5;
+  --hf-gold: #f2c55c;
+  --hf-gold-deep: #f2c55c;
 
   --vp-c-bg: var(--hf-ink-k);
   --vp-c-bg-alt: var(--hf-night);
@@ -92,10 +130,10 @@
   --vp-c-text-2: var(--hf-paper-2);
   --vp-c-text-3: var(--hf-paper-3);
 
-  --vp-c-brand-1: var(--hf-pink-deep);
-  --vp-c-brand-2: var(--hf-pink);
-  --vp-c-brand-3: var(--hf-pink-press);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-pink) 16%, transparent);
+  --vp-c-brand-1: var(--hf-green-deep);
+  --vp-c-brand-2: var(--hf-green);
+  --vp-c-brand-3: var(--hf-green-press);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-green) 16%, transparent);
 
   --vp-c-divider: color-mix(in srgb, var(--hf-paper) 14%, transparent);
   --vp-c-gutter: color-mix(in srgb, var(--hf-paper) 6%, transparent);
@@ -180,7 +218,7 @@
 /* How much of a subsystem a reader can use today, under its heading on the Deep Tech page. */
 .vp-doc p.status {
   padding: 8px 12px;
-  border-left: 4px solid var(--hf-pink);
+  border-left: 4px solid var(--hf-green);
   background: var(--vp-c-bg-soft);
   font-size: 14px;
   line-height: 1.55;
@@ -277,7 +315,7 @@ a.card:hover {
 
 .docs-cta:hover {
   border-color: var(--vp-c-brand-2);
-  background: color-mix(in srgb, var(--hf-pink) 20%, transparent);
+  background: color-mix(in srgb, var(--hf-green) 20%, transparent);
 }
 
 /* Same reason as a.card: the theme underlines and recolours every `a` in the content, which
@@ -384,4 +422,25 @@ a.card:hover {
    wordmark's x-height under the mark's cap, and at 24px the i's dot is a speck. */
 .VPNavBarTitle .title {
   --hf-wordmark-height: 27px;
+}
+
+/* ---------------------------------------------------------------------------------------
+   Hyacine's colours where a reader sees them on every page: a band across the top, and what
+   is selected washed in her pink.
+   --------------------------------------------------------------------------------------- */
+
+.VPNav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 3px;
+  background: var(--hf-band);
+  pointer-events: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--hf-pink) 30%, transparent);
 }

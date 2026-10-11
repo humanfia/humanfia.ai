@@ -107,8 +107,8 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
             <text class="ink" x="200" y="112">session · history</text>
           </g>
           <g class="md-part" :class="st(3)">
-            <rect class="red" x="206" y="132" width="110" height="36" />
-            <text class="on-red" x="261" y="155" text-anchor="middle">turn 1</text>
+            <rect class="green" x="206" y="132" width="110" height="36" />
+            <text class="on-green" x="261" y="155" text-anchor="middle">turn 1</text>
           </g>
           <path class="md-line-path dash" :class="st(3)" d="M261 168 L 261 230" pathLength="1" />
           <g class="md-part" :class="st(3)">
@@ -117,8 +117,8 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
           </g>
           <path class="md-line-path" :class="st(4)" d="M316 150 L 336 150" pathLength="1" />
           <g class="md-part" :class="st(4)">
-            <rect class="red" x="336" y="132" width="110" height="36" />
-            <text class="on-red" x="391" y="155" text-anchor="middle">turn 2</text>
+            <rect class="green" x="336" y="132" width="110" height="36" />
+            <text class="on-green" x="391" y="155" text-anchor="middle">turn 2</text>
           </g>
           <path class="md-line-path dash" :class="st(4)" d="M391 168 L 391 230" pathLength="1" />
           <g class="md-part" :class="st(4)">
@@ -130,7 +130,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
             <rect class="frame" x="560" y="38" width="150" height="44" />
             <text class="ink" x="635" y="65" text-anchor="middle">fork · turn 3</text>
           </g>
-          <rect v-if="step === 5" class="red md-packet" x="-6" y="-6" width="12" height="12" />
+          <rect v-if="step === 5" class="green md-packet" x="-6" y="-6" width="12" height="12" />
         </svg>
         <p class="md-said" aria-live="polite">
           <b>0{{ step }}</b>{{ STEPS[step - 1].said }}
@@ -167,7 +167,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   letter-spacing: 0.08em;
   color: var(--hz-ink-3);
 }
-/* The red bar along the top rule is the step in focus. */
+/* The green bar along the top rule is the step in focus. */
 .md-steps button::before {
   content: '';
   position: absolute;
@@ -175,7 +175,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   right: 0;
   top: -2px;
   height: 6px;
-  background: var(--hz-pink);
+  background: var(--hz-green);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.6s var(--hz-ease);
@@ -190,7 +190,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   transform: scaleX(1);
 }
 .md-steps button.on span {
-  color: var(--hz-pink);
+  color: var(--hf-green-deep);
 }
 
 .md-body {
@@ -232,8 +232,8 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
 }
 .md-line.hot {
   opacity: 1;
-  border-left-color: var(--hz-pink);
-  background: color-mix(in srgb, var(--hz-pink) 10%, transparent);
+  border-left-color: var(--hz-green);
+  background: color-mix(in srgb, var(--hz-green) 10%, transparent);
 }
 .md-pre.md-exec {
   padding: 14px 0;
@@ -249,11 +249,11 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   transition: background-color 0.35s, border-color 0.35s;
 }
 .md-exec code span {
-  color: var(--hz-pink);
+  color: var(--hf-green-deep);
 }
 .md-exec code.hot {
-  border-left-color: var(--hz-pink);
-  background: color-mix(in srgb, var(--hz-pink) 10%, transparent);
+  border-left-color: var(--hz-green);
+  background: color-mix(in srgb, var(--hz-green) 10%, transparent);
   color: var(--hz-ink);
 }
 
@@ -282,11 +282,11 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
 .md-art .on-ink {
   fill: var(--hz-on-ink);
 }
-.md-art .on-red {
-  fill: #fff;
+.md-art .on-green {
+  fill: var(--hf-on-green);
 }
-.md-art .red {
-  fill: var(--hz-pink);
+.md-art .green {
+  fill: var(--hz-green);
 }
 .md-art .grey {
   fill: var(--hz-ink-3);
@@ -360,7 +360,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
 .md-said b {
   flex: none;
   font: 700 12px/1.9 var(--hz-mono);
-  color: var(--hz-pink);
+  color: var(--hf-green-deep);
 }
 
 @media (max-width: 960px) {

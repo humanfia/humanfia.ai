@@ -14,7 +14,7 @@ import { useMotion } from './motion'
 interface Milestone {
   x: number
   label: string
-  tone?: 'red' | 'ink' | 'grey'
+  tone?: 'green' | 'ink' | 'grey'
 }
 
 const props = defineProps<{
@@ -191,7 +191,7 @@ function onMove(e: PointerEvent) {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
-  color: var(--kd-red-text);
+  color: var(--kd-green-text);
   font-variant-numeric: tabular-nums;
   min-width: 3.4ch;
 }
@@ -231,7 +231,7 @@ svg {
 
 .kda {
   fill: none;
-  stroke: var(--kd-red);
+  stroke: var(--kd-green);
   stroke-width: 3;
   stroke-linejoin: round;
 }
@@ -245,7 +245,7 @@ svg {
 
 .dot {
   fill: var(--kd-bg);
-  stroke: var(--kd-red);
+  stroke: var(--kd-green);
   stroke-width: 2;
 }
 
@@ -263,8 +263,8 @@ svg {
   fill: var(--kd-fg-2);
 }
 
-.ms.red text {
-  fill: var(--kd-red-text);
+.ms.green text {
+  fill: var(--kd-green-text);
 }
 
 .ms {
@@ -312,7 +312,7 @@ svg {
 }
 
 .head-dot {
-  fill: var(--kd-red);
+  fill: var(--kd-green);
   stroke: var(--kd-bg);
   stroke-width: 3;
 }
@@ -336,7 +336,7 @@ svg {
   display: inline-block;
   width: 18px;
   height: 0;
-  border-top: 3px solid var(--kd-red);
+  border-top: 3px solid var(--kd-green);
 }
 
 .climb-legend .lc i {

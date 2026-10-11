@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  The Humanfia H, light mode: ink on whatever it is put on, and the pink circle in its slot.
+  The Humanfia H, light mode: ink on whatever it is put on, and the green circle in its slot.
 
   Four primitives on a 96 x 108 grid, drawn as two shapes. The left stem is the full height. The
   crossbar rises at one in three (18.4 degrees, the site's one diagonal) from the left stem to the
@@ -16,5 +16,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 108" role="img" aria-labelledby="humanfia-logo-title">
   <title id="humanfia-logo-title">Humanfia</title>
   <path class="h" fill="#1b1720" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
-  <circle class="dot" fill="#d9508c" cx="84" cy="12" r="12"/>
+  <circle class="dot" fill="#76b900" cx="84" cy="12" r="12"/>
 </svg>

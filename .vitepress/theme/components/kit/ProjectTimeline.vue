@@ -219,7 +219,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
 
 .ptl-readout strong {
   font-size: 15px;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .ptl-readout-title {
@@ -260,7 +260,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
 }
 
 .ptl-drop {
-  stroke: var(--k-red);
+  stroke: var(--k-green);
   stroke-width: 1.5;
   stroke-dasharray: 3 3;
 }
@@ -298,14 +298,14 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
 
 .ptl-mark.on .ptl-square,
 .ptl-mark.last .ptl-square {
-  fill: var(--k-red);
+  fill: var(--k-green);
   transform: scale(1.35);
   transition-delay: 0s;
 }
 
 .ptl-mark.pending.last .ptl-square {
   fill: var(--k-bg);
-  stroke: var(--k-red);
+  stroke: var(--k-green);
 }
 
 /* ---- The write-ups --------------------------------------------------------------------- */
@@ -354,7 +354,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
   text-decoration: none !important;
 }
 
-/* The card that is lit gets the red square the axis gives it. */
+/* The card that is lit gets the green square the axis gives it. */
 .ptl-card::before {
   content: '';
   position: absolute;
@@ -362,7 +362,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
   left: -1px;
   width: 0;
   height: 4px;
-  background: var(--k-red);
+  background: var(--k-green);
   transition: width 0.3s var(--k-ease);
 }
 
@@ -383,7 +383,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .ptl-metric {
@@ -395,7 +395,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
 }
 
 .on .ptl-metric {
-  color: var(--k-red-text);
+  color: var(--k-green-text);
 }
 
 .ptl-title {
@@ -407,7 +407,7 @@ const shown = computed(() => (active.value === null ? resolved.value[resolved.va
 
 a.ptl-card:hover .ptl-title {
   text-decoration: underline;
-  text-decoration-color: var(--k-red);
+  text-decoration-color: var(--k-green);
   text-underline-offset: 3px;
 }
 
