@@ -122,7 +122,7 @@ function rowOf(post: (typeof posts)[number]) {
 .news-row:hover,
 .news-row:focus-within {
   background: var(--vp-c-bg-soft);
-  box-shadow: inset 3px 0 0 var(--hf-red);
+  box-shadow: inset 3px 0 0 var(--hf-pink);
 }
 
 .news-date {

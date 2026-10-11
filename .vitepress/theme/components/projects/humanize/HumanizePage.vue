@@ -401,7 +401,7 @@ a.hz-stat:hover {
   font-family: var(--hz-mono);
   font-size: clamp(34px, 3.6vw, 54px);
   letter-spacing: -0.04em;
-  color: var(--hz-red);
+  color: var(--hz-pink);
   line-height: 1.32;
 }
 .hz-stat .k {
@@ -437,7 +437,7 @@ a.hz-stat:hover {
   line-height: 0.8;
   letter-spacing: -0.07em;
   font-weight: 800;
-  color: var(--hz-red);
+  color: var(--hz-pink);
   font-variant-numeric: tabular-nums;
 }
 .hz-big small {
@@ -538,7 +538,7 @@ a.hz-stat:hover {
   top: 0;
   width: 100%;
   height: 4px;
-  background: var(--hz-red);
+  background: var(--hz-pink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--hz-ease);
@@ -584,7 +584,7 @@ a.hz-stat:hover {
 }
 .hz-feat:hover .go {
   transform: translateX(4px);
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .hz-feat.lead {
   color: var(--hz-on-ink);
@@ -604,7 +604,7 @@ a.hz-stat:hover {
 }
 .hz-feat.lead .k,
 .hz-feat.lead .go {
-  color: #ff5a43;
+  color: #ff8fbd;
 }
 .hz-feat.lead:hover {
   background: var(--hz-ink);
@@ -647,7 +647,7 @@ a.hz-stat:hover {
 }
 /* The red strike, drawn across the claim when it arrives. */
 .hz-not h3 span {
-  background: linear-gradient(var(--hz-red), var(--hz-red)) no-repeat 0 58% / 100% 0.12em;
+  background: linear-gradient(var(--hz-pink), var(--hz-pink)) no-repeat 0 58% / 100% 0.12em;
 }
 .hz-motion .hz-not h3 span {
   background-size: 0% 0.12em;
@@ -668,7 +668,7 @@ a.hz-stat:hover {
   gap: 12px 28px;
   margin-top: clamp(36px, 4vw, 56px);
   padding: 22px 26px;
-  border-left: 8px solid var(--hz-red);
+  border-left: 8px solid var(--hz-pink);
   background: var(--hz-card);
 }
 .hz-warn b {
@@ -759,7 +759,7 @@ a.hz-stat:hover {
 }
 .hz-next a:hover .go {
   transform: translate(3px, -3px);
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 
 /* ---- narrow ---------------------------------------------------------------------------- */

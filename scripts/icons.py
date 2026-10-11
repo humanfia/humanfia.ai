@@ -5,7 +5,7 @@
 A favicon can be an SVG with a media query in it, and public/favicon.svg is. A home-screen icon
 cannot: iOS and Android want a raster of a known size, and they composite it onto a background
 of their choosing, so a transparent mark would come out as an ink H on whatever the phone felt
-like. These are drawn the way the dark mode draws the mark -- paper H, lifted red circle -- on a
+like. These are drawn the way the dark mode draws the mark -- paper H, lifted pink circle -- on a
 full square of ink. Full bleed and square: the phone rounds or masks the corners itself, and the
 512 doubles as the manifest's maskable icon, so the mark sits well inside the safe circle.
 """
@@ -18,9 +18,9 @@ import cairosvg
 ROOT = Path(__file__).resolve().parent.parent
 
 # The palette, from .vitepress/theme/style.css. Keep in step with it.
-INK = "#16161a"
-PAPER = "#ece6da"
-RED = "#ff5a43"  # the dark mode's red: the icon is the mark on ink
+INK = "#1b1720"
+PAPER = "#efe4e9"
+PINK = "#ff8fbd"  # the dark mode's pink: the icon is the mark on ink
 
 # Sizes: 180 is what iOS asks for, 192 and 512 are what a web app manifest asks for.
 SIZES = [180, 192, 512]
@@ -47,7 +47,7 @@ def card(size: int) -> str:
         f'viewBox="0 0 {size} {size}">'
         f'<rect width="{size}" height="{size}" fill="{INK}"/>'
         f'<g transform="translate({x} {y}) scale({scale})">'
-        f'<path fill="{PAPER}" d="{path}"/><circle fill="{RED}" {circle}/></g>'
+        f'<path fill="{PAPER}" d="{path}"/><circle fill="{PINK}" {circle}/></g>'
         "</svg>"
     )
 

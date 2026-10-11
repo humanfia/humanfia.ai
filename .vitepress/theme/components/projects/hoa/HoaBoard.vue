@@ -336,10 +336,10 @@ li.on .hb-tile::after {
   content: ' →';
 }
 .hb-read-l a:hover {
-  color: var(--hf-red-on-ink) !important;
+  color: var(--hf-pink-on-ink) !important;
 }
 .dark .hb-read-l a:hover {
-  color: var(--hf-red-on-paper) !important;
+  color: var(--hf-pink-on-paper) !important;
 }
 
 @media (max-width: 1100px) {

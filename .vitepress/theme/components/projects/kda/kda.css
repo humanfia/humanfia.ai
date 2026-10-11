@@ -17,7 +17,7 @@
   --kd-fg-3: var(--vp-c-text-3);
   --kd-line: var(--vp-c-divider);
   --kd-grid: var(--vp-c-gutter);
-  --kd-red: var(--hf-red);
+  --kd-red: var(--hf-pink);
   --kd-red-text: var(--vp-c-brand-1);
   --kd-on-red: var(--hf-paper-white);
   --kd-mono: var(--vp-font-family-mono);
@@ -47,8 +47,8 @@
   --kd-fg-3: var(--hf-paper-3);
   --kd-line: color-mix(in srgb, var(--hf-paper) 15%, transparent);
   --kd-grid: color-mix(in srgb, var(--hf-paper) 6%, transparent);
-  --kd-red: var(--hf-red-on-ink);
-  --kd-red-text: var(--hf-red-on-ink);
+  --kd-red: var(--hf-pink-on-ink);
+  --kd-red-text: var(--hf-pink-on-ink);
   --kd-on-red: var(--hf-ink-k);
 }
 

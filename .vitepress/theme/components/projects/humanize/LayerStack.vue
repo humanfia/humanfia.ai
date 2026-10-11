@@ -254,7 +254,7 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
 /* The one in hand: ink, a red edge, pulled a step out of the stack. */
 .on button {
   background: var(--vp-c-text-1);
-  box-shadow: inset 6px 0 0 var(--hf-red);
+  box-shadow: inset 6px 0 0 var(--hf-pink);
   transform: translateX(10px);
 }
 
@@ -274,7 +274,7 @@ aside {
   position: sticky;
   top: calc(var(--vp-nav-height) + 24px);
   padding: 26px 28px 24px;
-  border-top: 6px solid var(--hf-red);
+  border-top: 6px solid var(--hf-pink);
   background: var(--vp-c-bg-soft);
 }
 
@@ -310,7 +310,7 @@ aside {
 .note {
   margin: 14px 0 0;
   padding-left: 12px;
-  border-left: 3px solid var(--hf-red);
+  border-left: 3px solid var(--hf-pink);
   font-size: 14px;
   line-height: 1.6;
   color: var(--vp-c-text-2);

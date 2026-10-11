@@ -15,11 +15,11 @@
   --fb-ink-2: var(--vp-c-text-2);
   --fb-ink-3: var(--vp-c-text-3);
   --fb-line: var(--vp-c-divider);
-  --fb-red: var(--hf-red);
-  --fb-accent: var(--hf-red-deep);
+  --fb-red: var(--hf-pink);
+  --fb-accent: var(--hf-pink-deep);
   --fb-on-ink: var(--vp-c-bg);
-  --fb-board: #121215;
-  --fb-tile: #24242b;
+  --fb-board: #141218;
+  --fb-tile: #27232d;
   --fb-max: 1280px;
   --fb-pad: clamp(20px, 5vw, 48px);
   /* vReveal's transition (home.css) reads the home page's ease. */
@@ -28,8 +28,8 @@
 }
 
 .dark .fb-page {
-  --fb-board: #1a1a1f;
-  --fb-tile: #2b2b33;
+  --fb-board: #1c1a21;
+  --fb-tile: #2e2a35;
 }
 
 .fb-page .VPPage {
@@ -226,7 +226,7 @@
   margin: 0;
   padding: clamp(16px, 2vw, 24px);
   background: var(--fb-board);
-  color: #ece6da;
+  color: #efe4e9;
   box-shadow: 14px 14px 0 var(--fb-red);
   font-family: var(--vp-font-family-mono);
 }
@@ -240,7 +240,7 @@
   align-items: center;
   gap: 12px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #ece6da;
+  border-bottom: 2px solid #efe4e9;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -250,13 +250,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #ff5a43;
+  color: #ff8fbd;
 }
 .fb-board-live i {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ff5a43;
+  background: #ff8fbd;
   animation: fb-blink 1.6s steps(2, jump-none) infinite;
 }
 @keyframes fb-blink {
@@ -271,10 +271,10 @@
   font-size: 11.5px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8c8679;
+  color: #8e8590;
 }
 .fb-board-held b {
-  color: #ece6da;
+  color: #efe4e9;
   font-weight: 700;
 }
 
@@ -296,14 +296,14 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #8c8679;
+  color: #8e8590;
 }
 .fb-board-table tr {
   border: 0;
   background: none !important;
 }
 .fb-board-table tbody tr {
-  border-top: 1px solid rgba(236, 230, 218, 0.1);
+  border-top: 1px solid rgba(239, 228, 233, 0.1);
 }
 .fb-board-table .num {
   text-align: right;
@@ -312,7 +312,7 @@
 .fb-board-table .rank {
   width: 1.6em;
   font-size: 13px;
-  color: #8c8679;
+  color: #8e8590;
 }
 
 .fb-flap {
@@ -331,7 +331,7 @@
   border-radius: 2px;
   font-size: clamp(12px, 1.02vw, 15px);
   font-weight: 700;
-  color: #ece6da;
+  color: #efe4e9;
 }
 /* The seam every split-flap tile has across its middle. */
 .fb-tile::after {
@@ -344,14 +344,14 @@
   background: rgba(0, 0, 0, 0.55);
 }
 .fb-tile.flip {
-  color: #8c8679;
+  color: #8e8590;
   transform: scaleY(0.92);
 }
 .fb-tile.sp {
   background: none;
 }
 .fb-board-table .red .fb-tile {
-  color: #ff5a43;
+  color: #ff8fbd;
 }
 
 .fb-board-foot {
@@ -361,9 +361,9 @@
   gap: 4px 16px;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(236, 230, 218, 0.14);
+  border-top: 1px solid rgba(239, 228, 233, 0.14);
   font-size: 11.5px;
-  color: #8c8679;
+  color: #8e8590;
 }
 
 .fb-stamp {
@@ -371,8 +371,8 @@
   right: -18px;
   bottom: 24%;
   padding: 4px 14px;
-  border: 3px solid #ff5a43;
-  color: #ff5a43;
+  border: 3px solid #ff8fbd;
+  color: #ff8fbd;
   font-size: clamp(18px, 2vw, 26px);
   font-weight: 800;
   letter-spacing: 0.14em;

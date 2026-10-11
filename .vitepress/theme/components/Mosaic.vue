@@ -141,13 +141,13 @@ const tiles = computed(() =>
   width: 150px;
   height: 14px;
   pointer-events: none;
-  background: var(--hf-red);
+  background: var(--hf-pink);
   transform: rotate(-17deg);
 }
 
 .tile:hover {
   border-color: var(--vp-c-text-1);
-  border-top-color: var(--hf-red);
+  border-top-color: var(--hf-pink);
   background: var(--vp-c-bg-soft);
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0 var(--vp-c-text-1);

@@ -3,58 +3,60 @@
  * the theme has no component for. Everything here is either a VitePress variable being set or
  * a class the markdown writes by hand -- there is no second design system to keep in step.
  *
- * The palette is a constructivist poster's: ink, the paper it is printed on, and one red. The
- * page is the paper (warm, not white), the text is the ink, and the red is the H's circle --
- * spent on links, the thing in focus, and the one arrow that runs the other way. In the dark the
- * ink and the paper swap places and the red is lifted a step, so it keeps its weight on a dark
- * ground. Two warm greys between ink and paper carry the secondary text.
+ * The palette is a constructivist poster's printed in Hyacine's colours: ink, the paper it is
+ * printed on, and one pink. The page is the paper (rose-tinted, not white), the text is the ink,
+ * and the pink is the H's circle -- spent on links, the thing in focus, and the one arrow that
+ * runs the other way. In the dark the ink and the paper swap places and the pink is lifted a
+ * step, so it keeps its weight on a dark ground. Two greys between ink and paper carry the
+ * secondary text. The post kit still calls the pink `red` (`tone: 'red'`, `.red`), the name it
+ * was given when the accent was one.
  *
  * These are the tokens. Nothing below this block, and nothing in a component, should name a
- * colour that is not here. (The slate, blue and amber further down are the previous palette,
- * still drawn by the trace and architecture diagrams on the project pages; nothing new uses them.)
+ * colour that is not here. (The slate, blue and amber further down are the trace and
+ * architecture diagrams' periwinkle, lavender-slate and gold; nothing new uses them.)
  */
 
 :root {
   /* Ink, and the two greys it fades through toward the paper. */
-  --hf-ink-k: #16161a;
-  --hf-ink-2: #4a4740;
-  --hf-ink-3: #7c776d;
+  --hf-ink-k: #1b1720;
+  --hf-ink-2: #4b4452;
+  --hf-ink-3: #766e7c;
 
   /* Paper: the page, the alternate band, and a sheet laid on either. */
-  --hf-paper: #ece6da;
-  --hf-paper-light: #f4f0e8;
-  --hf-paper-white: #faf8f3;
+  --hf-paper: #efe4e9;
+  --hf-paper-light: #f7f0f3;
+  --hf-paper-white: #fcf8fa;
   /* The paper's greys, for the dark mode's secondary text. */
-  --hf-paper-2: #bab3a6;
-  --hf-paper-3: #8c8679;
+  --hf-paper-2: #bcb1b8;
+  --hf-paper-3: #8e8590;
 
   /* The night: the dark mode's page is the ink; these are the band below it and a raised sheet. */
-  --hf-night: #0f0f12;
-  --hf-night-2: #202026;
+  --hf-night: #110f14;
+  --hf-night-2: #221f28;
 
-  /* The red, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
-  --hf-red: #d6331f;
-  --hf-red-deep: #b0271a;
-  /* The two reds again, pinned rather than flipped with the theme: a figure drawn inverted (ink
-     on paper in the dark, paper on ink in the light) needs the red of the ground it is drawn on,
+  /* The pink, and a deeper cut of it for text, which needs more contrast on paper than a shape. */
+  --hf-pink: #d9508c;
+  --hf-pink-deep: #b2386f;
+  /* The two pinks again, pinned rather than flipped with the theme: a figure drawn inverted (ink
+     on paper in the dark, paper on ink in the light) needs the pink of the ground it is drawn on,
      not of the page around it. */
-  --hf-red-on-paper: #b0271a;
-  --hf-red-on-ink: #ff5a43;
+  --hf-pink-on-paper: #b2386f;
+  --hf-pink-on-ink: #ff8fbd;
 
-  /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-red. */
+  /* The mark is drawn in --hf-mark and its circle (the dot of the i in the wordmark) in --hf-pink. */
   --hf-mark: var(--hf-ink-k);
 
-  /* The previous palette, for the diagrams that still draw in it. */
-  --hf-slate: #1e293b;
-  --hf-slate-pale: #e2e8f0;
-  --hf-ink: #0f172a;
-  --hf-blue: #2e599e;
-  --hf-blue-dark: #24467c;
-  --hf-blue-mid: #6e93cf;
-  --hf-blue-light: #8daee2;
-  --hf-blue-pale: #b6cbec;
-  --hf-amber: #b45309;
-  --hf-amber-light: #efb358;
+  /* The diagrams' palette, for the trace and architecture diagrams that draw in it. */
+  --hf-slate: #2a2238;
+  --hf-slate-pale: #ebe4ef;
+  --hf-ink: #17121f;
+  --hf-blue: #3b5fb5;
+  --hf-blue-dark: #2d4a8f;
+  --hf-blue-mid: #7d95d6;
+  --hf-blue-light: #9db8f0;
+  --hf-blue-pale: #c6d2f3;
+  --hf-amber: #a8730f;
+  --hf-amber-light: #f2c55c;
 
   --vp-c-bg: var(--hf-paper-light);
   --vp-c-bg-alt: var(--hf-paper);
@@ -65,20 +67,20 @@
   --vp-c-text-2: var(--hf-ink-2);
   --vp-c-text-3: var(--hf-ink-3);
 
-  --vp-c-brand-1: var(--hf-red-deep);
-  --vp-c-brand-2: var(--hf-red);
-  --vp-c-brand-3: var(--hf-red-deep);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-red) 12%, transparent);
+  --vp-c-brand-1: var(--hf-pink-deep);
+  --vp-c-brand-2: var(--hf-pink);
+  --vp-c-brand-3: var(--hf-pink-deep);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-pink) 12%, transparent);
 
   --vp-c-divider: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
   --vp-c-gutter: color-mix(in srgb, var(--hf-ink-k) 8%, transparent);
 }
 
 .dark {
-  --hf-red: #ff5a43;
-  --hf-red-deep: #ff7a66;
+  --hf-pink: #ff8fbd;
+  --hf-pink-deep: #ffa6cc;
   /* A button's fill: the lifted red is too light to carry white text. */
-  --hf-red-press: #c22a17;
+  --hf-pink-press: #b2386f;
   --hf-mark: var(--hf-paper);
 
   --vp-c-bg: var(--hf-ink-k);
@@ -90,10 +92,10 @@
   --vp-c-text-2: var(--hf-paper-2);
   --vp-c-text-3: var(--hf-paper-3);
 
-  --vp-c-brand-1: var(--hf-red-deep);
-  --vp-c-brand-2: var(--hf-red);
-  --vp-c-brand-3: var(--hf-red-press);
-  --vp-c-brand-soft: color-mix(in srgb, var(--hf-red) 16%, transparent);
+  --vp-c-brand-1: var(--hf-pink-deep);
+  --vp-c-brand-2: var(--hf-pink);
+  --vp-c-brand-3: var(--hf-pink-press);
+  --vp-c-brand-soft: color-mix(in srgb, var(--hf-pink) 16%, transparent);
 
   --vp-c-divider: color-mix(in srgb, var(--hf-paper) 14%, transparent);
   --vp-c-gutter: color-mix(in srgb, var(--hf-paper) 6%, transparent);
@@ -178,7 +180,7 @@
 /* How much of a subsystem a reader can use today, under its heading on the Deep Tech page. */
 .vp-doc p.status {
   padding: 8px 12px;
-  border-left: 4px solid var(--hf-red);
+  border-left: 4px solid var(--hf-pink);
   background: var(--vp-c-bg-soft);
   font-size: 14px;
   line-height: 1.55;
@@ -275,7 +277,7 @@ a.card:hover {
 
 .docs-cta:hover {
   border-color: var(--vp-c-brand-2);
-  background: color-mix(in srgb, var(--hf-red) 20%, transparent);
+  background: color-mix(in srgb, var(--hf-pink) 20%, transparent);
 }
 
 /* Same reason as a.card: the theme underlines and recolours every `a` in the content, which

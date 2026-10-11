@@ -73,7 +73,7 @@ const thumbs = ref<(InstanceType<typeof FlowThumb> | null)[]>([])
 .fl-card:focus-visible {
   transform: translate(-4px, -4px);
   border-color: var(--hz-ink);
-  box-shadow: 8px 8px 0 0 var(--hz-red);
+  box-shadow: 8px 8px 0 0 var(--hz-pink);
   outline: none;
 }
 .fl-pic {
@@ -141,7 +141,7 @@ const thumbs = ref<(InstanceType<typeof FlowThumb> | null)[]>([])
 .fl-all .fl-kicker,
 .fl-all .fl-go,
 .fl-all:hover .fl-go {
-  color: #ff5a43;
+  color: #ff8fbd;
 }
 .fl-all .fl-go {
   margin-top: 0;

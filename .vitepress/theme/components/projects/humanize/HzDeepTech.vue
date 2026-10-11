@@ -171,7 +171,7 @@ const INDEX = [
   right: 0;
   bottom: 0;
   height: 6px;
-  background: var(--hz-red);
+  background: var(--hz-pink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--hz-ease);
@@ -186,7 +186,7 @@ const INDEX = [
 .dt-i {
   font: 700 11px/1 var(--hz-mono);
   letter-spacing: 0.1em;
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .dt-index b {
   margin-top: 26px;
@@ -219,8 +219,8 @@ const INDEX = [
   color: var(--hz-ink);
 }
 .dt-status.shipped i {
-  border-color: var(--hz-red);
-  background: var(--hz-red);
+  border-color: var(--hz-pink);
+  background: var(--hz-pink);
 }
 
 /* ---- a chapter ------------------------------------------------------------------------- */
@@ -254,7 +254,7 @@ const INDEX = [
   font: 700 clamp(12px, 1vw, 14px) / 1 var(--hz-mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .dt-state {
   margin: 0;
@@ -266,7 +266,7 @@ const INDEX = [
   background: var(--hz-line-2);
 }
 .dt-state.shipped {
-  border-left-color: var(--hz-red);
+  border-left-color: var(--hz-pink);
 }
 .dt-state b {
   color: var(--hz-ink);
@@ -288,7 +288,7 @@ const INDEX = [
   color: var(--hz-ink);
 }
 .dt-big span {
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .dt-ch-body {
   display: grid;
@@ -321,7 +321,7 @@ const INDEX = [
   font: 700 12px/1 var(--hz-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .dt-links {
   display: flex;

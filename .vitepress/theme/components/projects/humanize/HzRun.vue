@@ -157,11 +157,11 @@ const pct = (v: number) => `${v}%`
   /* At rest, the run finished. Only the Clock writes it inline: bound in the template, every
      re-render (a few a second) would put it back to SPAN for a frame, and the trace would flash. */
   --now: 100;
-  --ink: #16161a;
-  --paper: #ece6da;
-  --paper-2: #bab3a6;
-  --paper-3: #8c8679;
-  --red: #ff5a43;
+  --ink: #1b1720;
+  --paper: #efe4e9;
+  --paper-2: #bcb1b8;
+  --paper-3: #8e8590;
+  --red: #ff8fbd;
   --who: 196px;
   --tok: 64px;
   position: relative;
@@ -169,7 +169,7 @@ const pct = (v: number) => `${v}%`
   padding: 18px 20px 16px;
   color: var(--paper);
   background: var(--ink);
-  box-shadow: 14px 14px 0 0 var(--hf-red);
+  box-shadow: 14px 14px 0 0 var(--hf-pink);
   font-family: var(--vp-font-family-mono);
   container-type: inline-size;
 }
@@ -177,7 +177,7 @@ const pct = (v: number) => `${v}%`
   background: var(--hf-night-2);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--hf-paper) 12%, transparent),
-    14px 14px 0 0 var(--hf-red);
+    14px 14px 0 0 var(--hf-pink);
 }
 
 /* ---- the command ----------------------------------------------------------------------- */

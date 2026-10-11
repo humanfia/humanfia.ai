@@ -215,6 +215,6 @@ defineExpose({ poke })
 }
 
 .hf-wordmark-dot {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 </style>

@@ -244,7 +244,7 @@ const external = (href: string) => /^https?:/.test(href)
 
 .ph-links a:hover {
   color: var(--vp-c-brand-1);
-  box-shadow: 3px 3px 0 var(--hf-red);
+  box-shadow: 3px 3px 0 var(--hf-pink);
   transform: translate(-1px, -1px);
 }
 

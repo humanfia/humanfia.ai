@@ -111,17 +111,17 @@ const spoke = (i: number) => {
   transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), fill 0.3s;
 }
 .ax-spoke.on rect {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 .ax-spoke text {
   font: 700 16px var(--vp-font-family-mono);
   fill: var(--vp-c-text-2);
 }
 .ax-spoke.on text {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 .ax-core {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 .ax-core-label {
   font: 700 14px var(--vp-font-family-mono);
@@ -148,11 +148,11 @@ const spoke = (i: number) => {
   color: var(--vp-c-text-3);
 }
 .ax-tabs button.on {
-  border-color: var(--hf-red);
-  box-shadow: 3px 3px 0 var(--hf-red);
+  border-color: var(--hf-pink);
+  box-shadow: 3px 3px 0 var(--hf-pink);
 }
 .ax-tabs button.on span {
-  color: var(--hf-red);
+  color: var(--hf-pink);
 }
 .ax-detail {
   margin-top: 12px;

@@ -7,7 +7,7 @@
  * dark -- by swapping six variables on its root rather than restating every rule. Nothing in the
  * kit names a hex value; a theme toggle repaints every chart live, mid-animation included.
  *
- * The shapes are the site's: hard corners, flat fills, hairlines in the divider colour, the red
+ * The shapes are the site's: hard corners, flat fills, hairlines in the divider colour, the pink
  * spent on the thing in focus. Type is the site's mono for everything that is the figure talking
  * about itself (kickers, ticks, legends, readouts) and never under 11px.
  */
@@ -23,7 +23,7 @@
   --k-fg-3: var(--vp-c-text-3);
   --k-line: var(--vp-c-divider);
   --k-grid: var(--vp-c-gutter);
-  --k-red: var(--hf-red);
+  --k-red: var(--hf-pink);
   --k-red-text: var(--vp-c-brand-1);
   --k-ink: var(--vp-c-text-1);
   --k-grey: var(--vp-c-text-3);
@@ -46,8 +46,8 @@
   --k-fg-3: var(--hf-paper-3);
   --k-line: color-mix(in srgb, var(--hf-paper) 16%, transparent);
   --k-grid: color-mix(in srgb, var(--hf-paper) 7%, transparent);
-  --k-red: var(--hf-red-on-ink);
-  --k-red-text: var(--hf-red-on-ink);
+  --k-red: var(--hf-pink-on-ink);
+  --k-red-text: var(--hf-pink-on-ink);
   --k-ink: var(--hf-paper);
   --k-grey: var(--hf-paper-3);
   --k-pale: color-mix(in srgb, var(--hf-paper-3) 45%, transparent);
@@ -61,8 +61,8 @@
   --k-fg-3: var(--hf-ink-3);
   --k-line: color-mix(in srgb, var(--hf-ink-k) 16%, transparent);
   --k-grid: color-mix(in srgb, var(--hf-ink-k) 7%, transparent);
-  --k-red: var(--hf-red-on-paper);
-  --k-red-text: var(--hf-red-on-paper);
+  --k-red: var(--hf-pink-on-paper);
+  --k-red-text: var(--hf-pink-on-paper);
   --k-ink: var(--hf-ink-k);
   --k-grey: var(--hf-ink-3);
   --k-pale: color-mix(in srgb, var(--hf-ink-3) 45%, transparent);

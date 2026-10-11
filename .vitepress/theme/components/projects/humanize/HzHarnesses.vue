@@ -90,7 +90,7 @@ const line = computed(() => {
   color: color-mix(in srgb, var(--hz-on-ink) 55%, transparent);
 }
 .hn-line b {
-  color: #ff5a43;
+  color: #ff8fbd;
   font-weight: 700;
 }
 .hn-line p {
@@ -159,10 +159,10 @@ const line = computed(() => {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;
-  background: var(--hz-red);
+  background: var(--hz-pink);
 }
 .hn-grid .hi button {
-  box-shadow: inset 0 0 0 2px var(--hz-red);
+  box-shadow: inset 0 0 0 2px var(--hz-pink);
 }
 .hn-grid .proto button {
   background-image: repeating-linear-gradient(135deg, var(--hz-line-2) 0 1px, transparent 1px 7px);
@@ -217,7 +217,7 @@ const line = computed(() => {
 }
 .box.red {
   color: #fff;
-  background: var(--hz-red);
+  background: var(--hz-pink);
 }
 .box.grey {
   color: var(--hz-on-ink);
@@ -244,7 +244,7 @@ const line = computed(() => {
   animation: hn-run 2.4s var(--hz-ease) infinite;
 }
 .wire i.red {
-  background: var(--hz-red);
+  background: var(--hz-pink);
 }
 .wire small {
   position: absolute;

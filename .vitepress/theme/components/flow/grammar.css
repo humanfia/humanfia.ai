@@ -1,33 +1,33 @@
 /* The colours of the flow grammar (see grammar.ts): one per kind of role, one per way a run
    ends, and nothing else.
 
-   Constructivist, because the rest of the site is: ink on paper, one red, and a few flat
-   poster colours, no gradients on the marks. A role's colour says what it is -- does the work
-   (blue), takes turns with the one that does (teal), judges (the red, a reviewer's pen), plans
-   and cleans (ochre) -- so a reviewer is the same red in every diagram. You are drawn in ink and
+   Constructivist, because the rest of the site is: ink on paper, one pink, and a few flat
+   poster colours from Hyacine's, no gradients on the marks. A role's colour says what it is --
+   does the work (periwinkle), takes turns with the one that does (sky), judges (the pink, a
+   reviewer's pen), plans and cleans (gold) -- so a reviewer is the same pink in every diagram. You are drawn in ink and
    a program in grey: neither is a model. The four endings each carry a glyph as well, so no
    colour is ever the only thing that says it.
 
    Every colour is a variable, and the dark set is the same poster printed on black: the hues
-   are lifted until they read on ink, never swapped for others. The red is the site's own when
-   it defines one (`--hf-red`), and the constructivist red otherwise. */
+   are lifted until they read on ink, never swapped for others. The pink is the site's own when
+   it defines one (`--hf-pink`), and Hyacine's pink otherwise. */
 
 .hmz-flow,
 .flow-ui {
-  --flow-red: var(--hf-red, #d6331f);
-  --flow-maker: #2b5797;
-  --flow-partner: #1c7f78;
-  --flow-checker: var(--flow-red);
-  --flow-steward: #b46e12;
+  --flow-pink: var(--hf-pink, #d9508c);
+  --flow-maker: #3b5fb5;
+  --flow-partner: #14768a;
+  --flow-checker: var(--flow-pink);
+  --flow-steward: #a8730f;
   --flow-human: var(--vp-c-text-1);
-  --flow-program: #6b6b72;
+  --flow-program: #6c6472;
 
-  --flow-done: #2e7d45;
-  --flow-fail: #b0174f;
-  --flow-budget: #c39206;
+  --flow-done: #23805a;
+  --flow-fail: #c92e4b;
+  --flow-budget: #c08a1e;
   --flow-you: var(--vp-c-text-1);
 
-  --flow-accent: var(--flow-red);
+  --flow-accent: var(--flow-pink);
   --flow-ink: var(--vp-c-text-1);
   --flow-ink-2: var(--vp-c-text-2);
   --flow-ink-3: var(--vp-c-text-3);
@@ -46,15 +46,15 @@
 .dark .flow-ui,
 .dark.hmz-flow,
 .dark.flow-ui {
-  --flow-red: var(--hf-red, #ff5a43);
-  --flow-maker: #7ea6ec;
-  --flow-partner: #4cc2b5;
-  --flow-steward: #eba550;
-  --flow-program: #9d9da6;
+  --flow-pink: var(--hf-pink, #ff8fbd);
+  --flow-maker: #9db8f0;
+  --flow-partner: #5fd4e3;
+  --flow-steward: #f2c55c;
+  --flow-program: #a49fb3;
 
-  --flow-done: #5fc47d;
-  --flow-fail: #f0679a;
-  --flow-budget: #f2c53d;
+  --flow-done: #6fdba5;
+  --flow-fail: #ff7088;
+  --flow-budget: #f2c55c;
 
   --flow-plate: color-mix(in srgb, var(--vp-c-text-1) 5%, transparent);
   --flow-plate-edge: color-mix(in srgb, var(--vp-c-text-1) 20%, transparent);
@@ -101,7 +101,7 @@
 }
 
 .hmz-flow .f-plane.red {
-  fill: var(--flow-red);
+  fill: var(--flow-pink);
 }
 
 .hmz-flow .f-plane.line {
