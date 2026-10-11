@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Phobos as a pipeline in three phases, read left to right (top to bottom on a phone): compile
-// and verify, assemble, link. A green pulse walks the stages in order and starts again, so the
+// and verify, assemble, link. A accent pulse walks the stages in order and starts again, so the
 // reader sees the order the compiler works in rather than being told it.
 const PHASES = [
   {
@@ -147,17 +147,17 @@ const total = k
   font: 600 13px/1.4 var(--vp-font-family-mono);
 }
 .dt-out.last {
-  background: var(--hf-green);
-  color: var(--hf-on-green);
+  background: var(--hf-cyan);
+  color: var(--hf-on-fill);
 }
 .dark .dt-out.last {
-  background: var(--hf-green-press);
+  background: var(--hf-cyan-deep);
 }
 @keyframes dt-pulse {
   0%,
   22% {
-    border-color: var(--hf-green);
-    box-shadow: 5px 5px 0 var(--hf-green);
+    border-color: var(--hf-cyan);
+    box-shadow: 5px 5px 0 var(--hf-cyan);
     transform: translate(-2px, -2px);
   }
   30%,

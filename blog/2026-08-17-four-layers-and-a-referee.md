@@ -40,7 +40,7 @@ it in one picture and about a thousand words.
     <rect class="ink" x="365" y="365" width="18" height="18" />
     <rect class="ink" x="389" y="365" width="18" height="18" />
     <rect class="grey" x="413" y="365" width="18" height="18" />
-    <rect class="green" x="437" y="365" width="18" height="18" />
+    <rect class="accent" x="437" y="365" width="18" height="18" />
     <text x="125" y="418">12 CLIs · ACP · a person</text>
   </g>
   <g data-step="2" data-pop>
@@ -62,13 +62,13 @@ it in one picture and about a thousand words.
   </g>
   <path class="line ink" d="M95 220 H110" data-step="3" data-draw />
   <g data-step="3">
-    <rect class="green" x="470" y="190" width="6" height="145" />
-    <text class="green" x="498" y="262" text-anchor="middle" transform="rotate(-90 498 262)">humanize</text>
+    <rect class="accent" x="470" y="190" width="6" height="145" />
+    <text class="accent" x="498" y="262" text-anchor="middle" transform="rotate(-90 498 262)">humanize</text>
   </g>
   <g data-step="4" data-pop>
-    <rect class="green" x="110" y="105" width="360" height="60" />
-    <text class="on-green t-lg" x="125" y="131">Flows</text>
-    <text class="on-green" x="125" y="154">built in · flowverse</text>
+    <rect class="accent" x="110" y="105" width="360" height="60" />
+    <text class="on-accent t-lg" x="125" y="131">Flows</text>
+    <text class="on-accent" x="125" y="154">built in · flowverse</text>
   </g>
   <path id="arch-turn" class="line dash" d="M470 135 H508 V374 H458" data-step="4" data-draw />
   <g data-step="5" data-pop>
@@ -80,9 +80,9 @@ it in one picture and about a thousand words.
     <rect class="ink" x="520" y="190" width="110" height="200" />
     <text class="on-ink t-lg" x="575" y="290" text-anchor="middle" transform="rotate(-90 575 290)">FlowBench</text>
   </g>
-  <path id="arch-back" class="line green" d="M575 190 V92 H440 V105" data-step="6" data-draw />
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#arch-turn" data-loop />
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="6" data-travel="#arch-back" data-loop />
+  <path id="arch-back" class="line accent" d="M575 190 V92 H440 V105" data-step="6" data-draw />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="4" data-travel="#arch-turn" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="6" data-travel="#arch-back" data-loop />
 </AnimatedDiagram>
 
 ## What changed

@@ -106,7 +106,7 @@ const day = (iso: string) => iso.slice(0, 10)
 </template>
 
 <style scoped>
-/* A ruled strip, flush with the column: a green square, a label set in capitals, and the facts in
+/* A ruled strip, flush with the column: a accent square, a label set in capitals, and the facts in
    a two-column table. The square is the one colour, as it is wherever a flow is named. */
 .flow-facts {
   position: relative;
@@ -132,7 +132,7 @@ const day = (iso: string) => iso.slice(0, 10)
 .sq {
   width: 9px;
   height: 9px;
-  background: var(--flow-green);
+  background: var(--flow-mark);
 }
 
 .v {

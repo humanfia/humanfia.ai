@@ -86,14 +86,14 @@ function key(e: KeyboardEvent) {
 .df-n {
   flex: none;
   padding: 2px 7px;
-  background: var(--hf-green);
-  color: var(--hf-on-green);
+  background: var(--hf-pink);
+  color: var(--hf-on-fill);
   font: 700 11px/1.5 var(--vp-font-family-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 .dark .df-n {
-  background: var(--hf-green-press);
+  background: var(--hf-pink-press);
 }
 .df-title {
   margin: 0 !important;
@@ -124,7 +124,7 @@ function key(e: KeyboardEvent) {
   color: var(--vp-c-text-1);
 }
 .df-tabs button:focus-visible {
-  outline: 2px solid var(--hf-green);
+  outline: 2px solid var(--hf-pink);
   outline-offset: -2px;
 }
 .df-cap p {

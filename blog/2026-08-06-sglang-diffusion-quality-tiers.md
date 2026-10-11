@@ -23,8 +23,8 @@ timeline:
   prs:
     - { x: 0, y: 1, label: '#28166', detail: 'FLUX GELU fused on the default path', tone: grey }
     - { x: 1, y: 0, label: '#28708', detail: 'reverted: images moved', tone: grey }
-    - { x: 2, y: 3, label: '#33453', detail: 'the tier · plus #33451, #33536, #33546', tone: green }
-    - { x: 3, y: 6, label: '#33818 #33819 #33822', detail: 'three more behind quality=high', tone: green }
+    - { x: 2, y: 3, label: '#33453', detail: 'the tier · plus #33451, #33536, #33546', tone: accent }
+    - { x: 3, y: 6, label: '#33818 #33819 #33822', detail: 'three more behind quality=high', tone: accent }
 psnr:
   - { label: '#33451', detail: FLUX.2 VAE decode, values: { lo: 56.70, hi: 59.11 } }
   - { label: '#33818', detail: AutoencoderKL decode, values: { lo: 55.17, hi: 57.90 } }
@@ -91,12 +91,12 @@ speedups is unshippable.
     <text class="ink" x="505" y="80" text-anchor="middle">reference path · bitwise CI</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="360" y="170" width="290" height="60" />
-    <text class="on-green t-lg" x="505" y="198" text-anchor="middle">high · opt-in</text>
-    <text class="on-green" x="505" y="220" text-anchor="middle">fast paths · PSNR &gt; 25 dB</text>
+    <rect class="accent" x="360" y="170" width="290" height="60" />
+    <text class="on-accent t-lg" x="505" y="198" text-anchor="middle">high · opt-in</text>
+    <text class="on-accent" x="505" y="220" text-anchor="middle">fast paths · PSNR &gt; 25 dB</text>
   </g>
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#qt-low" data-loop />
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#qt-high" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#qt-high" data-loop />
 </AnimatedDiagram>
 
 - **`lossless`**, the default, is the exact reference path. Its output stays byte-identical, the
@@ -112,7 +112,7 @@ reverted in June.
   title="Reverted on the default path, shipped behind the tier"
   label="Fast paths that change the output: one on the default path from June 15, reverted on June 19. Behind quality=high: three on August 4 and six by August 6."
   :series="[
-    { key: 'high', label: 'Behind quality=high', tone: 'green', data: $frontmatter.timeline.high, step: true, dots: true },
+    { key: 'high', label: 'Behind quality=high', tone: 'accent', data: $frontmatter.timeline.high, step: true, dots: true },
     { key: 'default', label: 'On the default path', tone: 'grey', data: $frontmatter.timeline.default, step: true, dashed: true },
   ]"
   :x="{ categories: $frontmatter.timeline.dates, label: 'Merged' }"
@@ -138,7 +138,7 @@ lower, at 28.16 dB.</Sidenote>
   label="PSNR against the lossless output for each quality=high path, lowest and highest sample: #33451 56.70 to 59.11 dB, #33818 55.17 to 57.90, #33822 37.91 to 58.07, #33536 37.08 to 55.35, #33546 37.67 to 39.73, #33819 34.68 to 40.08, and the MiniMax-H3 caching policy in #33453 28.16 dB. The bar is 25 dB."
   caption="Each pull request's own quality table: several prompts, and for #33546 the mean over 81 video frames per prompt."
   :series="[
-    { key: 'lo', label: 'Lowest sample', tone: 'green' },
+    { key: 'lo', label: 'Lowest sample', tone: 'accent' },
     { key: 'hi', label: 'Highest sample', tone: 'ink' },
   ]"
   :rows="$frontmatter.psnr"
@@ -157,7 +157,7 @@ and spends most of the margin.
   label="End-to-end time saved by quality=high against PSNR to the lossless output. Kernel fusions save 2.2% to 13.5% at 34.7 to 57.9 dB. The MiniMax-H3 caching policy saves 28.6% at 28.2 dB."
   caption="Time saved is each pull request's own end-to-end measurement (for #33453, its 1.40× speedup). Every point is above the 25 dB bar."
   :groups="[
-    { key: 'fusion', label: 'Kernel fusions', tone: 'green' },
+    { key: 'fusion', label: 'Kernel fusions', tone: 'accent' },
     { key: 'cache', label: 'Caching policy', tone: 'grey' },
   ]"
   :points="$frontmatter.tradeoff"

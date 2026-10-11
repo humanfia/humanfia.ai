@@ -83,16 +83,16 @@ code: **first on MoE, second on DSA, third on GDN**. The team entered as HAN Lab
     <text class="ink" x="345" y="218" text-anchor="middle">#2 LLM-CUDA</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="100" y="20" width="150" height="46" />
-    <text class="on-green" x="175" y="48" text-anchor="middle">#1 KDA</text>
+    <rect class="accent" x="100" y="20" width="150" height="46" />
+    <text class="on-accent" x="175" y="48" text-anchor="middle">#1 KDA</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="270" y="105" width="150" height="46" />
-    <text class="on-green" x="345" y="133" text-anchor="middle">#2 KDA</text>
+    <rect class="accent" x="270" y="105" width="150" height="46" />
+    <text class="on-accent" x="345" y="133" text-anchor="middle">#2 KDA</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="440" y="190" width="150" height="46" />
-    <text class="on-green" x="515" y="218" text-anchor="middle">#3 KDA</text>
+    <rect class="accent" x="440" y="190" width="150" height="46" />
+    <text class="on-accent" x="515" y="218" text-anchor="middle">#3 KDA</text>
   </g>
 </AnimatedDiagram>
 
@@ -130,8 +130,8 @@ store of production kernels, past submissions and documentation, and
     <text class="on-ink t-lg" x="105" y="121" text-anchor="middle">Coder</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="green" x="440" y="80" width="190" height="70" />
-    <text class="on-green t-lg" x="535" y="121" text-anchor="middle">Verifier</text>
+    <rect class="accent" x="440" y="80" width="190" height="70" />
+    <text class="on-accent t-lg" x="535" y="121" text-anchor="middle">Verifier</text>
   </g>
   <text class="ink" x="320" y="28" text-anchor="middle" data-step="1">a kernel change</text>
   <text class="ink" x="320" y="214" text-anchor="middle" data-step="2">correct? faster? review</text>
@@ -141,7 +141,7 @@ store of production kernels, past submissions and documentation, and
     <rect class="frame" x="460" y="232" width="170" height="40" />
     <text class="ink" x="545" y="257" text-anchor="middle">ncu-report-skill</text>
   </g>
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="1" data-travel="#mlsys-out" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="1" data-travel="#mlsys-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#mlsys-back" data-loop />
 </AnimatedDiagram>
 
@@ -156,7 +156,7 @@ arithmetic mean over the official workloads.
   kicker="Submitted entries · speedup vs. the FlashInfer baseline · B200"
   label="Submitted KDA kernels against the official FlashInfer baseline: DSA indexer 19.08×, DSA attention 4.54×, GDN prefill 1.92×, GDN decode 0.80×, MoE FP8 0.65×."
   caption="Technical report, Table 1. Below the 1.00× line, the submitted kernel was slower than the baseline."
-  :series="[{ key: 'kda', label: 'KDA, as submitted', tone: 'green' }]"
+  :series="[{ key: 'kda', label: 'KDA, as submitted', tone: 'accent' }]"
   :rows="$frontmatter.submitted"
   :reference="{ value: 1, label: 'FlashInfer baseline 1.00×' }"
   suffix="×"
@@ -182,7 +182,7 @@ Switch the baseline to K-Search to read the margin directly.
   caption="Technical report, Table 2."
   :series="[
     { key: 'ksearch', label: 'K-Search', tone: 'grey', hatched: true },
-    { key: 'kda', label: 'KDA', tone: 'green' },
+    { key: 'kda', label: 'KDA', tone: 'accent' },
   ]"
   :rows="$frontmatter.rerun"
   :reference="{ value: 1, label: 'FlashInfer baseline 1.00×' }"
@@ -199,7 +199,7 @@ each skill adds to it.
   kicker="DSA top-k indexer · adding one piece at a time"
   label="Ablation on the DSA top-k indexer under the 48-hour budget: K-Search 1.37×, Humanize 3.71×, plus KernelWiki 6.14×, plus ncu-report-skill 8.58×."
   caption="Technical report, Table 3. Speedup over the FlashInfer baseline."
-  :series="[{ key: 's', label: 'Speedup', tone: 'green' }]"
+  :series="[{ key: 's', label: 'Speedup', tone: 'accent' }]"
   :rows="$frontmatter.ablation"
   :reference="{ value: 1, label: 'FlashInfer 1.00×' }"
   suffix="×"

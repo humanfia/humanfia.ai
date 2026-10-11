@@ -63,7 +63,7 @@ its source next to the rendered page.
 
   `checks` draws one ticked box per point of `value`. `ring` fills `value / of`. `grid` and
   `dots` light `value` cells of `of` (without `of`, the grid rounds up to rows of twenty).
-  `versus` and `bars` draw `board` against its best score, with `us` in green. A block without a
+  `versus` and `bars` draw `board` against its best score, with `us` in the accent (pink). A block without a
   topic, a numeric value or a label, with an unknown `viz`, or with a ring or dots and no `of`
   or versus or bars and no `board`, fails the build.
 - **Sections.** Each `##` is numbered automatically (01, 02, …). On screens 1360px and wider,
@@ -100,7 +100,7 @@ a string. Kebab-case works (`min-width`, `before-label`).
 
 ## Colours
 
-Series take a `tone`: `green` (ours, the thing to look at), `ink` (the comparison), `grey` (the
+Series take a `tone`: `accent` (ours, the thing to look at, in pink), `ink` (the comparison), `grey` (the
 baseline), or `pale` (context). Every tone is a CSS variable, so light and dark mode flip
 live. Never write a hex value in a post. Give a baseline `hatched: true` or `dashed: true`
 too, so it is not told apart by colour alone. Add `invert` to a figure to draw it the other
@@ -122,7 +122,7 @@ switch the baseline.
 <BarChart
   kicker="Speedup vs. FlashKDA"
   label="…"
-  :series="[{ key: 'cute', label: 'CuTe', tone: 'ink' }, { key: 'tirx', label: 'TIRx', tone: 'green' }]"
+  :series="[{ key: 'cute', label: 'CuTe', tone: 'ink' }, { key: 'tirx', label: 'TIRx', tone: 'accent' }]"
   :rows="[{ label: 'H96 fixed', detail: '1 × 8192', values: { cute: 2.76, tirx: 3.11 } },
           { label: 'Geomean', values: { cute: 2.85, tirx: 2.96 }, total: true }]"
   :reference="{ value: 1, label: 'FlashKDA 1.00×' }"
@@ -146,7 +146,7 @@ steps, Home and End to jump). It sweeps once when it first comes on screen.
 ```md
 <LineChart
   kicker="…" label="…"
-  :series="[{ key: 'ours', label: 'Ours', tone: 'green', data: $frontmatter.ours, step: true, dots: true }]"
+  :series="[{ key: 'ours', label: 'Ours', tone: 'accent', data: $frontmatter.ours, step: true, dots: true }]"
   :x="{ min: 0, max: 16, suffix: 'h', decimals: 1, tickDecimals: 0, label: 'Hour' }"
   :y="{ min: 0.4, max: 2, suffix: '×', decimals: 2, tickDecimals: 1 }"
   :reference="{ y: 1, label: 'Baseline = 1.0×' }"
@@ -165,7 +165,7 @@ steps, Home and End to jump). It sweeps once when it first comes on screen.
 ```md
 <ScatterChart
   label="…"
-  :groups="[{ key: 'us', label: 'Humanfia', tone: 'green' }, { key: 'them', label: 'Others', tone: 'grey' }]"
+  :groups="[{ key: 'us', label: 'Humanfia', tone: 'accent' }, { key: 'them', label: 'Others', tone: 'grey' }]"
   :points="[{ x: 44.5, y: 672, group: 'us', label: 'Humanfia', highlight: true }, …]"
   :x="{ label: 'Cost per problem', prefix: '$', log: true }" :y="{ label: 'Solved' }"
 />
@@ -194,7 +194,7 @@ unindented and with no blank lines, or markdown will treat it as code.
 ### ResultsTable
 
 A table that sorts by any column, pins a row on click (or Enter), and draws numbers as bars.
-The row whose `highlight` field is true is ours and is drawn in green.
+The row whose `highlight` field is true is ours and is drawn in the accent.
 
 ```md
 <ResultsTable
@@ -232,7 +232,7 @@ seen, then becomes a range input, and the status line names the zone it is in.
 ```md
 <RangeMeter kicker="…" unit=" bits" :max="650" :value="600" status="Hack D on this input"
   :markers="[{ value: 126, label: '126 bits', note: 'underflows to 0' }]"
-  :zones="[{ from: 0, to: 126, label: 'test passes' }, { from: 126, to: 650, label: 'NaN', tone: 'green' }]" />
+  :zones="[{ from: 0, to: 126, label: 'test passes' }, { from: 126, to: 650, label: 'NaN', tone: 'accent' }]" />
 ```
 
 ### LoopCompare
@@ -257,15 +257,15 @@ and a caption per step. Write the SVG inside it and mark its elements:
 | `data-stop="0.6"` | the ride stops 60% of the way along and the element flashes, refused |
 | `data-loop` | after the build, the ride repeats while the diagram is on screen |
 
-Paint shapes with the classes `ink`, `green`, `grey`, `paper`, `frame`, and `line` (plus `dash`).
-Text takes `ink`, `green`, `on-ink` or `on-green`, and a size class: 13px by default, `t-lg` 17px,
+Paint shapes with the classes `ink`, `accent`, `grey`, `paper`, `frame`, and `line` (plus `dash`).
+Text takes `ink`, `accent`, `on-ink` or `on-accent`, and a size class: 13px by default, `t-lg` 17px,
 `t-xl` 22px. Type is sized in screen pixels at any width, so leave room for it in the shapes.
 
 ```md
 <AnimatedDiagram view-box="0 0 600 250" :min-width="300" label="…" :steps="['One', 'Two']">
   <path id="p" class="line dash" d="M150 85 C 220 25, 380 25, 450 85" data-step="2" data-draw />
   <rect class="ink" x="20" y="85" width="200" height="80" data-step="1" data-pop />
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#p" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#p" data-loop />
 </AnimatedDiagram>
 ```
 

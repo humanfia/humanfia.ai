@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The hero: a proof, being checked. On the left, the project; on the right, an editor plate
 // with a small Lean 4 theorem and, under it, its proof tree in natural-deduction form -- the
-// goal at the bottom, each tactic a rule, each branch closed by a green tombstone. As the tactics
+// goal at the bottom, each tactic a rule, each branch closed by a accent tombstone. As the tactics
 // are applied the line in the source lights up, the rule draws, the subgoals appear above it and
 // the goal count falls, until there are none and the kernel accepts the file.
 //
@@ -297,7 +297,7 @@ const external = (href: string) => /^https?:/.test(href)
   margin: 18px 0 0;
   max-width: 520px;
   padding-left: 14px;
-  border-left: 3px solid var(--k-green);
+  border-left: 3px solid var(--k-mark);
   font-size: 15px;
   font-weight: 650;
   line-height: 1.5;
@@ -332,7 +332,7 @@ const external = (href: string) => /^https?:/.test(href)
 }
 .hh-links a:hover {
   color: var(--k-accent);
-  box-shadow: 3px 3px 0 var(--k-green);
+  box-shadow: 3px 3px 0 var(--k-mark);
   transform: translate(-1px, -1px);
 }
 .hh-links li:first-child a:hover {
@@ -347,7 +347,7 @@ const external = (href: string) => /^https?:/.test(href)
   color: var(--k-plate-ink);
   background: var(--k-plate);
   border: 1px solid var(--k-plate-line);
-  box-shadow: 10px 10px 0 var(--k-green);
+  box-shadow: 10px 10px 0 var(--k-mark);
 }
 
 .lp-bar {
@@ -381,7 +381,7 @@ const external = (href: string) => /^https?:/.test(href)
   font-variant-numeric: tabular-nums;
 }
 .lp-goals b {
-  color: var(--k-plate-green);
+  color: var(--k-plate-accent);
 }
 
 .lp-src {
@@ -403,8 +403,8 @@ const external = (href: string) => /^https?:/.test(href)
   white-space: pre;
 }
 .lp-line.on {
-  background: color-mix(in srgb, var(--k-plate-green) 14%, transparent);
-  border-left-color: var(--k-plate-green);
+  background: color-mix(in srgb, var(--k-plate-accent) 14%, transparent);
+  border-left-color: var(--k-plate-accent);
 }
 .lp-no {
   display: inline-block;
@@ -419,7 +419,7 @@ const external = (href: string) => /^https?:/.test(href)
   font-weight: 700;
 }
 .lp-src .tac {
-  color: var(--k-plate-green);
+  color: var(--k-plate-accent);
   font-weight: 650;
 }
 .lp-src .id {
@@ -481,7 +481,7 @@ const external = (href: string) => /^https?:/.test(href)
   transition: color 0.25s;
 }
 .rule.on {
-  color: var(--k-plate-green);
+  color: var(--k-plate-accent);
 }
 .concl {
   white-space: nowrap;
@@ -504,7 +504,7 @@ const external = (href: string) => /^https?:/.test(href)
   width: 0.7em;
   height: 0.7em;
   margin-bottom: 1px;
-  background: var(--k-plate-green);
+  background: var(--k-plate-accent);
 }
 .lp-where sub {
   font-size: max(11px, 0.7em);
@@ -536,7 +536,7 @@ const external = (href: string) => /^https?:/.test(href)
 .lp-sq {
   width: 10px;
   height: 10px;
-  background: var(--k-plate-green);
+  background: var(--k-plate-accent);
 }
 .lp-replay {
   font: inherit;
@@ -551,14 +551,14 @@ const external = (href: string) => /^https?:/.test(href)
   cursor: default;
 }
 
-/* The stamp: the green seal a checked proof earns, set at an angle off the plate's corner. */
+/* The stamp: the accent seal a checked proof earns, set at an angle off the plate's corner. */
 .lp-stamp {
   position: absolute;
   right: -16px;
   bottom: 64px;
   padding: 8px 12px;
-  background: var(--k-green);
-  color: var(--hf-on-green);
+  background: var(--k-mark);
+  color: var(--hf-on-fill);
   font-family: var(--k-serif);
   font-style: italic;
   font-size: 18px;

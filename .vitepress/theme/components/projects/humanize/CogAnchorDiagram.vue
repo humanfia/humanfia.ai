@@ -112,8 +112,8 @@ const mode = computed(() => MODES[at.value])
   background: var(--vp-c-bg);
 }
 .ca-side.there {
-  border-color: var(--hf-green);
-  box-shadow: 5px 5px 0 var(--hf-green);
+  border-color: var(--hf-cyan);
+  box-shadow: 5px 5px 0 var(--hf-cyan);
 }
 .ca-where {
   margin: 0 0 6px !important;
@@ -123,7 +123,7 @@ const mode = computed(() => MODES[at.value])
   color: var(--vp-c-text-2);
 }
 .ca-side.there .ca-where {
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .ca-side ul {
   margin: 0 !important;
@@ -173,8 +173,8 @@ const mode = computed(() => MODES[at.value])
 }
 .ca-pkt.back {
   top: calc(50% + 8px);
-  background: var(--hf-green);
-  color: var(--hf-on-green);
+  background: var(--hf-cyan);
+  color: var(--hf-on-fill);
   animation-name: ca-back;
 }
 @keyframes ca-out {

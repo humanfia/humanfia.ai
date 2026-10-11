@@ -58,7 +58,7 @@ const name = (id: string) => {
       <div class="hma-hero-copy">
         <p class="hma-kicker">HMA · Humanize MLE Agents</p>
         <h1 class="hma-display">
-          Two agents.<br />One workspace.<br /><span class="hma-green">Taking turns.</span>
+          Two agents.<br />One workspace.<br /><span class="hma-accent">Taking turns.</span>
         </h1>
         <p class="hma-lead">
           Two native coding agents alternate over one shared machine-learning workspace, each turn a

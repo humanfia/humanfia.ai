@@ -48,7 +48,7 @@ Our intended workflow has four stages, and the last two go round until the work 
 >
   <path id="lx-plan" class="line dash" d="M150 70 H300 V100" data-step="2" data-draw />
   <path id="lx-out" class="line dash" d="M330 100 C 380 60, 420 60, 450 100" data-step="3" data-draw />
-  <path id="lx-back" class="line green" d="M450 200 C 410 260, 340 260, 300 200" data-step="4" data-draw />
+  <path id="lx-back" class="line accent" d="M450 200 C 410 260, 340 260, 300 200" data-step="4" data-draw />
   <g data-step="1" data-pop>
     <rect class="frame" x="10" y="40" width="140" height="60" />
     <text class="ink t-lg" x="80" y="68" text-anchor="middle">Shape</text>
@@ -60,13 +60,13 @@ Our intended workflow has four stages, and the last two go round until the work 
     <text class="on-ink" x="300" y="170" text-anchor="middle">builder</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="430" y="100" width="150" height="100" />
-    <text class="on-green t-lg" x="505" y="146" text-anchor="middle">Review</text>
-    <text class="on-green" x="505" y="170" text-anchor="middle">second model</text>
+    <rect class="accent" x="430" y="100" width="150" height="100" />
+    <text class="on-accent t-lg" x="505" y="146" text-anchor="middle">Review</text>
+    <text class="on-accent" x="505" y="170" text-anchor="middle">second model</text>
   </g>
-  <text class="green t-lg" x="375" y="288" text-anchor="middle" data-step="4">Refine to done</text>
+  <text class="accent t-lg" x="375" y="288" text-anchor="middle" data-step="4">Refine to done</text>
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#lx-out" data-loop />
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#lx-back" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#lx-back" data-loop />
 </AnimatedDiagram>
 
 <PostCards numbered>

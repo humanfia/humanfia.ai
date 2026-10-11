@@ -54,7 +54,7 @@ timeline:
   cake: [[2, 2.048], [3, 2.048], [4, 2.09], [5, 2.373], [6, 2.373], [7, 2.373], [8, 2.373], [9, 2.373], [10, 2.732], [11, 2.94]]
   int21: [[0, 1.5]]
   milestones:
-    - { x: 4, y: 2.45, label: Humanize, detail: 8/14 · KDA 2.45×, tone: green }
+    - { x: 4, y: 2.45, label: Humanize, detail: 8/14 · KDA 2.45×, tone: accent }
     - { x: 6, y: 2.54, label: TIRx, detail: 8/30 · 2.54×, tone: ink }
     - { x: 7, y: 2.56, label: CAKE with KDA, detail: 9/1 · 2.56×, tone: grey }
     - { x: 8, y: 2.93, label: TIRx, detail: 9/2 · 2.93×, tone: ink }
@@ -121,12 +121,12 @@ the latest results from KDA(gent) v0.6: KDA optimizing KDA.
     <text class="on-ink t-xl" x="120" y="133" text-anchor="middle">KDAgent</text>
   </g>
   <g data-step="2" data-pop>
-    <rect class="green" x="380" y="85" width="200" height="80" />
-    <text class="on-green t-xl" x="480" y="133" text-anchor="middle">KDAttn</text>
+    <rect class="accent" x="380" y="85" width="200" height="80" />
+    <text class="on-accent t-xl" x="480" y="133" text-anchor="middle">KDAttn</text>
   </g>
   <text class="ink t-lg" x="300" y="22" text-anchor="middle" data-step="2">writes kernels</text>
   <text class="ink t-lg" x="300" y="246" text-anchor="middle" data-step="3">scores &amp; traces</text>
-  <rect class="green" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#kda-out" data-loop />
+  <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="2" data-travel="#kda-out" data-loop />
   <rect class="ink" x="-7" y="-7" width="14" height="14" data-step="3" data-travel="#kda-back" data-loop />
 </AnimatedDiagram>
 
@@ -182,7 +182,7 @@ with several length distributions, each totaling 8,192 tokens of context.
   label="Speedup over FlashKDA on B300 for six workloads. Geomean: KDA + CAKE (CuTe) 2.85×, KDA + TIRx 2.96×."
   :series="[
     { key: 'cute', label: 'KDA + CAKE (CuTe)', tone: 'ink' },
-    { key: 'tirx', label: 'KDA + TIRx', tone: 'green' },
+    { key: 'tirx', label: 'KDA + TIRx', tone: 'accent' },
   ]"
   :rows="$frontmatter.speedup"
   :reference="{ value: 1, label: 'FlashKDA 1.00×' }"
@@ -203,7 +203,7 @@ released kernels.
   title="From 1.61× to 2.96×"
   label="KDA best rises from 1.61× on July 21 to 2.96× on September 12. Humanize lifts it to 2.45× on August 14; TIRx to 2.54× on August 30, 2.93× on September 2 and 2.96× on September 12; CAKE with KDA reaches 2.56× on September 1 and CAKE 2.94× on September 6. The INT21 reference is 1.5× on June 16."
   :series="[
-    { key: 'kda', label: 'KDA best', tone: 'green', data: $frontmatter.timeline.kda, dots: true },
+    { key: 'kda', label: 'KDA best', tone: 'accent', data: $frontmatter.timeline.kda, dots: true },
     { key: 'cake', label: 'CAKE', tone: 'ink', data: $frontmatter.timeline.cake, dots: true, dashed: true },
     { key: 'int21', label: 'INT21 reference', tone: 'grey', data: $frontmatter.timeline.int21 },
   ]"
@@ -239,7 +239,7 @@ and close to FLA. Output accuracy matches FlashKDA overall and pulls ahead on lo
   label="Output relative RMSE versus context length for a Kimi-Linear-48B prefill of 8,183 tokens: FlashKDA drifts from 0.43% to about 0.69%, while both of our kernels stay between 0.23% and 0.43%."
   :series="[
     { key: 'base', label: 'FlashKDA', tone: 'grey', data: $frontmatter.accuracy.flashkda, dashed: true },
-    { key: 'tirx', label: 'Ours (TIRx)', tone: 'green', data: $frontmatter.accuracy.tirx },
+    { key: 'tirx', label: 'Ours (TIRx)', tone: 'accent', data: $frontmatter.accuracy.tirx },
     { key: 'cute', label: 'Ours (CuTe)', tone: 'ink', data: $frontmatter.accuracy.cute },
   ]"
   :x="{ min: 0, max: 8192, ticks: [0, 2048, 4096, 6144, 8192], divide: 1024, suffix: 'k', label: 'Context', unit: ' tokens' }"
@@ -252,7 +252,7 @@ and close to FLA. Output accuracy matches FlashKDA overall and pulls ahead on lo
   :series="[
     { key: 'base', label: 'FlashKDA', tone: 'grey', hatched: true },
     { key: 'cute', label: 'Ours (CuTe)', tone: 'ink' },
-    { key: 'tirx', label: 'Ours (TIRx)', tone: 'green' },
+    { key: 'tirx', label: 'Ours (TIRx)', tone: 'accent' },
   ]"
   :rows="[{ label: 'Final state', detail: 'lower is better', values: { base: 3.45, cute: 0.22, tirx: 0.29 } }]"
   :baselines="['base']"
@@ -276,11 +276,11 @@ room it has to hack.
   orientation="vertical"
   kicker="Humanize ablation · same model, three levels of scaffolding"
   label="Humanize ablation. PutnamBench: GPT-5.6-sol 3 / 46 / 50, Kimi-K3 1 / 4 / 47, GLM-5.3 0 / 2 / 25, DeepSeek V4 Pro 0 / 4 / 13. Physics Cup: GPT-5.6-sol 31 / 41 / 44, Kimi-K3 35 / 37 / 42, GLM-5.3 24 / 34 / 40, DeepSeek V4 Pro 32 / 35 / 39, for the raw API, a coding CLI and a Humanize flow."
-  caption="PutnamBench and Physics Cup scores for four base models at three levels of scaffolding: the raw model API, a coding CLI, and a Humanize flow. The small green numbers are gains over the baseline chosen above."
+  caption="PutnamBench and Physics Cup scores for four base models at three levels of scaffolding: the raw model API, a coding CLI, and a Humanize flow. The small pink numbers are gains over the baseline chosen above."
   :series="[
     { key: 'api', label: 'Model (API)', tone: 'pale', hatched: true },
     { key: 'cli', label: 'Tool (CLI)', tone: 'grey' },
-    { key: 'flow', label: 'Flow (Humanize)', tone: 'green' },
+    { key: 'flow', label: 'Flow (Humanize)', tone: 'accent' },
   ]"
   :datasets="$frontmatter.humanize"
   :baselines="['api', 'cli']"
@@ -380,7 +380,7 @@ about 600 bits per 64 tokens at p99, an order of magnitude deeper than our rando
   ]"
   :zones="[
     { from: 0, to: 126, label: 'output finite · test passes · 3.57×' },
-    { from: 126, to: 650, label: 'denominator = 0 · output NaN', tone: 'green' },
+    { from: 126, to: 650, label: 'denominator = 0 · output NaN', tone: 'accent' },
   ]"
 />
 
@@ -418,14 +418,14 @@ all six to be released.
     <text class="ink t-lg" x="480" y="56" text-anchor="middle">6</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="574" y="88" width="140" height="54" transform="rotate(-17 644 115)" />
-    <text class="on-green" x="644" y="120" text-anchor="middle" transform="rotate(-17 644 115)">RELEASE</text>
+    <rect class="accent" x="574" y="88" width="140" height="54" transform="rotate(-17 644 115)" />
+    <text class="on-accent" x="644" y="120" text-anchor="middle" transform="rotate(-17 644 115)">RELEASE</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#gauntlet-lane" data-stop="0.4" data-loop />
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#gauntlet-lane" data-stop="0.68" data-loop />
-  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#gauntlet-lane" data-loop />
+  <rect class="accent" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#gauntlet-lane" data-loop />
   <text class="grey" x="10" y="208" data-step="2">■ hacked candidate</text>
-  <text class="green" x="370" y="208" data-step="3">■ honest kernel</text>
+  <text class="accent" x="370" y="208" data-step="3">■ honest kernel</text>
 </AnimatedDiagram>
 
 <PostCards numbered>
@@ -490,7 +490,7 @@ convergence curves diverged sharply.
   title="Best speedup on the evaluation shape"
   label="Best speedup over a 14-hour budget: focusing on one simple shape reaches 1.85×; targeting all six shapes at once reaches 1.01×."
   :series="[
-    { key: 'focus', label: 'One simple shape first', tone: 'green', data: $frontmatter.ablation.speedupFocused, step: true, dots: true },
+    { key: 'focus', label: 'One simple shape first', tone: 'accent', data: $frontmatter.ablation.speedupFocused, step: true, dots: true },
     { key: 'all', label: 'All six shapes at once', tone: 'ink', data: $frontmatter.ablation.speedupAllShapes, step: true, dots: true, dashed: true },
   ]"
   :x="{ min: 0, max: 16, ticks: [0, 4, 8, 12, 16], decimals: 1, tickDecimals: 0, suffix: 'h', label: 'Hour' }"
@@ -504,7 +504,7 @@ convergence curves diverged sharply.
   title="Cumulative output tokens"
   label="Cumulative output tokens over a 14-hour budget: focusing on one simple shape reaches 2.74 million; targeting all six shapes at once reaches 1.67 million."
   :series="[
-    { key: 'focus', label: 'One simple shape first', tone: 'green', data: $frontmatter.ablation.tokensFocused, area: true },
+    { key: 'focus', label: 'One simple shape first', tone: 'accent', data: $frontmatter.ablation.tokensFocused, area: true },
     { key: 'all', label: 'All six shapes at once', tone: 'ink', data: $frontmatter.ablation.tokensAllShapes, dashed: true },
   ]"
   :x="{ min: 0, max: 16, ticks: [0, 4, 8, 12, 16], decimals: 2, tickDecimals: 0, suffix: 'h', label: 'Hour' }"

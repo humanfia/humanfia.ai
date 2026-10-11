@@ -178,9 +178,9 @@ const ticks = [1, 2, 3, 4, 5]
 }
 
 .released .hack-key {
-  color: var(--kd-on-green);
-  background: var(--kd-green);
-  border-color: var(--kd-green);
+  color: var(--kd-on-fill);
+  background: var(--kd-mark);
+  border-color: var(--kd-mark);
 }
 
 .hack-name {
@@ -225,7 +225,7 @@ const ticks = [1, 2, 3, 4, 5]
 }
 
 .released .hack-bar {
-  background: var(--kd-green);
+  background: var(--kd-mark);
 }
 
 .hack-value {
@@ -241,11 +241,11 @@ const ticks = [1, 2, 3, 4, 5]
 }
 
 .failed .hack-value {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .released .hack-value {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .hack-note {
@@ -283,7 +283,7 @@ const ticks = [1, 2, 3, 4, 5]
 }
 
 .gates li span {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
   font-weight: 700;
 }
 

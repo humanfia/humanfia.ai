@@ -21,7 +21,7 @@ links:
 
 # The record, one tile per exam. `lean: true` is what the filter on the board reads: the result
 # was accepted by the Lean kernel, rather than graded by somebody. `cells` is what the tile's
-# grid counts, `filled` how many of them are done, and `green` how many of those are drawn green.
+# grid counts, `filled` how many of them are done, and `accent` how many of those are drawn in the accent.
 results:
   - id: putnam
     name: PutnamBench
@@ -41,7 +41,7 @@ results:
     lean: true
     cells: 128
     filled: 79
-    green: 30
+    accent: 30
     legend: 79 of 128 solved · 30 of them first
     note: Second by total, 79 to 80. 170 of 171 on the archive, and 249 distinct problems accepted across both, the most of any entry.
     posts: [{ text: Oct 4, href: /news/2026-10-05-lean-eval-v1 }, { text: Aug 18, href: /news/2026-08-18-lean-eval-first }, { text: Jul 29, href: /news/2026-07-29-lean-eval-second }]

@@ -68,7 +68,7 @@ withDefaults(defineProps<{ items: Stat[]; lead?: boolean }>(), { lead: false })
 }
 
 .sg-item.invert .sg-value {
-  color: var(--k-green-text, var(--hf-green-deep));
+  color: var(--k-mark-text, var(--hf-pink-deep));
 }
 
 .sg-text {

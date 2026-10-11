@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The first screen: what Humanize is in one line, the one command that installs it, and the
 // run it makes, running (HzRun). Behind it, the run's clock ruled across the whole page and one
-// green plane on the poster's diagonal; as the hero scrolls away the plane slides and the copy
+// accent plane on the poster's diagonal; as the hero scrolls away the plane slides and the copy
 // lifts, driven by where the hero is rather than by a timer.
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { clamp, useScrollProgress } from '../../../home/motion'
@@ -120,14 +120,14 @@ const copyLift = computed(() =>
 .hero-rule i {
   border-left: 1px solid var(--hz-line-2);
 }
-/* One green plane on the poster's diagonal, behind the run. */
+/* One accent plane on the poster's diagonal, behind the run. */
 .hero-plane {
   position: absolute;
   left: -12%;
   right: -60%;
   top: 46%;
   height: 132px;
-  background: var(--hz-green);
+  background: var(--hz-mark);
   opacity: 0.12;
   transform: rotate(-24deg);
   pointer-events: none;
@@ -151,7 +151,7 @@ const copyLift = computed(() =>
   color: var(--hz-ink);
 }
 .hero-title span {
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .hero-copy .hz-lead {
   margin-top: 26px;
@@ -204,7 +204,7 @@ const copyLift = computed(() =>
 }
 .hero-line code span {
   margin-right: 10px;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
   user-select: none;
 }
 .hero-copy-btn {
@@ -220,8 +220,8 @@ const copyLift = computed(() =>
 }
 .hero-copy-btn:hover,
 .hero-copy-btn.done {
-  background: var(--hz-green);
-  color: var(--hf-on-green);
+  background: var(--hz-mark);
+  color: var(--hf-on-fill);
 }
 
 .hero-copy .hz-actions {

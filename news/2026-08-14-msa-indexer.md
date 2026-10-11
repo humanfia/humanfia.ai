@@ -31,7 +31,7 @@ number here is Humanfia-reported.</Sidenote>
   kicker="MSA indexers · B300 · speedup over the previous kernel"
   label="Speedups over the previous MSA indexer kernels on B300: prefill 6.5× geometric mean and up to 14× on end-of-prefill chunk tails; decode 2.9× at the TP4 promotion shape and up to 3.3× on longer contexts."
   caption="Humanfia-reported. No workload in the set regressed, and the output is bitwise identical in every one."
-  :series="[{ key: 's', label: 'KDA', tone: 'green' }]"
+  :series="[{ key: 's', label: 'KDA', tone: 'accent' }]"
   :rows="[
     { label: 'Prefill', detail: 'geometric mean, all workloads', values: { s: 6.5 } },
     { label: 'Prefill', detail: 'end-of-prefill chunk tails, best', values: { s: 14 } },
@@ -78,7 +78,7 @@ that a bandwidth-bound kernel could reach at that shape, so the win is not bandw
   ]"
   :zones="[
     { from: 1, to: 2.78, label: 'explainable by moving bytes faster' },
-    { from: 2.78, to: 3.5, label: 'beyond the bandwidth band: more than bandwidth alone', tone: 'green' },
+    { from: 2.78, to: 3.5, label: 'beyond the bandwidth band: more than bandwidth alone', tone: 'accent' },
   ]"
 />
 
@@ -108,13 +108,13 @@ just as happily as one that is faster because it is better.
     <text class="ink" x="380" y="40" text-anchor="middle">bitwise identical</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="520" y="72" width="110" height="56" />
-    <text class="on-green t-lg" x="575" y="106" text-anchor="middle">ship</text>
+    <rect class="accent" x="520" y="72" width="110" height="56" />
+    <text class="on-accent t-lg" x="575" y="106" text-anchor="middle">ship</text>
   </g>
   <rect class="grey" x="-9" y="-9" width="18" height="18" data-step="2" data-travel="#msa-lane" data-stop="0.7" data-loop />
-  <rect class="green" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#msa-lane" data-loop />
+  <rect class="accent" x="-9" y="-9" width="18" height="18" data-step="3" data-travel="#msa-lane" data-loop />
   <text class="grey" x="20" y="190" data-step="2">■ faster, one bit off</text>
-  <text class="green" x="320" y="190" data-step="3">■ faster, identical</text>
+  <text class="accent" x="320" y="190" data-step="3">■ faster, identical</text>
 </AnimatedDiagram>
 
 [KDA](/projects/kda) · [NVlabs/kda](https://github.com/NVlabs/kda)

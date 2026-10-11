@@ -116,7 +116,7 @@ function versus(r: Row) {
 }
 
 .gpt {
-  --c: var(--k-green);
+  --c: var(--k-mark);
 }
 .kimi {
   --c: var(--k-ink);
@@ -162,7 +162,7 @@ function versus(r: Row) {
   border-bottom: 1px solid var(--k-line);
 }
 .hi-rows li.hard {
-  background: color-mix(in srgb, var(--k-green) 6%, transparent);
+  background: color-mix(in srgb, var(--k-mark) 6%, transparent);
 }
 .hi-q {
   font-size: 22px;

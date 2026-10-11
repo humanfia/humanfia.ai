@@ -113,7 +113,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>02</b> The model</p>
-          <h2 class="hz-h2">Agent, session, turn, <span class="hz-green">env.</span></h2>
+          <h2 class="hz-h2">Agent, session, turn, <span class="hz-accent">env.</span></h2>
           <p class="hz-lead">
             A flow is a directory of Python that says which agents it drives, what each is asked, in
             what order, and when to stop. The runtime opens the sessions, takes the turns, puts the
@@ -141,7 +141,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>03</b> The flow loop</p>
-          <h2 class="hz-h2">A loop is a loop. <span class="hz-green">It runs for a week.</span></h2>
+          <h2 class="hz-h2">A loop is a loop. <span class="hz-accent">It runs for a week.</span></h2>
           <p class="hz-lead">
             A flow is ordinary Python: a <code>while</code>, a turn, a look at what came back, and a
             decision. The runtime adds what a loop like that needs — a budget that stops it, a trace
@@ -159,7 +159,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>04</b> The flows it runs</p>
-          <h2 class="hz-h2">The runtime runs flows. <span class="hz-green">It does not decide what a good one is.</span></h2>
+          <h2 class="hz-h2">The runtime runs flows. <span class="hz-accent">It does not decide what a good one is.</span></h2>
           <p class="hz-lead">
             That split is deliberate, and everything else at Humanfia is built on it. The ones that
             ship with the runtime, plus the flowverse it fetches, cover most of the loop shapes the
@@ -185,7 +185,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>05</b> Every harness</p>
-          <h2 class="hz-h2">Twelve CLIs. One protocol. <span class="hz-green">And a model, called directly.</span></h2>
+          <h2 class="hz-h2">Twelve CLIs. One protocol. <span class="hz-accent">And a model, called directly.</span></h2>
           <p class="hz-lead">
             A harness is what <code>-a</code> names. Each CLI is driven through whatever it actually
             offers — a print mode, an app server, an RPC mode, a daemon or an SDK. Point at one.
@@ -208,7 +208,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>06</b> What it does</p>
-          <h2 class="hz-h2">Eleven features, <span class="hz-green">one line each.</span></h2>
+          <h2 class="hz-h2">Eleven features, <span class="hz-accent">one line each.</span></h2>
           <p class="hz-lead">
             Hooks, capabilities, surfaces and the daemon are in there too.
             <a class="hz-link" :href="`${DOCS}/features/`">Every feature, one picture each ↗</a>
@@ -233,7 +233,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>07</b> The real thing, recorded</p>
-          <h2 class="hz-h2">Not drawn. <span class="hz-green">Recorded.</span></h2>
+          <h2 class="hz-h2">Not drawn. <span class="hz-accent">Recorded.</span></h2>
           <p class="hz-lead">
             From <code>hmz</code> itself, in a container with a stand-in coding agent in it. Then two
             takes from the talk where we introduced it: the same Ralph loop from the command line,
@@ -267,7 +267,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>08</b> Deep tech</p>
-          <h2 class="hz-h2">The engine, <span class="hz-green">by codename.</span></h2>
+          <h2 class="hz-h2">The engine, <span class="hz-accent">by codename.</span></h2>
           <p class="hz-lead">
             Three subsystems under the runtime: the machinery that lets one flow run for a day, on
             any machine, and be read afterwards. Each says how much of it you can use today.
@@ -282,7 +282,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>09</b> Architecture</p>
-          <h2 class="hz-h2">Seventeen layers, <span class="hz-green">and a test that holds them.</span></h2>
+          <h2 class="hz-h2">Seventeen layers, <span class="hz-accent">and a test that holds them.</span></h2>
           <p class="hz-lead">
             The runtime drives twelve different CLIs without becoming twelve different products
             because the layering is a rule rather than an intention. Point at a layer.
@@ -338,7 +338,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>12</b> Get started</p>
-          <h2 class="hz-h2">One line in. <span class="hz-green">A flow running.</span></h2>
+          <h2 class="hz-h2">One line in. <span class="hz-accent">A flow running.</span></h2>
           <p class="hz-lead">
             No account to sign up for. It drives the coding-agent CLI you already log into, under
             your own subscription; any one of twelve will do.
@@ -401,7 +401,7 @@ a.hz-stat:hover {
   font-family: var(--hz-mono);
   font-size: clamp(34px, 3.6vw, 54px);
   letter-spacing: -0.04em;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
   line-height: 1.32;
 }
 .hz-stat .k {
@@ -437,7 +437,7 @@ a.hz-stat:hover {
   line-height: 0.8;
   letter-spacing: -0.07em;
   font-weight: 800;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
   font-variant-numeric: tabular-nums;
 }
 .hz-big small {
@@ -538,7 +538,7 @@ a.hz-stat:hover {
   top: 0;
   width: 100%;
   height: 4px;
-  background: var(--hz-green);
+  background: var(--hz-mark);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--hz-ease);
@@ -584,7 +584,7 @@ a.hz-stat:hover {
 }
 .hz-feat:hover .go {
   transform: translateX(4px);
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .hz-feat.lead {
   color: var(--hz-on-ink);
@@ -645,9 +645,9 @@ a.hz-stat:hover {
   font-weight: 800;
   color: var(--hz-ink);
 }
-/* The green strike, drawn across the claim when it arrives. */
+/* The accent strike, drawn across the claim when it arrives. */
 .hz-not h3 span {
-  background: linear-gradient(var(--hz-green), var(--hz-green)) no-repeat 0 58% / 100% 0.12em;
+  background: linear-gradient(var(--hz-mark), var(--hz-mark)) no-repeat 0 58% / 100% 0.12em;
 }
 .hz-motion .hz-not h3 span {
   background-size: 0% 0.12em;
@@ -668,7 +668,7 @@ a.hz-stat:hover {
   gap: 12px 28px;
   margin-top: clamp(36px, 4vw, 56px);
   padding: 22px 26px;
-  border-left: 8px solid var(--hz-green);
+  border-left: 8px solid var(--hz-mark);
   background: var(--hz-card);
 }
 .hz-warn b {
@@ -759,7 +759,7 @@ a.hz-stat:hover {
 }
 .hz-next a:hover .go {
   transform: translate(3px, -3px);
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 
 /* ---- narrow ---------------------------------------------------------------------------- */

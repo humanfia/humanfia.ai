@@ -157,7 +157,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
 }
 
 .lit-record .w-promote {
-  stroke: var(--kd-green);
+  stroke: var(--kd-mark);
 }
 
 .node,
@@ -200,7 +200,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
 .now-research .n-research,
 .now-contract .n-contract {
   transform: scale(1.06);
-  box-shadow: 6px 6px 0 var(--kd-green);
+  box-shadow: 6px 6px 0 var(--kd-mark);
 }
 
 .stamp {
@@ -219,15 +219,15 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
 }
 
 .lit-ring .s-refuse {
-  color: var(--kd-green-text);
-  border-color: var(--kd-green);
+  color: var(--kd-mark-text);
+  border-color: var(--kd-mark);
   transform: rotate(-4deg);
 }
 
 .lit-record .s-promote {
-  color: var(--kd-on-green);
-  background: var(--kd-green);
-  border: 1.5px solid var(--kd-green);
+  color: var(--kd-on-fill);
+  background: var(--kd-mark);
+  border: 1.5px solid var(--kd-mark);
   transform: rotate(-4deg);
 }
 
@@ -240,7 +240,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
   width: 14px;
   height: 14px;
   margin: -7px 0 0 -7px;
-  background: var(--kd-green);
+  background: var(--kd-mark);
   opacity: 0;
   pointer-events: none;
 }
@@ -319,7 +319,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
 }
 
 .ledger.now {
-  box-shadow: 6px 6px 0 var(--kd-green);
+  box-shadow: 6px 6px 0 var(--kd-mark);
 }
 
 .loop-steps {
@@ -350,7 +350,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
 .step-n {
   font-size: 12px;
   font-weight: 600;
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .step h3 {

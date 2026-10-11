@@ -34,8 +34,8 @@ interface Record {
   max?: number
   /** meter: the bar the value is held to. */
   floor?: { value: number; label: string }
-  /** blocks: how many, and how many in green. */
-  blocks?: { count: number; label: string; green?: boolean }[]
+  /** blocks: how many, and how many in accent. */
+  blocks?: { count: number; label: string; accent?: boolean }[]
   /** prs: the pull requests, each a link. */
   prs?: { label: string; href: string; text: string }[]
 }
@@ -122,7 +122,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
       <div v-else-if="r.viz === 'blocks' && r.blocks" class="rec-blocks" aria-hidden="true">
         <div v-for="b in r.blocks" :key="b.label" class="block-group">
           <div class="block-row">
-            <i v-for="k in b.count" :key="k" :class="{ green: b.green }" :style="{ '--d': `${k * 18}ms` }" />
+            <i v-for="k in b.count" :key="k" :class="{ accent: b.accent }" :style="{ '--d': `${k * 18}ms` }" />
           </div>
           <span class="kd-mono">{{ b.label }}</span>
         </div>
@@ -194,7 +194,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
   grid-column: span 2;
 }
 
-/* The green rule that draws across the top of the record under the pointer. */
+/* The accent rule that draws across the top of the record under the pointer. */
 .rec::before {
   content: '';
   position: absolute;
@@ -202,7 +202,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
   left: -1px;
   right: -1px;
   height: 4px;
-  background: var(--kd-green);
+  background: var(--kd-mark);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--kd-ease);
@@ -232,7 +232,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 
 .wide .rec-value {
   font-size: clamp(64px, 7.5vw, 112px);
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .rec-unit {
@@ -255,7 +255,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
   padding-top: 18px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .rec-more span {
@@ -282,7 +282,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 
 .rec-climb path {
   fill: none;
-  stroke: var(--kd-green);
+  stroke: var(--kd-mark);
   stroke-width: 3;
   vector-effect: non-scaling-stroke;
 }
@@ -332,7 +332,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 }
 
 .cell-grid i.lit {
-  background: var(--kd-green);
+  background: var(--kd-mark);
   outline: none;
 }
 
@@ -396,7 +396,7 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 }
 
 .bar-fill.us {
-  background: var(--kd-green);
+  background: var(--kd-mark);
 }
 
 .kd-motion .bar-fill {
@@ -446,8 +446,8 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
   background: var(--kd-fg-3);
 }
 
-.block-row i.green {
-  background: var(--kd-green);
+.block-row i.accent {
+  background: var(--kd-mark);
 }
 
 .kd-motion .block-row i {
@@ -492,11 +492,11 @@ const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`
 }
 
 .rec-board li.us span:first-child {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
 }
 
 .rec-prs li span:first-child {
-  color: var(--kd-green-text);
+  color: var(--kd-mark-text);
   font-weight: 600;
 }
 

@@ -81,7 +81,7 @@ const REPO = 'https://github.com/humanfia/hoa-qed'
   text-decoration: none !important;
 }
 .hr-glyph {
-  color: var(--k-green-text, var(--hf-green-deep));
+  color: var(--k-mark-text, var(--hf-cyan-deep));
 }
 .hr-tree ul {
   margin: 0;
@@ -105,7 +105,7 @@ const REPO = 'https://github.com/humanfia/hoa-qed'
 .hr-tree li a:hover,
 .hr-tree li a:focus-visible {
   background: var(--k-bg-alt);
-  border-left-color: var(--k-green);
+  border-left-color: var(--k-mark);
 }
 .hr-branch {
   color: var(--k-ink-3);
@@ -155,7 +155,7 @@ const REPO = 'https://github.com/humanfia/hoa-qed'
 }
 .hr-runs {
   padding: 14px 16px 16px;
-  border-top-color: var(--k-green);
+  border-top-color: var(--k-mark);
   background: var(--k-bg-alt);
 }
 

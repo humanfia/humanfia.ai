@@ -57,8 +57,8 @@ onBeforeUnmount(() => io?.disconnect())
 
 <style scoped>
 .vis {
-  --ink: #1b1720;
-  --paper: #efe4e9;
+  --ink: #141a1f;
+  --paper: #e8f0f2;
   position: relative;
   overflow: hidden;
   padding: 120px 0 110px;
@@ -67,8 +67,8 @@ onBeforeUnmount(() => io?.disconnect())
   isolation: isolate;
 }
 .dark .vis {
-  --ink: #efe4e9;
-  --paper: #1b1720;
+  --ink: #e8f0f2;
+  --paper: #141a1f;
 }
 .vis-plane {
   position: absolute;
@@ -120,7 +120,7 @@ onBeforeUnmount(() => io?.disconnect())
   font: 700 12px/1.3 var(--vp-font-family-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .vis-title {
   margin: 0;
@@ -132,7 +132,7 @@ onBeforeUnmount(() => io?.disconnect())
   padding: 0;
 }
 .vis-title span {
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .vis-scale {
   display: grid;
@@ -175,7 +175,7 @@ onBeforeUnmount(() => io?.disconnect())
   margin: 8px 0 0;
   font: italic 800 clamp(36px, 6vw, 72px) / 1 var(--vp-font-family-base);
   letter-spacing: -0.03em;
-  color: var(--hf-green-deep);
+  color: var(--hf-cyan-deep);
 }
 .vis-note {
   margin: 28px 0 0;

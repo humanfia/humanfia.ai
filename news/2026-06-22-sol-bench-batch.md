@@ -67,7 +67,7 @@ baseline to set our count against any rival's.
   kicker="First places by collection · v1.1 · 5 October 2026"
   label="First places by collection. L1: Databricks 22, SF Tensor 9, Infinigence 39, Geometric 7. L2: 36, 18, 0, 4. Quantization: 7, 10, 0, 10. FlashInfer-Bench: 6, 10, 0, 3. In all: 71, 47, 39, 24."
   :series="[
-    { key: 'us', label: 'Databricks · KDA', tone: 'green' },
+    { key: 'us', label: 'Databricks · KDA', tone: 'accent' },
     { key: 'sf', label: 'SF Tensor', tone: 'ink' },
     { key: 'inf', label: 'Infinigence AI', tone: 'grey' },
     { key: 'geo', label: 'Geometric', tone: 'pale', hatched: true },
@@ -131,13 +131,13 @@ watching it.
     <text class="ink" x="335" y="26" text-anchor="middle">8 × B200</text>
   </g>
   <g data-step="3" data-pop>
-    <rect class="green" x="540" y="80" width="110" height="80" />
-    <text class="on-green t-lg" x="595" y="126" text-anchor="middle">board</text>
+    <rect class="accent" x="540" y="80" width="110" height="80" />
+    <text class="on-accent t-lg" x="595" y="126" text-anchor="middle">board</text>
   </g>
   <path id="sol-in" class="line dash" d="M120 120 H200" data-step="2" data-draw />
   <path id="sol-out" class="line dash" d="M470 120 H540" data-step="3" data-draw />
   <rect class="ink" x="-6" y="-6" width="12" height="12" data-step="2" data-travel="#sol-in" data-loop />
-  <rect class="green" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#sol-out" data-loop />
+  <rect class="accent" x="-6" y="-6" width="12" height="12" data-step="3" data-travel="#sol-out" data-loop />
 </AnimatedDiagram>
 
 That changes which problems are worth attacking. A kernel that would take an engineer three

@@ -15,6 +15,6 @@
 <!-- No width/height on purpose: the nav sizes the mark by height and the hero by its box. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 108" role="img" aria-labelledby="humanfia-logo-title">
   <title id="humanfia-logo-title">Humanfia</title>
-  <path class="h" fill="#1b1720" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
+  <path class="h" fill="#141a1f" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
   <circle class="dot" fill="#76b900" cx="84" cy="12" r="12"/>
 </svg>

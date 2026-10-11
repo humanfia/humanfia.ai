@@ -18,8 +18,8 @@ import cairosvg
 ROOT = Path(__file__).resolve().parent.parent
 
 # The palette, from .vitepress/theme/style.css. Keep in step with it.
-INK = "#1b1720"
-PAPER = "#efe4e9"
+INK = "#141a1f"
+PAPER = "#e8f0f2"
 GREEN = "#76b900"  # the dark mode's green: the icon is the mark on ink
 
 # Sizes: 180 is what iOS asks for, 192 and 512 are what a web app manifest asks for.

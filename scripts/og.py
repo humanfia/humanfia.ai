@@ -22,11 +22,13 @@ import cairosvg
 ROOT = Path(__file__).resolve().parent.parent
 
 # The palette, from .vitepress/theme/style.css. Keep in step with it.
-INK = "#1b1720"
-INK_2 = "#4b4452"
-INK_3 = "#766e7c"
-PAPER = "#efe4e9"
-PAPER_LIGHT = "#f7f0f3"
+INK = "#141a1f"
+INK_2 = "#435058"
+INK_3 = "#5d6a72"
+PAPER = "#e8f0f2"
+# The disc behind the H: the site's cyan at a whisper on the paper, as the home page draws it.
+DISC = "#d3ebef"
+PAPER_LIGHT = "#f4f8f9"
 GREEN = "#76b900"
 
 W, H = 1200, 630
@@ -80,7 +82,7 @@ def construction(x: float, y: float, height: float) -> str:
             f'x2="{78 + math.cos(a) * 82:.2f}" y2="{30 + math.sin(a) * 82:.2f}"/>'
         )
     return f"""<g transform="translate({x} {y}) scale({s})">
-    <circle cx="78" cy="30" r="70" fill="{PAPER}"/>
+    <circle cx="78" cy="30" r="70" fill="{DISC}"/>
     <g {hair}><circle cx="78" cy="30" r="82"/>{"".join(ticks)}
       <line x1="-24" y1="0" x2="200" y2="0"/><line x1="-24" y1="108" x2="200" y2="108"/>
       <line x1="24" y1="-50" x2="24" y2="150"/><line x1="72" y1="-50" x2="72" y2="150"/>

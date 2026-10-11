@@ -11,7 +11,7 @@ export interface Series {
   id: string
   label: string
   points: Point[]
-  /** Which of the six chart inks to draw in: 0 is the green, kept for the flow the chart is about. */
+  /** Which of the six chart inks to draw in: 0 is the accent, kept for the flow the chart is about. */
   tone: number
 }
 
