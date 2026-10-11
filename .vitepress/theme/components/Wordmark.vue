@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // The name, drawn rather than typed: the H, then "humanfia" in the same stems and bars, and one
-// green circle that belongs to both. It rests as the dot of the i. Every so often -- the first time
-// the wordmark is on screen, when a pointer comes to it, and then on a slow loop while it stays in
-// view -- it hops across the word into the slot over the H's right stem, waits there, and hops
+// green circle that belongs to both. It rests as the dot of the i. On its own -- the first time
+// the wordmark is on screen, and then on a loop a few seconds apart while it stays in view, with
+// no pointer needed -- and at once when a pointer comes to it, it hops across the word into the slot over the H's right stem, waits there, and hops
 // back. Either resting place is a finished lockup: the H is complete without its circle, and the
 // i is a plain stem without its dot.
 //
@@ -139,11 +139,19 @@ function play(segments: Segment[]) {
   raf = requestAnimationFrame(frame)
 }
 
-/** The slow loop: the next round trip a while after the last one ended, only while on screen. */
+/** The loop: the next round trip a few seconds after the last one ended, only while on screen. */
 function schedule() {
   clearTimeout(timer)
   if (!props.loop || !visible) return
-  timer = setTimeout(() => play(roundTrip(2.6)), 9000)
+  timer = setTimeout(() => play(roundTrip(2.6)), 4000)
+}
+
+/** The first round trip, shortly after the wordmark is first on screen. */
+function first() {
+  if (seen) return
+  seen = true
+  clearTimeout(timer)
+  timer = setTimeout(() => play(roundTrip(2.2)), 900)
 }
 
 /** A pointer arriving is answered at once, with a shorter wait at the H. */
@@ -155,15 +163,17 @@ onMounted(() => {
   still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   draw(rest(AT_I))
   if (still || !root.value) return
+  // Started from where the wordmark is, rather than waiting on the observer's first report, which
+  // a browser may hold back -- in the nav it is on screen from the first frame.
+  const box = root.value.getBoundingClientRect()
+  visible = box.bottom > 0 && box.top < innerHeight && box.width > 0
+  if (visible) first()
   io = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting
     if (!visible) return clearTimeout(timer)
     if (raf) return
-    if (!seen) {
-      seen = true
-      clearTimeout(timer)
-      timer = setTimeout(() => play(roundTrip(2.2)), 900)
-    } else schedule()
+    if (!seen) first()
+    else schedule()
   })
   io.observe(root.value)
 })
