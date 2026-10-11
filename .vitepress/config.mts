@@ -89,9 +89,9 @@ export default defineConfig({
     // onto its own background, so these are drawn on ink by scripts/icons.py.
     ['link', { rel: 'apple-touch-icon', href: '/icon-180.png', sizes: '180x180' }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-    // The mark's own ink, not the red: this tints the browser chrome around the page, and a red
+    // The mark's own ink, not the pink: this tints the browser chrome around the page, and a pink
     // bar over a paper page would shout louder than anything on it.
-    ['meta', { name: 'theme-color', content: '#16161a' }],
+    ['meta', { name: 'theme-color', content: '#1b1720' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Humanfia' }],
     ['meta', { property: 'og:image', content: `${HOSTNAME}/og.png` }],

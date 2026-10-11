@@ -175,7 +175,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   right: 0;
   top: -2px;
   height: 6px;
-  background: var(--hz-red);
+  background: var(--hz-pink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.6s var(--hz-ease);
@@ -190,7 +190,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   transform: scaleX(1);
 }
 .md-steps button.on span {
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 
 .md-body {
@@ -232,8 +232,8 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
 }
 .md-line.hot {
   opacity: 1;
-  border-left-color: var(--hz-red);
-  background: color-mix(in srgb, var(--hz-red) 10%, transparent);
+  border-left-color: var(--hz-pink);
+  background: color-mix(in srgb, var(--hz-pink) 10%, transparent);
 }
 .md-pre.md-exec {
   padding: 14px 0;
@@ -249,11 +249,11 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   transition: background-color 0.35s, border-color 0.35s;
 }
 .md-exec code span {
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .md-exec code.hot {
-  border-left-color: var(--hz-red);
-  background: color-mix(in srgb, var(--hz-red) 10%, transparent);
+  border-left-color: var(--hz-pink);
+  background: color-mix(in srgb, var(--hz-pink) 10%, transparent);
   color: var(--hz-ink);
 }
 
@@ -286,7 +286,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
   fill: #fff;
 }
 .md-art .red {
-  fill: var(--hz-red);
+  fill: var(--hz-pink);
 }
 .md-art .grey {
   fill: var(--hz-ink-3);
@@ -360,7 +360,7 @@ const st = (n: number) => ({ shown: step.value >= n, now: step.value === n })
 .md-said b {
   flex: none;
   font: 700 12px/1.9 var(--hz-mono);
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 
 @media (max-width: 960px) {

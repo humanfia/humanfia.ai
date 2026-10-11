@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   The Humanfia H, dark mode. Identical geometry to logo.svg: the ink becomes the warm paper it is
-  printed on in the light, and the red is lifted a step so it holds its weight on a dark page.
+  printed on in the light, and the pink is lifted a step so it holds its weight on a dark page.
   (No double hyphen in an XML comment.)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 108" role="img" aria-labelledby="humanfia-logo-dark-title">
   <title id="humanfia-logo-dark-title">Humanfia</title>
-  <path class="h" fill="#ece6da" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
-  <circle class="dot" fill="#ff5a43" cx="84" cy="12" r="12"/>
+  <path class="h" fill="#efe4e9" d="M0 0H24V50L96 26V108H72V55L24 71V108H0Z"/>
+  <circle class="dot" fill="#ff8fbd" cx="84" cy="12" r="12"/>
 </svg>

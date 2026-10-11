@@ -147,17 +147,17 @@ const total = k
   font: 600 13px/1.4 var(--vp-font-family-mono);
 }
 .dt-out.last {
-  background: var(--hf-red);
+  background: var(--hf-pink);
   color: #fff;
 }
 .dark .dt-out.last {
-  background: var(--hf-red-press);
+  background: var(--hf-pink-press);
 }
 @keyframes dt-pulse {
   0%,
   22% {
-    border-color: var(--hf-red);
-    box-shadow: 5px 5px 0 var(--hf-red);
+    border-color: var(--hf-pink);
+    box-shadow: 5px 5px 0 var(--hf-pink);
     transform: translate(-2px, -2px);
   }
   30%,

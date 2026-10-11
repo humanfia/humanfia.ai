@@ -132,7 +132,7 @@ const day = (iso: string) => iso.slice(0, 10)
 .sq {
   width: 9px;
   height: 9px;
-  background: var(--flow-red);
+  background: var(--flow-pink);
 }
 
 .v {

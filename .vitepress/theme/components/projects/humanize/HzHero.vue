@@ -127,7 +127,7 @@ const copyLift = computed(() =>
   right: -60%;
   top: 46%;
   height: 132px;
-  background: var(--hz-red);
+  background: var(--hz-pink);
   opacity: 0.12;
   transform: rotate(-24deg);
   pointer-events: none;
@@ -151,7 +151,7 @@ const copyLift = computed(() =>
   color: var(--hz-ink);
 }
 .hero-title span {
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .hero-copy .hz-lead {
   margin-top: 26px;
@@ -204,7 +204,7 @@ const copyLift = computed(() =>
 }
 .hero-line code span {
   margin-right: 10px;
-  color: var(--hz-red);
+  color: var(--hz-pink);
   user-select: none;
 }
 .hero-copy-btn {
@@ -220,7 +220,7 @@ const copyLift = computed(() =>
 }
 .hero-copy-btn:hover,
 .hero-copy-btn.done {
-  background: var(--hz-red);
+  background: var(--hz-pink);
   color: #fff;
 }
 

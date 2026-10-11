@@ -211,18 +211,18 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
   /* The six inks a chart may use, all from the site's palette. The red is the flow the figure
      is about; the rest are ink, a warm grey, ochre, the old blue and a mid grey, told apart by
      dash as well as by colour so the chart still reads in greyscale. */
-  --dc-0: var(--hf-red);
+  --dc-0: var(--hf-pink);
   --dc-1: var(--vp-c-text-1);
-  --dc-2: #b07a12;
+  --dc-2: #a8730f;
   --dc-3: var(--hf-blue);
   --dc-4: var(--vp-c-text-3);
-  --dc-5: #7a5a8c;
+  --dc-5: #8a6bd1;
   margin: 18px 0 8px;
 }
 .dark .dc {
-  --dc-2: #e0aa48;
+  --dc-2: #f2c55c;
   --dc-3: var(--hf-blue-light);
-  --dc-5: #b49ac4;
+  --dc-5: #b9a2f2;
 }
 .t0 { --c: var(--dc-0); }
 .t1 { --c: var(--dc-1); }
@@ -279,7 +279,7 @@ const flip = computed(() => reading.value !== null && reading.value.px > W.value
   touch-action: pan-y;
 }
 .dc-svg:focus-visible {
-  outline: 2px solid var(--hf-red);
+  outline: 2px solid var(--hf-pink);
   outline-offset: 4px;
 }
 .dc-grid line {

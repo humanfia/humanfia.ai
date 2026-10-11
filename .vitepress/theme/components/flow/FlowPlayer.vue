@@ -485,7 +485,7 @@ onUnmounted(() => {
   width: 8px;
   height: 8px;
   margin-top: -4px;
-  background: var(--flow-red);
+  background: var(--flow-pink);
 }
 
 .sim {

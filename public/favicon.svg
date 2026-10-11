@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   The H from logo.svg, centred in a square with enough room to survive a 16px tab strip. A favicon
-  cannot ask VitePress which theme is on, so it asks the operating system: ink and red on a light
-  system, paper and a lifted red on a dark one. The gap under the circle is opened a little here
+  cannot ask VitePress which theme is on, so it asks the operating system: ink and pink on a light
+  system, paper and a lifted pink on a dark one. The gap under the circle is opened a little here
   (the circle sits two units higher) because at 16px the real one closes up into a smudge.
   (No double hyphen in an XML comment: a browser rejects the whole file over one.)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="humanfia-favicon-title">
   <title id="humanfia-favicon-title">Humanfia</title>
   <style>
-    .h { fill: #16161a; }
-    .dot { fill: #d6331f; }
+    .h { fill: #1b1720; }
+    .dot { fill: #d9508c; }
     @media (prefers-color-scheme: dark) {
-      .h { fill: #ece6da; }
-      .dot { fill: #ff5a43; }
+      .h { fill: #efe4e9; }
+      .dot { fill: #ff8fbd; }
     }
   </style>
   <g transform="translate(8 4) scale(0.5)">

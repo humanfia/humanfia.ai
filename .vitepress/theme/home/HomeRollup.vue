@@ -136,7 +136,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   font: 700 12px/1.3 var(--vp-font-family-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--hf-red-deep);
+  color: var(--hf-pink-deep);
 }
 .ru-title {
   margin: 0;
@@ -151,7 +151,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   margin: 0;
 }
 .ru-span div {
-  border-left: 6px solid var(--hf-red);
+  border-left: 6px solid var(--hf-pink);
   padding-left: 12px;
 }
 .ru-span dt {
@@ -176,7 +176,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   cursor: pointer;
 }
 .ru-switch input {
-  accent-color: var(--hf-red);
+  accent-color: var(--hf-pink);
   width: 16px;
   height: 16px;
 }
@@ -196,7 +196,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   padding-top: 12px;
 }
 .ru-col:nth-child(2) {
-  border-top-color: var(--hf-red);
+  border-top-color: var(--hf-pink);
 }
 .ru-name {
   display: flex;
@@ -214,7 +214,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   color: var(--vp-c-text-2);
 }
 .ru-name:hover b {
-  color: var(--hf-red-deep);
+  color: var(--hf-pink-deep);
 }
 .ru-col ul {
   margin: 10px 0 0;
@@ -232,7 +232,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   transition: background 0.2s, padding 0.2s;
 }
 a.ru-item:hover {
-  background: color-mix(in srgb, var(--hf-red) 8%, transparent);
+  background: color-mix(in srgb, var(--hf-pink) 8%, transparent);
   padding-left: 6px;
 }
 .ru-item b {
@@ -248,6 +248,6 @@ a.ru-item:hover {
   display: block;
   margin-top: 2px;
   font: normal 11px/1.3 var(--vp-font-family-mono);
-  color: var(--hf-red-deep);
+  color: var(--hf-pink-deep);
 }
 </style>

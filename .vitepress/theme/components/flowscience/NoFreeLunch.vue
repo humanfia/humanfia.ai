@@ -169,8 +169,8 @@ svg {
   transition: fill 0.4s;
 }
 .nfl-feasible.hit {
-  fill: color-mix(in srgb, var(--hf-red) 22%, transparent);
-  stroke: var(--hf-red);
+  fill: color-mix(in srgb, var(--hf-pink) 22%, transparent);
+  stroke: var(--hf-pink);
   stroke-dasharray: none;
 }
 .nfl-tag {
@@ -188,8 +188,8 @@ svg {
   stroke-width: 1.8;
 }
 .nfl-try.ok circle {
-  fill: var(--hf-red);
-  stroke: var(--hf-red);
+  fill: var(--hf-pink);
+  stroke: var(--hf-pink);
 }
 .nfl-try.ok path {
   stroke: #fff;
@@ -218,7 +218,7 @@ svg {
 }
 .nfl-checks li.on::before {
   content: '■ ';
-  color: var(--hf-red);
+  color: var(--hf-pink);
 }
 .nfl-land {
   fill: var(--vp-c-text-1);
@@ -240,7 +240,7 @@ svg {
 }
 .nfl-path {
   fill: none;
-  stroke: var(--hf-red);
+  stroke: var(--hf-pink);
   stroke-width: 1.5;
   stroke-dasharray: 3 3;
 }
@@ -248,17 +248,17 @@ svg {
   fill: var(--vp-c-text-1);
 }
 .nfl-dot.jump {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 .nfl-head {
-  fill: var(--hf-red);
+  fill: var(--hf-pink);
 }
 .nfl-legend li::before {
   content: '● ';
   color: var(--vp-c-text-1);
 }
 .nfl-legend li.jump::before {
-  color: var(--hf-red);
+  color: var(--hf-pink);
 }
 figcaption {
   margin-top: 10px;

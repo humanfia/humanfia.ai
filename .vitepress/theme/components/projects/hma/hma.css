@@ -20,8 +20,8 @@
   --m-bg: var(--vp-c-bg);
   --m-band: var(--vp-c-bg-alt);
   --m-card: var(--vp-c-bg-elv);
-  --m-red: var(--hf-red);
-  --m-red-text: var(--hf-red-deep);
+  --m-red: var(--hf-pink);
+  --m-red-text: var(--hf-pink-deep);
   --m-a: var(--flow-maker);
   --m-b: var(--flow-partner);
   --m-mono: var(--vp-font-family-mono);
@@ -1490,7 +1490,7 @@
 .hma-cell.has:not(.diag) {
   border: 0;
   color: #fff;
-  background: color-mix(in srgb, #d6331f calc(var(--heat) * 100%), #6b4a44);
+  background: color-mix(in srgb, #d9508c calc(var(--heat) * 100%), #5e4a5c);
 }
 .hma-cell.on {
   z-index: 1;

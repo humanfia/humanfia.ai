@@ -181,14 +181,14 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
 }
 
 .ask button:focus-visible {
-  outline: 2px solid var(--flow-red);
+  outline: 2px solid var(--flow-pink);
   outline-offset: 2px;
 }
 
 .hint {
   margin: 0 0 16px;
   padding: 10px 14px;
-  border-left: 4px solid var(--flow-red);
+  border-left: 4px solid var(--flow-pink);
   background: var(--flow-panel);
   font-size: 13.5px;
   line-height: 1.6;

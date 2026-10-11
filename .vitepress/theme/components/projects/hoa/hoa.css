@@ -15,15 +15,15 @@
   --k-line: color-mix(in srgb, var(--hf-ink-k) 14%, transparent);
   --k-rule: color-mix(in srgb, var(--hf-ink-k) 5%, transparent);
   /* The red as a shape, and as text (deeper, for contrast on paper). */
-  --k-red: var(--hf-red);
-  --k-accent: var(--hf-red-deep);
+  --k-red: var(--hf-pink);
+  --k-accent: var(--hf-pink-deep);
   /* The editor plate: an ink sheet in the light, a raised one in the dark. */
   --k-plate: var(--hf-ink-k);
   --k-plate-ink: var(--hf-paper);
   --k-plate-2: var(--hf-paper-2);
   --k-plate-3: var(--hf-paper-3);
   --k-plate-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
-  --k-plate-red: var(--hf-red-on-ink);
+  --k-plate-red: var(--hf-pink-on-ink);
   --k-max: 1240px;
   --k-pad: clamp(20px, 5vw, 48px);
   --k-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -47,7 +47,7 @@
   --k-ink-3: var(--hf-paper-3);
   --k-line: color-mix(in srgb, var(--hf-paper) 14%, transparent);
   --k-rule: color-mix(in srgb, var(--hf-paper) 4%, transparent);
-  --k-accent: var(--hf-red);
+  --k-accent: var(--hf-pink);
   --k-plate: var(--hf-night);
 }
 

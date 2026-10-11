@@ -126,7 +126,7 @@ const label = computed(() =>
   --c: var(--hz-ink-2);
 }
 .flow {
-  --c: var(--hz-red);
+  --c: var(--hz-pink);
 }
 
 .ab-grid {
@@ -218,7 +218,7 @@ const label = computed(() =>
   letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--hz-red);
+  color: var(--hz-pink);
 }
 .ab-gain small {
   margin-top: 4px;
