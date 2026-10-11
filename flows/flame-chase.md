@@ -35,6 +35,17 @@ looking at. Give both roles the same model and they are still two agents, which 
 
 If one of the two should judge rather than work, use [rlar](/flows/rlar).
 
+## The name
+
+The name comes from Amphoreus (翁法罗斯), a world in *Honkai: Star Rail*. There the Chrysos
+Heirs (黄金裔) set out on the Flame-Chase Journey (逐火之旅) to take the Coreflames back from
+the Titans and re-create the world (再创世). The world goes round again and again, an eternal
+recurrence (永劫回归), and each time the Heirs take up the journey anew.
+
+The flow keeps that shape. The chasers take up the task in turn, each turn starts afresh with
+no memory of the last, and what one leaves in the repository is where the next begins. Nor
+does the loop stop itself: only the budget, or three failures in a row, ends it.
+
 ## Roles and params
 
 | Role | What it is | How it is filled | |
