@@ -13,25 +13,25 @@ const RULES = [
     big: '≤ 5',
     unit: 'accepted',
     title: 'A turn ends after five accepted submissions',
-    body: 'The first agent works in its own native harness, with its own tools and loop, until five accepted submissions, or until it stops by itself.',
+    body: 'Or sooner, if the agent stops. Each agent uses its own native harness.',
   },
   {
     big: 'New',
     unit: 'session',
     title: 'Each turn opens a fresh session',
-    body: 'The other agent opens a fresh session in the same workspace. The code, models, results and candidates carry over. The context does not.',
+    body: 'The other agent takes over the same workspace.',
   },
   {
     big: '6',
     unit: 'hours',
     title: 'Both agents share one six-hour budget',
-    body: 'The two keep alternating inside one six-hour budget per task, the same budget each of them gets alone.',
+    body: 'The same budget each agent gets alone.',
   },
   {
     big: '15',
     unit: 'minutes',
     title: 'A final review picks one accepted candidate',
-    body: 'The last fifteen minutes pick one candidate that was already accepted. Neither agent ever sees a private test score.',
+    body: 'No agent ever sees a private test score.',
   },
 ]
 
@@ -79,11 +79,6 @@ const front = ref<'relay' | 'long'>('relay')
       <div class="hma-section-head" v-reveal>
         <p class="hma-kicker"><span class="hma-num">01</span> How it works</p>
         <h2 id="how-it-works-h" class="hma-h2">Each turn hands over the workspace but not the context</h2>
-        <p class="hma-lead">
-          A long-running agent improves more and more slowly, and the harness built round one model
-          matters less as the model gets better. So HMA adds no new harness. It coordinates two
-          agents across sessions.
-        </p>
       </div>
 
       <ol class="hma-rules">
@@ -120,10 +115,7 @@ const front = ref<'relay' | 'long'>('relay')
               <dd>The second model searches differently from the first.</dd>
             </div>
           </dl>
-          <p class="hma-fine">
-            No task-specific prior knowledge is added. The paper models the process as a
-            context-reset semi-Markov process.
-          </p>
+          <p class="hma-fine">No task-specific knowledge is added.</p>
         </div>
 
         <figure class="hma-curve flow-ui" :class="`front-${front}`" v-reveal="120">

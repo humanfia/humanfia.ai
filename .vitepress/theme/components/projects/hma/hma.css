@@ -1742,40 +1742,6 @@
 .hma-kaggle {
   border-top: 1px solid var(--m-line);
 }
-.hma-diffs {
-  border-top: 2px solid var(--m-ink);
-}
-.hma-diffs-head,
-.hma-diffs-row {
-  display: grid;
-  grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--m-line);
-}
-.hma-diffs-head span {
-  font-family: var(--m-mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--m-ink-3);
-}
-.hma-diffs-head span:last-child {
-  color: var(--m-mark-text);
-}
-.hma-diffs-row span {
-  font-size: 15.5px;
-  line-height: 1.55;
-  color: var(--m-ink-2);
-}
-.hma-diffs-row span:first-child {
-  font-weight: 800;
-  color: var(--m-ink);
-}
-.hma-diffs-row span:last-child {
-  color: var(--m-ink);
-}
 
 .hma-sub {
   margin-top: clamp(64px, 8vw, 104px);
@@ -2342,29 +2308,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .hma-diffs-head {
-    display: none;
-  }
-  .hma-diffs-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-  }
-  .hma-diffs-row span:nth-child(2)::before {
-    content: 'Kaggle · ';
-    font-family: var(--m-mono);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--m-ink-3);
-  }
-  .hma-diffs-row span:nth-child(3)::before {
-    content: 'HMA · ';
-    font-family: var(--m-mono);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--m-mark-text);
-  }
   .hma-dots {
     grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));
     gap: 4px;

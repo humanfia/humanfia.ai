@@ -13,7 +13,8 @@
 // move at all: the whole run is drawn at rest, and the scrubber still walks through it.
 //
 // The rules are the paper's (five accepted submissions a turn, six hours, a fifteen-minute
-// review); the lengths of the turns are a schematic, and the caption says so.
+// review); the lengths of the turns are a schematic, and the caption says so. The rules themselves
+// are spelt out once, in the How it works section below.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { Clock, prefersReducedMotion } from '../../../home/motion'
 
@@ -234,9 +235,6 @@ const status = computed(() => {
       <span class="relay-clock">{{ clockText }}</span>
       <span class="relay-count"><b>{{ accepted }}</b> accepted · session <b>{{ session }}</b></span>
     </div>
-    <figcaption class="relay-caption">
-      Turn lengths are illustrative. The rules are not: a turn ends after at most five accepted
-      submissions, or when the agent stops; the next one starts fresh in the same workspace.
-    </figcaption>
+    <figcaption class="relay-caption">Turn lengths are illustrative.</figcaption>
   </figure>
 </template>

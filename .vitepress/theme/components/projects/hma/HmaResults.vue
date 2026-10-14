@@ -42,18 +42,13 @@ const TICKS = [0, 25, 50, 75, 100]
       <div class="hma-section-head" v-reveal>
         <p class="hma-kicker"><span class="hma-num">02</span> MLE-bench · 75 tasks</p>
         <h2 id="results-h" class="hma-h2">The best pairing beats harnesses given up to four times as long</h2>
-        <p class="hma-lead">
-          The same two models, alone and taking turns, against two external harnesses with longer
-          budgets. Every number is a percentage over the same 75 tasks.
-        </p>
       </div>
 
       <aside class="hma-caveat" v-reveal>
-        <b>Self-reported.</b> These come from the
+        <b>Self-reported</b>, from the
         <a href="https://github.com/humanfia/hma#main-results" target="_blank" rel="noreferrer">repository's results table</a>.
-        The paper is not out yet, and the
-        <a href="https://github.com/openai/mle-bench#leaderboard" target="_blank" rel="noreferrer">official MLE-bench leaderboard</a>
-        has not reviewed these runs.
+        The paper is pending, and these runs are not on the
+        <a href="https://github.com/openai/mle-bench#leaderboard" target="_blank" rel="noreferrer">official MLE-bench leaderboard</a>.
       </aside>
 
       <div class="hma-ladder" v-reveal>
@@ -136,23 +131,22 @@ const TICKS = [0, 25, 50, 75, 100]
         <div class="hma-callout" v-reveal="0">
           <p class="big">+{{ gainOverBaselines(best)!.toFixed(1) }}<small>pts</small></p>
           <p>
-            Any-medal rate of the best pairing over the mean of its two single-agent runs
+            Best pairing over the mean of its two models alone
             (+{{ BEST_PCT_GAIN.toFixed(1) }} on mean percentile).
           </p>
         </div>
         <div class="hma-callout primary" v-reveal="90">
           <p class="big">+{{ AVERAGE_GAIN.toFixed(1) }}<small>pts</small></p>
           <p>
-            The average gain across all {{ PAIRINGS_EVALUATED }} pairings evaluated.
+            The average gain across all {{ PAIRINGS_EVALUATED }} pairings tested.
             <b>Use this one when comparing.</b>
           </p>
         </div>
         <div class="hma-callout" v-reveal="180">
           <p class="big">{{ orderGap.toFixed(1) }}<small>pts</small></p>
           <p>
-            What going first is worth: {{ best.values.medal }}% with Opus 5 first,
-            {{ reverse.values.medal }}% with GPT-5.6-sol first. Reporting only the better order
-            would overstate the result.
+            The gap between orders: {{ best.values.medal }}% with Opus 5 first,
+            {{ reverse.values.medal }}% with GPT-5.6-sol first.
           </p>
         </div>
       </div>

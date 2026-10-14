@@ -61,10 +61,8 @@ const name = (id: string) => {
           Taking turns beats <span class="hma-accent">either agent alone</span>
         </h1>
         <p class="hma-lead">
-          Two native coding agents alternate over one shared machine-learning workspace, each turn a
-          fresh session. On 75 MLE-bench tasks in six hours, the pair medals on {{ TARGET }}% of them;
-          {{ byId('opus').agents[0] }} alone manages {{ byId('opus').values.medal }}%, and
-          {{ byId('gpt').agents[0] }} alone {{ byId('gpt').values.medal!.toFixed(1) }}%.
+          Two coding agents take turns in one shared workspace, each turn in a fresh session. On 75
+          MLE-bench tasks in six hours, the pair won a medal on {{ TARGET }}% of them.
         </p>
         <div class="hma-actions">
           <a class="hma-btn primary" href="https://github.com/humanfia/hma" target="_blank" rel="noreferrer">humanfia/hma ↗</a>
@@ -82,8 +80,7 @@ const name = (id: string) => {
           <span class="hma-board-num" aria-hidden="true">{{ live.toFixed(1) }}<small>%</small></span>
           <span class="hma-sr">{{ TARGET }}% any-medal rate.</span>
           <span class="hma-board-said">
-            <b>#1</b> of the five on this board, with Opus 5 going first and GPT-5.6-sol second, in
-            a six-hour budget.
+            <b>#1</b> of five. Opus 5 goes first, GPT-5.6-sol second, in six hours.
           </span>
         </p>
         <ol class="hma-board-rows" :style="{ '--rows': rows.length }" aria-label="Any-medal rate, best first">
@@ -105,8 +102,7 @@ const name = (id: string) => {
           </li>
         </ol>
         <p class="hma-board-foot">
-          <b>+{{ gain.toFixed(1) }} pts</b> over the mean of the same two models working alone.
-          ScienceFlow and MLEvolve had 24 h and 12 h.
+          <b>+{{ gain.toFixed(1) }} pts</b> over the mean of the two models alone.
         </p>
       </div>
     </div>
