@@ -410,6 +410,13 @@
 .h-manifesto-acts li.last {
   color: var(--hf-cyan-deep);
 }
+.h-manifesto-why {
+  margin: 28px 0 0;
+  max-width: 42ch;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.5;
+  color: var(--h-ink-2);
+}
 .h-manifesto-replay {
   display: inline-flex;
   align-items: center;

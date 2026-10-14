@@ -1,10 +1,15 @@
 <script setup lang="ts">
-// The manifesto, told as a picture rather than a paragraph, in three acts and four captions.
+// The manifesto, told as a picture rather than a paragraph, in three acts with one caption each,
+// and a sentence of reason that comes up once the last act is over.
 //
-//   1. A model, upgraded twice. On its own the work it puts out rolls off and goes nowhere.
-//   2. A flow is drawn round it: a prompt goes in, a maker and a reviewer take turns on it, the
-//      reviewer sends the first attempt back, and a stop condition ends the loop.
-//   3. The work leaves the loop for a leaderboard that is not ours, and climbs it.
+//   1. "New model." A model, upgraded twice. On its own the work it puts out rolls off and goes
+//      nowhere.
+//   2. "Same flow." A flow is drawn round it: a prompt goes in, a maker and a reviewer take turns
+//      on it, the reviewer sends the first attempt back, and a stop condition ends the loop.
+//   3. "Better result." The work leaves the loop for a leaderboard that is not ours, and climbs it.
+//
+// The sentence says why the flow outlasts the model: it is how the agents are organised, not a
+// harness fitted to one model, so a stronger model only makes it stronger.
 //
 // The markup is the last frame, so the server-rendered page, a reader who asked for less motion
 // and a reader who scrolled past all see the whole argument; the timeline (GSAP) rewinds it to
@@ -17,12 +22,8 @@ import { gsap } from 'gsap'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { onFirstSight, prefersReducedMotion } from './motion'
 
-const CAPTIONS = [
-  'Models improve.',
-  'The flow makes the result.',
-  'Somebody else keeps the score.',
-  'We build the flow, in the open.',
-]
+// One caption per act, revealed by index in `build()`: keep the two in step.
+const CAPTIONS = ['New model.', 'Same flow.', 'Better result.']
 
 // The loop, in viewBox units: the model in the middle, the maker on the left, the reviewer at
 // the top, the stop condition on the right. The work goes round it clockwise.
@@ -158,7 +159,8 @@ function build() {
     8.2,
   )
 
-  t.fromTo(caption(3), { opacity: 0.16 }, { opacity: 1, duration: 0.6 }, 9.4)
+  // The reason comes last, once the picture has made the claim it explains.
+  t.fromTo(one('.h-manifesto-why'), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 9.4)
   return t
 }
 
@@ -212,6 +214,10 @@ onBeforeUnmount(() => {
         <ol class="h-manifesto-acts">
           <li v-for="(c, k) in CAPTIONS" :key="c" :class="{ last: k === CAPTIONS.length - 1 }">{{ c }}</li>
         </ol>
+        <p class="h-manifesto-why">
+          A flow is how agents are organised — who works, who checks, when to stop — rather than a
+          harness tuned to one model, so every new model makes it stronger.
+        </p>
         <button v-if="motion" class="h-manifesto-replay" type="button" @click="replay">
           <span aria-hidden="true">↻</span> Replay
         </button>

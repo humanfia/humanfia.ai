@@ -77,6 +77,7 @@ const verifiedOnly = ref(false)
 const columns = computed(() =>
   COLUMNS.map((c) => ({ ...c, items: c.items.filter((i) => !(verifiedOnly.value && i.reported)) })),
 )
+const total = COLUMNS.flatMap((c) => c.items).length
 const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).length
 </script>
 
@@ -85,8 +86,8 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
     <div class="ru-wrap">
       <header class="ru-head">
         <div>
-          <p class="ru-kicker">Achievements</p>
-          <h2 id="rollup-title" class="ru-title">One summer,<br />three agents.</h2>
+          <p class="ru-kicker">Results to date</p>
+          <h2 id="rollup-title" class="ru-title">{{ total }} results in olympiads, GPU kernels and machine learning</h2>
         </div>
         <dl class="ru-span">
           <div><dt>≈2</dt><dd>months, June to August 2026</dd></div>
@@ -140,8 +141,10 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
 }
 .ru-title {
   margin: 0;
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: 1;
+  max-width: 18ch;
+  font-size: clamp(30px, 4.4vw, 48px);
+  line-height: 1.05;
+  text-wrap: balance;
   letter-spacing: -0.035em;
   font-weight: 800;
 }
