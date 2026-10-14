@@ -128,16 +128,16 @@ gates:
 # How the loop works.
 loop:
   - stage: research
-    title: Research before writing.
+    title: Read the code, the profiler and prior art first.
     text: A profiler skill that turns an `ncu` report into something readable, a kernel wiki of techniques and prior art, and the repository itself. The plan is grounded in the code and the hardware, not a hunch.
   - stage: contract
-    title: A contract, before any code.
+    title: Write down the objective and the bar to clear.
     text: The objective, the constraints, the validation command and the bar for promotion are written down first. Everything after is judged against it, so "it got faster" never quietly replaces "it got faster and is still correct".
   - stage: ring
-    title: Small iterations, each verified.
+    title: Validate and benchmark each iteration.
     text: Implement, validate, benchmark, profile, decide. A candidate that is faster because it is wrong stops at validation; one that clears the bar fixed in advance is promoted.
   - stage: record
-    title: A record that outlives the run.
+    title: Log every candidate, result and decision.
     text: Candidates, benchmark results, profiling evidence and promotion decisions are written down as the run goes, so another engineer can see what was tried, what passed, and why the winner won.
 
 # MLSys 2026 FlashInfer contest: the public release's own table
@@ -199,13 +199,13 @@ import KdaCoda from '../.vitepress/theme/components/projects/kda/KdaCoda.vue'
 
 <KdaHero />
 
-<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Scored by somebody else." lede="Contest harnesses, public leaderboards, and maintainers who did not ask for the kernels and still merged them. Every number links to its write-up.">
+<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Every record here was scored by an outside contest, leaderboard or maintainer." lede="Contest harnesses, public leaderboards, and maintainers who did not ask for the kernels and still merged them. Every number links to its write-up.">
 <template #figure>
 <KdaBoard :records="$frontmatter.records" />
 </template>
 </KdaSection>
 
-<KdaSection id="the-problem" n="02" kicker="The problem" title="Faster, and wrong, still reports a speedup." tone="alt" split>
+<KdaSection id="the-problem" n="02" kicker="The problem" title="An incorrect kernel can still report a speedup." tone="alt" split>
 
 Kernel work is the worst case for a coding agent and the best case for a good loop.
 
@@ -228,7 +228,7 @@ in what happens around the agent.**
 </template>
 </KdaSection>
 
-<KdaSection id="speedups-past-the-best-human-kernels" n="04" kicker="Speedups" title="Past the best human kernels." tone="ink" lede="In May, KDA placed on every track of the MLSys 2026 FlashInfer contest, and two of its five kernels were still slower than the baseline. With CuteDSL, a profiling skill and a better flow it went past the best human entries on all three. The model did not change.">
+<KdaSection id="speedups-past-the-best-human-kernels" n="04" kicker="Speedups" title="Ahead of the best human entries on all three MLSys 2026 tracks." tone="ink" lede="In May, KDA placed on every track of the MLSys 2026 FlashInfer contest, and two of its five kernels were still slower than the baseline. With CuteDSL, a profiling skill and a better flow it went past the best human entries on all three. The model did not change.">
 <template #figure>
 <KdaContest :tracks="$frontmatter.mlsys" />
 
@@ -236,7 +236,7 @@ in what happens around the agent.**
 </template>
 </KdaSection>
 
-<KdaSection id="kda-squared" n="05" kicker="KDA²" title="Then it optimised the kernel it is named after." lede="Kernel Design Agents on Kimi Delta Attention: the best result climbed from 1.61× to 2.96× over FlashKDA in eight weeks. Scroll to run the clock, or point at the chart to read any date.">
+<KdaSection id="kda-squared" n="05" kicker="KDA²" title="Kimi Delta Attention: from 1.61× to 2.96× over FlashKDA." lede="Kernel Design Agents on Kimi Delta Attention: the best result climbed from 1.61× to 2.96× over FlashKDA in eight weeks. Scroll to run the clock, or point at the chart to read any date.">
 <template #figure>
 <KdaClimb v-bind="$frontmatter.timeline" />
 
@@ -244,13 +244,13 @@ in what happens around the agent.**
 </template>
 </KdaSection>
 
-<KdaSection id="upstream-kernels-a-maintainer-merged" n="06" kicker="Upstream" title="Kernels a maintainer merged." tone="alt" lede="A serving framework is scored by maintainers who will reject a change that is slower on a shape nobody thought of, harder to maintain, or wrong. A kernel speedup is not a model speedup, and each pull request reports both.">
+<KdaSection id="upstream-kernels-a-maintainer-merged" n="06" kicker="Upstream" title="Kernels merged into SGLang by its maintainers." tone="alt" lede="A serving framework is scored by maintainers who will reject a change that is slower on a shape nobody thought of, harder to maintain, or wrong. A kernel speedup is not a model speedup, and each pull request reports both.">
 <template #figure>
 <KdaMerges v-bind="$frontmatter.upstream" />
 </template>
 </KdaSection>
 
-<KdaSection id="results-as-they-came-in" n="07" kicker="Results, as they came in" title="Every write-up.">
+<KdaSection id="results-as-they-came-in" n="07" kicker="Results, as they came in" title="Results by date, May to October 2026.">
 <template #figure>
 <ProjectTimeline
   kicker="KDA · every write-up"

@@ -35,13 +35,13 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
   <div class="hoa-root" :class="{ 'hf-motion': motion }">
     <HoaHero :links="fm.links" />
 
-    <HoaSection id="what-it-has-done" n="01" kicker="The record" title="Everything it has been pointed at, at the top of its scale.">
+    <HoaSection id="what-it-has-done" n="01" kicker="The record" title="Full marks on seven exams and the most first solves on Lean-Eval.">
       Eight exams and boards. Each grid is the exam's own count, one cell per problem, filled in when
       it is done. The tag says who did the checking, because it is not always Lean.
       <template #figure><HoaBoard :results="fm.results" /></template>
     </HoaSection>
 
-    <HoaSection id="putnambench-672-of-672" n="02" kicker="PutnamBench" title="672 of 672, and a four-way tie.">
+    <HoaSection id="putnambench-672-of-672" n="02" kicker="PutnamBench" title="Every PutnamBench problem proved, level with three other entries.">
       672 Putnam problems stated in Lean. In June the loop stood at 670; it has since closed the
       last two, and the PutnamBench team accepted all 672
       (<a href="https://github.com/trishullab/PutnamBench/pull/350" target="_blank" rel="noreferrer">#350</a>).
@@ -57,33 +57,33 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
       <template #figure><HoaLeanEval :entries="fm.leanEval" /></template>
     </HoaSection>
 
-    <HoaSection id="imo-2026-six-of-six-and-where-the-time-went" n="04" kicker="IMO 2026" title="Six of six, and where the time went.">
+    <HoaSection id="imo-2026-six-of-six-and-where-the-time-went" n="04" kicker="IMO 2026" title="All six IMO 2026 problems proved in Lean, on each of two backends.">
       Two workers on two backends each closed all six problems with proofs Lean accepts. Counted in
       API time, the minutes spent inside model calls, so a slow harness gets no credit for it.
       <template #figure><HoaImo :rows="fm.imo" /></template>
     </HoaSection>
 
-    <HoaSection id="what-counts-as-solved" n="05" kicker="What counts as solved" title="Five gates. The prover keeps none of them.">
+    <HoaSection id="what-counts-as-solved" n="05" kicker="What counts as solved" title="A proof counts only after five checks the prover does not control.">
       A problem counts only when its Lean file passes every gate, and the model that wrote the proof
       never decides whether it is accepted. Send a proof through.
       <template #figure><HoaGates /></template>
     </HoaSection>
 
-    <HoaSection id="what-this-is-really-testing" n="06" kicker="What this is really testing" title="Not a claim about models. A claim about loops.">
+    <HoaSection id="what-this-is-really-testing" n="06" kicker="What this is really testing" title="The same model proves 3 of 50 Putnam problems through the API and 50 inside a flow.">
       The models are the ones everybody has. What differs is the arrangement around them: who works
       and who reviews, what carries between attempts, when a line of attack is dropped. A formal
       verifier measures that, because it removes every way of being approximately right.
       <template #figure><HoaLoops :ablation="fm.ablation" :icho="fm.icho" /></template>
     </HoaSection>
 
-    <HoaSection id="where-the-code-is" n="07" kicker="Where the code is" title="One repository. Check it yourself.">
+    <HoaSection id="where-the-code-is" n="07" kicker="Where the code is" title="Every proof, flow and README is in one public repository.">
       All of HOA is
       <a href="https://github.com/humanfia/hoa-qed" target="_blank" rel="noreferrer">humanfia/hoa-qed</a>:
       one directory per competition or library, each with its own README and its history intact.
       <template #figure><HoaRepo :dirs="fm.repo" /></template>
     </HoaSection>
 
-    <HoaSection id="results-as-they-came-in" n="08" kicker="Results, as they came in" title="Every write-up, in order.">
+    <HoaSection id="results-as-they-came-in" n="08" kicker="Results, as they came in" title="Results by date, June to October 2026.">
       June to October 2026, from 670 on PutnamBench to five olympiads at full marks.
       <template #figure>
         <div v-reveal class="hoa-timeline">

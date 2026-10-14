@@ -1,6 +1,6 @@
 ---
 title: "HOA: Humanfia Olympiad Agents"
-description: Competition, olympiad and research mathematics solved by agents and machine-checked in Lean 4, plus physics, chemistry, biology, programming and quantum information. No rubric and no benefit of the doubt. Lean accepts the proof or it does not.
+description: Competition, olympiad and research mathematics solved by agents and machine-checked in Lean 4, plus physics, chemistry, biology, programming and quantum information. A proof counts only if the Lean kernel accepts it.
 tag: HOA
 # The whole page is one component (.vitepress/theme/components/projects/hoa/): its sections are
 # figures, not prose, so it is drawn full width with no sidebar, no outline and no .vp-doc. The
