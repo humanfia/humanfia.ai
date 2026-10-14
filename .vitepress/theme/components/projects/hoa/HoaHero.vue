@@ -132,11 +132,11 @@ const external = (href: string) => /^https?:/.test(href)
           <span class="hh-sub">Humanfia Olympiad Agents</span>
         </h1>
         <p class="hh-lead hh-in" style="--d: 0.3s">
-          Olympiad and research mathematics, solved by agents and checked by Lean&nbsp;4. Then
-          physics, chemistry, biology, programming and quantum information.
+          Agents solve olympiad and research mathematics, and Lean&nbsp;4 checks the proofs. They
+          also work on physics, chemistry, biology, programming and quantum information.
         </p>
         <p class="hh-rule hh-in" style="--d: 0.4s">
-          In mathematics there is no rubric and no partial credit: a proof counts only if the Lean kernel accepts it.
+          In mathematics a proof counts only if the Lean kernel accepts it. There is no partial credit.
         </p>
         <ul class="hh-links hh-in" style="--d: 0.5s">
           <li v-for="link in links" :key="link.href">

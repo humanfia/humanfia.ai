@@ -31,40 +31,40 @@ results:
     lean: true
     cells: 672
     filled: 672
-    note: Joint first on the official leaderboard, at $44.50 a problem. 670 at the June write-up.
+    note: Joint first on the official leaderboard, at $44.50 a problem. 670 in June.
     posts: [{ text: Aug 27, href: /news/2026-10-05-putnambench-672 }, { text: Jun 26, href: /news/2026-06-26-putnambench }]
   - id: leaneval
     name: Lean-Eval
     score: '30'
-    unit: first solves on LeanEval v1, the most of any entry
+    unit: first solves on LeanEval v1, the most
     grader: Lean · Comparator
     lean: true
     cells: 128
     filled: 79
     accent: 30
     legend: 79 of 128 solved · 30 of them first
-    note: Second by total, 79 to 80. 170 of 171 on the archive, and 249 distinct problems accepted across both, the most of any entry.
+    note: Second by total, 79 to 80. 170 of 171 on the archive; 249 distinct problems across both, the most of any entry.
     posts: [{ text: Oct 4, href: /news/2026-10-05-lean-eval-v1 }, { text: Aug 18, href: /news/2026-08-18-lean-eval-first }, { text: Jul 29, href: /news/2026-07-29-lean-eval-second }]
   - id: imo
     name: IMO 2026
     score: '6 / 6'
-    unit: problems, on two different backends
+    unit: problems, on two backends
     grader: Lean kernel
     lean: true
     cells: 6
     filled: 6
-    note: GPT-5.6 in 3.0× less API time than AxiomProver's reported run. Statements, both sets of solutions and the scripts are public, pinned to Lean 4.31.0.
+    note: GPT-5.6 used 3.0× less API time than AxiomProver's reported run. Statements, solutions and scripts are public, pinned to Lean 4.31.0.
     posts: [{ text: Jul 18, href: /news/2026-07-22-imo-2026 }]
   - id: ipho
     name: IPhO 2026 · theory
     score: '30 / 30'
-    unit: points, every theory subpart answered
+    unit: theory points
     grader: Our grading
     lean: false
     cells: 23
     filled: 23
     legend: 23 of 23 subparts
-    note: Graded by us against the official marking scheme, which the workers never saw. All 41 parts of the formal release are formalized in Lean.
+    note: Graded by us against the official marking scheme, unseen by the workers. All 41 formal-release parts are formalized in Lean.
     posts: [{ text: Sep 14, href: /news/2026-10-05-olympiads }, { text: Jul 29, href: /news/2026-07-29-physics-and-quantum }]
   - id: icho
     name: IChO 2026 · theory
@@ -74,7 +74,7 @@ results:
     lean: true
     cells: 68
     filled: 68
-    note: Formalization coverage, not answer accuracy. Without the review loop, the same model had 32 accepted. Two of GPT's targets are conditional.
+    note: Formalization coverage, not answer accuracy. 32 without the review loop. Two of GPT's targets are conditional.
     posts: [{ text: Sep 14, href: /news/2026-10-05-olympiads }]
   - id: ioi
     name: IOI 2026
@@ -84,17 +84,17 @@ results:
     lean: false
     cells: 6
     filled: 6
-    note: Judged on Codeforces' hidden tests. The repository compiles all six and replays every released example; the verdicts are not linked publicly.
+    note: Judged on Codeforces' hidden tests; the verdicts are not public. The repository replays every released example.
     posts: [{ text: Sep 14, href: /news/2026-10-05-olympiads }]
   - id: ibo
     name: IBO 2024 · theory
     score: '100 / 100'
-    unit: tasks; 400 of 400 verdicts match the key
+    unit: tasks; 400 of 400 verdicts match
     grader: Official key
     lean: false
     cells: 100
     filled: 100
-    note: Agreement with the answer key, not an official points total. Practical exams excluded, and the 2024 paper may be in a model's training data.
+    note: Agreement with the answer key, not an official points total. Practical exams excluded; the 2024 paper may be in training data.
     posts: [{ text: Sep 14, href: /news/2026-10-05-olympiads }]
   - id: qit
     name: QIT · QAlg
@@ -104,7 +104,7 @@ results:
     lean: true
     cells: 40
     filled: 40
-    note: Every task proved with no sorry. Semantic review is automated rather than an independent human audit. 37 at the July write-up.
+    note: Proved with no sorry. Semantic review is automated, not a human audit. 37 in July.
     posts: [{ text: Sep 14, href: /news/2026-10-05-olympiads }, { text: Jul 29, href: /news/2026-07-29-physics-and-quantum }]
 
 # PutnamBench: the official leaderboard data (trishullab/PutnamBench, docs/results.json), Lean
@@ -158,25 +158,26 @@ icho:
 
 # humanfia/hoa-qed, one directory per competition or library.
 repo:
-  - { dir: putnambench, text: 'The solver, the pinned statements and the scripts that re-run it' }
-  - { dir: imo2026, text: 'Formal statements, Lean solutions and the scripts that reproduce them' }
+  - { dir: putnambench, text: 'Solver, pinned statements and re-run scripts' }
+  - { dir: imo2026, text: 'Formal statements, Lean solutions and scripts' }
   - { dir: ioi2026, text: 'Problem packages, submissions and annotated solutions' }
-  - { dir: ipho2026, text: 'Natural-language solutions, grading reports and Lean formalizations' }
-  - { dir: icho2026, text: 'Lean formalizations, native /goal baselines and grading reports' }
+  - { dir: ipho2026, text: 'Solutions, grading reports and Lean formalizations' }
+  - { dir: icho2026, text: 'Lean formalizations, /goal baselines and grading reports' }
   - { dir: ibo2024, text: 'Worked theory solutions and grading evidence' }
-  - { dir: chemlib, text: 'Chemlib, a Lean 4 library for mathematical chemistry' }
+  - { dir: chemlib, text: 'A Lean 4 library for mathematical chemistry' }
   - { dir: lean-qit-qlg, text: 'QAlg and QIT: Lean formalizations and proofs' }
 
+# Each card's `note` replaces the post's standfirst on this page, so the cards stay one line long.
 timeline:
-  - { url: /news/2026-06-26-putnambench, metric: '670 / 672' }
-  - { url: /blog/2026-07-08-model-tool-flow, metric: '50 / 50' }
-  - { url: /news/2026-07-22-imo-2026, metric: '6 / 6' }
-  - { url: /news/2026-07-29-lean-eval-second, metric: '#2 · 149' }
-  - { url: /news/2026-07-29-physics-and-quantum, metric: '23 / 23' }
-  - { url: /news/2026-08-18-lean-eval-first, metric: '#1 · 172' }
-  - { url: /news/2026-10-05-putnambench-672, metric: '672 / 672' }
-  - { url: /news/2026-10-05-lean-eval-v1, metric: '30 first solves' }
-  - { url: /news/2026-10-05-olympiads, metric: '5 × full marks' }
+  - { url: /news/2026-06-26-putnambench, metric: '670 / 672', note: 'The leaderboard best that day was 668.' }
+  - { url: /blog/2026-07-08-model-tool-flow, metric: '50 / 50', note: 'One model through the raw API, its CLI, and the CLI inside a flow.' }
+  - { url: /news/2026-07-22-imo-2026, metric: '6 / 6', note: 'The faster of two workers used 3.0× less API time than AxiomProver.' }
+  - { url: /news/2026-07-29-lean-eval-second, metric: '#2 · 149', note: "149 problems to Seed Prover's 155, by our count." }
+  - { url: /news/2026-07-29-physics-and-quantum, metric: '23 / 23', note: 'Every theory subproblem formalized and proved, sorry-free.' }
+  - { url: /news/2026-08-18-lean-eval-first, metric: '#1 · 172', note: 'Every proof sorry-free and re-verified.' }
+  - { url: /news/2026-10-05-putnambench-672, metric: '672 / 672', note: '$44.50 a problem, in a four-way tie at the top.' }
+  - { url: /news/2026-10-05-lean-eval-v1, metric: '30 first solves', note: 'One behind the leader on total; 170 of 171 on the archive.' }
+  - { url: /news/2026-10-05-olympiads, metric: '5 × full marks', note: 'Who graded each score, and what it does not show.' }
 ---
 
 <script setup>

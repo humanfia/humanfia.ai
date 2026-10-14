@@ -74,9 +74,8 @@ function versus(r: Row) {
     </ol>
 
     <figcaption class="hoa-caption">
-      AxiomProver's times are as it reported them for the same statements; Kimi-K3's are its worker
-      and its Codex reviewer combined. On Q1 and Q4, the two easiest, we lose; on Q3, the hardest,
-      GPT-5.6 is more than four times faster. The loop helps most on the longest problems.
+      AxiomProver's times are as it reported them. Kimi-K3's include its Codex reviewer. GPT-5.6 is
+      slower than AxiomProver on Q1 and Q4, the two easiest, and 4.6× faster on Q3, the hardest.
     </figcaption>
   </figure>
 </template>

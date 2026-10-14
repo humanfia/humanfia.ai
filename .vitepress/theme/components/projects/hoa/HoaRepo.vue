@@ -30,8 +30,7 @@ const REPO = 'https://github.com/humanfia/hoa-qed'
       <div v-reveal="80" class="hr-card">
         <p class="hoa-kicker">The flows</p>
         <p>
-          Every run is a flow, and the flows are in
-          <a href="https://github.com/humanfia/flowverse" target="_blank" rel="noreferrer">humanfia/flowverse</a>.
+          In <a href="https://github.com/humanfia/flowverse" target="_blank" rel="noreferrer">humanfia/flowverse</a>.
           Start with the <a href="/flows/recursive-lean-prover">recursive Lean prover</a>.
         </p>
       </div>
@@ -39,21 +38,20 @@ const REPO = 'https://github.com/humanfia/hoa-qed'
         <p class="hoa-kicker">The proofs, as datasets</p>
         <p>
           On <a href="https://huggingface.co/humanfia-lab" target="_blank" rel="noreferrer">Hugging Face</a>,
-          for example the <a href="https://huggingface.co/datasets/humanfia-lab/IPHO2026" target="_blank" rel="noreferrer">IPhO 2026 dataset</a>.
-          At the PutnamBench authors' request only a
+          such as <a href="https://huggingface.co/datasets/humanfia-lab/IPHO2026" target="_blank" rel="noreferrer">IPhO 2026</a>.
+          For PutnamBench only a
           <a href="https://huggingface.co/datasets/humanfia-lab/putnambench-solution-preview" target="_blank" rel="noreferrer">preview</a>
-          of those proofs is public.
+          is public, at the authors' request.
         </p>
       </div>
       <div v-reveal="200" class="hr-card hr-runs">
         <p class="hoa-kicker">Runs on Humanize</p>
         <p>
-          These runs are flows on <a href="/projects/humanize">Humanize</a>. PutnamBench is a Ralph
-          loop with Codex as both worker and reviewer. Lean-Eval is refined against the compiler by
-          HOA's agents and the <a href="/flows/humanize1">RLCR Flow</a>'s plan-then-review loop.
-          Watching them run for weeks is most of why
-          <a href="/projects/humanize#the-flows-it-runs">RLAR</a> and the rest of the
-          <a href="/flows/">flows</a> look the way they do.
+          All runs are flows on <a href="/projects/humanize">Humanize</a>. PutnamBench is a Ralph
+          loop with Codex as worker and reviewer. Lean-Eval uses HOA's agents with the
+          <a href="/flows/humanize1">RLCR Flow</a>. These runs shaped
+          <a href="/projects/humanize#the-flows-it-runs">RLAR</a> and the other
+          <a href="/flows/">flows</a>.
         </p>
       </div>
     </div>

@@ -36,55 +36,52 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
     <HoaHero :links="fm.links" />
 
     <HoaSection id="what-it-has-done" n="01" kicker="The record" title="Full marks on seven exams and the most first solves on Lean-Eval.">
-      Eight exams and boards. Each grid is the exam's own count, one cell per problem, filled in when
-      it is done. The tag says who did the checking, because it is not always Lean.
+      One tile per exam or board, one cell per item, filled when done. The tag says who checked it; it
+      is not always Lean.
       <template #figure><HoaBoard :results="fm.results" /></template>
     </HoaSection>
 
     <HoaSection id="putnambench-672-of-672" n="02" kicker="PutnamBench" title="Every PutnamBench problem proved, level with three other entries.">
-      672 Putnam problems stated in Lean. In June the loop stood at 670; it has since closed the
-      last two, and the PutnamBench team accepted all 672
+      672 Putnam problems stated in Lean. We had 670 in June; the PutnamBench team accepted all 672
       (<a href="https://github.com/trishullab/PutnamBench/pull/350" target="_blank" rel="noreferrer">#350</a>).
-      Three other entries got there within a month. The benchmark is saturated, so what separates
-      the leaders now is the price of a proof, and there we are not first.
+      Three other entries reached 672 within a month. On cost per problem we are not first.
       <template #figure><HoaPutnam :entries="fm.putnam" /></template>
     </HoaSection>
 
     <HoaSection id="lean-eval-the-most-first-solves" n="03" kicker="Lean-Eval" title="Research mathematics: the most first solves.">
       <a href="https://lean-lang.org/eval/" target="_blank" rel="noreferrer">Lean-Eval</a> is theorems
-      from papers, stated in Lean. Its frozen v1 has 128 problems and three columns, and each column
-      rewards something different. Pick one.
+      from research papers, stated in Lean. Its frozen v1 has 128 problems and ranks entries three
+      ways.
       <template #figure><HoaLeanEval :entries="fm.leanEval" /></template>
     </HoaSection>
 
     <HoaSection id="imo-2026-six-of-six-and-where-the-time-went" n="04" kicker="IMO 2026" title="All six IMO 2026 problems proved in Lean, on each of two backends.">
-      Two workers on two backends each closed all six problems with proofs Lean accepts. Counted in
-      API time, the minutes spent inside model calls, so a slow harness gets no credit for it.
+      Two workers on two backends each proved all six in Lean. Times are API minutes, the time spent
+      inside model calls.
       <template #figure><HoaImo :rows="fm.imo" /></template>
     </HoaSection>
 
     <HoaSection id="what-counts-as-solved" n="05" kicker="What counts as solved" title="A proof counts only after five checks the prover does not control.">
-      A problem counts only when its Lean file passes every gate, and the model that wrote the proof
-      never decides whether it is accepted. Send a proof through.
+      A problem counts only when its Lean file passes all five gates, none of them run by the model
+      that wrote the proof. Pick a file to see where it stops.
       <template #figure><HoaGates /></template>
     </HoaSection>
 
     <HoaSection id="what-this-is-really-testing" n="06" kicker="With and without a flow" title="The same model proves 3 of 50 Putnam problems through the API and 50 inside a flow.">
-      The models are the ones everybody has. What differs is the arrangement around them: who works
-      and who reviews, what carries between attempts, when a line of attack is dropped. A formal
-      verifier measures that, because a proof either checks or it is refused, with no partial credit.
+      The models are publicly available. The flow decides who works, who reviews and what carries
+      over between attempts.
       <template #figure><HoaLoops :ablation="fm.ablation" :icho="fm.icho" /></template>
     </HoaSection>
 
     <HoaSection id="where-the-code-is" n="07" kicker="Where the code is" title="Every proof, flow and README is in one public repository.">
       All of HOA is
       <a href="https://github.com/humanfia/hoa-qed" target="_blank" rel="noreferrer">humanfia/hoa-qed</a>:
-      one directory per competition or library, each with its own README and its history intact.
+      one directory per competition or library, each with a README.
       <template #figure><HoaRepo :dirs="fm.repo" /></template>
     </HoaSection>
 
     <HoaSection id="results-as-they-came-in" n="08" kicker="Results, as they came in" title="Results by date, June to October 2026.">
-      June to October 2026, from 670 on PutnamBench to five olympiads at full marks.
+      Each card links to its write-up.
       <template #figure>
         <div v-reveal class="hoa-timeline">
           <ProjectTimeline

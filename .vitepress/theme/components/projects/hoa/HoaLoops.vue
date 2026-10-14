@@ -158,17 +158,15 @@ const TICKS = [0, 10, 20, 30, 40, 50]
         </li>
       </ul>
       <figcaption class="hoa-caption">
-        From the ablation in the KDA² post, September 2026. On PutnamBench, Kimi-K3 goes from 4 of 50
-        in its CLI to 47 inside a flow; on Physics Cup the gains are smaller, because not every
-        benchmark is limited by the loop. The
-        <a href="/blog/2026-07-08-model-tool-flow">earlier version of this comparison</a> adds
-        SuperChem and an HLE subset.
+        From the KDA² ablation, September 2026. Physics Cup gains less: not every benchmark is limited
+        by the loop. The
+        <a href="/blog/2026-07-08-model-tool-flow">July comparison</a> adds SuperChem and an HLE subset.
       </figcaption>
     </figure>
 
     <figure class="hlp-icho hoa-sheet">
       <p class="hoa-kicker">IChO 2026 · theory subquestions accepted</p>
-      <p class="hlp-icho-t">The same model, with and without the review loop.</p>
+      <p class="hlp-icho-t">Same model, with and without the review loop.</p>
       <ul class="hlp-db">
         <li v-for="(r, i) in icho" :key="r.label" :style="{ '--a': r.goal / 68, '--b': r.flow / 68, '--i': i }">
           <span class="hlp-db-name">{{ r.label }}</span>
@@ -184,8 +182,8 @@ const TICKS = [0, 10, 20, 30, 40, 50]
         </li>
       </ul>
       <p class="hlp-icho-n">
-        Run as a plain Codex <code>/goal</code> on the same 68 targets, each model had about half of
-        them accepted. With formalization review and proof review in the loop, all 68.
+        About half accepted as a plain Codex <code>/goal</code>; all 68 with formalization and proof
+        review.
       </p>
     </figure>
   </div>
