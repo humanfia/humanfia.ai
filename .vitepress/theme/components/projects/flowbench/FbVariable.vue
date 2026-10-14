@@ -19,14 +19,14 @@ const ROWS: Row[] = [
   {
     part: 'Model',
     axis: true,
-    model: { said: 'varies: the model is the variable', rolls: ['model A', 'model B', 'model C'] },
-    flow: { said: 'held fixed' },
+    model: { said: 'the variable', rolls: ['model A', 'model B', 'model C'] },
+    flow: { said: 'the same in every run' },
   },
   {
     part: 'Loop around it',
     axis: true,
     model: { said: 'one fixed harness, or one turn' },
-    flow: { said: 'varies: the flow is the variable', rolls: ['ralph_loop', 'rlar', 'flame_chase'] },
+    flow: { said: 'the variable', rolls: ['ralph_loop', 'rlar', 'flame_chase'] },
   },
   { part: 'Task length', model: { said: 'minutes' }, flow: { said: 'hours' } },
   { part: 'Score', model: { said: 'often graded by a model' }, flow: { said: 'a check that already existed' } },

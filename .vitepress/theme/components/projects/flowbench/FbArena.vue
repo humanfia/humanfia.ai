@@ -3,17 +3,17 @@
 // in the middle -- each drawn as its own scene, in the flow grammar -- and the real check on the
 // right. Its four steps light as the arena scrolls up the window, and each can be picked by
 // hand -- which holds until the arena next leaves the screen. The flows are examples of what is
-// compared, not a published result.
+// compared, not a published result; the board's caption in the hero says so once for the page.
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { FLOWS } from '../../../flows'
 import { clamp, prefersReducedMotion, useScrollProgress } from '../../../home/motion'
 import FlowThumb from '../../flow/FlowThumb.vue'
 
 const STEPS = [
-  { verb: 'Fix', said: 'Everything but the method: the model, its tools, the task, the budget and the machine.' },
-  { verb: 'Run', said: 'Several flows on the same task, unchanged, in the same runtime anybody can install.' },
-  { verb: 'Score', said: 'Each run with an existing check: a benchmark, a build or a test suite.' },
-  { verb: 'Compare', said: 'Flow against flow, so the ranking is a ranking of flows.' },
+  { verb: 'Fix', said: 'The model, tools, task, budget and machine.' },
+  { verb: 'Run', said: 'Each flow, unchanged, in the Humanize runtime.' },
+  { verb: 'Score', said: 'Each run, with an existing benchmark, build or test suite.' },
+  { verb: 'Compare', said: 'Rank the flows by score.' },
 ]
 const HELD = ['model', 'tools', 'task', 'budget', 'machine']
 const lanes = ['ralph_loop', 'rlar', 'flame_chase'].map((name) => FLOWS.find((f) => f.name === name)!)
@@ -84,9 +84,8 @@ onBeforeUnmount(() => thumbs.value.forEach((t) => t?.stop()))
     </div>
 
     <p class="fb-verdict">
-      <span class="cap">Flow vs flow</span>
-      <span class="line">this <em>loop</em> beat that <em>loop</em></span>
-      <span class="note">The flows here are examples of what is compared, not a published result.</span>
+      <span class="cap">Result</span>
+      <span class="line">a ranking of <em>flows</em></span>
     </p>
   </div>
 </template>
