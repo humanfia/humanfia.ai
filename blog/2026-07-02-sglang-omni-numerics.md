@@ -1,5 +1,5 @@
 ---
-title: Lossless is a choice
+title: Lossless Is a Choice
 description: A competing stack bought its speed with approximate kernels and skipped steps. Reading it closely turned into three PRs that take about a fifth off our LTX-2.3 time on B200, two of them byte-identical end to end.
 date: 2026-07-02
 authors:

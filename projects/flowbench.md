@@ -115,7 +115,6 @@ Nothing on this page is a FlowBench result. When the benchmark opens up we will 
 <FbLog
   :entries="[
     { url: '/blog/2026-07-08-model-tool-flow', metric: 'API · CLI · flow' },
-    { url: '/blog/2026-07-20-humanfia-launch', metric: 'Launch' },
     { url: '/blog/2026-08-17-four-layers-and-a-referee', metric: 'The referee' },
     { url: '/blog/2026-09-27-kda-for-kda', metric: '4 → 47' },
     { title: 'FlowBench is released, with the first cross-flow numbers', metric: 'Not yet', note: 'The first numbers published will be the ones for the flows on this site, whether or not they flatter us.' },

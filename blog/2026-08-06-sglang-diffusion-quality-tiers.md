@@ -1,5 +1,5 @@
 ---
-title: A quality tier for the fast kernels
+title: A Quality Tier for the Fast Kernels
 description: Most profitable diffusion fusions change the output at the level of bf16 rounding order, enough to fail a bitwise CI and not enough for a person to see. So we gave the request a quality tier instead of arguing about the diff.
 date: 2026-08-06
 authors:
@@ -172,4 +172,4 @@ than to move the boolean.
 > When correctness is a spectrum and the CI is a boolean, let the request choose.
 
 [KDA](/projects/kda) · [the PR](https://github.com/sgl-project/sglang/pull/33453) ·
-[Lossless is a choice](/blog/2026-07-02-sglang-omni-numerics)
+[Lossless Is a Choice](/blog/2026-07-02-sglang-omni-numerics)

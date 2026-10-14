@@ -1,5 +1,5 @@
 ---
-title: "KDA²: Kernel Design Agents (KDA) optimize Kimi Delta Attention (KDA)"
+title: "KDA²: Kernel Design Agents (KDA) Optimize Kimi Delta Attention (KDA)"
 description: Our agents wrote Kimi Delta Attention kernels that run up to 2.96× faster than FlashKDA on B300 with a tenth of its state error. Here is how, and how the agents tried to cheat along the way.
 date: 2026-09-27
 authors:
