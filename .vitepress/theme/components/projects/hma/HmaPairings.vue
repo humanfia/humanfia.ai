@@ -8,7 +8,10 @@
 // machine every task got.
 import { computed, ref } from 'vue'
 import { vReveal } from '../../../home/motion'
-import { METRICS, MODELS, PAIRINGS_EVALUATED, SETUP, TASKS, byId, gainOverBaselines, pairing, type Model, type Workflow } from './data'
+import { METRICS, MODELS, PAIRINGS_EVALUATED, SETUP, TASKS, WORKFLOWS, byId, gainOverBaselines, pairing, type Model, type Workflow } from './data'
+
+/** How many of the evaluated pairings the main table carries, for the note on an empty cell. */
+const IN_TABLE = WORKFLOWS.filter((w) => w.hma).length
 
 const pick = ref<{ r: number; c: number }>({ r: 0, c: 1 })
 
@@ -55,10 +58,7 @@ const field = [
       <div class="hma-section-head" v-reveal>
         <p class="hma-kicker"><span class="hma-num">03</span> Pairings</p>
         <h2 id="the-pairings-h" class="hma-h2">Of {{ PAIRINGS_EVALUATED }} pairings tested, Opus 5 first and GPT-5.6-sol second does best</h2>
-        <p class="hma-lead">
-          Every agent runs in its own native harness at <code>max</code> reasoning effort. HMA starts
-          with the first model of a pairing, and the order matters.
-        </p>
+        <p class="hma-lead">Each agent runs in its own native harness at <code>max</code> reasoning effort.</p>
       </div>
 
       <div class="hma-pairs" v-reveal>
@@ -134,7 +134,7 @@ const field = [
             </ul>
             <p v-if="!chosen.alone && gainOverBaselines(chosen.w) !== undefined" class="hma-pair-note">
               <b>{{ gainOverBaselines(chosen.w)! >= 0 ? '+' : '−' }}{{ Math.abs(gainOverBaselines(chosen.w)!).toFixed(1) }} pts</b>
-              over the mean of the two working alone.
+              over the mean of the two alone.
             </p>
             <p v-if="chosen.back" class="hma-pair-note">
               The other order:
@@ -146,8 +146,7 @@ const field = [
             </p>
           </template>
           <p v-else class="hma-pair-empty">
-            {{ chosen.alone ? 'No single-agent run for this model in the main table.' : 'Not in the main table.' }}
-            {{ PAIRINGS_EVALUATED }} pairings were evaluated; the table carries four of them.
+            {{ chosen.alone ? 'No single-agent run for this model in the main table.' : `Not in the main table, which has ${IN_TABLE} of the ${PAIRINGS_EVALUATED} pairings.` }}
           </p>
         </div>
       </div>
@@ -171,10 +170,6 @@ const field = [
           </div>
         </dl>
       </div>
-      <p class="hma-fine">
-        The external harnesses, ML-Master 2.0, MLEvolve and ScienceFlow, are compared on a fixed
-        16-task subset.
-      </p>
     </div>
   </section>
 </template>

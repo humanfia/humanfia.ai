@@ -17,27 +17,18 @@ import { vReveal } from '../../../home/motion'
         <a class="hma-plate" href="https://github.com/humanfia/hma" target="_blank" rel="noreferrer" v-reveal>
           <p class="hma-mini">Reproduce · humanfia/hma ↗</p>
           <h3>The paper's experiment code</h3>
-          <p>
-            The native baselines, HMA, natural-termination alternation, the cap and starting-order
-            ablations, and the external harness comparisons. Run one experiment on one machine or
-            the whole suite on 75, then generate the tables and figures from the runs.
-          </p>
+          <p>Baselines, HMA, ablations and external comparisons, with scripts for the tables and figures.</p>
         </a>
         <a class="hma-plate ink" href="/flows/fixed-interrupt-flame-chase" v-reveal="100">
           <p class="hma-mini">Use · a Humanize flow</p>
           <h3><code>flame_chasoid:fixed_interrupt</code></h3>
-          <p>
-            The same fixed-<i>k</i> alternation, as a flow for
-            <span class="u">Humanize</span>: two agents, one workspace, a turn ending after <i>k</i>
-            accepted experiments, and a blind review at the end.
-          </p>
+          <p>The same method as a <span class="u">Humanize</span> flow. It plays below.</p>
         </a>
       </div>
       <p class="hma-fine">
-        What has and has not been checked is in the repository's
-        <a href="https://github.com/humanfia/hma/blob/main/docs/verification.md" target="_blank" rel="noreferrer">validation record</a>.
-        For one, the rerun setup still uses the public upstream answer keys, not the manuscript's
-        corrected ones. Humanize itself is <a href="/projects/humanize">here</a>.
+        Reruns still use the public answer keys, not the paper's corrected ones; the
+        <a href="https://github.com/humanfia/hma/blob/main/docs/verification.md" target="_blank" rel="noreferrer">validation record</a>
+        lists what has been checked. More on <a href="/projects/humanize">Humanize</a>.
       </p>
 
       <div class="hma-player" v-reveal>

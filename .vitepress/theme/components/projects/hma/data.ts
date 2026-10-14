@@ -89,7 +89,7 @@ export const SETUP = [
   { value: '220 GiB', said: 'RAM per task' },
   { value: '27', said: 'configurations in the full plan' },
   { value: '3,397', said: 'task-runs in the full plan' },
-  { value: '16', said: 'tasks in the fixed subset for external harnesses' },
+  { value: '16', said: 'tasks in the external-harness subset' },
 ]
 
 // ---------------------------------------------------------------------------------- Kaggle

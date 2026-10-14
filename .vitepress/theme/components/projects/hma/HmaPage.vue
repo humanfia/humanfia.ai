@@ -70,16 +70,16 @@ onScrollFrame(() => {
       <div class="hma-wrap">
         <div class="hma-section-head" v-reveal>
           <p class="hma-kicker"><span class="hma-num">06</span> Timeline</p>
-          <h2 id="timeline-h" class="hma-h2">HMA write-ups, until the paper is published</h2>
+          <h2 id="timeline-h" class="hma-h2">HMA write-ups so far</h2>
         </div>
         <ProjectTimeline
           kicker="HMA and the Kaggle work before it"
           label="HMA and Kaggle write-ups: fourteen of nineteen Kaggle competitions in the top 5% counting late estimates in August; in October, HMA's 78.2% medal rate on MLE-bench and Biohub's final rank of 188th of 3,947."
           :entries="[
-            { url: '/news/2026-08-15-kaggle-nineteen-competitions', metric: '14 of 19' },
-            { url: '/news/2026-10-05-hma-mle-bench', metric: '78.2%' },
-            { url: '/news/2026-10-05-kaggle-biohub-final', metric: '188 / 3,947' },
-            { title: 'The HMA paper', pending: true, metric: 'Pending', note: 'The manuscript behind these numbers. Until it is out, every HMA number here is self-reported.' },
+            { url: '/news/2026-08-15-kaggle-nineteen-competitions', metric: '14 of 19', note: 'Twelve more top-5% results were late estimates, not finishes.' },
+            { url: '/news/2026-10-05-hma-mle-bench', metric: '78.2%', note: '75 tasks. Self-reported, and not on the official leaderboard.' },
+            { url: '/news/2026-10-05-kaggle-biohub-final', metric: '188 / 3,947', note: 'It was 8th on the public board in August. The final private rank is the official result.' },
+            { title: 'The HMA paper', pending: true, metric: 'Pending', note: 'Every HMA number here is self-reported until the paper is out.' },
           ]"
         />
       </div>
