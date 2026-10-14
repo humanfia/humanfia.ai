@@ -5,71 +5,14 @@ pageClass: flow-page
 # flame_chase
 
 Put two agents on one task and let them take turns. Each turn is a fresh session that starts
-from the task and the repository; neither agent is told what the other said, so the working
-tree is all that passes between them.
+from the task and the repository, so the working tree is all that passes between them, and
+every turn goes to an agent that did not write what it is looking at. Two different models fail
+differently, which suits long work where one agent's blind spots would compound. The name
+comes from the Flame-Chase Journey (逐火之旅) in *Honkai: Star Rail*, taken up anew each time
+its world goes round again.
 
 <FlowFacts flow="flame_chase" />
 
-::: code-group
-
-```text [at the prompt]
-❯ $flame_chase make the importer handle every file in samples/
-```
-
-```sh [hmz exec]
-hmz exec -f flame_chase \
-    -a first_chaser=claude/claude-opus-5:max -a second_chaser=codex/gpt-5.6-sol:max \
-    -p budget.duration=8h,budget.cost=100 "$(cat TASK.md)"
-```
-
-:::
-
 <FlowPlayer flow="flame_chase" />
 
-## When to use it
-
-Two different models fail differently. A loop over one agent compounds that agent's blind
-spots; a loop that alternates hands every turn to an agent that did not write what it is
-looking at. Give both roles the same model and they are still two agents, which a
-[trace](https://docs.humanfia.ai/humanize/user/tracing) shows as two sets of sessions.
-
-If one of the two should judge rather than work, use [rlar](/flows/rlar).
-
-## The name
-
-The name comes from Amphoreus (翁法罗斯), a world in *Honkai: Star Rail*. There the Chrysos
-Heirs (黄金裔) set out on the Flame-Chase Journey (逐火之旅) to take the Coreflames back from
-the Titans and re-create the world (再创世). The world goes round again and again, an eternal
-recurrence (永劫回归), and each time the Heirs take up the journey anew.
-
-The flow keeps that shape. The chasers take up the task in turn, each turn starts afresh with
-no memory of the last, and what one leaves in the repository is where the next begins. Nor
-does the loop stop itself: only the budget, or three failures in a row, ends it.
-
-## Roles and params
-
-| Role | What it is | How it is filled | |
-| --- | --- | --- | --- |
-| `first_chaser` | agent, required | `-a first_chaser=…` | Takes the odd turns, each in a fresh session. |
-| `second_chaser` | agent, required | `-a second_chaser=…` | Takes the even turns, each in a fresh session. |
-| `workspace` | environment, local | the directory you start in; no `-e` | The one tree both chasers work in, and all that passes between them. |
-
-Each agent role takes one `-a role=CLI[@PROVIDER]/MODEL[:EFFORT]`; several roles may share one `-a`, comma-separated. There is no `-e` to give: `workspace` is a local environment, the directory you start the run in, and an `-e` naming it is refused. See [Command-line specs](https://docs.humanfia.ai/humanize/reference/flows#running-one).
-
-No params. The loop pauses 5 seconds between turns.
-
-## What ends it
-
-- **The [budget](https://docs.humanfia.ai/humanize/features/allowances).** The two spend one budget between them, not one each.
-- **Three failed turns in a row.** The run ends with the last failure. A turn that fails passes
-  to the other chaser, so three in a row means both have failed.
-
-## Picking it up
-
-`--resume` carries on with whichever chaser was next, so neither takes two turns in a row, and
-it keeps counting rounds: a round is one turn each. See [Picking a run up](https://docs.humanfia.ai/humanize/user/resuming).
-
-## See also
-
-- [flame_chasoid:agent_cleanup_flame_chase](/flows/flame-chase-agent-cleanup): this loop, with a cleaner between turns
-- [flame_chasoid:parallel](/flows/parallel-flame-chase): three of these at once, in three lanes
+See also: [flame_chasoid:agent_cleanup_flame_chase](/flows/flame-chase-agent-cleanup) · [flame_chasoid:parallel](/flows/parallel-flame-chase) · [rlar](/flows/rlar)
