@@ -151,8 +151,8 @@ const TICKS = [0, 25, 50, 75, 100]
           <p class="big">{{ orderGap.toFixed(1) }}<small>pts</small></p>
           <p>
             What going first is worth: {{ best.values.medal }}% with Opus 5 first,
-            {{ reverse.values.medal }}% with GPT-5.6-sol first. Picking the better order afterwards
-            flatters the headline.
+            {{ reverse.values.medal }}% with GPT-5.6-sol first. Reporting only the better order
+            would overstate the result.
           </p>
         </div>
       </div>

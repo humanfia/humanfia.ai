@@ -379,8 +379,10 @@ export class HeroScene {
 // ------------------------------------------------------------------------------------ stack
 
 const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'opencode', 'mimo']
-const LAYERS = ['FLOWS', 'RUNTIME', 'AGENTS', 'APPLICATIONS']
-const APPS: [string, number, number][] = [['HOA', -0.55, 0.35], ['KDA', 0.15, -0.5], ['HMA', 0.6, 0.45]]
+const LAYERS = ['FLOWS', 'RUNTIME', 'AGENTS', 'RESULTS']
+// Where the work lands, unnamed: the home page speaks of results, not of the projects that
+// produced them, so a new project does not need a new circle.
+const APPS: [number, number][] = [[-0.55, 0.35], [0.15, -0.5], [0.6, 0.45]]
 
 interface Mote { x: number; z: number; phase: number; speed: number; size: number }
 
@@ -409,7 +411,7 @@ function palette(el: Element) {
 
 /**
  * The architecture, as four flat planes in space: flows over the runtime over the agents over the
- * applications. As the reader moves down the five paragraphs beside it, the stack turns and one
+ * results. As the reader moves down the five paragraphs beside it, the stack turns and one
  * layer at a time is the subject; work falls through all four as small square blocks; and at the
  * end the one arrow that runs the other way -- the benchmark's -- carries the winner back up to
  * the top, in the page's one green.
@@ -474,7 +476,7 @@ export class StackField {
     const narrow = width < 640
     const unit = Math.min(width * (narrow ? 0.3 : 0.25), height * 0.3)
     // The stack sits a little right of centre, and slides left at the end to make room for the
-    // referee's arrow on its right.
+    // FlowBench's arrow on its right.
     const cx = width / 2 + unit * ((narrow ? 0 : 0.3) - this.focus(4) * (narrow ? 0.45 : 0.75))
     const cy = height / 2 + unit * 0.05
     const gap = this.still ? 0.56 : lerp(0.3, 0.56, easeInOut(span(p, 0, 0.2)))
@@ -553,9 +555,9 @@ export class StackField {
       ctx.fillText(name, q.x, q.y)
     })
 
-    // The applications: three green circles on the bottom plane, each where a flow is found out.
+    // The results: green circles on the bottom plane, where a flow's work is graded.
     const appsOn = this.focus(3)
-    for (const [name, x, z] of APPS) {
+    for (const [x, z] of APPS) {
       const q = P(x, levels[3], z)
       const pulse = 1 + 0.08 * Math.sin(t * 2 + x * 3)
       const s = (4 + appsOn * 5) * q.f * pulse * (unit / 260)
@@ -564,13 +566,9 @@ export class StackField {
       ctx.beginPath()
       ctx.arc(q.x, q.y, s, 0, Math.PI * 2)
       ctx.fill()
-      ctx.font = mono(700, narrow ? 11 : 13)
-      ctx.fillStyle = ink
-      ctx.globalAlpha = 0.25 + appsOn * 0.75
-      ctx.fillText(name, q.x, q.y - 10 - s)
     }
 
-    // The referee's arrow: from the applications back up to the flows, the one that runs the
+    // FlowBench's arrow: from the results back up to the flows, the one that runs the
     // other way. A solid green band with a hard arrowhead, and blocks riding up it.
     const refOn = this.focus(4)
     if (refOn > 0.01) {

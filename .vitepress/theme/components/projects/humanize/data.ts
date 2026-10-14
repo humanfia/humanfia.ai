@@ -62,24 +62,24 @@ export const HARNESSES = [
 
 /** Eleven features, one card each. */
 export const FEATURES = [
-  { kicker: 'The anchor', title: 'Run an agent’s work on another machine', body: 'Every syscall the agent makes is decided one at a time — replayed on another machine, or answered on this one. It is told none of it.', href: '#coganchor' },
-  { kicker: 'Accounts', title: 'One CLI, signed in as several accounts', body: 'A CLI signs in once. Humanize runs it as an account it was never signed into, by answering the paths it opens with other paths.' },
+  { kicker: 'The anchor', title: 'Run an agent’s work on another machine', body: 'Every syscall the agent makes is decided one at a time — replayed on another machine, or answered on this one. The agent needs no changes.', href: '#coganchor' },
+  { kicker: 'Accounts', title: 'One CLI, signed in as several accounts', body: 'A CLI signs in once. Humanize runs it as other accounts by redirecting the credential files it reads to each account’s own.' },
   { kicker: 'Tracing', title: 'Every agent and program on one timeline', body: 'Every agent, every sub-agent and every program those turns ran, on one clock, in one document you open in Perfetto.', href: '#exomyth' },
-  { kicker: 'Steering', title: 'Steer a turn while it runs', body: 'It goes into the turn that is running. Not queued behind it, and never quietly counted as said.' },
-  { kicker: 'Shapes', title: 'Typed answers from a pydantic model', body: 'A turn given a pydantic model answers with that model. The model is the whole of the question, and the answer is read back through it.' },
+  { kicker: 'Steering', title: 'Steer a turn while it runs', body: 'A message goes straight into the running turn instead of waiting for the next one, and a delivery that fails is reported.' },
+  { kicker: 'Shapes', title: 'Typed answers from a pydantic model', body: 'A turn given a pydantic model answers with that model, and the answer is validated against it.' },
   { kicker: 'Backends', title: 'Twelve CLIs, LiteLLM and any ACP agent', body: 'Twelve coding agents, a model called directly through litellm, and anything speaking the Agent Client Protocol.', href: '#every-harness' },
-  { kicker: 'Flows', title: 'A flow is Python', body: 'A loop, a subprocess call, a file read between turns. The agents are its arguments, and the shapes a loop takes are few.', href: '#the-flows-it-runs' },
-  { kicker: 'Concurrency', title: 'Many turns at once', body: 'Turns are sequential only inside one session. Two hundred conversations are two hundred turns.' },
-  { kicker: 'Resuming', title: 'Resume a run where it stopped', body: 'A loop meant to run for a week is a loop that will be stopped. What it was keeping track of survives; the conversation does not.' },
+  { kicker: 'Flows', title: 'A flow is Python', body: 'A loop, a subprocess call, a file read between turns. The agents are passed in as its arguments.', href: '#the-flows-it-runs' },
+  { kicker: 'Concurrency', title: 'Many turns at once', body: 'Turns are sequential only inside one session; separate sessions run in parallel.' },
+  { kicker: 'Resuming', title: 'Resume a run where it stopped', body: 'A stopped run resumes from its journal: the flow’s own state is restored, the agents’ conversations are not.' },
   { kicker: 'Goals', title: 'Keep going until the goal is met', body: 'The backend’s own goal feature: a turn that would have ended starts another, until the model says the objective is met.' },
-  { kicker: 'The person', title: 'You, as one of the agents', body: 'A flow asks a person the same way it asks a model — which is how a human stays the architect rather than the bottleneck.' },
+  { kicker: 'The person', title: 'You, as one of the agents', body: 'A flow asks a person the same way it asks a model, so a person can review or decide at any step.' },
 ]
 
 /** The loop shapes that ship, each drawn by its own scene from theme/flows.ts. */
 export const FLOWS = [
-  { kicker: 'One agent', title: 'A fresh session each round, or one kept throughout', scene: 'ralph_loop', href: '/flows/ralph-loop', body: 'ralph_loop opens a session of its own each round; stateful_ralph and continue_loop hold one and keep going. Same loop, opposite trade.' },
+  { kicker: 'One agent', title: 'A fresh session each round, or one kept throughout', scene: 'ralph_loop', href: '/flows/ralph-loop', body: 'ralph_loop opens a session of its own each round; stateful_ralph and continue_loop hold one and keep going. The trade is fresh context against memory.' },
   { kicker: 'Two agents', title: 'Take turns on the same tree', scene: 'flame_chase', href: '/flows/flame-chase', body: 'flame_chase alternates two agents on one task, each reading the repository rather than a history — so neither compounds the other’s blind spot.' },
   { kicker: 'Actor and reviewer', title: 'The reviewer’s notes become the actor’s next prompt', scene: 'rlar', href: '/flows/rlar', body: 'rlar gives the actor one session for the whole run and the reviewer a fresh one every round. What the reviewer noticed is what the actor hears, word for word.' },
-  { kicker: 'A plan first', title: 'Plan, then build under review', scene: 'humanize1-rlcr', href: '/flows/humanize1', body: 'RLCR Flow (humanize1): an idea opened into a draft, a plan two agents agree on, and a build under review until nothing is left to say.' },
+  { kicker: 'A plan first', title: 'Plan, then build under review', scene: 'humanize1-rlcr', href: '/flows/humanize1', body: 'RLCR Flow (humanize1): an idea opened into a draft, a plan two agents agree on, and a build under review until the reviewer approves.' },
   { kicker: 'Seven agents', title: 'Three parallel lanes; only lane 1 writes your tree', scene: 'parallel_flame_chase', href: '/flows/parallel-flame-chase', body: 'flame_chasoid:parallel: a coordinator plans three lanes and leaves. Lane 1 alone writes your tree; lanes 2 and 3 work on private copies and reach it by report.' },
 ]

@@ -109,7 +109,7 @@ const front = ref<'relay' | 'long'>('relay')
 
       <div class="hma-effects">
         <div class="hma-effects-copy" v-reveal>
-          <h3 class="hma-h3">The repository credits fresh context and a second way of searching</h3>
+          <h3 class="hma-h3">Why it works: fresh context and a second model</h3>
           <dl>
             <div>
               <dt>Context renewal</dt>

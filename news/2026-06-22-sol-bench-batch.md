@@ -1,6 +1,6 @@
 ---
 title: 71 first places on SOL-ExecBench
-description: "KDA-generated kernels on the Databricks entry hold 71 of SOL-ExecBench's 235 per-kernel first places, more than any other entrant. It started in June with one 8×B200 node, a week, and nobody watching."
+description: "KDA-generated kernels on the Databricks entry hold 71 of SOL-ExecBench's 235 per-kernel first places, more than any other entrant. It started in June with one 8×B200 node running unattended for a week."
 date: 2026-06-22
 authors:
   - Lesheng Jin

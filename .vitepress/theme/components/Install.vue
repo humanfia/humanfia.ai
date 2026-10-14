@@ -78,7 +78,7 @@ const FACTS = [
   'Twelve coding-agent CLIs, one flow',
   'Work lands in a container or on an ssh host',
   'Every run, a trace you open in Perfetto',
-  'A loop that stopped on Thursday carries on',
+  'A stopped run resumes where it left off',
 ]
 
 const STEPS = [

@@ -3,8 +3,7 @@
 // what it has achieved, where to start -- and nothing on it is pinned. The page moves at the speed of
 // the hand; the pictures are driven by where their section happens to be on screen (the hero
 // comes apart as it leaves, the stack turns to whichever paragraph is in the middle of the
-// window, the applications stack up like cards), or play once when they arrive (the manifesto,
-// a picture in place of a paragraph). The numbers are the blog's numbers, and every one of them
+// window), or play once when they arrive (the manifesto, a picture in place of a paragraph). The numbers are the blog's numbers, and every one of them
 // links to the post that says how to check it.
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useData } from 'vitepress'
@@ -18,7 +17,6 @@ import {
   clamp,
   easeOut,
   onFirstSight,
-  onScrollFrame,
   prefersReducedMotion,
   span,
   useScrollProgress,
@@ -67,7 +65,7 @@ const STEPS = [
   {
     tag: 'Flows',
     title: 'Flows are open-source Python.',
-    body: 'A flow is a directory of Python: which agents take turns, what each is asked, and when it stops. RLAR, Flame Chase, the Ralph loop — all of them in the open, for anyone to read, fork or beat.',
+    body: 'A flow is a directory of Python: which agents take turns, what each is asked, and when it stops. RLAR, Flame Chase, the Ralph loop and the rest are open source, to read, fork or improve on.',
     link: { text: 'Browse the flowverse', href: 'https://github.com/humanfia/flowverse' },
   },
   {
@@ -83,15 +81,15 @@ const STEPS = [
     link: { text: 'Read the docs', href: DOCS },
   },
   {
-    tag: 'Applications',
-    title: 'Lean, a profiler and MLE-bench score the applications.',
-    body: 'HOA answers to Lean. KDA answers to the profiler. HMA answers to the MLE-bench grader. Each was chosen because somebody else keeps the scoreboard.',
+    tag: 'Results',
+    title: 'Flows are tested on problems with an outside grader.',
+    body: 'Proofs checked by Lean, kernels timed on real hardware, models scored on public benchmarks and competitions. The grader is never ours, so a result does not rest on our own judgement.',
     link: { text: 'See the achievements', href: '#achievements' },
   },
   {
     tag: 'FlowBench',
     title: 'FlowBench makes the winning flow the next default.',
-    body: 'FlowBench scores the flows against each other on long-horizon work — ours included — and the winner becomes the next default. It is the one arrow that runs the other way.',
+    body: 'FlowBench scores flows against each other on long-horizon work, ours included, with the model held fixed. The winner becomes the next default.',
     link: { text: 'About FlowBench', href: '/projects/flowbench' },
   },
 ]
@@ -162,51 +160,6 @@ function spot(e: PointerEvent) {
   el.style.setProperty('--mx', `${e.clientX - box.left}px`)
   el.style.setProperty('--my', `${e.clientY - box.top}px`)
 }
-
-// ---------------------------------------------------------------------------- applications
-
-// Three cards that stack as the page scrolls: each is sticky a step lower than the one before,
-// so the next slides up over it, and the one underneath sinks back a little as it is covered --
-// a deck being dealt, downwards, at the speed of the wheel. (The gallery used to scroll sideways
-// inside a three-and-a-half-screen pin; a sideways strip driven by a vertical wheel is the one
-// motion a reader cannot predict.) `covered[k]` is how far card k is under card k + 1, 0..1.
-const deckEl = ref<HTMLElement | null>(null)
-const covered = ref<number[]>([0, 0, 0])
-onScrollFrame(() => {
-  const cards = deckEl.value?.children
-  if (!cards) return
-  covered.value = Array.from(cards, (card, k) => {
-    const next = cards[k + 1]
-    if (!next) return 0
-    const top = card.getBoundingClientRect().top
-    const rise = next.getBoundingClientRect().top - top
-    return clamp(1 - rise / card.getBoundingClientRect().height)
-  })
-})
-const cardStyle = (k: number) => {
-  if (!motion.value) return {}
-  const c = covered.value[k]
-  return { '--cover': c.toFixed(3), transform: `scale(${1 - 0.05 * c})` }
-}
-
-const putnam = achievements.find((a) => a.of && a.topic.trim().toLowerCase() === 'putnambench')
-const HOA_CHECKS = [
-  ['IMO 2026', '6 / 6'],
-  ['Lean-Eval', '#1 · 172 proofs'],
-  ...(putnam ? [['PutnamBench', `${putnam.value} / ${putnam.of}`]] : []),
-  ['IPhO 2026 theory', '23 / 23'],
-  ['Quantum algorithms', '36 / 36'],
-]
-const KDA_BARS = [
-  { label: 'MSA prefill indexer · B300', value: 6.5 },
-  { label: 'Long-context decode indexer', value: 3.3 },
-  { label: 'vs. best human · MLSys GDN prefill', value: 1.69 },
-]
-const HMA_BARS = [
-  { label: 'HMA · Opus 5 ↔ GPT-5.6-sol', value: 78.2 },
-  { label: 'Claude Opus 5 alone', value: 72.4 },
-  { label: 'GPT-5.6-sol alone', value: 68.0 },
-]
 
 // ---------------------------------------------------------------------------------- runtime
 
@@ -318,8 +271,8 @@ onBeforeUnmount(() => {
               We build the flow around the agents.
             </h1>
             <p class="h-lead h-load" style="--d: 0.45s">
-              The runtime, the flows and the referee for long-horizon agent work — measured where
-              somebody else keeps the score.
+              Open-source flows that organise coding agents for long-horizon work, the runtime
+              that runs them, and results checked by outside graders.
             </p>
             <div class="h-actions h-load" style="--d: 0.6s">
               <a class="h-btn h-btn-primary" href="/projects/humanize">Get started</a>
@@ -334,15 +287,14 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 2. The argument, as a picture: a model, the flow round it, somebody else's score. -->
+    <!-- 2. The argument, as a picture: a model upgraded, the same flow round it, a better score. -->
     <ManifestoScene />
 
-    <!-- 3. How it is put together: flows, runtime, agents, applications, FlowBench. -->
+    <!-- 3. How it is put together: flows, runtime, agents, the problems they are tested on, FlowBench. -->
     <section class="h-stack" aria-labelledby="stack-title">
       <div class="h-wrap">
         <header class="h-head" v-reveal>
-          <p class="h-kicker">How it fits together</p>
-          <h2 id="stack-title" class="h-h2">Humanize runs the flows, and FlowBench picks the best.</h2>
+          <h2 id="stack-title" class="h-h2">How it fits together</h2>
         </header>
       </div>
       <div class="h-stack-grid">
@@ -364,9 +316,8 @@ onBeforeUnmount(() => {
     <section id="achievements" class="h-section h-alt" aria-labelledby="achievements-title">
       <div class="h-wrap">
         <header class="h-head" v-reveal>
-          <p class="h-kicker">Achievements</p>
-          <h2 id="achievements-title" class="h-h2">Results from HOA, KDA and HMA, each with its own post.</h2>
-          <p class="h-lead">Every result is a post, dated, with the people who produced it named at the top.</p>
+          <h2 id="achievements-title" class="h-h2">Achievements</h2>
+          <p class="h-lead">Each result links to a dated post that names who produced it and how to check it.</p>
         </header>
         <div ref="bentoEl" class="h-bento">
           <a
@@ -408,74 +359,15 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 4b. Everything the three applications did, on one sheet. -->
+    <!-- 4b. Every result, on one sheet, grouped by field. -->
     <HomeRollup />
-
-    <!-- 5. The applications: three cards dealt one over the other as the page scrolls. -->
-    <section class="h-apps" aria-labelledby="apps-title">
-      <div class="h-wrap">
-        <header class="h-head" v-reveal>
-          <p class="h-kicker">Applications</p>
-          <h2 id="apps-title" class="h-h2">Three applications, each scored by an outside checker.</h2>
-        </header>
-        <div ref="deckEl" class="h-deck">
-          <article class="h-panel" :style="cardStyle(0)" v-reveal>
-            <div class="h-panel-copy">
-              <p class="h-step-tag">HOA · Humanfia Olympiad Agents</p>
-              <h3>Every proof is machine-checked in Lean 4.</h3>
-              <p>Competition and research mathematics, physics and quantum information — solved by agents and machine-checked in Lean 4. No rubric, no grader, no benefit of the doubt.</p>
-              <a class="h-link" href="/projects/hoa">Explore HOA <span aria-hidden="true">›</span></a>
-            </div>
-            <div class="h-panel-art art-lean">
-              <p class="art-cmd"><span>$</span> lake build <em>0 sorry</em></p>
-              <ul>
-                <li v-for="([name, score], i) in HOA_CHECKS" :key="name" :style="{ '--i': i }">
-                  <b>✓</b><span>{{ name }}</span><em>{{ score }}</em>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="h-panel" :style="cardStyle(1)" v-reveal>
-            <div class="h-panel-copy">
-              <p class="h-step-tag">KDA · Kernel Design Agents</p>
-              <h3>GPU kernels up to 6.5× faster, measured on the hardware.</h3>
-              <p>An agent workflow that researches, writes, profiles and iterates on GPU kernels — built with MIT HAN Lab and shipping into production serving stacks.</p>
-              <a class="h-link" href="/projects/kda">Explore KDA <span aria-hidden="true">›</span></a>
-            </div>
-            <div class="h-panel-art art-kda">
-              <div v-for="(b, i) in KDA_BARS" :key="b.label" class="art-bar" :style="{ '--i': i, '--w': `${(b.value / 6.5) * 100}%` }">
-                <span>{{ b.label }}</span>
-                <i><b>{{ b.value }}×</b></i>
-              </div>
-              <p class="art-note">First on SOL-ExecBench L1 · 0.7639</p>
-            </div>
-          </article>
-          <article class="h-panel" :style="cardStyle(2)" v-reveal>
-            <div class="h-panel-copy">
-              <p class="h-step-tag">HMA · Humanize MLE Agents</p>
-              <h3>Two agents taking turns medal on 78.2% of tasks.</h3>
-              <p>Two native coding agents alternate over one machine-learning workspace, each starting fresh. On 75 MLE-bench tasks in six hours, the pair medals more often than either agent alone.</p>
-              <a class="h-link" href="/projects/hma">Explore HMA <span aria-hidden="true">›</span></a>
-            </div>
-            <div class="h-panel-art art-hma">
-              <div v-for="(b, i) in HMA_BARS" :key="b.label" class="art-bar" :style="{ '--i': i, '--w': `${b.value}%` }">
-                <span>{{ b.label }}</span>
-                <i><b>{{ b.value }}%</b></i>
-              </div>
-              <p class="art-note">Any-medal rate · 75 MLE-bench tasks · self-reported</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
     <!-- 6. Where to start. -->
     <section class="h-section" aria-labelledby="start-title">
       <div class="h-wrap">
         <header class="h-head h-center" v-reveal>
-          <p class="h-kicker">Humanize</p>
-          <h2 id="start-title" class="h-h2">Humanize runs on the agent CLIs you already pay for.</h2>
-          <p class="h-lead">It drives them through your existing logins and holds no API key of its own.</p>
+          <h2 id="start-title" class="h-h2">Humanize</h2>
+          <p class="h-lead">It drives the coding-agent CLIs you already use, through your existing logins, and holds no API key of its own.</p>
         </header>
       </div>
       <div class="h-marquee" aria-label="Supported agents">
@@ -512,8 +404,7 @@ onBeforeUnmount(() => {
       <div class="h-wrap">
         <header class="h-head h-row" v-reveal>
           <div>
-            <p class="h-kicker">News</p>
-            <h2 id="blog-title" class="h-h2">The latest results, newest first.</h2>
+            <h2 id="blog-title" class="h-h2">News</h2>
           </div>
           <div class="h-rail-nav">
             <button type="button" aria-label="Previous posts" @click="slide(-1)">‹</button>
@@ -544,8 +435,8 @@ onBeforeUnmount(() => {
       <div class="h-wrap h-center">
         <h2 id="cta-title" class="h-display h-gradient" v-reveal>The code and the results are public.</h2>
         <p class="h-lead" v-reveal="100">
-          Every flow is a directory of Python anyone can read, fork or beat — and every number on this page
-          links to the post that says how to check it.
+          Every flow is Python anyone can read or fork, and every number on this page links to the post
+          that says how to check it.
         </p>
         <div class="h-actions h-center" v-reveal="200">
           <a class="h-btn h-btn-primary" :href="REPO" target="_blank" rel="noreferrer">Star Humanize on GitHub</a>

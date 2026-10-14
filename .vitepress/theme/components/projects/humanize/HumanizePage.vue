@@ -46,7 +46,7 @@ const NOT = [
   },
   {
     title: 'A coding agent',
-    body: 'It does not replace claude or codex — it takes turns on them. If a better one ships next month, it is a name in a list.',
+    body: 'It does not replace claude or codex — it takes turns on them. When a better one ships, Humanize adds it as one more backend.',
   },
 ]
 
@@ -87,12 +87,12 @@ const NEXT = [
       </div>
     </section>
 
-    <!-- 01 What the loop is worth ------------------------------------------------------- -->
+    <!-- 01 Same model, with and without a flow ------------------------------------------ -->
     <section id="what-the-loop-is-worth" class="hz-band hz-ink">
       <div class="hz-wrap">
         <div class="hz-proof">
           <div class="hz-proof-num" v-reveal>
-            <p class="hz-num"><b>01</b> What the loop is worth</p>
+            <p class="hz-num"><b>01</b> Same model, with and without a flow</p>
             <p class="hz-big"><NumberTicker :value="47" :from="1" :duration="1800" /><small>/50</small></p>
             <p class="hz-lead">
               PutnamBench problems Kimi-K3 solved inside a Humanize flow — against <b>4</b> through
@@ -112,22 +112,22 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>02</b> The model</p>
-          <h2 class="hz-h2">Agents hold sessions, sessions take turns, and <span class="hz-accent">each turn names its env.</span></h2>
+          <h2 class="hz-h2">Four concepts: <span class="hz-accent">agent, session, turn and env.</span></h2>
           <p class="hz-lead">
             A flow is a directory of Python that says which agents it drives, what each is asked, in
             what order, and when to stop. The runtime opens the sessions, takes the turns, puts the
-            work where it should land, and records it. Four words carry the whole model.
+            work where it should land, and records it. These four concepts are the whole model.
           </p>
         </header>
         <div v-reveal="80"><HzModel /></div>
         <div class="hz-notes" v-reveal>
           <p class="hz-copy">
-            An <b>agent</b> is settings, not a conversation. A <b>session</b> is only history. The
-            <b>env</b> belongs to the turn, not the session — so one conversation can carry on from
-            one machine to the next.
+            An <b>agent</b> is a configuration; a <b>session</b> is its conversation history. The
+            <b>env</b> is chosen per turn rather than per session, so one conversation can carry on
+            from one machine to the next.
           </p>
           <p class="hz-copy">
-            <b>The refusals are part of the model too.</b> A harness that cannot move between
+            <b>Unsupported requests fail explicitly.</b> A harness that cannot move between
             machines says so on the turn that asks it to, rather than quietly running somewhere
             else; a <code>litellm</code> turn given an env is refused with a clear error.
           </p>
@@ -160,19 +160,18 @@ const NEXT = [
           <p class="hz-num"><b>04</b> The flows it runs</p>
           <h2 class="hz-h2">Five loop shapes ship with the runtime; <span class="hz-accent">the rest come from the flowverse.</span></h2>
           <p class="hz-lead">
-            That split is deliberate, and everything else at Humanfia is built on it. The ones that
-            ship with the runtime, plus the flowverse it fetches, cover most of the loop shapes the
-            field has converged on.
+            The ones that ship with the runtime, plus the flowverse it fetches, cover most of the loop
+            shapes in common use.
           </p>
         </header>
         <HzFlows />
         <div class="hz-verse" v-reveal>
           <p class="hz-copy">
             The rest are listed in a <b>flowverse</b> — an index in git that pins each version of a
-            flow to a commit of the repository it lives in, which anybody can read, fork, publish to
-            or beat. Comparing one method against another is a flag rather than a reimplementation.
-            Which is actually better is <a href="/projects/flowbench">FlowBench</a>’s question, and
-            the answer is allowed to delete ours.
+            flow to a commit of the repository it lives in, which anybody can read, fork or publish to.
+            Comparing one method against another is a flag rather than a reimplementation.
+            <a href="/projects/flowbench">FlowBench</a> tests which is better, and ours are removed
+            when they lose.
           </p>
           <a class="hz-link" href="https://github.com/humanfia/flowverse" target="_blank" rel="noreferrer">humanfia/flowverse ↗</a>
         </div>
@@ -227,11 +226,11 @@ const NEXT = [
       </div>
     </section>
 
-    <!-- 07 The real thing, recorded ----------------------------------------------------- -->
+    <!-- 07 Demos ---------------------------------------------------------------------------- -->
     <section id="the-real-thing-recorded" class="hz-band">
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
-          <p class="hz-num"><b>07</b> The real thing, recorded</p>
+          <p class="hz-num"><b>07</b> Demos</p>
           <h2 class="hz-h2">Screen recordings of <code>hmz</code> <span class="hz-accent">and a Ralph loop.</span></h2>
           <p class="hz-lead">
             From <code>hmz</code> itself, in a container with a stand-in coding agent in it. Then two
@@ -284,7 +283,7 @@ const NEXT = [
           <h2 class="hz-h2">A test enforces which of the <span class="hz-accent">seventeen layers may import which.</span></h2>
           <p class="hz-lead">
             The runtime drives twelve different CLIs without becoming twelve different products
-            because the layering is a rule rather than an intention. Point at a layer.
+            because those import rules are enforced by a test. Point at a layer.
           </p>
         </header>
         <div v-reveal="80"><LayerStack /></div>

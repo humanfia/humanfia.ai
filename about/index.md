@@ -18,9 +18,9 @@ pageClass: page-wide about-page
 
 > Humanize is part of NVIDIA RSI effort
 
-<p class="lede">We build the flow around the agents: the method, the referee, and the
-applications that show whether an agent finishes the work or just starts it impressively. These
-are the people who do it.</p>
+<p class="lede">We build the flow around the agents: the flows, the runtime that runs them, the
+benchmark that compares them, and the projects that test them on hard problems. These are the
+people who do it.</p>
 
 <TeamRoster />
 
@@ -30,25 +30,24 @@ are the people who do it.</p>
 
 A better model writes a better function; it does not, on its own, work for eleven hours, hold
 on to a constraint from round one, and stop when the job is done. That is the loop around the
-agent, and we think the loop is what lasts — models are rented and replaced, a method can be
-written down, measured and improved. So we build methods, give them away, and score them
-against each other in public; when one of ours loses, it goes.
+agent, and we think the loop is what lasts. Models are replaced every few months; a method can
+be written down, measured and improved, and it gets better with each new model. So we
+open-source our flows, benchmark them against other flows, and drop ours when they lose.
 
 ## How we work
 
 <ol class="principles">
   <li><b>The person decides what done means.</b> People own the intent, the tradeoffs and the
-  definition of done. Agents are leverage inside that, not a replacement for it.</li>
-  <li><b>The builder is not the judge.</b> Every serious flow has a second agent that arrives
+  definition of done. Agents do the work within those decisions.</li>
+  <li><b>A separate agent reviews the work.</b> Every serious flow has a second agent that arrives
   with no memory of the work and reads the repository instead.</li>
   <li><b>Reward hacking is the normal failure.</b> Long runs fail by <em>looking</em> finished —
   a narrowed test, a special case, a stub under a confident summary. Our reviewers hunt for
   exactly that.</li>
-  <li><b>If it is not measured, it is a preference.</b> <a href="/projects/flowbench">FlowBench</a>
-  is us agreeing in advance to find out whether our flows are right, and to delete the ones
-  that are not.</li>
-  <li><b>Build in public.</b> The runtime, the flows and the reproduction code are open source.
-  When we publish a number, we publish what it takes to check it.</li>
+  <li><b>We only claim what we have measured.</b> <a href="/projects/flowbench">FlowBench</a>
+  tests our flows against others, and we remove the ones that lose.</li>
+  <li><b>Open source.</b> The runtime, the flows and the reproduction code are open source.
+  Every published number comes with what is needed to check it.</li>
 </ol>
 
 ## Credit
@@ -57,7 +56,7 @@ Each result is credited at the top of the post that reports it, not folded into 
 Everything has been built with many more people than are named above — [NVIDIA
 Research](https://www.nvidia.com/en-us/research/), [MIT HAN Lab](https://hanlab.mit.edu),
 [UCLA PolyArch](https://polyarch.cs.ucla.edu/), Tsinghua, [Nunchux](https://nunchux.ai), and a long
-tail of community contributors. The full list is the one git keeps:
+tail of community contributors. The full list is in each repository's contributor graph:
 [Humanize](https://github.com/humanfia/humanize/graphs/contributors) ·
 [the flowverse](https://github.com/humanfia/flowverse/graphs/contributors) ·
 [this site](https://github.com/humanfia/humanfia.ai/graphs/contributors).
@@ -66,7 +65,7 @@ tail of community contributors. The full list is the one git keeps:
 
 <div class="contact">
   <a href="https://github.com/humanfia">
-    <b>A question, a bug, or a flow that beats ours</b>
+    <b>Questions, bugs and better flows</b>
     <span>Open an issue or a pull request on the repository it belongs to — Humanize, the
     flowverse, or this site.</span>
   </a>

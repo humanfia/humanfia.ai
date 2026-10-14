@@ -112,8 +112,8 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewB
   <text x="68" y="418" font-family="{SANS}" font-size="78" font-weight="bold"
         letter-spacing="-3" fill="{INK}">around the agents.</text>
 
-  <text x="72" y="490" font-family="{SANS}" font-size="28" fill="{INK_2}">The runtime, the flows and the referee</text>
-  <text x="72" y="528" font-family="{SANS}" font-size="28" fill="{INK_2}">for long-horizon agent work.</text>
+  <text x="72" y="490" font-family="{SANS}" font-size="28" fill="{INK_2}">Open-source flows for long-horizon agent work,</text>
+  <text x="72" y="528" font-family="{SANS}" font-size="28" fill="{INK_2}">and the runtime that runs them.</text>
 
   <rect x="0" y="{H - 10}" width="{W}" height="10" fill="{INK}"/>
   <text x="72" y="584" font-family="{MONO}" font-size="22" font-weight="bold" fill="{INK}">humanfia.ai</text>

@@ -70,7 +70,7 @@ onScrollFrame(() => {
       <div class="hma-wrap">
         <div class="hma-section-head" v-reveal>
           <p class="hma-kicker"><span class="hma-num">06</span> Timeline</p>
-          <h2 id="timeline-h" class="hma-h2">Until the paper is out, these write-ups are the record</h2>
+          <h2 id="timeline-h" class="hma-h2">HMA write-ups, until the paper is published</h2>
         </div>
         <ProjectTimeline
           kicker="HMA and the Kaggle work before it"

@@ -1,6 +1,6 @@
 ---
 title: "Biohub final: #188 of 3,947, top 5%"
-description: "In August an agent workflow sat 8th on the Biohub cell-tracking public leaderboard. The private board has now spoken: 188th of 3,947, the top 4.76%. A real finish, a smaller one, and the Kaggle tally when only final ranks count."
+description: "In August an agent workflow sat 8th on the Biohub cell-tracking public leaderboard. The final private rank is 188th of 3,947, the top 4.76%: lower, but an official finish. Plus the Kaggle tally when only final ranks count."
 date: 2026-09-30
 authors:
   - Changye Li

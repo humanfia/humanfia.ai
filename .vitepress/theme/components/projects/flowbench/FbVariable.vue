@@ -89,8 +89,7 @@ onBeforeUnmount(() => {
     </ul>
 
     <p class="fb-var-verdict">
-      Reads as: <strong>this <Transition name="fb-roll" mode="out-in"><em :key="mode">{{ mode === 'model' ? 'vendor' : 'loop' }}</em></Transition>
-      beat that {{ mode === 'model' ? 'vendor' : 'loop' }}</strong>
+      Result: <strong>a ranking of <Transition name="fb-roll" mode="out-in"><em :key="mode">{{ mode === 'model' ? 'models' : 'flows' }}</em></Transition></strong>
     </p>
   </div>
 </template>
