@@ -1,6 +1,6 @@
 ---
 title: "#2 on Lean-Eval, behind Seed Prover"
-description: "A general model in a general agent loop is second on Lean-Eval, behind ByteDance's Seed Prover, a system built for formal mathematics. By our count it is 149 problems to 155: close enough to chase."
+description: "A general model in a general agent loop is second on Lean-Eval, behind ByteDance's Seed Prover, a system built for formal mathematics. By our count it is 149 problems to 155."
 date: 2026-07-29
 authors:
   - Zhengyang Zhang

@@ -78,7 +78,7 @@ const FOUNDING = [
     role: 'Built the team',
     body:
       'Assembled Humanfia. Everyone here is here because he went and found them — across NVIDIA, '
-      + 'MIT, UCLA, Tsinghua and a dozen of other places — and pointed our flows at problems '
+      + 'MIT, UCLA, Tsinghua and a dozen other places — and pointed our flows at problems '
       + 'with an outside grader. He scales both the team and agents, and keeps '
       + 'improving the efficiency & productivity of token maxing at Nvidia Research. '
       + 'He works on every project.',
@@ -105,11 +105,11 @@ const GROUPS: Group[] = [
     what: 'The runtime that drives twelve coding-agent CLIs through a flow and records every turn.',
     members: [
       { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.' },
-      { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
-      { who: 'antoinegg1', role: 'Flows, the flowverse, and running the thing at Kaggle scale.' },
+      { who: 'DongyunZou', role: 'Backends, and the kernel workloads the runtime has to run.' },
+      { who: 'antoinegg1', role: 'Flows, the flowverse, and running Humanize across Kaggle competitions.' },
       { who: 'SihaoLiu', role: 'Harness alignment: every driver held to what its CLI really does.' },
       { who: 'dongz9', role: 'Execution and the container path.' },
-      { who: 'crmsndu', role: 'Long-horizon runs, and what breaks on them.' },
+      { who: 'crmsndu', role: 'Long-horizon runs and their failure modes.' },
     ],
   },
   {
@@ -134,7 +134,7 @@ const GROUPS: Group[] = [
     members: [
       { who: 'ZhengyangZhang06', role: 'Lead. PutnamBench, IMO 2026 and both Lean-Eval runs.' },
       { who: 'menik1126', role: 'Physics and quantum information, formalized end to end.' },
-      { who: 'hongzhoulin89', role: 'Research-level proofs, and what a Lean proof is worth.' },
+      { who: 'hongzhoulin89', role: 'Research-level proofs, and how they are checked in Lean.' },
       { who: 'JuiHuiChung', role: 'Set up the PutnamBench baseline and proposed recursive lemma proving for HOA.' },
       { who: 'mark_sf', role: 'Discuss the math autoformalization and help setup the 1stproof contest.' },
     ],
@@ -146,7 +146,7 @@ const GROUPS: Group[] = [
     what: 'Scores flows against each other on day-long tasks; the winner becomes the default.',
     members: [
       { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.' },
-      { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },
+      { who: 'crmsndu', role: 'Tasks drawn from real engineering work.' },
       { who: 'JerryGJX', role: 'Kernel and systems tasks.' },
     ],
   },

@@ -104,8 +104,7 @@ const INDEX = [
         </div>
         <div class="dt-copy">
           <p class="hz-copy">
-            There is no plugin, no configuration and no cooperation, because the agent is never
-            asked. A seccomp-filtered ptrace supervisor decides every call it makes: it opens a
+            The agent needs no plugin or configuration. A seccomp-filtered ptrace supervisor decides every call it makes: it opens a
             file, and gets the target’s; it runs <code>pytest</code>, and the process is the
             target’s; it reads its own credentials, and those are answered here.
           </p>

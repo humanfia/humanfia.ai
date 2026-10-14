@@ -12,8 +12,8 @@ import FlowThumb from '../../flow/FlowThumb.vue'
 const STEPS = [
   { verb: 'Fix', said: 'Everything but the method: the model, its tools, the task, the budget and the machine.' },
   { verb: 'Run', said: 'Several flows on the same task, unchanged, in the same runtime anybody can install.' },
-  { verb: 'Score', said: 'Each run with a check that already existed: faster, compiles, or passes.' },
-  { verb: 'Compare', said: 'Flow with flow. The result reads: this loop beat that loop.' },
+  { verb: 'Score', said: 'Each run with an existing check: a benchmark, a build or a test suite.' },
+  { verb: 'Compare', said: 'Flow against flow, so the ranking is a ranking of flows.' },
 ]
 const HELD = ['model', 'tools', 'task', 'budget', 'machine']
 const lanes = ['ralph_loop', 'rlar', 'flame_chase'].map((name) => FLOWS.find((f) => f.name === name)!)

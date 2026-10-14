@@ -83,7 +83,7 @@ onBeforeUnmount(clear)
 const verdict = () => {
   const stop = FILES[picked.value].stop
   if (running.value) return 'Checking…'
-  return stop === 5 ? 'Counted. Nothing else is.' : `Refused at gate ${stop + 1}: ${GATES[stop].name.toLowerCase()}.`
+  return stop === 5 ? 'Passes all five gates, so it counts.' : `Refused at gate ${stop + 1}: ${GATES[stop].name.toLowerCase()}.`
 }
 </script>
 

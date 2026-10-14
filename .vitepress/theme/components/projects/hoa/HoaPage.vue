@@ -69,10 +69,10 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
       <template #figure><HoaGates /></template>
     </HoaSection>
 
-    <HoaSection id="what-this-is-really-testing" n="06" kicker="What this is really testing" title="The same model proves 3 of 50 Putnam problems through the API and 50 inside a flow.">
+    <HoaSection id="what-this-is-really-testing" n="06" kicker="With and without a flow" title="The same model proves 3 of 50 Putnam problems through the API and 50 inside a flow.">
       The models are the ones everybody has. What differs is the arrangement around them: who works
       and who reviews, what carries between attempts, when a line of attack is dropped. A formal
-      verifier measures that, because it removes every way of being approximately right.
+      verifier measures that, because a proof either checks or it is refused, with no partial credit.
       <template #figure><HoaLoops :ablation="fm.ablation" :icho="fm.icho" /></template>
     </HoaSection>
 

@@ -1,6 +1,6 @@
 ---
 title: A 567-file CMake port of gem5
-description: "One engineer and the RLCR Flow loop took gem5 off SCons: CMake + Ninja as the build, Bazel alongside it, across 567 files, 133 commits and 42,967 changed lines. It is upstream as a request for comments, and it was the task that taught us the most."
+description: "One engineer and the RLCR Flow loop took gem5 off SCons: CMake + Ninja as the build, Bazel alongside it, across 567 files, 133 commits and 42,967 changed lines. It is upstream as a request for comments."
 date: 2026-03-01
 authors:
   - Sihao Liu

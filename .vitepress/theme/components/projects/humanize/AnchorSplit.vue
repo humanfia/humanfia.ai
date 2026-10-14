@@ -71,8 +71,8 @@ const hold = (i: number) => {
       <!-- What the agent thinks it is running on. -->
       <section class="end" :class="{ lit: live?.to === 'here' }">
         <p class="eyebrow">this machine</p>
-        <h4>The agent, and what it is not told</h4>
-        <p class="line">claude · codex · dsh · … unchanged, and told none of this</p>
+        <h4>The agent, unmodified</h4>
+        <p class="line">claude · codex · dsh · …, with no plugin or configuration</p>
         <ul>
           <li>credentials</li>
           <li>state</li>
@@ -119,8 +119,8 @@ const hold = (i: number) => {
     </div>
 
     <figcaption>
-      No plugin, no configuration, no cooperation — the agent is told none of it, because it is
-      not asked. Reads come out of a local mirror at local speed, and the mirror and the target
+      The agent needs no plugin or configuration: its system calls are intercepted underneath it.
+      Reads come out of a local mirror at local speed, and the mirror and the target
       are kept in step. <a :href="`${DOCS}/features/anchor`">How it works, syscall by syscall ↗</a>
     </figcaption>
   </figure>

@@ -65,7 +65,7 @@ const LAYERS: Layer[] = [
   },
   {
     name: 'flows/',
-    is: 'The flow API: the types a flow imports. Each is a promise to somebody else’s repository.',
+    is: 'The flow API: the types a flow imports. Each is a contract with flows that live in other repositories.',
     module: 'hmz.flows',
     note: 'The one pair: it hands a flow to flowing inside the call, never at import.',
   },

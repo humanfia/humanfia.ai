@@ -1,6 +1,6 @@
 ---
 title: "KDA: Kernel Design Agents"
-description: An agent workflow that researches, writes, verifies and tunes performance-critical kernels on real hardware, without letting them get wrong on the way. Built with MIT HAN Lab, and shipping into production serving stacks.
+description: An agent workflow that researches, writes, verifies and tunes performance-critical kernels on real hardware, and checks that every speedup keeps the output correct. Built with MIT HAN Lab, and shipping into production serving stacks.
 layout: page
 sidebar: false
 aside: false
@@ -199,7 +199,7 @@ import KdaCoda from '../.vitepress/theme/components/projects/kda/KdaCoda.vue'
 
 <KdaHero />
 
-<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Every record here was scored by an outside contest, leaderboard or maintainer." lede="Contest harnesses, public leaderboards, and maintainers who did not ask for the kernels and still merged them. Every number links to its write-up.">
+<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Every record here was scored by an outside contest, leaderboard or maintainer." lede="Contest harnesses, public leaderboards, and and upstream maintainers who reviewed and merged the kernels. Every number links to its write-up.">
 <template #figure>
 <KdaBoard :records="$frontmatter.records" />
 </template>
@@ -207,15 +207,16 @@ import KdaCoda from '../.vitepress/theme/components/projects/kda/KdaCoda.vue'
 
 <KdaSection id="the-problem" n="02" kicker="The problem" title="An incorrect kernel can still report a speedup." tone="alt" split>
 
-Kernel work is the worst case for a coding agent and the best case for a good loop.
+Kernel optimisation is hard for a coding agent: speed is easy to measure, and correctness is
+easy to break without noticing.
 
-A change is a one-line edit and a three-hour investigation. The feedback is a number, but it is
-noisy, specific to the hardware and **easy to fool**: a kernel that is faster because it is now
-subtly incorrect will happily report a win.
+A one-line change can take hours to verify. The feedback is a number, but it is noisy, specific
+to the hardware and **easy to fool**: a kernel that is faster because it is now subtly incorrect
+still reports a speedup.
 
 An agent told to "optimise this kernel" and left alone will produce something plausible, report
-a win, and be wrong. KDA's own agents did exactly that on the way to KDA². **The engineering is
-in what happens around the agent.**
+a win, and be wrong. KDA's own agents did exactly that on the way to KDA². **KDA's gates around
+the agent are what catch it.**
 
 <template #figure>
 <KdaHacks :hacks="$frontmatter.hacks" :gates="$frontmatter.gates" href="/blog/2026-09-27-kda-for-kda" />

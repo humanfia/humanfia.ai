@@ -76,8 +76,8 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
         <p class="hma-kicker"><span class="hma-num">05</span> Before HMA</p>
         <h2 id="kaggle-h" class="hma-h2">HMA grew out of our work on live Kaggle competitions</h2>
         <p class="hma-lead">
-          That work ran as AgentKaggle. It is history here, not an HMA track, and the same people
-          did both.
+          That work ran as AgentKaggle. It is earlier work, not part of HMA's results, and the same
+          people did both.
         </p>
       </div>
 
@@ -175,8 +175,8 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
             </p>
           </div>
           <figcaption>
-            A real top-5% finish on a closed board, and a smaller one. A public rank in the middle of a
-            competition is a weather report.
+            The final private rank is the official, top-5% result. A public rank in the middle of a
+            competition is provisional and can move a long way.
           </figcaption>
         </figure>
 

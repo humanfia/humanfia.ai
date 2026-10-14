@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// What the loop is worth: the same four models, three levels of scaffolding, fifty problems.
+// The same model with and without a flow: four models, three levels of scaffolding, fifty problems.
 // A switch between the two benchmarks; each model is three bars on a scale of 50, the flow's in
 // accent, with what it gained over the coding CLI beside it. The bars grow in the first time the
 // figure is seen, and re-grow from where they were when the benchmark changes.

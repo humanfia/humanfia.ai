@@ -15,9 +15,9 @@ const projects = computed<{ text: string; link: string }[]>(
 const here = computed(() => `/${page.value.relativePath.replace(/\.md$/, '')}`)
 
 const FACTS = [
-  { big: 'Hours', kicker: 'Task length', text: 'Each task takes hours of agent time. One turn is never enough.' },
+  { big: 'Hours', kicker: 'Task length', text: 'Each task takes hours of agent time and cannot be finished in one turn.' },
   { big: '1', kicker: 'Variable', text: 'The flow. The model, tools, task, budget and machine stay fixed.' },
-  { big: '0', kicker: 'LLM graders', text: 'Faster, compiles, passes: every score is a check that already existed.' },
+  { big: '0', kicker: 'LLM graders', text: 'Every score comes from an existing check: a benchmark, a build or a test suite.' },
   { big: '—', kicker: 'Numbers published', text: 'None yet. When there are, they go in the news.' },
 ]
 
@@ -49,7 +49,7 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
         </h1>
         <p class="fb-stand">
           Built for agent work that takes hours. Every run uses the same model, the <em>flow</em>
-          around it is the one thing that changes, and a check that already existed calls the result.
+          around it is the one thing that changes, and an existing test or benchmark scores the result.
         </p>
         <div class="fb-actions">
           <a class="fb-btn primary" href="/flows/">The flows it scores <span aria-hidden="true">→</span></a>

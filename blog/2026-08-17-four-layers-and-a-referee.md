@@ -1,6 +1,6 @@
 ---
 title: "Humanfia: From a Review Loop to Four Layers and a Referee"
-description: "How Humanfia went from a July launch, an agent workflow for serious L3–L4 development, to four layers and a referee: agents, a runtime, flows and applications, with a benchmark whose winner flows back in."
+description: "How Humanfia went from a July launch, an agent workflow for serious L3–L4 development, to a four-layer system of agents, a runtime, flows and applications, plus FlowBench, whose best flow becomes the default."
 date: 2026-08-17
 authors:
   - Humanfia
