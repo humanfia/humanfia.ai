@@ -56,8 +56,8 @@ const TIES = [
       <div class="ex-head" aria-hidden="true" :style="{ '--p': p / 100 }" />
     </div>
     <figcaption>
-      Agent sessions (top) and, when the run is profiled, the programs they started (bottom) share one clock. The
-      reviewer's row is empty until the builder hands over. Open the trace in Perfetto; nothing is uploaded.
+      Agent sessions (top) and, when profiled, the programs they started (bottom), on one clock.
+      The reviewer’s row is empty until the builder hands over.
     </figcaption>
   </figure>
 </template>

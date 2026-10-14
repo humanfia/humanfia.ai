@@ -7,11 +7,11 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { prefersReducedMotion } from '../../../home/motion'
 
 const STEPS = [
-  { word: 'Agent', said: 'An agent is its settings: harness, model, effort, account.' },
-  { word: 'Session', said: 'spawn() opens a session. A session is history, and nothing else.' },
-  { word: 'Turn', said: 'run() takes a turn. With env=None, the turn works in the workspace.' },
-  { word: 'Env', said: 'The next turn names another env. The history carries over; only the place changes.' },
-  { word: 'Fork', said: 'fork() branches the session: a second conversation that remembers everything so far.' },
+  { word: 'Agent', said: 'An agent is a configuration: harness, model, effort and account.' },
+  { word: 'Session', said: 'spawn() opens a session. A session holds conversation history only.' },
+  { word: 'Turn', said: 'run() takes a turn. With env=None, it works in the workspace.' },
+  { word: 'Env', said: 'The next turn names another env. The history carries over.' },
+  { word: 'Fork', said: 'fork() branches the session into a second conversation with the same history.' },
 ]
 
 /** The flow, a line at a time, each with the step it belongs to (0: none). */

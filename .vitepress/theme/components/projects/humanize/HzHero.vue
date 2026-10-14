@@ -54,9 +54,8 @@ const copyLift = computed(() =>
           Run coding agents in a flow and <span>trace every turn.</span>
         </h1>
         <p class="hz-lead hz-load" style="--d: 0.3s">
-          Humanize drives the coding-agent CLI you already log into, in the order a flow asks for,
-          and writes the whole run down as it happens. Every other project on this site stands on
-          it.
+          Humanize runs the coding-agent CLIs you already log into, in the order a flow sets, and
+          records every turn. Every other Humanfia project runs on it.
         </p>
 
         <div class="hero-install hz-load" style="--d: 0.45s">

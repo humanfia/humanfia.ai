@@ -19,19 +19,19 @@ const WAYS: Way[] = [
   {
     key: 'pip',
     label: 'pip',
-    note: 'Into the environment you are already in.',
+    note: 'Into your current environment.',
     lines: [`pip install git+${REPO}.git`],
   },
   {
     key: 'uv',
     label: 'uv',
-    note: 'As a tool of its own, on your PATH and out of the way.',
+    note: 'As a standalone tool on your PATH.',
     lines: [`uv tool install git+${REPO}.git`],
   },
   {
     key: 'source',
     label: 'from source',
-    note: 'A checkout you can read, change and open a pull request from.',
+    note: 'A checkout you can change and send pull requests from.',
     lines: [`git clone ${REPO}.git`, 'cd humanize', 'uv sync'],
   },
 ]
@@ -70,34 +70,23 @@ const pick = (i: number) => {
   copied.value = false
 }
 
-/** What you get for the one line. Statements rather than a menu: each of these is a page on
- *  the documentation site, but the way there is the plate at the top of the page and the line
- *  under this block. These four were links that read as text -- the rule that styled them took
- *  the colour and the underline back off -- which is a link nobody can see to take. */
-const FACTS = [
-  'Twelve coding-agent CLIs, one flow',
-  'Work lands in a container or on an ssh host',
-  'Every run, a trace you open in Perfetto',
-  'A stopped run resumes where it left off',
-]
-
 const STEPS = [
   {
     n: '01',
     title: 'Check it landed',
-    body: 'One command, and no account to sign up for.',
+    body: 'No account needed.',
     lines: ['hmz --version'],
   },
   {
     n: '02',
     title: 'Log into an agent you already have',
-    body: 'It drives your CLI under your own subscription. Any one of twelve will do.',
+    body: 'Any supported coding-agent CLI, under your own subscription.',
     lines: ['claude auth login', 'codex login'],
   },
   {
     n: '03',
     title: 'Run a flow',
-    body: 'A published flow, several agents, and a trace of everything they did.',
+    body: 'A published flow with several agents, traced.',
     lines: ['hmz exec -f official/flame_chase'],
   },
 ]
@@ -145,12 +134,8 @@ const STEPS = [
         <p class="install-note">{{ way.note }}</p>
 
         <p class="install-req">
-          Python ≥ 3.12 · drives the coding agent CLI you already log into · an API key only if you add one
+          Python ≥ 3.12 · API key optional
         </p>
-
-        <ul class="install-facts">
-          <li v-for="fact in FACTS" :key="fact">{{ fact }}</li>
-        </ul>
 
         <p class="install-links">
           <a :href="`${DOCS}/user/installation`">The installation guide ↗</a>
@@ -297,41 +282,13 @@ const STEPS = [
 
 .install-req {
   margin: 10px 0 0;
+  /* Takes up whatever height the card has spare, so the links below sit on its bottom edge
+     when the two columns are the same height -- and keep their own margin when they are not. */
+  margin-bottom: auto;
   font-family: var(--vp-font-family-mono);
   font-size: 11.5px;
   line-height: 1.7;
   color: var(--vp-c-text-3);
-}
-
-.install-facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 6px 20px;
-  margin: 18px 0 0;
-  /* Takes up whatever height the card has spare, so the links below sit on its bottom edge
-     when the two columns are the same height -- and keep their own margin when they are not. */
-  margin-bottom: auto;
-  padding: 0;
-  list-style: none;
-}
-
-.install-facts li {
-  position: relative;
-  padding-left: 15px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--vp-c-text-2);
-}
-
-.install-facts li::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 0;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--vp-c-brand-2);
 }
 
 .install-links {

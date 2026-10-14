@@ -34,9 +34,7 @@ const thumbs = ref<(InstanceType<typeof FlowThumb> | null)[]>([])
       <a href="/flows/" class="fl-card fl-all">
         <p class="fl-kicker">The catalogue</p>
         <h3>Every flow, with its loop drawn</h3>
-        <p class="fl-body">
-          A page each, with what the flow does and a run of it played out.
-        </p>
+        <p class="fl-body">A page per flow, with a run of it played out.</p>
         <span class="fl-go">All the flows <span aria-hidden="true">→</span></span>
       </a>
     </li>

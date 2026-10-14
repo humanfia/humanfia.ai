@@ -49,7 +49,7 @@ const line = computed(() => {
           <span class="wire"><i /></span>
           <span class="box grey">env</span>
         </div>
-        <p class="hz-copy">The CLI works with its tools, in the env the turn names.</p>
+        <p class="hz-copy">The CLI uses its tools in the env the turn names.</p>
       </div>
       <div class="hn-turn">
         <p class="hn-tag accent">A litellm turn</p>
@@ -58,7 +58,7 @@ const line = computed(() => {
           <span class="wire long"><i class="accent" /><small>history + prompt → one completion</small></span>
           <span class="box frame">model</span>
         </div>
-        <p class="hz-copy"><b>env=None, always.</b> The history and the prompt go to the model, and an answer comes back.</p>
+        <p class="hz-copy"><b>env=None, always.</b> The model gets the history and the prompt and returns one answer.</p>
       </div>
     </div>
   </div>

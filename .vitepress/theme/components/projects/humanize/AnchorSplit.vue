@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The agent stays here; its files and commands are on the target.
+// The agent runs here; its files and commands are on the target.
 //
 // The anchor, drawn: a seccomp-filtered ptrace supervisor sits between the coding agent and
 // the kernel and decides every call one at a time -- replay it on the target, or answer it on
@@ -119,9 +119,8 @@ const hold = (i: number) => {
     </div>
 
     <figcaption>
-      The agent needs no plugin or configuration: its system calls are intercepted underneath it.
-      Reads come out of a local mirror at local speed, and the mirror and the target
-      are kept in step. <a :href="`${DOCS}/features/anchor`">How it works, syscall by syscall ↗</a>
+      Reads come from a local mirror that is kept in step with the target.
+      <a :href="`${DOCS}/features/anchor`">How it works, syscall by syscall ↗</a>
     </figcaption>
   </figure>
 </template>
