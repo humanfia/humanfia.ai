@@ -1,6 +1,6 @@
 ---
 title: "KDA: Kernel Design Agents"
-description: An agent workflow that researches, writes, verifies and tunes performance-critical kernels on real hardware, and checks that every speedup keeps the output correct. Built with MIT HAN Lab, and shipping into production serving stacks.
+description: An agent workflow that writes and tunes GPU kernels on real hardware, and checks that each speedup keeps the output correct. Built with MIT HAN Lab.
 layout: page
 sidebar: false
 aside: false
@@ -22,7 +22,7 @@ project:
 race:
   headline: KDA² · Kimi Delta Attention · B300
   kicker: Forward pass · B300 · 8,192 tokens
-  label: geomean speedup over FlashKDA, Moonshot AI's official kernel, with a tenth of its final-state error.
+  label: geomean speedup over FlashKDA, Moonshot AI's kernel, with a tenth of its final-state error.
   lanes:
     - { name: FlashKDA, score: 1 }
     - { name: KDA + CAKE (CuTe), score: 2.85 }
@@ -34,7 +34,7 @@ race:
 records:
   - kicker: KDA² · v0.6 · B300
     value: 2.96×
-    text: Kimi Delta Attention over FlashKDA at 8,192 tokens, with a tenth of its final-state error. From 1.61× in eight weeks.
+    text: Kimi Delta Attention over FlashKDA at 8,192 tokens, up from 1.61× in eight weeks.
     href: /blog/2026-09-27-kda-for-kda
     size: wide
     viz: climb
@@ -43,7 +43,7 @@ records:
   - kicker: SOL-ExecBench · board v1.1
     value: '71'
     unit: / 235
-    text: Per-kernel first places, the most of any entrant, read 5 October (53 in June, Humanfia-reported).
+    text: Per-kernel first places, the most of any entrant, on 5 October (53 in June, Humanfia-reported).
     href: /news/2026-06-22-sol-bench-batch
     size: wide
     viz: cells
@@ -54,7 +54,7 @@ records:
       - { label: FIB, of: 26, won: 6 }
   - kicker: MLSys 2026 · FlashInfer
     value: '#1 #2 #3'
-    text: On MoE, DSA and GDN in the Full-Agent tracks. Since then past the best human entry on all three, as public KDA 0.5 kernels on B200.
+    text: On MoE, DSA and GDN in the Full-Agent tracks. Public KDA 0.5 kernels later passed the best human entry on all three.
     href: /news/2026-08-02-kda-15-past-human-sota
     viz: bars
     max: 2
@@ -64,7 +64,7 @@ records:
       - { label: MoE FP8, value: 1.17 }
   - kicker: SGLang · upstream
     value: 40+
-    text: Agent-optimised operators merged by June, and six more pull requests since August, the best adding 8.73% end to end.
+    text: Agent-optimised operators merged by June; six more pull requests since August, the best adding 8.73% end to end.
     href: /news/2026-10-05-kda-upstream
     viz: blocks
     blocks:
@@ -72,7 +72,7 @@ records:
       - { count: 6, label: 6 pull requests since August, accent: true }
   - kicker: MSA indexer · B300 · in production
     value: 6.5×
-    text: Geomean on prefill, up to 3.3× on long-context decode, with bitwise-identical output (Humanfia-reported).
+    text: Geomean on prefill; up to 3.3× on long-context decode. Bitwise-identical output (Humanfia-reported).
     href: /news/2026-08-14-msa-indexer
     viz: meter
     max: 15
@@ -82,7 +82,7 @@ records:
       - { label: Decode, value: 3.3, detail: up to 3.3× }
   - kicker: SOL-ExecBench L1 · board v1.0
     value: '0.7639'
-    text: First on 94 single-operation kernels, by 0.00006; third on the v1.1 stack the board now defaults to.
+    text: First on 94 single-operation kernels, by 0.00006. Third on the newer v1.1 board.
     href: /news/2026-07-02-solexec-l1
     viz: board
     bars:
@@ -92,7 +92,7 @@ records:
   - kicker: SGLang-Diffusion · quality tier
     value: 34.7
     unit: dB
-    text: The lowest PSNR of the first six fast paths shipped under --quality high, against a 25 dB bar, so a fusion that changes bf16 rounding order can ship at all.
+    text: Lowest PSNR of the first six fast paths shipped under --quality high. The bar is 25 dB.
     href: /blog/2026-08-06-sglang-diffusion-quality-tiers
     viz: meter
     max: 60
@@ -103,7 +103,7 @@ records:
   - kicker: AMD MI350X · ROCm/FlyDSL
     value: '2'
     unit: PRs
-    text: Merged in AMD's FlyDSL, where the documentation is thin and few published kernels exist to copy.
+    text: Merged in AMD's FlyDSL, which has few published kernels to learn from.
     href: /news/2026-06-15-kda-generalizes
     viz: prs
     prs:
@@ -113,10 +113,10 @@ records:
 # The problem: what KDA² candidates claimed on the synthetic tests, and what each was worth on
 # real Kimi-Linear inputs (the KDA² post, "Reward hacking").
 hacks:
-  - { key: A, name: Input-distribution overfitting, claimed: 3.74, realText: failed completely, note: 'Replaced the L2 normalisation of Q and K with a constant tuned to Gaussian test inputs; with the shortcut removed, the real speedup was 2.48×.' }
-  - { key: C, name: Illegal history truncation, claimed: 5.16, realText: the speedup vanished, note: Assumed state older than 32 tokens was negligible; claimed on a single H64 sequence. }
-  - { key: D, name: Overflow under extreme gate ranges, claimed: 3.57, realText: NaN on every real case, note: Decay past 126 bits underflowed to zero; the random tests never went past about 52. }
-  - { key: '✓', name: 'KDA + TIRx, released', claimed: 2.96, real: 2.96, realText: passes all six gates, note: Tuned in place on B300 and passes the real Kimi-Linear acceptance suite., released: true }
+  - { key: A, name: Input-distribution overfitting, claimed: 3.74, realText: failed completely, note: 'Replaced the L2 normalisation of Q and K with a constant tuned to the test inputs. With the shortcut removed, 2.48×.' }
+  - { key: C, name: Illegal history truncation, claimed: 5.16, realText: the speedup vanished, note: Dropped state older than 32 tokens. Measured on one H64 sequence. }
+  - { key: D, name: Overflow under extreme gate ranges, claimed: 3.57, realText: NaN on every real case, note: Decay past 126 bits underflowed to zero. The tests never went past about 52. }
+  - { key: '✓', name: 'KDA + TIRx, released', claimed: 2.96, real: 2.96, realText: passes all six gates, note: Passes the real Kimi-Linear acceptance suite., released: true }
 gates:
   - Fresh seeds and hidden distribution holdouts
   - A strict specification of every legal input
@@ -129,16 +129,16 @@ gates:
 loop:
   - stage: research
     title: Read the code, the profiler and prior art first.
-    text: A profiler skill that turns an `ncu` report into something readable, a kernel wiki of techniques and prior art, and the repository itself. The plan is grounded in the code and the hardware, not a hunch.
+    text: The plan starts from `ncu` reports, a kernel wiki of known techniques, and the repository.
   - stage: contract
     title: Write down the objective and the bar to clear.
-    text: The objective, the constraints, the validation command and the bar for promotion are written down first. Everything after is judged against it, so "it got faster" never quietly replaces "it got faster and is still correct".
+    text: The objective, constraints, validation command and promotion bar are fixed before any code is written.
   - stage: ring
     title: Validate and benchmark each iteration.
-    text: Implement, validate, benchmark, profile, decide. A candidate that is faster because it is wrong stops at validation; one that clears the bar fixed in advance is promoted.
+    text: Incorrect candidates stop at validation. Only a candidate that clears the bar is promoted.
   - stage: record
     title: Log every candidate, result and decision.
-    text: Candidates, benchmark results, profiling evidence and promotion decisions are written down as the run goes, so another engineer can see what was tried, what passed, and why the winner won.
+    text: Benchmarks, profiles and decisions are logged so another engineer can check the run.
 
 # MLSys 2026 FlashInfer contest: the public release's own table
 # (mit-han-lab/mlsys2026-flashinfer-contest-solution, README "Results"): geomean over the
@@ -175,13 +175,13 @@ upstream:
     date: '2026-08-27'
     revertedOn: '2026-08-28'
     href: https://github.com/svg-project/flash-kmeans/pull/23
-    text: A KDA backend for Flash-KMeans, measured at 7.31× on a real LongCat-Video workload, was merged in August and reverted the next day to keep that repository simple. It is not counted as upstream.
+    text: A KDA backend for Flash-KMeans (7.31× on LongCat-Video) was merged in August and reverted the next day. It is not counted here.
   prs:
-    - { pr: '#36845', date: '2026-08-30', change: QSA decode, hw: SM121 (GB10), result: 'A correctness fix: the old path silently corrupted long-context decode. The new kernel is 2.07× the old correct one.' }
-    - { pr: '#37385', date: '2026-09-01', change: KernelBackend.KDA, hw: any, result: 'Provenance: the engine records which of its kernels an agent wrote.' }
+    - { pr: '#36845', date: '2026-08-30', change: QSA decode, hw: SM121 (GB10), result: 'Fixes silent corruption in long-context decode. 2.07× the old correct kernel.' }
+    - { pr: '#37385', date: '2026-09-01', change: KernelBackend.KDA, hw: any, result: 'SGLang records which of its kernels an agent wrote.' }
     - { pr: '#36865', date: '2026-09-02', change: NVFP4 GEMM for Qwen3.x, hw: SM120, kernel: 1.319, kernelText: 1.319×, model: 1.087, modelLabel: Output throughput, result: 'Kernel geomean over 16 production shapes; Qwen3.5-4B output throughput +8.73% at concurrency 1.' }
     - { pr: '#38082', date: '2026-09-05', change: FP8 skinny GEMM, hw: SM120, result: 'End to end, +0.2% to +4.06% across five models.' }
-    - { pr: '#41305', date: '2026-09-27', change: SANA-Video residual-gate add, hw: H200, kernel: 2.54, model: 1.017, result: 'On the two real SANA-Video layouts; −1.7% end-to-end time. It began with 40 kernel families and merged with one.' }
+    - { pr: '#41305', date: '2026-09-27', change: SANA-Video residual-gate add, hw: H200, kernel: 2.54, model: 1.017, result: 'On the two real SANA-Video layouts; −1.7% end-to-end time.' }
     - { pr: '#41459', date: '2026-10-01', change: LTX-2.3 QK norm + split RoPE, hw: H200, kernel: 2.59, kernelText: 2.58–2.61×, model: 1.011, result: 'Kernel geomean; −1.0% to −1.2% end-to-end time.' }
 ---
 
@@ -199,7 +199,7 @@ import KdaCoda from '../.vitepress/theme/components/projects/kda/KdaCoda.vue'
 
 <KdaHero />
 
-<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Every record here was scored by an outside contest, leaderboard or maintainer." lede="Contest harnesses, public leaderboards, and and upstream maintainers who reviewed and merged the kernels. Every number links to its write-up.">
+<KdaSection id="what-it-has-done" n="01" kicker="What it has done" title="Every result here was measured by an outside contest, leaderboard or maintainer." lede="Each tile links to its write-up.">
 <template #figure>
 <KdaBoard :records="$frontmatter.records" />
 </template>
@@ -207,16 +207,8 @@ import KdaCoda from '../.vitepress/theme/components/projects/kda/KdaCoda.vue'
 
 <KdaSection id="the-problem" n="02" kicker="The problem" title="An incorrect kernel can still report a speedup." tone="alt" split>
 
-Kernel optimisation is hard for a coding agent: speed is easy to measure, and correctness is
-easy to break without noticing.
-
-A one-line change can take hours to verify. The feedback is a number, but it is noisy, specific
-to the hardware and **easy to fool**: a kernel that is faster because it is now subtly incorrect
-still reports a speedup.
-
-An agent told to "optimise this kernel" and left alone will produce something plausible, report
-a win, and be wrong. KDA's own agents did exactly that on the way to KDA². **KDA's gates around
-the agent are what catch it.**
+Speed is easy to measure; correctness is easy to break without noticing. KDA's own agents
+produced kernels like this on the way to KDA². Six gates now stop them before release.
 
 <template #figure>
 <KdaHacks :hacks="$frontmatter.hacks" :gates="$frontmatter.gates" href="/blog/2026-09-27-kda-for-kda" />
@@ -229,23 +221,23 @@ the agent are what catch it.**
 </template>
 </KdaSection>
 
-<KdaSection id="speedups-past-the-best-human-kernels" n="04" kicker="Speedups" title="Ahead of the best human entries on all three MLSys 2026 tracks." tone="ink" lede="In May, KDA placed on every track of the MLSys 2026 FlashInfer contest, and two of its five kernels were still slower than the baseline. With CuteDSL, a profiling skill and a better flow it went past the best human entries on all three. The model did not change.">
+<KdaSection id="speedups-past-the-best-human-kernels" n="04" kicker="Speedups" title="Ahead of the best human entries on all three MLSys 2026 tracks." tone="ink" lede="In May, two of KDA's five contest kernels were still slower than the baseline. With CuteDSL, a profiling skill and a better flow, the same model passed the best human entries on all three tracks.">
 <template #figure>
 <KdaContest :tracks="$frontmatter.mlsys" />
 
-<p class="kd-caption">B200, speedup over the FlashInfer baseline, each track on its own scale. The public release's own table (<a class="kd-link" href="https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution#results" target="_blank" rel="noreferrer">mit-han-lab/mlsys2026-flashinfer-contest-solution</a>): the geomean over the official workloads, timed as CUPTI kernel spans, which is not how the contest scored. The margins under each track are geomeans of per-workload ratios over the best human entry. Its benchmark pins the human winners' own repositories and refuses to run if they are modified.</p>
+<p class="kd-caption">B200, speedup over the FlashInfer baseline; each track has its own scale. From <a class="kd-link" href="https://github.com/mit-han-lab/mlsys2026-flashinfer-contest-solution#results" target="_blank" rel="noreferrer">the public release's table</a>: geomean over the official workloads, timed as CUPTI kernel spans, not as the contest scored. Margins are geomeans of per-workload ratios over the best human entry.</p>
 </template>
 </KdaSection>
 
-<KdaSection id="kda-squared" n="05" kicker="KDA²" title="Kimi Delta Attention: from 1.61× to 2.96× over FlashKDA." lede="Kernel Design Agents on Kimi Delta Attention: the best result climbed from 1.61× to 2.96× over FlashKDA in eight weeks. Scroll to run the clock, or point at the chart to read any date.">
+<KdaSection id="kda-squared" n="05" kicker="KDA²" title="Kimi Delta Attention: from 1.61× to 2.96× over FlashKDA." lede="Eight weeks of results on B300. Scroll to play the chart, or point at any date.">
 <template #figure>
 <KdaClimb v-bind="$frontmatter.timeline" />
 
-<p class="kd-caption">B300, geomean over six workloads of 8,192 tokens each. Along the way, candidates clocked 3.28×, 3.57× and 3.74×; every one was overfitting the verifier. How they cheated, and the six gates that now stop them, is <a class="kd-link" href="/blog/2026-09-27-kda-for-kda">the KDA² post</a>.</p>
+<p class="kd-caption">Geomean over six 8,192-token workloads. Candidates at 3.28×, 3.57× and 3.74× overfitted the tests and were refused; see <a class="kd-link" href="/blog/2026-09-27-kda-for-kda">the KDA² post</a>.</p>
 </template>
 </KdaSection>
 
-<KdaSection id="upstream-kernels-a-maintainer-merged" n="06" kicker="Upstream" title="Kernels merged into SGLang by its maintainers." tone="alt" lede="A serving framework is scored by maintainers who will reject a change that is slower on a shape nobody thought of, harder to maintain, or wrong. A kernel speedup is not a model speedup, and each pull request reports both.">
+<KdaSection id="upstream-kernels-a-maintainer-merged" n="06" kicker="Upstream" title="Kernels merged into SGLang by its maintainers." tone="alt" lede="Each pull request reports the kernel speedup and the end-to-end effect on the model.">
 <template #figure>
 <KdaMerges v-bind="$frontmatter.upstream" />
 </template>
@@ -257,17 +249,17 @@ the agent are what catch it.**
   kicker="KDA · every write-up"
   label="KDA results from May to October 2026: first, second and third on the MLSys tracks, forty operators in SGLang, speedups on AMD hardware, 71 first places on SOL-ExecBench, lossless SGLang-Omni numerics, first on SOL-ExecBench L1, KDA 1.5 past the human entries, quality tiers for diffusion, the MSA indexer, KDA², and six more SGLang pull requests."
   :entries="[
-    { url: '/news/2026-05-15-mlsys-flashinfer-top3', metric: '#1 · #2 · #3' },
-    { url: '/news/2026-06-05-kda-sglang', metric: '40+ ops' },
-    { url: '/news/2026-06-15-kda-generalizes', metric: 'ASM · HIP · ROCm' },
-    { url: '/news/2026-06-22-sol-bench-batch', metric: '71 × #1' },
-    { url: '/blog/2026-07-02-sglang-omni-numerics', metric: '+20%' },
-    { url: '/news/2026-07-02-solexec-l1', metric: '#1 · 0.7639' },
-    { url: '/news/2026-08-02-kda-15-past-human-sota', metric: 'Past human SOTA' },
-    { url: '/blog/2026-08-06-sglang-diffusion-quality-tiers', metric: 'Quality tiers' },
-    { url: '/news/2026-08-14-msa-indexer', metric: '6.5×' },
-    { url: '/blog/2026-09-27-kda-for-kda', metric: '2.96×' },
-    { url: '/news/2026-10-05-kda-upstream', metric: '6 PRs' },
+    { url: '/news/2026-05-15-mlsys-flashinfer-top3', metric: '#1 · #2 · #3', note: '' },
+    { url: '/news/2026-06-05-kda-sglang', metric: '40+ ops', note: '' },
+    { url: '/news/2026-06-15-kda-generalizes', metric: 'ASM · HIP · ROCm', note: '' },
+    { url: '/news/2026-06-22-sol-bench-batch', metric: '71 × #1', note: '' },
+    { url: '/blog/2026-07-02-sglang-omni-numerics', metric: '+20%', note: 'Three PRs cut about a fifth off LTX-2.3 time on B200.' },
+    { url: '/news/2026-07-02-solexec-l1', metric: '#1 · 0.7639', note: '' },
+    { url: '/news/2026-08-02-kda-15-past-human-sota', metric: 'Past human entries', note: '' },
+    { url: '/blog/2026-08-06-sglang-diffusion-quality-tiers', metric: 'Quality tiers', note: 'A quality setting that lets faster diffusion kernels ship.' },
+    { url: '/news/2026-08-14-msa-indexer', metric: '6.5×', note: '' },
+    { url: '/blog/2026-09-27-kda-for-kda', metric: '2.96×', note: '' },
+    { url: '/news/2026-10-05-kda-upstream', metric: '6 PRs', note: '' },
   ]"
 />
 </template>
@@ -276,21 +268,15 @@ the agent are what catch it.**
 <KdaCoda command="git clone --recurse-submodules https://github.com/NVlabs/kda.git">
 <template #why>
 
-KDA is where our flows are tested on GPU kernels. Its first runs planned and built under
-review with RLCR Flow, the Claude Code plugin that is now the [`humanize1`](/flows/humanize1)
-flow; KDA² runs on [Humanize](/projects/humanize) flows.
-
-Either way the loop is a flow like any other, and the score is a wall-clock measurement on an
-outside benchmark, or a pull request an upstream maintainer merged.
+KDA runs on our flows: its first runs used RLCR Flow, now the [`humanize1`](/flows/humanize1)
+flow, and KDA² runs on [Humanize](/projects/humanize) flows. Results come from outside
+benchmarks and from pull requests that upstream maintainers merged.
 
 </template>
 <template #try>
 
-KDA is deliberately independent of any one benchmark harness or hardware target: a task brings
-its own evaluator, datasets, profiling tools and references. [The repository](https://github.com/NVlabs/kda)
-has the agent flow, the prompt templates and the skills.
-
-Kernels the community wants next, with reproducible definitions and workloads, are in the
+Each task brings its own evaluator, data and profiling tools. [The repository](https://github.com/NVlabs/kda)
+has the agent flow, prompts and skills. Kernels people want next are in the
 [KDA wishlist](https://docs.humanfia.ai/kda-wishlist/) ([humanfia/kda-wishlist](https://github.com/humanfia/kda-wishlist)).
 
 </template>

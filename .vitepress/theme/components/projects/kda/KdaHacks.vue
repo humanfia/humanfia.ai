@@ -99,13 +99,13 @@ const ticks = [1, 2, 3, 4, 5]
     </p>
 
     <div class="gates">
-      <p class="kd-kicker">Six gates now stand between a candidate and release</p>
+      <p class="kd-kicker">Six gates every candidate must pass</p>
       <ol>
         <li v-for="(g, i) in gates" :key="g" :style="{ '--i': i }">
           <span class="kd-mono">{{ String(i + 1).padStart(2, '0') }}</span>{{ g }}
         </li>
       </ol>
-      <a class="kd-link kd-mono gates-more" :href="href">How each hack worked, and how each gate stops it →</a>
+      <a class="kd-link kd-mono gates-more" :href="href">How each gate works →</a>
     </div>
   </div>
 </template>

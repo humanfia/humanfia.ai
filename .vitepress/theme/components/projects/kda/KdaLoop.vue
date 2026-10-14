@@ -74,7 +74,7 @@ const parts = (text: string) => text.split('`').map((t, i) => ({ t, code: i % 2 
         <div class="node n-ring" style="grid-area: 2 / 3"><span class="kd-mono">04</span>Validate</div>
         <div class="node n-ring" style="grid-area: 3 / 3"><span class="kd-mono">05</span>Bench</div>
         <div class="node n-ring" style="grid-area: 3 / 2"><span class="kd-mono">06</span>Profile</div>
-        <div class="stamp s-refuse" style="grid-area: 1 / 3"><span>faster, and wrong:</span><b>Refused</b></div>
+        <div class="stamp s-refuse" style="grid-area: 1 / 3"><span>failed validation:</span><b>Refused</b></div>
         <div class="stamp s-promote" style="grid-area: 3 / 1"><b>Promoted</b><span>cleared the bar</span></div>
 
         <i class="token" aria-hidden="true" />
