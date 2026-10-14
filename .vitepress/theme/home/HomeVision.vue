@@ -41,16 +41,15 @@ onBeforeUnmount(() => io?.disconnect())
     <div class="vis-beam" aria-hidden="true" />
     <span class="vis-dot" aria-hidden="true" />
     <div class="vis-wrap">
-      <p class="vis-kicker">The ambition of Humanize</p>
-      <h2 id="vision-title" class="vis-title"><span>1</span> flow framework</h2>
+      <p class="vis-kicker">Long-term target</p>
+      <h2 id="vision-title" class="vis-title"><span>1</span> flow framework, run at this scale</h2>
       <ol class="vis-scale">
         <li v-for="(s, i) in SCALE" :key="s.what" :style="{ '--i': i }">
           <b>{{ s.n }}</b><span>{{ s.what }}</span>
         </li>
       </ol>
-      <p class="vis-goal">to solve one big problem.</p>
-      <p class="vis-astra">Ad astra.</p>
-      <p class="vis-note">A direction, not a measurement. What we can measure today is on <a href="/blog/2026-10-14-flow-science">Flow Science</a>.</p>
+      <p class="vis-goal">All of it working on one problem too large for any single model.</p>
+      <p class="vis-note">These are targets we are building toward. What we can measure today is on <a href="/blog/2026-10-14-flow-science">Flow Science</a>.</p>
     </div>
   </section>
 </template>
@@ -124,6 +123,9 @@ onBeforeUnmount(() => io?.disconnect())
 }
 .vis-title {
   margin: 0;
+  /* two balanced lines, kept clear of the green circle that climbs to the top corner */
+  max-width: 13ch;
+  text-wrap: balance;
   font-size: clamp(40px, 7vw, 88px);
   line-height: 0.95;
   letter-spacing: -0.04em;
@@ -170,12 +172,6 @@ onBeforeUnmount(() => io?.disconnect())
   font-size: clamp(20px, 2.6vw, 30px);
   font-weight: 600;
   letter-spacing: -0.01em;
-}
-.vis-astra {
-  margin: 8px 0 0;
-  font: italic 800 clamp(36px, 6vw, 72px) / 1 var(--vp-font-family-base);
-  letter-spacing: -0.03em;
-  color: var(--hf-cyan-deep);
 }
 .vis-note {
   margin: 28px 0 0;
