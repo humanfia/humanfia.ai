@@ -69,7 +69,7 @@ const money = (v: number) => `$${v < 1 ? v.toFixed(2) : v % 1 ? v.toFixed(2) : v
     <figure class="hp-panel hoa-sheet">
       <figcaption class="hp-cap">
         <span class="hoa-kicker">Reported cost per problem · log scale</span>
-        <span class="hp-title">Where we are not first</span>
+        <span class="hp-title">Ours is the third-cheapest of the four at 672</span>
       </figcaption>
       <div class="hp-cost">
         <div class="hp-axis" aria-hidden="true">

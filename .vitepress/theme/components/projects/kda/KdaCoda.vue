@@ -30,13 +30,13 @@ onBeforeUnmount(() => clearTimeout(timer))
     <div class="kd-wrap coda-grid">
       <div v-reveal class="coda-col">
         <p class="kd-index"><b>08</b>Why it is here</p>
-        <h2 id="why-it-is-here" class="coda-title" tabindex="-1">Where our flows go to be found out.</h2>
+        <h2 id="why-it-is-here" class="coda-title" tabindex="-1">KDA tests our flows on benchmarks we do not run.</h2>
         <div class="kd-prose"><slot name="why" /></div>
       </div>
 
       <div v-reveal="120" class="coda-col">
         <p class="kd-index"><b>09</b>Try it</p>
-        <h2 id="try-it" class="coda-title" tabindex="-1">An early prototype. Feedback wanted.</h2>
+        <h2 id="try-it" class="coda-title" tabindex="-1">Try the early prototype and send us feedback.</h2>
         <div class="term">
           <div class="term-bar" aria-hidden="true"><i /><i /><i /><span class="kd-mono">sh</span></div>
           <div class="term-body">

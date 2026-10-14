@@ -136,7 +136,7 @@ const external = (href: string) => /^https?:/.test(href)
           physics, chemistry, biology, programming and quantum information.
         </p>
         <p class="hh-rule hh-in" style="--d: 0.4s">
-          No rubric. No benefit of the doubt. The kernel accepts the proof or it does not.
+          In mathematics there is no rubric and no partial credit: a proof counts only if the Lean kernel accepts it.
         </p>
         <ul class="hh-links hh-in" style="--d: 0.5s">
           <li v-for="link in links" :key="link.href">
