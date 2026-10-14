@@ -37,15 +37,15 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
 
 const NOT = [
   {
-    title: 'Not a model.',
+    title: 'A model',
     body: 'We do not train one, serve one or resell one.',
   },
   {
-    title: 'Not a wrapper around one vendor.',
+    title: 'A wrapper around one vendor',
     body: 'Humanize drives the CLI you already log into, under your own subscription. It holds a credential only when you hand it one, and every turn is billed to the account you named. The frontier moves every few weeks; a wrapper around one vendor is the least durable thing we could build.',
   },
   {
-    title: 'Not a coding agent.',
+    title: 'A coding agent',
     body: 'It does not replace claude or codex — it takes turns on them. If a better one ships next month, it is a name in a list.',
   },
 ]
@@ -61,9 +61,9 @@ const TIMELINE = [
 ]
 
 const NEXT = [
-  { kicker: 'All of it', title: 'The documentation', body: 'Install, quickstart, and every feature.', href: `${DOCS}/` },
-  { kicker: 'Look it up', title: 'The CLI reference', body: 'Every command, key, flag and Python call, in one place.', href: `${DOCS}/reference/cli` },
-  { kicker: 'Read it', title: 'humanfia/humanize', body: 'The source, Apache-2.0. Issues and pull requests are the fastest way to reach us.', href: REPO },
+  { kicker: 'Docs', title: 'The documentation', body: 'Install, quickstart, and every feature.', href: `${DOCS}/` },
+  { kicker: 'Reference', title: 'The CLI reference', body: 'Every command, key, flag and Python call, in one place.', href: `${DOCS}/reference/cli` },
+  { kicker: 'Source', title: 'humanfia/humanize', body: 'The source, Apache-2.0. Issues and pull requests are the fastest way to reach us.', href: REPO },
 ]
 </script>
 
@@ -112,7 +112,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>02</b> The model</p>
-          <h2 class="hz-h2">Agent, session, turn, <span class="hz-accent">env.</span></h2>
+          <h2 class="hz-h2">Agents hold sessions, sessions take turns, and <span class="hz-accent">each turn names its env.</span></h2>
           <p class="hz-lead">
             A flow is a directory of Python that says which agents it drives, what each is asked, in
             what order, and when to stop. The runtime opens the sessions, takes the turns, puts the
@@ -140,7 +140,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>03</b> The flow loop</p>
-          <h2 class="hz-h2">A loop is a loop. <span class="hz-accent">It runs for a week.</span></h2>
+          <h2 class="hz-h2">A flow is a Python loop; the runtime adds <span class="hz-accent">a budget, a trace and a journal.</span></h2>
           <p class="hz-lead">
             A flow is ordinary Python: a <code>while</code>, a turn, a look at what came back, and a
             decision. The runtime adds what a loop like that needs — a budget that stops it, a trace
@@ -158,7 +158,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>04</b> The flows it runs</p>
-          <h2 class="hz-h2">The runtime runs flows. <span class="hz-accent">It does not decide what a good one is.</span></h2>
+          <h2 class="hz-h2">Five loop shapes ship with the runtime; <span class="hz-accent">the rest come from the flowverse.</span></h2>
           <p class="hz-lead">
             That split is deliberate, and everything else at Humanfia is built on it. The ones that
             ship with the runtime, plus the flowverse it fetches, cover most of the loop shapes the
@@ -184,7 +184,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>05</b> Every harness</p>
-          <h2 class="hz-h2">Twelve CLIs. One protocol. <span class="hz-accent">And a model, called directly.</span></h2>
+          <h2 class="hz-h2">Humanize drives twelve coding-agent CLIs, <span class="hz-accent">any ACP agent and models through LiteLLM.</span></h2>
           <p class="hz-lead">
             A harness is what <code>-a</code> names. Each CLI is driven through whatever it actually
             offers — a print mode, an app server, an RPC mode, a daemon or an SDK. Point at one.
@@ -207,7 +207,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>06</b> What it does</p>
-          <h2 class="hz-h2">Eleven features, <span class="hz-accent">one line each.</span></h2>
+          <h2 class="hz-h2">Eleven things the runtime handles <span class="hz-accent">so a flow does not have to.</span></h2>
           <p class="hz-lead">
             Hooks, capabilities, surfaces and the daemon are in there too.
             <a class="hz-link" :href="`${DOCS}/features/`">Every feature, one picture each ↗</a>
@@ -232,7 +232,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>07</b> The real thing, recorded</p>
-          <h2 class="hz-h2">Not drawn. <span class="hz-accent">Recorded.</span></h2>
+          <h2 class="hz-h2">Screen recordings of <code>hmz</code> <span class="hz-accent">and a Ralph loop.</span></h2>
           <p class="hz-lead">
             From <code>hmz</code> itself, in a container with a stand-in coding agent in it. Then two
             takes from the talk where we introduced it: the same Ralph loop from the command line,
@@ -266,7 +266,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>08</b> Deep tech</p>
-          <h2 class="hz-h2">The engine, <span class="hz-accent">by codename.</span></h2>
+          <h2 class="hz-h2">Three subsystems: a flow compiler, a run tracer <span class="hz-accent">and remote execution.</span></h2>
           <p class="hz-lead">
             Three subsystems under the runtime: the machinery that lets one flow run for a day, on
             any machine, and be read afterwards. Each says how much of it you can use today.
@@ -281,7 +281,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>09</b> Architecture</p>
-          <h2 class="hz-h2">Seventeen layers, <span class="hz-accent">and a test that holds them.</span></h2>
+          <h2 class="hz-h2">A test enforces which of the <span class="hz-accent">seventeen layers may import which.</span></h2>
           <p class="hz-lead">
             The runtime drives twelve different CLIs without becoming twelve different products
             because the layering is a rule rather than an intention. Point at a layer.
@@ -337,7 +337,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>12</b> Get started</p>
-          <h2 class="hz-h2">One line in. <span class="hz-accent">A flow running.</span></h2>
+          <h2 class="hz-h2">Install with one command and run a flow <span class="hz-accent">on the CLI you already use.</span></h2>
           <p class="hz-lead">
             No account to sign up for. It drives the coding-agent CLI you already log into, under
             your own subscription; any one of twelve will do.

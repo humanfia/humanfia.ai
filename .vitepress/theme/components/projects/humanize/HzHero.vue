@@ -51,7 +51,7 @@ const copyLift = computed(() =>
       <div class="hero-copy" :style="copyLift">
         <p class="hz-kicker hz-load" style="--d: 0.05s">Humanize · the agent flow system</p>
         <h1 id="hz-title" class="hero-title hz-load" style="--d: 0.15s">
-          One flow.<br />Every agent.<br />One <span>trace.</span>
+          Run coding agents in a flow and <span>trace every turn.</span>
         </h1>
         <p class="hz-lead hz-load" style="--d: 0.3s">
           Humanize drives the coding-agent CLI you already log into, in the order a flow asks for,
@@ -144,8 +144,8 @@ const copyLift = computed(() =>
 
 .hero-title {
   margin: 0;
-  font-size: clamp(48px, 6.6vw, 104px);
-  line-height: 0.94;
+  font-size: clamp(40px, 5vw, 80px);
+  line-height: 0.98;
   letter-spacing: -0.05em;
   font-weight: 800;
   color: var(--hz-ink);
