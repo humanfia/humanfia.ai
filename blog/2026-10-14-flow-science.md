@@ -39,7 +39,9 @@ Flame Chase alternating Claude Fable 5 and GPT-5.6 Sol keeps improving and finis
 
 <DeckFigure of="SESSION_TO_FLOW" :n="1" title="A simple /goal is not enough for complex tasks" source="slide 2" />
 
-The talk summed this up as **"80 cycles better, 80% tokens saved"** against `/goal`.
+Against `/goal`, that is **about 70 cycles better** (1,010 against 1,079) for Flame Chase, and
+**about three-quarters fewer tokens** for the Ralph loop to get below 1,100 (0.33 million
+against 1.36 million).
 *Humanfia-reported, 2026-10-05.*
 
 ## No free lunch: one flow cannot solve every problem
