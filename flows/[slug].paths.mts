@@ -66,7 +66,7 @@ export default {
           `<FlowFacts module="${module.name}" />`,
           '',
           '::: info From its README',
-          `Nobody has written this flow a page of its own yet, so this is its README, as of the release above. Its roles, params and what ends it are there; the [catalogue](/flows/) says how flows are run.`,
+          `Nobody has written this flow a page of its own yet, so this is its README, as of the release above. Its roles, params and what ends it are there; [Humanize's documentation](https://docs.humanfia.ai/humanize) says how flows are run.`,
           ':::',
           '',
           adapt(module.readme.markdown, module.latest.repo, module.latest.commit),

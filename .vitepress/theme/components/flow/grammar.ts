@@ -1,7 +1,7 @@
 // The visual grammar every flow diagram on the site is drawn in, and nothing else is.
 //
-// One mark per idea, the same mark in every diagram, and the legend on /flows/ draws each of
-// them from here. A scene in `theme/flows.ts` names what happens -- a role, a turn, a pass --
+// One mark per idea, the same mark in every diagram, so a reader who has watched one flow can
+// read the next. A scene in `theme/flows.ts` names what happens -- a role, a turn, a pass --
 // and never how it looks; how it looks is decided once, in this file and `grammar.css`.
 //
 //   who            a lane head: a disc for an agent (colour by what the role is), a person for
