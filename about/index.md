@@ -1,5 +1,5 @@
 ---
-description: Who Humanfia is — the people behind each project, with their GitHub accounts — and, below them, the bet, how we work, and how to reach us.
+description: Who Humanfia is — the people behind each project, with their GitHub accounts — and, below them, what we believe, how we work, and how to reach us.
 aside: false
 pageClass: page-wide about-page
 ---
@@ -18,7 +18,7 @@ pageClass: page-wide about-page
 
 > Humanize is part of NVIDIA RSI effort
 
-<p class="lede">We build the flow around the agent: the method, the referee, and the
+<p class="lede">We build the flow around the agents: the method, the referee, and the
 applications that show whether an agent finishes the work or just starts it impressively. These
 are the people who do it.</p>
 
@@ -26,7 +26,7 @@ are the people who do it.</p>
 
 <div class="about-rest">
 
-## The bet
+## We think the method around the agent outlasts the model
 
 A better model writes a better function; it does not, on its own, work for eleven hours, hold
 on to a constraint from round one, and stop when the job is done. That is the loop around the

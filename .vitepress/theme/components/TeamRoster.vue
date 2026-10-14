@@ -102,7 +102,7 @@ const GROUPS: Group[] = [
     id: 'humanize',
     name: 'Humanize',
     href: '/projects/humanize',
-    what: 'The runtime: twelve coding-agent CLIs, one flow, and the whole run written down.',
+    what: 'The runtime that drives twelve coding-agent CLIs through a flow and records every turn.',
     members: [
       { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.' },
       { who: 'DongyunZou', role: 'Backends and the kernel work the runtime had to survive.' },
@@ -116,7 +116,7 @@ const GROUPS: Group[] = [
     id: 'kda',
     name: 'KDA',
     href: '/projects/kda',
-    what: 'Kernel Design Agents. Faster on real hardware, or it does not count.',
+    what: 'Kernel Design Agents. Agents that research, write and profile GPU kernels, judged by speed on real hardware.',
     members: [
       { who: 'DongyunZou', role: 'Lead. The workflow, and the MLSys 2026 FlashInfer contest entries.' },
       { who: 'ubospica', role: 'Established the baseline and evaluations, and continuously improves KDA generalization.' },
@@ -143,7 +143,7 @@ const GROUPS: Group[] = [
     id: 'flowbench',
     name: 'FlowBench',
     href: '/projects/flowbench',
-    what: 'The referee. Scores flows against each other on work that takes a day, not a minute.',
+    what: 'Scores flows against each other on day-long tasks; the winner becomes the default.',
     members: [
       { who: 'futrime', role: 'Lead. The harness, the task format and the scoring.' },
       { who: 'crmsndu', role: 'Tasks, drawn from work that actually had to be finished.' },

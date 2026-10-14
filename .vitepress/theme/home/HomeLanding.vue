@@ -66,7 +66,7 @@ function heroAnchor() {
 const STEPS = [
   {
     tag: 'Flows',
-    title: 'The method, written as code.',
+    title: 'Flows are open-source Python.',
     body: 'A flow is a directory of Python: which agents take turns, what each is asked, and when it stops. RLAR, Flame Chase, the Ralph loop — all of them in the open, for anyone to read, fork or beat.',
     link: { text: 'Browse the flowverse', href: 'https://github.com/humanfia/flowverse' },
   },
@@ -78,19 +78,19 @@ const STEPS = [
   },
   {
     tag: 'Agents',
-    title: 'On the CLIs you already log into.',
+    title: 'It drives ten coding-agent CLIs you already use.',
     body: 'claude, codex, dsh, agy, grok, kimi, qwen, pi, opencode and mimo. We hold no API key: the runtime drives the tools you already pay for.',
     link: { text: 'Read the docs', href: DOCS },
   },
   {
     tag: 'Applications',
-    title: 'Pointed where the score isn’t ours.',
+    title: 'Lean, a profiler and MLE-bench score the applications.',
     body: 'HOA answers to Lean. KDA answers to the profiler. HMA answers to the MLE-bench grader. Each was chosen because somebody else keeps the scoreboard.',
     link: { text: 'See the achievements', href: '#achievements' },
   },
   {
     tag: 'FlowBench',
-    title: 'And a referee that sends the winner back.',
+    title: 'FlowBench makes the winning flow the next default.',
     body: 'FlowBench scores the flows against each other on long-horizon work — ours included — and the winner becomes the next default. It is the one arrow that runs the other way.',
     link: { text: 'About FlowBench', href: '/projects/flowbench' },
   },
@@ -246,14 +246,14 @@ async function copy() {
 }
 
 const FEATURES = [
-  { title: 'A budget it keeps', body: 'Stop on time, cost or tokens, so a run meant to take a night does not take a week.' },
-  { title: 'One clock for every turn', body: 'Every agent, sub-agent and tool call on a single timeline, opened as a Chrome trace.' },
-  { title: 'Wherever the work belongs', body: 'Locally, in a git worktree, in a container, or on another machine over SSH.' },
+  { title: 'Time, cost and token budgets', body: 'Stop on time, cost or tokens, so a run meant to take a night does not take a week.' },
+  { title: 'Every turn on one timeline', body: 'Every agent, sub-agent and tool call on a single timeline, opened as a Chrome trace.' },
+  { title: 'Local, container or SSH', body: 'Locally, in a git worktree, in a container, or on another machine over SSH.' },
 ]
 
 // ------------------------------------------------------------------------------------ news
 
-// The results, not the essays: this section is "one result, one post", and the blog has its
+// The results, not the essays: this section is the latest news posts, and the blog has its
 // own index for the arguments.
 const latest = posts.filter((post) => post.kind === 'news').slice(0, 8)
 const railEl = ref<HTMLElement | null>(null)
@@ -337,12 +337,12 @@ onBeforeUnmount(() => {
     <!-- 2. The argument, as a picture: a model, the flow round it, somebody else's score. -->
     <ManifestoScene />
 
-    <!-- 3. How it is put together: four layers and a referee. -->
+    <!-- 3. How it is put together: flows, runtime, agents, applications, FlowBench. -->
     <section class="h-stack" aria-labelledby="stack-title">
       <div class="h-wrap">
         <header class="h-head" v-reveal>
           <p class="h-kicker">How it fits together</p>
-          <h2 id="stack-title" class="h-h2">Four layers<br />and a referee.</h2>
+          <h2 id="stack-title" class="h-h2">Humanize runs the flows, and FlowBench picks the best.</h2>
         </header>
       </div>
       <div class="h-stack-grid">
@@ -365,7 +365,7 @@ onBeforeUnmount(() => {
       <div class="h-wrap">
         <header class="h-head" v-reveal>
           <p class="h-kicker">Achievements</p>
-          <h2 id="achievements-title" class="h-h2">The numbers,<br />and where to check them.</h2>
+          <h2 id="achievements-title" class="h-h2">Results from HOA, KDA and HMA, each with its own post.</h2>
           <p class="h-lead">Every result is a post, dated, with the people who produced it named at the top.</p>
         </header>
         <div ref="bentoEl" class="h-bento">
@@ -411,18 +411,18 @@ onBeforeUnmount(() => {
     <!-- 4b. Everything the three applications did, on one sheet. -->
     <HomeRollup />
 
-    <!-- 5. Where a flow is found out: three cards dealt one over the other as the page scrolls. -->
+    <!-- 5. The applications: three cards dealt one over the other as the page scrolls. -->
     <section class="h-apps" aria-labelledby="apps-title">
       <div class="h-wrap">
         <header class="h-head" v-reveal>
           <p class="h-kicker">Applications</p>
-          <h2 id="apps-title" class="h-h2">Where a flow is found out.</h2>
+          <h2 id="apps-title" class="h-h2">Three applications, each scored by an outside checker.</h2>
         </header>
         <div ref="deckEl" class="h-deck">
           <article class="h-panel" :style="cardStyle(0)" v-reveal>
             <div class="h-panel-copy">
               <p class="h-step-tag">HOA · Humanfia Olympiad Agents</p>
-              <h3>Lean accepts it,<br />or it does not.</h3>
+              <h3>Every proof is machine-checked in Lean 4.</h3>
               <p>Competition and research mathematics, physics and quantum information — solved by agents and machine-checked in Lean 4. No rubric, no grader, no benefit of the doubt.</p>
               <a class="h-link" href="/projects/hoa">Explore HOA <span aria-hidden="true">›</span></a>
             </div>
@@ -438,7 +438,7 @@ onBeforeUnmount(() => {
           <article class="h-panel" :style="cardStyle(1)" v-reveal>
             <div class="h-panel-copy">
               <p class="h-step-tag">KDA · Kernel Design Agents</p>
-              <h3>Faster,<br />or it is not.</h3>
+              <h3>GPU kernels up to 6.5× faster, measured on the hardware.</h3>
               <p>An agent workflow that researches, writes, profiles and iterates on GPU kernels — built with MIT HAN Lab and shipping into production serving stacks.</p>
               <a class="h-link" href="/projects/kda">Explore KDA <span aria-hidden="true">›</span></a>
             </div>
@@ -453,7 +453,7 @@ onBeforeUnmount(() => {
           <article class="h-panel" :style="cardStyle(2)" v-reveal>
             <div class="h-panel-copy">
               <p class="h-step-tag">HMA · Humanize MLE Agents</p>
-              <h3>Take turns,<br />or take longer.</h3>
+              <h3>Two agents taking turns medal on 78.2% of tasks.</h3>
               <p>Two native coding agents alternate over one machine-learning workspace, each starting fresh. On 75 MLE-bench tasks in six hours, the pair medals more often than either agent alone.</p>
               <a class="h-link" href="/projects/hma">Explore HMA <span aria-hidden="true">›</span></a>
             </div>
@@ -474,8 +474,8 @@ onBeforeUnmount(() => {
       <div class="h-wrap">
         <header class="h-head h-center" v-reveal>
           <p class="h-kicker">Humanize</p>
-          <h2 id="start-title" class="h-h2">Bring the agents<br />you already pay for.</h2>
-          <p class="h-lead">One runtime drives the coding-agent CLIs you already log into. It holds no API key of its own.</p>
+          <h2 id="start-title" class="h-h2">Humanize runs on the agent CLIs you already pay for.</h2>
+          <p class="h-lead">It drives them through your existing logins and holds no API key of its own.</p>
         </header>
       </div>
       <div class="h-marquee" aria-label="Supported agents">
@@ -512,8 +512,8 @@ onBeforeUnmount(() => {
       <div class="h-wrap">
         <header class="h-head h-row" v-reveal>
           <div>
-            <p class="h-kicker">Latest news</p>
-            <h2 id="blog-title" class="h-h2">One result, one post.</h2>
+            <p class="h-kicker">News</p>
+            <h2 id="blog-title" class="h-h2">The latest results, newest first.</h2>
           </div>
           <div class="h-rail-nav">
             <button type="button" aria-label="Previous posts" @click="slide(-1)">‹</button>
@@ -539,10 +539,10 @@ onBeforeUnmount(() => {
     <!-- 7b. The ambition, as a poster. -->
     <HomeVision />
 
-    <!-- 8. Built in public. -->
+    <!-- 8. Open source: the repos and the docs. -->
     <section class="h-section h-cta" aria-labelledby="cta-title">
       <div class="h-wrap h-center">
-        <h2 id="cta-title" class="h-display h-gradient" v-reveal>Built in public.</h2>
+        <h2 id="cta-title" class="h-display h-gradient" v-reveal>The code and the results are public.</h2>
         <p class="h-lead" v-reveal="100">
           Every flow is a directory of Python anyone can read, fork or beat — and every number on this page
           links to the post that says how to check it.

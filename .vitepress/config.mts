@@ -107,7 +107,7 @@ export default defineConfig({
         '@type': 'Organization',
         name: 'Humanfia',
         url: `${HOSTNAME}/`,
-        description: 'We build the flow around the agent.',
+        description: 'We build the flow around the agents.',
         sameAs: [
           'https://github.com/humanfia',
           'https://github.com/humanfia/humanize',
@@ -162,7 +162,7 @@ export default defineConfig({
 
     footer: {
       message:
-        'Built in public. <a href="https://github.com/humanfia">github.com/humanfia</a> · RSS: <a href="/blog/feed.rss">blog</a> · <a href="/news/feed.rss">news</a>',
+        'Open source on <a href="https://github.com/humanfia">github.com/humanfia</a> · RSS: <a href="/blog/feed.rss">blog</a> · <a href="/news/feed.rss">news</a>',
       // The name is the wordmark drawn over these two lines (theme/components/SiteFooter.vue).
       copyright: 'Copyright © 2026',
     },
