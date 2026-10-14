@@ -1,5 +1,5 @@
 ---
-title: "FlowBench: The referee"
+title: "FlowBench: A benchmark that holds the model fixed and scores the flow"
 description: Our benchmark for long-horizon agent work. It holds the model fixed and makes the flow the variable, on tasks that take hours and are scored by checks that already existed. It is not released yet.
 layout: page
 pageClass: fb-page
@@ -14,9 +14,9 @@ import { FbArena, FbHero, FbLog, FbReplays, FbRule, FbSection, FbVariable } from
 
 <FbHero />
 
-<FbSection n="01" kicker="The question">
+<FbSection n="01" kicker="The gap">
 
-## The question it answers
+## Benchmarks rank models, but almost nothing ranks the method around them
 
 Ask which **model** is best at coding and a dozen benchmarks will tell you. Ask which **method**
 is best, and nobody knows: almost nothing measures it.
@@ -31,33 +31,32 @@ They do not differ in what the model can write. FlowBench measures that differen
 
 <FbSection n="02" kicker="Methodology" band>
 
-## Methodology
+## Everything is held fixed except the flow
 
-One task, several flows, one real check. Everything but the method is held still.
+Each task is run once per flow, and the same existing check scores every run.
 
 <FbArena />
 
 <div class="fb-rules">
 
-<FbRule n="1" title="The work is long.">
+<FbRule n="1" title="Tasks take hours of agent time">
 
-Tasks take hours of agent time, not one turn. Anything a strong model finishes in a single
-response says nothing about the loop around it.
+Anything a strong model finishes in a single response says nothing about the loop around it.
 
 </FbRule>
-<FbRule n="2" title="The score is real.">
+<FbRule n="2" title="Scores come from checks, never from a language model">
 
 Every task comes with a check that already existed: something is faster, or it compiles, or it
-passes. Nothing here is graded by a language model.
+passes.
 
 </FbRule>
-<FbRule n="3" title="The method is the variable.">
+<FbRule n="3" title="Model, tools and budget never change between runs">
 
 Everything else is held fixed, so a result reads as *this loop beat that loop*, not *this vendor
 beat that vendor*.
 
 </FbRule>
-<FbRule n="4" title="It runs the real thing.">
+<FbRule n="4" title="Flows are scored exactly as users run them">
 
 Flows are not reimplemented for the benchmark. What is scored is the same flow, in the same
 runtime, that anybody can [install and run](/projects/humanize).
@@ -68,9 +67,9 @@ runtime, that anybody can [install and run](/projects/humanize).
 
 </FbSection>
 
-<FbSection n="03" kicker="Replays, not results">
+<FbSection n="03" kicker="Evidence so far">
 
-## Why the flow is worth measuring
+## Three results from our other projects where the loop moved the score
 
 FlowBench has no public numbers yet. Our other projects have measured the same thing in passing,
 and every time the loop moved the score more than anyone would guess. These are **not FlowBench
@@ -85,11 +84,9 @@ would have missed all three.
 
 </FbSection>
 
-<FbSection n="04" kicker="The arrow back" band>
+<FbSection n="04" kicker="What it changes" band>
 
-## What it changes for us
-
-<p class="fb-quote">A loop that loses on the board does not become a&nbsp;default.</p>
+## Only flows that win on the board stay on this site
 
 FlowBench is why the flows on this site are the flows on this site. A loop we like the sound of
 but that loses does not stay in the [flowverse](/projects/humanize#the-flows-it-runs). It is a
@@ -105,9 +102,9 @@ slow way to build a product, and the only way we know to tell craft from taste.
 
 </FbSection>
 
-<FbSection n="05" kicker="The match log">
+<FbSection n="05" kicker="Status">
 
-## Where it stands
+## These posts track FlowBench until it is released
 
 Nothing on this page is a FlowBench result. When the benchmark opens up we will say so
 [in the news](/news/) and at [github.com/humanfia](https://github.com/humanfia).

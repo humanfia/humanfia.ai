@@ -12,25 +12,25 @@ const RULES = [
   {
     big: '≤ 5',
     unit: 'accepted',
-    title: 'A turn has a cap',
+    title: 'A turn ends after five accepted submissions',
     body: 'The first agent works in its own native harness, with its own tools and loop, until five accepted submissions, or until it stops by itself.',
   },
   {
     big: 'New',
     unit: 'session',
-    title: 'Every turn starts fresh',
+    title: 'Each turn opens a fresh session',
     body: 'The other agent opens a fresh session in the same workspace. The code, models, results and candidates carry over. The context does not.',
   },
   {
     big: '6',
     unit: 'hours',
-    title: 'One budget, shared',
+    title: 'Both agents share one six-hour budget',
     body: 'The two keep alternating inside one six-hour budget per task, the same budget each of them gets alone.',
   },
   {
     big: '15',
     unit: 'minutes',
-    title: 'A review picks',
+    title: 'A final review picks one accepted candidate',
     body: 'The last fifteen minutes pick one candidate that was already accepted. Neither agent ever sees a private test score.',
   },
 ]
@@ -77,8 +77,8 @@ const front = ref<'relay' | 'long'>('relay')
   <section id="how-it-works" class="hma-section" aria-labelledby="how-it-works-h">
     <div class="hma-wrap">
       <div class="hma-section-head" v-reveal>
-        <p class="hma-kicker"><span class="hma-num">01</span> The method</p>
-        <h2 id="how-it-works-h" class="hma-h2">How it works</h2>
+        <p class="hma-kicker"><span class="hma-num">01</span> How it works</p>
+        <h2 id="how-it-works-h" class="hma-h2">Each turn hands over the workspace but not the context</h2>
         <p class="hma-lead">
           A long-running agent improves more and more slowly, and the harness built round one model
           matters less as the model gets better. So HMA adds no new harness. It coordinates two
@@ -109,7 +109,7 @@ const front = ref<'relay' | 'long'>('relay')
 
       <div class="hma-effects">
         <div class="hma-effects-copy" v-reveal>
-          <h3 class="hma-h3">Two effects, credited by the repository</h3>
+          <h3 class="hma-h3">The repository credits fresh context and a second way of searching</h3>
           <dl>
             <div>
               <dt>Context renewal</dt>

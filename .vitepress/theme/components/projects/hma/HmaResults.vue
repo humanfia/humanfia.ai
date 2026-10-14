@@ -41,7 +41,7 @@ const TICKS = [0, 25, 50, 75, 100]
     <div class="hma-wrap">
       <div class="hma-section-head" v-reveal>
         <p class="hma-kicker"><span class="hma-num">02</span> MLE-bench · 75 tasks</p>
-        <h2 id="results-h" class="hma-h2">Results</h2>
+        <h2 id="results-h" class="hma-h2">The best pairing beats harnesses given up to four times as long</h2>
         <p class="hma-lead">
           The same two models, alone and taking turns, against two external harnesses with longer
           budgets. Every number is a percentage over the same 75 tasks.

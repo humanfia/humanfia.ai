@@ -45,11 +45,11 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
         <p class="fb-status"><span>Project</span>In development · not released</p>
         <h1 class="fb-title">
           FlowBench
-          <span class="fb-title-sub">The referee.</span>
+          <span class="fb-title-sub">It holds the model fixed and scores the flow</span>
         </h1>
         <p class="fb-stand">
-          A benchmark that scores <em>flows</em>, not models. It holds the model fixed, makes the
-          loop around it the variable, and lets a check that already existed call the result.
+          Built for agent work that takes hours. Every run uses the same model, the <em>flow</em>
+          around it is the one thing that changes, and a check that already existed calls the result.
         </p>
         <div class="fb-actions">
           <a class="fb-btn primary" href="/flows/">The flows it scores <span aria-hidden="true">→</span></a>

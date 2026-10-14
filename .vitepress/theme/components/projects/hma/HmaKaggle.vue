@@ -73,11 +73,11 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
     <span id="why-kaggle" />
     <div class="hma-wrap">
       <div class="hma-section-head" v-reveal>
-        <p class="hma-kicker"><span class="hma-num">05</span> Where it came from</p>
-        <h2 id="kaggle-h" class="hma-h2">Before HMA: live Kaggle</h2>
+        <p class="hma-kicker"><span class="hma-num">05</span> Before HMA</p>
+        <h2 id="kaggle-h" class="hma-h2">HMA grew out of our work on live Kaggle competitions</h2>
         <p class="hma-lead">
-          HMA grew out of our earlier work on live Kaggle competitions, run as AgentKaggle. That
-          work is history here, not an HMA track. The same people did both.
+          That work ran as AgentKaggle. It is history here, not an HMA track, and the same people
+          did both.
         </p>
       </div>
 
@@ -99,8 +99,8 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
       </p>
 
       <!-- What the two words mean -->
-      <h3 id="what-the-two-words-mean" class="hma-h3 hma-sub">What the two words mean</h3>
-      <p class="hma-sublead">On Kaggle we report two kinds of result, and never as one.</p>
+      <h3 id="what-the-two-words-mean" class="hma-h3 hma-sub">Official finishes and late estimates are never counted together</h3>
+      <p class="hma-sublead">Every Kaggle result here is one of two kinds.</p>
       <div class="hma-words">
         <div class="hma-word" v-reveal>
           <div class="hma-word-art official" aria-hidden="true">
@@ -128,7 +128,7 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
       </div>
 
       <!-- Where it ended -->
-      <h3 id="where-things-stand" class="hma-h3 hma-sub">Where it ended</h3>
+      <h3 id="where-things-stand" class="hma-h3 hma-sub">It ended with {{ KAGGLE_TALLY.final }} official top-5% finishes in {{ KAGGLE_TALLY.tracked }} competitions</h3>
       <div class="hma-tally-top">
         <p class="hma-sublead">Top-5% results, one square per completed competition.</p>
         <div class="hma-seg" role="group" aria-label="What counts">
@@ -196,7 +196,7 @@ const at = (top: number) => `${(top / AXIS) * 100}%`
 
       <!-- The audit -->
       <div class="hma-audit" v-reveal>
-        <h3 id="the-audit" class="hma-h3">The audit</h3>
+        <h3 id="the-audit" class="hma-h3">Every Kaggle number here traces back to one audit</h3>
         <p>
           <span id="what-is-public-and-what-is-not" />The numbers come from
           <a href="https://github.com/agentkaggle/kaggle-results-audit" target="_blank" rel="noreferrer">agentkaggle/kaggle-results-audit</a>.

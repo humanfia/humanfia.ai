@@ -53,8 +53,8 @@ const field = [
   <section id="the-pairings" class="hma-section" aria-labelledby="the-pairings-h">
     <div class="hma-wrap">
       <div class="hma-section-head" v-reveal>
-        <p class="hma-kicker"><span class="hma-num">03</span> Who goes first</p>
-        <h2 id="the-pairings-h" class="hma-h2">The pairings</h2>
+        <p class="hma-kicker"><span class="hma-num">03</span> Pairings</p>
+        <h2 id="the-pairings-h" class="hma-h2">Of {{ PAIRINGS_EVALUATED }} pairings tested, Opus 5 first and GPT-5.6-sol second does best</h2>
         <p class="hma-lead">
           Every agent runs in its own native harness at <code>max</code> reasoning effort. HMA starts
           with the first model of a pairing, and the order matters.

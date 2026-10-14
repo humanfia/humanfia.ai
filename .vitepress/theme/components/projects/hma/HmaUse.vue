@@ -9,8 +9,8 @@ import { vReveal } from '../../../home/motion'
   <section id="reproduce-it-or-use-it" class="hma-section hma-band" aria-labelledby="reproduce-h">
     <div class="hma-wrap">
       <div class="hma-section-head" v-reveal>
-        <p class="hma-kicker"><span class="hma-num">04</span> Your turn</p>
-        <h2 id="reproduce-h" class="hma-h2">Reproduce it, or use it</h2>
+        <p class="hma-kicker"><span class="hma-num">04</span> Use it</p>
+        <h2 id="reproduce-h" class="hma-h2">Rerun the paper's experiments, or run HMA as a Humanize flow</h2>
       </div>
 
       <div class="hma-two">
