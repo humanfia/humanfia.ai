@@ -47,7 +47,7 @@ export default defineConfig({
   title: 'Humanfia',
   titleTemplate: ':title · Humanfia',
   description:
-    'Humanfia builds the flow around the agent: the runtime, the flows and the benchmark, pointed at work where being right is checkable.',
+    'Humanfia builds open-source flows that organise coding agents for long-horizon work, and Humanize, the runtime that runs them.',
   lang: 'en-US',
   cleanUrls: true,
   lastUpdated: true,

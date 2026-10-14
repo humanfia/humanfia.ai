@@ -275,12 +275,12 @@ in what happens around the agent.**
 <KdaCoda command="git clone --recurse-submodules https://github.com/NVlabs/kda.git">
 <template #why>
 
-KDA is one of the places our flows go to be found out. Its first runs planned and built under
+KDA is where our flows are tested on GPU kernels. Its first runs planned and built under
 review with RLCR Flow, the Claude Code plugin that is now the [`humanize1`](/flows/humanize1)
 flow; KDA² runs on [Humanize](/projects/humanize) flows.
 
-Either way the loop is a flow like any other, and the score is a wall-clock measurement on
-somebody else's benchmark, or a pull request a maintainer has to be willing to merge.
+Either way the loop is a flow like any other, and the score is a wall-clock measurement on an
+outside benchmark, or a pull request an upstream maintainer merged.
 
 </template>
 <template #try>

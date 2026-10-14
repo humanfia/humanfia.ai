@@ -18,9 +18,9 @@ pageClass: page-wide about-page
 
 > Humanize is part of NVIDIA RSI effort
 
-<p class="lede">We build the flow around the agents: the method, the referee, and the
-applications that show whether an agent finishes the work or just starts it impressively. These
-are the people who do it.</p>
+<p class="lede">We build the flow around the agents: the flows, the runtime that runs them, the
+benchmark that compares them, and the projects that test them on hard problems. These are the
+people who do it.</p>
 
 <TeamRoster />
 

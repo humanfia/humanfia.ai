@@ -41,14 +41,13 @@ onBeforeUnmount(() => io?.disconnect())
     <div class="vis-beam" aria-hidden="true" />
     <span class="vis-dot" aria-hidden="true" />
     <div class="vis-wrap">
-      <p class="vis-kicker">Long-term target</p>
-      <h2 id="vision-title" class="vis-title"><span>1</span> flow framework, run at this scale</h2>
+      <h2 id="vision-title" class="vis-title">Long-term target</h2>
       <ol class="vis-scale">
         <li v-for="(s, i) in SCALE" :key="s.what" :style="{ '--i': i }">
           <b>{{ s.n }}</b><span>{{ s.what }}</span>
         </li>
       </ol>
-      <p class="vis-goal">All of it working on one problem too large for any single model.</p>
+      <p class="vis-goal">One flow framework at this scale, working on a problem too large for any single model.</p>
       <p class="vis-note">These are targets we are building toward. What we can measure today is on <a href="/blog/2026-10-14-flow-science">Flow Science</a>.</p>
     </div>
   </section>
@@ -114,13 +113,6 @@ onBeforeUnmount(() => io?.disconnect())
   margin: 0 auto;
   padding: 0 24px;
 }
-.vis-kicker {
-  margin: 0 0 12px;
-  font: 700 12px/1.3 var(--vp-font-family-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--hf-cyan-deep);
-}
 .vis-title {
   margin: 0;
   /* two balanced lines, kept clear of the green circle that climbs to the top corner */
@@ -132,9 +124,6 @@ onBeforeUnmount(() => io?.disconnect())
   font-weight: 800;
   border: 0;
   padding: 0;
-}
-.vis-title span {
-  color: var(--hf-cyan-deep);
 }
 .vis-scale {
   display: grid;

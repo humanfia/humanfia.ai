@@ -6,7 +6,7 @@ pageClass: hf-home
 # The whole page is one component: its sections are scenes, not prose, so there is no hero
 # block and no .vp-doc wrapper -- see .vitepress/theme/home/.
 markdownStyles: false
-description: The runtime, the flows and the benchmark for long-horizon agent work — and the results that say whether the flow works, in Lean, in CUDA and on Kaggle.
+description: Open-source flows that organise coding agents for long-horizon work, the runtime that runs them, and results checked by outside graders.
 ---
 
 <HomeLanding />

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-// Everything the three applications did, on one sheet: HOA, KDA and HMA, one line per result,
-// linked to the post that says how to check it. Results with no independent check -- our own
+// Every result on one sheet, grouped by the field it is in rather than the project that produced
+// it -- so a new project adds lines, not a column -- one line per result, linked to the post that
+// says how to check it. Results with no independent check -- our own
 // measurements in a blog post, or claims we have only made in talks -- are marked
 // "Humanfia-reported" with their date; the switch at the top takes them off.
 import { computed, ref } from 'vue'
@@ -15,17 +16,13 @@ interface Item {
 interface Column {
   id: string
   name: string
-  full: string
-  href: string
   items: Item[]
 }
 
 const COLUMNS: Column[] = [
   {
-    id: 'hoa',
-    name: 'HOA',
-    full: 'Humanfia Olympiad Agents',
-    href: '/projects/hoa',
+    id: 'math',
+    name: 'Mathematics and science',
     items: [
       { n: '672/672', what: 'PutnamBench, every statement proved in Lean', href: '/news/2026-10-05-putnambench-672' },
       { n: '6/6', what: 'IMO 2026, Lean-checked', href: '/news/2026-07-22-imo-2026' },
@@ -42,12 +39,10 @@ const COLUMNS: Column[] = [
     ],
   },
   {
-    id: 'kda',
-    name: 'KDA',
-    full: 'Kernel Design Agents',
-    href: '/projects/kda',
+    id: 'kernels',
+    name: 'GPU kernels',
     items: [
-      { n: '1.69×', what: 'past the best human entry on MLSys 2026 GDN prefill; 1.41× on DSA, 1.17× on MoE (public KDA 0.5 kernels, B200)', href: '/news/2026-10-05-kda-upstream' },
+      { n: '1.69×', what: 'past the best human entry on MLSys 2026 GDN prefill; 1.41× on DSA, 1.17× on MoE (public kernels, B200)', href: '/news/2026-10-05-kda-upstream' },
       { n: '#1', what: 'SOL-ExecBench L1, 0.7639 on the v1.0 board', href: '/news/2026-07-02-solexec-l1' },
       { n: '71', what: 'per-kernel first places on SOL-ExecBench, of 235', href: '/news/2026-06-22-sol-bench-batch' },
       { n: '40+', what: 'operators merged upstream into SGLang', href: '/news/2026-06-05-kda-sglang' },
@@ -58,10 +53,8 @@ const COLUMNS: Column[] = [
     ],
   },
   {
-    id: 'hma',
-    name: 'HMA',
-    full: 'Humanize MLE Agents',
-    href: '/projects/hma',
+    id: 'ml',
+    name: 'Machine learning',
     items: [
       { n: '78.2%', what: 'any-medal on 75 MLE-bench tasks in six hours, self-reported', href: '/news/2026-10-05-hma-mle-bench' },
       { n: '53.8%', what: 'gold on the same 75 tasks', href: '/news/2026-10-05-hma-mle-bench' },
@@ -77,7 +70,6 @@ const verifiedOnly = ref(false)
 const columns = computed(() =>
   COLUMNS.map((c) => ({ ...c, items: c.items.filter((i) => !(verifiedOnly.value && i.reported)) })),
 )
-const total = COLUMNS.flatMap((c) => c.items).length
 const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).length
 </script>
 
@@ -85,10 +77,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   <section class="ru" aria-labelledby="rollup-title">
     <div class="ru-wrap">
       <header class="ru-head">
-        <div>
-          <p class="ru-kicker">Results to date</p>
-          <h2 id="rollup-title" class="ru-title">{{ total }} results in olympiads, GPU kernels and machine learning</h2>
-        </div>
+        <h2 id="rollup-title" class="ru-title">Results to date</h2>
         <dl class="ru-span">
           <div><dt>≈2</dt><dd>months, June to August 2026</dd></div>
           <div><dt>≈10</dt><dd>people</dd></div>
@@ -100,7 +89,7 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
       </label>
       <div class="ru-cols">
         <article v-for="c in columns" :key="c.id" class="ru-col">
-          <a class="ru-name" :href="c.href"><b>{{ c.name }}</b><span>{{ c.full }}</span></a>
+          <h3 class="ru-name"><b>{{ c.name }}</b> <span>{{ c.items.length }}</span></h3>
           <ul>
             <li v-for="item in c.items" :key="item.n + item.what">
               <component :is="item.href ? 'a' : 'span'" :href="item.href" class="ru-item">
@@ -131,13 +120,6 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   justify-content: space-between;
   align-items: flex-end;
   gap: 24px;
-}
-.ru-kicker {
-  margin: 0 0 12px;
-  font: 700 12px/1.3 var(--vp-font-family-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--hf-cyan-deep);
 }
 .ru-title {
   margin: 0;
@@ -205,19 +187,17 @@ const reportedCount = COLUMNS.flatMap((c) => c.items).filter((i) => i.reported).
   display: flex;
   align-items: baseline;
   gap: 10px;
-  color: inherit;
-  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 .ru-name b {
-  font-size: 28px;
+  font-size: 22px;
   letter-spacing: -0.03em;
 }
 .ru-name span {
   font: 12px var(--vp-font-family-mono);
   color: var(--vp-c-text-2);
-}
-.ru-name:hover b {
-  color: var(--hf-cyan-deep);
 }
 .ru-col ul {
   margin: 10px 0 0;

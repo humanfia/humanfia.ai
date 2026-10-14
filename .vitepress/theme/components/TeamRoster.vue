@@ -78,8 +78,8 @@ const FOUNDING = [
     role: 'Built the team',
     body:
       'Assembled Humanfia. Everyone here is here because he went and found them — across NVIDIA, '
-      + 'MIT, UCLA, Tsinghua and a dozen of other places — and pointed the loop at problems '
-      + 'somebody else keeps the scoreboard for. He scales both the team and agents, and keeps '
+      + 'MIT, UCLA, Tsinghua and a dozen of other places — and pointed our flows at problems '
+      + 'with an outside grader. He scales both the team and agents, and keeps '
       + 'improving the efficiency & productivity of token maxing at Nvidia Research. '
       + 'He works on every project.',
     links: [{ text: 'lzhu.me', href: 'https://lzhu.me' }],

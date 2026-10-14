@@ -649,8 +649,7 @@
   opacity: 1;
   border-left-color: var(--h-green);
 }
-.h-step h3,
-.h-panel h3 {
+.h-step h3 {
   margin: 10px 0 0;
   font-size: clamp(26px, 2.8vw, 40px);
   line-height: 1.06;
@@ -658,8 +657,7 @@
   font-weight: 800;
   color: var(--h-ink);
 }
-.h-step p:not(.h-step-tag),
-.h-panel-copy p:not(.h-step-tag) {
+.h-step p:not(.h-step-tag) {
   margin: 16px 0 20px;
   font-size: clamp(16px, 1.3vw, 19px);
   line-height: 1.55;
@@ -955,142 +953,6 @@
 }
 .live .v-dots i.on {
   background: var(--h-green);
-}
-
-/* ------------------------------------------------------------------------ 5 applications */
-
-.h-apps {
-  padding: clamp(96px, 14vh, 168px) 0;
-  background: var(--h-bg);
-}
-/* The deck: every card is sticky a little lower than the one before, so as the page scrolls
-   the next card slides up over the last and a strip of each stays showing above it, like
-   sheets dealt onto a pile. The card underneath sinks back (scale, set from the script) and
-   darkens under the one that covers it (--cover). */
-.h-deck {
-  display: grid;
-  gap: 8vh;
-  padding-bottom: 4vh;
-}
-.h-panel {
-  --cover: 0;
-  position: sticky;
-  top: calc(var(--vp-nav-height) + 28px);
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  align-items: center;
-  gap: clamp(24px, 4vw, 56px);
-  min-height: min(64svh, 580px);
-  padding: clamp(28px, 4vw, 56px);
-  border-radius: var(--h-radius);
-  background: var(--h-bg-alt);
-  border: 1px solid var(--h-line);
-  border-top: 6px solid var(--h-ink);
-  transform-origin: 50% 0;
-  will-change: transform;
-}
-.h-panel:nth-child(2) {
-  top: calc(var(--vp-nav-height) + 44px);
-  border-top-color: var(--h-green);
-}
-.h-panel:nth-child(3) {
-  top: calc(var(--vp-nav-height) + 60px);
-}
-.h-panel::after {
-  /* The shade a sheet casts on the one under it: deeper the more it covers. */
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--h-ink);
-  opacity: calc(var(--cover) * 0.18);
-  pointer-events: none;
-}
-.h-panel-art {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(20px, 3vw, 36px);
-  border-radius: var(--h-radius);
-  background: var(--h-card);
-  border: 1px solid var(--h-line);
-}
-
-.art-lean .art-cmd {
-  margin: 0 0 18px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 14px;
-  color: var(--h-ink-2);
-}
-.art-lean .art-cmd span {
-  color: var(--h-ink-3);
-}
-.art-lean .art-cmd em {
-  margin-left: 10px;
-  padding: 2px 8px;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--h-on-ink);
-  background: var(--h-ink);
-}
-.art-lean ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.art-lean li {
-  display: grid;
-  grid-template-columns: 28px 1fr auto;
-  align-items: center;
-  padding: 13px 0;
-  border-top: 1px solid var(--h-line);
-  font-size: 16px;
-}
-.art-lean li b {
-  color: var(--hf-cyan-deep);
-}
-.art-lean li em {
-  font-style: normal;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--h-ink);
-}
-
-.art-bar {
-  margin-bottom: 22px;
-}
-.art-bar span {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: var(--h-ink-2);
-}
-.art-bar i {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: var(--w);
-  min-width: 70px;
-  height: 38px;
-  padding-right: 12px;
-  background: var(--h-ink);
-  color: var(--h-on-ink);
-  font-style: normal;
-}
-.art-bar:first-child i {
-  background: var(--h-green);
-}
-.art-bar b {
-  font-size: 16px;
-}
-.art-note {
-  margin: 8px 0 0;
-  font-size: 14px;
-  color: var(--h-ink-2);
-}
-.art-note b {
-  color: var(--h-ink);
 }
 
 /* --------------------------------------------------------------------------- 6 runtime */
@@ -1430,28 +1292,6 @@
     box-shadow 0.45s var(--h-ease),
     border-color 0.3s;
 }
-/* A card in the deck takes its transform from the scroll, every frame; a transition on it
-   would make the card lag the hand. */
-.hf-motion .h-panel.rv {
-  transition: opacity 0.9s var(--h-ease);
-}
-
-/* The applications' pictures play as their panel comes into view. */
-.hf-motion .art-lean li {
-  opacity: 0;
-  transform: translateX(-12px);
-  transition: all 0.6s var(--h-ease) calc(var(--i) * 0.12s);
-}
-.hf-motion .art-bar i {
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.2s var(--h-ease) calc(var(--i) * 0.15s);
-}
-.hf-motion .h-panel.rv-in .art-lean li,
-.hf-motion .h-panel.rv-in .art-bar i {
-  opacity: 1;
-  transform: none;
-}
 
 /* ------------------------------------------------------------------------------ narrow */
 
@@ -1492,22 +1332,6 @@
   }
   .h-cue {
     display: none;
-  }
-
-  /* The deck is not dealt on a narrow screen: a card stacked over its picture is taller than a
-     phone, and a sticky card that cuts its own content off is worse than none. */
-  .h-panel,
-  .h-panel:nth-child(2),
-  .h-panel:nth-child(3) {
-    position: relative;
-    top: auto;
-    transform: none !important;
-  }
-  .h-panel::after {
-    display: none;
-  }
-  .h-deck {
-    gap: 20px;
   }
 }
 
@@ -1551,10 +1375,6 @@
   .h-tile:last-child:nth-child(odd) {
     grid-column: span 12;
   }
-  .h-panel {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
   .h-features {
     grid-template-columns: 1fr;
   }
@@ -1587,9 +1407,6 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 6px;
   }
-  .h-panel-copy p:not(.h-step-tag) {
-    display: none;
-  }
   .h-row {
     align-items: flex-start;
     flex-direction: column;
@@ -1601,15 +1418,6 @@
 @media (prefers-reduced-motion: reduce) {
   .h-step {
     opacity: 1;
-  }
-  .h-panel,
-  .h-panel:nth-child(2),
-  .h-panel:nth-child(3) {
-    position: relative;
-    top: auto;
-  }
-  .h-panel::after {
-    display: none;
   }
   .h-load,
   .h-cue span,
