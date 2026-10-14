@@ -3,15 +3,14 @@
 // Three things are written down here: how the catalogue is sorted (KINDS), what a flow *is* --
 // its name, the roles `-a` fills, what ends it, what `--resume` carries -- which <FlowCatalogue>
 // tiles on /flows/, and what a run of it *looks like*, as a scene <FlowPlayer> plays on each
-// flow's page. Keeping all three here means the catalogue and the diagrams cannot disagree.
+// flow's page and <FlowThumb> plays, small, on its tile. Keeping all three here means the catalogue and the diagrams cannot disagree.
 //
 // Everything is read off the flows themselves: humanize's `src/hmz/flows/builtin/` for `chat`
 // and the six loops beside it, and for the rest the repository each is released from, as the
 // official flowverse (https://github.com/humanfia/flowverse) lists it. What a release *ships
 // as* -- its versions, its pinned commit, its licence, its README -- is not written here at all:
 // `.vitepress/flowverse.mts` reads it from the flowverse on every build, by the `module` named
-// below. The visual grammar every scene is drawn in is `components/flow/grammar.ts`, and
-// `/flows/` shows it as a legend.
+// below. The visual grammar every scene is drawn in is `components/flow/grammar.ts`.
 //
 // These pages moved here from humanize's documentation, at the same slugs, so every
 // `docs.humanfia.ai/humanize/flows/<slug>` that was ever linked lands on `/flows/<slug>`.
@@ -27,7 +26,7 @@ export type Kind = 'talk' | 'solo' | 'relay' | 'tidy' | 'checked' | 'lanes' | 's
 
 export interface KindInfo {
   id: Kind
-  /** The label on its flows' tiles, on /flows/. */
+  /** What the kind is called. */
   said: string
   /** One line: the pattern every flow under it shares. */
   how: string
@@ -52,66 +51,10 @@ export const KINDS: KindInfo[] = [
 ]
 
 /* ------------------------------------------------------------------------------------------
-   What a reader may be trying to get done, which is what the chooser on /flows/ asks.
+   What a reader may be trying to get done with a flow.
    ------------------------------------------------------------------------------------------ */
 
 export type Job = 'talk' | 'grind' | 'review' | 'pair' | 'plan' | 'parallel' | 'score' | 'lean' | 'write'
-
-export interface JobInfo {
-  id: Job
-  /** The chip. */
-  said: string
-  /** The advice shown once it is picked. Inline `code` is written with backticks. */
-  hint: string
-}
-
-export const JOBS: JobInfo[] = [
-  {
-    id: 'talk',
-    said: 'talk to an agent',
-    hint: '`chat` is what `hmz` opens on in a new project: type, and the agent answers. No loop, and no budget needed.',
-  },
-  {
-    id: 'grind',
-    said: 'leave one agent on a task',
-    hint: 'Start with `ralph_loop`: a fresh session every round runs for days without drowning in its own context. `stateful_ralph` and `continue_loop` keep one session, so the agent remembers what it tried. `goal` lets the model decide when it is done.',
-  },
-  {
-    id: 'review',
-    said: 'have the work reviewed',
-    hint: '`rlar` puts a fresh reviewer after every round, and stops when the reviewer says the task is done. `humanize1` agrees on a plan first, then builds it under review.',
-  },
-  {
-    id: 'pair',
-    said: 'put two models on one task',
-    hint: '`flame_chase` hands the tree back and forth between two agents. `rlar` makes the second one a reviewer instead.',
-  },
-  {
-    id: 'plan',
-    said: 'plan before building',
-    hint: '`humanize1` is three flows, run one after another: an idea, a plan both sides agreed on, and a build under review.',
-  },
-  {
-    id: 'parallel',
-    said: 'chase several leads at once',
-    hint: 'Seven agents in three lanes. In `flame_chasoid:parallel` one lane writes your tree and two work on copies; in `flame_chasoid:parallel_git_pr` every lane has a clone and main moves only for a measured improvement.',
-  },
-  {
-    id: 'score',
-    said: 'beat a measured score',
-    hint: 'When a command measures the work, let it decide. `flame_chasoid:parallel_git_pr` merges a pull request only when its receipt beats main; `flame_chasoid:fixed_interrupt` hands the workspace to the other agent after every k accepted experiments, as in the HMA paper.',
-  },
-  {
-    id: 'lean',
-    said: 'prove a Lean theorem',
-    hint: '`recursive_lean_prover` splits the theorem into lemmas and proves each one in a worktree of its own.',
-  },
-  {
-    id: 'write',
-    said: 'write a new flow',
-    hint: '`aot` writes a flow from a description, and lands it only after it loads, runs on fakes and passes a review.',
-  },
-]
 
 /* ------------------------------------------------------------------------------------------
    The flows.

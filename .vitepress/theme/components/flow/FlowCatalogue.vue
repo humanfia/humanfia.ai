@@ -1,211 +1,124 @@
 <script setup lang="ts">
-// The catalogue on /flows/, and the chooser on top of it: pick what you want done, and the
-// tiles narrow to the flows that do it, with a line saying which to start with.
+// The gallery on /flows/: one picture per flow, its name, and a line at most -- the page is
+// for looking, and each flow's own page is where it is explained and played in full.
 //
-// The tiles are the blog's mosaic (../Mosaic.vue): one wall, the featured flows first and big,
-// then every other flow small, in the order of how the agents in a flow work together (KINDS in
-// `theme/flows.ts`), each labelled with its kind. `chat` is a conversation, not a loop, and is
-// left off. Each draws its flow's own scene -- the one its page plays -- in the same grammar, small
-// and without words, and as big as its tile; a tile plays while it is hovered or focused. After
-// the flows written here come the ones the flowverse releases that nobody here has written up
-// yet (`flowverse.data.mts`): the catalogue is the flowverse's, and this site only adds the
-// pictures.
+// Every tile is the same size, so the wall reads as a gallery rather than a ranking: the
+// featured flows come first, then the rest in the order of how the agents in a flow work
+// together (KINDS in `theme/flows.ts`). `chat` is a conversation, not a loop, and is left off.
+// Each picture is its flow's own scene -- the one its page plays -- in the same grammar, small and
+// without words; it plays while its tile is hovered or focused. After the flows written here
+// come the ones the flowverse releases that nobody here has drawn yet (`flowverse.data.mts`):
+// the catalogue is the flowverse's, and this site only adds the pictures, so those tiles keep
+// an empty frame where a picture will go.
+//
+// This is not the blog's mosaic (../Mosaic.vue): a mosaic's sizes say which tile matters most,
+// and a gallery of pictures wants them even, so the grid is its own.
 import { withBase } from 'vitepress'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 import { data } from '../../flowverse.data.mts'
-import { FLOWS, JOBS, KINDS, type Job } from '../../flows'
-import Mosaic, { type Span } from '../Mosaic.vue'
+import { FLOWS, KINDS } from '../../flows'
 import FlowThumb from './FlowThumb.vue'
 
-const job = ref<Job | 'all'>('all')
-
 const written = new Set(FLOWS.map((one) => one.module).filter(Boolean))
-const versionOf = (module?: string) => data.modules.find((one) => one.name === module)?.versions[0]
 const kindOf = (id: string) => KINDS.findIndex((kind) => kind.id === id)
-const listed = FLOWS.filter((one) => !one.unlisted)
-/** Only the jobs some listed flow does: a button that empties the wall is no choice. */
-const jobs = JOBS.filter((one) => listed.some((flow) => flow.jobs.includes(one.id)))
 
-/** The first two featured tiles take half the wall each, the next ones a third; every other
- *  tile is a third and short, so each run of tiles still adds up to the six columns. */
-const layout = (tile: { featured: boolean }, i: number): Span =>
-  !tile.featured ? [2, 3, 'sm'] : i < 2 ? [3, 6, 'xl'] : [2, 6, 'lg']
-
-/** Every tile, the flows drawn here first and the flowverse's others after. A picked job
- *  leaves only the flows that do it; the others say no job, so they go. */
-const tiles = computed(() => [
-  ...listed
-    .filter((one) => job.value === 'all' || one.jobs.includes(job.value))
+/** Every tile, the flows drawn here first and the flowverse's others after. */
+const tiles = [
+  ...FLOWS.filter((one) => !one.unlisted)
     .sort((a, b) => (a.featured ?? Infinity) - (b.featured ?? Infinity) || kindOf(a.kind) - kindOf(b.kind))
     .map((one) => ({
-      featured: !!one.featured,
       url: withBase(one.link),
       name: one.phases ? `${one.name}:<phase>` : one.name,
-      runs: one.phases?.join(' · '),
-      kind: KINDS[kindOf(one.kind)].said,
-      from: one.module ? `flowverse · v${versionOf(one.module) ?? '?'}` : 'ships with humanize',
       said: one.said,
-      roles: one.roles,
-      ends: one.ends,
-      keeps: one.keeps,
-      scene: one.scene,
+      scene: one.scene as string | undefined,
     })),
-  ...(job.value === 'all' ? data.modules.filter((one) => !written.has(one.name)) : []).map((one) => ({
-    url: withBase(`/flows/${one.slug}`),
-    featured: false,
-    name: one.name,
-    runs: undefined,
-    kind: 'Not yet drawn',
-    from: `flowverse · v${one.versions[0]}`,
-    said: one.latest.description || one.summary,
-    roles: undefined,
-    ends: undefined,
-    keeps: undefined,
-    scene: undefined,
-  })),
-])
-
-/** The advice for the picked job, cut at its backticks so the names can be set as code. */
-const hint = computed(() => {
-  const said = JOBS.find((one) => one.id === job.value)?.hint ?? ''
-  return said.split('`').map((text, n) => ({ text, code: n % 2 === 1 }))
-})
+  ...data.modules
+    .filter((one) => !written.has(one.name))
+    .map((one) => ({
+      url: withBase(`/flows/${one.slug}`),
+      name: one.name,
+      said: one.latest.description || one.summary,
+      scene: undefined,
+    })),
+]
 
 const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
 </script>
 
 <template>
-  <div class="flows flow-ui">
-    <div class="ask" role="group" aria-label="What do you want to do?">
-      <span class="q">What do you want to do?</span>
-      <button type="button" :class="{ on: job === 'all' }" :aria-pressed="job === 'all'" @click="job = 'all'">
-        show every flow
-      </button>
-      <button
-        v-for="one in jobs"
-        :key="one.id"
-        type="button"
-        :class="{ on: job === one.id }"
-        :aria-pressed="job === one.id"
-        @click="job = one.id"
-      >
-        {{ one.said }}
-      </button>
-    </div>
-
-    <p v-show="job !== 'all'" class="hint" aria-live="polite">
-      <template v-for="(part, n) in hint" :key="n">
-        <code v-if="part.code">{{ part.text }}</code>
-        <template v-else>{{ part.text }}</template>
-      </template>
-    </p>
-
-    <Mosaic
-      v-slot="{ item: tile, size }"
-      :items="tiles"
-      :layout="layout"
-      @enter="(tile) => thumbs[tile.url]?.play()"
-      @leave="(tile) => thumbs[tile.url]?.stop()"
-    >
-      <div v-if="tile.scene" class="pic">
-        <FlowThumb :ref="(el) => (thumbs[tile.url] = el as InstanceType<typeof FlowThumb> | null)" :scene="tile.scene" />
-      </div>
-
-      <p class="tile-meta">
-        <span class="tile-tag">{{ tile.kind }}</span>
-        <span>{{ tile.from }}</span>
-      </p>
-
-      <!-- A line may break after each colon, so `flame_chasoid:parallel_git_pr` wraps at its parts. -->
-      <h3><template v-for="(part, n) in tile.name.split(':')" :key="n"><template v-if="n">:<wbr /></template>{{ part }}</template></h3>
-      <p v-if="tile.runs" class="runs">{{ tile.runs }}</p>
-
-      <p class="tile-blurb">{{ tile.said }}</p>
-
-      <div class="tile-foot">
-        <dl v-if="tile.roles && size !== 'sm'">
-          <div><dt>-a</dt><dd>{{ tile.roles }}</dd></div>
-          <div><dt>ends</dt><dd>{{ tile.ends }}</dd></div>
-          <div><dt>--resume</dt><dd>{{ tile.keeps || 'starts afresh' }}</dd></div>
-        </dl>
-        <span class="tile-more">Open it <span aria-hidden="true">→</span></span>
-      </div>
-    </Mosaic>
-
-    <p class="foot">
-      Every run also stops when its budget is spent.
-    </p>
+  <!-- A list in a div: a flow page keeps its top-level lists at a reading measure (grammar.css),
+       and this one is a grid that wants the page's full width. -->
+  <div class="flow-ui">
+    <ul class="gallery">
+      <li v-for="tile in tiles" :key="tile.url">
+        <a
+          class="tile"
+          :href="tile.url"
+          @pointerenter="thumbs[tile.url]?.play()"
+          @pointerleave="thumbs[tile.url]?.stop()"
+          @focus="thumbs[tile.url]?.play()"
+          @blur="thumbs[tile.url]?.stop()"
+        >
+          <div class="pic" :class="{ blank: !tile.scene }">
+            <FlowThumb
+              v-if="tile.scene"
+              :ref="(el) => (thumbs[tile.url] = el as InstanceType<typeof FlowThumb> | null)"
+              :scene="tile.scene"
+            />
+          </div>
+          <!-- A line may break after each colon, so `flame_chasoid:parallel_git_pr` wraps at its parts. -->
+          <h3><template v-for="(part, n) in tile.name.split(':')" :key="n"><template v-if="n">:<wbr /></template>{{ part }}</template></h3>
+          <p v-if="tile.said">{{ tile.said }}</p>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
-.ask {
+/* As many even columns as fit at about 300px each, down to one on a phone. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 18px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery li {
+  margin: 0;
+}
+
+/* Square, flat sheets with an ink rule across the top, the same as the rest of the site's. */
+.tile {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.ask .q {
-  flex-basis: 100%;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--vp-c-text-1);
-}
-
-.ask button {
-  padding: 5px 12px;
+  flex-direction: column;
+  height: 100%;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 2px;
-  background: transparent;
-  color: var(--vp-c-text-2);
-  font-size: 12.5px;
-  cursor: pointer;
-  transition: color 0.3s, border-color 0.3s, background 0.3s;
+  border-top: 4px solid var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.ask button:hover {
-  color: var(--vp-c-text-1);
+.tile:hover,
+.tile:focus-visible {
   border-color: var(--vp-c-text-1);
+  border-top-color: var(--flow-mark);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--vp-c-text-1);
+  outline: none;
 }
 
-.ask button.on {
-  border-color: var(--flow-ink);
-  background: var(--flow-ink);
-  color: var(--flow-card);
-  font-weight: 600;
-}
-
-.ask button:focus-visible {
-  outline: 2px solid var(--flow-mark);
-  outline-offset: 2px;
-}
-
-.hint {
-  margin: 0 0 16px;
-  padding: 10px 14px;
-  border-left: 4px solid var(--flow-mark);
-  background: var(--flow-panel);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--vp-c-text-1);
-}
-
-.hint code {
-  font-size: 12.5px;
-}
-
-/* The scene runs edge to edge across the top of its tile, under the ink rule, so a wider tile
-   is a bigger picture -- and a taller one too: whatever height the tile's rows give it beyond
-   what its words need goes to the picture, not to air above the foot. */
+/* Every picture gets the same frame, whatever shape its scene is, so the names under them line
+   up across a row; the scene is fitted inside it. */
 .pic {
-  flex: 1 0 auto;
-  margin: -18px -20px 16px;
-  aspect-ratio: 300 / 130;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--flow-panel-edge);
   background: var(--flow-card);
 }
@@ -216,54 +129,45 @@ const thumbs = ref<Record<string, InstanceType<typeof FlowThumb> | null>>({})
   height: 100%;
 }
 
-/* A flow's name is what `-f` and `$` take, so it is set as code: `flame_chasoid:parallel_git_pr`
-   is wider than a small tile, and breaks anywhere rather than overflowing it. */
-h3 {
+/* A flow with no scene yet: the frame, hatched, holding its place. */
+.pic.blank {
+  background:
+    repeating-linear-gradient(-17deg, transparent 0 11px, var(--flow-panel-edge) 11px 12px),
+    var(--flow-panel);
+}
+
+/* A flow's name is what `-f` and `$` take, so it is set as code, and breaks anywhere rather than
+   overflowing its tile. */
+.tile h3 {
+  margin: 0;
+  padding: 14px 16px 0;
+  border: 0;
   font-family: var(--vp-font-family-mono);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
   overflow-wrap: anywhere;
+  transition: color 0.2s;
 }
 
-.runs {
+.tile:hover h3 {
+  color: var(--vp-c-brand-1);
+}
+
+.tile p {
   margin: 4px 0 0;
-  font-family: var(--vp-font-family-mono);
-  font-size: 11px;
-  color: var(--vp-c-text-3);
-}
-
-/* What `-a` fills, what ends it and what `--resume` keeps: the three things to know before
-   starting one, over the way to its page. */
-dl {
-  flex-basis: 100%;
-  margin: 0;
-  padding-top: 10px;
-  border-top: 1px solid var(--vp-c-divider);
-  font-size: 11.5px;
-  line-height: 1.45;
-}
-
-dl div {
-  display: flex;
-  gap: 8px;
-  padding: 2px 0;
-}
-
-dt {
-  flex: none;
-  width: 62px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 11px;
-  color: var(--vp-c-text-3);
-}
-
-dd {
-  flex: 1;
-  margin: 0;
+  padding: 0 16px 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--vp-c-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.foot {
-  margin: 18px 0 0;
-  font-size: 12.5px;
-  color: var(--vp-c-text-3);
+.tile h3:last-child {
+  padding-bottom: 16px;
 }
 </style>
