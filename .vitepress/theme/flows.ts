@@ -36,7 +36,7 @@ export interface KindInfo {
 export const KINDS: KindInfo[] = [
   { id: 'talk', said: 'Talk', how: 'You and one agent, turn for turn.' },
   { id: 'solo', said: 'One agent, looping', how: 'One agent takes round after round on the same task.' },
-  { id: 'relay', said: 'A relay', how: 'Two agents hand the same tree back and forth.' },
+  { id: 'relay', said: 'Agents take turns', how: 'Two agents hand the same tree back and forth.' },
   {
     id: 'tidy',
     said: 'A loop with a cleaner',
@@ -47,7 +47,7 @@ export const KINDS: KindInfo[] = [
     said: 'Maker and checker',
     how: 'One agent makes, and a fresh one, which never saw it made, judges it.',
   },
-  { id: 'lanes', said: 'Lanes at once', how: 'Several workspaces, each with agents of its own, at the same time.' },
+  { id: 'lanes', said: 'Parallel lanes', how: 'Several workspaces, each with agents of its own, at the same time.' },
   { id: 'split', said: 'Divide and conquer', how: 'The task splits into parts, and each part runs the same line.' },
 ]
 

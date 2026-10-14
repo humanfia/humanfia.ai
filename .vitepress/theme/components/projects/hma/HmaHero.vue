@@ -58,12 +58,13 @@ const name = (id: string) => {
       <div class="hma-hero-copy">
         <p class="hma-kicker">HMA · Humanize MLE Agents</p>
         <h1 class="hma-display">
-          Two agents.<br />One workspace.<br /><span class="hma-accent">Taking turns.</span>
+          Taking turns beats <span class="hma-accent">either agent alone</span>
         </h1>
         <p class="hma-lead">
           Two native coding agents alternate over one shared machine-learning workspace, each turn a
-          fresh session. On 75 MLE-bench tasks in six hours, together they medal more often than
-          either does alone.
+          fresh session. On 75 MLE-bench tasks in six hours, the pair medals on {{ TARGET }}% of them;
+          {{ byId('opus').agents[0] }} alone manages {{ byId('opus').values.medal }}%, and
+          {{ byId('gpt').agents[0] }} alone {{ byId('gpt').values.medal!.toFixed(1) }}%.
         </p>
         <div class="hma-actions">
           <a class="hma-btn primary" href="https://github.com/humanfia/hma" target="_blank" rel="noreferrer">humanfia/hma ↗</a>
