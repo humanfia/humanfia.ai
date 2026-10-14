@@ -297,6 +297,94 @@
   opacity: 1;
 }
 
+/* The one the backend is in now, inside a goal's turn: breathing, in the turn's colour. */
+.hmz-flow .f-turn .tick.now {
+  fill: var(--hue);
+}
+
+/* What a running turn leaves behind the edge it has reached (see FlowTurn): a diff's lines,
+   most put in and a few taken out; a line of text, lit as it is read; a plan's steps, joined;
+   a program's checks, ticked. */
+.hmz-flow .f-turn .mark {
+  fill: none;
+  stroke: var(--hue);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.hmz-flow .f-turn .mark.add {
+  stroke: var(--flow-done);
+}
+
+.hmz-flow .f-turn .mark.del {
+  stroke: var(--flow-fail);
+}
+
+.hmz-flow .f-turn .mark.unseen {
+  stroke: var(--flow-ink-3);
+  opacity: 0.35;
+}
+
+.hmz-flow .f-turn .mark.join {
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.hmz-flow .f-turn .mark.check,
+.hmz-flow .f-turn .mark.todo {
+  stroke-width: 1.2;
+  stroke-linecap: butt;
+}
+
+.hmz-flow .f-turn .mark.check {
+  fill: var(--flow-done);
+  stroke: var(--flow-done);
+}
+
+.hmz-flow .f-turn .mark.todo {
+  stroke: var(--flow-ink-3);
+  opacity: 0.5;
+}
+
+.hmz-flow .f-turn .typing {
+  fill: var(--hue);
+}
+
+/* A review's verdict, stamped on as it lands: a rubber stamp's square outline and ink, in the
+   colour of the ending it is closest to, with that ending's glyph, so the colour is never all
+   that says it. */
+.hmz-flow .f-turn .stamp.v-pass {
+  --ink: var(--flow-done);
+}
+
+.hmz-flow .f-turn .stamp.v-reject {
+  --ink: var(--flow-fail);
+}
+
+.hmz-flow .f-turn .stamp {
+  color: var(--ink);
+}
+
+.hmz-flow .f-turn .stamp rect {
+  fill: color-mix(in srgb, var(--flow-card) 88%, var(--ink));
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+
+.hmz-flow .f-turn .stamp text {
+  fill: var(--ink);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hmz-flow .f-turn .stamp .thud {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+
 /* a pass */
 .hmz-flow .f-wire .track {
   fill: none;
@@ -350,6 +438,17 @@
   fill: var(--flow-ink);
   font-size: 11.5px;
   text-anchor: middle;
+}
+
+/* The chip a pass carries says how it goes, as its wire does: dotted round files left in the
+   tree, solid round words. */
+.hmz-flow .f-wire.tree .said rect {
+  stroke-dasharray: 2 2.5;
+  stroke-opacity: 0.9;
+}
+
+.hmz-flow .f-wire .said {
+  color: var(--hue);
 }
 
 /* a loop */
@@ -420,6 +519,18 @@
   stroke-width: 1.6;
 }
 
+.hmz-flow .f-gate .ray {
+  stroke: var(--hue);
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+
+.hmz-flow .f-gate .shard { fill: var(--hue); }
+.hmz-flow .f-gate .shard.t-mark { fill: var(--flow-mark); }
+.hmz-flow .f-gate .shard.t-maker { fill: var(--flow-maker); }
+.hmz-flow .f-gate .shard.t-steward { fill: var(--flow-steward); }
+.hmz-flow .f-gate .shard.t-partner { fill: var(--flow-partner); }
+
 .hmz-flow .f-gate .end {
   color: var(--hue);
 }
@@ -472,6 +583,25 @@
   text-anchor: end;
 }
 
+.hmz-flow .f-meter .read.filling {
+  fill: var(--flow-ink);
+}
+
+.hmz-flow .f-meter .grad {
+  stroke: var(--flow-ink-3);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+.hmz-flow .f-meter .head {
+  stroke: var(--hue);
+  stroke-width: 2;
+}
+
+.hmz-flow .f-meter .glow {
+  fill: var(--hue);
+}
+
 /* a split's copies */
 .hmz-flow .f-kid .floor {
   fill: var(--flow-plate);
@@ -511,9 +641,23 @@
 }
 
 /* A flow's page is a title, a line, a diagram, and a few tables: the diagram and the tables
-   get the room, and prose keeps its reading measure. `pageClass: flow-page` turns this on. */
+   get the room, and prose keeps its reading measure. `pageClass: flow-page` turns this on.
+   The player there is a stage rather than a figure (see `heightFor`), and is drawn taller. */
 .Layout.flow-page .VPDoc.has-aside .content-container {
-  max-width: 940px;
+  max-width: 1040px;
+}
+
+/* VitePress holds a page without a sidebar to a 784px column beside its outline; a flow's
+   page lets the column take what the screen has, up to a stage about 1000px wide, and the
+   outline keeps its place to the right. */
+@media (min-width: 960px) {
+  .Layout.flow-page .VPDoc:not(.has-sidebar) .container {
+    max-width: 1320px;
+  }
+
+  .Layout.flow-page .VPDoc:not(.has-sidebar) .content {
+    max-width: 1064px;
+  }
 }
 
 .Layout.flow-page .vp-doc > div > p,

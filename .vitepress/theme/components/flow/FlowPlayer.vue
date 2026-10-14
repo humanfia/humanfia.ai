@@ -12,14 +12,21 @@
 // No word is drawn too small to read (see `legible` in grammar.ts): where the whole run at
 // rest would be, it is drawn at full size in a frame that scrolls along it, under a map of
 // the whole run that shows where the frame is and takes it anywhere along it.
+//
+// On a flow's own page (`pageClass: flow-page`) the picture is a stage: taller, so the camera
+// has room to close in. The line under it types itself out while the run plays -- how far it
+// has got is worked out from `t` too, from when the line last changed -- and is whole the
+// moment the run is paused, stepped or scrubbed, so a still moment always reads in full. The
+// run as a list stays on the page for a screen reader, out of sight of everyone else.
 import { gsap } from 'gsap'
+import { useData } from 'vitepress'
 import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 
 import { SCENES } from '../../flows'
 import { probe } from './probe'
 import FlowScene from './FlowScene.vue'
 import { legible, OUTCOME_SAID, SESSION_SAID } from './grammar'
-import { type Cam, cut, direct, film, heightFor, lay, still, type TurnG } from './stage'
+import { type Cam, cut, direct, film, heightFor, lay, still, through, type TurnG } from './stage'
 
 const props = defineProps<{
   /** The scene to play, by its key in SCENES. */
@@ -42,7 +49,11 @@ const key = computed(() => offered.value[at.value] ?? offered.value[0] ?? 'ralph
 const layout = computed(() => lay(SCENES[key.value]))
 
 const width = ref(800)
-const view = computed(() => ({ w: width.value, h: heightFor(layout.value, width.value) }))
+/** Whether it is the stage of a flow's own page, rather than a figure in someone else's: known
+ *  from the page's own frontmatter, so the server draws it at the height it will keep. */
+const { frontmatter } = useData()
+const large = computed(() => String(frontmatter.value.pageClass ?? '').split(/\s+/).includes('flow-page'))
+const view = computed(() => ({ w: width.value, h: heightFor(layout.value, width.value, large.value) }))
 const keys = computed(() => direct(layout.value, view.value))
 
 /** Whether it moves: never on the server, never under reduced motion. */
@@ -226,35 +237,80 @@ watch(key, () => {
 })
 
 /* What is happening now, in words: the line under the picture. */
-const running = computed(() => layout.value.turns.filter((g) => g.t0 <= t.value && t.value < g.t1))
 const nameOf = (g: TurnG) => g.lane.role.name
-const now = computed(() => {
+/** What is happening at a moment of the run, in a line. */
+function sayAt(at: number): string {
   const L = layout.value
+  if (at < 0) return `${L.scene.of}: ${L.scene.roles.length === 1 ? 'one lane' : `${L.scene.roles.length} lanes`}.`
+  if (at >= L.firedAt) {
+    const end = L.scene.ends[0]
+    return `It ends: ${end.said}${end.is === 'budget' ? '' : ` — ${OUTCOME_SAID[end.is]}`}.`
+  }
+  const set = L.turns.filter((g) => g.t0 <= at && at < g.t1)
+  if (set.length > 1) return `${set.length} turns at once: ${set.map(nameOf).join(', ')}.`
+  if (set.length === 1) {
+    const g = set[0]
+    // A turn that says what it is doing says that, a moment at a time, once it has started.
+    const doing = g.turn.doing ?? []
+    const u = through(g, at)
+    if (doing.length && u >= 0.12) {
+      const k = Math.min(doing.length - 1, Math.floor(((u - 0.12) / 0.88) * doing.length))
+      return `${nameOf(g)} — ${doing[k]}`
+    }
+    const calls = g.turn.calls ? `, running ${g.turn.calls}` : ''
+    return `${nameOf(g)} — ${g.turn.label}: ${SESSION_SAID[g.turn.session]}${calls}.`
+  }
+  if (L.loop?.plays && at >= L.loop.t0 && at < L.loop.t1) return `And again: ${L.loop.said}.`
+  if (L.split && at >= L.split.t0 && at < L.split.t1) return `A level down: ${L.split.said}.`
+  const flying = L.passes.find((p) => p.t0 <= at && at < p.t1)
+  if (flying?.said) return `Handed on ${flying.via === 'tree' ? 'in the tree' : 'as words'}: ${flying.said}.`
+  const done = L.turns.filter((g) => g.t1 <= at).at(-1)
+  if (done?.verdict) return `${nameOf(done)} — ${done.verdict === 'pass' ? 'it passes' : 'it sends the work back'}.`
+  return done ? `${nameOf(done)} — ${done.turn.label}: done.` : '…'
+}
+const now = computed(() => {
   if (mode.value === 'still')
     return big.value
       ? 'The whole run, at rest: scroll along it, or tap the map above it. Step through it with the buttons, or drag the bar.'
       : 'The whole run, at rest. Step through it with the buttons, or drag the bar.'
-  if (t.value < 0) return `${L.scene.of}: ${L.scene.roles.length === 1 ? 'one lane' : `${L.scene.roles.length} lanes`}.`
-  if (t.value >= L.firedAt) {
-    const end = L.scene.ends[0]
-    return `It ends: ${end.said}${end.is === 'budget' ? '' : ` — ${OUTCOME_SAID[end.is]}`}.`
-  }
-  const set = running.value
-  if (set.length > 1) return `${set.length} turns at once: ${set.map(nameOf).join(', ')}.`
-  if (set.length === 1) {
-    const g = set[0]
-    const calls = g.turn.calls ? `, running ${g.turn.calls}` : ''
-    return `${nameOf(g)} — ${g.turn.label}: ${SESSION_SAID[g.turn.session]}${calls}.`
-  }
-  if (L.loop?.plays && t.value >= L.loop.t0 && t.value < L.loop.t1) return `And again: ${L.loop.said}.`
-  if (L.split && t.value >= L.split.t0 && t.value < L.split.t1) return `A level down: ${L.split.said}.`
-  const flying = L.passes.find((p) => p.t0 <= t.value && t.value < p.t1)
-  if (flying?.said) return `Handed on ${flying.via === 'tree' ? 'in the tree' : 'as words'}: ${flying.said}.`
-  const done = L.turns.filter((g) => g.t1 <= t.value).at(-1)
-  return done ? `${nameOf(done)} — ${done.turn.label}: done.` : '…'
+  return sayAt(t.value)
 })
 
-/** The run as a list, for a screen reader or anyone who would rather read it. */
+/** Letters a beat the line types at: a line of the usual length is whole in under a beat. */
+const TYPE = 120
+/** The moments the line changes, found once a run by reading it along at a fine step. */
+const changes = computed(() => {
+  const L = layout.value
+  const out: number[] = []
+  const STEP = 0.01
+  let last = ''
+  for (let at = L.start; at <= L.end; at += STEP) {
+    const line = sayAt(at)
+    if (line !== last) out.push(at)
+    last = line
+  }
+  return out
+})
+/** How much of the line is typed by now: all of it unless the run is playing; while it plays,
+ *  as much as has had time since the line last changed, so that it too is a function of `t`. */
+const typed = computed(() => {
+  const line = now.value
+  if (!motion.value || !playing.value || mode.value === 'still') return line.length
+  const at = t.value
+  const all = changes.value
+  let lo = 0
+  let hi = all.length - 1
+  // The last change at or before now.
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1
+    if (all[mid] <= at) lo = mid
+    else hi = mid - 1
+  }
+  const since = all.length && all[lo] <= at ? at - all[lo] : 0
+  return Math.min(line.length, Math.floor(since * TYPE))
+})
+
+/** The run as a list, for a screen reader: everyone else has the line under the picture. */
 const words = computed(() =>
   layout.value.turns.map((g) => {
     const passes = (g.turn.pass ?? [])
@@ -316,7 +372,9 @@ onMounted(() => {
       return [...L.marks.map((m) => (m - L.start) * BEAT), (L.end - L.start) * BEAT]
     },
     // The scene is a function of `clock.t` alone: the timeline moves it, the page follows.
+    // It is paused there, as a reader's pause would leave it: the line under it whole.
     seek: async (time) => {
+      playing.value = false
       stepping?.kill()
       tl?.pause()
       tl?.time(time, false)
@@ -407,9 +465,16 @@ onUnmounted(() => {
       />
     </div>
 
-    <p class="now" :aria-live="motion && playing ? 'off' : 'polite'">{{ now }}</p>
+    <p class="now" :aria-live="motion && playing ? 'off' : 'polite'">
+      <span class="sr-only">{{ now }}</span>
+      <span aria-hidden="true"
+        >{{ now.slice(0, typed) }}<span v-if="typed < now.length" class="caret" /><span class="ghost">{{
+          now.slice(typed)
+        }}</span></span
+      >
+    </p>
     <p class="caption">{{ layout.scene.caption }}</p>
-    <details class="words">
+    <details class="words sr-only" open>
       <summary>The run, turn by turn</summary>
       <ol>
         <li v-for="(line, n) in words" :key="n">{{ line }}</li>
@@ -632,24 +697,30 @@ onUnmounted(() => {
   color: var(--vp-c-text-2);
 }
 
-.words {
-  margin: 0;
-  padding: 0 16px 12px;
-  font-size: 12.5px;
-  color: var(--vp-c-text-2);
+/* The line types itself out: what is still to come keeps its room, unseen, so the line never
+   reflows as it grows, and a caret stands where the typing is. */
+.now .ghost {
+  visibility: hidden;
 }
 
-.words summary {
-  cursor: pointer;
-  color: var(--vp-c-text-3);
+.now .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin: 0 1px -0.18em 0;
+  background: var(--flow-accent);
 }
 
-.words ol {
-  margin: 6px 0;
-  padding-left: 20px;
-}
-
-.words p {
-  margin: 4px 0;
+/* For a screen reader alone: the line as a whole, and the run as a list. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>
