@@ -411,6 +411,13 @@ export interface Turn {
   /** The flow this turn runs as a subflow. */
   calls?: string
   pass?: Pass[]
+  /** What a review comes back with, stamped on the turn as it lands. Left out, a checker's
+   *  turn that hands on to the finish passes, one that hands back to a session already held
+   *  rejects, and any other turn is stamped with nothing; `none` says so outright. */
+  verdict?: 'pass' | 'reject' | 'none'
+  /** What the turn is seen doing while it runs, a few words a moment, in order: the line under
+   *  the picture says each in turn as the turn runs through them. */
+  doing?: string[]
 }
 
 export interface Scene {

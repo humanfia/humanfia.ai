@@ -16,6 +16,7 @@ import { doesOf, legible, SIZE } from './grammar'
 import {
   cubic,
   type Cam,
+  fillingAt,
   kidWidth,
   type LaneG,
   type Layout,
@@ -141,7 +142,19 @@ const frame = computed(() => {
     plates: { key: string; points: string; m: string; name: string; lit: boolean; words: number }[]
     rails: { key: string; d: string }[]
     threads: { key: string; d: string; w: number; kind: RoleKind; on: boolean }[]
-    turns: { key: string; m: string; w: number; kind: RoleKind; g: TurnG; state: State; progress: number; ignite: number; words: number }[]
+    turns: {
+      key: string
+      m: string
+      w: number
+      kind: RoleKind
+      g: TurnG
+      state: State
+      progress: number
+      ignite: number
+      words: number
+      stamp: number
+      thud: number
+    }[]
     playhead: string
   }
   const layers = new Map<number, Layer>()
@@ -256,7 +269,15 @@ const frame = computed(() => {
       })
     }
     const at = M([g.x0, y, z])
+    // A review's verdict is stamped just before the turn hands it on, so the stamp is down by
+    // the time the comet leaves with it; a still picture has every stamp down.
+    const down = g.t1 - 0.2
+    const stamp = !g.verdict ? -1 : !play ? 1 : t < down ? -1 : clamp((t - down) / 0.22, 0, 1)
+    // Short enough to have spread and gone by the moment a step lands on the next turn.
+    const thud = play && g.verdict ? (t - down - 0.22) / 0.3 : -1
     layer.turns.push({
+      stamp,
+      thud: thud >= 0 && thud < 1 ? thud : -1,
       key: g.turn.id,
       m: at.m,
       words: wordsAt(at.k),
@@ -316,15 +337,38 @@ const frame = computed(() => {
     }
     const drawn = ruled(n, lay.passes.length)
     const mid = flat ? P([(A[0] + B[0]) / 2, A[1] - 31, A[2]]) : P(at(0.5))
-    const labelOn = bare
-      ? 0
-      : !play
-        ? 1
-        : p <= 0
-          ? 0
-          : t < pass.t1 + 0.9
-            ? clamp(p * 5, 0, 1)
-            : clamp(1 - (t - pass.t1 - 0.9) / 0.4, 0, 1)
+    // What it carries: at rest, half way along; in play, packed at the turn that hands it on
+    // in the moment before it leaves, riding over the comet, and taken in by the turn it
+    // reaches, sinking into it as it shrinks.
+    let chip = { x: mid.x, y: mid.y, s: mid.s }
+    let labelOn = bare ? 0 : 1
+    let grow = 1
+    if (play && !bare) {
+      const LIFT = 21
+      const PACK = 0.3
+      // Held long enough that a step, which lands a little way into the turn it reaches, finds
+      // it whole.
+      const HOLD = 0.35
+      const SINK = 0.3
+      const over = (q: P3, lift: number) => {
+        const o = P(q)
+        return { x: o.x, y: o.y - lift * o.s, s: o.s }
+      }
+      if (t < pass.t0 - PACK) labelOn = 0
+      else if (t < pass.t0) {
+        const u = (t - (pass.t0 - PACK)) / PACK
+        chip = over(A, LIFT)
+        labelOn = u
+        grow = 0.6 + 0.4 * u
+      } else if (p < 1) chip = over(at(p), LIFT)
+      else if (t < pass.t1 + HOLD) chip = over(B, LIFT)
+      else if (t < pass.t1 + HOLD + SINK) {
+        const u = (t - pass.t1 - HOLD) / SINK
+        chip = over(B, LIFT * (1 - u))
+        labelOn = 1 - u
+        grow = 1 - 0.6 * u
+      } else labelOn = 0
+    }
     return {
       key: pass.key,
       kind: from.lane.kind,
@@ -335,8 +379,9 @@ const frame = computed(() => {
       head,
       ripple,
       said: pass.said,
-      at: { x: mid.x, y: mid.y, s: mid.s },
+      at: chip,
       labelOn,
+      grow,
     }
   })
 
@@ -387,6 +432,7 @@ const frame = computed(() => {
           words: wordsAt(bar.k),
           w: lay.gateX - SIZE.x0 - 24,
           fill: play ? spentAt(lay, t) : spentAt(lay, lay.firedAt),
+          filling: play && fillingAt(lay, t),
         }
 
   /* A split: copies of the line, a level down, flown in from the depth as the part splits. */
@@ -550,6 +596,10 @@ const frame = computed(() => {
             :calls="turn.g.turn.calls ?? ''"
             :bare="bare"
             :words="turn.words"
+            :seed="turn.key"
+            :verdict="turn.g.verdict"
+            :stamp="turn.stamp"
+            :thud="turn.thud"
           />
         </g>
       </g>
@@ -593,6 +643,7 @@ const frame = computed(() => {
         :said="wire.said"
         :at="wire.at"
         :label-on="wire.labelOn"
+        :grow="wire.grow"
       />
 
       <g :transform="frame.gate.m">
@@ -600,7 +651,14 @@ const frame = computed(() => {
       </g>
 
       <g v-if="frame.meter" :transform="frame.meter.m">
-        <FlowMeter :w="frame.meter.w" :fill="frame.meter.fill" :bare="bare" :words="frame.meter.words" />
+        <FlowMeter
+          :w="frame.meter.w"
+          :fill="frame.meter.fill"
+          :filling="frame.meter.filling"
+          :pulse="frame.pulse"
+          :bare="bare"
+          :words="frame.meter.words"
+        />
       </g>
 
       <rect

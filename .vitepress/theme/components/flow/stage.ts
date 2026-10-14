@@ -43,6 +43,9 @@ export interface TurnG {
   /** How many turns the session has held before this one: the thread's thickness. */
   depth: number
   lines: string[]
+  /** What it is stamped with as it lands, if it is a review that passes or sends the work
+   *  back: see `Turn.verdict`. */
+  verdict: 'pass' | 'reject' | null
 }
 
 export interface PassG {
@@ -183,6 +186,7 @@ export function lay(scene: Scene): Layout {
       prev,
       depth: prev ? prev.depth + 1 : 0,
       lines: wrap(turn.label, x1 - x0 - (turn.inside ? 30 : 38)),
+      verdict: null,
     }
     turns.push(g)
     if (turn.session !== 'none') lastOf.set(turn.role, g)
@@ -192,6 +196,22 @@ export function lay(scene: Scene): Layout {
   const cols = Math.max(...scene.turns.map((t) => t.at + (t.span ?? 1)))
   const gateX = X(cols) + 30
   const gateW = Math.max(...scene.ends.map((end) => end.said.length * 6.4 + 34)) + 22
+
+  // A review's verdict, where the scene does not give one, is read off where it hands the
+  // work: to the finish is a pass, and back to a session that has already worked on it is
+  // the work sent back. Anything else a checker hands on -- a finding to a planner starting
+  // fresh, a reading to another reading -- is not a verdict, and is stamped with nothing.
+  for (const g of turns) {
+    const said = g.turn.verdict
+    if (said) {
+      g.verdict = said === 'none' ? null : said
+      continue
+    }
+    if (g.lane.kind !== 'checker') continue
+    const to = (g.turn.pass ?? []).map((p) => (p.to === 'end' ? 'end' : byId.get(p.to)))
+    if (to.includes('end')) g.verdict = 'pass'
+    else if (to.some((o) => o && o !== 'end' && o.turn.session === 'held' && o.t0 > g.t0)) g.verdict = 'reject'
+  }
 
   const split = scene.split && byId.get(scene.split.at)
   // A pass leaves as its turn ends and lands as the next one starts; a long gap is crossed in
@@ -244,7 +264,7 @@ export function lay(scene: Scene): Layout {
     })
   }
 
-  const model = turns.filter((g) => g.lane.kind !== 'human' && g.lane.kind !== 'program')
+  const model = turns.filter(spends)
   const spend = model.reduce((sum, g) => sum + (Math.min(g.t1, firedAt) - g.t0), 0)
 
   const marks = [...new Set(turns.map((g) => g.t0))]
@@ -543,9 +563,14 @@ export const kidWidth = (lay: Layout) => lay.beat * 2.1
 
 /** How tall a scene's picture is at a given width, in pixels: the whole run with a little
  *  room around it, and never so short that a close shot has nothing to close on. */
-export function heightFor(lay: Layout, width: number): number {
+export function heightFor(lay: Layout, width: number, large = false): number {
   const fit = Math.min(1, width / lay.width)
-  return Math.round(clamp(lay.height * fit * 1.12 + 10, 240, 480))
+  const base = lay.height * fit * 1.12 + 10
+  // A flow's own page gives its run a stage, not a figure: taller than the run needs at rest,
+  // so a close shot has room to close in and what rides the wires has air above it. Not on a
+  // phone, where the height would only push the controls off the screen.
+  if (large && !narrowView({ w: width, h: 0 })) return Math.round(clamp(Math.max(base * 1.15, Math.min(width * 0.5, 560)), 300, 620))
+  return Math.round(clamp(base, 240, 480))
 }
 
 /* ------------------------------------------------------------------------------------------
@@ -553,6 +578,9 @@ export function heightFor(lay: Layout, width: number): number {
    ------------------------------------------------------------------------------------------ */
 
 export type TurnState = 'waiting' | 'running' | 'landed'
+
+/** Whether a turn spends the budget: one a model takes, not yours or a program's. */
+export const spends = (g: TurnG) => g.lane.kind !== 'human' && g.lane.kind !== 'program'
 
 export const stateAt = (g: TurnG, t: number): TurnState =>
   t >= g.t1 ? 'landed' : t >= g.t0 ? 'running' : 'waiting'
@@ -565,11 +593,15 @@ export function spentAt(lay: Layout, t: number): number {
   if (!lay.spend) return 0
   let sum = 0
   for (const g of lay.turns) {
-    if (g.lane.kind === 'human' || g.lane.kind === 'program') continue
+    if (!spends(g)) continue
     sum += clamp(Math.min(t, lay.firedAt) - g.t0, 0, Math.min(g.t1, lay.firedAt) - g.t0)
   }
   return (sum / lay.spend) * (lay.fired === 'budget' ? 1 : 0.58)
 }
+
+/** Whether a model is working at `t`, which is when the budget bar is filling. */
+export const fillingAt = (lay: Layout, t: number) =>
+  t < lay.firedAt && lay.turns.some((g) => spends(g) && g.t0 <= t && t < g.t1)
 
 /** A point on a cubic. */
 export const cubic = (a: number, b: number, c: number, d: number, p: number) => {

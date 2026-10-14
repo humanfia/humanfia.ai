@@ -67,6 +67,8 @@ export const GLYPH: Record<string, string> = {
     'M-4.5 -6 H4.5 M-4.5 6 H4.5 M-3.6 -6 Q-3.6 -1.2 0 0 Q3.6 1.2 3.6 6 M3.6 -6 Q3.6 -1.2 0 0 Q-3.6 1.2 -3.6 6',
   you: 'M-4 -4 H4 V4 H-4 Z',
   split: 'M0 -6 V-1 M0 -1 L-5 5 M0 -1 L5 5',
+  /** Words handed on: a speech balloon, which is what a chip riding a solid wire carries. */
+  say: 'M-6 -5 H6 V3 H-1 L-4 6 V3 H-6 Z',
 }
 
 /** The glyph a lane head carries. */
