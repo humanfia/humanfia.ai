@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The agent runs here. Its syscalls land there.
+// The agent stays here; its files and commands are on the target.
 //
 // The anchor, drawn: a seccomp-filtered ptrace supervisor sits between the coding agent and
 // the kernel and decides every call one at a time -- replay it on the target, or answer it on

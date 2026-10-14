@@ -92,7 +92,7 @@ const INDEX = [
         <h3 id="coganchor" class="dt-name">CogAnchor<span>remote execution</span></h3>
         <p class="dt-state shipped"><b>Shipped</b> in Humanize, as <code>hmz.coganchor</code>. Its command line is <code>hmz internal anchor</code>.</p>
       </header>
-      <p class="dt-big" v-reveal>The agent runs here. Its syscalls <span>land there.</span></p>
+      <p class="dt-big" v-reveal>The agent stays here; its files and commands <span>are on the target.</span></p>
       <div class="dt-pair" v-reveal>
         <div class="dt-copy">
           <p class="hz-copy">
