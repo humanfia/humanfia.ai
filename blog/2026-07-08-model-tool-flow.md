@@ -1,5 +1,5 @@
 ---
-title: "Model, tool, flow: 2, 18, 50 of 50"
+title: "Model, Tool, Flow: 2, 18, 50 of 50"
 description: The same model, measured three ways (raw API, the vendor's CLI, and that CLI inside a flow) on PutnamBench, Physics Cup, SuperChem and an HLE subset. The flow is worth more than the tools are.
 date: 2026-07-08
 authors:

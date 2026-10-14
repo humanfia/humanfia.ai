@@ -70,30 +70,6 @@ The workflow we launched with had four stages, and the last two go round until t
   <rect class="accent" x="-7" y="-7" width="14" height="14" data-step="4" data-travel="#lx-back" data-loop />
 </AnimatedDiagram>
 
-<PostCards numbered>
-<PostCard title="Shape the idea.">
-
-Expand a rough direction into an explicit plan with constraints and acceptance criteria.
-
-</PostCard>
-<PostCard title="Execute with tools.">
-
-Search, edit, run, debug, browse and coordinate through a workflow-native terminal environment.
-
-</PostCard>
-<PostCard title="Review independently.">
-
-Ask a second model to judge correctness, quality and design, rather than letting the builder
-grade itself.
-
-</PostCard>
-<PostCard title="Refine to done." invert>
-
-Feed findings back into implementation until the plan's contract is satisfied.
-
-</PostCard>
-</PostCards>
-
 ## Two open-source foundations
 
 As launched, the workflow rested on two pieces.
