@@ -27,31 +27,31 @@ interface Shot {
 const SHOTS: Shot[] = [
   {
     said: 'hmz',
-    what: 'The interface: / for the commands, and a flow picked from the sheet.',
+    what: 'Use / for commands and pick a flow.',
     cast: 'tui.cast',
     guide: '/reference/tui',
   },
   {
     said: 'ls ~/.humanize/epics/…',
-    what: 'What one run leaves behind: what happened, what it ran, and a link to every conversation it opened.',
+    what: 'What a run leaves on disk: its log and links to every conversation.',
     cast: 'run.cast',
     guide: '/user/tracing',
   },
   {
     said: '/epics',
-    what: 'Every run this directory has had, and which of them can be picked up where they stopped.',
+    what: 'Every run in this directory, and which can be resumed.',
     cast: 'epics.cast',
     guide: '/user/resuming',
   },
   {
     said: '/flowverses',
-    what: 'Where flows come from, and what one of those places holds.',
+    what: 'Flow sources and what each holds.',
     cast: 'flowverses.cast',
     guide: '/weaver/flowverses',
   },
   {
     said: '/providers',
-    what: 'Every account there is, what there is to do with one, and where a CLI of your own goes.',
+    what: 'Every account, what you can do with it, and where to add your own CLI.',
     cast: 'accounts.cast',
     guide: '/user/settings#accounts',
   },

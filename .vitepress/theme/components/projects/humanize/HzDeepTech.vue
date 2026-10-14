@@ -37,21 +37,15 @@ const INDEX = [
     <article class="dt-ch">
       <header class="dt-ch-head" v-reveal>
         <h3 id="phobos" class="dt-name">Phobos<span>the flow compiler</span></h3>
-        <p class="dt-state"><b>In development</b> — not yet in a Humanize release. Today a flow is loaded as a Python package straight from a directory, an index or a <code>git+</code> reference.</p>
+        <p class="dt-state"><b>In development</b>, not yet released. Flows load today as Python packages from a directory, an index or a <code>git+</code> reference.</p>
       </header>
       <div class="dt-ch-body">
         <div class="dt-copy" v-reveal>
           <p class="hz-copy">
-            A flow is ordinary Python: a decorator, the agents it takes and the turns it asks for.
-            Phobos turns that source into an artifact that can be checked, shipped and composed —
-            lowered to a flow IR (intermediate representation), verified and given a checksum,
-            packed with its assets, then linked against the flows it calls.
-          </p>
-          <p class="hz-copy">
-            A flow that calls other flows, such as <a href="/flows/aot">AOT</a> writing a flow or
-            <a href="/flows/humanize1">humanize1</a> chaining gen-idea, gen-plan and RLCR, becomes
-            one verified bundle with known dependencies. Without that, a flow is a directory whose
-            imports are resolved at run time.
+            Phobos compiles a flow to a verified, checksummed flow IR (intermediate representation),
+            packs its assets and links the flows it calls, so a flow such as
+            <a href="/flows/aot">AOT</a> or <a href="/flows/humanize1">humanize1</a> ships as one
+            bundle.
           </p>
         </div>
         <div class="dt-fig" v-reveal="120"><PhobosDiagram /></div>
@@ -63,21 +57,16 @@ const INDEX = [
       <span id="tracing-one-timeline" class="hz-alias" aria-hidden="true" />
       <header class="dt-ch-head" v-reveal>
         <h3 id="exomyth" class="dt-name">Exomyth<span>the visualizer</span></h3>
-        <p class="dt-state shipped"><b>Shipped</b> in Humanize, as the run trace and program profiling. It began as its own repository and was merged into the runtime in April.</p>
+        <p class="dt-state shipped"><b>Shipped</b> in Humanize as the run trace and program profiling. Merged into the runtime in April.</p>
       </header>
       <div class="dt-ch-body">
         <div class="dt-copy" v-reveal>
           <p class="hz-copy">
-            Exomyth turns the logs agents leave behind into one Chrome JSON trace, which you open in
-            <a href="https://ui.perfetto.dev" target="_blank" rel="noreferrer">Perfetto</a>. Each
-            agent of the run is a process; its sessions and sub-agents are tracks; every turn, tool
-            call, message and stretch of thinking is a slice, with the prompt and output attached.
-          </p>
-          <p class="hz-copy">
-            Profile the run and each program an agent started joins the same clock, so a slow test
-            suite shows up as a wide slice under the tool call that launched it. On an eleven-hour
-            run, that is the difference between knowing what happened and believing the last
-            message. The trace is built when you export a run, and nothing is uploaded.
+            Exomyth turns the agents’ logs into one Chrome JSON trace for
+            <a href="https://ui.perfetto.dev" target="_blank" rel="noreferrer">Perfetto</a>. Agents
+            are processes, sessions are tracks, and each turn or tool call is a slice with its
+            prompt and output. With profiling enabled, programs started by agents appear on the
+            same clock. Nothing is uploaded.
           </p>
           <a class="hz-link" :href="`${DOCS}/user/tracing`">Tracing a run ↗</a>
         </div>
@@ -90,23 +79,20 @@ const INDEX = [
       <span id="the-agent-runs-here-its-syscalls-land-there" class="hz-alias" aria-hidden="true" />
       <header class="dt-ch-head" v-reveal>
         <h3 id="coganchor" class="dt-name">CogAnchor<span>remote execution</span></h3>
-        <p class="dt-state shipped"><b>Shipped</b> in Humanize, as <code>hmz.coganchor</code>. Its command line is <code>hmz internal anchor</code>.</p>
+        <p class="dt-state shipped"><b>Shipped</b> in Humanize as <code>hmz.coganchor</code>; the command is <code>hmz internal anchor</code>.</p>
       </header>
-      <p class="dt-big" v-reveal>The agent stays here; its files and commands <span>are on the target.</span></p>
+      <p class="dt-big" v-reveal>The agent runs here; its files and commands <span>are on the target.</span></p>
       <div class="dt-pair" v-reveal>
         <div class="dt-copy">
           <p class="hz-copy">
-            The coding-agent CLI stays where it is installed and signed in. The files it reads and
-            writes and the commands it runs — builds, tests, <code>git</code> — are on the target,
-            at the target’s own paths. Point one of a flow’s environments at another machine with
-            <code>-e box=ssh@[build-box]/home/me/proj</code>, and that is where the work happens.
+            The CLI stays where it is installed and signed in. Builds, tests and <code>git</code>
+            run on the target set by <code>-e box=ssh@[build-box]/home/me/proj</code>.
           </p>
         </div>
         <div class="dt-copy">
           <p class="hz-copy">
-            The agent needs no plugin or configuration. A seccomp-filtered ptrace supervisor decides every call it makes: it opens a
-            file, and gets the target’s; it runs <code>pytest</code>, and the process is the
-            target’s; it reads its own credentials, and those are answered here.
+            A seccomp-filtered ptrace supervisor decides every system call: file and process calls
+            resolve on the target, and credential reads are answered locally.
           </p>
         </div>
       </div>
@@ -115,22 +101,18 @@ const INDEX = [
         <div class="dt-copy" v-reveal>
           <p class="dt-sub">Three arrangements</p>
           <p class="hz-copy">
-            <b>Supervised</b>, the default: the agent runs here under the supervisor, and the
-            workspace is mirrored here and filled lazily. <b>Afar</b>: the agent and its supervisor
-            run next to the work, and only its standard streams come back. <b>Native</b>: the
-            target’s own installed CLI takes the turn.
+            <b>Supervised</b> (default): the agent runs here and the workspace is mirrored on
+            demand. <b>Afar</b>: the agent and supervisor run on the target; only standard streams
+            come back. <b>Native</b>: the target’s own CLI takes the turn.
           </p>
           <p class="hz-copy">
-            The target needs nothing installed: a POSIX <code>/bin/sh</code> and Python 3.12 or
-            later, with no root, no compiler and no kernel module. When two machines cannot reach
-            each other, a broker introduces them and relays the connection. The fence, which limits
-            what an agent’s processes may reach, is enforced on both machines.
+            The target needs only a POSIX <code>/bin/sh</code> and Python 3.12 or later, without
+            root. A broker relays between machines that cannot reach each other. The fence on what
+            an agent’s processes may reach is enforced on both machines.
           </p>
           <p class="hz-copy">
-            The name is from the Chronocognitive Anchor (识刻锚) of <i>Honkai: Star Rail</i>, which
-            Screwllum builds into the Emperor’s Scepter that runs Amphoreus. It keeps one person
-            whole inside that other world and still in reach of the rest of the cosmos, as
-            CogAnchor keeps an agent itself while its work is on another machine.
+            The name comes from the Chronocognitive Anchor (识刻锚) in <i>Honkai: Star Rail</i>,
+            which keeps a person whole inside another world.
           </p>
           <p class="dt-links">
             <a class="hz-link" :href="`${DOCS}/user/remote-execution`">Remote execution ↗</a>

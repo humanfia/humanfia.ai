@@ -165,11 +165,10 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
     </aside>
 
     <figcaption>
-      Drawn from the ways in down to what is remembered. A layer may import only what the table
-      lists for it, and no two layers name each other but <code>flows</code> and
-      <code>flowing</code> —
-      <code>tests/integration/layering/test_layering.py</code> holds the exact table, and fails
-      a build that bends it.
+      Each layer may import only the layers its table entry lists; <code>flows</code> and
+      <code>flowing</code> are the only pair that import each other.
+      <code>tests/integration/layering/test_layering.py</code> holds the table and fails the build
+      on a violation.
       <a :href="`${DOCS}/contributing/architecture`">The whole tree, and the exemptions ↗</a>
     </figcaption>
   </figure>

@@ -64,9 +64,7 @@ const label = computed(() =>
     </div>
 
     <figcaption>
-      Problems solved of 50 by four base models, run three ways on the same problems: through the
-      raw model API, through a coding CLI, and inside a Humanize flow. From the ablation behind
-      the <a href="/blog/2026-09-27-kda-for-kda">KDA² post</a>.
+      Problems solved of 50, by base model and setup. From the ablation in the <a href="/blog/2026-09-27-kda-for-kda">KDA² post</a>.
     </figcaption>
   </figure>
 </template>

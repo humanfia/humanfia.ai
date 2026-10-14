@@ -38,15 +38,15 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
 const NOT = [
   {
     title: 'A model',
-    body: 'We do not train one, serve one or resell one.',
+    body: 'We do not train, serve or resell models.',
   },
   {
     title: 'A wrapper around one vendor',
-    body: 'Humanize drives the CLI you already log into, under your own subscription. It holds a credential only when you hand it one, and every turn is billed to the account you named. The frontier moves every few weeks; a wrapper around one vendor is the least durable thing we could build.',
+    body: 'It drives your CLI under your own subscription, holds a credential only if you give it one, and bills each turn to the account you named.',
   },
   {
     title: 'A coding agent',
-    body: 'It does not replace claude or codex — it takes turns on them. When a better one ships, Humanize adds it as one more backend.',
+    body: 'It takes turns on claude, codex and others; a new coding agent becomes another backend.',
   },
 ]
 
@@ -61,9 +61,9 @@ const TIMELINE = [
 ]
 
 const NEXT = [
-  { kicker: 'Docs', title: 'The documentation', body: 'Install, quickstart, and every feature.', href: `${DOCS}/` },
-  { kicker: 'Reference', title: 'The CLI reference', body: 'Every command, key, flag and Python call, in one place.', href: `${DOCS}/reference/cli` },
-  { kicker: 'Source', title: 'humanfia/humanize', body: 'The source, Apache-2.0. Issues and pull requests are the fastest way to reach us.', href: REPO },
+  { kicker: 'Docs', title: 'The documentation', body: 'Install, quickstart and every feature.', href: `${DOCS}/` },
+  { kicker: 'Reference', title: 'The CLI reference', body: 'Every command, key, flag and Python call.', href: `${DOCS}/reference/cli` },
+  { kicker: 'Source', title: 'humanfia/humanize', body: 'Apache-2.0. Issues and pull requests reach us fastest.', href: REPO },
 ]
 </script>
 
@@ -95,8 +95,8 @@ const NEXT = [
             <p class="hz-num"><b>01</b> Same model, with and without a flow</p>
             <p class="hz-big"><NumberTicker :value="47" :from="1" :duration="1800" /><small>/50</small></p>
             <p class="hz-lead">
-              PutnamBench problems Kimi-K3 solved inside a Humanize flow — against <b>4</b> through
-              its own coding CLI and <b>1</b> through the raw API. Same model, same problems.
+              PutnamBench problems Kimi-K3 solved inside a Humanize flow, against <b>4</b> through
+              its own coding CLI and <b>1</b> through the raw API.
             </p>
           </div>
           <div class="hz-proof-chart" v-reveal="120">
@@ -114,24 +114,15 @@ const NEXT = [
           <p class="hz-num"><b>02</b> The model</p>
           <h2 class="hz-h2">Four concepts: <span class="hz-accent">agent, session, turn and env.</span></h2>
           <p class="hz-lead">
-            A flow is a directory of Python that says which agents it drives, what each is asked, in
-            what order, and when to stop. The runtime opens the sessions, takes the turns, puts the
-            work where it should land, and records it. These four concepts are the whole model.
+            A flow is Python that sets which agents run, what each is asked, in what order, and when
+            to stop.
           </p>
         </header>
         <div v-reveal="80"><HzModel /></div>
-        <div class="hz-notes" v-reveal>
-          <p class="hz-copy">
-            An <b>agent</b> is a configuration; a <b>session</b> is its conversation history. The
-            <b>env</b> is chosen per turn rather than per session, so one conversation can carry on
-            from one machine to the next.
-          </p>
-          <p class="hz-copy">
-            <b>Unsupported requests fail explicitly.</b> A harness that cannot move between
-            machines says so on the turn that asks it to, rather than quietly running somewhere
-            else; a <code>litellm</code> turn given an env is refused with a clear error.
-          </p>
-        </div>
+        <p class="hz-copy hz-aside" v-reveal>
+          <b>Unsupported requests fail explicitly.</b> A <code>litellm</code> turn given an env,
+          or a harness asked to change machines when it cannot, raises an error.
+        </p>
       </div>
     </section>
 
@@ -142,9 +133,7 @@ const NEXT = [
           <p class="hz-num"><b>03</b> The flow loop</p>
           <h2 class="hz-h2">A flow is a Python loop; the runtime adds <span class="hz-accent">a budget, a trace and a journal.</span></h2>
           <p class="hz-lead">
-            A flow is ordinary Python: a <code>while</code>, a turn, a look at what came back, and a
-            decision. The runtime adds what a loop like that needs — a budget that stops it, a trace
-            of every turn, and a journal it can be picked up from. This is RLAR, turn by turn.
+            Below, the RLAR flow runs turn by turn.
           </p>
         </header>
         <div class="hz-player" v-reveal="80">
@@ -159,19 +148,13 @@ const NEXT = [
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>04</b> The flows it runs</p>
           <h2 class="hz-h2">Five loop shapes ship with the runtime; <span class="hz-accent">the rest come from the flowverse.</span></h2>
-          <p class="hz-lead">
-            The ones that ship with the runtime, plus the flowverse it fetches, cover most of the loop
-            shapes in common use.
-          </p>
         </header>
         <HzFlows />
         <div class="hz-verse" v-reveal>
           <p class="hz-copy">
-            The rest are listed in a <b>flowverse</b> — an index in git that pins each version of a
-            flow to a commit of the repository it lives in, which anybody can read, fork or publish to.
-            Comparing one method against another is a flag rather than a reimplementation.
-            <a href="/projects/flowbench">FlowBench</a> tests which is better, and ours are removed
-            when they lose.
+            More flows are listed in a <b>flowverse</b>, a git index that pins each flow version to
+            a commit. <a href="/projects/flowbench">FlowBench</a> compares them; we drop our own when
+            another scores better.
           </p>
           <a class="hz-link" href="https://github.com/humanfia/flowverse" target="_blank" rel="noreferrer">humanfia/flowverse ↗</a>
         </div>
@@ -185,18 +168,16 @@ const NEXT = [
           <p class="hz-num"><b>05</b> Every harness</p>
           <h2 class="hz-h2">Humanize drives twelve coding-agent CLIs, <span class="hz-accent">any ACP agent and models through LiteLLM.</span></h2>
           <p class="hz-lead">
-            A harness is what <code>-a</code> names. Each CLI is driven through whatever it actually
-            offers — a print mode, an app server, an RPC mode, a daemon or an SDK. Point at one.
+            <code>-a</code> names the harness. Each CLI is driven through its own print mode, app
+            server, RPC mode, daemon or SDK.
           </p>
         </header>
         <div v-reveal="80"><HzHarnesses /></div>
         <p class="hz-copy hz-aside" v-reveal>
           <code>litellm</code> takes a <a href="https://github.com/BerriAI/litellm" target="_blank" rel="noreferrer">LiteLLM</a>
-          model string, as in <code>-a writer=litellm@acct/openai/gpt-5</code>, and signs in through
-          Humanize’s accounts like any other harness: a vendor key, an OpenAI- or Anthropic-compatible
-          gateway, or Bedrock, Vertex or Azure. Usage goes into the same tally, so a flow can mix a
-          model call with coding agents and still be priced and traced as one run. It ships as an
-          optional extra, <code>hmz[litellm]</code>.
+          model string, such as <code>-a writer=litellm@acct/openai/gpt-5</code>, signs in with a
+          vendor key, a compatible gateway, Bedrock, Vertex or Azure, and is priced and traced with
+          the rest of the run. Install the extra <code>hmz[litellm]</code>.
         </p>
       </div>
     </section>
@@ -208,7 +189,6 @@ const NEXT = [
           <p class="hz-num"><b>06</b> What it does</p>
           <h2 class="hz-h2">Eleven things the runtime handles <span class="hz-accent">so a flow does not have to.</span></h2>
           <p class="hz-lead">
-            Hooks, capabilities, surfaces and the daemon are in there too.
             <a class="hz-link" :href="`${DOCS}/features/`">Every feature, one picture each ↗</a>
           </p>
         </header>
@@ -218,7 +198,7 @@ const NEXT = [
               <span class="n">{{ String(i + 1).padStart(2, '0') }}</span>
               <span class="k">{{ f.kicker }}</span>
               <h3>{{ f.title }}</h3>
-              <p>{{ f.body }}</p>
+              <p v-if="f.body">{{ f.body }}</p>
               <span v-if="f.href" class="go" aria-hidden="true">→</span>
             </component>
           </li>
@@ -233,9 +213,8 @@ const NEXT = [
           <p class="hz-num"><b>07</b> Demos</p>
           <h2 class="hz-h2">Screen recordings of <code>hmz</code> <span class="hz-accent">and a Ralph loop.</span></h2>
           <p class="hz-lead">
-            From <code>hmz</code> itself, in a container with a stand-in coding agent in it. Then two
-            takes from the talk where we introduced it: the same Ralph loop from the command line,
-            and from inside <code>hmz</code> with <code>/flow</code>.
+            <code>hmz</code> with a stand-in coding agent, then a Ralph loop run from the command
+            line and from inside <code>hmz</code>.
           </p>
         </header>
         <div v-reveal="80"><TerminalReel /></div>
@@ -245,7 +224,7 @@ const NEXT = [
               src="/media/ralph-loop-cli.mp4"
               poster="/media/ralph-loop-cli.webp"
               title="A Ralph loop started with hmz exec: two fresh rounds, each picking up from the repository"
-              caption="hmz exec -f ralph_loop with a budget file and one agent: round 1 maps the palette and adds dark-mode tokens, round 2 starts fresh, wires the toggle and finishes TASK.md."
+              caption="hmz exec -f ralph_loop: round 1 adds dark-mode tokens; round 2 starts fresh and finishes TASK.md."
             />
           </div>
           <div v-reveal="120">
@@ -253,7 +232,7 @@ const NEXT = [
               src="/media/ralph-loop-tui.mp4"
               poster="/media/ralph-loop-tui.webp"
               title="The same Ralph loop from inside hmz: /flow, choose ralph_loop, set up the agent, save, then the task"
-              caption="Inside hmz: /flow, choose ralph_loop, set up its one agent, save, then say what to do. Each round is a fresh session with its own codename."
+              caption="The same loop from inside hmz with /flow. Each round is a fresh session."
             />
           </div>
         </div>
@@ -266,10 +245,6 @@ const NEXT = [
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>08</b> Deep tech</p>
           <h2 class="hz-h2">Three subsystems: a flow compiler, a run tracer <span class="hz-accent">and remote execution.</span></h2>
-          <p class="hz-lead">
-            Three subsystems under the runtime: the machinery that lets one flow run for a day, on
-            any machine, and be read afterwards. Each says how much of it you can use today.
-          </p>
         </header>
         <HzDeepTech />
       </div>
@@ -282,8 +257,7 @@ const NEXT = [
           <p class="hz-num"><b>09</b> Architecture</p>
           <h2 class="hz-h2">A test enforces which of the <span class="hz-accent">seventeen layers may import which.</span></h2>
           <p class="hz-lead">
-            The runtime drives twelve different CLIs without becoming twelve different products
-            because those import rules are enforced by a test. Point at a layer.
+            Point at a layer to see what it holds.
           </p>
         </header>
         <div v-reveal="80"><LayerStack /></div>
@@ -305,10 +279,10 @@ const NEXT = [
         <aside class="hz-warn" v-reveal>
           <b>Permissions</b>
           <p>
-            Humanize runs every agent with approvals bypassed: nothing an agent does is put to you
-            first. What holds it back is what its flow declares, role by role. Read
-            <a :href="`${DOCS}/user/security`">Security ↗</a> before pointing one at a repository
-            you care about.
+            Humanize runs every agent with approvals bypassed, limited only by what the flow
+            declares for each role. Read
+            <a :href="`${DOCS}/user/security`">Security ↗</a> before using it on a repository you
+            care about.
           </p>
         </aside>
       </div>
@@ -337,10 +311,6 @@ const NEXT = [
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>12</b> Get started</p>
           <h2 class="hz-h2">Install with one command and run a flow <span class="hz-accent">on the CLI you already use.</span></h2>
-          <p class="hz-lead">
-            No account to sign up for. It drives the coding-agent CLI you already log into, under
-            your own subscription; any one of twelve will do.
-          </p>
         </header>
         <div v-reveal="80"><Install /></div>
         <ul class="hz-next">
@@ -448,20 +418,6 @@ a.hz-stat:hover {
   color: var(--hz-ink);
 }
 
-/* ---- 02 notes -------------------------------------------------------------------------- */
-
-.hz-notes .hz-copy {
-  margin: 0;
-}
-.hz-notes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(20px, 4vw, 64px);
-  margin-top: clamp(40px, 5vw, 64px);
-  padding-top: 28px;
-  border-top: 1px solid var(--hz-line);
-}
-
 /* ---- 03 the player --------------------------------------------------------------------- */
 
 .hz-player {
@@ -494,7 +450,7 @@ a.hz-stat:hover {
   text-decoration: underline;
 }
 
-/* ---- 05 litellm, said once ------------------------------------------------------------- */
+/* ---- 02 and 05: one short note under a figure ----------------------------------------- */
 
 .hz-aside {
   max-width: 880px;
@@ -778,7 +734,6 @@ a.hz-stat:hover {
     border-top: 1px solid var(--hz-line);
   }
   .hz-proof,
-  .hz-notes,
   .hz-not li,
   .hz-videos {
     grid-template-columns: minmax(0, 1fr);
