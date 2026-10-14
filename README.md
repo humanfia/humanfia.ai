@@ -17,7 +17,7 @@ Pages are Markdown: `index.md`, `projects/`, `flows/`, `about/`, and one file pe
 post in `news/` or `blog/`. Files in `public/` are published as they are. The Humanize page,
 Deep Tech included, is one component: `.vitepress/theme/components/projects/humanize/`.
 
-The figures in the Flow Science series on the blog are drawn by
+The figures in the Flow Science post on the blog are drawn by
 `.vitepress/theme/components/flowscience/`: a line chart with log and hand-spaced axes the post
 kit does not have yet, and the data it plots, read off the charts in our talk slides
 (`deck-data.json`, described in `figures.ts`).
