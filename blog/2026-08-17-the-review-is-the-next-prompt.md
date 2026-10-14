@@ -1,5 +1,5 @@
 ---
-title: The review is the next prompt
+title: "RLAR: The Review Is the Next Prompt"
 description: "Two small decisions inside RLAR changed how long-horizon runs behave: the reviewer's words go to the actor verbatim, and \"done\" is read off a field rather than a sentence."
 date: 2026-08-17
 authors:

@@ -53,7 +53,6 @@ const NOT = [
 const TIMELINE = [
   { url: '/news/2026-03-01-gem5-scons-to-cmake', metric: '567 files' },
   { url: '/blog/2026-07-08-model-tool-flow', metric: '2 → 50' },
-  { url: '/blog/2026-07-20-humanfia-launch', metric: 'Launch' },
   { url: '/news/2026-07-31-qcode-discovery', metric: '17,520 defs' },
   { url: '/news/2026-08-11-programbench', metric: '3.5%' },
   { url: '/blog/2026-08-17-four-layers-and-a-referee', metric: '4 layers' },
@@ -325,7 +324,7 @@ const NEXT = [
         <div class="hz-timeline" v-reveal="80">
           <ProjectTimeline
             kicker="Humanize · write-ups"
-            label="Humanize write-ups from March to September 2026: the gem5 build port, the model, tool and flow comparison, the launch, QCode Discovery, ProgramBench, the four layers and a referee, the review is the next prompt, and the KDA² ablation."
+            label="Humanize write-ups from March to September 2026: the gem5 build port, the model, tool and flow comparison, QCode Discovery, ProgramBench, from a review loop to four layers and a referee, the review is the next prompt, and the KDA² ablation."
             :entries="TIMELINE"
           />
         </div>
