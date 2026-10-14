@@ -62,7 +62,7 @@ const money = (v: number) => `$${v < 1 ? v.toFixed(2) : v % 1 ? v.toFixed(2) : v
         </li>
       </ol>
       <p class="hoa-caption">
-        Each team's latest entry, from the leaderboard's published data. Ties share a rank.
+        Each team's latest entry, from the leaderboard's data. Ties share a rank.
       </p>
     </figure>
 
@@ -94,9 +94,8 @@ const money = (v: number) => `$${v < 1 ? v.toFixed(2) : v % 1 ? v.toFixed(2) : v
         </ul>
       </div>
       <p class="hoa-caption">
-        In each team's own words, from its note on the leaderboard: one is total spend, one is actor
-        side only. Read it as orders of magnitude, not as a ranking. Two of the four got to 672 for a
-        tenth of our cost or less.
+        Each team's own figure, measured differently, so compare orders of magnitude. Two of the four
+        reached 672 for a tenth of our cost or less.
       </p>
     </figure>
   </div>

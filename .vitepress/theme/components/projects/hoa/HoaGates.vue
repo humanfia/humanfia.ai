@@ -11,9 +11,9 @@ import { onFirstSight, prefersReducedMotion } from '../../../home/motion'
 
 const GATES = [
   { name: 'Statement', rule: 'Byte-identical to the pinned benchmark statement.' },
-  { name: 'No sorry', rule: 'No sorry, admit, axiom or native_decide anywhere in the file.' },
-  { name: 'Compiles', rule: 'Against the pinned Lean 4.27.0 and Mathlib.' },
-  { name: 'Comparator', rule: 'Checks the statement and replays the proof through the Lean kernel.' },
+  { name: 'No sorry', rule: 'No sorry, admit, axiom or native_decide.' },
+  { name: 'Compiles', rule: 'Builds on the pinned Lean 4.27.0 and Mathlib.' },
+  { name: 'Comparator', rule: 'Checks the statement and replays the proof in the kernel.' },
   { name: 'AXLE review', rule: 'A reviewer that cannot edit the file gets okay: true from AXLE.' },
 ]
 
@@ -113,7 +113,7 @@ const verdict = () => {
       <li class="hg-end" :class="{ on: counted }">
         <span class="hg-n"><i class="qed" aria-hidden="true" /></span>
         <strong class="hg-name">Counted</strong>
-        <span class="hg-rule">Only now does the problem count as solved.</span>
+        <span class="hg-rule">Only then does the problem count.</span>
       </li>
     </ol>
 
@@ -123,22 +123,16 @@ const verdict = () => {
 
     <div class="hg-two">
       <div class="hg-card">
-        <p class="hoa-kicker">Proof review</p>
-        <p class="hg-q">Does Lean accept it?</p>
-        <p>The five gates. A perfectly checked proof can still be a proof of the wrong theorem.</p>
-      </div>
-      <div class="hg-card">
         <p class="hoa-kicker">Semantic review</p>
         <p class="hg-q">Does the theorem say what the problem said?</p>
-        <p>Counted and reported separately, so one cannot stand in for the other.</p>
+        <p>A proof Lean accepts can still prove the wrong theorem. This is checked and reported separately.</p>
       </div>
       <div class="hg-card hg-fine">
-        <p class="hoa-kicker">And around the gates</p>
+        <p class="hoa-kicker">Around the gates</p>
         <p>
-          The worker's shell has no network access, and no existing PutnamBench solution is ever
-          mounted into either model's workspace. The gates are the
-          <a href="https://github.com/humanfia/hoa-qed#verification-method" target="_blank" rel="noreferrer">solver's verification method</a>,
-          with <a href="https://github.com/leanprover/comparator" target="_blank" rel="noreferrer">Comparator</a>
+          The worker has no network access, and neither model's workspace holds an existing PutnamBench solution. Details:
+          the <a href="https://github.com/humanfia/hoa-qed#verification-method" target="_blank" rel="noreferrer">verification method</a>,
+          <a href="https://github.com/leanprover/comparator" target="_blank" rel="noreferrer">Comparator</a>
           and <a href="https://axle.axiommath.ai/" target="_blank" rel="noreferrer">AXLE</a>.
         </p>
       </div>
@@ -331,7 +325,7 @@ const verdict = () => {
 
 .hg-two {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(16px, 2.4vw, 28px);
   margin-top: clamp(28px, 4vw, 44px);
 }

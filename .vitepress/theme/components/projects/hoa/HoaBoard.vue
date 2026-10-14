@@ -130,8 +130,7 @@ const grids = computed(() =>
       </p>
     </div>
     <p class="hoa-caption">
-      None of the olympiad scores came from an official jury. Each tile means what its write-up says
-      it means, and each write-up says who did the grading.
+      No olympiad score here came from an official jury. Each write-up says who graded it.
     </p>
   </div>
 </template>

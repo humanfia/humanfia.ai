@@ -20,19 +20,19 @@ const METRICS = [
     key: 'first',
     label: 'First solves',
     means: 'The first accepted proof of a problem.',
-    say: 'First on the board: the first accepted proof on 30 of the 88 problems anybody has solved.',
+    say: 'First on the board: the first accepted proof on 30 of the 88 solved problems.',
   },
   {
     key: 'total',
     label: 'Total',
     means: 'Every problem an entry solved.',
-    say: 'Second on the board, by one: 79 to NEAR AI’s 80.',
+    say: 'Second on the board: 79 to NEAR AI’s 80.',
   },
   {
     key: 'unique',
     label: 'Unique',
     means: 'Problems nobody else has solved.',
-    say: 'Fourth on the board: one of our 79 has no other solver. The board sorts by this column by default.',
+    say: 'Fourth on the board: one of our 79 has no other solver. This is the board’s default sort.',
   },
 ] as const
 type Key = (typeof METRICS)[number]['key']
@@ -86,14 +86,13 @@ const max = computed(() => Math.max(...props.entries.map((e) => e[metric.value])
       </div>
       <div class="hl-big">
         <dt>Both scopes</dt>
-        <dd><b>249</b> distinct problems with an accepted Humanfia proof, the most of any entry</dd>
+        <dd><b>249</b> distinct problems accepted, the most of any entry</dd>
       </div>
     </dl>
   </div>
   <p class="hoa-caption">
-    The board's published data, 5 October 2026; the combined count of 249 is ours, made from that
-    data, as the site shows no combined column. Lean-Eval accepts a proof only when it passes
-    Comparator against the statement: no partial credit, no sorry.
+    Board data from 5 October 2026. The combined 249 is our count; the board has no combined
+    column.
   </p>
 </template>
 
