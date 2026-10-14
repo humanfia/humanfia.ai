@@ -1,6 +1,6 @@
-/* FlowBench's page: the referee's poster. Ink and paper and one accent, as everywhere on the site;
-   what is its own is the board -- a black scoreboard on a accent offset plate, split-flap tiles
-   and a stamp -- and the rule lines a referee's rulebook is set on. Scoped under `.fb-page`
+/* FlowBench's page, set as a poster. Ink and paper and one accent, as everywhere on the site;
+   what is its own is the board -- a black scoreboard on an accent offset plate, split-flap tiles
+   and a stamp -- and the ruled lines the benchmark's rules are set on. Scoped under `.fb-page`
    (the page's `pageClass`), so nothing here reaches another page.
 
    Every hidden start state sits under `.hf-motion` or `.fb-go`, which are only set once the
@@ -184,11 +184,6 @@
   letter-spacing: -0.01em;
   color: var(--fb-ink-2);
   text-wrap: pretty;
-}
-.fb-stand em {
-  font-style: normal;
-  color: var(--fb-ink);
-  box-shadow: inset 0 -0.32em 0 color-mix(in srgb, var(--fb-mark) 30%, transparent);
 }
 
 .fb-actions {
@@ -981,10 +976,6 @@
 .fb-arena.s4 .fb-verdict .line {
   opacity: 1;
   transform: none;
-}
-.fb-verdict .note {
-  font-size: 14px;
-  color: var(--fb-ink-3);
 }
 
 /* ======================================================================= the rulebook */

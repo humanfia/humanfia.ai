@@ -37,8 +37,7 @@ const ROWS = ['ralph_loop', 'rlar', 'flame_chase']
       </tbody>
     </table>
     <figcaption class="fb-board-foot">
-      <span>Flows shown are examples of what is compared.</span>
-      <span>No FlowBench numbers are published yet.</span>
+      <span>Example flows. No scores published yet.</span>
     </figcaption>
     <div class="fb-stamp" aria-hidden="true">Unreleased</div>
   </figure>
