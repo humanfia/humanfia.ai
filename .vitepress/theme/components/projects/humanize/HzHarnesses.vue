@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Every harness, by the name `-a` gives it. The `-a` line at the top is live: point at a harness
-// and it is the one named, with how a turn of it is run under it. litellm is the new one, and
-// not a CLI at all; it has a picture of its own beside a coding agent's turn.
+// and it is the one named, with how a turn of it is run under it. litellm is not a CLI at
+// all; it has a picture of its own beside a coding agent's turn.
 import { computed, ref } from 'vue'
 import { HARNESSES } from './data'
 
@@ -34,7 +34,6 @@ const line = computed(() => {
         <button type="button" :aria-pressed="at === i" @mouseenter="at = i" @focus="at = i" @click="at = i">
           <code>{{ h.name }}</code>
           <span>{{ h.product }}</span>
-          <em v-if="h.highlight">new</em>
         </button>
       </li>
     </ul>
@@ -148,18 +147,6 @@ const line = computed(() => {
   font-size: 12.5px;
   line-height: 1.35;
   color: var(--hz-ink-3);
-}
-.hn-grid em {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 3px 6px;
-  font: 700 11px/1 var(--hz-mono);
-  font-style: normal;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--hf-on-fill);
-  background: var(--hz-mark);
 }
 .hn-grid .hi button {
   box-shadow: inset 0 0 0 2px var(--hz-mark);

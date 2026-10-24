@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// The hero's picture: one flow, several agents, one trace, running.
+// The hero's picture: one flow, two agents, one trace, running.
 //
-// The command is typed, the lanes open, and every turn's tool calls land on one clock as the
-// playhead crosses them; when the run is over it says so, holds, and starts again. Nothing here
+// The command is typed, the lanes open, and the two chasers take turns, as flame_chase runs them:
+// each turn's tool calls land on one clock as the playhead crosses them; when the run is over it says so, holds, and starts again. Nothing here
 // is a recording -- the slices come from a seeded sequence, so the server and the browser draw
 // the same run, and the still frame (on the server, and for a reader who asked for less motion)
 // is that run finished.
@@ -16,13 +16,13 @@ import { Clock, prefersReducedMotion } from '../../../home/motion'
 
 const COMMAND = 'hmz exec -f flame_chase'
 
-/** The agents, each as `-a` names it, and what it is doing on this run. */
+/** flame_chase's two chasers, each as `-a` names it. */
 const AGENTS = [
-  { who: 'claude/claude-opus-5:high', role: 'writes the kernel' },
-  { who: 'codex/gpt-5.6-sol:high', role: 'reads what landed' },
-  { who: 'dsh/deepseek-v4-pro:high', role: 'runs the benchmark' },
-  { who: 'kimi/kimi-code/k3:high', role: 'ports the module' },
+  { who: 'claude/claude-opus-5:high', role: 'first_chaser' },
+  { who: 'codex/gpt-5.6-sol:high', role: 'second_chaser' },
 ]
+/** How many turns the run takes; they alternate, first chaser first. */
+const TURNS = 4
 
 /** What a slice is. `kind` is only a colour: the model thinking, a read, a write, a run. */
 const KINDS = [
@@ -40,7 +40,7 @@ const TYPE = 1.4
 const RUN = 11
 const HOLD = 3.2
 
-/** A tiny LCG, seeded per lane, so a lane is the same lane for everybody. */
+/** A tiny LCG, seeded, so the run is the same run for everybody. */
 function rng(seed: number) {
   let state = seed * 1103515245 + 12345
   return () => {
@@ -49,19 +49,26 @@ function rng(seed: number) {
   }
 }
 
-const LANES = AGENTS.map((agent, i) => {
-  const next = rng(i + 1 + 7)
-  const slices: { at: number; len: number; kind: string; label: string; tok: number }[] = []
-  let at = next() * 4
-  while (at < SPAN) {
-    const pick = KINDS[Math.floor(next() * KINDS.length)]
-    const len = pick.min + next() * (pick.max - pick.min)
-    if (at + len > SPAN) break
-    slices.push({ at, len, kind: pick.kind, label: pick.label, tok: Math.round(140 + next() * 2600) })
-    at += len + 1 + next() * 3.4
+type Slice = { at: number; len: number; kind: string; label: string; tok: number }
+const LANES = AGENTS.map((agent) => ({ ...agent, slices: [] as Slice[] }))
+{
+  // Each turn is a fresh session on one lane; the other waits. A turn opens with the model
+  // thinking, and its tool calls follow until its share of the clock is used.
+  const next = rng(8)
+  const share = SPAN / TURNS
+  for (let t = 0; t < TURNS; t++) {
+    const end = (t + 1) * share - 1.5
+    let at = t * share + 0.5
+    let pick = KINDS[0]
+    while (true) {
+      const len = pick.min + next() * (pick.max - pick.min)
+      if (at + len > end) break
+      LANES[t % 2].slices.push({ at, len, kind: pick.kind, label: pick.label, tok: Math.round(140 + next() * 2600) })
+      at += len + 0.6 + next() * 1.4
+      pick = KINDS[1 + Math.floor(next() * (KINDS.length - 1))]
+    }
   }
-  return { ...agent, slices }
-})
+}
 
 const root = ref<HTMLElement | null>(null)
 const typed = ref(COMMAND.length)
@@ -106,7 +113,7 @@ const pct = (v: number) => `${v}%`
     ref="root"
     class="run"
     :class="{ live, done }"
-    aria-label="One flow running four agents: each agent's turns and tool calls land on one shared clock, and the whole run is written down as one trace."
+    aria-label="flame_chase running two agents that take turns on one task: each turn's tool calls land on one shared clock, and the whole run is written down as one trace."
   >
     <div class="run-bar">
       <span class="run-mark" aria-hidden="true" />

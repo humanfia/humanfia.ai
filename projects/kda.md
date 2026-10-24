@@ -16,7 +16,7 @@ project:
     - { text: NVlabs/kda, href: https://github.com/NVlabs/kda }
     - { text: The project site, href: https://nvlabs.github.io/kda/ }
     - { text: KDA-Pilot, href: https://github.com/BBuf/KDA-Pilot }
-    - { text: The wishlist, href: https://docs.humanfia.ai/kda-wishlist/ }
+    - { text: The wishlist, href: https://github.com/NVlabs/kda/tree/wishlist }
 
 # The hero's race: KDA² on B300, from the KDA² post.
 race:
@@ -40,10 +40,10 @@ records:
     viz: climb
     points: [[1, 1.61], [4, 2.45], [6, 2.54], [7, 2.56], [8, 2.93], [11, 2.94], [12, 2.96]]
     ends: [Jul 21 · 1.61×, Sep 12 · 2.96×]
-  - kicker: SOL-ExecBench · board v1.1
+  - kicker: SOL-ExecBench · board v1.1 · 5 October
     value: '71'
     unit: / 235
-    text: Per-kernel first places, the most of any entrant, on 5 October (53 in June, Humanfia-reported).
+    text: Per-kernel first places on 5 October, then the most of any entrant (53 in June, Humanfia-reported). Newer entries have taken most of them since.
     href: /news/2026-06-22-sol-bench-batch
     size: wide
     viz: cells
@@ -277,7 +277,8 @@ benchmarks and from pull requests that upstream maintainers merged.
 
 Each task brings its own evaluator, data and profiling tools. [The repository](https://github.com/NVlabs/kda)
 has the agent flow, prompts and skills. Kernels people want next are in the
-[KDA wishlist](https://docs.humanfia.ai/kda-wishlist/) ([humanfia/kda-wishlist](https://github.com/humanfia/kda-wishlist)).
+[KDA wishlist](https://github.com/NVlabs/kda/tree/wishlist): request one as a pull request to
+its `wishlist` branch.
 
 </template>
 </KdaCoda>
