@@ -6,7 +6,7 @@ export const REPO = 'https://github.com/humanfia/humanize'
 /** The four numbers under the hero. */
 export const STATS = [
   { value: 13, kicker: 'Coding-agent CLIs', text: 'Plus any CLI that speaks the Agent Client Protocol' },
-  { display: 'litellm', kicker: 'Model harness', text: 'One chat completion per turn, with no tools or environment' },
+  { value: 3, kicker: 'Interfaces', text: 'hmz, hmz web and Humanize Desktop, on the same epics' },
   { value: 7, kicker: 'Built-in flows', text: 'From chat to flame_chase; more in the flowverse', href: '/flows/' },
   { value: 20, kicker: 'Layers', text: 'A test checks which may import which' },
 ]
@@ -57,7 +57,7 @@ export const HARNESSES = [
   { name: 'omp', product: 'Oh My Pi', kind: 'CLI', driven: 'one omp --mode rpc held open per session' },
   { name: 'agy', product: 'Antigravity CLI', kind: 'CLI', driven: 'one process held open (stream-json)' },
   { name: 'dsh', product: 'DeepSeek Harness', kind: 'CLI', driven: 'its Python SDK, in this process' },
-  { name: 'litellm', product: 'a model, called directly', kind: 'Model', driven: 'one chat completion per turn over the session history', highlight: true },
+  { name: 'litellm', product: 'a model, called directly', kind: 'Model', driven: 'one chat completion per turn over the session history' },
   { name: 'acp', product: 'any ACP agent', kind: 'Protocol', driven: 'one process held open, JSON-RPC over stdio' },
 ]
 
@@ -68,7 +68,7 @@ export const FEATURES = [
   { kicker: 'Tracing', title: 'Every agent and program on one timeline', href: '#exomyth' },
   { kicker: 'Steering', title: 'Steer a turn while it runs', body: 'A message goes into the running turn; a failed delivery is reported.' },
   { kicker: 'Shapes', title: 'Typed answers from a pydantic model', body: 'The answer is validated against the model.' },
-  { kicker: 'Backends', title: 'Thirteen CLIs, LiteLLM and any ACP agent', href: '#every-harness' },
+  { kicker: 'Backends', title: 'Thirteen CLIs and any ACP agent', href: '#every-harness' },
   { kicker: 'Flows', title: 'A flow is Python', href: '#the-flows-it-runs' },
   { kicker: 'Concurrency', title: 'Many turns at once', body: 'Turns in one session run in order; separate sessions run in parallel.' },
   { kicker: 'Resuming', title: 'Resume a run where it stopped', body: 'The flow’s state is restored from its journal. A conversation goes on only if the flow kept it.' },
