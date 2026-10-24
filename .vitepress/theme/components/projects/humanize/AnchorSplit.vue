@@ -108,7 +108,7 @@ const hold = (i: number) => {
       <section class="end" :class="{ lit: live?.to === 'target' }">
         <p class="eyebrow">the target</p>
         <h4>ssh · docker · tcp · a pipe</h4>
-        <p class="line"><code>hmz anchor serve</code></p>
+        <p class="line"><code>hmz internal anchor serve</code></p>
         <ul>
           <li><b>files</b> contents, renames, modes — the target's own errors</li>
           <li><b>processes</b> everything the agent spawns, in the target's cwd</li>

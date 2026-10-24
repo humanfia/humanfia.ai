@@ -29,7 +29,7 @@ measures that effect.
 
 ## Everything is held fixed except the flow
 
-Each task runs once per flow, and the same existing check scores every run.
+Each task runs under every flow, and the same existing check scores every run.
 
 <FbArena />
 

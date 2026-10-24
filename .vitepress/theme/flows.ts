@@ -100,7 +100,7 @@ export const FLOWS: Flow[] = [
     roles: 'assistant',
     said: 'One agent, one conversation: every line you type back is its next turn.',
     ends: 'you send nothing back, so under hmz exec after one turn',
-    keeps: '',
+    keeps: 'the conversation',
     jobs: ['talk'],
     kind: 'talk',
     scene: 'chat',
@@ -112,8 +112,8 @@ export const FLOWS: Flow[] = [
     link: '/flows/ralph-loop',
     roles: 'agent',
     said: 'The task again every round, in a fresh session, so only the repository carries over.',
-    ends: '3 rounds in a row that answer nothing',
-    keeps: 'the round count',
+    ends: 'a turn that fails',
+    keeps: '',
     jobs: ['grind'],
     kind: 'solo',
     scene: 'ralph_loop',
@@ -124,8 +124,8 @@ export const FLOWS: Flow[] = [
     link: '/flows/stateful-ralph',
     roles: 'agent',
     said: 'The task again every round, in one session that remembers every round before.',
-    ends: '3 rounds in a row that answer nothing',
-    keeps: 'the round count, not the session',
+    ends: 'a turn that fails',
+    keeps: 'the session',
     jobs: ['grind'],
     kind: 'solo',
     scene: 'stateful_ralph',
@@ -136,8 +136,8 @@ export const FLOWS: Flow[] = [
     link: '/flows/continue-loop',
     roles: 'agent',
     said: 'The task once, then “continue” to the same session, round after round.',
-    ends: '3 failed turns in a row',
-    keeps: 'the round count, not the session',
+    ends: 'a turn that fails',
+    keeps: '',
     jobs: ['grind'],
     kind: 'solo',
     scene: 'continue_loop',
@@ -160,8 +160,8 @@ export const FLOWS: Flow[] = [
     link: '/flows/flame-chase',
     roles: 'first_chaser · second_chaser',
     said: 'Two agents take turns on the same task, each in a fresh session, passing only the tree.',
-    ends: '3 failed turns in a row',
-    keeps: 'whose turn is next, and the round count',
+    ends: 'a turn that fails',
+    keeps: 'whose turn is next',
     jobs: ['pair'],
     kind: 'relay',
     scene: 'flame_chase',
@@ -214,8 +214,8 @@ export const FLOWS: Flow[] = [
     link: '/flows/rlar',
     roles: 'actor · reviewer',
     said: 'An actor works in one session; a fresh reviewer reads the work and writes its next prompt.',
-    ends: 'the reviewer says the task is done',
-    keeps: 'the last review, and the round count',
+    ends: 'the reviewer says the task is done, or a turn that fails',
+    keeps: 'the last review',
     jobs: ['review', 'pair'],
     kind: 'checked',
     scene: 'rlar',
@@ -303,7 +303,7 @@ export const FLOWS: Flow[] = [
 /** What a role is, which is what colour and shape it is drawn in. A `maker` does the work and
  *  a `partner` is a second one taking turns with it; a `checker` reads and judges; a `steward`
  *  shapes the work -- plans the lanes, cleans the tree -- without doing or judging it. `human`
- *  is you, and `program` is humanize or your script: a step with no model in it. */
+ *  is you, and `program` is Humanize or your script: a step with no model in it. */
 export type RoleKind = 'maker' | 'partner' | 'checker' | 'steward' | 'human' | 'program'
 
 /** What a turn does, drawn as the glyph in its box. */
@@ -421,7 +421,7 @@ export const SCENES: Record<string, Scene> = {
   },
 
   // Nothing in this loop reads the tests, so it does not stop when they pass: only the budget,
-  // or three empty rounds in a row, ends it.
+  // or a turn that fails, ends it.
   ralph_loop: {
     of: 'ralph_loop',
     envs: [{ id: 'repo', name: 'your repository' }],
@@ -429,14 +429,14 @@ export const SCENES: Record<string, Scene> = {
     turns: [
       { id: 'r1', role: 'agent', at: 0, label: 'fixes the imports', session: 'new', pass: tree('31 tests failing', 'r2') },
       { id: 'r2', role: 'agent', at: 1, label: 'fixes the parser', session: 'new', pass: tree('12 failing', 'r3') },
-      { id: 'r3', role: 'agent', at: 2, label: 'fails: no answer', session: 'new', pass: tree('the tree, as it was', 'r4') },
-      { id: 'r4', role: 'agent', at: 3, label: 'fixes the fixtures', session: 'new', pass: tree('3 failing', 'r5') },
-      { id: 'r5', role: 'agent', at: 4, label: 'fixes the last 3', session: 'new' },
+      { id: 'r3', role: 'agent', at: 2, label: 'fixes the fixtures', session: 'new', pass: tree('3 failing', 'r4') },
+      { id: 'r4', role: 'agent', at: 3, label: 'fixes the last 3', session: 'new', pass: tree('all passing', 'r5') },
+      { id: 'r5', role: 'agent', at: 4, label: 'all pass: goes on', session: 'new' },
     ],
     loop: { from: 'r5', to: 'r1', said: 'nothing carries over but the repository' },
-    ends: [BUDGET, { is: 'fail', said: '3 rounds in a row answer nothing' }],
+    ends: [BUDGET, { is: 'fail', said: 'a turn fails' }],
     caption:
-      'Every round starts from the task and from whatever the round before it left in the working directory — never from what it said. A round that fails leaves the tree as it was for the next; and with every test passing, the next round starts anyway.',
+      'Every round starts from the task and from whatever the round before it left in the working directory — never from what it said. With every test passing, the next round starts anyway; a turn that fails ends the run.',
   },
 
   stateful_ralph: {
@@ -451,28 +451,27 @@ export const SCENES: Record<string, Scene> = {
       { id: 's5', role: 'agent', at: 4, label: 'frees it, re-checks', session: 'held' },
     ],
     loop: { from: 's5', to: 's2', said: 'the task again, one round longer' },
-    ends: [BUDGET, { is: 'fail', said: '3 rounds in a row answer nothing' }],
+    ends: [BUDGET, { is: 'fail', said: 'a turn fails' }],
     caption:
       'Every round is sent the task again, in the one session that remembers what it has ruled out. One session is one conversation, so its context grows with every round — the thread thickens — and that is the other limit a long run of this reaches.',
   },
 
-  // The first turn answers nothing, so the task is sent again rather than "continue"; and once
-  // the agent says it is done, it is told to continue all the same.
+  // Once the agent says it is done, it is told to continue all the same.
   continue_loop: {
     of: 'continue_loop',
     envs: [{ id: 'repo', name: 'your repository' }],
     roles: [{ id: 'agent', name: 'agent', note: 'one session, nudged', kind: 'maker', env: 'repo' }],
     turns: [
-      { id: 'c1', role: 'agent', at: 0, label: 'the task: empty', session: 'new' },
-      { id: 'c2', role: 'agent', at: 1, label: 'task again: core/', session: 'held' },
-      { id: 'c3', role: 'agent', at: 2, label: '“continue”: io/', session: 'held' },
+      { id: 'c1', role: 'agent', at: 0, label: 'the task: core/', session: 'new' },
+      { id: 'c2', role: 'agent', at: 1, label: '“continue”: io/', session: 'held' },
+      { id: 'c3', role: 'agent', at: 2, label: '“continue”: cli/', session: 'held' },
       { id: 'c4', role: 'agent', at: 3, label: '“done,” it says', session: 'held' },
       { id: 'c5', role: 'agent', at: 4, label: '“continue” anyway', session: 'held' },
     ],
-    loop: { from: 'c5', to: 'c3', said: '“continue”, until the budget is spent' },
-    ends: [BUDGET, { is: 'fail', said: '3 failed turns in a row' }],
+    loop: { from: 'c5', to: 'c2', said: '“continue”, until the budget is spent' },
+    ends: [BUDGET, { is: 'fail', said: 'a turn fails' }],
     caption:
-      'Until a turn answers, the task is sent again rather than “continue”: the word means something only to a session that heard the task. After that it is “continue” every round, even once the agent says it is done.',
+      'The task is sent once, and every turn after it is “continue”: the word means something only to a session that heard the task. It is “continue” even once the agent says it is done.',
   },
 
   goal: {
@@ -496,7 +495,7 @@ export const SCENES: Record<string, Scene> = {
       'One turn of the flow. The ticks inside it are turns the backend started itself — profile, change, measure, again — each one that would have ended starting another, until the model says the goal is met.',
   },
 
-  // The third turn fails, and the turn after it is still second_chaser's: a failed turn passes.
+  // Each turn is the other chaser's, and starts from nothing but the task and the tree.
   flame_chase: {
     of: 'flame_chase',
     envs: [{ id: 'repo', name: 'your repository, shared' }],
@@ -507,14 +506,14 @@ export const SCENES: Record<string, Scene> = {
     turns: [
       { id: 'f1', role: 'one', at: 0, label: 'reads the CSVs', session: 'new', pass: tree('CSV passes', 'f2') },
       { id: 'f2', role: 'two', at: 1, label: 'adds JSON input', session: 'new', pass: tree('CSV and JSON pass', 'f3') },
-      { id: 'f3', role: 'one', at: 2, label: 'the turn fails', session: 'new', pass: tree('the tree, as it was', 'f4') },
+      { id: 'f3', role: 'one', at: 2, label: 'adds XML input', session: 'new', pass: tree('XML encoding breaks', 'f4') },
       { id: 'f4', role: 'two', at: 3, label: 'fixes XML encoding', session: 'new', pass: tree('all but .xlsx', 'f5') },
       { id: 'f5', role: 'one', at: 4, label: 'adds .xlsx', session: 'new' },
     ],
     loop: { from: 'f5', to: 'f1', said: 'a round is a turn each' },
-    ends: [BUDGET, { is: 'fail', said: '3 failed turns in a row' }],
+    ends: [BUDGET, { is: 'fail', said: 'a turn fails' }],
     caption:
-      'Neither is told what the other said: what passes between them is the working directory. A failed turn passes to the other chaser too, so three in a row means both have failed.',
+      'Neither is told what the other said: what passes between them is the working directory. A turn that fails ends the run, and --resume picks up with the chaser whose turn was next.',
   },
 
   // Three turns, the last cut short by the exploration deadline; the reviewer is then the agent
@@ -567,7 +566,7 @@ export const SCENES: Record<string, Scene> = {
     roles: [
       { id: 'agent', name: 'agent', note: 'a new session a turn', kind: 'maker', env: 'repo' },
       { id: 'cleaner', name: 'cleaner', note: 'a new session an epoch', kind: 'steward', env: 'repo' },
-      { id: 'epoch', name: 'the epoch', note: 'humanize, no model', kind: 'program', env: 'repo' },
+      { id: 'epoch', name: 'the epoch', note: 'Humanize, no model', kind: 'program', env: 'repo' },
     ],
     turns: [
       { id: 't1', role: 'agent', at: 0, label: 'fixes imports', session: 'new', pass: tree('src/ and scratch', 't2') },
@@ -604,7 +603,7 @@ export const SCENES: Record<string, Scene> = {
     loop: { from: 't4', to: 't2', said: 'an epoch every cleanup_turns turns' },
     ends: [BUDGET, { is: 'fail', said: '3 turns in a row come to nothing' }],
     caption:
-      'Every few turns the cleaner keeps the work under work_paths, deletes what strayed and writes NEXT.md. A cleaning that left too much goes back to the same cleaner; then humanize checks the result, and the history becomes one commit. An empty or failed turn is taken again.',
+      'Every few turns the cleaner keeps the work under work_paths, deletes what strayed and writes NEXT.md. A cleaning that left too much goes back to the same cleaner; then Humanize checks the result, and the history becomes one commit. An empty or failed turn is taken again.',
   },
 
   // A turn that comes to nothing is taken again by the same chaser, not passed to the other.
@@ -616,7 +615,7 @@ export const SCENES: Record<string, Scene> = {
       { id: 'one', name: 'first_chaser', note: 'a new session a turn', kind: 'maker', env: 'repo' },
       { id: 'two', name: 'second_chaser', note: 'a new session a turn', kind: 'partner', env: 'repo' },
       { id: 'cleaner', name: 'cleaner', note: 'a new session an epoch', kind: 'steward', env: 'repo' },
-      { id: 'epoch', name: 'the epoch', note: 'humanize, no model', kind: 'program', env: 'repo' },
+      { id: 'epoch', name: 'the epoch', note: 'Humanize, no model', kind: 'program', env: 'repo' },
     ],
     turns: [
       { id: 'f1', role: 'one', at: 0, label: 'fixes imports', session: 'new', pass: tree('the tree', 'f2') },
@@ -693,11 +692,11 @@ export const SCENES: Record<string, Scene> = {
     loop: { from: 'v3', to: 'a2', said: 'while the review says there is more to do' },
     ends: [
       { is: 'done', said: 'the reviewer says done' },
-      { is: 'fail', said: '3 failures in a row' },
+      { is: 'fail', said: 'a turn fails' },
       BUDGET,
     ],
     caption:
-      'Every review answers two things: whether the task is done, and what the actor hears next. The actor remembers every round; each review starts from nothing but the repository.',
+      'Every review answers two things: whether the task is done, and what the actor hears next. The actor remembers every round; each review starts from nothing but the task, what the actor said and the repository.',
   },
 
   'humanize1-gen-idea': {
@@ -792,7 +791,7 @@ export const SCENES: Record<string, Scene> = {
     roles: [
       { id: 'you', name: 'you', note: 'asked only when you are there', kind: 'human' },
       { id: 'builder', name: 'builder', note: 'one session, the loop', kind: 'maker', env: 'repo' },
-      { id: 'gates', name: 'the gates', note: 'humanize, no model', kind: 'program', env: 'repo' },
+      { id: 'gates', name: 'the gates', note: 'Humanize, no model', kind: 'program', env: 'repo' },
       { id: 'reviewer', name: 'reviewer', note: 'a new session a review', kind: 'checker', env: 'repo' },
     ],
     turns: [
@@ -851,7 +850,7 @@ export const SCENES: Record<string, Scene> = {
     roles: [
       { id: 'writer', name: 'writer', note: 'one session throughout', kind: 'maker', env: 'scratch' },
       { id: 'critic', name: 'critic', note: 'a new session, reads only', kind: 'checker', env: 'scratch' },
-      { id: 'gates', name: 'the gates', note: 'humanize, no model', kind: 'program', env: 'fakes' },
+      { id: 'gates', name: 'the gates', note: 'Humanize, no model', kind: 'program', env: 'fakes' },
     ],
     turns: [
       { id: 'w1', role: 'writer', at: 0, label: 'draws up a spec', session: 'new', does: 'plan' },
@@ -890,7 +889,7 @@ export const SCENES: Record<string, Scene> = {
       BUDGET,
     ],
     caption:
-      'A draft lands only once humanize has loaded it, it has ended on its own in three fake worlds, and a critic that never saw it written approves it. A refusal at any of them goes back to the writer, word for word.',
+      'A draft lands only once Humanize has loaded it, it has ended on its own in three fake worlds, and a critic that never saw it written approves it. A refusal at any of them goes back to the writer, word for word.',
   },
 
   // Lane 3 fails twice in a row and is held until the objective is replanned, while the other
@@ -973,7 +972,7 @@ export const SCENES: Record<string, Scene> = {
       { id: 'l2b', name: 'lane_2_actor_b', note: 'in its clone', kind: 'partner', env: 'l2' },
       { id: 'l3a', name: 'lane_3_actor_a', note: 'in its clone', kind: 'maker', env: 'l3' },
       { id: 'l3b', name: 'lane_3_actor_b', note: 'in its clone', kind: 'partner', env: 'l3' },
-      { id: 'main', name: 'main', note: 'humanize, no model', kind: 'program', env: 'main' },
+      { id: 'main', name: 'main', note: 'Humanize, no model', kind: 'program', env: 'main' },
     ],
     turns: [
       {

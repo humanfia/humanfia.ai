@@ -75,7 +75,7 @@ onMounted(() => (motion.value = !prefersReducedMotion()))
 
     <HoaSection id="where-the-code-is" n="07" kicker="Where the code is" title="Every proof, flow and README is in one public repository.">
       All of HOA is
-      <a href="https://github.com/humanfia/hoa-qed" target="_blank" rel="noreferrer">humanfia/hoa-qed</a>:
+      <a href="https://github.com/humanfia/hoa" target="_blank" rel="noreferrer">humanfia/hoa</a>:
       one directory per competition or library, each with a README.
       <template #figure><HoaRepo :dirs="fm.repo" /></template>
     </HoaSection>

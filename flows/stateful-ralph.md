@@ -5,7 +5,8 @@ pageClass: flow-page
 # stateful_ralph
 
 Leave one agent on a task it has to remember. One session holds the whole run and is sent the
-task again every round, so the agent keeps every approach it has already ruled out. Reach for
+task again every round, so the agent keeps every approach it has already ruled out, and
+`--resume` carries that session on. Reach for
 it when the work is exploratory and what has been tried is expensive to find out again; when
 the work is simply long, [ralph_loop](/flows/ralph-loop) is the better choice.
 

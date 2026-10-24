@@ -378,7 +378,7 @@ export class HeroScene {
 
 // ------------------------------------------------------------------------------------ stack
 
-const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'opencode', 'mimo']
+const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'omp', 'opencode', 'mimo', 'mcode', 'cursor-agent']
 const LAYERS = ['FLOWS', 'RUNTIME', 'AGENTS', 'RESULTS']
 // Where the work lands, unnamed: the home page speaks of results, not of the projects that
 // produced them, so a new project does not need a new circle.

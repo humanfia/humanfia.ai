@@ -82,7 +82,7 @@ records:
       - { label: Decode, value: 3.3, detail: up to 3.3× }
   - kicker: SOL-ExecBench L1 · board v1.0
     value: '0.7639'
-    text: First on 94 single-operation kernels, by 0.00006. Third on the newer v1.1 board.
+    text: First on 94 single-operation kernels, by 0.00006. Third on the newer v1.1 board on 5 October.
     href: /news/2026-07-02-solexec-l1
     viz: board
     bars:
@@ -247,7 +247,7 @@ produced kernels like this on the way to KDA². Six gates now stop them before r
 <template #figure>
 <ProjectTimeline
   kicker="KDA · every write-up"
-  label="KDA results from May to October 2026: first, second and third on the MLSys tracks, forty operators in SGLang, speedups on AMD hardware, 71 first places on SOL-ExecBench, lossless SGLang-Omni numerics, first on SOL-ExecBench L1, KDA 1.5 past the human entries, quality tiers for diffusion, the MSA indexer, KDA², and six more SGLang pull requests."
+  label="KDA results from May to October 2026: first, second and third on the MLSys tracks, forty operators in SGLang, speedups on AMD hardware, 71 first places on SOL-ExecBench, lossless SGLang-Omni numerics, first on SOL-ExecBench L1, KDA 0.5 past the human entries, quality tiers for diffusion, the MSA indexer, KDA², and six more SGLang pull requests."
   :entries="[
     { url: '/news/2026-05-15-mlsys-flashinfer-top3', metric: '#1 · #2 · #3', note: '' },
     { url: '/news/2026-06-05-kda-sglang', metric: '40+ ops', note: '' },

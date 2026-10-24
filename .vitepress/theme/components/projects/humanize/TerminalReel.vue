@@ -32,7 +32,7 @@ const SHOTS: Shot[] = [
     guide: '/reference/tui',
   },
   {
-    said: 'ls ~/.humanize/epics/…',
+    said: 'ls ~/.hmz/epics/…',
     what: 'What a run leaves on disk: its log and links to every conversation.',
     cast: 'run.cast',
     guide: '/user/tracing',
@@ -44,13 +44,13 @@ const SHOTS: Shot[] = [
     guide: '/user/resuming',
   },
   {
-    said: '/flowverses',
-    what: 'Flow sources and what each holds.',
+    said: '/flow',
+    what: 'Flowverses, and installing a flow from one.',
     cast: 'flowverses.cast',
     guide: '/weaver/flowverses',
   },
   {
-    said: '/providers',
+    said: '/settings accounts',
     what: 'Every account, what you can do with it, and where to add your own CLI.',
     cast: 'accounts.cast',
     guide: '/user/settings#accounts',

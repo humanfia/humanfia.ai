@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // LeanEval v1, as the board itself presents it: one column at a time. The switch picks the
-// column, the three leading entries re-sort under it (they slide, so the reader sees the order
+// column, the four leading entries re-sort under it (they slide, so the reader sees the order
 // change rather than being told it did), and the readout says what that column rewards and
-// where we stand on the whole board -- which is not always where we stand among these three.
+// where we stand on the whole board -- which is not always where we stand among these four.
 import { computed, ref } from 'vue'
 import { vReveal } from '../../../home/motion'
 
@@ -20,19 +20,19 @@ const METRICS = [
     key: 'first',
     label: 'First solves',
     means: 'The first accepted proof of a problem.',
-    say: 'First on the board: the first accepted proof on 30 of the 88 solved problems.',
+    say: 'First on the board: the first accepted proof on 30 of the 92 solved problems.',
   },
   {
     key: 'total',
     label: 'Total',
     means: 'Every problem an entry solved.',
-    say: 'Second on the board: 79 to NEAR AI’s 80.',
+    say: 'Third on the board: 89, to max gp’s 92 and Axiom Prover’s 90.',
   },
   {
     key: 'unique',
     label: 'Unique',
     means: 'Problems nobody else has solved.',
-    say: 'Fourth on the board: one of our 79 has no other solver. This is the board’s default sort.',
+    say: 'None of our 89 is ours alone; only max gp has such a problem. This is the board’s default sort.',
   },
 ] as const
 type Key = (typeof METRICS)[number]['key']
@@ -78,20 +78,20 @@ const max = computed(() => Math.max(...props.entries.map((e) => e[metric.value])
     <dl class="hl-side">
       <div>
         <dt>LeanEval v1</dt>
-        <dd><b>128</b> problems, frozen 20 August 2026; 88 solved by anyone</dd>
+        <dd><b>128</b> problems, frozen 20 August 2026; 92 solved by anyone</dd>
       </div>
       <div>
         <dt>Archive</dt>
-        <dd><b>170 / 171</b> accepted, tied for the most</dd>
+        <dd><b>170 / 171</b> accepted; Axiom Prover has all 171</dd>
       </div>
       <div class="hl-big">
         <dt>Both scopes</dt>
-        <dd><b>249</b> distinct problems accepted, the most of any entry</dd>
+        <dd><b>259</b> distinct problems accepted, two behind Axiom Prover</dd>
       </div>
     </dl>
   </div>
   <p class="hoa-caption">
-    Board data from 5 October 2026. The combined 249 is our count; the board has no combined
+    Board data from 23 October 2026. The combined 259 is our count; the board has no combined
     column.
   </p>
 </template>

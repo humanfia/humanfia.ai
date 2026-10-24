@@ -14,7 +14,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { Clock, prefersReducedMotion } from '../../../home/motion'
 
-const COMMAND = 'hmz exec -f official/flame_chase'
+const COMMAND = 'hmz exec -f flame_chase'
 
 /** The agents, each as `-a` names it, and what it is doing on this run. */
 const AGENTS = [

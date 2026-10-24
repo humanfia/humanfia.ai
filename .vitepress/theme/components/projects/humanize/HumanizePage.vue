@@ -147,7 +147,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>04</b> The flows it runs</p>
-          <h2 class="hz-h2">Five loop shapes ship with the runtime; <span class="hz-accent">the rest come from the flowverse.</span></h2>
+          <h2 class="hz-h2">Seven flows ship with the runtime; <span class="hz-accent">the rest come from the flowverse.</span></h2>
         </header>
         <HzFlows />
         <div class="hz-verse" v-reveal>
@@ -166,7 +166,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>05</b> Every harness</p>
-          <h2 class="hz-h2">Humanize drives twelve coding-agent CLIs, <span class="hz-accent">any ACP agent and models through LiteLLM.</span></h2>
+          <h2 class="hz-h2">Humanize drives thirteen coding-agent CLIs, <span class="hz-accent">any ACP agent and models through LiteLLM.</span></h2>
           <p class="hz-lead">
             <code>-a</code> names the harness. Each CLI is driven through its own print mode, app
             server, RPC mode, daemon or SDK.
@@ -177,7 +177,8 @@ const NEXT = [
           <code>litellm</code> takes a <a href="https://github.com/BerriAI/litellm" target="_blank" rel="noreferrer">LiteLLM</a>
           model string, such as <code>-a writer=litellm@acct/openai/gpt-5</code>, signs in with a
           vendor key, a compatible gateway, Bedrock, Vertex or Azure, and is priced and traced with
-          the rest of the run. Install the extra <code>hmz[litellm]</code>.
+          the rest of the run. Install the extra <code>hmz[litellm]</code>. The same extra runs most
+          CLIs through a local LiteLLM gateway, as any account it can reach.
         </p>
       </div>
     </section>
@@ -187,7 +188,7 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>06</b> What it does</p>
-          <h2 class="hz-h2">Eleven things the runtime handles <span class="hz-accent">so a flow does not have to.</span></h2>
+          <h2 class="hz-h2">Twelve things the runtime handles <span class="hz-accent">so a flow does not have to.</span></h2>
           <p class="hz-lead">
             <a class="hz-link" :href="`${DOCS}/features/`">Every feature, one picture each ↗</a>
           </p>
@@ -250,12 +251,12 @@ const NEXT = [
       </div>
     </section>
 
-    <!-- 09 Seventeen layers ------------------------------------------------------------- -->
+    <!-- 09 Twenty layers ---------------------------------------------------------------- -->
     <section id="seventeen-layers-and-a-test-that-holds-them" class="hz-band">
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>09</b> Architecture</p>
-          <h2 class="hz-h2">A test enforces which of the <span class="hz-accent">seventeen layers may import which.</span></h2>
+          <h2 class="hz-h2">A test enforces which of the <span class="hz-accent">twenty layers may import which.</span></h2>
           <p class="hz-lead">
             Point at a layer to see what it holds.
           </p>
@@ -473,6 +474,10 @@ a.hz-stat:hover {
 }
 .hz-feats li:first-child {
   grid-column: span 2;
+}
+/* Twelve cards and a lead two wide leave one card on the last row: it takes the whole row. */
+.hz-feats li:last-child {
+  grid-column: 1 / -1;
 }
 .hz-feat {
   position: relative;

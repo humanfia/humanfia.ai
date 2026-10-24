@@ -8,7 +8,8 @@ Chase three leads at once. A coordinator plans three lanes and leaves; in each l
 take turns in fresh sessions, and the lanes keep each other informed by report. Only lane 1
 writes your tree: lanes 2 and 3 work on private copies, and what they find reaches lane 1 as a
 report and an artifact. It fits a task open enough that three approaches are worth trying side
-by side, with the budget for seven agents.
+by side, with the budget for seven agents. It is left off `/flow` and every list; run it as
+`-f flame_chasoid:parallel`.
 
 <FlowFacts flow="flame_chasoid:parallel" />
 

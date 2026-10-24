@@ -1,19 +1,19 @@
 <script setup lang="ts">
-// Where the code is: humanfia/hoa-qed drawn as the tree `tree -L 1` would print, every
+// Where the code is: humanfia/hoa drawn as the tree `tree -L 1` would print, every
 // directory a link into the repository, and beside it the three other places a reader goes to
 // check a result -- the flows, the datasets, and the runtime the runs are flows on.
 import { vReveal } from '../../../home/motion'
 
 defineProps<{ dirs: { dir: string; text: string }[] }>()
 
-const REPO = 'https://github.com/humanfia/hoa-qed'
+const REPO = 'https://github.com/humanfia/hoa'
 </script>
 
 <template>
   <div class="hr">
-    <nav v-reveal class="hr-tree hoa-sheet" aria-label="humanfia/hoa-qed, by directory">
+    <nav v-reveal class="hr-tree hoa-sheet" aria-label="humanfia/hoa, by directory">
       <a class="hr-root" :href="REPO" target="_blank" rel="noreferrer">
-        <span class="hr-glyph" aria-hidden="true">▣</span> humanfia/hoa-qed <span aria-hidden="true">↗</span>
+        <span class="hr-glyph" aria-hidden="true">▣</span> humanfia/hoa <span aria-hidden="true">↗</span>
       </a>
       <ul>
         <li v-for="(d, i) in dirs" :key="d.dir" :style="{ '--i': i }">
