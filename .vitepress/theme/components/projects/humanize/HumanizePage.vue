@@ -120,7 +120,7 @@ const NEXT = [
         </header>
         <div v-reveal="80"><HzModel /></div>
         <p class="hz-copy hz-aside" v-reveal>
-          <b>Unsupported requests fail explicitly.</b> A <code>litellm</code> turn given an env,
+          <b>Unsupported requests fail explicitly.</b> A turn given an env its harness cannot use,
           or a harness asked to change machines when it cannot, raises an error.
         </p>
       </div>
@@ -166,20 +166,13 @@ const NEXT = [
       <div class="hz-wrap">
         <header class="hz-head" v-reveal>
           <p class="hz-num"><b>05</b> Every harness</p>
-          <h2 class="hz-h2">Humanize drives thirteen coding-agent CLIs, <span class="hz-accent">any ACP agent and models through LiteLLM.</span></h2>
+          <h2 class="hz-h2">Humanize drives thirteen coding-agent CLIs <span class="hz-accent">and any ACP agent.</span></h2>
           <p class="hz-lead">
             <code>-a</code> names the harness. Each CLI is driven through its own print mode, app
             server, RPC mode, daemon or SDK.
           </p>
         </header>
         <div v-reveal="80"><HzHarnesses /></div>
-        <p class="hz-copy hz-aside" v-reveal>
-          <code>litellm</code> takes a <a href="https://github.com/BerriAI/litellm" target="_blank" rel="noreferrer">LiteLLM</a>
-          model string, such as <code>-a writer=litellm@acct/openai/gpt-5</code>, signs in with a
-          vendor key, a compatible gateway, Bedrock, Vertex or Azure, and is priced and traced with
-          the rest of the run. Install the extra <code>hmz[litellm]</code>. The same extra runs most
-          CLIs through a local LiteLLM gateway, as any account it can reach.
-        </p>
       </div>
     </section>
 

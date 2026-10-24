@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // Every harness, by the name `-a` gives it. The `-a` line at the top is live: point at a harness
-// and it is the one named, with how a turn of it is run under it. litellm is not a CLI at
-// all; it has a picture of its own beside a coding agent's turn.
+// and it is the one named, with how a turn of it is run under it.
 import { computed, ref } from 'vue'
 import { HARNESSES } from './data'
 
@@ -30,7 +29,7 @@ const line = computed(() => {
     </div>
 
     <ul class="hn-grid">
-      <li v-for="(h, i) in HARNESSES" :key="h.name" :class="{ on: at === i, hi: h.highlight, proto: h.kind === 'Protocol' }">
+      <li v-for="(h, i) in HARNESSES" :key="h.name" :class="{ on: at === i, proto: h.kind === 'Protocol' }">
         <button type="button" :aria-pressed="at === i" @mouseenter="at = i" @focus="at = i" @click="at = i">
           <code>{{ h.name }}</code>
           <span>{{ h.product }}</span>
@@ -38,28 +37,6 @@ const line = computed(() => {
       </li>
     </ul>
 
-    <div class="hn-two">
-      <div class="hn-turn">
-        <p class="hn-tag">A coding-agent turn</p>
-        <div class="hn-flow">
-          <span class="box ink">turn · claude</span>
-          <span class="wire"><i /></span>
-          <span class="box frame">tools · files</span>
-          <span class="wire"><i /></span>
-          <span class="box grey">env</span>
-        </div>
-        <p class="hz-copy">The CLI uses its tools in the env the turn names.</p>
-      </div>
-      <div class="hn-turn">
-        <p class="hn-tag accent">A litellm turn</p>
-        <div class="hn-flow">
-          <span class="box accent">turn · litellm</span>
-          <span class="wire long"><i class="accent" /><small>history + prompt → one completion</small></span>
-          <span class="box frame">model</span>
-        </div>
-        <p class="hz-copy"><b>env=None, always.</b> The model gets the history and the prompt and returns one answer.</p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -148,9 +125,6 @@ const line = computed(() => {
   line-height: 1.35;
   color: var(--hz-ink-3);
 }
-.hn-grid .hi button {
-  box-shadow: inset 0 0 0 2px var(--hz-mark);
-}
 .hn-grid .proto button {
   background-image: repeating-linear-gradient(135deg, var(--hz-line-2) 0 1px, transparent 1px 7px);
 }
@@ -164,93 +138,6 @@ const line = computed(() => {
   color: color-mix(in srgb, var(--hz-on-ink) 70%, transparent);
 }
 
-/* ---- two kinds of turn ----------------------------------------------------------------- */
-
-.hn-two {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-.hn-turn {
-  padding: 22px 24px;
-  border: 1px solid var(--hz-line);
-  background: var(--hz-card);
-}
-.hn-tag {
-  margin: 0 0 18px;
-  font: 700 11px/1 var(--hz-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--hz-ink-2);
-}
-.hn-tag.accent {
-  color: var(--hz-accent);
-}
-.hn-flow {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.box {
-  flex: none;
-  padding: 10px 12px;
-  font: 600 12px/1 var(--hz-mono);
-  white-space: nowrap;
-}
-.box.ink {
-  color: var(--hz-on-ink);
-  background: var(--hz-ink);
-}
-.box.accent {
-  color: var(--hf-on-fill);
-  background: var(--hz-mark);
-}
-.box.grey {
-  color: var(--hz-on-ink);
-  background: var(--hz-ink-3);
-}
-.box.frame {
-  color: var(--hz-ink);
-  box-shadow: inset 0 0 0 2px var(--hz-ink);
-}
-.wire {
-  position: relative;
-  flex: 1;
-  min-width: 18px;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, var(--hz-ink) 0 5px, transparent 5px 9px);
-}
-.wire i {
-  position: absolute;
-  top: -4px;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  background: var(--hz-ink);
-  animation: hn-run 2.4s var(--hz-ease) infinite;
-}
-.wire i.accent {
-  background: var(--hz-mark);
-}
-.wire small {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font: 11px/1.2 var(--hz-mono);
-  color: var(--hz-ink-3);
-}
-@keyframes hn-run {
-  from {
-    left: 0;
-  }
-  to {
-    left: calc(100% - 10px);
-  }
-}
-
 @media (max-width: 1100px) {
   .hn-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -262,25 +149,6 @@ const line = computed(() => {
   }
   .hn-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .hn-two {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .wire small {
-    display: none;
-  }
-  .box {
-    padding: 8px;
-    font-size: 11px;
-  }
-  .hn-turn {
-    padding: 18px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wire i {
-    animation: none;
-    left: calc(100% - 10px);
   }
 }
 </style>
