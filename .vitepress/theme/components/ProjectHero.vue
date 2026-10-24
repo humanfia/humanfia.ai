@@ -14,7 +14,7 @@
 //   project:
 //     status: Open source · Apache-2.0
 //     links:
-//       - { text: humanfia/hoa-qed, href: https://github.com/humanfia/hoa-qed }
+//       - { text: humanfia/hoa, href: https://github.com/humanfia/hoa }
 //     stats:
 //       - { value: 6, suffix: ' / 6', kicker: IMO 2026, text: '…', href: /news/2026-07-22-imo-2026 }
 //       - { display: '1.17–1.69×', kicker: MLSys 2026, text: '…' }

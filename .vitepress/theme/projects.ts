@@ -10,7 +10,7 @@
 // `dependsOn` is what the project's own repository depends on, not what its page mentions:
 //
 //   - FlowBench lists `hmz` as a dependency (humanfia/flowbench-internal, pyproject.toml).
-//   - HOA runs its solvers as Humanize flows (humanfia/hoa, humanfia/hoa-qed READMEs).
+//   - HOA runs its solvers as Humanize flows (humanfia/hoa README; hoa-qed was merged into it).
 //   - KDA leaves flow orchestration to Humanize (humanfia/KDA-internal README).
 //   - HMA vendors `src/hmz` and ships as a Humanize flow (humanfia/hma).
 //

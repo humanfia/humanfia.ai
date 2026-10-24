@@ -7,7 +7,7 @@ pageClass: flow-page
 Talk to one coding agent, with no loop around it: it answers, and what you type back is its
 next turn. It is the flow `hmz` opens on in a new project, and the one that needs no budget, so
 use it for questions and for work you want to steer line by line. Once you have run another
-flow, `$chat` brings you back.
+flow, `$chat` brings you back, and `--resume` carries a conversation on where it stopped.
 
 <FlowFacts flow="chat" />
 

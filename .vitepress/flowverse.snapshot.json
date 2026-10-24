@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/humanfia/flowverse",
-  "read": "2026-10-06T14:48:47.673Z",
+  "read": "2026-10-24T13:02:25.780Z",
   "modules": [
     {
       "name": "aot",
@@ -50,8 +50,8 @@
       "repo": {
         "url": "https://github.com/humanfia/flame-chasoid-flows",
         "description": "Flame Chasoid for hmz: the flame chase and its variants (agent cleanup, fixed interrupt, parallel lanes) as subflows of one flow.",
-        "stars": 0,
-        "pushed": "2026-10-06T14:10:49Z"
+        "stars": 1,
+        "pushed": "2026-10-11T09:13:26Z"
       },
       "readme": {
         "summary": "Flame Chasoid for hmz: the flame chase and its variants (agent cleanup, fixed interrupt, parallel lanes) as subflows of one flow.",

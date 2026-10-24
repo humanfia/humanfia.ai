@@ -14,8 +14,9 @@ const props = defineProps<{ motion: boolean }>()
 const DOCS = 'https://docs.humanfia.ai/humanize'
 
 const WAYS = [
-  { key: 'uv', line: `uv tool install git+${REPO}.git` },
-  { key: 'pip', line: `pip install git+${REPO}.git` },
+  { key: 'uv', line: 'uv tool install hmz' },
+  { key: 'pip', line: 'pip install hmz' },
+  { key: 'uvx', line: 'uvx hmz@latest' },
 ]
 const at = ref(0)
 const copied = ref(false)

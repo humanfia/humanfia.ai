@@ -17,16 +17,22 @@ interface Way {
 
 const WAYS: Way[] = [
   {
-    key: 'pip',
-    label: 'pip',
-    note: 'Into your current environment.',
-    lines: [`pip install git+${REPO}.git`],
-  },
-  {
     key: 'uv',
     label: 'uv',
     note: 'As a standalone tool on your PATH.',
-    lines: [`uv tool install git+${REPO}.git`],
+    lines: ['uv tool install hmz'],
+  },
+  {
+    key: 'pip',
+    label: 'pip',
+    note: 'Into your current environment.',
+    lines: ['pip install hmz'],
+  },
+  {
+    key: 'uvx',
+    label: 'uvx',
+    note: 'The newest release, run without installing it.',
+    lines: ['uvx hmz@latest'],
   },
   {
     key: 'source',
@@ -86,8 +92,8 @@ const STEPS = [
   {
     n: '03',
     title: 'Run a flow',
-    body: 'A published flow with several agents, traced.',
-    lines: ['hmz exec -f official/flame_chase'],
+    body: 'One agent, one question, traced.',
+    lines: ['hmz exec -f chat -a assistant=claude/claude-opus-5:high "What does this repository do?"'],
   },
 ]
 </script>
@@ -139,6 +145,7 @@ const STEPS = [
 
         <p class="install-links">
           <a :href="`${DOCS}/user/installation`">The installation guide ↗</a>
+          <a :href="`${DOCS}/user/desktop`">Humanize Desktop for macOS ↗</a>
           <a :href="REPO">GitHub ↗</a>
         </p>
       </div>

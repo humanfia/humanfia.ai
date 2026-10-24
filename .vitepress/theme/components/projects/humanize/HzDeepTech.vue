@@ -57,7 +57,7 @@ const INDEX = [
       <span id="tracing-one-timeline" class="hz-alias" aria-hidden="true" />
       <header class="dt-ch-head" v-reveal>
         <h3 id="exomyth" class="dt-name">Exomyth<span>the visualizer</span></h3>
-        <p class="dt-state shipped"><b>Shipped</b> in Humanize as the run trace and program profiling. Merged into the runtime in April.</p>
+        <p class="dt-state shipped"><b>Shipped</b> in Humanize as the run trace, program profiling and the Exomyth view in <code>hmz</code> and <code>hmz web</code>. Merged into the runtime in April.</p>
       </header>
       <div class="dt-ch-body">
         <div class="dt-copy" v-reveal>
@@ -66,7 +66,8 @@ const INDEX = [
             <a href="https://ui.perfetto.dev" target="_blank" rel="noreferrer">Perfetto</a>. Agents
             are processes, sessions are tracks, and each turn or tool call is a slice with its
             prompt and output. With profiling enabled, programs started by agents appear on the
-            same clock. Nothing is uploaded.
+            same clock. <code>hmz</code> and <code>hmz web</code> draw the same run as a timeline
+            and a flame graph. Nothing is uploaded.
           </p>
           <a class="hz-link" :href="`${DOCS}/user/tracing`">Tracing a run ↗</a>
         </div>
@@ -102,8 +103,9 @@ const INDEX = [
           <p class="dt-sub">Three arrangements</p>
           <p class="hz-copy">
             <b>Supervised</b> (default): the agent runs here and the workspace is mirrored on
-            demand. <b>Afar</b>: the agent and supervisor run on the target; only standard streams
-            come back. <b>Native</b>: the target’s own CLI takes the turn.
+            demand. <b>Afar</b>: the agent and supervisor run on the target or a third machine; only
+            standard streams come back. <b>Native</b>: the target’s own CLI takes the turn. One setting of the runtime, its
+            harness, picks the arrangement.
           </p>
           <p class="hz-copy">
             The target needs only a POSIX <code>/bin/sh</code> and Python 3.12 or later, without

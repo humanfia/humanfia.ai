@@ -41,11 +41,11 @@ const day = (iso: string) => iso.slice(0, 10)
 <template>
   <div class="flow-facts flow-ui">
     <template v-if="builtin">
-      <div class="badge"><span class="sq" />ships with humanize</div>
+      <div class="badge"><span class="sq" />ships with Humanize</div>
       <p class="how">
         Nothing to install: it is in <code>hmz</code> from the first run, with
         <code>chat</code> and the other loops, and its code is
-        <a :href="`https://github.com/humanfia/humanize/tree/main/src/hmz/flows/builtin/${flow}`">humanize's
+        <a :href="`https://github.com/humanfia/humanize/tree/main/src/hmz/flows/builtin/${flow}`">Humanize's
           <code>flows/builtin/{{ flow }}</code></a>.
       </p>
     </template>

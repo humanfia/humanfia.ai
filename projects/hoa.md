@@ -15,7 +15,7 @@ markdownStyles: false
 pageClass: hoa-page
 
 links:
-  - { text: humanfia/hoa-qed, href: https://github.com/humanfia/hoa-qed }
+  - { text: humanfia/hoa, href: https://github.com/humanfia/hoa }
   - { text: The flows, href: /flows/recursive-lean-prover }
   - { text: Datasets, href: https://huggingface.co/humanfia-lab }
 
@@ -40,10 +40,10 @@ results:
     grader: Lean · Comparator
     lean: true
     cells: 128
-    filled: 79
+    filled: 89
     accent: 30
-    legend: 79 of 128 solved · 30 of them first
-    note: Second by total, 79 to 80. 170 of 171 on the archive; 249 distinct problems across both, the most of any entry.
+    legend: 89 of 128 solved · 30 of them first
+    note: Third by total, 89 to the leader's 92. 170 of 171 on the archive; 259 distinct problems across both, two behind Axiom Prover.
     posts: [{ text: Oct 4, href: /news/2026-10-05-lean-eval-v1 }, { text: Aug 18, href: /news/2026-08-18-lean-eval-first }, { text: Jul 29, href: /news/2026-07-29-lean-eval-second }]
   - id: imo
     name: IMO 2026
@@ -121,13 +121,14 @@ putnam:
   - { name: Seed-Prover 1.5 (ByteDance), score: 581, added: '2025-12-27' }
 
 # Lean-Eval: the board's published data (lean-lang.org/eval/site-data/v2), LeanEval v1 scope,
-# generated 2026-10-05.
+# generated 2026-10-23.
 leanEval:
-  - { name: Humanfia · GPT-5.6, us: true, total: 79, first: 30, unique: 1 }
-  - { name: NEAR AI · DeepSeek V4, total: 80, first: 12, unique: 3 }
-  - { name: Axiom Prover, total: 74, first: 21, unique: 3 }
+  - { name: Humanfia · GPT-5.6, us: true, total: 89, first: 30, unique: 0 }
+  - { name: max gp · GPT-6, total: 92, first: 4, unique: 2 }
+  - { name: Axiom Prover, total: 90, first: 23, unique: 0 }
+  - { name: NEAR AI · DeepSeek V4, total: 88, first: 12, unique: 0 }
 
-# IMO 2026: API minutes per problem, from the write-up (humanfia/hoa-qed imo2026/README.md);
+# IMO 2026: API minutes per problem, from the write-up (humanfia/hoa imo2026/README.md);
 # AxiomProver's as it reported them. Kimi-K3's are its worker and Codex reviewer combined.
 imo:
   - { label: Q1, gpt: 38.1, kimi: 87.1, axiom: 24 }
@@ -156,7 +157,7 @@ icho:
   - { label: GPT-5.6 Sol, goal: 32, flow: 68 }
   - { label: Kimi-K3, goal: 31, flow: 68 }
 
-# humanfia/hoa-qed, one directory per competition or library.
+# humanfia/hoa, one directory per competition or library.
 repo:
   - { dir: putnambench, text: 'Solver, pinned statements and re-run scripts' }
   - { dir: imo2026, text: 'Formal statements, Lean solutions and scripts' }

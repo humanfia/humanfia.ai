@@ -1,12 +1,12 @@
 <script setup lang="ts">
-// Seventeen layers, and a test that holds them.
+// Twenty layers, and a test that holds them.
 //
 // The package as a stack, from the ways in down to what is remembered. Hovering a layer shows
 // what it is and the module it is, and shades the layers above and below it. It does not
 // draw the edges: which layer may import which is a table in a test, and the caption says so.
 //
 // The layers and their descriptions are the ones in Humanize's own architecture page, which
-// draws them from tests/integration/layering/test_layering.py: sixteen in the table, and
+// draws them from tests/integration/test_core_layering.py: nineteen in the table, and
 // `cli`, which joins them.
 import { computed, ref } from 'vue'
 
@@ -31,6 +31,12 @@ const LAYERS: Layer[] = [
     is: 'The terminal interface: slash commands, keys, menus, and what they draw.',
     module: 'hmz.tui',
     note: 'Reaches the runtime’s front door only through daemon, as one frontend of the runs a host holds.',
+  },
+  {
+    name: 'web/',
+    is: 'The web interface: the runs in a browser on this machine, and what a page reads and asks of them.',
+    module: 'hmz.web',
+    note: 'Reaches the runtime only through daemon, and draws a run with watching, as the terminal interface does.',
   },
   {
     name: 'sdk/',
@@ -71,8 +77,13 @@ const LAYERS: Layer[] = [
   },
   {
     name: 'exporting/',
-    is: 'One whole run packaged up to send somewhere.',
+    is: 'One whole run packaged up to send somewhere, and read back in.',
     module: 'hmz.runtime.exporting',
+  },
+  {
+    name: 'backing/',
+    is: 'Epics backed up to git repositories, behind everything else.',
+    module: 'hmz.runtime.backing',
   },
   {
     name: 'epic/',
@@ -83,6 +94,11 @@ const LAYERS: Layer[] = [
     name: 'tracing/',
     is: 'The backends’ own logs read back as one trace: a reader per backend.',
     module: 'hmz.runtime.tracing',
+  },
+  {
+    name: 'watching/',
+    is: 'A run read as it happens: who is working and what it has cost. Every frontend draws the same figures from it.',
+    module: 'hmz.runtime.watching',
   },
   {
     name: 'coganchor/',
@@ -139,7 +155,7 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
         v-for="(layer, i) in LAYERS"
         :key="layer.name"
         :class="[where(i), { held }]"
-        :style="{ '--w': `${100 - Math.abs(i - 8) * 2.2}%` }"
+        :style="{ '--w': `${100 - Math.abs(i - 9.5) * 2.2}%` }"
       >
         <button
           type="button"
@@ -167,7 +183,7 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
     <figcaption>
       Each layer may import only the layers its table entry lists; <code>flows</code> and
       <code>flowing</code> are the only pair that import each other.
-      <code>tests/integration/layering/test_layering.py</code> holds the table and fails the build
+      <code>tests/integration/test_core_layering.py</code> holds the table and fails the build
       on a violation.
       <a :href="`${DOCS}/contributing/architecture`">The whole tree, and the exemptions ↗</a>
     </figcaption>
@@ -182,7 +198,7 @@ const where = (i: number) => (i < at.value ? 'above' : i > at.value ? 'below' : 
   margin: 0;
 }
 
-/* ---- The tower: seventeen plates, stacked, the one in hand pulled out ------------------- */
+/* ---- The tower: twenty plates, stacked, the one in hand pulled out ------------------- */
 
 .tower {
   display: flex;

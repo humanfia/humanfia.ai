@@ -76,8 +76,8 @@ const STEPS = [
   },
   {
     tag: 'Agents',
-    title: 'It drives ten coding-agent CLIs you already use.',
-    body: 'claude, codex, dsh, agy, grok, kimi, qwen, pi, opencode and mimo. We hold no API key: the runtime drives the tools you already pay for.',
+    title: 'It drives thirteen coding-agent CLIs you already use.',
+    body: 'claude, codex, dsh, agy, grok, kimi, qwen, pi, omp, opencode, mimo, mcode and cursor-agent. It holds a key only if you give it one: the runtime drives the tools you already pay for.',
     link: { text: 'Read the docs', href: DOCS },
   },
   {
@@ -163,11 +163,11 @@ function spot(e: PointerEvent) {
 
 // ---------------------------------------------------------------------------------- runtime
 
-const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'opencode', 'mimo']
-const INSTALL = `uv tool install git+${REPO}.git`
+const AGENTS = ['claude', 'codex', 'dsh', 'agy', 'grok', 'kimi', 'qwen', 'pi', 'omp', 'opencode', 'mimo', 'mcode', 'cursor-agent']
+const INSTALL = 'uv tool install hmz'
 const TERMINAL = [
   { prompt: true, text: INSTALL },
-  { prompt: true, text: 'hmz exec -f official/flame_chase' },
+  { prompt: true, text: 'hmz exec -f chat -a assistant=claude/claude-opus-5:high "What does this repository do?"' },
 ]
 const termEl = ref<HTMLElement | null>(null)
 const typed = ref(TERMINAL.map((l) => l.text))

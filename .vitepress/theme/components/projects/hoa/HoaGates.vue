@@ -131,7 +131,7 @@ const verdict = () => {
         <p class="hoa-kicker">Around the gates</p>
         <p>
           The worker has no network access, and neither model's workspace holds an existing PutnamBench solution. Details:
-          the <a href="https://github.com/humanfia/hoa-qed#verification-method" target="_blank" rel="noreferrer">verification method</a>,
+          the <a href="https://github.com/humanfia/hoa/tree/main/putnambench#verification-method" target="_blank" rel="noreferrer">verification method</a>,
           <a href="https://github.com/leanprover/comparator" target="_blank" rel="noreferrer">Comparator</a>
           and <a href="https://axle.axiommath.ai/" target="_blank" rel="noreferrer">AXLE</a>.
         </p>

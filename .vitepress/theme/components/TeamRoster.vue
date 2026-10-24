@@ -102,7 +102,7 @@ const GROUPS: Group[] = [
     id: 'humanize',
     name: 'Humanize',
     href: '/projects/humanize',
-    what: 'The runtime that drives twelve coding-agent CLIs through a flow and records every turn.',
+    what: 'The runtime that drives thirteen coding-agent CLIs through a flow and records every turn.',
     members: [
       { who: 'futrime', role: 'Lead. The runtime itself — the anchor, the tracing, the backends and the CLI.' },
       { who: 'DongyunZou', role: 'Backends, and the kernel workloads the runtime has to run.' },
