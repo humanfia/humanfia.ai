@@ -6,7 +6,7 @@ export const REPO = 'https://github.com/humanfia/humanize'
 /** The four numbers under the hero. */
 export const STATS = [
   { value: 13, kicker: 'Coding-agent CLIs', text: 'Plus any CLI that speaks the Agent Client Protocol' },
-  { display: 'litellm', kicker: 'New harness', text: 'One chat completion per turn, with no tools or environment' },
+  { display: 'litellm', kicker: 'Model harness', text: 'One chat completion per turn, with no tools or environment' },
   { value: 7, kicker: 'Built-in flows', text: 'From chat to flame_chase; more in the flowverse', href: '/flows/' },
   { value: 20, kicker: 'Layers', text: 'A test checks which may import which' },
 ]
@@ -57,7 +57,7 @@ export const HARNESSES = [
   { name: 'omp', product: 'Oh My Pi', kind: 'CLI', driven: 'one omp --mode rpc held open per session' },
   { name: 'agy', product: 'Antigravity CLI', kind: 'CLI', driven: 'one process held open (stream-json)' },
   { name: 'dsh', product: 'DeepSeek Harness', kind: 'CLI', driven: 'its Python SDK, in this process' },
-  { name: 'litellm', product: 'a model, called directly', kind: 'Model · new', driven: 'one chat completion per turn over the session history', highlight: true },
+  { name: 'litellm', product: 'a model, called directly', kind: 'Model', driven: 'one chat completion per turn over the session history', highlight: true },
   { name: 'acp', product: 'any ACP agent', kind: 'Protocol', driven: 'one process held open, JSON-RPC over stdio' },
 ]
 
