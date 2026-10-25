@@ -124,9 +124,9 @@ export default defineConfig({
     siteTitle: false,
 
     // Projects is a menu; the rest are plain links. There is no Research menu: Flow Science is a
-    // post on the blog, and Deep Tech is part of the Humanize page, the project it is the engine
-    // of. Flows is a plain link too: the way to a flow is the catalogue at /flows/, which shows every flow at once, drawn, where a menu
-    // could only list their names. There is no projects index any more: a page whose whole job
+    // post on the blog, and how Humanize works inside is its own documentation's to say. Flows
+    // is a plain link too: the way to a flow is the catalogue at /flows/, which shows every flow
+    // at once, drawn, where a menu could only list their names. There is no projects index any more: a page whose whole job
     // was to list six links, when a menu lists the same six without costing a page load, and
     // every one of those pages opens with the sentence the index was paraphrasing. The way in
     // is now the project itself.
