@@ -1,10 +1,12 @@
 <script setup lang="ts">
-// The first screen: what Humanize is in one line, the one command that installs it, and the
-// run it makes, running (HzRun). Behind it, the run's clock ruled across the whole page and one
-// accent plane on the poster's diagonal; as the hero scrolls away the plane slides and the copy
-// lifts, driven by where the hero is rather than by a timer.
-import { computed, onBeforeUnmount, ref } from 'vue'
+// The first screen: what Humanize is in one line, the button that downloads it for the reader's
+// platform, the one command that installs the CLI, and a run, running (HzRun). Behind it, the
+// run's clock ruled across the whole page and one accent plane on the poster's diagonal; as the
+// hero scrolls away the plane slides and the copy lifts, driven by where the hero is rather than
+// by a timer.
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { clamp, useScrollProgress } from '../../../home/motion'
+import { detectOS, installers, PLATFORMS, type Installer, type OS } from '../../release'
 import { REPO } from './data'
 import HzRun from './HzRun.vue'
 
@@ -13,18 +15,28 @@ const props = defineProps<{ motion: boolean }>()
 // Declared here, not imported: `pnpm check:docs` follows ${DOCS} only in a file that names it.
 const DOCS = 'https://docs.humanfia.ai/humanize'
 
-const WAYS = [
-  { key: 'uv', line: 'uv tool install hmz' },
-  { key: 'pip', line: 'pip install hmz' },
-  { key: 'uvx', line: 'uvx hmz@latest' },
-]
-const at = ref(0)
+// Until the browser says which platform it is on, the button goes to the download section.
+const os = ref<OS | null>(null)
+const installer = ref<Installer | undefined>()
+onMounted(async () => {
+  os.value = detectOS()
+  if (os.value) installer.value = (await installers())[os.value]
+})
+// Linux has no app, and a platform whose installer is not out yet has none to link: both go to
+// the download section, where the CLI is.
+const download = computed(() => {
+  const name = PLATFORMS.find((p) => p.key === os.value)?.label
+  if (os.value === 'linux') return { href: '#get-started', label: 'Install on Linux' }
+  return { href: installer.value?.url ?? '#get-started', label: name ? `Download for ${name}` : 'Download' }
+})
+
+const LINE = 'uv tool install hmz'
 const copied = ref(false)
 let clear: ReturnType<typeof setTimeout> | undefined
 
 async function copy() {
   try {
-    await navigator.clipboard.writeText(WAYS[at.value].line)
+    await navigator.clipboard.writeText(LINE)
     copied.value = true
     clearTimeout(clear)
     clear = setTimeout(() => (copied.value = false), 1800)
@@ -50,44 +62,35 @@ const copyLift = computed(() =>
 
     <div class="hz-wrap hero-grid">
       <div class="hero-copy" :style="copyLift">
-        <p class="hz-kicker hz-load" style="--d: 0.05s">Humanize · the agent flow system</p>
+        <p class="hz-kicker hz-load" style="--d: 0.05s">Humanize · open source</p>
         <h1 id="hz-title" class="hero-title hz-load" style="--d: 0.15s">
-          Run coding agents in a flow and <span>trace every turn.</span>
+          Get more out of the coding agents <span>you already use.</span>
         </h1>
         <p class="hz-lead hz-load" style="--d: 0.3s">
-          Humanize runs the coding-agent CLIs you already log into, in the order a flow sets, and
-          records every turn. Every other Humanfia project runs on it.
+          Humanize runs Claude Code, Codex and the other coding agents in a proven loop: work, review,
+          try again, until the task is done or the budget is spent. Watch every
+          turn, step in when you want, and leave it running when you don't.
         </p>
 
-        <div class="hero-install hz-load" style="--d: 0.45s">
-          <div class="hero-ways" role="tablist" aria-label="Install with">
-            <button
-              v-for="(way, i) in WAYS"
-              :key="way.key"
-              type="button"
-              role="tab"
-              :aria-selected="at === i"
-              :class="{ on: at === i }"
-              @click="(at = i), (copied = false)"
-            >
-              {{ way.key }}
-            </button>
-          </div>
+        <div class="hz-actions hz-load" style="--d: 0.45s">
+          <a class="hz-btn primary" :href="download.href">{{ download.label }}</a>
+          <a class="hz-btn ghost" :href="`${DOCS}/`" target="_blank" rel="noreferrer">Documentation <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="hero-install hz-load" style="--d: 0.58s">
+          <p>Or install the CLI</p>
           <div class="hero-line">
-            <code><span aria-hidden="true">$</span>{{ WAYS[at].line }}</code>
+            <code><span aria-hidden="true">$</span>{{ LINE }}</code>
             <button type="button" class="hero-copy-btn" :class="{ done: copied }" @click="copy">
               {{ copied ? 'copied' : 'copy' }}
             </button>
           </div>
         </div>
 
-        <div class="hz-actions hz-load" style="--d: 0.58s">
-          <a class="hz-btn primary" href="#get-started">Run your first flow</a>
-          <a class="hz-btn ghost" :href="`${DOCS}/`" target="_blank" rel="noreferrer">Documentation <span aria-hidden="true">↗</span></a>
-        </div>
         <p class="hero-meta hz-load" style="--d: 0.7s">
-          Open source · Apache-2.0 · Python ≥ 3.12 ·
-          <a :href="REPO" target="_blank" rel="noreferrer">humanfia/humanize ↗</a>
+          Free and open source · Apache-2.0 · macOS, Windows and Linux ·
+          <a :href="REPO" target="_blank" rel="noreferrer">GitHub ↗</a> ·
+          <a href="#get-started">Other platforms</a>
         </p>
       </div>
 
@@ -144,7 +147,7 @@ const copyLift = computed(() =>
 
 .hero-title {
   margin: 0;
-  font-size: clamp(40px, 5vw, 80px);
+  font-size: clamp(40px, 4.4vw, 68px);
   line-height: 0.98;
   letter-spacing: -0.05em;
   font-weight: 800;
@@ -161,29 +164,15 @@ const copyLift = computed(() =>
 /* ---- the install line ------------------------------------------------------------------ */
 
 .hero-install {
-  margin-top: 32px;
+  margin-top: 28px;
   max-width: 560px;
 }
-.hero-ways {
-  display: flex;
-  gap: 2px;
-}
-.hero-ways button {
-  padding: 6px 14px;
+.hero-install p {
+  margin: 0 0 8px;
   font: 700 11.5px/1 var(--hz-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--hz-ink-3);
-  background: transparent;
-  cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
-}
-.hero-ways button:hover {
-  color: var(--hz-ink);
-}
-.hero-ways button.on {
-  color: var(--hz-on-ink);
-  background: var(--hz-ink);
 }
 .hero-line {
   display: flex;
@@ -225,7 +214,7 @@ const copyLift = computed(() =>
 }
 
 .hero-copy .hz-actions {
-  margin-top: 24px;
+  margin-top: 32px;
 }
 .hero-meta {
   margin: 22px 0 0;

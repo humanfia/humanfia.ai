@@ -50,7 +50,7 @@ const REPO = 'https://github.com/humanfia/hoa'
           All runs are flows on <a href="/projects/humanize">Humanize</a>. PutnamBench is a Ralph
           loop with Codex as worker and reviewer. Lean-Eval uses HOA's agents with the
           <a href="/flows/humanize1">RLCR Flow</a>. These runs shaped
-          <a href="/projects/humanize#the-flows-it-runs">RLAR</a> and the other
+          <a href="/flows/rlar">RLAR</a> and the other
           <a href="/flows/">flows</a>.
         </p>
       </div>

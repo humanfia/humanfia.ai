@@ -71,11 +71,11 @@ results**.
 
 ## Only flows that win on FlowBench stay on this site
 
-A flow that loses is removed from the [flowverse](/projects/humanize#the-flows-it-runs).
+A flow that loses is removed from the [flowverse](/flows/).
 
 <div class="fb-tiles">
 
-- [**Where it sits** Benchmark winners become the default flows in Humanize.](/projects/humanize#the-flows-it-runs)
+- [**Where it sits** Benchmark winners become the default flows in Humanize.](/flows/)
 - [**What it scores** Our flows and widely used ones such as the Ralph loop.](https://github.com/humanfia/flowverse)
 - [**When it opens up** The first cross-flow numbers will be posted in the news.](/news/)
 

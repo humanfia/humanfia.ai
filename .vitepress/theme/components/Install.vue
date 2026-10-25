@@ -1,164 +1,163 @@
 <script setup lang="ts">
-// Humanize, installed. The documentation is a site of its own and this is not a copy of it:
-// it is the one screen that gets somebody from nothing to a flow running, and then hands them
-// over. Three ways in, because a Python tool that is only ever `pip install`ed in a README is
-// a tool half its readers cannot use.
-import { computed, onBeforeUnmount, ref } from 'vue'
+// Getting Humanize, as an open-source project's download page does it: the app or the command
+// line, for the platform the reader is on -- found out for them, and theirs to change. The
+// documentation has the rest; this is the one screen from nothing to installed.
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { detectOS, installers, PLATFORMS, RELEASES, type Installer, type OS } from './release'
 
 const DOCS = 'https://docs.humanfia.ai/humanize'
 const REPO = 'https://github.com/humanfia/humanize'
 
-interface Way {
-  key: string
-  label: string
-  note: string
-  lines: string[]
-}
-
-const WAYS: Way[] = [
-  {
-    key: 'uv',
-    label: 'uv',
-    note: 'As a standalone tool on your PATH.',
-    lines: ['uv tool install hmz'],
-  },
-  {
-    key: 'pip',
-    label: 'pip',
-    note: 'Into your current environment.',
-    lines: ['pip install hmz'],
-  },
-  {
-    key: 'uvx',
-    label: 'uvx',
-    note: 'The newest release, run without installing it.',
-    lines: ['uvx hmz@latest'],
-  },
-  {
-    key: 'source',
-    label: 'from source',
-    note: 'A checkout you can change and send pull requests from.',
-    lines: [`git clone ${REPO}.git`, 'cd humanize', 'uv sync'],
-  },
+type Product = 'desktop' | 'cli'
+const PRODUCTS: { key: Product; label: string }[] = [
+  { key: 'desktop', label: 'Humanize Desktop' },
+  { key: 'cli', label: 'Humanize CLI' },
 ]
 
-const at = ref(0)
-const way = computed(() => WAYS[at.value])
+const product = ref<Product>('desktop')
+const os = ref<OS>('macos')
+const detected = ref<OS | null>(null)
+const found = ref<Partial<Record<OS, Installer>>>({})
+
+onMounted(async () => {
+  detected.value = detectOS()
+  if (detected.value) os.value = detected.value
+  if (detected.value === 'linux') product.value = 'cli'
+  found.value = await installers()
+})
+
+const DESKTOP: Partial<Record<OS, { label: string; meta: string; steps: string[] }>> = {
+  macos: {
+    label: 'Download for macOS',
+    meta: 'Universal · macOS 11 or newer · .dmg',
+    steps: [
+      'Open the .dmg and drag Humanize Desktop onto Applications.',
+      'Open it. The first launch installs the Humanize CLI for you.',
+    ],
+  },
+  windows: {
+    label: 'Download for Windows',
+    meta: 'x64 · Windows 10 or 11 · needs WSL 2',
+    steps: [
+      'No WSL yet? Run wsl --install in PowerShell and restart.',
+      'Run the installer. The first launch installs the Humanize CLI in WSL for you.',
+    ],
+  },
+}
+
+const UV = 'curl -LsSf https://astral.sh/uv/install.sh | sh'
+const CLI: Record<OS, { lines: string[]; note: string }> = {
+  macos: { lines: [UV, 'uv tool install hmz'], note: 'Skip the first line if you have uv. Or: pip install hmz, with Python 3.12 or newer.' },
+  linux: { lines: [UV, 'uv tool install hmz'], note: 'Skip the first line if you have uv. Or: pip install hmz, with Python 3.12 or newer.' },
+  windows: {
+    lines: ['wsl --install', '# then, in a WSL terminal:', UV, 'uv tool install hmz'],
+    note: 'Humanize runs in WSL on Windows. Skip wsl --install if you have it.',
+  },
+}
+
+const desktop = computed(() => DESKTOP[os.value])
+const installer = computed(() => found.value[os.value])
+const cli = computed(() => CLI[os.value])
+
 const copied = ref(false)
 let clear: ReturnType<typeof setTimeout> | undefined
-
 async function copy() {
-  const text = way.value.lines.join('\n')
+  const text = cli.value.lines.filter((l) => !l.startsWith('#')).join('\n')
   try {
     await navigator.clipboard.writeText(text)
   } catch {
-    // A page served over plain http, or a browser that refuses without a gesture it recognises.
-    // Selecting it is still better than nothing.
-    const box = document.createElement('textarea')
-    box.value = text
-    box.setAttribute('readonly', '')
-    box.style.position = 'fixed'
-    box.style.opacity = '0'
-    document.body.appendChild(box)
-    box.select()
-    document.execCommand('copy')
-    box.remove()
+    return // No clipboard here (plain http, say): the lines can still be selected.
   }
   copied.value = true
   clearTimeout(clear)
   clear = setTimeout(() => (copied.value = false), 1800)
 }
-
 onBeforeUnmount(() => clearTimeout(clear))
 
-const pick = (i: number) => {
-  at.value = i
-  copied.value = false
-}
-
-const STEPS = [
-  {
-    n: '01',
-    title: 'Check it landed',
-    body: 'No account needed.',
-    lines: ['hmz --version'],
-  },
-  {
-    n: '02',
-    title: 'Log into an agent you already have',
-    body: 'Any supported coding-agent CLI, under your own subscription.',
-    lines: ['claude auth login', 'codex login'],
-  },
-  {
-    n: '03',
-    title: 'Run a flow',
-    body: 'One agent, one question, traced.',
-    lines: ['hmz exec -f chat -a assistant=claude/claude-opus-5:high "What does this repository do?"'],
-  },
+const NEXT = [
+  { title: 'Sign in to a coding agent', body: 'Claude Code, Codex or any other you use. Humanize runs it under your own login.' },
+  { title: 'Pick a flow and give it a task', body: 'In Humanize Desktop, in a browser with hmz web, or in the terminal with hmz.' },
 ]
 </script>
 
 <template>
-  <!-- The wrapper is the query container: this block sits both in a full-width home page
-       section and in a documentation column half that wide, and it should lay itself out
-       against the space it was actually given rather than against the window. -->
-  <div class="install-wrap">
-    <div class="install">
-      <div class="install-main">
-        <div class="install-head">
-          <div class="install-tabs" role="tablist" aria-label="How to install Humanize">
-            <button
-              v-for="(item, i) in WAYS"
-              :key="item.key"
-              type="button"
-              role="tab"
-              class="install-tab"
-              :class="{ on: at === i }"
-              :aria-selected="at === i"
-              :tabindex="at === i ? 0 : -1"
-              @click="pick(i)"
-            >
-              {{ item.label }}
+  <div class="dl">
+    <div class="dl-bar">
+      <div class="dl-tabs" role="tablist" aria-label="What to install">
+        <button
+          v-for="p in PRODUCTS"
+          :key="p.key"
+          type="button"
+          role="tab"
+          :aria-selected="product === p.key"
+          :class="{ on: product === p.key }"
+          @click="product = p.key"
+        >
+          {{ p.label }}
+        </button>
+      </div>
+      <div class="dl-tabs small" role="tablist" aria-label="Platform">
+        <button
+          v-for="p in PLATFORMS"
+          :key="p.key"
+          type="button"
+          role="tab"
+          :aria-selected="os === p.key"
+          :class="{ on: os === p.key }"
+          @click="os = p.key"
+        >
+          {{ p.label }}<span v-if="detected === p.key" class="dl-you"> · yours</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="dl-body">
+      <div class="dl-main">
+        <template v-if="product === 'desktop' && desktop">
+          <a class="dl-get" :href="installer?.url ?? RELEASES" :download="installer ? '' : undefined">
+            <b>{{ desktop.label }}</b>
+            <span>{{ desktop.meta }}<template v-if="installer"> · v{{ installer.version }}</template></span>
+          </a>
+          <ol class="dl-steps">
+            <li v-for="s in desktop.steps" :key="s">{{ s }}</li>
+          </ol>
+        </template>
+
+        <template v-else-if="product === 'desktop'">
+          <p class="dl-none">
+            Humanize Desktop is for macOS and Windows. On Linux, install the CLI and run
+            <code>hmz web</code> for the same interface in your browser.
+          </p>
+          <button type="button" class="dl-switch" @click="product = 'cli'">Install the CLI →</button>
+        </template>
+
+        <template v-else>
+          <div class="dl-term">
+            <code>
+              <span v-for="line in cli.lines" :key="line" :class="{ c: line.startsWith('#') }">
+                <i v-if="!line.startsWith('#')" aria-hidden="true">$</i>{{ line }}
+              </span>
+            </code>
+            <button type="button" class="dl-copy" :class="{ done: copied }" @click="copy">
+              {{ copied ? 'copied' : 'copy' }}
             </button>
           </div>
-          <!-- Beside the tabs rather than inside the command box: the install line is nearly
-               as wide as the card, and a button sharing that row costs it enough space to
-               wrap. -->
-          <button type="button" class="install-copy" :class="{ done: copied }" @click="copy">
-            {{ copied ? 'copied' : 'copy' }}
-          </button>
-        </div>
+          <p class="dl-note">{{ cli.note }}</p>
+        </template>
 
-        <div class="install-term">
-          <code>
-            <span v-for="line in way.lines" :key="line" class="install-line">
-              <span class="install-prompt" aria-hidden="true">$</span>{{ line }}
-            </span>
-          </code>
-        </div>
-
-        <p class="install-note">{{ way.note }}</p>
-
-        <p class="install-req">
-          Python ≥ 3.12 · API key optional
-        </p>
-
-        <p class="install-links">
-          <a :href="`${DOCS}/user/installation`">The installation guide ↗</a>
-          <a :href="`${DOCS}/user/desktop`">Humanize Desktop for macOS ↗</a>
-          <a :href="REPO">GitHub ↗</a>
+        <p class="dl-links">
+          <a :href="`${DOCS}/user/installation`">Installation guide ↗</a>
+          <a :href="RELEASES">All releases ↗</a>
+          <a :href="REPO">Source ↗</a>
         </p>
       </div>
 
-      <ol class="install-steps">
-        <li v-for="step in STEPS" :key="step.n">
-          <span class="install-n">{{ step.n }}</span>
+      <ol class="dl-next">
+        <li v-for="(n, i) in NEXT" :key="n.title">
+          <span class="dl-n">{{ String(i + 2).padStart(2, '0') }}</span>
           <div>
-            <strong>{{ step.title }}</strong>
-            <p>{{ step.body }}</p>
-            <code>
-              <span v-for="line in step.lines" :key="line">{{ line }}</span>
-            </code>
+            <strong>{{ n.title }}</strong>
+            <p>{{ n.body }}</p>
           </div>
         </li>
       </ol>
@@ -167,98 +166,154 @@ const STEPS = [
 </template>
 
 <style scoped>
-.install-wrap {
+.dl {
   container-type: inline-size;
+  margin-top: 28px;
 }
 
-.install {
+.dl-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 14px;
+}
+.dl-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.dl-tabs button {
+  padding: 8px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+.dl-tabs.small button {
+  padding: 6px 13px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.dl-tabs button:hover {
+  color: var(--vp-c-text-1);
+}
+.dl-tabs button.on {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+.dl-you {
+  color: var(--vp-c-text-3);
+}
+
+.dl-body {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
   gap: 20px;
-  margin: 28px 0 0;
 }
-
-/* ---- The command ------------------------------------------------------------------------ */
-
-.install-main {
+.dl-main {
   display: flex;
   flex-direction: column;
-  padding: 22px 24px 24px;
+  padding: 24px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 16px;
   background: var(--vp-c-bg-soft);
 }
 
-.install-head {
+.dl-get {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.install-tabs {
-  display: flex;
+  flex-direction: column;
   gap: 4px;
+  align-self: flex-start;
+  padding: 16px 26px;
+  border-radius: 12px;
+  background: var(--vp-c-brand-1);
+  color: var(--vp-c-bg) !important;
+  text-decoration: none !important;
+  transition: transform 0.2s, filter 0.2s;
 }
-
-.install-tab {
-  padding: 6px 13px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: none;
+.dl-get:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+.dl-get b {
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.dl-get span {
   font-family: var(--vp-font-family-mono);
-  font-size: 12.5px;
-  color: var(--vp-c-text-3);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+  font-size: 12px;
+  opacity: 0.85;
 }
 
-.install-tab:hover {
-  color: var(--vp-c-text-1);
+.dl-steps {
+  margin: 18px 0 0;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
 }
 
-.install-tab.on {
-  border-color: var(--vp-c-brand-2);
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
+.dl-none {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+.dl-switch {
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 15px;
   font-weight: 600;
+  color: var(--vp-c-brand-1);
+  cursor: pointer;
 }
 
-.install-term {
-  padding: 16px 18px;
+.dl-term {
+  position: relative;
+  padding: 16px 84px 16px 18px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   background: var(--vp-c-bg);
 }
-
-.install-term code {
+.dl-term code {
   display: block;
+  padding: 0;
+  background: none;
   font-family: var(--vp-font-family-mono);
   font-size: 13.5px;
   line-height: 1.85;
   color: var(--vp-c-text-1);
-  background: none;
-  padding: 0;
 }
-
-/* The install URL is longer than the card, and a command a reader cannot see the end of is
-   worse than one that wraps. `anywhere` rather than `break-word` so the URL breaks too. */
-.install-line {
+.dl-term code > span {
   display: block;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
-
-.install-prompt {
+.dl-term code > span.c {
+  color: var(--vp-c-text-3);
+}
+.dl-term i {
   display: inline-block;
   width: 1.35em;
+  font-style: normal;
   color: var(--vp-c-brand-1);
   user-select: none;
 }
-
-.install-copy {
-  flex: none;
+.dl-copy {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   padding: 4px 11px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 7px;
@@ -267,60 +322,37 @@ const STEPS = [
   font-size: 11.5px;
   color: var(--vp-c-text-3);
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
 }
-
-.install-copy:hover {
+.dl-copy:hover,
+.dl-copy.done {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
 }
-
-.install-copy.done {
-  border-color: var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
-}
-
-.install-note {
-  margin: 14px 0 0;
-  font-size: 14px;
+.dl-note {
+  margin: 12px 0 0;
+  font-size: 13.5px;
   line-height: 1.6;
-  color: var(--vp-c-text-2);
-}
-
-.install-req {
-  margin: 10px 0 0;
-  /* Takes up whatever height the card has spare, so the links below sit on its bottom edge
-     when the two columns are the same height -- and keep their own margin when they are not. */
-  margin-bottom: auto;
-  font-family: var(--vp-font-family-mono);
-  font-size: 11.5px;
-  line-height: 1.7;
   color: var(--vp-c-text-3);
 }
 
-.install-links {
+.dl-links {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 18px;
-  margin: 24px 0 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--vp-c-divider);
+  margin: auto 0 0;
+  padding-top: 20px;
   font-size: 13.5px;
 }
-
-.install-links a {
+.dl-links a {
   font-weight: 600;
   color: var(--vp-c-brand-1);
   text-decoration: none;
 }
-
-.install-links a:hover {
+.dl-links a:hover {
   text-decoration: underline;
 }
 
-/* ---- And then what ---------------------------------------------------------------------- */
-
-.install-steps {
+.dl-next {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -328,72 +360,35 @@ const STEPS = [
   padding: 0;
   list-style: none;
 }
-
-.install-steps li {
+.dl-next li {
   display: flex;
   gap: 14px;
-  padding: 16px 18px;
+  padding: 18px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   background: var(--vp-c-bg-soft);
 }
-
-.install-n {
+.dl-n {
   flex: none;
-  padding-top: 1px;
   font-family: var(--vp-font-family-mono);
   font-size: 11px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
 }
-
-.install-steps strong {
+.dl-next strong {
   display: block;
-  font-size: 14.5px;
-  letter-spacing: -0.01em;
+  font-size: 15px;
   color: var(--vp-c-text-1);
 }
-
-.install-steps p {
+.dl-next p {
   margin: 5px 0 0;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.55;
   color: var(--vp-c-text-3);
 }
 
-.install-steps code {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--vp-c-text-2);
-}
-
-.install-steps code span {
-  display: block;
-  white-space: pre;
-  overflow-x: auto;
-}
-
-/* A flex child will not shrink below its content unless it is told it may, and a long
-   `hmz exec` line is exactly the content that would otherwise push out of the card. */
-.install-steps li > div {
-  min-width: 0;
-}
-
 @container (max-width: 760px) {
-  .install {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 899px) {
-  /* `minmax(0, 1fr)` rather than `1fr`: a bare `1fr` floors the track at the widest thing in
-     it, and on a 320px screen the terminal card's min-content is wider than the column, so the
-     card pushed the whole page a few pixels past the right edge. This lets the track be the
-     width it is given and leaves the wrapping to the card, which already handles it. */
-  .install {
+  .dl-body {
     grid-template-columns: minmax(0, 1fr);
   }
 }

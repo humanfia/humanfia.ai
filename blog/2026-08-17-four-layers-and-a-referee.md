@@ -238,7 +238,7 @@ section was updated in October 2026 to match humanize as it is today: more backe
 that now ship built in, and the runtime's real layers.</Sidenote>
 
 **Humanize, the runtime.** [Humanize](/projects/humanize) is one layer in two halves. The lower
-half, [coganchor](/projects/humanize#coganchor), is the only part that knows how to drive a CLI: which backend a role is, which
+half, [coganchor](https://docs.humanfia.ai/humanize/features/anchor), is the only part that knows how to drive a CLI: which backend a role is, which
 account it runs as, which machine its turns land on, where a turn goes when that place cannot
 take it, and what its tokens cost. Nothing above it reaches past it to a driver.
 

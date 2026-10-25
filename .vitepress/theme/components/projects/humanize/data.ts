@@ -1,15 +1,10 @@
-// What the Humanize page says, in one place: the numbers, the harnesses, the features and the
-// flows. The components lay it out; nothing here is drawn.
+// What the Humanize page says, in one place: the ablation, the agents and the features. The
+// components lay it out; nothing here is drawn.
 
 export const REPO = 'https://github.com/humanfia/humanize'
 
-/** The four numbers under the hero. */
-export const STATS = [
-  { value: 13, kicker: 'Coding-agent CLIs', text: 'Plus any CLI that speaks the Agent Client Protocol' },
-  { value: 3, kicker: 'Interfaces', text: 'hmz, hmz web and Humanize Desktop, on the same epics' },
-  { value: 7, kicker: 'Built-in flows', text: 'From chat to flame_chase; more in the flowverse', href: '/flows/' },
-  { value: 20, kicker: 'Layers', text: 'A test checks which may import which' },
-]
+// A feature's link is a path in the documentation, unless it is a page of this site (/flows/).
+export const DOCS = 'https://docs.humanfia.ai/humanize'
 
 /** The Humanize ablation in the KDA² post (2026-09-27): four base models, three levels of
  *  scaffolding, 50 problems each. */
@@ -42,46 +37,53 @@ export const LEVELS = [
   { key: 'flow', label: 'Humanize flow' },
 ] as const
 
-/** Every harness `-a` takes, from hmz.flows.HarnessKind and the agents reference. */
-export const HARNESSES = [
-  { name: 'claude', product: 'Claude Code', kind: 'CLI', model: 'claude-opus-5:high', driven: 'one claude --print held open per session' },
-  { name: 'codex', product: 'Codex', kind: 'CLI', model: 'gpt-5.6-sol:high', driven: 'one codex app-server per agent, shared by its sessions' },
-  { name: 'cursor-agent', product: 'Cursor Agent', kind: 'CLI', driven: 'one cursor-agent --print per turn' },
-  { name: 'opencode', product: 'opencode', kind: 'CLI', driven: 'one opencode run per turn' },
-  { name: 'mimo', product: 'mimocode', kind: 'CLI', driven: 'one mimo run per turn' },
-  { name: 'mcode', product: 'MiniMax Code', kind: 'CLI', driven: 'one mcode exec per turn' },
-  { name: 'qwen', product: 'Qwen Code', kind: 'CLI', driven: 'one process held open (stream-json)' },
-  { name: 'kimi', product: 'Kimi Code', kind: 'CLI', driven: 'one kimi web daemon per agent' },
-  { name: 'grok', product: 'Grok Build', kind: 'CLI', driven: 'one grok agent stdio held open' },
-  { name: 'pi', product: 'pi', kind: 'CLI', driven: 'one pi --mode rpc held open per session' },
-  { name: 'omp', product: 'Oh My Pi', kind: 'CLI', driven: 'one omp --mode rpc held open per session' },
-  { name: 'agy', product: 'Antigravity CLI', kind: 'CLI', driven: 'one process held open (stream-json)' },
-  { name: 'dsh', product: 'DeepSeek Harness', kind: 'CLI', driven: 'its Python SDK, in this process' },
-  { name: 'litellm', product: 'a model, called directly', kind: 'Model', driven: 'one chat completion per turn over the session history' },
-  { name: 'acp', product: 'any ACP agent', kind: 'Protocol', driven: 'one process held open, JSON-RPC over stdio' },
+/** The coding agents Humanize runs, by product name. */
+export const AGENTS = [
+  'Claude Code',
+  'Codex',
+  'Cursor Agent',
+  'Antigravity CLI',
+  'Grok Build',
+  'Kimi Code',
+  'Qwen Code',
+  'opencode',
+  'mimocode',
+  'MiniMax Code',
+  'pi',
+  'Oh My Pi',
+  'DeepSeek Harness',
 ]
 
-/** Twelve features, one card each. A card whose title says it all, and links on, has no body. */
+/** What a user gets, one card each, each linked to the page of the documentation that shows it. */
 export const FEATURES = [
-  { kicker: 'The anchor', title: 'Run an agent’s work on another machine', body: 'Each syscall is replayed on the other machine or answered locally. The agent is unchanged.', href: '#coganchor' },
-  { kicker: 'Accounts', title: 'One CLI, signed in as several accounts', body: 'Humanize points the CLI’s credential files at each account’s own.' },
-  { kicker: 'Tracing', title: 'Every agent and program on one timeline', href: '#exomyth' },
-  { kicker: 'Steering', title: 'Steer a turn while it runs', body: 'A message goes into the running turn; a failed delivery is reported.' },
-  { kicker: 'Shapes', title: 'Typed answers from a pydantic model', body: 'The answer is validated against the model.' },
-  { kicker: 'Backends', title: 'Thirteen CLIs and any ACP agent', href: '#every-harness' },
-  { kicker: 'Flows', title: 'A flow is Python', href: '#the-flows-it-runs' },
-  { kicker: 'Concurrency', title: 'Many turns at once', body: 'Turns in one session run in order; separate sessions run in parallel.' },
-  { kicker: 'Resuming', title: 'Resume a run where it stopped', body: 'The flow’s state is restored from its journal. A conversation goes on only if the flow kept it.' },
-  { kicker: 'Goals', title: 'Keep going until the goal is met', body: 'With the backend’s goal feature, a turn that would end starts another until the model says the goal is met.' },
-  { kicker: 'The person', title: 'You, as one of the agents', body: 'A flow can ask a person to review or decide at any step.' },
-  { kicker: 'Interfaces', title: 'A terminal, a browser or a Mac app', body: 'hmz, hmz web and Humanize Desktop show the same epics. An epic keeps running when the window closes.' },
-]
-
-/** The loop shapes that ship, each drawn by its own scene from theme/flows.ts. */
-export const FLOWS = [
-  { kicker: 'One agent', title: 'A fresh session each round, or one kept throughout', scene: 'ralph_loop', href: '/flows/ralph-loop', body: 'ralph_loop opens a fresh session each round; stateful_ralph and continue_loop keep one throughout.' },
-  { kicker: 'Two agents', title: 'Take turns on the same tree', scene: 'flame_chase', href: '/flows/flame-chase', body: 'flame_chase alternates two agents on one task. Each reads the repository, not the other’s history.' },
-  { kicker: 'Actor and reviewer', title: 'The reviewer’s notes become the actor’s next prompt', scene: 'rlar', href: '/flows/rlar', body: 'rlar keeps one actor session for the whole run and opens a fresh reviewer session each round.' },
-  { kicker: 'A plan first', title: 'Plan, then build under review', scene: 'humanize1-rlcr', href: '/flows/humanize1', body: 'RLCR Flow (humanize1): an idea is drafted, two agents agree a plan, then the build is reviewed until approved.' },
-  { kicker: 'Seven agents', title: 'Three parallel lanes; only lane 1 writes your tree', scene: 'parallel_flame_chase', href: '/flows/parallel-flame-chase', body: 'flame_chasoid:parallel: a coordinator plans three lanes. Lanes 2 and 3 work on private copies and report to lane 1.' },
+  {
+    title: 'The agents you already have',
+    body: 'Claude Code, Codex and eleven more, under your own logins and subscriptions. Mix them in one run.',
+    href: '/features/backends',
+  },
+  {
+    title: 'A proven loop for every task',
+    body: 'Pick a flow that suits the work, or write your own in a few lines of Python.',
+    href: '/flows/',
+  },
+  {
+    title: 'Watch and steer as it works',
+    body: 'Every turn shows live. Talk to a running agent, or answer when a flow asks you.',
+    href: '/user/steering',
+  },
+  {
+    title: 'A budget on every run',
+    body: 'Cap time, tokens or dollars. A run stops when it is spent, never after.',
+    href: '/features/allowances',
+  },
+  {
+    title: 'Close the laptop, keep the run',
+    body: 'Runs keep going in the background, on this machine or on your servers, and pick up where they stopped.',
+    href: '/user/leaving',
+  },
+  {
+    title: 'See everything it did',
+    body: 'Every agent, command and cost on one timeline you can replay, export and share.',
+    href: '/user/tracing',
+  },
 ]
